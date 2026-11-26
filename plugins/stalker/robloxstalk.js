@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const username = String(m.text || "").trim().replace(/^@/, "");
-  if (!username) return m.reply(`🧱 Masukkan username Roblox!\n> Contoh: \`${m.prefix}robloxstalk Builderman\``);
+  if (!username) return m.reply(`🧱 ¡Escribe el nombre de usuario de Roblox!\n> Ejemplo: \`${m.prefix}robloxstalk Builderman\``);
 
   await m.react("🔎");
   try {
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     const base = lookup.data?.data?.[0];
     if (!base?.id) {
       await m.react("❌");
-      return m.reply(`❌ Akun Roblox *${username}* tidak ditemukan.`);
+      return m.reply(`❌ No se encontró la cuenta de Roblox *${username}*.`);
     }
 
     const uid = base.id;
@@ -53,8 +53,8 @@ async function handler(m, { sock }) {
       `│ 👤 Display   : *${u.displayName || base.displayName}* ${u.hasVerifiedBadge ? "☑️" : ""}\n` +
       `│ 🔖 Username  : \`@${u.name || base.name}\`\n` +
       `│ 🆔 User ID   : \`${uid}\`\n` +
-      `│ 🚫 Banned    : ${u.isBanned ? "Ya" : "Tidak"}\n` +
-      `│ 📅 Dibuat    : ${created}\n` +
+      `│ 🚫 Baneado    : ${u.isBanned ? "Sí" : "No"}\n` +
+      `│ 📅 Creado     : ${created}\n` +
       `├───〔 *STATISTIK* 〕\n` +
       `│ 🤝 Friends   : *${Number(friendsRes.data?.count || 0).toLocaleString("id-ID")}*\n` +
       `│ 👥 Followers : *${Number(followersRes.data?.count || 0).toLocaleString("id-ID")}*\n` +
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal mengambil data Roblox: ${err.message}`);
+    await m.reply(`❌ No se pudieron obtener los datos de Roblox: ${err.message}`);
   }
 }
 

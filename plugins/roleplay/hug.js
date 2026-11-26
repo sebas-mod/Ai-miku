@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     label: "Peluk",
     needTarget: true,
     affectionDelta: 8,
-    templateTarget: '{sender} memeluk erat {target} dengan penuh kehangatan! 🤗',
+    templateTarget: '¡{sender} abraza con fuerza a {target} con mucho cariño! 🤗',
     templateSelf: '{sender} memeluk dirinya sendiri sambil tersenyum.',
   });
 }

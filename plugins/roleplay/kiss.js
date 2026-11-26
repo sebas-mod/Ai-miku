@@ -26,8 +26,8 @@ async function handler(m, { sock }) {
     label: "Cium",
     needTarget: true,
     affectionDelta: 10,
-    templateTarget: '{sender} memberikan kecupan manis kepada {target}! 💋',
-    templateSelf: '{sender} mengirim flying kiss ke udara!',
+    templateTarget: '¡{sender} le da un besito dulce a {target}! 💋',
+    templateSelf: '¡{sender} lanza un beso volador al aire!',
   });
 }
 

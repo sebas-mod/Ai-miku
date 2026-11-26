@@ -49,21 +49,21 @@ async function fetchIgProfile(username) {
 
 async function handler(m, { sock }) {
   const username = String(m.text || "").trim().replace(/^@/, "");
-  if (!username) return m.reply(`📸 Masukkan username Instagram!\n> Contoh: \`${m.prefix}igstalk instagram\``);
+  if (!username) return m.reply(`📸 ¡Escribe el nombre de usuario de Instagram!\n> Ejemplo: \`${m.prefix}igstalk instagram\``);
 
   await m.react("🔎");
   const u = await fetchIgProfile(username);
   if (!u) {
     await m.react("❌");
-    return m.reply(`❌ Profil Instagram *@${username}* tidak ditemukan atau sedang dibatasi.`);
+    return m.reply(`❌ El perfil de Instagram *@${username}* no existe o está restringido.`);
   }
 
   const fmt = (v) => (typeof v === "number" ? v.toLocaleString("id-ID") : String(v));
   const caption =
     `╭─❖「 📸 *INSTAGRAM STALKER* 」\n` +
-    `│ 👤 Nama      : *${u.fullname}* ${u.verified ? "☑️" : ""}\n` +
+    `│ 👤 Nombre    : *${u.fullname}* ${u.verified ? "☑️" : ""}\n` +
     `│ 🔖 Username  : \`@${u.username}\`\n` +
-    `│ 🔒 Privat    : ${u.private ? "Ya" : "Tidak"}\n` +
+    `│ 🔒 Privado   : ${u.private ? "Sí" : "No"}\n` +
     `├───〔 *STATISTIK* 〕\n` +
     `│ 🖼️ Postingan : *${fmt(u.posts)}*\n` +
     `│ 👥 Followers : *${fmt(u.followers)}*\n` +

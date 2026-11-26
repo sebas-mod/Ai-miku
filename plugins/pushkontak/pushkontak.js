@@ -36,18 +36,18 @@ const pluginConfig = {
 
   async function handler(m, { sock, jid, text, reply, example }) {
       const media = await getMedia(m)
-      if (!text && !media) return example('pesan yang ingin di-push ke member  (atau reply foto/video + caption)')
+      if (!text && !media) return example('mensaje que quieres enviar a los miembros (o responde a una foto/vídeo + texto)')
 
       const jobs = jpmJobs()
-      if (jobs.pushRunning) return reply('❌ Push kontak sedang berjalan. Ketik *stoppush* untuk menghentikan.')
+      if (jobs.pushRunning) return reply('❌ El envío de contactos está en marcha. Escribe *stoppush* para detenerlo.')
 
       const meta = await getMeta(sock, jid, true)
       const members = await memberJids(sock, meta)
-      if (!members.length) return reply('❌ Tidak ada member yang bisa dituju di grup ini.')
+      if (!members.length) return reply('❌ No hay miembros a los que enviar en este grupo.')
 
       const delay = jpmCfg().delayPushKontak
       jobs.pushRunning = true
-      await reply(`*▢ PUSH KONTAK*\n• Target : ${members.length} member\n• Delay : ${delay}ms\n• Auto-save : VCF\n\nHentikan dengan *stoppush*`)
+      await reply(`*▢ ENVÍO DE CONTACTOS*\n• Objetivo : ${members.length} miembros\n• Retardo : ${delay}ms\n• Autoguardado : VCF\n\nDetenlo con *stoppush*`)
 
       const saved = []
       let result
@@ -62,14 +62,14 @@ const pluginConfig = {
       }
 
       if (saved.length) {
-          const nama = String(meta.subject || 'Grup').replace(/\s+/g, '_')
+          const nama = String(meta.subject || 'Grupo').replace(/\s+/g, '_')
           await sendVcf(sock, m.sender, saved, {
-              fileName: `Kontak_${nama}_${saved.length}`,
-              caption: `*▢ AUTO-SAVE KONTAK*\n• Total : ${saved.length} kontak\n• Grup : ${meta.subject || '-'}\n\nImport file ini ke HP untuk menyimpan semua kontak.`
+              fileName: `Contacto_${nama}_${saved.length}`,
+              caption: `*▢ AUTOGUARDADO DE CONTACTOS*\n• Total : ${saved.length} contactos\n• Grupo : ${meta.subject || '-'}\n\nImporta este archivo en tu móvil para guardar todos los contactos.`
           }).catch(e => console.error('[PUSHKONTAK] gagal kirim VCF:', e?.message || e))
       }
 
-      return reply(`*▢ PUSH KONTAK SELESAI*\n• Berhasil : ${result.ok} member\n• Gagal : ${result.fail} member\n• Tersimpan : ${saved.length} kontak (VCF)`)
+      return reply(`*▢ ENVÍO DE CONTACTOS TERMINADO*\n• Correctos : ${result.ok} miembros\n• Fallidos : ${result.fail} miembros\n• Guardados : ${saved.length} contactos (VCF)`)
   }
 
 export { pluginConfig as config, handler }

@@ -28,63 +28,63 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const DREAM_LEVELS = ['Lucid ✨', 'Mystic 🌟', 'Ethereal 💫', 'Divine 🌙', 'Legendary 🎇']
-const DREAM_QUALITIES = ['Peaceful 😌', 'Adventure 🚀', 'Mystical 🔮', 'Prophecy 📖', 'Epic 🗺️']
+const DREAM_LEVELS = ['Lúcido ✨', 'Místico 🌟', 'Etéreo 💫', 'Divino 🌙', 'Legendario 🎇']
+const DREAM_QUALITIES = ['Tranquilo 😌', 'Aventura 🚀', 'Místico 🔮', 'Profecía 📖', 'Épico 🗺️']
 
 const ELEMENTS = [
-    '🌊 Lautan Kristal Bercahaya',
-    '🌈 Pelangi Mengambang',
-    '🌺 Taman Melayang',
-    '⭐ Konstelasi Hidup',
-    '🌙 Bulan Kembar',
+    '🌊 Océano de Cristal Luminoso',
+    '🌈 Arcoíris Flotante',
+    '🌺 Jardín Flotante',
+    '⭐ Constelación Viva',
+    '🌙 Luna Doble',
     '🏰 Kastil Awan',
-    '🌋 Gunung Prisma',
-    '🎭 Theater Bayangan'
+    '🌋 Montaña Prisma',
+    '🎭 Teatro de Sombras'
 ]
 
 const EVENTS = [
-    '🦋 Kupu-kupu membawa pesan rahasia',
-    '🎭 Topeng menari sendiri',
-    '🌊 Hujan bintang jatuh ke laut',
-    '🎪 Parade makhluk ajaib',
-    '🌺 Bunga bernyanyi lagu kuno',
-    '🎨 Lukisan menjadi hidup',
-    '🎵 Musik terlihat sebagai warna',
-    '⚡ Petir membentuk tangga ke langit'
+    '🦋 Una mariposa trae un mensaje secreto',
+    '🎭 Máscaras que bailan solas',
+    '🌊 Lluvia de estrellas sobre el mar',
+    '🎪 Desfile de criaturas mágicas',
+    '🌺 Flores que cantan canciones antiguas',
+    '🎨 Pinturas que cobran vida',
+    '🎵 La música se ve como colores',
+    '⚡ Rayos que forman una escalera al cielo'
 ]
 
 const ENCOUNTERS = [
-    '🐉 Naga Pelangi Bijaksana',
-    '🧙‍♂️ Penyihir Bintang',
-    '🦊 Rubah Spirit Sembilan Ekor',
-    '🧝‍♀️ Peri Pembawa Mimpi',
-    '🦁 Singa Kristal',
-    '🐋 Paus Terbang Mistis',
-    '🦅 Burung Phoenix Waktu',
-    '🐢 Kura-kura Pembawa Dunia',
-    '🦄 Unicorn Dimensi'
+    '🐉 Dragón Arcoíris Sabio',
+    '🧙‍♂️ Mago de las Estrellas',
+    '🦊 Zorro Espíritu de Nueve Colas',
+    '🧝‍♀️ Hada de los Sueños',
+    '🦁 León de Cristal',
+    '🐋 Ballena Voladora Mística',
+    '🦅 El Ave Fénix del Tiempo',
+    '🐢 Tortuga que Sostiene el Mundo',
+    '🦄 Unicornio Dimensional'
 ]
 
 const POWERS = [
-    '✨ Mengendalikan Waktu',
-    '🌊 Berbicara dengan Elemen',
-    '🎭 Shapeshifting',
-    '🌈 Manipulasi Realitas',
-    '👁️ Penglihatan Masa Depan',
-    '🎪 Teleportasi Dimensi',
-    '🌙 Penyembuhan Spiritual',
-    '⚡ Energi Kosmik'
+    '✨ Controlar el tiempo',
+    '🌊 Hablar con los elementos',
+    '🎭 Cambiar de forma',
+    '🌈 Manipulación de la Realidad',
+    '👁️ Ver el futuro',
+    '🎪 Teletransporte Dimensional',
+    '🌙 Sanación Espiritual',
+    '⚡ Energía Cósmica'
 ]
 
 const MESSAGES = [
-    'Perjalananmu akan membawa perubahan besar',
-    'Rahasia kuno akan terungkap dalam waktu dekat',
-    'Kekuatan tersembunyi akan segera bangkit',
-    'Takdir baru menanti di horizon',
-    'Koneksi spiritual akan menguat',
-    'Transformasi besar akan terjadi',
-    'Pencerahan akan datang dari arah tak terduga',
-    'Misi penting akan segera dimulai'
+    'Tu viaje traerá un gran cambio',
+    'Un secreto antiguo saldrá a la luz muy pronto',
+    'Un poder oculto despertará pronto',
+    'Un nuevo destino te espera en el horizonte',
+    'Tu conexión espiritual se hará más fuerte',
+    'Ocurrirá una gran transformación',
+    'La claridad llegará de donde menos lo esperas',
+    'Una misión importante está a punto de comenzar'
 ]
 
 function generateDream(seed) {

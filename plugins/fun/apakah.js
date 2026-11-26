@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, tentu saja!',
-    'Tidak, sepertinya tidak.',
-    'Mungkin saja, coba lagi nanti.',
-    'Hmm... aku rasa iya.',
-    'Aku ragu, tapi bisa jadi.',
+    '¡Sí, claro que sí!',
+    'No, parece que no.',
+    'Puede ser, inténtalo más tarde.',
+    'Hmm... creo que sí.',
+    'Lo dudo, pero puede ser.',
     'Pasti! 100%!',
-    'Tidak mungkin.',
-    'Bisa jadi, siapa yang tau?',
-    'Menurutku sih iya.',
-    'Wah, kayaknya nggak deh.',
-    'Tentu, kenapa tidak?',
-    'Aku nggak tau, coba tanya yang lain.',
+    'Imposible.',
+    'Puede ser, ¿quién sabe?',
+    'En mi opinión, sí.',
+    'Uf, creo que no.',
+    'Claro, ¿por qué no?',
+    'No lo sé, pregunta a otro.',
     'Ya ampun, pasti lah!',
-    'Hmm... sepertinya tidak.',
-    'Aku yakin iya!',
-    'Nggak mungkin banget.',
-    'Mungkin, tapi jangan berharap terlalu tinggi.',
-    'Iya dong!',
-    'Nggak, maaf ya.',
-    'Bisa! Semangat!'
+    'Hmm... parece que no.',
+    '¡Estoy seguro de que sí!',
+    '¡Imposible del todo!',
+    'Puede ser, pero no te ilusiones demasiado.',
+    '¡Pues claro!',
+    'No, lo siento.',
+    '¡Sí! ¡Ánimo!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .apakah aku bisa jadi kaya?`);
+        return m.reply(`❓ *¿ACASO...?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .apakah ¿podré hacerme rico?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     label: "Colek",
     needTarget: true,
     affectionDelta: 4,
-    templateTarget: '{sender} mencolek pipi {target} dengan jahil! 👉✨',
+    templateTarget: '¡{sender} le pellizca la mejilla a {target} con picardía! 👉✨',
     templateSelf: '{sender} mencolek angin.',
   });
 }

@@ -37,7 +37,7 @@ async function handler(m, { conn, sock, usedPrefix, command, reply }) {
       }
 
       if (!/audio/.test(mime)) {
-        return (reply || m.reply)(`*[INFO] Reply audio atau VN dengan perintah ${usedPrefix + command}*`)
+        return (reply || m.reply)(`*[INFO] Responde a un audio o nota de voz con el comando ${usedPrefix + command}*`)
       }
 
       let tmpDir = join(process.cwd(), 'database', 'tmp')
@@ -60,14 +60,14 @@ async function handler(m, { conn, sock, usedPrefix, command, reply }) {
       } else if (Buffer.isBuffer(media)) {
         writeFileSync(inputPath, media)
       } else {
-        return (reply || m.reply)("❌ Gagal mengunduh audio. Balas (reply) pesan audio atau VN!")
+        return (reply || m.reply)("❌ No se pudo descargar el audio. ¡Responde a un mensaje de audio o nota de voz!")
       }
 
       const ffmpegFilter = "-filter:a \"atempo=1.6,asetrate=22100\""
       exec(`ffmpeg -hide_banner -loglevel error -y -i "${inputPath}" ${ffmpegFilter} "${outputPath}"`, async (err) => {
         try {
           try { unlinkSync(inputPath) } catch {}
-          if (err) return (reply || m.reply)("❌ Gagal memproses efek audio!")
+          if (err) return (reply || m.reply)("❌ ¡No se pudo procesar el efecto de audio!")
 
           let buff = readFileSync(outputPath)
           await client.sendMessage(m.chat, {
@@ -83,7 +83,7 @@ async function handler(m, { conn, sock, usedPrefix, command, reply }) {
       })
     } catch (e) {
       console.error(e);
-      (reply || m.reply)("❌ Terjadi kesalahan pada fitur audio effect.")
+      (reply || m.reply)("❌ Ocurrió un error en la función de efectos de audio.")
     }
   }
 

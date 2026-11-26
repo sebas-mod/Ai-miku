@@ -32,7 +32,7 @@ async function handler(m) {
     const list = Array.isArray(data?.deployments) ? data.deployments : [];
     if (!list.length) {
       await m.react("✅");
-      return m.reply("📭 Tidak ada riwayat deployment ditemukan.");
+      return m.reply("📭 No se encontró ningún historial de despliegues.");
     }
 
     const badge = { READY: "🟢", BUILDING: "🟡", ERROR: "🔴", CANCELED: "⚪" };
@@ -50,7 +50,7 @@ async function handler(m) {
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal cek deployment Vercel: ${err.message}`);
+    await m.reply(`❌ No se pudo comprobar el despliegue en Vercel: ${err.message}`);
   }
 }
 

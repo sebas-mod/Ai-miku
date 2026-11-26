@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
   cacheParticipantLids(participants);
 
   if (participants.length === 0) {
-    return m.reply(`❌ Tidak ada member di grup!`);
+    return m.reply(`❌ ¡No hay miembros en el grupo!`);
   }
 
   const resolveJid = async (p) => {

@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     needTarget: false,
     affectionDelta: 5,
     templateTarget: '{sender} tersipu malu gara-gara {target}! 😊🌸',
-    templateSelf: '{sender} wajahnya memerah karena malu-malu! 😊🌸',
+    templateSelf: '{sender} ¡se sonroja de vergüenza! 😊🌸',
   });
 }
 

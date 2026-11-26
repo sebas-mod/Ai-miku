@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, pasti akan terjadi!',
-    'Tidak, sepertinya tidak akan.',
-    'Mungkin akan, mungkin tidak.',
-    'Pasti akan terjadi!',
-    'Hmm, sulit diprediksi.',
-    'Pasti! Yakin saja!',
-    'Kayaknya nggak deh.',
-    'Akan terjadi kalau kamu mau berusaha.',
-    'Suatu saat nanti, pasti.',
-    'Nggak akan, maaf.',
-    'Tentu akan! Tunggu saja!',
-    'Hmm, aku ragu.',
-    'Akan! Percaya sama proses!',
-    'Kemungkinannya kecil.',
-    'Pasti akan, aku yakin!',
-    'Nggak akan, cari yang lain aja.',
-    'Akan, tapi butuh waktu.',
+    '¡Sí, seguro que ocurrirá!',
+    'No, parece que no ocurrirá.',
+    'Puede que sí, puede que no.',
+    '¡Seguro que ocurrirá!',
+    'Hmm, difícil de predecir.',
+    '¡Seguro! ¡Solo ten confianza!',
+    'Creo que no, la verdad.',
+    'Ocurrirá si tú quieres esforzarte.',
+    'En algún momento, seguro.',
+    'No ocurrirá, lo siento.',
+    '¡Claro que sí! ¡Solo espera!',
+    'Hmm, lo dudo.',
+    '¡Sí! ¡Confía en el proceso!',
+    'La probabilidad es baja.',
+    'Seguro que sí, ¡te lo aseguro!',
+    'No, busca otra cosa.',
+    'Sí, pero necesita tiempo.',
     '¡Claro que sí!',
-    'Kalau jodoh, pasti akan.',
-    'Akan terjadi di saat yang tepat!'
+    'Si es el destino, seguro que sí.',
+    '¡Ocurrirá en el momento adecuado!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`🔮 *ᴀᴋᴀɴᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .akankah aku sukses?`);
+        return m.reply(`🔮 *¿PASARÁ?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .akankah ¿tendré éxito?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

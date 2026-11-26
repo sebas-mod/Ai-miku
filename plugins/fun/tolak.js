@@ -26,14 +26,14 @@ const pluginConfig = {
 };
 
 const rejectionQuotes = [
-  "Sabar ya, yang lebih baik pasti datang! 🌟",
-  "Belum jodoh bukan berarti tidak ada jodoh 💪",
+  "¡Ten paciencia, seguro que llega alguien mejor! 🌟",
+  "No ser el destino de alguien no significa que no tengas destino 💪",
   "Move on! Banyak ikan di laut! 🐟",
-  "Yang sabar ya, cinta sejati akan datang 💕",
-  "Jangan patah semangat, tetap semangat! 🔥",
-  "Penolakan adalah awal dari keberhasilan 💪",
-  "Masih banyak kesempatan di luar sana! ✨",
-  "Yakin masih ada yang lebih cocok buat kamu! 🌈",
+  "Ten paciencia, el amor verdadero llegará 💕",
+  "¡No pierdas el ánimo, sigue adelante! 🔥",
+  "Un rechazo es el principio del éxito 💪",
+  "¡Todavía hay muchas oportunidades ahí fuera! ✨",
+  "¡Seguro que hay alguien más compatible contigo! 🌈",
 ];
 
 async function handler(m, { sock }) {
@@ -61,17 +61,17 @@ async function handler(m, { sock }) {
   if (!shooterJid) {
     return m.reply(
       `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> Reply pesan tembakan + \`${m.prefix}tolak\`\n` +
-        `> Atau \`${m.prefix}tolak @tag\``,
+        `> Responde al mensaje de la declaración + \`${m.prefix}tolak\`\n` +
+        `> O \`${m.prefix}tolak @tag\``,
     );
   }
 
   if (shooterJid === m.sender) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa menolak diri sendiri!`);
+    return m.reply(`❌ *FALLIDO*\n\n> ¡No puedes rechazarte a ti mismo!`);
   }
 
   if (shooterJid.split("@")[0] === String(m.botNumber).replace(/@.*/, "")) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak punya hati untuk ditolak!`);
+    return m.reply(`❌ *FALLIDO*\n\n> ¡El bot no tiene corazón que rechazar!`);
   }
 
   let shooterData = db.getUser(shooterJid) || {};
@@ -85,8 +85,8 @@ async function handler(m, { sock }) {
     shooterData.fun.tembakTarget !== m.sender
   ) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴍᴇɴᴇᴍʙᴀᴋ*\n\n` +
-        `> @${shooterJid.split("@")[0]} tidak sedang menembakmu`,
+      `❌ *NO TE HA DECLARADO AMOR*\n\n` +
+        `> @${shooterJid.split("@")[0]} no te está declarando su amor`,
       { mentions: [shooterJid] },
     );
   }
@@ -114,9 +114,9 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `💔 *WADUHH, YANG SABAR YAK* @${shooterJid.split("@")[0]}\n\n` +
-      `@${m.sender.split("@")[0]} menolak @${shooterJid.split("@")[0]} sebagai pacarnya\n\n` +
-      `Sabar ya, masih banyak yang lain! 😢`,
+    `💔 *VAYA, TEN PACIENCIA* @${shooterJid.split("@")[0]}\n\n` +
+      `@${m.sender.split("@")[0]} rechaza a @${shooterJid.split("@")[0]} como su pareja\n\n` +
+      `¡Ten paciencia, habrá más! 😢`,
     { contextInfo: ctx },
   );
 }

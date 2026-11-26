@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     label: "Tampar",
     needTarget: true,
     affectionDelta: -2,
-    templateTarget: '{sender} menampar {target} dengan penuh drama! 👋💥',
+    templateTarget: '{sender} ¡le da una bofetada a {target} con todo el drama! 👋💥',
     templateSelf: '{sender} menepuk pipinya sendiri biar sadar!',
   });
 }

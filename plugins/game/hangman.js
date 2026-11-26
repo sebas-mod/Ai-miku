@@ -36,7 +36,7 @@ const WORDS = [
 
 async function handler(m, { sock }) {
   const active = getActiveGame(m.chat);
-  if (active) return m.reply(`⏳ Masih ada game *${active.type}* yang aktif di chat ini! Ketik \`${m.prefix}stopgame\` untuk menghentikan.`);
+  if (active) return m.reply(`⏳ ¡Todavía hay un juego *${active.type}* activo en este chat! Escribe \`${m.prefix}stopgame\` para detenerlo.`);
 
   const item = WORDS[Math.floor(Math.random() * WORDS.length)];
   const session = {
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
   };
 
   setActiveGame(m.chat, session, 150000, async (cur) => {
-    await sock.sendMessage(m.chat, { text: `⏰ Waktu *Hangman* habis! Jawabannya adalah *${cur.word.toUpperCase()}*.` });
+    await sock.sendMessage(m.chat, { text: `⏰ ¡Se acabó el tiempo de *Ahorcado*! La respuesta era *${cur.word.toUpperCase()}*.` });
   });
 
   await m.reply(renderHangman(session));

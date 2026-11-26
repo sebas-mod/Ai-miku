@@ -36,11 +36,11 @@ async function handler(m) {
       `│ 💭 Mood      : ${stats.mood}\n` +
       `├───〔 *INTERAKSI* 〕\n` +
       `│ 💖 Affection : *${stats.affection}* poin\n` +
-      `│ 📤 Aksi Kirim: *${stats.given}x*\n` +
+      `│ 📤 Acciones enviadas: *${stats.given}x*\n` +
       `│ 📥 Diterima  : *${stats.received}x*\n` +
       `│ ⭐ Favorit   : ${topActs}\n` +
       `╰─────────────────────❖\n` +
-      `_Ubah mood dengan \`${m.prefix}rpmood <mood baru>\`._`,
+      `_Cambia el estado de ánimo con \`${m.prefix}rpmood <nuevo estado>\`._`,
     { mentions: [target] }
   );
 }

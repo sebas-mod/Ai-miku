@@ -35,7 +35,7 @@ async function handler(m) {
     await m.react("✅");
     await m.reply(
       `╭─❖「 ▲ *VERCEL ACCOUNT INFO* 」\n` +
-      `│ 👤 Nama      : *${u.name || "-"}*\n` +
+      `│ 👤 Nombre    : *${u.name || "-"}*\n` +
       `│ 🔖 Username  : \`${u.username || "-"}\`\n` +
       `│ 📧 Email     : ${u.email || "-"}\n` +
       `│ 📦 Total Web : *${totalProj} proyek*\n` +
@@ -43,7 +43,7 @@ async function handler(m) {
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal mengambil info Vercel: ${err.message}`);
+    await m.reply(`❌ No se pudo obtener la información de Vercel: ${err.message}`);
   }
 }
 

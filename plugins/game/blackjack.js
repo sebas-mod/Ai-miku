@@ -22,14 +22,14 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const active = getActiveGame(m.chat);
-  if (active) return m.reply(`⏳ Masih ada game *${active.type}* yang aktif di chat ini! Ketik \`${m.prefix}stopgame\` untuk berhenti.`);
+  if (active) return m.reply(`⏳ ¡Todavía hay un juego *${active.type}* activo en este chat! Escribe \`${m.prefix}stopgame\` para pararlo.`);
 
   const db = getDatabase();
   const user = db.getUser(m.sender) || db.setUser(m.sender);
   const bet = Math.max(100, Math.min(50000, parseInt(m.text, 10) || 1000));
 
   if ((user?.koin || 0) < bet) {
-    return m.reply(`❌ Koin kamu tidak cukup! Saldo: *${(user?.koin || 0).toLocaleString("id-ID")} Koin*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Saldo: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   db.updateKoin(m.sender, -bet);
@@ -45,9 +45,9 @@ async function handler(m, { sock }) {
     return m.reply(
       `╭─❖「 🃏 *NATURAL BLACKJACK 21!* 」\n` +
         `│ 🤵 Dealer : ${formatHand(dealer)} (*${handScore(dealer)}*)\n` +
-        `│ 👤 Kamu   : ${formatHand(hand)} (*21*)\n` +
+        `│ 👤 Tú     : ${formatHand(hand)} (*21*)\n` +
         `╰─────────────────────❖\n` +
-        `🎉 *JACKPOT!* Kamu menang *+${win.toLocaleString("id-ID")} Koin*!`
+        `🎉 *¡JACKPOT!* ¡Has ganado *+${win.toLocaleString("id-ID")} monedas*!`
     );
   }
 
@@ -69,10 +69,10 @@ async function handler(m, { sock }) {
   await m.reply(
     `╭─❖「 🃏 *BLACKJACK — MIKU* 」\n` +
       `│ 🤵 Dealer : ${formatHand(dealer, true)}\n` +
-      `│ 👤 Kamu   : ${formatHand(hand)} (*${score}*)\n` +
+      `│ 👤 Tú     : ${formatHand(hand)} (*${score}*)\n` +
       `│ 💰 Taruhan: *${bet.toLocaleString("id-ID")} Koin*\n` +
       `╰─────────────────────❖\n` +
-      `_Ketik *hit* (tambah kartu), *stand* (berhenti), atau *double* (gandakan taruhan)._`
+      `_Escribe *hit* (pedir carta), *stand* (plantarse) o *double* (doblar la apuesta)._`
   );
 }
 

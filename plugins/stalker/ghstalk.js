@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const username = String(m.text || "").trim().replace(/^@/, "");
-  if (!username) return m.reply(`🔎 Masukkan username GitHub!\n> Contoh: \`${m.prefix}ghstalk torvalds\``);
+  if (!username) return m.reply(`🔎 ¡Escribe el nombre de usuario de GitHub!\n> Ejemplo: \`${m.prefix}ghstalk torvalds\``);
 
   await m.react("🔎");
   try {
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     const joined = u.created_at ? new Date(u.created_at).toLocaleDateString("id-ID", { dateStyle: "medium" }) : "-";
     const caption =
       `╭─❖「 🐙 *GITHUB STALKER* 」\n` +
-      `│ 👤 Nama      : *${u.name || "-"}*\n` +
+      `│ 👤 Nombre    : *${u.name || "-"}*\n` +
       `│ 🔖 Username  : \`@${u.login}\`\n` +
       `│ 📝 Bio       : ${u.bio || "-"}\n` +
       `│ 📍 Lokasi    : ${u.location || "-"}\n` +
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    const msg = err?.response?.status === 404 ? `Username GitHub *${username}* tidak ditemukan.` : `Gagal mengambil data GitHub: ${err.message}`;
+    const msg = err?.response?.status === 404 ? `No se encontró el usuario de GitHub *${username}*.` : `No se pudieron obtener los datos de GitHub: ${err.message}`;
     await m.reply(`❌ ${msg}`);
   }
 }

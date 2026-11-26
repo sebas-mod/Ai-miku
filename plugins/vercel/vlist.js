@@ -29,7 +29,7 @@ async function handler(m) {
     const projects = Array.isArray(data?.projects) ? data.projects : [];
     if (!projects.length) {
       await m.react("✅");
-      return m.reply("📦 Belum ada proyek di akun Vercel kamu.");
+      return m.reply("📦 Todavía no hay proyectos en tu cuenta de Vercel.");
     }
 
     const lines = projects.map((p, i) => {
@@ -40,13 +40,13 @@ async function handler(m) {
 
     await m.react("✅");
     await m.reply(
-      `╭─❖「 ▲ *DAFTAR PROYEK VERCEL (${projects.length})* 」\n` +
+      `╭─❖「 ▲ *LISTA DE PROYECTOS DE VERCEL (${projects.length})* 」\n` +
       `${lines.join("\n")}\n` +
       `╰─────────────────────❖`
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal memuat proyek Vercel: ${err.message}`);
+    await m.reply(`❌ No se pudieron cargar los proyectos de Vercel: ${err.message}`);
   }
 }
 

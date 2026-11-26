@@ -28,9 +28,9 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, example }) {
       const ms = parseInt(text)
-      if (isNaN(ms) || ms < 500) return example('<ms>  (minimal 500, contoh: 2000)')
+      if (isNaN(ms) || ms < 500) return example('<ms>  (mínimo 500, ejemplo: 2000)')
       jpmSetCfg('delayPushKontak', ms)
-      return reply(`*▢ DELAY PUSH KONTAK*\n• Delay : ${ms}ms\n• Status : Berhasil diubah`)
+      return reply(`*▢ RETARDO DEL ENVÍO DE CONTACTOS*\n• Retardo : ${ms}ms\n• Estado : Cambiado correctamente`)
   }
 
 export { pluginConfig as config, handler }

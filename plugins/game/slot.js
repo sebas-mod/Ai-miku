@@ -31,7 +31,7 @@ async function handler(m) {
   const bet = Math.max(100, Math.min(50000, parseInt(m.text, 10) || 500));
 
   if ((user?.koin || 0) < bet) {
-    return m.reply(`❌ Koin tidak cukup! Saldo kamu: *${(user?.koin || 0).toLocaleString("id-ID")} Koin*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Tu saldo: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   db.updateKoin(m.sender, -bet);
@@ -40,7 +40,7 @@ async function handler(m) {
   const row3 = [pick(), pick(), pick()];
 
   let mult = 0;
-  let badge = "😢 *Belum beruntung!*";
+  let badge = "😢 *¡Sin suerte!*";
   if (mid[0] === mid[1] && mid[1] === mid[2]) {
     if (mid[0] === "7️⃣") { mult = 10; badge = "👑 *MEGA JACKPOT 777 (10x)!*"; }
     else if (mid[0] === "💎" || mid[0] === "🌸") { mult = 6; badge = "💎 *CRYSTAL JACKPOT (6x)!*"; }

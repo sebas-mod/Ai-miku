@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m) {
   const pkg = String(m.text || "").trim();
-  if (!pkg) return m.reply(`📦 Masukkan nama paket NPM!\n> Contoh: \`${m.prefix}npmstalk axios\``);
+  if (!pkg) return m.reply(`📦 ¡Escribe el nombre del paquete NPM!\n> Ejemplo: \`${m.prefix}npmstalk axios\``);
 
   await m.react("🔎");
   try {
@@ -42,7 +42,7 @@ async function handler(m) {
       `│ 🔖 Versi     : \`v${latest}\`\n` +
       `│ 👤 Author    : ${author}\n` +
       `│ 📜 Lisensi   : ${latestObj.license || data.license || "-"}\n` +
-      `│ 📥 Unduh/mgg : *${weekly}*\n` +
+      `│ 📥 Descargas/sem : *${weekly}*\n` +
       `│ 🕒 Update    : ${updated}\n` +
       `├───〔 *DESKRIPSI* 〕\n` +
       `│ ${data.description || "-"}\n` +
@@ -53,7 +53,7 @@ async function handler(m) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    const msg = err?.response?.status === 404 ? `Paket NPM *${pkg}* tidak ditemukan.` : `Gagal mengambil data NPM: ${err.message}`;
+    const msg = err?.response?.status === 404 ? `No se encontró el paquete NPM *${pkg}*.` : `No se pudieron obtener los datos de NPM: ${err.message}`;
     await m.reply(`❌ ${msg}`);
   }
 }

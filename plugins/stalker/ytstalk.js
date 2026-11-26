@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const query = String(m.text || "").trim().replace(/^@/, "");
-  if (!query) return m.reply(`▶️ Masukkan nama channel YouTube!\n> Contoh: \`${m.prefix}ytstalk MrBeast\``);
+  if (!query) return m.reply(`▶️ ¡Escribe el nombre del canal de YouTube!\n> Ejemplo: \`${m.prefix}ytstalk MrBeast\``);
 
   await m.react("🔎");
   try {
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     const ch = res?.channels?.[0];
     if (!ch) {
       await m.react("❌");
-      return m.reply(`❌ Channel YouTube *${query}* tidak ditemukan.`);
+      return m.reply(`❌ No se encontró el canal de YouTube *${query}*.`);
     }
 
     const caption =
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal mengambil info YouTube: ${err.message}`);
+    await m.reply(`❌ No se pudo obtener la información de YouTube: ${err.message}`);
   }
 }
 

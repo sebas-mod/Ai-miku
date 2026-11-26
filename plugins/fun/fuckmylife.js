@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
         if (!data?.status || !data?.data?.text) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil FML story`)
+            return m.reply(`❌ No se pudo obtener la historia de FML`)
         }
         await m.reply(data.data.text)
         m.react('✅')

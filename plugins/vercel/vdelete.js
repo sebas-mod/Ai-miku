@@ -25,17 +25,17 @@ async function handler(m) {
 
   const proj = sanitizeProjectName(m.text);
   if (!proj) {
-    return m.reply(`🗑️ Masukkan nama proyek Vercel yang ingin dihapus!\n> Contoh: \`${m.prefix}vdelete web-lama\``);
+    return m.reply(`🗑️ ¡Escribe el nombre del proyecto de Vercel que quieres borrar!\n> Ejemplo: \`${m.prefix}vdelete web-lama\``);
   }
 
   await m.react("🕕");
   try {
     await vercelRequest(token, "DELETE", `/v9/projects/${encodeURIComponent(proj)}`);
     await m.react("✅");
-    await m.reply(`🗑️ Proyek Vercel *${proj}* berhasil dihapus permanen.`);
+    await m.reply(`🗑️ El proyecto de Vercel *${proj}* se eliminó permanentemente.`);
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal menghapus proyek *${proj}*: ${err.message}`);
+    await m.reply(`❌ No se pudo eliminar el proyecto *${proj}*: ${err.message}`);
   }
 }
 

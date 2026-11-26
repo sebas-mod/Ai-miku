@@ -21,9 +21,9 @@ const pluginConfig = {
 
 async function handler(m) {
   const active = getActiveGame(m.chat);
-  if (!active) return m.reply("❌ Tidak ada game aktif di chat ini.");
+  if (!active) return m.reply("❌ No hay ningún juego activo en este chat.");
   clearActiveGame(m.chat);
-  await m.reply(`🏳️ Sesi game *${active.type}* berhasil dihentikan.`);
+  await m.reply(`🏳️ La sesión del juego *${active.type}* se detuvo.`);
 }
 
 export { pluginConfig as config, handler };

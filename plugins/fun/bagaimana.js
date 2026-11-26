@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Caranya gampang, ya tinggal dilakuin aja!',
-    'Hmm, susah dijelasin sih. Coba aja dulu!',
-    'Dengan usaha dan doa pastinya.',
+    '¡Es fácil, solo hazlo!',
+    'Hmm, es difícil de explicar. ¡Inténtalo primero!',
+    'Con esfuerzo y fe, seguro.',
     'Ya begitulah caranya.',
-    'Aku kurang tau sih, coba cari referensi lain.',
-    'Pelan-pelan aja, nanti juga bisa.',
-    'Dengan kerja keras dan pantang menyerah!',
-    'Pertama, percaya sama diri sendiri dulu.',
-    'Hmm, tiap orang beda-beda sih caranya.',
-    'Ikutin kata hatimu aja.',
-    'Belajar dari yang sudah berpengalaman.',
-    'Step by step, jangan terburu-buru.',
-    'Dengan tekad yang kuat!',
-    'Mulai dari yang kecil dulu.',
-    'Konsisten aja, nanti juga bisa.',
-    'Jangan overthinking, langsung action!',
-    'Gampang! Tinggal mulai aja!',
-    'Caranya? Ya dicoba dulu!',
-    'Dengan strategi yang tepat.',
-    'Hmm, aku juga masih belajar sih.'
+    'No estoy seguro, busca otras referencias.',
+    'Poco a poco, ya verás que puedes.',
+    '¡Con trabajo duro y sin rendirse!',
+    'Primero, cree en ti mismo.',
+    'Hmm, cada persona lo hace a su manera.',
+    'Sigue a tu corazón.',
+    'Aprende de quien ya tiene experiencia.',
+    'Paso a paso, sin prisas.',
+    '¡Con mucha determinación!',
+    'Empieza por lo pequeño.',
+    'Sé constante y lo lograrás.',
+    '¡No le des demasiadas vueltas, actúa!',
+    '¡Es fácil! ¡Solo empieza!',
+    '¿Cómo? ¡Pues probándolo!',
+    'Con la estrategia adecuada.',
+    'Hmm, yo también sigo aprendiendo.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`📋 *ʙᴀɢᴀɪᴍᴀɴᴀ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .bagaimana cara jadi sukses?`);
+        return m.reply(`📋 *¿CÓMO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .bagaimana ¿cómo tener éxito?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

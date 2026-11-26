@@ -38,20 +38,20 @@ const answers = [
     '17',
     '88',
     '33',
-    'nothing (jawabannya selalu nothing)',
-    'Banyak banget!',
+    'nada (la respuesta siempre es nada)',
+    '¡Muchísimo!',
     'Cuma sedikit.',
     'Tak terhitung!',
     'Hmm, sekitar 10-an.',
-    'Lebih dari yang kamu kira!',
-    'Gak tau ah, males'
+    '¡Más de lo que crees!',
+    'No sé, me da pereza'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`🔢 *ʙᴇʀᴀᴘᴀ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .berapa umur jodohku?`);
+        return m.reply(`🔢 *¿CUÁNTO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .berapa ¿cuántos años tiene mi media naranja?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

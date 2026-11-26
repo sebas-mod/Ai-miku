@@ -22,12 +22,12 @@ const pluginConfig = {
 async function handler(m) {
   const mood = String(m.text || "").trim().slice(0, 40);
   if (!mood) {
-    return m.reply(`💭 Masukkan teks mood kamu!\n> Contoh: \`${m.prefix}rpmood 🌸 Lagi santai\``);
+    return m.reply(`💭 ¡Escribe el texto de tu estado de ánimo!\n> Ejemplo: \`${m.prefix}rpmood 🌸 Estoy relajado\``);
   }
   const stats = getRpStats(m.sender);
   stats.mood = mood;
   saveRpStats(m.sender, stats);
-  await m.reply(`✅ Mood Roleplay kamu diperbarui menjadi: *${mood}*`);
+  await m.reply(`✅ Tu estado de ánimo para el roleplay se actualizó a: *${mood}*`);
 }
 
 export { pluginConfig as config, handler };

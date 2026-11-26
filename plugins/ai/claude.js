@@ -71,20 +71,20 @@ function extractAnswer(data) {
 async function handler(m, { text, prefix, command }) {
   const question = String(text || m.quoted?.text || "").trim();
   if (!question) {
-    return m.reply(`*Contoh:*\n${prefix || "."}${command || "claude"} jelaskan cara kerja blockchain`);
+    return m.reply(`*Ejemplo:*\n${prefix || "."}${command || "claude"} jelaskan cara kerja blockchain`);
   }
 
   try {
     await m.react?.("⏳");
     const answer = extractAnswer(await askClaude(question)).trim();
-    if (!answer) throw new Error("API tidak mengembalikan jawaban.");
+    if (!answer) throw new Error("La API no devolvió respuesta.");
     await m.react?.("✅");
     return m.reply(answer);
   } catch (e) {
     console.error("[claude]", e);
     await m.react?.("❌");
-    const reason = e?.name === "AbortError" ? "Timeout, coba lagi." : e?.message || e;
-    return m.reply(`❌ Gagal: ${reason}`);
+    const reason = e?.name === "AbortError" ? "Tiempo de espera agotado, inténtalo de nuevo." : e?.message || e;
+    return m.reply(`❌ Falló: ${reason}`);
   }
 }
 

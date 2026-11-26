@@ -34,17 +34,17 @@ const pluginConfig = {
 
   async function handler(m, { sock, jid, text, reply, example }) {
       const [pesan, nama] = String(text || '').split('|').map(s => s.trim())
-      if (!pesan || !nama) return example('Halo semuanya!|TokoBaru   (format: pesan|namakontak)')
+      if (!pesan || !nama) return example('¡Hola a todos!|TiendaNueva   (formato: mensaje|nombre del contacto)')
 
       const jobs = jpmJobs()
-      if (jobs.pushRunning) return reply('❌ Push kontak sedang berjalan. Ketik *stoppush* untuk menghentikan.')
+      if (jobs.pushRunning) return reply('❌ El envío de contactos está en marcha. Escribe *stoppush* para detenerlo.')
 
       const members = (await memberJids(sock, await getMeta(sock, jid, true))).filter(id => id !== m.sender)
-      if (!members.length) return reply('❌ Tidak ada member yang bisa dituju di grup ini.')
+      if (!members.length) return reply('❌ No hay miembros a los que enviar en este grupo.')
 
       const delay = jpmCfg().delayPushKontak
       jobs.pushRunning = true
-      await reply(`*▢ PUSH KONTAK 2*\n• Target : ${members.length} member\n• Nama kontak : ${nama}\n• Delay : ${delay}ms\n\nHentikan dengan *stoppush*`)
+      await reply(`*▢ ENVÍO DE CONTACTOS 2*\n• Objetivo : ${members.length} miembros\n• Nombre del contacto : ${nama}\n• Retardo : ${delay}ms\n\nDetenlo con *stoppush*`)
 
       let res
       try {
@@ -61,7 +61,7 @@ const pluginConfig = {
       } finally {
           jobs.pushRunning = false
       }
-      return reply(`*▢ PUSH KONTAK 2 SELESAI*\n• Berhasil : ${res.ok} member\n• Gagal : ${res.fail} member`)
+      return reply(`*▢ ENVÍO DE CONTACTOS 2 TERMINADO*\n• Correctos : ${res.ok} miembros\n• Fallidos : ${res.fail} miembros`)
   }
 
 export { pluginConfig as config, handler }

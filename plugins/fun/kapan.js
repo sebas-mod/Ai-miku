@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Besok mungkin?',
-    'Tahun depan kayaknya.',
-    '3 hari lagi!',
-    'Hmm, masih lama sih.',
-    'Sebentar lagi kok!',
-    'Kalau sudah waktunya, pasti terjadi.',
-    'Bulan depan!',
-    'Entah kapan, yang penting sabar.',
-    'Dalam waktu dekat!',
-    '10 tahun lagi mungkin?',
-    'Nggak lama lagi!',
-    'Kalau jodoh, pasti ketemu.',
+    '¿Mañana quizá?',
+    'Creo que el año que viene.',
+    '¡En 3 días!',
+    'Hmm, todavía falta bastante.',
+    '¡Ya casi!',
+    'Cuando llegue el momento, seguro.',
+    '¡El mes que viene!',
+    'Quién sabe cuándo, lo importante es tener paciencia.',
+    '¡Muy pronto!',
+    '¿En 10 años quizá?',
+    '¡No falta mucho!',
+    'Si es el destino, se encontrarán.',
     'Hmm, susah diprediksi.',
-    'Minggu depan!',
-    'Kalau usahanya lebih keras, lebih cepat!',
+    '¡La semana que viene!',
+    '¡Si te esfuerzas más, será antes!',
     'Pas waktunya tepat.',
-    'Secepatnya, tenang aja.',
-    'Ntar kalo udah siap.',
-    'Dalam hitungan hari!',
-    'Saat kamu sudah siap menerimanya.'
+    'Lo antes posible, tranquilo.',
+    'Cuando estés listo.',
+    '¡En cuestión de días!',
+    'Cuando estés preparado para recibirlo.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`⏰ *ᴋᴀᴘᴀɴ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .kapan aku nikah?`);
+        return m.reply(`⏰ *¿CUÁNDO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .kapan ¿cuándo me casaré?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

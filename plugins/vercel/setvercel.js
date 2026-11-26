@@ -25,8 +25,8 @@ async function handler(m) {
     return m.reply(
       `▲ *SET VERCEL TOKEN*\n` +
       `> Ambil token di: https://vercel.com/account/tokens\n` +
-      `> Lalu ketik: \`${m.prefix}setvercel <token_kamu>\`\n` +
-      `_Disarankan kirim di chat pribadi agar token tetap aman._`
+      `> Luego escribe: \`${m.prefix}setvercel <tu_token>\`\n` +
+      `_Se recomienda enviarlo en el chat privado para que el token esté seguro._`
     );
   }
 
@@ -45,7 +45,7 @@ async function handler(m) {
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Token Vercel tidak valid: *${err.message}*`);
+    await m.reply(`❌ Token de Vercel no válido: *${err.message}*`);
   }
 }
 

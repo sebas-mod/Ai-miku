@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const active = getActiveGame(m.chat);
-  if (active) return m.reply(`⏳ Masih ada game *${active.type}* yang berjalan di chat ini! Ketik \`${m.prefix}stopgame\` untuk menghentikan.`);
+  if (active) return m.reply(`⏳ ¡Todavía hay un juego *${active.type}* en marcha en este chat! Escribe \`${m.prefix}stopgame\` para detenerlo.`);
 
   const opponent = (Array.isArray(m.mentionedJid) && m.mentionedJid[0]) || m.quoted?.sender || null;
   const isAI = !opponent || opponent === m.sender;
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   };
 
   setActiveGame(m.chat, session, 120000, async () => {
-    await sock.sendMessage(m.chat, { text: "⏰ Sesi *Tic-Tac-Toe* berakhir karena tidak ada langkah selama 2 menit." });
+    await sock.sendMessage(m.chat, { text: "⏰ La sesión de *Tres en Línea* terminó porque no hubo movimientos en 2 minutos." });
   });
 
   const mentions = isAI ? [m.sender] : [m.sender, opponent];
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
         `│ ❌ : @${m.sender.split("@")[0]}\n` +
         `│ ⭕ : ${isAI ? "🤖 Miku AI" : `@${opponent.split("@")[0]}`}\n` +
         `╰─────────────────────❖\n` +
-        `_Balas angka *1-9* untuk menaruh bidak! Ketik \`.stopgame\` untuk berhenti._`,
+        `_¡Responde con un número del *1 al 9* para colocar ficha! Escribe \`.stopgame\` para parar._`,
       mentions,
     },
     { quoted: m }

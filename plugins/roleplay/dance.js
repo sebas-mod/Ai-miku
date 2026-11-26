@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     needTarget: false,
     affectionDelta: 5,
     templateTarget: '{sender} mengajak {target} berdansa ria bersama! 💃✨',
-    templateSelf: '{sender} sedang asyik berjoget dengan penuh semangat! 💃✨',
+    templateSelf: '{sender} ¡se pone a bailar con muchas ganas! 💃✨',
   });
 }
 
