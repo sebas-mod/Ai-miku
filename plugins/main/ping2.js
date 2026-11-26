@@ -17,7 +17,7 @@ const pluginConfig = {
     name: 'ping2',
     alias: ['speed2', 'p2', 'latency2', 'sys2', 'status2'],
     category: 'main',
-    description: 'Cek performa dan status sistem bot secara real-time',
+    description: 'Comprueba el rendimiento y el estado del sistema del bot en tiempo real',
     usage: '.ping2',
     example: '.ping2',
     isOwner: false,
@@ -114,35 +114,35 @@ async function handler(m, { sock }) {
         const totalExec = Math.round(performance.now() - execStart)
 
         const tableData = [
-            ['WA Roundtrip', `${waRoundtrip} ms`],
-            ['Kecepatan Respon bot mu', `${totalExec} ms`],
-            ['Status', 'Online'],
+            ['Ida y vuelta WA', `${waRoundtrip} ms`],
+            ['Velocidad de respuesta del bot', `${totalExec} ms`],
+            ['Estado', 'En línea'],
             ['Hostname', os.hostname()],
-            ['Platform', `${os.platform()} ${os.arch()}`],
+            ['Plataforma', `${os.platform()} ${os.arch()}`],
             ['Node', process.version],
             ['CPU', `${cpus[0]?.model?.slice(0, 25)}`],
-            ['Cores', `${cpus.length}`],
-            ['CPU Load', `${cpuPct}%`],
+            ['Núcleos', `${cpus.length}`],
+            ['Carga de CPU', `${cpuPct}%`],
             ['RAM', `${fmtSize(totalMem - freeMem)} / ${fmtSize(totalMem)}`],
             ['Heap', `${fmtSize(heap.heapUsed)} / ${fmtSize(heap.heapTotal)}`],
-            ['Disk', `${fmtSize(diskUsed)} / ${fmtSize(diskTotal)}`],
-            ['Network', net.iface],
-            ['Users', `${dbUsers}`],
+            ['Disco', `${fmtSize(diskUsed)} / ${fmtSize(diskTotal)}`],
+            ['Red', net.iface],
+            ['Usuarios', `${dbUsers}`],
             ['Premium', `${dbPremium}`],
-            ['Groups', `${dbGroups}`],
-            ['Uptime Bot', fmtUp(process.uptime())],
-            ['Uptime Server', fmtUp(os.uptime())],
+            ['Grupos', `${dbGroups}`],
+            ['Uptime del bot', fmtUp(process.uptime())],
+            ['Uptime del servidor', fmtUp(os.uptime())],
         ]
 
         await sock.sendTable(
             m.chat,
-            '⚡ System Performance',
-            ['Metric', 'Value'],
+            '⚡ Rendimiento del sistema',
+            ['Métrica', 'Valor'],
             tableData,
             m,
             {
-                headerText: `${config.bot?.name || 'Elysia Assistant'} *STATUS*\n\n- 🎄 Dibawah ini adalah statistik bot kita`,
-                footer: '🍃 Realtime Monitoring'
+                headerText: `${config.bot?.name || 'Elysia Assistant'} *ESTADO*\n\n- 🎄 Aquí tienes las estadísticas de nuestro bot`,
+                footer: '🍃 Monitorización en tiempo real'
             }
         )
 

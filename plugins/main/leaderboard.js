@@ -12,8 +12,8 @@ import { getRankInfo } from '../../src/lib/data/level.js'
 import { collectRankingUsers, jidDigits } from '../../src/lib/data/ranking.js'
 import { renderTop10, getUserAvatar, fmtInt, fmtMoney, fmtCompact } from '../../src/lib/core/rank-canvas.js'
 
-// Catatan: alias 'toplevel' & 'topxp' dilepas ke plugin user/toplevel (canvas level),
-// dan 'rank' dilepas ke plugin user/level.
+// Nota: los alias 'toplevel' y 'topxp' pasaron al plugin user/toplevel (canvas de nivel),
+// y 'rank' pasó al plugin user/level.
 const pluginConfig = {
     name: 'leaderboard',
     alias: [
@@ -22,8 +22,8 @@ const pluginConfig = {
         'topexp', 'toplimit', 'topenergi', 'topenergy'
     ],
     category: 'main',
-    description: 'Leaderboard global 10 besar (uang, exp, energi) dalam bentuk gambar',
-    usage: '.leaderboard [uang|exp|energi]',
+    description: 'Ranking global del top 10 (dinero, exp, energía) en forma de imagen',
+    usage: '.leaderboard [dinero|exp|energia]',
     example: '.topmoney',
     isOwner: false,
     isPremium: false,
@@ -36,36 +36,36 @@ const pluginConfig = {
 
 const TYPES = {
     money: {
-        title: 'TOP 10 TERKAYA',
-        subtitle: 'Peringkat global berdasarkan total uang (dompet + bank)',
+        title: 'TOP 10 MÁS RICOS',
+        subtitle: 'Ranking global por dinero total (cartera + banco)',
         accent: '#f5c451',
         value: (u) => u.total,
         row: (u) => ({
             main: fmtMoney(u.total),
-            mainLabel: 'TOTAL UANG',
-            sub: `Lv.${u.level} • Dompet ${fmtCompact(u.koin)} • Bank ${fmtCompact(u.bank)}`
+            mainLabel: 'DINERO TOTAL',
+            sub: `Nv.${u.level} • Cartera ${fmtCompact(u.koin)} • Banco ${fmtCompact(u.bank)}`
         })
     },
     exp: {
         title: 'TOP 10 EXP',
-        subtitle: 'Peringkat global berdasarkan total EXP',
+        subtitle: 'Ranking global por EXP total',
         accent: '#a78bfa',
         value: (u) => u.exp,
         row: (u) => ({
-            main: `Lv.${u.level}`,
+            main: `Nv.${u.level}`,
             mainLabel: `${fmtInt(u.exp)} XP`,
             sub: getRankInfo(u.level).title
         })
     },
     energi: {
-        title: 'TOP 10 ENERGI',
-        subtitle: 'Peringkat global berdasarkan energi',
+        title: 'TOP 10 ENERGÍA',
+        subtitle: 'Ranking global por energía',
         accent: '#5eead4',
         value: (u) => u.energi,
         row: (u) => ({
             main: fmtInt(u.energi),
-            mainLabel: 'ENERGI',
-            sub: `Lv.${u.level} • Uang ${fmtCompact(u.total)}`
+            mainLabel: 'ENERGÍA',
+            sub: `Nv.${u.level} • Dinero ${fmtCompact(u.total)}`
         })
     }
 }
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
         .sort((a, b) => cfg.value(b) - cfg.value(a))
 
     if (all.length === 0) {
-        return m.reply(`📊 *ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ*\n\n> Belum ada data user di database.`)
+        return m.reply(`📊 *ᴄʟᴀsɪꜰɪᴄᴀᴄɪᴏ́ɴ*\n\n> Todavía no hay usuarios en la base de datos.`)
     }
 
     const myId = jidDigits(m.sender)
@@ -118,13 +118,13 @@ async function handler(m, { sock }) {
     const caption =
         `🏆 *${cfg.title}* 🏆\n\n` +
         (myIndex >= 0
-            ? `> Posisi kamu: *#${myIndex + 1}* dari *${fmtInt(all.length)}* user.`
-            : `> Kamu belum masuk peringkat.`)
+            ? `> Tu posición: *#${myIndex + 1}* de *${fmtInt(all.length)}* usuarios.`
+            : `> Todavía no estás en el ranking.`)
 
     const pick = [
-        ['money', '💰 Top Uang', 'topmoney'],
+        ['money', '💰 Top Dinero', 'topmoney'],
         ['exp', '✨ Top EXP', 'topexp'],
-        ['energi', '⚡ Top Energi', 'topenergi']
+        ['energi', '⚡ Top Energía', 'topenergi']
     ].filter(([k]) => k !== type)
 
     try {

@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "donasi",
   alias: ["donate", "donation", "support", "saweria", "trakteer"],
   category: "main",
-  description: "Informasi donasi untuk mendukung bot dengan QRIS",
+  description: "Información de donaciones para apoyar el bot con QRIS",
   usage: ".donasi",
   example: ".donasi",
   isOwner: false,
@@ -37,23 +37,23 @@ async function handler(m, { sock }) {
   const links = donasiConfig.links || [];
   const qrisUrl = donasiConfig.qris || "";
   const benefits = donasiConfig.benefits || [
-    "Mendukung development",
-    "Server lebih stabil",
-    "Fitur baru lebih cepat",
-    "Priority support",
+    "Apoya el desarrollo",
+    "Servidor más estable",
+    "Funciones nuevas más rápido",
+    "Soporte prioritario",
   ];
 
-  let text = `DONASI KE OWNER ${botName} 🙏`;
+  let text = `DONACIÓN AL DUEÑO DE ${botName} 🙏`;
 
   if (payments.length > 0 || links.length > 0) {
-    text += `Pembayaran\n`;
+    text += `Pagos\n`;
     for (const pay of payments) {
       text += `🏦 *${pay.name
         ?.toLowerCase()
         .split("")
         .map((c, i) => (i === 0 ? c.toUpperCase() : c))
         .join("")}*\n`;
-      text += `◦ ${pay.number} (a/n ${pay.holder})\n`;
+      text += `◦ ${pay.number} (a nombre de ${pay.holder})\n`;
     }
 
     for (const link of links) {
@@ -70,8 +70,8 @@ async function handler(m, { sock }) {
   } else {
     text += `╭┈┈⬡「 💳 *ᴘᴀʏᴍᴇɴᴛ* 」\n`;
     text += `┃\n`;
-    text += `┃ > Belum dikonfigurasi\n`;
-    text += `┃ > Edit config.donasi\n`;
+    text += `┃ > Sin configurar todavía\n`;
+    text += `┃ > Edita config.donasi\n`;
     text += `┃\n`;
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   }
@@ -82,13 +82,13 @@ async function handler(m, { sock }) {
   }
   text += `\n`;
 
-  text += `_Donasi berapapun sangat berharga_\n`;
-  text += `Contact: @${config.owner?.number?.[0] || "owner"}`;
+  text += `_Cualquier donación, por pequeña que sea, ayuda muchísimo_\n`;
+  text += `Contacto: @${config.owner?.number?.[0] || "owner"}`;
 
   const copyButtons = payments.map((pay) => ({
     name: "cta_copy",
     buttonParamsJson: JSON.stringify({
-      display_text: `📋 Copy No. ${pay.name}`,
+      display_text: `📋 Copiar n.º ${pay.name}`,
       copy_code: pay.number,
     }),
   }));

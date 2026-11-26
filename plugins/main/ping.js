@@ -16,7 +16,7 @@ const pluginConfig = {
   name: "ping",
   alias: ["speed", "p", "latency", "sys", "status"],
   category: "main",
-  description: "Cek performa dan status sistem bot secara real-time (Canvas Epic)",
+  description: "Comprueba el rendimiento y el estado del sistema del bot en tiempo real (canvas épico)",
   usage: ".ping",
   example: ".ping",
   isOwner: false,
@@ -190,12 +190,12 @@ async function createEpicPingCanvas(data) {
     ctx.font = 'bold 50px sans-serif';
     ctx.shadowBlur = 20;
     ctx.shadowColor = '#38bdf8';
-    ctx.fillText('SYSTEM DIAGNOSTICS', 50, 70);
+    ctx.fillText('DIAGNÓSTICO DEL SISTEMA', 50, 70);
     ctx.shadowBlur = 0;
 
     ctx.fillStyle = '#cbd5e1';
     ctx.font = 'bold 24px Courier New';
-    ctx.fillText(`STATUS: ONLINE | TERMINAL: elysia MD`, 50, 110);
+    ctx.fillText(`ESTADO: EN LÍNEA | TERMINAL: elysia MD`, 50, 110);
 
     ctx.beginPath();
     ctx.moveTo(50, 130);
@@ -210,7 +210,7 @@ async function createEpicPingCanvas(data) {
 
     const col1X = 50, colWidth = 330;
 
-    drawCyberBox(ctx, col1X, 160, colWidth, 180, 'LATENCY PING', '#4ade80');
+    drawCyberBox(ctx, col1X, 160, colWidth, 180, 'PING / LATENCIA', '#4ade80');
     const pingColor = data.ping < 100 ? '#4ade80' : (data.ping < 500 ? '#facc15' : '#f87171');
     ctx.fillStyle = pingColor;
     ctx.font = 'bold 70px sans-serif';
@@ -224,24 +224,24 @@ async function createEpicPingCanvas(data) {
     ctx.textAlign = 'left';
     ctx.fillStyle = '#cbd5e1';
     ctx.font = 'bold 18px sans-serif';
-    let pStatus = data.ping < 100 ? 'EXCELLENT' : (data.ping < 500 ? 'MODERATE' : 'POOR');
-    ctx.fillText(`CONNECTION: ${pStatus}`, col1X + 20, 310);
+    let pStatus = data.ping < 100 ? 'EXCELENTE' : (data.ping < 500 ? 'MODERADA' : 'MALA');
+    ctx.fillText(`CONEXIÓN: ${pStatus}`, col1X + 20, 310);
 
-    drawCyberBox(ctx, col1X, 360, colWidth, 230, 'CPU PROCESSOR', '#fbbf24');
+    drawCyberBox(ctx, col1X, 360, colWidth, 230, 'PROCESADOR CPU', '#fbbf24');
     ctx.fillStyle = '#f8fafc';
     ctx.font = '22px sans-serif';
     wrapText(ctx, data.cpuModel, col1X + 20, 430, colWidth - 40, 30);
     ctx.fillStyle = '#94a3b8';
     ctx.font = 'bold 20px sans-serif';
-    ctx.fillText(`Cores:`, col1X + 20, 520);
+    ctx.fillText(`Núcleos:`, col1X + 20, 520);
     ctx.fillStyle = '#fbbf24';
     ctx.fillText(`${data.cpuCores} Threads`, col1X + 110, 520);
     ctx.fillStyle = '#94a3b8';
-    ctx.fillText(`Speed:`, col1X + 20, 555);
+    ctx.fillText(`Velocidad:`, col1X + 20, 555);
     ctx.fillStyle = '#fbbf24';
     ctx.fillText(`${data.cpuSpeed} MHz`, col1X + 110, 555);
 
-    drawCyberBox(ctx, col1X, 610, colWidth, 140, 'SYSTEM LOAD', '#f43f5e');
+    drawCyberBox(ctx, col1X, 610, colWidth, 140, 'CARGA DEL SISTEMA', '#f43f5e');
     ctx.fillStyle = '#f8fafc';
     ctx.font = 'bold 24px Courier New';
     ctx.fillText(`1m:  ${data.load[0]}`, col1X + 20, 680);
@@ -257,17 +257,17 @@ async function createEpicPingCanvas(data) {
     ctx.textAlign = 'center';
     ctx.shadowBlur = 10;
     ctx.shadowColor = '#c084fc';
-    ctx.fillText('MEMORY USAGE', gaugeX, 200);
+    ctx.fillText('USO DE MEMORIA', gaugeX, 200);
     ctx.shadowBlur = 0;
     ctx.textAlign = 'left';
 
-    drawGauge(ctx, gaugeX, gaugeY, 140, data.memPct, '#c084fc', 'USED RAM');
+    drawGauge(ctx, gaugeX, gaugeY, 140, data.memPct, '#c084fc', 'RAM USADA');
 
     ctx.fillStyle = '#94a3b8';
     ctx.font = 'bold 22px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(`Used: ${fmtSize(data.usedMem)}`, gaugeX, 580);
-    ctx.fillText(`Free: ${fmtSize(data.freeMem)}`, gaugeX, 615);
+    ctx.fillText(`Usada: ${fmtSize(data.usedMem)}`, gaugeX, 580);
+    ctx.fillText(`Libre: ${fmtSize(data.freeMem)}`, gaugeX, 615);
     ctx.fillStyle = '#f8fafc';
     ctx.font = 'bold 28px sans-serif';
     ctx.fillText(`TOTAL: ${fmtSize(data.totalMem)}`, gaugeX, 660);
@@ -275,27 +275,27 @@ async function createEpicPingCanvas(data) {
 
     const col3X = 820, col3Width = 330;
 
-    drawCyberBox(ctx, col3X, 160, col3Width, 230, 'NODE.JS ENGINE', '#38bdf8');
+    drawCyberBox(ctx, col3X, 160, col3Width, 230, 'MOTOR NODE.JS', '#38bdf8');
     const nY = 220;
     const nColor = '#38bdf8';
     ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 20px sans-serif';
     ctx.fillText(`RSS:`, col3X + 20, nY);       ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.rss), col3X + 140, nY);
-    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Heap Used:`, col3X + 20, nY+35); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.heapUsed), col3X + 140, nY+35);
-    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Heap Total:`, col3X + 20, nY+70); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.heapTotal), col3X + 140, nY+70);
-    ctx.fillStyle = '#94a3b8'; ctx.fillText(`External:`, col3X + 20, nY+105); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.external), col3X + 140, nY+105);
-    ctx.fillStyle = '#94a3b8'; ctx.fillText(`V8 Engine:`, col3X + 20, nY+140); ctx.fillStyle = '#f8fafc'; ctx.fillText(data.v8, col3X + 140, nY+140);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Heap usada:`, col3X + 20, nY+35); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.heapUsed), col3X + 140, nY+35);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Heap total:`, col3X + 20, nY+70); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.heapTotal), col3X + 140, nY+70);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Externa:`, col3X + 20, nY+105); ctx.fillStyle = nColor; ctx.fillText(fmtSize(data.memNode.external), col3X + 140, nY+105);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Motor V8:`, col3X + 20, nY+140); ctx.fillStyle = '#f8fafc'; ctx.fillText(data.v8, col3X + 140, nY+140);
 
-    drawCyberBox(ctx, col3X, 410, col3Width, 180, 'SYSTEM SPECS', '#a855f7');
+    drawCyberBox(ctx, col3X, 410, col3Width, 180, 'ESPECIFICACIONES', '#a855f7');
     const osY = 470;
     ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 20px sans-serif';
-    ctx.fillText(`OS:`, col3X + 20, osY);      ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.osType} ${data.osRel}`, col3X + 80, osY);
-    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Arch:`, col3X + 20, osY+35);    ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.osPlatform} (${data.osArch})`, col3X + 80, osY+35);
+    ctx.fillText(`SO:`, col3X + 20, osY);      ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.osType} ${data.osRel}`, col3X + 80, osY);
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(`Arq:`, col3X + 20, osY+35);    ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.osPlatform} (${data.osArch})`, col3X + 80, osY+35);
     ctx.fillStyle = '#94a3b8'; ctx.fillText(`Host:`, col3X + 20, osY+70);    ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.osHost}`, col3X + 80, osY+70);
     ctx.fillStyle = '#94a3b8'; ctx.fillText(`Node:`, col3X + 20, osY+105);   ctx.fillStyle = '#f8fafc'; ctx.fillText(`${data.nodeVer}`, col3X + 80, osY+105);
 
-    drawCyberBox(ctx, col3X, 610, col3Width, 140, 'UPTIME', '#ec4899');
+    drawCyberBox(ctx, col3X, 610, col3Width, 140, 'TIEMPO ACTIVO', '#ec4899');
     ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 20px sans-serif';
-    ctx.fillText(`Server:`, col3X + 20, 670); ctx.fillStyle = '#ec4899'; ctx.font = 'bold 22px sans-serif'; ctx.fillText(data.upOS, col3X + 100, 670);
+    ctx.fillText(`Servidor:`, col3X + 20, 670); ctx.fillStyle = '#ec4899'; ctx.font = 'bold 22px sans-serif'; ctx.fillText(data.upOS, col3X + 100, 670);
     ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 20px sans-serif';
     ctx.fillText(`Bot:`, col3X + 20, 715);    ctx.fillStyle = '#ec4899'; ctx.font = 'bold 22px sans-serif'; ctx.fillText(data.upBot, col3X + 100, 715);
 
@@ -340,32 +340,32 @@ async function handler(m, { sock }) {
     const imageBuffer = await createEpicPingCanvas(data);
 
     const caption =
-      `🏓 *PONG!* (${data.ping}ms)\n\n` +
-      `Berikut adalah detail spesifikasi dan performa server secara lengkap:\n\n` +
-      `🖥️ *INFORMASI SISTEM*\n` +
-      `> ◦ *OS:* ${data.osType} (${data.osRel})\n` +
-      `> ◦ *Platform:* ${data.osPlatform} (${data.osArch})\n` +
+      `🏓 *¡PONG!* (${data.ping}ms)\n\n` +
+      `Aquí tienes el detalle completo de las especificaciones y el rendimiento del servidor:\n\n` +
+      `🖥️ *INFORMACIÓN DEL SISTEMA*\n` +
+      `> ◦ *SO:* ${data.osType} (${data.osRel})\n` +
+      `> ◦ *Plataforma:* ${data.osPlatform} (${data.osArch})\n` +
       `> ◦ *Hostname:* ${data.osHost}\n` +
       `> ◦ *NodeJS:* ${data.nodeVer}\n` +
-      `> ◦ *Engine V8:* ${data.v8}\n\n` +
-      `💻 *INFORMASI CPU*\n` +
-      `> ◦ *Model:* ${data.cpuModel.trim()}\n` +
-      `> ◦ *Cores:* ${data.cpuCores} Core(s)\n` +
-      `> ◦ *Speed:* ${data.cpuSpeed} MHz\n` +
-      `> ◦ *Load Avg:* ${data.load[0]} (1m), ${data.load[1]} (5m), ${data.load[2]} (15m)\n\n` +
-      `🧠 *PENGGUNAAN MEMORI*\n` +
-      `> ◦ *Total RAM:* ${fmtSize(data.totalMem)}\n` +
-      `> ◦ *Dipakai:* ${fmtSize(data.usedMem)} (${data.memPct}%)\n` +
-      `> ◦ *Sisa Bebas:* ${fmtSize(data.freeMem)}\n\n` +
-      `📦 *MEMORI NODEJS*\n` +
+      `> ◦ *Motor V8:* ${data.v8}\n\n` +
+      `💻 *INFORMACIÓN DE CPU*\n` +
+      `> ◦ *Modelo:* ${data.cpuModel.trim()}\n` +
+      `> ◦ *Núcleos:* ${data.cpuCores} núcleo(s)\n` +
+      `> ◦ *Velocidad:* ${data.cpuSpeed} MHz\n` +
+      `> ◦ *Carga media:* ${data.load[0]} (1m), ${data.load[1]} (5m), ${data.load[2]} (15m)\n\n` +
+      `🧠 *USO DE MEMORIA*\n` +
+      `> ◦ *RAM total:* ${fmtSize(data.totalMem)}\n` +
+      `> ◦ *En uso:* ${fmtSize(data.usedMem)} (${data.memPct}%)\n` +
+      `> ◦ *Libre:* ${fmtSize(data.freeMem)}\n\n` +
+      `📦 *MEMORIA DE NODEJS*\n` +
       `> ◦ *RSS:* ${fmtSize(data.memNode.rss)}\n` +
-      `> ◦ *Heap Total:* ${fmtSize(data.memNode.heapTotal)}\n` +
-      `> ◦ *Heap Used:* ${fmtSize(data.memNode.heapUsed)}\n` +
-      `> ◦ *External:* ${fmtSize(data.memNode.external)}\n\n` +
-      `⏱️ *WAKTU AKTIF (UPTIME)*\n` +
-      `> ◦ *Uptime Server:* ${data.upOS}\n` +
-      `> ◦ *Uptime Bot:* ${data.upBot}\n\n` +
-      `Sistem berjalan stabil dan menyelesaikan kalkulasi dalam waktu eksekusi *${data.ping}ms*.`;
+      `> ◦ *Heap total:* ${fmtSize(data.memNode.heapTotal)}\n` +
+      `> ◦ *Heap usada:* ${fmtSize(data.memNode.heapUsed)}\n` +
+      `> ◦ *Externa:* ${fmtSize(data.memNode.external)}\n\n` +
+      `⏱️ *TIEMPO ACTIVO (UPTIME)*\n` +
+      `> ◦ *Uptime del servidor:* ${data.upOS}\n` +
+      `> ◦ *Uptime del bot:* ${data.upBot}\n\n` +
+      `El sistema funciona de forma estable y completó los cálculos en *${data.ping}ms*.`;
 
     await sock.sendMessage(m.chat, { image: imageBuffer, caption: caption }, { quoted: m });
     await m.react("✅");

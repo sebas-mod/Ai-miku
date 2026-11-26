@@ -21,7 +21,7 @@ const pluginConfig = {
   name: "menu",
   alias: ["help", "bantuan", "commands", "m"],
   category: "main",
-  description: "Menampilkan menu utama bot",
+  description: "Muestra el menú principal del bot",
   usage: ".menu",
   example: ".menu",
   isOwner: false,
@@ -147,7 +147,7 @@ function getSortedCategories(m, botMode) {
   return { sorted: result, totalCmds, commandsByCategory };
 }
 
-// Hasil upload gambar header dipakai ulang agar menu terkirim cepat
+// La imagen de cabecera se reutiliza para que el menú se envíe más rápido
 let _headerCache = { key: null, media: null, ts: 0 };
 const HEADER_CACHE_TTL = 15 * 60 * 1000;
 
@@ -161,7 +161,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     imageBuffer = getThumb("menu");
     thumbBuffer = getThumb("quoted");
   } catch (e) {
-    console.error("Gagal load assets:", e.message);
+    console.error("No se pudieron cargar los recursos:", e.message);
   }
 
   const prefix = botConfig.command?.prefix || ".";
@@ -191,33 +191,33 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     `ɪ ᴀᴍ ᴇʟʏꜱɪᴀ ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ᴀᴜᴛᴏᴍᴀᴛᴇᴅ ᴀꜱꜱɪꜱᴛᴀɴᴛ ᴏɴ ᴡʜᴀᴛꜱᴀᴘᴘ, ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴡɪᴛʜ ᴄᴏᴍᴍᴀɴᴅꜱ, ᴛᴏᴏʟꜱ, ᴀɴᴅ ᴀʟʟ ᴛʜᴇ ꜰᴇᴀᴛᴜʀᴇꜱ ᴀᴠᴀɪʟᴀʙʟᴇ ɪɴ ᴛʜɪꜱ ʙᴏᴛ.`;
 
   const footerText = [
-    "—–·「 PROFILE 」·–—",
-    `   ✧ Username : ${m.pushName || "User"}`,
-    `   ✧ Status   : ${statusEmoji} ${role}`,
-    `   ✧ Limit    : ${remaining}`,
+    "—–·「 PERFIL 」·–—",
+    `   ✧ Usuario : ${m.pushName || "User"}`,
+    `   ✧ Estado  : ${statusEmoji} ${role}`,
+    `   ✧ Límite  : ${remaining}`,
     "",
-    "—–·「 SYSTEM 」·–—",
-    `   ✧ Bot Name      : ${botName}`,
-    `   ✧ Owner         : ${ownerName}`,
-    `   ✧ Version       : v${botConfig.bot?.version || "1.0"}`,
-    `   ✧ Total Feature : ${totalCmds}`,
-    `   ✧ Time          : ${timeStr} WITA`,
-    `   ✧ Active since  : ${uptimeFormatted}`,
+    "—–·「 SISTEMA 」·–—",
+    `   ✧ Nombre-Bot     : ${botName}`,
+    `   ✧ Dueño          : ${ownerName}`,
+    `   ✧ Versión        : v${botConfig.bot?.version || "1.0"}`,
+    `   ✧ Total-Funciones : ${totalCmds}`,
+    `   ✧ Hora           : ${timeStr} WITA`,
+    `   ✧ Activo desde   : ${uptimeFormatted}`,
     "",
-    " Enjoy the bot's features",
+    " Disfruta de las funciones del bot",
   ].join("\n");
 
   const categoryRows = menuSorted.map(({ cat, emoji, cmds }) => ({
     title: `${emoji || "▪"} ${String(cat).toUpperCase()}`,
-    description: `${cmds.length} fitur tersedia`,
+    description: `${cmds.length} funciones disponibles`,
     id: `${prefix}allmenu ${cat}`,
   }));
 
   const menuRows = [
-    { title: "All Menu", description: `Lihat semua ${totalCmds} fitur bot`, id: `${prefix}allmenu` },
-    { title: "Profile", description: "Lihat informasi akun kamu", id: `${prefix}profile` },
-    { title: "Rules", description: "Baca panduan dan aturan bot", id: `${prefix}rules` },
-    { title: "Owner Bot", description: "Hubungi pengembang bot", id: `${prefix}owner` },
+    { title: "All Menu", description: `Ver las ${totalCmds} funciones del bot`, id: `${prefix}allmenu` },
+    { title: "Perfil", description: "Ver la información de tu cuenta", id: `${prefix}profile` },
+    { title: "Reglas", description: "Leer la guía y las reglas del bot", id: `${prefix}rules` },
+    { title: "Dueño del bot", description: "Contactar al desarrollador del bot", id: `${prefix}owner` },
     ...categoryRows,
   ];
 
@@ -226,10 +226,10 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "Menu",
+        title: "Menú",
         sections: [
-          { title: "MAIN MENU", rows: menuRows.slice(0, 4) },
-          { title: "KATEGORI FITUR", rows: categoryRows },
+          { title: "MENÚ PRINCIPAL", rows: menuRows.slice(0, 4) },
+          { title: "CATEGORÍAS", rows: categoryRows },
         ],
         icon: "DEFAULT",
       }),
@@ -243,8 +243,8 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           {
             title: `SUPPORT ${botName}`,
             rows: [
-              { title: "Contact Owner", description: "Chat langsung dengan pengembang", id: `${prefix}owner` },
-              { title: "Donasi", description: "Dukung pengembangan bot", id: `${prefix}donasi` },
+              { title: "Contactar al dueño", description: "Hablar directamente con el desarrollador", id: `${prefix}owner` },
+              { title: "Donar", description: "Apoyar el desarrollo del bot", id: `${prefix}donasi` },
             ],
           },
         ],
@@ -279,7 +279,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           );
           _headerCache = { key: cacheKey, media: headerMedia, ts: Date.now() };
         } catch (mediaError) {
-          console.warn("[Menu Native Flow] Gagal menyiapkan gambar:", mediaError.message);
+          console.warn("[Menu Native Flow] No se pudo preparar la imagen:", mediaError.message);
         }
       }
     }
@@ -331,7 +331,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 
     await sock.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
   } catch (error) {
-    console.error("[Menu Native Flow] Gagal mengirim menu:", error);
+    console.error("[Menu Native Flow] No se pudo enviar el menú:", error);
     await m.reply(`${bodyText}\n\n${footerText}`);
   }
 }

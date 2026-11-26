@@ -33,10 +33,10 @@ function formatAfkDuration(ms) {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  if (days > 0) return `${days} hari ${hours % 24} jam`;
-  if (hours > 0) return `${hours} jam ${minutes % 60} menit`;
-  if (minutes > 0) return `${minutes} menit`;
-  return `${seconds} detik`;
+  if (days > 0) return `${days} días ${hours % 24} horas`;
+  if (hours > 0) return `${hours} horas ${minutes % 60} minutos`;
+  if (minutes > 0) return `${minutes} minutos`;
+  return `${seconds} segundos`;
 }
 
 function checkPermission(m, pluginConfig) {
@@ -62,12 +62,12 @@ function checkPermission(m, pluginConfig) {
   if (pluginConfig.isOwner && !m.isOwner && !hasAccess) {
     return {
       allowed: false,
-      reason: config.messages?.ownerOnly || "🚫 Owner only!",
+      reason: config.messages?.ownerOnly || "🚫 ¡Solo el dueño!",
     };
   }
 
   if (pluginConfig.isPartner && !m.isPartner && !m.isOwner && !hasAccess) {
-    return { allowed: false, reason: "🤝 Partner only!" };
+    return { allowed: false, reason: "🤝 ¡Solo socios!" };
   }
 
   const overrides = db.setting("capprem") || {};
@@ -82,21 +82,21 @@ function checkPermission(m, pluginConfig) {
   ) {
     return {
       allowed: false,
-      reason: config.messages?.premiumOnly || "💎 Premium only!",
+      reason: config.messages?.premiumOnly || "💎 ¡Solo premium!",
     };
   }
 
   if (pluginConfig.isGroup && !m.isGroup) {
     return {
       allowed: false,
-      reason: config.messages?.groupOnly || "👥 Group only!",
+      reason: config.messages?.groupOnly || "👥 ¡Solo grupos!",
     };
   }
 
   if (pluginConfig.isPrivate && m.isGroup) {
     return {
       allowed: false,
-      reason: config.messages?.privateOnly || "📱 Private chat only!",
+      reason: config.messages?.privateOnly || "📱 ¡Solo chat privado!",
     };
   }
 
@@ -109,7 +109,7 @@ function checkPermission(m, pluginConfig) {
   ) {
     return {
       allowed: false,
-      reason: config.messages?.adminOnly || "👮 Admin grup only!",
+      reason: config.messages?.adminOnly || "👮 ¡Solo administradores del grupo!",
     };
   }
 
@@ -117,7 +117,7 @@ function checkPermission(m, pluginConfig) {
     return {
       allowed: false,
       reason:
-        config.messages?.botAdminOnly || "🤖 Bot harus menjadi admin grup!",
+        config.messages?.botAdminOnly || "🤖 ¡El bot debe ser administrador del grupo!",
     };
   }
 
@@ -128,7 +128,7 @@ function checkPermission(m, pluginConfig) {
         if (!m.isAdmin && !m.isOwner && !hasAccess) {
           return {
             allowed: false,
-            reason: "🎮 Fitur Game sedang dinonaktifkan di grup ini oleh Admin!",
+            reason: "🎮 ¡Un administrador desactivó las funciones de juego en este grupo!",
           };
         }
       }
@@ -143,9 +143,9 @@ function checkMode(m, getActiveJadibots) {
   const dbMode = db.setting("botMode");
   const mode = dbMode || config?.mode || (config?.config && config.config.mode) || "public";
 
-  // .xozo memang diizinkan untuk semua pengguna di grup.
-  // Jangan biarkan mode global (self/onlyPc/onlyGc/onlyThisGroup)
-  // menghentikan command game ini sebelum plugin dijalankan.
+  // .xozo está permitido para todos los usuarios del grupo.
+  // Que el modo global (self/onlyPc/onlyGc/onlyThisGroup) no bloquee
+  // este comando de juego antes de ejecutar el plugin.
   if (m.isGroup && m.isCommand && String(m.command || "").toLowerCase() === "xozo") {
     return { allowed: true };
   }
@@ -165,13 +165,13 @@ function checkMode(m, getActiveJadibots) {
       allowed: false,
       isAfk: true,
       afkMessage:
-        `💤 *ʙᴏᴛ sᴇᴅᴀɴɢ ᴀꜰᴋ*\n\n` +
+        `💤 *ᴇʟ ʙᴏᴛ ᴇsᴛᴀ ᴇɴ ᴀꜰᴋ*\n\n` +
         `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-        `┃ 📝 ᴀʟᴀsᴀɴ: \`${botAfk.reason || "AFK"}\`\n` +
-        `┃ ⏱️ sᴇᴊᴀᴋ: \`${duration}\` yang lalu\n` +
+        `┃ 📝 ᴍᴏᴛɪᴠᴏ: \`${botAfk.reason || "AFK"}\`\n` +
+        `┃ ⏱️ ᴅᴇsᴅᴇ: \`${duration}\` atrás\n` +
         `╰┈┈⬡\n\n` +
-        `> Bot tidak bisa menerima perintah saat ini\n` +
-        `> Mohon tunggu sampai owner mengaktifkan kembali`,
+        `> El bot no puede recibir comandos ahora mismo\n` +
+        `> Espera hasta que el dueño lo reactive`,
     };
   }
 
@@ -187,11 +187,11 @@ function checkMode(m, getActiveJadibots) {
         allowed: false,
         isOnlyThisGroup: true,
         onlyThisGroupMessage:
-          `🔒 *Akses Ditolak*\n\n` +
-          `Maaf, saat ini bot kami hanya bisa diakses dan digunakan secara eksklusif di Grup Utama (*${onlyThisGroup.name}*).\n\n` +
-          `Silakan bergabung ke grup utama kami melalui tautan berikut:\n` +
+          `🔒 *Acceso denegado*\n\n` +
+          `Lo siento, ahora mismo nuestro bot solo se puede usar de forma exclusiva en el Grupo Principal (*${onlyThisGroup.name}*).\n\n` +
+          `Únete a nuestro grupo principal con este enlace:\n` +
           `🔗 ${onlyThisGroup.link}\n\n` +
-          `Setelah bergabung, Anda bebas menggunakan semua fitur bot. Terima kasih!`
+          `Cuando entres, puedes usar todas las funciones del bot. ¡Gracias!`
       };
     }
   }
@@ -223,13 +223,13 @@ function checkMode(m, getActiveJadibots) {
         allowed: false,
         hasJadibots: true,
         jadibotMessage:
-          `🤖 *ᴍᴏᴅᴇ ᴘʀɪᴠᴀᴛᴇ*\n\n` +
-          `Bot utama sedang dalam mode private.\n` +
-          `Kamu bisa menggunakan bot turunan kami:\n\n` +
-          `╭┈┈⬡「 📱 *ʙᴏᴛ ᴛᴇʀsᴇᴅɪᴀ* 」\n` +
+          `🤖 *ᴍᴏᴅᴏ ᴘʀɪᴠᴀᴅᴏ*\n\n` +
+          `El bot principal está en modo privado.\n` +
+          `Puedes usar nuestros bots secundarios:\n\n` +
+          `╭┈┈⬡「 📱 *ʙᴏᴛs ᴅɪsᴘᴏɴɪʙʟᴇs* 」\n` +
           `${jadibotList}` +
           `╰┈┈⬡\n\n` +
-          `> Pilih salah satu bot di atas untuk akses fitur.`,
+          `> Elige uno de los bots de arriba para usar las funciones.`,
         jadibotMentions: mentions,
       };
     }
