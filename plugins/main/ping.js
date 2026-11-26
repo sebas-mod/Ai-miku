@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -195,7 +195,7 @@ async function createEpicPingCanvas(data) {
 
     ctx.fillStyle = '#cbd5e1';
     ctx.font = 'bold 24px Courier New';
-    ctx.fillText(`ESTADO: EN LÍNEA | TERMINAL: elysia MD`, 50, 110);
+    ctx.fillText(`ESTADO: EN LÍNEA | TERMINAL: miku MD`, 50, 110);
 
     ctx.beginPath();
     ctx.moveTo(50, 130);

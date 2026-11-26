@@ -1,24 +1,24 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 
-const te = ElysiaRuntime.te;
-const loadSent = ElysiaRuntime.loadSent;
-const saveSent = ElysiaRuntime.saveSent;
-const loadState = ElysiaRuntime.loadState;
-const saveState = ElysiaRuntime.saveState;
-const getOngoingAnimeList = ElysiaRuntime.getOngoingAnimeList;
-const startAutoCheck = ElysiaRuntime.startAutoCheck;
-const stopAutoCheck = ElysiaRuntime.stopAutoCheck;
-const runCheck = ElysiaRuntime.runCheck;
-const isRunning = ElysiaRuntime.isRunning;
+const te = MikuRuntime.te;
+const loadSent = MikuRuntime.loadSent;
+const saveSent = MikuRuntime.saveSent;
+const loadState = MikuRuntime.loadState;
+const saveState = MikuRuntime.saveState;
+const getOngoingAnimeList = MikuRuntime.getOngoingAnimeList;
+const startAutoCheck = MikuRuntime.startAutoCheck;
+const stopAutoCheck = MikuRuntime.stopAutoCheck;
+const runCheck = MikuRuntime.runCheck;
+const isRunning = MikuRuntime.isRunning;
 
   const pluginConfig = {
       name: 'autoanimewinbu',
@@ -226,6 +226,6 @@ const isRunning = ElysiaRuntime.isRunning;
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

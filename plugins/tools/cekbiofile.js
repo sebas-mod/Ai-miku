@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
 
 const pluginConfig = {
     name: "cekbiofile",
@@ -26,7 +26,7 @@ const pluginConfig = {
 }
 
   const fs = (__m => __m.default ?? __m)((await import('fs')))
-  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile, parseNumbersFromBuffer } = (await elysiaLib('cekbio'))
+  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile, parseNumbersFromBuffer } = (await mikuLib('cekbio'))
 
   async function handler(m, { sock, conn, text, args, reply }) {
     const connection = sock || conn;

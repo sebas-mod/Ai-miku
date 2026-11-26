@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-// Backup & pembersihan session ala Kaguya (disesuaikan untuk penyimpanan compact Elysia).
+// Backup & pembersihan session ala Kaguya (disesuaikan untuk penyimpanan compact Miku).
 //  - backupSessionNow : salin storage/session ke database/backup-session (MANUAL lewat
 //    .backupsession, tidak ada backup otomatis). Simpan 3 backup terakhir.
 //  - cleanSessionFiles : hapus sesi chat (session-*) dan kunci grup (sender-key-*) TANPA menyentuh

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -19,7 +19,7 @@
  * JANGAN HAPUS/GANTI CREDITS & THANKS TO
  * JANGAN DIJUAL YA MEK
  *
- * Saluran Resmi elysia:
+ * Saluran Resmi miku:
  * https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t
  *
  */
@@ -52,9 +52,9 @@ function getTempDir() {
 }
 
 const DEFAULT_METADATA = {
-    packname: 'Elysia Assistant',
+    packname: 'Ai Miku',
     author: 'Bot',
-    packId: 'com.elysia.sticker',
+    packId: 'com.aimiku.sticker',
     emojis: ['🤖']
 };
 
@@ -364,28 +364,28 @@ function cleanTempFiles(maxAge = 3600000) {
 
 const PRESETS = {
     default: {
-        packname: 'Elysia Assistant',
+        packname: 'Ai Miku',
         author: 'Bot',
         emojis: ['🤖']
     },
     meme: {
         packname: 'Meme Pack',
-        author: 'Elysia Assistant',
+        author: 'Ai Miku',
         emojis: ['😂', '🤣']
     },
     love: {
         packname: 'Love Pack',
-        author: 'Elysia Assistant',
+        author: 'Ai Miku',
         emojis: ['❤️', '💕', '💖']
     },
     sad: {
         packname: 'Sad Pack',
-        author: 'Elysia Assistant',
+        author: 'Ai Miku',
         emojis: ['😢', '😭', '💔']
     },
     angry: {
         packname: 'Angry Pack',
-        author: 'Elysia Assistant',
+        author: 'Ai Miku',
         emojis: ['😠', '😡', '💢']
     }
 };

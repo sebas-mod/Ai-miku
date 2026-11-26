@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -181,7 +181,7 @@ async function handler(m, ctx = {}) {
       `Cari tautan preset Alight Motion (5MB / XML / Drive) dari link video TikTok.\n\n` +
       `📌 *Cara Pakai:*\n` +
       `\`${usedPrefix + command} <url video TikTok>\`\n\n` +
-      `_Powered by Elysia Assistant_`
+      `_Powered by Ai Miku_`
     )
   }
 
@@ -210,7 +210,7 @@ async function handler(m, ctx = {}) {
   result.links.slice(0, 15).forEach((lnk, i) => {
     caption += `${i + 1}. ${lnk}\n`
   })
-  caption += `\n_Elysia Assistant by Arthazy_`
+  caption += `\n_Ai Miku by Arthazy_`
 
   if (result.thumbnail) {
     try {

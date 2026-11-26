@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
   category: "user",
   description: "Hapus status pendaftaran akun kamu menggunakan Serial Number (SN)",
   usage: ".unreg <SN>",
-  example: ".unreg ELYSIA-76B1-A2C3",
+  example: ".unreg MIKU-76B1-A2C3",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
         `│ ✦ Untuk menghapus pendaftaran, masukkan *Serial Number (SN)* kamu!\n` +
         `│\n` +
         `│ 📌 *Format:* \`${p}unreg <SN>\`\n` +
-        `│ ✨ *Contoh:* \`${p}unreg ${expectedSn || "ELYSIA-76B1-A2C3"}\`\n` +
+        `│ ✨ *Contoh:* \`${p}unreg ${expectedSn || "MIKU-76B1-A2C3"}\`\n` +
         `│ 🔎 Lupa SN? Ketik *${p}ceksn*\n` +
         `╰──────────────────────────❖`
     );

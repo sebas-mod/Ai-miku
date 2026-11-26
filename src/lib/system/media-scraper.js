@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
 /**
- * ✦ Elysia Assistant — Unified Media & Scraper Kernel (src/lib/system/media-scraper.js)
+ * ✦ Ai Miku — Unified Media & Scraper Kernel (src/lib/system/media-scraper.js)
  * ✦ Architect: Arthazy
  */
-import _elysiaConfig from '../../../config.js'
-import { ElysiaEngine } from './elysia-engine.js'
+import _mikuConfig from '../../../config.js'
+import { MikuEngine } from './miku-engine.js'
 import axios from 'axios'
 import crypto from 'crypto'
 import fs, { promises, mkdirSync } from 'fs'
@@ -31,9 +31,9 @@ import { createContext as _igjhCreateContext, runInContext as _igjhRunInContext 
 import { webcrypto as _igjhWebcrypto } from 'node:crypto'
 import _pkQRCode from 'qrcode'
 
-const { pickImage, reactTo } = ElysiaEngine
-const rbDefineLib = (name, fn) => ElysiaEngine.defineLib(name, fn)
-const footerText = () => '✦ Elysia Assistant • by Arthazy'
+const { pickImage, reactTo } = MikuEngine
+const rbDefineLib = (name, fn) => MikuEngine.defineLib(name, fn)
+const footerText = () => '✦ Ai Miku • by Arthazy'
 
 export const he = { decode: s => s };
 
@@ -2380,7 +2380,7 @@ rbDefineLib('helperbails', async () => {
 export const netguard = (() => {
   const dns = _ngDns, http = _ngHttp, https = _ngHttps, net = _ngNet
 
-  const UA = 'Mozilla/5.0 (compatible; Elysia AssistantBot/1.0; +https://whatsapp.com)'
+  const UA = 'Mozilla/5.0 (compatible; Ai MikuBot/1.0; +https://whatsapp.com)'
   let _allowPrivate = false
   const _testAllowPrivate = (v) => { _allowPrivate = !!v }
 
@@ -3478,11 +3478,11 @@ return { loadSent, saveSent, loadState, saveState, getOngoingAnimeList, startAut
 })()
 export const { loadSent, saveSent, loadState, saveState, getOngoingAnimeList, startAutoCheck, stopAutoCheck, initAutoStart, runCheck, isRunning } = __autoAnime
 
-export const ElysiaMediaKernel = {
+export const MikuMediaKernel = {
   he,
   yts,
   DailymotionDL, JHFastDL, JHICog, JHIgExport, JHSssIG, RedNoteDL, TeraBoxDL, Youtube, aiodl, detectPlatform, fallbackToMp3Buffer, fbdown, ffmpeg, igDownloadAuto, instagramDownloader, isPrivateIp, likee, mediafire, netguard, premku, resolveIgTarget, scrapePinterest, searchKonachan, sfileDownload, sfileSearch, toAudio, toPTT, toVideo, ttdown, webp2mp4, webp2png, ytdl,
   BULAN, FriendlyError, HARI, bestMatches, cached, fetchJSON, getAllRegencies, getDistricts, getOngoingAnimeList, getProvinces, getRegencies, getVillages, guard, handleApiTool, identifyAudio, isRunning, loadSent, loadState, matchByName, norm, nowWib, pad, peekCache, runCheck, saveSent, saveState, startAutoCheck, stopAutoCheck, tempMailCreate, tempMailInbox, tempMailRead, titleCase, webRecord, webScreenshot
 }
 
-export default ElysiaMediaKernel
+export default MikuMediaKernel

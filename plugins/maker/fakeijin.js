@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 
   const pluginConfig = {
@@ -15,7 +15,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       category: "maker",
       description: 'Bikin fake surat ijin (buat konten/gaguan doang)',
       usage: '.fakeijin <nama> | <alasan>',
-      example: '.fakeijin Elysia Assistant | Sakit',
+      example: '.fakeijin Ai Miku | Sakit',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -53,7 +53,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <text x="550" y="430" text-anchor="middle" font-family="Times New Roman, serif" font-size="24" font-weight="700">${escapeXml(alasan).toUpperCase()}</text>
       <text x="550" y="500" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tanggal: ${escapeXml(tanggal)}</text>
       <text x="790" y="580" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Director</text>
-      <text x="790" y="625" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Dr. Elysia Assistant, M.Pd</text>
+      <text x="790" y="625" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Dr. Ai Miku, M.Pd</text>
       <text x="550" y="690" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOCUMENTO DE EJEMPLO — SIN VALIDEZ OFICIAL</text>
     </svg>`
 
@@ -66,7 +66,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeijin <nombre> | <motivo>\nEjemplo: .fakeijin Elysia Assistant | Enfermo`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeijin <nombre> | <motivo>\nEjemplo: .fakeijin Ai Miku | Enfermo`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -77,7 +77,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
 
       try {
           const imageBuffer = await generateFakeIjin(nama, alasan)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *PERMISO FALSO* 💕\n\n✅ Nombre: ${nama}\n📌 Motivo: ${alasan}\n\n💗 *Elysia Assistant:* Tu permiso está listo, darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *PERMISO FALSO* 💕\n\n✅ Nombre: ${nama}\n📌 Motivo: ${alasan}\n\n💗 *Ai Miku:* Tu permiso está listo, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

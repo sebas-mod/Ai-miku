@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -323,28 +323,28 @@ const kit = {
   }
 }
 
-global._elysiaMediaPool = global._elysiaMediaPool || new Map()
+global._mikuMediaPool = global._mikuMediaPool || new Map()
 
 const pool = {
   list(sender) {
-    return global._elysiaMediaPool.get(sender) || []
+    return global._mikuMediaPool.get(sender) || []
   },
   add(sender, item) {
     const cur = pool.list(sender)
     if (cur.length >= 20) cur.shift()
     cur.push(item)
-    global._elysiaMediaPool.set(sender, cur)
+    global._mikuMediaPool.set(sender, cur)
     return cur.length
   },
   remove(sender, index1) {
     const cur = pool.list(sender)
     if (index1 < 1 || index1 > cur.length) return false
     cur.splice(index1 - 1, 1)
-    global._elysiaMediaPool.set(sender, cur)
+    global._mikuMediaPool.set(sender, cur)
     return true
   },
   clear(sender) {
-    global._elysiaMediaPool.delete(sender)
+    global._mikuMediaPool.delete(sender)
   }
 }
 
@@ -381,7 +381,7 @@ const io = {
 
 const ffm = {
   runMulti(buffers, outExt, buildArgs, timeout = 240000) {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-pool-'))
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-pool-'))
     const ins = buffers.map((b, i) => {
       const p = path.join(dir, `in_${i}`)
       fs.writeFileSync(p, b)

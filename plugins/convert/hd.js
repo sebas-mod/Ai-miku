@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -120,7 +120,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'hd' }) {
 
     await client.sendMessage(
       m.chat,
-      { image: outBuffer, caption: `✨ *PENINGKATAN KUALITAS GAMBAR*\n• Mode : ${modeLabel}\n_Elysia Assistant_` },
+      { image: outBuffer, caption: `✨ *PENINGKATAN KUALITAS GAMBAR*\n• Mode : ${modeLabel}\n_Ai Miku_` },
       { quoted: m }
     )
     await m.react('✅')

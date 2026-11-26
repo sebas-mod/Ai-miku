@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
+const mikuGlobal = MikuRuntime.mikuGlobal;
 
 const libs = {
-    "detectbot": async ({ elysiaLib }) => {
+    "detectbot": async ({ mikuLib }) => {
       function isBotMessage(msg, client) {
         const id = msg?.key?.id || ''
         const isBaileys = id.startsWith('BAE5') || id.length === 16 || id.length === 12
@@ -65,8 +65,8 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const { isBotMessage } = (await elysiaLib('detectbot'))
-  const { getActiveThumbBuffer } = (await elysiaLib('thumb'))
+const { isBotMessage } = (await mikuLib('detectbot'))
+  const { getActiveThumbBuffer } = (await mikuLib('thumb'))
 
   const parseDeviceDetailed = (msgId, isBot) => {
       const raw = getDevice(msgId) || 'unknown';
@@ -86,7 +86,7 @@ const { isBotMessage } = (await elysiaLib('detectbot'))
   };
 
   async function handler(m, { sock, conn, reply }) {
-      const client = sock || conn || elysiaGlobal.mainSock;
+      const client = sock || conn || mikuGlobal.mainSock;
       const targetMsg = m.quoted ? m.quoted : m;
       const targetSender = targetMsg.sender || targetMsg.key?.participant || (targetMsg.key?.fromMe ? (client.decodeJid ? client.decodeJid(client.user?.id || '') : client.user?.id) : m.sender);
       const targetNumber = (targetSender || '').replace(/[^0-9]/g, '');

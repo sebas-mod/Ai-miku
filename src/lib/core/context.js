@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -55,7 +55,7 @@ function getRandomPraise() {
 
 function _saluranCtx() {
   const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+  const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
   return {
     forwardingScore: 9,
     isForwarded: true
@@ -75,7 +75,7 @@ async function sendGamePreview(sock, jid, text, title, body, options) {
     jid,
     {
       caption: text,
-      title: title || "🎮 elysia GAMES",
+      title: title || "🎮 miku GAMES",
       description: body || "Have fun playing!",
       jpegThumbnail: await getJpegThumb("allmenu"),
       previewType: 0,
@@ -105,7 +105,7 @@ async function sendToolsPreview(sock, jid, text, title, body, options) {
     jid,
     {
       caption: text,
-      title: title || "🛠️ elysia TOOLS",
+      title: title || "🛠️ miku TOOLS",
       description: body || "Utility & tools",
       jpegThumbnail: await getJpegThumb("allmenu"),
       previewType: 0,
@@ -136,7 +136,7 @@ function checkFastAnswer(session) {
   return { isFast: false, elapsed: elapsed };
 }
 
-function createFakeQuoted(botName = "Elysia Assistant", verified = true) {
+function createFakeQuoted(botName = "Ai Miku", verified = true) {
   return {
     key: {
       fromMe: false,

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -485,7 +485,7 @@ function createContextInfo(jid, text, title = "", body = "", thumbnail = null) {
       conversation: text,
     };
     contextInfo.participant = jid;
-    contextInfo.stanzaId = "ElysiaAssistant" + Date.now();
+    contextInfo.stanzaId = "AiMiku" + Date.now();
   }
 
   return contextInfo;
@@ -800,7 +800,7 @@ async function serialize(sock, msg, store = {}) {
   m.to = m.chat;
   m.botNumber = decodeJid(sock.user?.id)?.replace(/@.+/g, "") || "";
   m.botJid = decodeJid(sock.user?.id) || "";
-  m.botName = sock.user?.name || config.bot?.name || "Elysia Assistant";
+  m.botName = sock.user?.name || config.bot?.name || "Ai Miku";
   m.messageId = m.id;
   m.chatId = m.chat;
   m.senderId = m.sender;
@@ -919,7 +919,7 @@ async function serialize(sock, msg, store = {}) {
       );
     } else if (replyVariant === 3) {
       const uptime = process.uptime();
-      const sss = getAssetBuffer("elysia3");
+      const sss = getAssetBuffer("miku3");
       return sock.sendMessage(
         await ensureResolved(m.chat),
         {
@@ -965,7 +965,7 @@ async function serialize(sock, msg, store = {}) {
                 locationMessage: {
                   degreesLatitude: 0,
                   degreesLongitude: 0,
-                  name: config.bot?.name || "Elysia Assistant",
+                  name: config.bot?.name || "Ai Miku",
                   address: "Bot Wa Multi Device",
                   jpegThumbnail: thumbnailBuf,
                 }

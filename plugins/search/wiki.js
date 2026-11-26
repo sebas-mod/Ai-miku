@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -25,7 +25,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const UA = { 'user-agent': 'Elysia Assistant/1.0 (WhatsApp bot; wikipedia summary)', 'accept': 'application/json' }
+  const UA = { 'user-agent': 'Ai Miku/1.0 (WhatsApp bot; wikipedia summary)', 'accept': 'application/json' }
 
   async function cariJudul(lang, q) {
       const { data } = await axios.get(`https://${lang}.wikipedia.org/w/api.php`, {

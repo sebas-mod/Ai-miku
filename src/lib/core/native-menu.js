@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -11,17 +11,17 @@ import sharp from "sharp";
 import { getJpegThumb } from "./media.js";
 
 /** Send a one-wide-button Native Flow menu using the same buttonsMessage shape as .allmenu. */
-export async function sendElysiaNativeMenu(sock, m, {
+export async function sendMikuNativeMenu(sock, m, {
   buttonId = "pilihan_menu",
   sections = [],
   pickerTitle = "☰ Menu",
   contentText = "",
   footerText = "",
-  address = "MENU Elysia Assistant",
+  address = "MENU Ai Miku",
   thumbKey = "listmenu",
   thumbUrl = "",
 } = {}) {
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
   let thumbnail = null;
   if (thumbUrl && /^https?:\/\//.test(thumbUrl)) {
     try {

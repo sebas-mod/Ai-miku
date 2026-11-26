@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "snakerich",
   alias: ["ularkristal"],
   category: "rich",
-  description: "Game ular neon khas Elysia dengan kontrol swipe/D-pad & rekor skor",
+  description: "Game ular neon khas Miku dengan kontrol swipe/D-pad & rekor skor",
   usage: ".snakerich",
   example: ".snakerich",
   isOwner: false,
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Snake Classic — Elysia Assistant</title>
+<title>Snake Classic — Ai Miku</title>
 <style>
 ${buildGameBaseCss("snake")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}

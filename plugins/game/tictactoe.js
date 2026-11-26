@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getActiveGame, setActiveGame, renderTTTBoard } from "../../src/lib/features/elysia-game.js";
+import { getActiveGame, setActiveGame, renderTTTBoard } from "../../src/lib/features/miku-game.js";
 
 const pluginConfig = {
   name: "tictactoe",
   alias: ["ttt"],
   category: "game",
-  description: "Main Tic-Tac-Toe lawan Elysia AI atau PvP (@tag)",
+  description: "Main Tic-Tac-Toe lawan Miku AI atau PvP (@tag)",
   usage: ".ttt [@lawan]",
   example: ".ttt | .ttt @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     startedAt: Date.now(),
     board: Array(9).fill(null),
     playerX: m.sender,
-    playerO: isAI ? "ELYSIA_AI" : opponent,
+    playerO: isAI ? "MIKU_AI" : opponent,
     isAI,
     turn: "X",
   };
@@ -45,11 +45,11 @@ async function handler(m, { sock }) {
     m.chat,
     {
       text:
-        `╭─❖「 ❌⭕ *TIC-TAC-TOE — ELYSIA* 」\n` +
+        `╭─❖「 ❌⭕ *TIC-TAC-TOE — MIKU* 」\n` +
         `${renderTTTBoard(session.board)}\n` +
         `├───〔 *PEMAIN* 〕\n` +
         `│ ❌ : @${m.sender.split("@")[0]}\n` +
-        `│ ⭕ : ${isAI ? "🤖 Elysia AI" : `@${opponent.split("@")[0]}`}\n` +
+        `│ ⭕ : ${isAI ? "🤖 Miku AI" : `@${opponent.split("@")[0]}`}\n` +
         `╰─────────────────────❖\n` +
         `_Balas angka *1-9* untuk menaruh bidak! Ketik \`.stopgame\` untuk berhenti._`,
       mentions,

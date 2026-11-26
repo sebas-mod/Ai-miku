@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,21 +8,21 @@
  */
 import axios from "axios";
 import config from "../../../config.js";
-import { ElysiaRuntime } from "../system/bridge.js";
+import { MikuRuntime } from "../system/bridge.js";
 
 const VERCEL_API = "https://api.vercel.com";
 
 export function getVercelToken(sender) {
   try {
-    const own = ElysiaRuntime.allOwn?.(sender);
+    const own = MikuRuntime.allOwn?.(sender);
     if (own?.vercel?.token) return own.vercel.token;
   } catch {}
   return config?.apikey?.vercel || process.env.VERCEL_TOKEN || "";
 }
 
 export function setVercelToken(sender, token) {
-  if (typeof ElysiaRuntime.setOwn === "function") {
-    ElysiaRuntime.setOwn(sender, "vercel", {
+  if (typeof MikuRuntime.setOwn === "function") {
+    MikuRuntime.setOwn(sender, "vercel", {
       token,
       updatedAt: Date.now(),
     });

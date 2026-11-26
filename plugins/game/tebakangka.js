@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getActiveGame, setActiveGame } from "../../src/lib/features/elysia-game.js";
+import { getActiveGame, setActiveGame } from "../../src/lib/features/miku-game.js";
 
 const pluginConfig = {
   name: "tebakangka",
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   });
 
   await m.reply(
-    `╭─❖「 🎯 *TEBAK ANGKA — ELYSIA* 」\n` +
+    `╭─❖「 🎯 *TEBAK ANGKA — MIKU* 」\n` +
       `│ 🔢 Rentang    : *1 sampai 100*\n` +
       `│ 🎲 Kesempatan : *8 percobaan*\n` +
       `│ 💰 Hadiah     : Hingga *+5.000 Koin*\n` +

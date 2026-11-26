@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const getAssetBuffer = ElysiaRuntime.getAssetBuffer;
-const isIosId = ElysiaRuntime.isIosId;
-const chatIsIos = ElysiaRuntime.chatIsIos;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const getAssetBuffer = MikuRuntime.getAssetBuffer;
+const isIosId = MikuRuntime.isIosId;
+const chatIsIos = MikuRuntime.chatIsIos;
 
   const pluginConfig = {
     name: "brat",

@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { execFile } from 'child_process'
 import { promisify } from 'util'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
 
-const DailymotionDL = ElysiaRuntime.DailymotionDL;
+const DailymotionDL = MikuRuntime.DailymotionDL;
 
   const exec = promisify(execFile);
 

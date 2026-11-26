@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'faketiket',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake tiket pesawat (buat konten/gaguan doang)',
       usage: '.faketiket <dari> | <tujuan> | <nama>',
-      example: '.faketiket Jakarta | Tokyo | Elysia Assistant',
+      example: '.faketiket Jakarta | Tokyo | Ai Miku',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -82,9 +82,9 @@ const config = ElysiaRuntime.config;
               `┃\n` +
               `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}faketiket Jakarta | Tokyo | Elysia Assistant\n` +
+              `┃   ${m.prefix}faketiket Jakarta | Tokyo | Ai Miku\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* ¿A dónde quieres ir, darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿A dónde quieres ir, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -95,7 +95,7 @@ const config = ElysiaRuntime.config;
       const nama = parts[2] || 'Darling'
 
       m.react('💕')
-      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el billete de avión, darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Creando el billete de avión, darling~`)
 
       try {
           const imageBuffer = await generateFakeTiket(dari, tujuan, nama)
@@ -108,7 +108,7 @@ const config = ElysiaRuntime.config;
                       `┃ ✈️ *RUTA*: ${dari} → ${tujuan}\n` +
                       `┃ 👤 *NOMBRE*: ${nama}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Aquí tienes tu billete, darling~ ¡buen viaje! 🗿\n` +
+                      `┃ 💗 *Ai Miku:* Aquí tienes tu billete, darling~ ¡buen viaje! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 

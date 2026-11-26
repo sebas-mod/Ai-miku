@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuGlobal = MikuRuntime.mikuGlobal;
 import { downloadMediaMessage } from '@rexxhayanasi/elaina-baileys'
 
 const pluginConfig = {
@@ -65,7 +65,7 @@ const toSmallCaps = (str) => {
   };
 
   async function handler(m, { sock, conn, text, usedPrefix, command, reply }) {
-      const client = conn || sock || elysiaGlobal.mainSock;
+      const client = conn || sock || mikuGlobal.mainSock;
       const qmsg = m.quoted ? m.quoted : m;
 
       let targetMessages = [];
@@ -76,7 +76,7 @@ const toSmallCaps = (str) => {
           const qFakeMsg = qFake.message || qFake.msg || {};
           const qMsgObj = m.quoted.message || m.quoted.msg || {};
 
-          const cachedAlbum = qId ? elysiaGlobal.albumCache?.get(qId) : null;
+          const cachedAlbum = qId ? mikuGlobal.albumCache?.get(qId) : null;
           const isAlbumReply =
               m.quoted.mtype === 'albumMessage' ||
               Boolean(qMsgObj?.albumMessage) ||

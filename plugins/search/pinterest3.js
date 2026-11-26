@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
@@ -128,8 +128,8 @@ const pluginConfig = {
       if (!input) {
           return reply(
               `*▢ PINTEREST*\n\n` +
-              `${prefix}pin3 Elysia Assistant shinomiya       → cari 10 gambar\n` +
-              `${prefix}pin3 Elysia Assistant shinomiya 18    → cari 18 gambar (maks 18)\n` +
+              `${prefix}pin3 Ai Miku shinomiya       → cari 10 gambar\n` +
+              `${prefix}pin3 Ai Miku shinomiya 18    → cari 18 gambar (maks 18)\n` +
               `${prefix}pin3 https://pin.it/xxx → download video/gambar dari link`
           )
       }

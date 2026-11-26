@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const pluginConfig = {
     name: "pinterest",
@@ -129,8 +129,8 @@ const pluginConfig = {
       if (!input) {
           return reply(
               `*▢ PINTEREST*\n\n` +
-              `${prefix}pin Elysia Assistant shinomiya       → cari 5 gambar\n` +
-              `${prefix}pin Elysia Assistant shinomiya | 8    → cari 8 gambar (maks 10)\n` +
+              `${prefix}pin Ai Miku shinomiya       → cari 5 gambar\n` +
+              `${prefix}pin Ai Miku shinomiya | 8    → cari 8 gambar (maks 10)\n` +
               `${prefix}pin https://pin.it/xxx → download video/gambar dari link`
           )
       }

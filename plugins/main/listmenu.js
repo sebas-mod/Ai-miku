@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,7 +8,7 @@
  */
 import config from "../../config.js";
 import { getPluginsByCategory } from "../../src/lib/core/plugins.js";
-import { sendElysiaNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu } from "../../src/lib/core/native-menu.js";
 
 const pluginConfig = {
   name: "listmenu",
@@ -82,12 +82,12 @@ async function handler(m, { sock }) {
     `│ Elige un comando para verlo o ejecutarlo.`,
     `╰─⬣`,
   ].join("\n");
-  return sendElysiaNativeMenu(sock, m, {
+  return sendMikuNativeMenu(sock, m, {
     buttonId: "pilihan_listmenu",
     pickerTitle: "☰ LISTA DE MENÚS DE GRUPO",
     sections,
     contentText: body,
-    footerText: `${config.bot?.name || "Elysia Assistant"} • Menú de grupo`,
+    footerText: `${config.bot?.name || "Ai Miku"} • Menú de grupo`,
     address: "LISTA DE MENÚS DE GRUPO",
     thumbKey: "listmenu",
   });

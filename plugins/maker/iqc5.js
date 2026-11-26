@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas } from '@napi-rs/canvas';
 
-  const FEATURE_CREDIT = "Función de: Elysia Assistant MD";
+  const FEATURE_CREDIT = "Función de: Ai Miku MD";
 
   const pluginConfig = {
       name: 'iqc5',
@@ -100,7 +100,7 @@ import { createCanvas } from '@napi-rs/canvas';
 
       g.fillStyle = BLUE;
       g.font = 'bold 25px sans-serif';
-      g.fillText('Elysia Assistant', bubbleX + 34, bubbleY + 46);
+      g.fillText('Ai Miku', bubbleX + 34, bubbleY + 46);
 
       g.fillStyle = TEXT;
       g.font = textFont;

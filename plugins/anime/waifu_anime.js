@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 
   const pluginConfig = {
@@ -69,7 +69,7 @@ import axios from 'axios';
 
   async function run(m, { sock }) {
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi nyari gambar waifu darling~ tunggu sebentar yaa 🦋`)
+      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi nyari gambar waifu darling~ tunggu sebentar yaa 🦋`)
 
       try {
           const result = await getRandomWaifu()
@@ -85,7 +85,7 @@ import axios from 'axios';
                       `┃ 🖼️ *ꜱᴏᴜʀᴄᴇ*: ${result.source}\n` +
                       `┃ 💗 *ᴡᴀɪꜰᴜ*: Untuk Darling tercinta~\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Ini waifu nya darling~ jangan liat yang lain ya! 😘\n` +
+                      `┃ 💗 *Ai Miku:* Ini waifu nya darling~ jangan liat yang lain ya! 😘\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -102,6 +102,6 @@ import axios from 'axios';
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

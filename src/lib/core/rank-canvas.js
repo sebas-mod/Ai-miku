@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -22,14 +22,14 @@ async function lib() {
   try {
     for (const file of ["Inter-Regular.otf", "Inter-Bold.otf", "Inter-ExtraBold.otf"]) {
       const p = path.join(dir, file);
-      if (fs.existsSync(p)) mod.GlobalFonts.registerFromPath(p, "ElysiaSans");
+      if (fs.existsSync(p)) mod.GlobalFonts.registerFromPath(p, "MikuSans");
     }
   } catch {}
   _lib = mod;
   return mod;
 }
 
-const FONT = '"ElysiaSans", "Inter", "DejaVu Sans", sans-serif';
+const FONT = '"MikuSans", "Inter", "DejaVu Sans", sans-serif';
 const f = (size, weight = "bold") => `${weight} ${size}px ${FONT}`;
 
 const GOLD = "#f5c451";
@@ -351,7 +351,7 @@ export async function renderLevelUp({
   energiBonus = 0,
   expInLevel = 0,
   expNeeded = 1,
-  botName = "Elysia Assistant",
+  botName = "Ai Miku",
 }) {
   const { canvas, ctx, w, h } = await baseCanvas("levelup");
   panel(ctx, 40, 40, w - 80, h - 80, 30, "rgba(10,8,30,0.58)", "rgba(245,196,81,0.55)", 3);
@@ -431,7 +431,7 @@ export async function renderBoostExp({
   expNeeded = 1,
   leveledUp = false,
   newLevel = level,
-  botName = "Elysia Assistant",
+  botName = "Ai Miku",
 }) {
   const { canvas, ctx, w, h } = await baseCanvas("boostexp");
   panel(ctx, 40, 40, w - 80, h - 80, 30, "rgba(8,16,28,0.58)", "rgba(94,234,212,0.55)", 3);
@@ -490,7 +490,7 @@ export async function renderTop10({
   rows = [],
   accent = GOLD,
   me = null,
-  botName = "Elysia Assistant",
+  botName = "Ai Miku",
 }) {
   const { canvas, ctx, w, h } = await baseCanvas(key);
 
@@ -578,7 +578,7 @@ export async function renderRankList({
   avatar,
   myLevel = 1,
   ranks = [],
-  botName = "Elysia Assistant",
+  botName = "Ai Miku",
 }) {
   const { canvas, ctx, w, h } = await baseCanvas("ranklist");
 

@@ -1,25 +1,25 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import yts from 'yt-search'
 import axios from 'axios'
 
-const ytdl = ElysiaRuntime.ytdl;
-const fallbackToMp3Buffer = ElysiaRuntime.fallbackToMp3Buffer;
+const ytdl = MikuRuntime.ytdl;
+const fallbackToMp3Buffer = MikuRuntime.fallbackToMp3Buffer;
 
 const pluginConfig = {
-    name: "playelysia",
-    alias: ["yp"],
+    name: "playmiku",
+    alias: ["yp", "playelysia"],
     category: "download",
-    description: "playelysia",
-    usage: ".playelysia",
-    example: ".playelysia",
+    description: "playmiku",
+    usage: ".playmiku",
+    example: ".playmiku",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -92,15 +92,15 @@ const pluginConfig = {
           const dl = data?.result?.download_url || data?.result?.download
           if (dl) yield { name: 'izuka', dl }
       } catch (e) {
-          console.error('[PLAYElysia Assistant] izuka:', e.message)
+          console.error('[PLAYAi Miku] izuka:', e.message)
       }
 
       try {
           const r = await ytdl(url, 'mp3')
           if (r?.status && r?.dl) yield { name: 'ytdl', dl: r.dl }
-          else console.error('[PLAYElysia Assistant] ytdl:', r?.mess || 'tidak ada link')
+          else console.error('[PLAYAi Miku] ytdl:', r?.mess || 'tidak ada link')
       } catch (e) {
-          console.error('[PLAYElysia Assistant] ytdl:', e.message)
+          console.error('[PLAYAi Miku] ytdl:', e.message)
       }
   }
 
@@ -136,7 +136,7 @@ const pluginConfig = {
               }
               throw new Error('el archivo no es audio')
           } catch (e) {
-              console.error(`[PLAYElysia Assistant] ${src.name} gagal:`, e.message)
+              console.error(`[PLAYAi Miku] ${src.name} gagal:`, e.message)
               errors.push(`${src.name}: ${String(e.message).slice(0, 60)}`)
           }
       }
@@ -166,7 +166,7 @@ const pluginConfig = {
 
       if (!query) {
           return m.reply(
-              `🎵 *PLAY Elysia Assistant*\n\n` +
+              `🎵 *PLAY Ai Miku*\n\n` +
               `> Ejemplo: ${p}${command} multo\n` +
               `> Ejemplo: ${p}${command} https://youtube.com/watch?v=xxxxx`
           )
@@ -175,7 +175,7 @@ const pluginConfig = {
       await m.react('🎧')
 
       try {
-          await m.reply('🎵 *Elysia Assistant MD:* Darling~ estoy buscando la canción... espera un momento 🦋')
+          await m.reply('🎵 *Ai Miku MD:* Darling~ estoy buscando la canción... espera un momento 🦋')
 
           const video = await findVideo(query)
 
@@ -195,7 +195,7 @@ const pluginConfig = {
               `👤 *Artist:* ${video.author}\n` +
               `⏱️ *Duration:* ${video.timestamp}\n` +
               `👁️ *Views:* ${fmtNum(video.views)}\n\n` +
-              `🦋 *Elysia Assistant MD:* Disfruta, querido~ ¡no olvides volver a escucharla si te gusta! 💕`
+              `🦋 *Ai Miku MD:* Disfruta, querido~ ¡no olvides volver a escucharla si te gusta! 💕`
 
           if (thumb) {
               await conn.sendMessage(m.chat, { image: thumb, caption }, { quoted: m })
@@ -216,7 +216,7 @@ const pluginConfig = {
 
           await m.react('✅')
       } catch (err) {
-          console.error('[PlayElysia Assistant]', err)
+          console.error('[PlayAi Miku]', err)
           await m.react('❌')
 
           const msg = String(err?.message || err)

@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import { createCanvas } from '@napi-rs/canvas';
 
@@ -198,7 +198,7 @@ import { createCanvas } from '@napi-rs/canvas';
   }
 
   function formatCaption(schedules, season, filterDay = null, source = 'api') {
-      let caption = `🦋 *Elysia Assistant ANIME SCHEDULE* 🦋\n\n`
+      let caption = `🦋 *Ai Miku ANIME SCHEDULE* 🦋\n\n`
       caption += `📅 *Musim:* ${season.toUpperCase()}\n`
       if (filterDay) caption += `📆 *Hari:* ${hariIndonesia[filterDay] || filterDay}\n`
       caption += `📡 *Source:* ${source}\n`
@@ -220,7 +220,7 @@ import { createCanvas } from '@napi-rs/canvas';
           caption += `\n*+ ${schedules.length - maxShow} anime lainnya...*\n`
       }
 
-      caption += `\n💕 *Elysia Assistant:* ${['Selamat nonton darling~', 'Jangan lupa update episode ya!', 'Ayo tonton anime baru~'][Math.floor(Math.random() * 3)]} 🦋`
+      caption += `\n💕 *Ai Miku:* ${['Selamat nonton darling~', 'Jangan lupa update episode ya!', 'Ayo tonton anime baru~'][Math.floor(Math.random() * 3)]} 🦋`
 
       return caption
   }
@@ -245,7 +245,7 @@ import { createCanvas } from '@napi-rs/canvas';
       await m.react('⏳')
 
       try {
-          await m.reply('🦋 *Elysia Assistant:* Sedang mengambil jadwal anime terbaru, darling~ tunggu sebentar ya! 💕')
+          await m.reply('🦋 *Ai Miku:* Sedang mengambil jadwal anime terbaru, darling~ tunggu sebentar ya! 💕')
 
           const result = await fetchScheduleFromAPI(seasonQuery)
 
@@ -289,6 +289,6 @@ import { createCanvas } from '@napi-rs/canvas';
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

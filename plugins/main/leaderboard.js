@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -112,7 +112,7 @@ async function handler(m, { sock }) {
         accent: cfg.accent,
         rows,
         me: { rank: myIndex >= 0 ? myIndex + 1 : 0, total: all.length },
-        botName: config.bot?.name || 'Elysia Assistant'
+        botName: config.bot?.name || 'Ai Miku'
     })
 
     const caption =

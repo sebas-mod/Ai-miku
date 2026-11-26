@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -58,7 +58,7 @@ function compressVideoBuffer(buffer, mode = 'auto') {
     ultra: { scale: 480, crf: '33', ab: '64k' }
   }
   const cfg = presets[mode] || presets.auto
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-cvid-'))
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-cvid-'))
   const inFile = path.join(tmpDir, 'in.mp4')
   const outFile = path.join(tmpDir, 'out.mp4')
   fs.writeFileSync(inFile, buffer)

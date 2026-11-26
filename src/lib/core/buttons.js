@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -104,7 +104,7 @@ export function buildInteractiveContent({ text = "", footer, buttons, header, pa
     interactiveMessage: {
       header: header || { title: "", subtitle: "", hasMediaAttachment: false },
       body: { text: String(text ?? "") },
-      footer: { text: String(footer || config.bot?.name || "Elysia Assistant") },
+      footer: { text: String(footer || config.bot?.name || "Ai Miku") },
       nativeFlowMessage: {
         buttons: nativeButtons,
         messageParamsJson: JSON.stringify(params || {}),
@@ -163,7 +163,7 @@ import { getJpegThumb } from "./media.js";
  * yang terbukti 100% muncul dan dapat diklik di WhatsApp Android/Desktop/iOS (sama seperti .allmenu).
  */
 export async function sendButtons(sock, jid, o = {}, extra = {}) {
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
   const buttonsIn = Array.isArray(o.buttons) ? o.buttons : [];
   if (!buttonsIn.length) {
     return sock.sendMessage(jid, { text: String(o.text || ""), mentions: o.mentions }, extra);
@@ -208,7 +208,7 @@ export async function sendButtons(sock, jid, o = {}, extra = {}) {
         buttonsMessage: {
           buttons: [
             {
-              buttonId: "elysia_select_btn",
+              buttonId: "miku_select_btn",
               buttonText: { displayText: btnTitle },
               type: 1,
               nativeFlowInfo: {

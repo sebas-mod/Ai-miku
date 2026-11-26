@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
     const projectRoot = process.cwd();
     const timestamp = moment().tz("Asia/Jakarta").format("YYYY-MM-DD_HH-mm-ss");
     const botName =
-      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "elysiaBot";
+      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "mikuBot";
     const zipFileName = `${botName}_backup_${timestamp}.zip`;
     const backupDir = getBackupOutputDir(projectRoot);
     const zipFilePath = path.join(backupDir, zipFileName);
@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
     const stats = fs.statSync(zipFilePath);
     const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2);
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
 
     await sock.sendMessage(
       m.chat,

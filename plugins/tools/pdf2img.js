@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuGlobal = MikuRuntime.mikuGlobal;
 import { exec } from 'child_process'
 
 const pluginConfig = {
@@ -67,7 +67,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
   };
 
   async function handler(m, { sock, conn, usedPrefix, command, reply }) {
-      const client = conn || sock || elysiaGlobal.mainSock;
+      const client = conn || sock || mikuGlobal.mainSock;
       const qmsg = m.quoted ? m.quoted : m;
 
       const mime = qmsg.mimetype || qmsg.msg?.mimetype || (qmsg.message?.documentMessage?.mimetype) || (qmsg.message?.documentWithCaptionMessage?.message?.documentMessage?.mimetype) || '';

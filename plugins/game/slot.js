@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "slot",
   alias: ["slots", "spin"],
   category: "game",
-  description: "Putar mesin slot kristal Elysia berhadiah hingga 10x taruhan",
+  description: "Putar mesin slot kristal Miku berhadiah hingga 10x taruhan",
   usage: ".slot [taruhan]",
   example: ".slot 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -57,7 +57,7 @@ async function handler(m) {
   }
 
   await m.reply(
-    `╭─❖「 🎰 *ELYSIA CRYSTAL SLOT* 」\n` +
+    `╭─❖「 🎰 *MIKU CRYSTAL SLOT* 」\n` +
       `│     ${row1.join(" │ ")}\n` +
       `│ ▶  ${mid.join(" │ ")}  ◀\n` +
       `│     ${row3.join(" │ ")}\n` +

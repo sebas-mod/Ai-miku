@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'fakesp',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake surat panggilan (buat konten/gaguan doang)',
       usage: '.fakesp <nama> | <instansi>',
-      example: '.fakesp Elysia Assistant | OSIS',
+      example: '.fakesp Ai Miku | OSIS',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -62,7 +62,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakesp <nombre> | <institución>\nEjemplo: .fakesp Elysia Assistant | OSIS`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakesp <nombre> | <institución>\nEjemplo: .fakesp Ai Miku | OSIS`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -73,7 +73,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeSP(nama, instansi)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *CITACIÓN FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Institución: ${instansi}\n\n💗 *Elysia Assistant:* Te han citado, darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *CITACIÓN FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Institución: ${instansi}\n\n💗 *Ai Miku:* Te han citado, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

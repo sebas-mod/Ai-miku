@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import path from 'path'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "encfile",
@@ -29,7 +29,7 @@ const pluginConfig = {
 
   const sleep = (ms) => new Promise(r => setTimeout(r, ms))
   const BAR = (p) => '█'.repeat(p / 10) + '▒'.repeat(10 - p / 10)
-  const title = () => `⚡ *ULTRA HARD ENCRYPT — ${global.namebot || 'Elysia Assistant MD'}* ⚡`
+  const title = () => `⚡ *ULTRA HARD ENCRYPT — ${global.namebot || 'Ai Miku MD'}* ⚡`
 
   const card = (percent, note, dot = '🔴') =>
       `${title()}\n\n🔐 *Proses Penguncian Skrip*\n[ ${BAR(percent)} ] *${percent}%*\n> ${dot} ${note}`
@@ -107,7 +107,7 @@ const pluginConfig = {
               document: output,
               mimetype: 'application/javascript',
               fileName: newName,
-              caption: `⚡ *HARD ENCRYPT ANTI-BYPASS BERHASIL* ⚡\n\n📁 Nama File : *${newName}*\n🔒 Status    : Terkunci Rapat\n\n— ${global.namebot || 'Elysia Assistant MD'}`
+              caption: `⚡ *HARD ENCRYPT ANTI-BYPASS BERHASIL* ⚡\n\n📁 Nama File : *${newName}*\n🔒 Status    : Terkunci Rapat\n\n— ${global.namebot || 'Ai Miku MD'}`
           }, { quoted: m })
           await reactTo(sock, m, '✅')
       } catch (e) {

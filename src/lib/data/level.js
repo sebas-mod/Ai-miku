@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -106,7 +106,7 @@ async function checkAndNotifyLevelUp(sock, m, db, user, oldExp, newExp) {
       return { leveledUp: true, notified: false, oldLevel, newLevel, koinBonus, energiBonus };
     }
 
-    const botName = config.bot?.name || "Elysia Assistant";
+    const botName = config.bot?.name || "Ai Miku";
     const txt =
       `╭─── ❖ 『 🎊 *¡SUBIÓ DE NIVEL!* 』 ❖\n` +
       `│ ✦ *Aventurero:* @${m.sender.split("@")[0]}\n` +

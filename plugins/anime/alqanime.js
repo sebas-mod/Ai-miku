@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
@@ -134,7 +134,7 @@ const pluginConfig = {
   }
 
   function createMessage(item, detail) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
   	const title = detail.title || item.title || 'Anime Terbaru';
   	const poster = detail.poster || item.poster || null;
   	const originalUrl = item.url || `https://alqanime.net/${item.slug}/`;
@@ -175,7 +175,7 @@ const pluginConfig = {
   }
 
   async function sendAnime(sock, jid, item) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
 
   	try {
   		const detail = await getDetail(item.slug);
@@ -314,7 +314,7 @@ const pluginConfig = {
   }
 
   async function handler(m, { sock, args, reply, usedPrefix, command }) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
   	startWatcher(sock);
 
   	if (!m.isGroup) {

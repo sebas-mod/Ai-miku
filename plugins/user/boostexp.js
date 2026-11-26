@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,11 +31,11 @@ const pluginConfig = {
 const COOLDOWN_MS = 30 * 60 * 1000;
 
 const SCENARIOS = [
-  "Bermeditasi di bawah kristal Astral Elysia dan menyerap energi kosmik",
+  "Bermeditasi di bawah kristal Astral Miku dan menyerap energi kosmik",
   "Berlatih kombo pedang bayangan bersama instruktur Guild",
   "Memecahkan gulungan rune kuno di Perpustakaan Bintang",
   "Menyalurkan mana murni ke dalam inti jiwa petualang",
-  "Menyelesaikan simulasi pertarungan tingkat tinggi di Menara Elysia",
+  "Menyelesaikan simulasi pertarungan tingkat tinggi di Menara Miku",
 ];
 
 async function handler(m, { sock }) {
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
       expNeeded: EXP_PER_LEVEL,
       leveledUp: Boolean(res.leveledUp),
       newLevel: res.newLevel || newLv,
-      botName: config.bot?.name || "Elysia Assistant",
+      botName: config.bot?.name || "Ai Miku",
     });
     return await sock.sendMessage(m.chat, { image, caption }, { quoted: m });
   } catch {

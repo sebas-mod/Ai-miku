@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
@@ -192,7 +192,7 @@ import * as cheerio from 'cheerio';
               `┃   ${m.prefix}animedl jujutsu kaisen | 1\n` +
               `┃   ${m.prefix}animedl jujutsu kaisen | batch\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau download anime apa darling~?\n` +
+              `┃ 💗 *Ai Miku:* Mau download anime apa darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -209,7 +209,7 @@ import * as cheerio from 'cheerio';
       const isBatch = episode === 'batch'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi mencari anime ${query} darling~ tunggu sebentar yaa 🦋`)
+      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi mencari anime ${query} darling~ tunggu sebentar yaa 🦋`)
 
       try {
           const searchResults = await searchAnime(query)
@@ -265,7 +265,7 @@ import * as cheerio from 'cheerio';
               txt += `╰━━━━━━━━━━━━━━━━━━━━━⬣\n\n`
           }
 
-          txt += `💗 *Elysia Assistant:* Klik link di atas buat download darling~ 🎬`
+          txt += `💗 *Ai Miku:* Klik link di atas buat download darling~ 🎬`
 
           await m.reply(txt)
           m.react('✅')
@@ -281,6 +281,6 @@ import * as cheerio from 'cheerio';
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

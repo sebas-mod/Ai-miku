@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -418,7 +418,7 @@ async function startConnection(options = {}) {
     colors.logger.info("pairing", `meminta kode untuk ${phoneNumber}`);
 
     try {
-      // Jangan memakai custom code statis seperti "ELYSIACOM".
+      // Jangan memakai custom code statis seperti "MIKUCOM".
       // WhatsApp harus menerima pairing code baru yang dibuat untuk sesi ini.
       // Ini juga menghindari kode lama/terpakai yang ditolak sebagai "Kode salah".
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -435,7 +435,7 @@ async function startConnection(options = {}) {
       // Gunakan stdout langsung agar pairing code tetap muncul tanpa mengaktifkan log rutin.
       const pairingBanner = colors.createBanner(
         [
-          colors.c.magenta.bold("✨ ELYSIA ASSISTANT — WHATSAPP PAIRING CODE ✨"),
+          colors.c.magenta.bold("✨ AI MIKU — WHATSAPP PAIRING CODE ✨"),
           "",
           `   🔑 KODE PAIRING : \x1b[1;38;2;0;0;0;48;2;255;255;255m  ${formattedCode}  \x1b[0m`,
           `   📱 NOMOR TARGET : ${colors.c.cyan.bold("+" + phoneNumber)}`,
@@ -571,7 +571,7 @@ async function startConnection(options = {}) {
 
       if (!hasConnectedOnce) colors.logger.info(
         "bot",
-        `${config.bot?.name || "Elysia Assistant"} (${n || "?"}) · WA v${version.join(".")}`,
+        `${config.bot?.name || "Ai Miku"} (${n || "?"}) · WA v${version.join(".")}`,
       );
 
       setTimeout(async () => {
@@ -772,11 +772,11 @@ async function startConnection(options = {}) {
           const saluranId =
             config.saluran?.id || "120363393471527483@newsletter";
           const saluranName =
-            config.saluran?.name || config.bot?.name || "Elysia Assistant";
+            config.saluran?.name || config.bot?.name || "Ai Miku";
 
           const welcomeText =
             `👋 *ʜᴀɪ, sᴀʟᴀᴍ ᴋᴇɴᴀʟ!*\n\n` +
-            `Aku *${config.bot?.name || "Elysia Assistant"}* 🤖\n\n` +
+            `Aku *${config.bot?.name || "Ai Miku"}* 🤖\n\n` +
             `Terima kasih sudah mengundang aku ke *${groupName}*!\n` +
             `Aku diundang oleh ${inviterMention} ✨\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +

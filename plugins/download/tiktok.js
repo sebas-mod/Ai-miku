@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const formatNumber = (n) => Number(n || 0).toLocaleString('id-ID');
 const formatDuration = (sec) => {
@@ -236,7 +236,7 @@ const pluginConfig = {
       return m.reply(
         `Ejemplo:\n` +
         `${usedPrefix + command} https://vt.tiktok.com/xxxx\n` +
-        `${usedPrefix + command} Elysia Assistant edit`
+        `${usedPrefix + command} Ai Miku edit`
       )
     }
 

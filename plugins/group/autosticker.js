@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -100,7 +100,7 @@ async function autoStickerHandler(m, sock) {
 
         if (isImage) {
             await sock.sendImageAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'elysia',
+                packname: config.sticker?.packname || 'miku',
                 author: config.sticker?.author || 'Bot'
             })
         } else if (isVideo) {
@@ -109,7 +109,7 @@ async function autoStickerHandler(m, sock) {
             if (duration > 10) return false
 
             await sock.sendVideoAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'elysia',
+                packname: config.sticker?.packname || 'miku',
                 author: config.sticker?.author || 'Bot'
             })
         }

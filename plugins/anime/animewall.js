@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import { createCanvas } from '@napi-rs/canvas';
 
@@ -131,7 +131,7 @@ import { createCanvas } from '@napi-rs/canvas';
       ctx.textAlign = 'center'
       ctx.shadowColor = THEME.glow
       ctx.shadowBlur = 10
-      ctx.fillText('🖼️ Elysia Assistant WALLPAPER 🖼️', w/2, 45)
+      ctx.fillText('🖼️ Ai Miku WALLPAPER 🖼️', w/2, 45)
       ctx.shadowBlur = 0
 
       ctx.fillStyle = THEME.cardBg || '#1a0b1a'
@@ -187,7 +187,7 @@ import { createCanvas } from '@napi-rs/canvas';
   }
 
   function formatCaption(query, wallpaper) {
-      let caption = `🖼️ *Elysia Assistant WALLPAPER* 🖼️\n\n`
+      let caption = `🖼️ *Ai Miku WALLPAPER* 🖼️\n\n`
 
       if (query) {
           caption += `📺 *Request:* ${query.toUpperCase()}\n`
@@ -206,7 +206,7 @@ import { createCanvas } from '@napi-rs/canvas';
           caption += `⚠️ *Note:* API sedang sibuk, ini wallpaper cadangan.\n`
       }
 
-      caption += `💕 *Elysia Assistant:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
+      caption += `💕 *Ai Miku:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
 
       return caption
   }
@@ -217,7 +217,7 @@ import { createCanvas } from '@napi-rs/canvas';
       await m.react('🖼️')
 
       try {
-          await m.reply(query ? `🦋 *Elysia Assistant:* Lagi nyari wallpaper *${query}*... tunggu sebentar ya~ 🖼️` : `🦋 *Elysia Assistant:* Lagi ambil random wallpaper... tunggu sebentar ya~ 🖼️`)
+          await m.reply(query ? `🦋 *Ai Miku:* Lagi nyari wallpaper *${query}*... tunggu sebentar ya~ 🖼️` : `🦋 *Ai Miku:* Lagi ambil random wallpaper... tunggu sebentar ya~ 🖼️`)
 
           const wallpaper = await fetchWallpaper(query)
 
@@ -236,7 +236,7 @@ import { createCanvas } from '@napi-rs/canvas';
 
               await sock.sendMessage(m.chat, {
                   image: { url: wallpaper.url },
-                  caption: `🖼️ *Wallpaper ${query ? query.toUpperCase() : 'Random'}* 🖼️\n\n📡 Source: ${wallpaper.source}\n💕 Elysia Assistant: Semoga suka darling~`
+                  caption: `🖼️ *Wallpaper ${query ? query.toUpperCase() : 'Random'}* 🖼️\n\n📡 Source: ${wallpaper.source}\n💕 Ai Miku: Semoga suka darling~`
               }, { quoted: m })
 
           } catch (imgErr) {
@@ -256,6 +256,6 @@ import { createCanvas } from '@napi-rs/canvas';
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

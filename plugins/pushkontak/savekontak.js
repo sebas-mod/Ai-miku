@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getMeta = ElysiaRuntime.getMeta;
-const memberJids = ElysiaRuntime.memberJids;
-const sendVcf = ElysiaRuntime.sendVcf;
+const getMeta = MikuRuntime.getMeta;
+const memberJids = MikuRuntime.memberJids;
+const sendVcf = MikuRuntime.sendVcf;
 
 const pluginConfig = {
     name: "savekontak",

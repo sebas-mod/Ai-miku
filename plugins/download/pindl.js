@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import path from 'path'
 
-const te = ElysiaRuntime.te;
-const queueFFmpeg = ElysiaRuntime.queueFFmpeg;
-const f = ElysiaRuntime.f;
+const te = MikuRuntime.te;
+const queueFFmpeg = MikuRuntime.queueFFmpeg;
+const f = MikuRuntime.f;
 
   const pluginConfig = {
     name: "pindl",

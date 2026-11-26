@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -71,13 +71,13 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tourl' }) {
   await m.react('⏳')
   try {
     const ext = ((media.mime || '').split('/')[1] || 'bin').split(';')[0]
-    const url = await uploadTempBuffer(media.buffer, `elysia_${Date.now()}.${ext}`, media.mime || 'application/octet-stream')
+    const url = await uploadTempBuffer(media.buffer, `miku_${Date.now()}.${ext}`, media.mime || 'application/octet-stream')
 
     let txt = `🔗 *MEDIA TO URL UPLOADER*\n\n`
     txt += `• *Tipe MIME* : ${media.mime || 'application/octet-stream'}\n`
     txt += `• *Ukuran* : ${fmtBytes(media.buffer.length)}\n`
     txt += `• *URL* : ${url}\n\n`
-    txt += `_Elysia Assistant_`
+    txt += `_Ai Miku_`
 
     await m.react('✅')
     return m.reply(txt)

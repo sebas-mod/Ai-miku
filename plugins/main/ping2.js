@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -141,7 +141,7 @@ async function handler(m, { sock }) {
             tableData,
             m,
             {
-                headerText: `${config.bot?.name || 'Elysia Assistant'} *ESTADO*\n\n- 🎄 Aquí tienes las estadísticas de nuestro bot`,
+                headerText: `${config.bot?.name || 'Ai Miku'} *ESTADO*\n\n- 🎄 Aquí tienes las estadísticas de nuestro bot`,
                 footer: '🍃 Monitorización en tiempo real'
             }
         )

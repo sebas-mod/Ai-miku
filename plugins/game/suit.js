@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "suit",
   alias: ["rps", "janken"],
   category: "game",
-  description: "Main Batu-Gunting-Kertas melawan Elysia (bisa taruhan koin)",
+  description: "Main Batu-Gunting-Kertas melawan Miku (bisa taruhan koin)",
   usage: ".suit <batu|gunting|kertas> [taruhan]",
   example: ".suit batu 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -27,7 +27,7 @@ async function handler(m) {
   const pick = args[0];
   if (!CHOICES.includes(pick)) {
     return m.reply(
-      `✊✌️🖐️ *SUIT — ELYSIA*\n` +
+      `✊✌️🖐️ *SUIT — MIKU*\n` +
       `> Pilih: \`batu\`, \`gunting\`, atau \`kertas\`\n` +
       `> Contoh: \`${m.prefix}suit batu\` atau \`${m.prefix}suit gunting 1000\``
     );
@@ -58,14 +58,14 @@ async function handler(m) {
   } else {
     if (bet > 0) db.updateKoin(m.sender, -bet);
     resultLine = bet > 0
-      ? `😈 *ELYSIA MENANG!* Kamu kehilangan *${bet.toLocaleString("id-ID")} Koin*.`
-      : `😈 *ELYSIA MENANG!* Coba lagi ya!`;
+      ? `😈 *MIKU MENANG!* Kamu kehilangan *${bet.toLocaleString("id-ID")} Koin*.`
+      : `😈 *MIKU MENANG!* Coba lagi ya!`;
   }
 
   await m.reply(
-    `╭─❖「 ✊✌️🖐️ *SUIT — ELYSIA* 」\n` +
+    `╭─❖「 ✊✌️🖐️ *SUIT — MIKU* 」\n` +
       `│ 👤 Kamu   : *${ICON[pick]}*\n` +
-      `│ 🌸 Elysia : *${ICON[botPick]}*\n` +
+      `│ 🌸 Miku : *${ICON[botPick]}*\n` +
       `╰─────────────────────❖\n` +
       `${resultLine}`
   );

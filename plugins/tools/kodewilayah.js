@@ -1,21 +1,21 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const FriendlyError = ElysiaRuntime.FriendlyError;
-const guard = ElysiaRuntime.guard;
-const titleCase = ElysiaRuntime.titleCase;
-const bestMatches = ElysiaRuntime.bestMatches;
-const getProvinces = ElysiaRuntime.getProvinces;
-const getAllRegencies = ElysiaRuntime.getAllRegencies;
-const getDistricts = ElysiaRuntime.getDistricts;
-const getVillages = ElysiaRuntime.getVillages;
+const FriendlyError = MikuRuntime.FriendlyError;
+const guard = MikuRuntime.guard;
+const titleCase = MikuRuntime.titleCase;
+const bestMatches = MikuRuntime.bestMatches;
+const getProvinces = MikuRuntime.getProvinces;
+const getAllRegencies = MikuRuntime.getAllRegencies;
+const getDistricts = MikuRuntime.getDistricts;
+const getVillages = MikuRuntime.getVillages;
 
 const pluginConfig = {
     name: "kodewilayah",

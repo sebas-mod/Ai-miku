@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -39,7 +39,7 @@ export function saveRpStats(jid, rpStats) {
 }
 
 export function getRpTitle(affection = 0) {
-  if (affection >= 200) return "🌸 Elysian Soulmate";
+  if (affection >= 200) return "🌸 Miku Soulmate";
   if (affection >= 100) return "💖 Starlight Sweetheart";
   if (affection >= 50) return "✨ Crystal Companion";
   if (affection >= 20) return "🌷 Warm Friend";

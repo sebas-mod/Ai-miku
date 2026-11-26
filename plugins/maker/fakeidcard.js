@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'fakeidcard',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake ID Card (buat konten/gaguan doang)',
       usage: '.fakeidcard <nama> | <jabatan>',
-      example: '.fakeidcard Elysia Assistant | CEO',
+      example: '.fakeidcard Ai Miku | CEO',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -60,7 +60,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeidcard <nombre> | <cargo>\nEjemplo: .fakeidcard Elysia Assistant | CEO`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeidcard <nombre> | <cargo>\nEjemplo: .fakeidcard Ai Miku | CEO`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -71,7 +71,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeIDCard(nama, jabatan)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA DE ID FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Cargo: ${jabatan}\n\n💗 *Elysia Assistant:* Aquí tienes tu tarjeta, darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA DE ID FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Cargo: ${jabatan}\n\n💗 *Ai Miku:* Aquí tienes tu tarjeta, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 
   const pluginConfig = {
@@ -15,7 +15,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       category: "maker",
       description: 'Bikin fake ijazah (buat konten/gaguan doang)',
       usage: '.fakeijazah <nama> | <gelar> | <universitas>',
-      example: '.fakeijazah Elysia Assistant | S.Kom | Universitas Zero',
+      example: '.fakeijazah Ai Miku | S.Kom | Universitas Zero',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -78,9 +78,9 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
               `┃\n` +
               `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakeijazah Elysia Assistant | S.Kom | Universitas Zero\n` +
+              `┃   ${m.prefix}fakeijazah Ai Miku | S.Kom | Universitas Zero\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* ¿De qué universidad quieres ser, darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿De qué universidad quieres ser, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -91,7 +91,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       const universitas = parts[2] || 'Universitas Zero'
 
       m.react('💕')
-      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando un diploma falso, darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Creando un diploma falso, darling~`)
 
       try {
           const imageBuffer = await generateFakeIjazah(nama, gelar, universitas)
@@ -105,7 +105,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
                       `┃ 🎓 *TÍTULO*: ${gelar}\n` +
                       `┃ 🏛️ *UNIVERSIDAD*: ${universitas}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* ¡Felicidades, darling! 🗿\n` +
+                      `┃ 💗 *Ai Miku:* ¡Felicidades, darling! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 

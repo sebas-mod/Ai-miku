@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ import { getDatabase } from "../../src/lib/data/database.js";
 
 const pluginConfig = {
   name: "gemini",
-  alias: ["g", "elysia"],
+  alias: ["g", "miku"],
   category: "ai",
   description: "Ngobrol dengan Gemini (sesi tersimpan, bisa lanjut dengan reply)",
   usage: ".gemini <pertanyaan>",
@@ -218,7 +218,7 @@ const menuBantuan = (p) =>
   `• ${p}gemini -e [nama]  export sesi\n` +
   `• ${p}gemini -r  import sesi (reply file)\n` +
   `• ${p}gemini reset  hapus sesi\n` +
-  `• reply jawaban Elysia  lanjut ngobrol tanpa perintah`;
+  `• reply jawaban Miku  lanjut ngobrol tanpa perintah`;
 
 async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
   const mentah = String(text || "").trim();

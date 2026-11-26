@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 import * as cheerio from 'cheerio'
@@ -82,7 +82,7 @@ const pluginConfig = {
 
   async function handler(m, { sock, reply, prefix, command, text }) {
       if (!text) {
-          return reply(`╭─── ❖ 『 ✨ *ELYSIA ARTWORK* 』 ❖\n│ ✦ ¡Escribe el texto que quieres crear!\n│ ✦ *Ejemplo:* ${prefix}${command} Elysia Assistant`)
+          return reply(`╭─── ❖ 『 ✨ *MIKU ARTWORK* 』 ❖\n│ ✦ ¡Escribe el texto que quieres crear!\n│ ✦ *Ejemplo:* ${prefix}${command} Ai Miku`)
       }
 
       await m.react('🕕')
@@ -98,7 +98,7 @@ const pluginConfig = {
           await m.react('✅')
       } catch (e) {
           await m.react('❌')
-          await reply(`╭─── ❖ 『 ⚠️ *ERROR AL PROCESAR* 』 ❖\n│ ✦ *Detail:* ${e.message}\n╰──────────────────❖\n_✦ Elysia Assistant ya lo intentó, vuelve a probar en un momento~_`)
+          await reply(`╭─── ❖ 『 ⚠️ *ERROR AL PROCESAR* 』 ❖\n│ ✦ *Detail:* ${e.message}\n╰──────────────────❖\n_✦ Ai Miku ya lo intentó, vuelve a probar en un momento~_`)
       }
   }
 

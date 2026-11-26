@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas';
 import { join } from 'node:path';
 
-const getProfileBuffer = ElysiaRuntime.getProfileBuffer;
+const getProfileBuffer = MikuRuntime.getProfileBuffer;
 
 const EMOJI_FONT = join(process.cwd(), 'assets', 'fonts', 'NotoColorEmoji.ttf');
 try { GlobalFonts.registerFromPath(EMOJI_FONT, 'Noto Color Emoji'); } catch (_) {}
@@ -384,7 +384,7 @@ async function handler(m, { sock, text }) {
 
     if (!ppBuffer) {
       const fallback = 'https://i.ibb.co.com/QFzm9pSF/1546d15ce5dd2946573b3506df109d00.jpg';
-      const { fetchQuiet: f } = ({ fetchQuiet: ElysiaEngine.f, f: ElysiaEngine.f });
+      const { fetchQuiet: f } = ({ fetchQuiet: MikuEngine.f, f: MikuEngine.f });
       const res = await f(fallback, 'buffer');
       ppBuffer = res ? Buffer.from(res) : null;
     }

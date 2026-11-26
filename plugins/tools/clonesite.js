@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import zlib from 'zlib'
 import crypto from 'crypto'
 import path from 'path'
 import * as cheerio from 'cheerio'
 
-const netguard = ElysiaRuntime.netguard;
-const reactTo = ElysiaRuntime.reactTo;
+const netguard = MikuRuntime.netguard;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "clonesite",
@@ -44,7 +44,7 @@ const pluginConfig = {
   const COOLDOWN_MS = 45000
   const MAX_RUNNING = 2
 
-  const UA = 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Elysia AssistantClone/1.0'
+  const UA = 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Ai MikuClone/1.0'
 
   const TEXT_EXT = new Set(['.html', '.htm', '.css', '.js', '.mjs', '.cjs', '.json', '.map', '.webmanifest', '.svg', '.xml', '.txt', '.ts', '.tsx', '.jsx', '.vue', '.md', '.csv', '.yaml', '.yml'])
   const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.avif', '.bmp'])

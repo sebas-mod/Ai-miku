@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cekid",
@@ -29,7 +29,7 @@ const pluginConfig = {
 
   async function sendWithCopy(sock, m, jid, reply, text, label, code) {
       try {
-          return await sock.sendMessage(jid, { text: `${text}\n\n📋 ${label}: ${String(code)}\n\n_${global.namebot || 'Elysia Assistant MD'}_` }, { quoted: m })
+          return await sock.sendMessage(jid, { text: `${text}\n\n📋 ${label}: ${String(code)}\n\n_${global.namebot || 'Ai Miku MD'}_` }, { quoted: m })
       } catch (e) {
           console.error('[cekid] tombol gagal:', e?.message || e)
           return reply(text)

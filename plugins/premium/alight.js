@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -359,7 +359,7 @@ async function handler(m, ctx = {}) {
     `• \`${usedPrefix}amlink <url>\` — Konversi link \`alight.link\` ke XML\n` +
     `• \`${usedPrefix}amdrive <url/id>\` — Unduh file XML dari Google Drive\n` +
     `• \`${usedPrefix}amtiktok <url>\` — Unduh video preview TikTok\n\n` +
-    `_Powered by Elysia Assistant_`
+    `_Powered by Ai Miku_`
   )
 }
 

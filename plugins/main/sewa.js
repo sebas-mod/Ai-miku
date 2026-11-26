@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -42,7 +42,7 @@ const PREMIUM_PACKAGES = [
 ];
 
 async function handler(m, { sock }) {
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
   const ownerName = config.owner?.name || "Arthazy";
   const ownerNum = String(config.owner?.number?.[0] || "6289677587355").replace(
     /[^0-9]/g,

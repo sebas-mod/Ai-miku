@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -42,7 +42,7 @@ const EXCLUDE_DIRS = new Set([
   "__pycache__",
   "autoreply_media",
   "build",
-  "elysia",
+  "miku",
   "ALYA V8",
   "DHX-pro",
   "RTXZY-MD-pro",
@@ -274,7 +274,7 @@ async function sendBackupToOwner(backupInfo) {
       `┃ ⏱️ Interval: ${formatInterval(state.intervalMs)}\n` +
       `┃ #️⃣ Backup ke-${state.backupCount + 1}\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> ${config.bot?.name || "Elysia Assistant"} Auto Backup System`;
+      `> ${config.bot?.name || "Ai Miku"} Auto Backup System`;
 
     await sockInstance.sendMessage(ownerJid, {
       document: { url: backupInfo.path },

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -72,7 +72,7 @@ async function processAmClaim(m, email, link) {
           `│ 💎 *Status:* PREMIUM AKTIF\n` +
           `│ 📱 Silakan buka kembali aplikasi Alight Motion kamu!\n` +
           `╰──────────────────────────❖\n` +
-          `_✦ Elysia Assistant • Premium Service_`
+          `_✦ Ai Miku • Premium Service_`
       );
     }
     await m.react("❌").catch(() => {});

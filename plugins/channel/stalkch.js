@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -93,7 +93,7 @@ const pluginConfig = {
           (info.desc ? `\n\nDeskripsi: ${info.desc.slice(0, 600)}` : '')
 
       try {
-          const teks = `${caption}\n\n📋 Salin link: ${url}\n📋 Salin nama: ${info.name}\n\n_${global.namebot || 'Elysia Assistant MD'}_`
+          const teks = `${caption}\n\n📋 Salin link: ${url}\n📋 Salin nama: ${info.name}\n\n_${global.namebot || 'Ai Miku MD'}_`
           return await sock.sendMessage(m.chat, photo ? { image: photo, caption: teks } : { text: teks }, { quoted: m })
       } catch {
           if (photo) return sock.sendMessage(m.chat, { image: photo, caption }, { quoted: m })

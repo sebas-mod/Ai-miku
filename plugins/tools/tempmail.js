@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const tempMailCreate = ElysiaRuntime.tempMailCreate;
-const tempMailInbox = ElysiaRuntime.tempMailInbox;
-const tempMailRead = ElysiaRuntime.tempMailRead;
+const tempMailCreate = MikuRuntime.tempMailCreate;
+const tempMailInbox = MikuRuntime.tempMailInbox;
+const tempMailRead = MikuRuntime.tempMailRead;
 
 const pluginConfig = {
     name: "tempmail",

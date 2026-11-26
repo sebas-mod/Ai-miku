@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -18,7 +18,7 @@ import {
   getCategories,
   getPlugin,
 } from "../../src/lib/core/plugins.js";
-import { getCasesByCategory, getCaseCount } from "../../src/case/elysia.js";
+import { getCasesByCategory, getCaseCount } from "../../src/case/miku.js";
 
 const pluginConfig = {
   name: "allmenu",
@@ -175,7 +175,7 @@ async function handler(m, { sock, config: botConfig, db }) {
   }
 
   const user = db.getUser(m.sender) || {};
-  const botName = botConfig.bot?.name || "Elysia Assistant";
+  const botName = botConfig.bot?.name || "Ai Miku";
   const version = botConfig.bot?.version || "1.0.0";
   const greeting = getTimeGreeting();
   const role = m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Member";

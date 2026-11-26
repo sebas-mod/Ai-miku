@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -302,7 +302,7 @@ async function downloadBuffer(node, info, client) {
 
 function buildExifPayload(packname, author) {
   const json = {
-    "sticker-pack-id": "com.elysia.assistant.audiosticker2",
+    "sticker-pack-id": "com.aimiku.assistant.audiosticker2",
     "sticker-pack-name": String(packname ?? ""),
     "sticker-pack-publisher": String(author ?? ""),
     emojis: ["🔊"],
@@ -831,7 +831,7 @@ async function handler(m, extra = {}) {
       : [rawText, ""];
 
     const packname =
-      customPack || config.sticker?.packname || "Elysia Assistant";
+      customPack || config.sticker?.packname || "Ai Miku";
     const author = customAuth || config.sticker?.author || "Arthazy";
 
     const visualNode = hasOwnVisual ? m : quoted;

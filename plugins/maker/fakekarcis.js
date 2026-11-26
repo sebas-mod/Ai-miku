@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'fakekarcis',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake karcis bioskop (buat konten/gaguan doang)',
       usage: '.fakekarcis <nama> | <film> | <jam>',
-      example: '.fakekarcis Elysia Assistant | DITF The Movie | 21:00',
+      example: '.fakekarcis Ai Miku | DITF The Movie | 21:00',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -64,7 +64,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekarcis <nombre> | <película> | <hora>\nEjemplo: .fakekarcis Elysia Assistant | DITF | 21:00`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekarcis <nombre> | <película> | <hora>\nEjemplo: .fakekarcis Ai Miku | DITF | 21:00`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -76,7 +76,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeKarcis(nama, film, jam)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *ENTRADA DE CINE FALSA* 💕\n\n✅ Nombre: ${nama}\n🎬 Film: ${film}\n⏰ Hora: ${jam}\n\n💗 *Elysia Assistant:* Disfruta la película, darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *ENTRADA DE CINE FALSA* 💕\n\n✅ Nombre: ${nama}\n🎬 Film: ${film}\n⏰ Hora: ${jam}\n\n💗 *Ai Miku:* Disfruta la película, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

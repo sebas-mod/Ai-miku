@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -9,19 +9,19 @@
 import yts from 'yt-search'
 /**
  * ╭──────────────────────────────────────────────❖
- * │ ✦ Elysia Assistant — Astral Modular Engine
- * │ ✦ Category   : CHANNEL (📢 ELYSIA CHANNEL HUB)
+ * │ ✦ Ai Miku — Astral Modular Engine
+ * │ ✦ Category   : CHANNEL (📢 MIKU CHANNEL HUB)
  * │ ✦ Architect  : Arthazy
  * │ ✦ Runtime    : src/lib/system/bridge.js
  * ╰──────────────────────────────────────────────❖
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import { parseRef, metadata, getCurrent, assertCanPost, explain } from './setch.js'
 
-const reactTo = ElysiaRuntime.reactTo;
-const ytdl = ElysiaRuntime.ytdl;
-const toPTT = ElysiaRuntime.toPTT;
+const reactTo = MikuRuntime.reactTo;
+const ytdl = MikuRuntime.ytdl;
+const toPTT = MikuRuntime.toPTT;
 
 const pluginConfig = {
     name: "playch",
@@ -124,7 +124,7 @@ const pluginConfig = {
               `*Channel:* ${first.author?.name || channelName}\n` +
               `*Target:* ${channelLabel}\n` +
               `*Sumber:* ${first.url}\n\n` +
-              `© ${global.namebot || 'Elysia Assistant MD'}`
+              `© ${global.namebot || 'Ai Miku MD'}`
           )
           await reactTo(sock, m, '✨')
       } catch (err) {

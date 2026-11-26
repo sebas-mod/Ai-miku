@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,7 +49,7 @@ async function downloadFromMsg(m, sock) {
 }
 
 function convertToMp3Buffer(inputBuffer) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-mp3-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-mp3-'))
   const inPath = path.join(dir, 'in.media')
   const outPath = path.join(dir, 'out.mp3')
   fs.writeFileSync(inPath, inputBuffer)

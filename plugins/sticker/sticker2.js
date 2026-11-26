@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,7 +29,7 @@ const pluginConfig = {
   description:
     "Membuat stiker video kotak 1:1 langsung bersuara (khusus video maks 25 detik)",
   usage: ".s2 [pack|author]",
-  example: ".s2\n.sticker2\n.s2 Elysia|Arthazy",
+  example: ".s2\n.sticker2\n.s2 Miku|Arthazy",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -241,7 +241,7 @@ async function downloadVideoBuffer(videoInfo, client) {
 
 function buildExifPayload(packname, author) {
   const json = {
-    "sticker-pack-id": "com.elysia.assistant.sticker2",
+    "sticker-pack-id": "com.aimiku.assistant.sticker2",
     "sticker-pack-name": String(packname ?? ""),
     "sticker-pack-publisher": String(author ?? ""),
     emojis: ["🔊"],
@@ -450,7 +450,7 @@ function parsePackAuthor(text, botConfig) {
     botConfig?.sticker?.packname ||
     config?.sticker?.packname ||
     botConfig?.bot?.name ||
-    "Elysia Assistant";
+    "Ai Miku";
   const defaultAuthor =
     botConfig?.sticker?.author ||
     config?.sticker?.author ||

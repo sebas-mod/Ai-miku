@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -159,7 +159,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const prefix = botConfig.command?.prefix || ".";
   const saluranId = botConfig.saluran?.id || "120363393471527483@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Elysia Assistant";
+    botConfig.saluran?.name || botConfig.bot?.name || "Ai Miku";
   const saluranLink =
     botConfig.saluran?.link ||
     "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O";
@@ -173,7 +173,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   );
   const pad = (n) => String(n).padStart(2, "0");
   const timeStr = `${pad(now.getHours())}.${pad(now.getMinutes())}`;
-  const botName = botConfig.bot?.name || "Elysia Assistant";
+  const botName = botConfig.bot?.name || "Ai Miku";
   const ownerName = botConfig.owner?.name || botConfig.bot?.developer || "Owner";
   const role = m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Member";
   const statusEmoji = m.isOwner ? "👑" : m.isPremium ? "💎" : "🆓";

@@ -1,21 +1,21 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
-const config = ElysiaRuntime.config;
-const uploadToCatboxFile = ElysiaRuntime.uploadToCatboxFile;
-const sendImageAsSticker = ElysiaRuntime.sendImageAsSticker;
-const pickImage = ElysiaRuntime.pickImage;
-const uploadFile = ElysiaRuntime.uploadFile;
-const reactTo = ElysiaRuntime.reactTo;
+const config = MikuRuntime.config;
+const uploadToCatboxFile = MikuRuntime.uploadToCatboxFile;
+const sendImageAsSticker = MikuRuntime.sendImageAsSticker;
+const pickImage = MikuRuntime.pickImage;
+const uploadFile = MikuRuntime.uploadFile;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "smeme",

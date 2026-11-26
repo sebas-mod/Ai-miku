@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
       avatar: await getUserAvatar(sock, m.sender),
       myLevel,
       ranks: ascending,
-      botName: config.bot?.name || "Elysia Assistant",
+      botName: config.bot?.name || "Ai Miku",
     });
     return await sock.sendMessage(m.chat, { image, caption }, { quoted: m });
   } catch {

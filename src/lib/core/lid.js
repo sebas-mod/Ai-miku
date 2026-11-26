@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -307,7 +307,7 @@ async function extractNumber(jid) {
 
 /**
  * Resolve LID atau LID-converted JID ke JID asli menggunakan group metadata
- * Participant structure dari elysia (groups.js):
+ * Participant structure dari miku (groups.js):
  * - id: phone_number atau jid (tergantung addressingMode)
  * - lid: LID format
  * - admin: type admin

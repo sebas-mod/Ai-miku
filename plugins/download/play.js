@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import yts from 'yt-search'
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
 import axios from 'axios'
 
-const fallbackToMp3Buffer = ElysiaRuntime.fallbackToMp3Buffer;
-const ytdl = ElysiaRuntime.ytdl;
+const fallbackToMp3Buffer = MikuRuntime.fallbackToMp3Buffer;
+const ytdl = MikuRuntime.ytdl;
 
 const formatNumber = (n) => Number(n || 0).toLocaleString('id-ID');
 

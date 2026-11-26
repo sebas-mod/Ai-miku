@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmLoop = ElysiaRuntime.jpmLoop;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmLoop = MikuRuntime.jpmLoop;
 
 const pluginConfig = {
     name: "jpmupdate",
@@ -45,7 +45,7 @@ const pluginConfig = {
       if (!groups.length) return reply('❌ Tidak ada grup yang bisa dituju.')
 
       const tanggal = new Date().toLocaleDateString('id-ID', { timeZone: 'Asia/Jakarta', day: '2-digit', month: 'long', year: 'numeric' })
-      const botName = global.namebot || 'Elysia Assistant'
+      const botName = global.namebot || 'Ai Miku'
       const pesan = `🚀 *UPDATE !! | ${version}*\n\n📅 *Tanggal:* ${tanggal}\n\n*CHANGELOG:*\n${changelog.replace(/\\n/g, '\n')}\n\n*CATATAN TERBARU:*\n> 💡 Ketik *${prefix}menu* untuk melihat fitur-fitur ini.\n> 📢 _Terima kasih telah menggunakan ${botName}_`
 
       const contextInfo = global.idSaluran

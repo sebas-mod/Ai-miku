@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,11 +8,11 @@
  */
 import { getDatabase } from "../data/database.js";
 
-if (!globalThis.__elysiaGameSessions) {
-  globalThis.__elysiaGameSessions = new Map();
+if (!globalThis.__mikuGameSessions) {
+  globalThis.__mikuGameSessions = new Map();
 }
 
-const gameSessions = globalThis.__elysiaGameSessions;
+const gameSessions = globalThis.__mikuGameSessions;
 
 export function getActiveGame(chatId) {
   return gameSessions.get(chatId) || null;
@@ -95,7 +95,7 @@ export function renderHangman(s) {
   const hearts = "❤️".repeat(Math.max(0, 6 - s.wrong)) + "🖤".repeat(Math.min(6, s.wrong));
   const used = [...s.guessed].map((c) => c.toUpperCase()).join(", ") || "-";
   return (
-    `╭─❖「 🪢 *HANGMAN — ELYSIA* 」\n` +
+    `╭─❖「 🪢 *HANGMAN — MIKU* 」\n` +
     `${HANGMAN_STAGES[Math.min(6, s.wrong)]}\n` +
     `│ 🏷️ Kategori : *${s.category}*\n` +
     `│ 🔤 Kata     : \`${masked}\`\n` +
@@ -159,7 +159,7 @@ export function renderBombBoard(s, revealAll = false) {
   }
   const grid = `${cells[0]} ${cells[1]} ${cells[2]}\n${cells[3]} ${cells[4]} ${cells[5]}\n${cells[6]} ${cells[7]} ${cells[8]}`;
   return (
-    `╭─❖「 💣 *BOMBA SORPRESA — ELYSIA* 」\n` +
+    `╭─❖「 💣 *BOMBA SORPRESA — MIKU* 」\n` +
     `${grid}\n` +
     `├───〔 *ESTADO* 〕\n` +
     `│ 💎 Casillas seguras : *${s.opened.size}/8*\n` +
@@ -221,7 +221,7 @@ export async function handleActiveGameInput(m, sock) {
         db.updateExp(s.playerX, 400);
         resultText = `🏆 *¡@${s.playerX.split("@")[0]} (❌) GANA!*\n> Premio: *+2.500 monedas* y *+400 EXP*`;
       } else if (s.isAI) {
-        resultText = `🤖 *¡Gana Elysia AI (⭕)!* Prueba otra vez con \`.ttt\`.`;
+        resultText = `🤖 *¡Gana Miku AI (⭕)!* Prueba otra vez con \`.ttt\`.`;
       } else {
         db.updateKoin(s.playerO, 2500);
         db.updateExp(s.playerO, 400);

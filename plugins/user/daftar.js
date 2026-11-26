@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "daftar",
   alias: ["reg", "register", "verifikasi", "verify"],
   category: "user",
-  description: "Daftar sebagai petualang resmi di Elysia Assistant",
+  description: "Daftar sebagai petualang resmi di Ai Miku",
   usage: ".daftar <nama>.<umur>",
   example: ".daftar Arthazy.19",
   isOwner: false,
@@ -33,7 +33,7 @@ function makeSerial(sender) {
     .update(String(sender) + ":" + Date.now() + ":" + Math.random())
     .digest("hex")
     .toUpperCase();
-  return `ELYSIA-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
+  return `MIKU-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
 }
 
 function parseRegInput(rawText, fallbackName) {
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
       : "-";
     return m.reply(
       `╭─── ❖ 『 ✅ *SUDAH TERDAFTAR* 』 ❖\n` +
-        `│ ✦ Akun kamu sudah terdaftar di *Elysia Assistant*!\n` +
+        `│ ✦ Akun kamu sudah terdaftar di *Ai Miku*!\n` +
         `│ 👤 *Nama:* ${user.regName || user.name || m.pushName || "Petualang"}\n` +
         `│ 🎂 *Umur:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
         `│ 🔑 *Serial ID:* \`${sn}\`\n` +
@@ -228,7 +228,7 @@ async function handler(m, { sock }) {
   const cleanTag = targetJid.split("@")[0].split(":")[0];
   const cardText =
     `╭─── ❖ 『 🌟 *KARTU IDENTITAS PETUALANG* 』 ❖\n` +
-    `│ ✦ Selamat datang di dunia *Elysia Assistant*!\n` +
+    `│ ✦ Selamat datang di dunia *Ai Miku*!\n` +
     `├─── ❖ 『 🪪 *BIODATA RESMI* 』 ❖\n` +
     `│ 👤 *Nama:* ${name}\n` +
     `│ 🎂 *Umur:* ${age} Tahun\n` +
@@ -248,7 +248,7 @@ async function handler(m, { sock }) {
     `│ ◦ \`${p}ceksn\` — Cek kartu & Serial Number\n` +
     `│ ◦ \`${p}unreg ${sn}\` — Hapus pendaftaran\n` +
     `╰──────────────────────────❖\n` +
-    `_✦ Elysia Assistant • by Arthazy_`;
+    `_✦ Ai Miku • by Arthazy_`;
 
   await m.react("🎉");
   try {

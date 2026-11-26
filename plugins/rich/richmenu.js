@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -25,7 +25,7 @@ const pluginConfig = {
   alias: ["livemenu", "arcademenu", "richgames"],
   category: "rich",
   description:
-    "Menu kategori seluruh fitur Elysia Assistant dalam tampilan HTML interaktif",
+    "Menu kategori seluruh fitur Ai Miku dalam tampilan HTML interaktif",
   usage: ".richmenu",
   example: ".richmenu",
   isOwner: false,
@@ -175,7 +175,7 @@ function buildCategoryPayload(m) {
   return { catList, allCmds };
 }
 
-function buildElysiaRichMenuHtml(
+function buildMikuRichMenuHtml(
   prefix,
   botName,
   ownerName,
@@ -535,7 +535,7 @@ render();
 
 async function handler(m, { sock }) {
   const p = m.prefix || config.command?.prefix || ".";
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
   const ownerName = config.owner?.name || "Arthazy";
   const thumbUrl = config.thumbUrl?.menu || "https://c.termai.cc/i126/Orm.jpg";
 
@@ -544,7 +544,7 @@ async function handler(m, { sock }) {
     Promise.resolve(buildCategoryPayload(m)),
   ]);
 
-  const html = buildElysiaRichMenuHtml(
+  const html = buildMikuRichMenuHtml(
     p,
     botName,
     ownerName,
@@ -559,7 +559,7 @@ async function handler(m, { sock }) {
 
   if (!ok) {
     const fallback =
-      `╭─── ❖ 『 🕹️ *ELYSIA RICH MENU* 』 ❖\n` +
+      `╭─── ❖ 『 🕹️ *MIKU RICH MENU* 』 ❖\n` +
       catList
         .map((c) => `│ ${c.icon} *${c.name}* (${c.count} fitur)`)
         .join("\n") +

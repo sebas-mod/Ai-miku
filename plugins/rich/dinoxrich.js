@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -117,7 +117,7 @@ module.exports = {
   name: 'dinoxrich',
   alias: [],
   category: 'rich',
-  desc: 'Dino Run versi Elysia: lompati kaktus dan burung',
+  desc: 'Dino Run versi Miku: lompati kaktus dan burung',
   run: async ({ sock, m, reply }) => {
     try {
       let html = await loadHtml()

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 
   const pluginConfig = {
@@ -15,7 +15,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       category: "maker",
       description: 'Bikin fake sertifikat nikah (buat konten/gaguan doang)',
       usage: '.fakenikah <nama1> | <nama2>',
-      example: '.fakenikah Elysia Assistant | Darling',
+      example: '.fakenikah Ai Miku | Darling',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -80,19 +80,19 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
               `┃\n` +
               `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakenikah Elysia Assistant | Darling\n` +
+              `┃   ${m.prefix}fakenikah Ai Miku | Darling\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* ¿Con quién te quieres casar, darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿Con quién te quieres casar, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
 
       const parts = text.split('|').map(p => p.trim())
-      const nama1 = parts[0] || 'Elysia Assistant'
+      const nama1 = parts[0] || 'Ai Miku'
       const nama2 = parts[1] || 'Darling'
 
       m.react('💕')
-      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el certificado de matrimonio, darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Creando el certificado de matrimonio, darling~`)
 
       try {
           const imageBuffer = await generateFakeNikah(nama1, nama2)
@@ -104,7 +104,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
                       `┃ ✅ *ÉXITO*\n` +
                       `┃ 💑 *PAREJA*: ${nama1} & ${nama2}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* ¡Felicidades, darling! Que dure para siempre~ 🗿\n` +
+                      `┃ 💗 *Ai Miku:* ¡Felicidades, darling! Que dure para siempre~ 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 

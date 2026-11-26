@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { jidDecode } from '@rexxhayanasi/elaina-baileys'
 
-const jidNumber = ElysiaRuntime.jidNumber;
-const resolvePhone = ElysiaRuntime.resolvePhone;
-const isLidJid = ElysiaRuntime.isLidJid;
-const reactTo = ElysiaRuntime.reactTo;
+const jidNumber = MikuRuntime.jidNumber;
+const resolvePhone = MikuRuntime.resolvePhone;
+const isLidJid = MikuRuntime.isLidJid;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "cekwa",

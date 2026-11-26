@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -228,7 +228,7 @@ function createBodyLine(text, prefix = CHARS.vertical, bullet = CHARS.bullet) {
  * @param {string} value - Valor
  * @returns {string} Línea con flecha
  * @example
- * createArrowLine('Nombre', 'Elysia Assistant'); // "│ ➣ Nombre: Elysia Assistant"
+ * createArrowLine('Nombre', 'Ai Miku'); // "│ ➣ Nombre: Ai Miku"
  */
 function createArrowLine(label, value) {
   return `${CHARS.vertical} ${CHARS.arrow} ${label}: ${value}`;
@@ -270,7 +270,7 @@ function createDashboard(data) {
  */
 function createBotInfo(data) {
   const {
-    botName = config.bot?.name || "Elysia Assistant",
+    botName = config.bot?.name || "Ai Miku",
     developer = config.owner?.name || "Owner",
     version = config.bot?.version || "1.0.0",
     uptime = "0s",
@@ -339,7 +339,7 @@ function createUserProfile(data) {
  */
 function createBotStatus(data) {
   const {
-    botName = config.bot?.name || "Elysia Assistant",
+    botName = config.bot?.name || "Ai Miku",
     uptime = "0s",
     mode = "Public",
     totalCommands = 0,

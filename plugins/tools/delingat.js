@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const delReminders = ElysiaRuntime.delReminders;
-const listReminders = ElysiaRuntime.listReminders;
-const userOf = ElysiaRuntime.userOf;
+const delReminders = MikuRuntime.delReminders;
+const listReminders = MikuRuntime.listReminders;
+const userOf = MikuRuntime.userOf;
 
 const pluginConfig = {
     name: "delingat",

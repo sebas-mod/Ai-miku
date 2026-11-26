@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,7 +8,7 @@
  */
 import { runMenuLoading } from "../../src/lib/core/menu-loading.js";
 import configOwner from "../../config.js";
-import { sendElysiaNativeMenu as sendVemzoNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu as sendVemzoNativeMenu } from "../../src/lib/core/native-menu.js";
 
 const pluginConfig = {
   name: "menumedia",

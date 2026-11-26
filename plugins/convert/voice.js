@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,7 +49,7 @@ async function downloadFromMsg(m, sock) {
 }
 
 function convertToOpusWithWaveform(inputBuffer) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-voice-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-voice-'))
   const inPath = path.join(dir, 'in.media')
   const outPath = path.join(dir, 'out.ogg')
   fs.writeFileSync(inPath, inputBuffer)

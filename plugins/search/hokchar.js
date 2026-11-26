@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
 import fetch from 'node-fetch'
 
 const libs = {
-    "hok": async ({ elysiaLib }) => {
+    "hok": async ({ mikuLib }) => {
       const cheerio = (await import('cheerio'))
 
       const FANDOM_BASE = 'https://honor-of-kings.fandom.com'
@@ -134,7 +134,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const scrapeHokCharacter = (__m => __m.default ?? __m)((await elysiaLib('hok')))
+  const scrapeHokCharacter = (__m => __m.default ?? __m)((await mikuLib('hok')))
 
   async function handler(m, { conn, sock, text, reply, usedPrefix, command }) {
     const client = conn || sock

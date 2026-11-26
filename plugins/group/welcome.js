@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -48,7 +48,7 @@ function resolvePlaceholders(
     .replace(/{date}/gi, now.format("DD/MM/YYYY"))
     .replace(/{time}/gi, now.format("HH:mm"))
     .replace(/{day}/gi, dayId)
-    .replace(/{bot}/gi, config.bot?.name || "elysia")
+    .replace(/{bot}/gi, config.bot?.name || "miku")
     .replace(/{prefix}/gi, prefix);
 }
 const pluginConfig = {
@@ -180,7 +180,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       config.command?.prefix || ".",
     );
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
     if (welcomeType === 2) {
       const cardBody = groupData?.welcomeMsg
         ? resolvePlaceholders(
@@ -198,7 +198,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           body: {
             text: `👋 Bienvenido *@${userName}*`,
           },
-          footer: { text: config.bot?.name || "Elysia Assistant" },
+          footer: { text: config.bot?.name || "Ai Miku" },
           header: { title: "Welcome", hasMediaAttachment: false },
           carouselMessage: {
             cards: [
@@ -209,7 +209,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                 body: {
                   text: cardBody,
                 },
-                footer: { text: config.bot?.name || "Elysia Assistant" },
+                footer: { text: config.bot?.name || "Ai Miku" },
                 nativeFlowMessage: {
                   buttons: [
                     {
@@ -315,7 +315,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                 text: text
               },
               footer: {
-                text: config.bot?.name || "Elysia Assistant"
+                text: config.bot?.name || "Ai Miku"
               },
               contextInfo: {
                 mentionedJid: [realParticipant],

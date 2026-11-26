@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
     ? "ILIMITADO PERMANENTE"
     : `${status.used}/${status.limit} usados · ${status.remaining} restantes`;
 
-  const text = `🤖 *HOLA, SOY EL BOT Elysia Assistant* 🔥\n\n` +
+  const text = `🤖 *HOLA, SOY EL BOT Ai Miku* 🔥\n\n` +
     `¿En qué te puedo ayudar?\n\n` +
     `╭─〔 *ESTADO DEL BOT* 〕\n` +
     `│ 🕒 Hora    : *${waktu.jam} WIB*\n` +

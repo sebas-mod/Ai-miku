@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,10 +8,10 @@
  */
 import { sendButtons as _coreSendButtons } from "../core/buttons.js"
 /**
- * ✦ Elysia Assistant — Core Plugin Engine (src/lib/system/elysia-engine.js)
+ * ✦ Ai Miku — Core Plugin Engine (src/lib/system/miku-engine.js)
  * ✦ Architect: Arthazy
  */
-import _elysiaConfig from '../../../config.js'
+import _mikuConfig from '../../../config.js'
 import _eFs, { promises as _eFsPromises, mkdirSync as _eMkdirSync } from 'fs'
 import _ePath, { join as _ePathJoin } from 'path'
 import _eOs from 'os'
@@ -31,8 +31,8 @@ import _ngHttps from 'https'
 import _ngNet from 'net'
 import { createContext as _igjhCreateContext, runInContext as _igjhRunInContext } from 'node:vm'
 
-const ElysiaEngine = (() => {
-  const config = _elysiaConfig || {}
+const MikuEngine = (() => {
+  const config = _mikuConfig || {}
   const fs = _eFs
   const path = _ePath
   const os = _eOs
@@ -41,7 +41,10 @@ const ElysiaEngine = (() => {
   const { exec, spawn } = _eChildProcess
 
   // Ensure global.db structure is always available and persisted
-  const DB_FILE = path.join(process.cwd(), 'database', 'elysia_rpg_store.json')
+  // Si ya existe la base de datos con el nombre anterior, se sigue usando para no perder los datos
+  const _oldDbFile = path.join(process.cwd(), 'database', 'elysia_rpg_store.json')
+  const _newDbFile = path.join(process.cwd(), 'database', 'miku_rpg_store.json')
+  const DB_FILE = (!fs.existsSync(_newDbFile) && fs.existsSync(_oldDbFile)) ? _oldDbFile : _newDbFile
   if (!global.db) {
     let loaded = {}
     try {
@@ -71,7 +74,7 @@ const ElysiaEngine = (() => {
     })
   }
 
-  global.namebot = config.bot?.name || 'Elysia Assistant'
+  global.namebot = config.bot?.name || 'Ai Miku'
   global.ownername = config.owner?.name || 'Arthazy'
   global.linkSaluran = config.saluran?.link || 'https://whatsapp.com'
   global.idSaluran = config.saluran?.id || ''
@@ -278,11 +281,11 @@ const ElysiaEngine = (() => {
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
         newsletterJid: config.saluran?.id || '120363393471527483@newsletter',
-        newsletterName: config.saluran?.name || config.bot?.name || 'Elysia Assistant',
+        newsletterName: config.saluran?.name || config.bot?.name || 'Ai Miku',
         serverMessageId: 100
       },
       externalAdReply: {
-        title: customTitle || (config.bot?.name || 'Elysia Assistant'),
+        title: customTitle || (config.bot?.name || 'Ai Miku'),
         body: `Created by ${config.owner?.name || 'Arthazy'}`,
         thumbnailUrl: thumb,
         ...(_smallThumbBuf ? { thumbnail: _smallThumbBuf } : {}),
@@ -342,7 +345,7 @@ const ElysiaEngine = (() => {
       return obf.obfuscate(code, { compact: true, stringArray: true, stringArrayEncoding: ['base64'] }).getObfuscatedCode()
     } catch {
       const b64 = Buffer.from(String(code || ''), 'utf8').toString('base64')
-      return `/* Obfuscated by Elysia Assistant */\neval(Buffer.from('${b64}','base64').toString('utf8'));`
+      return `/* Obfuscated by Ai Miku */\neval(Buffer.from('${b64}','base64').toString('utf8'));`
     }
   }
 
@@ -437,8 +440,8 @@ const ElysiaEngine = (() => {
 
   function createExif(meta = {}) {
     const json = Buffer.from(JSON.stringify({
-      'sticker-pack-id': meta.packId || 'com.elysia.sticker',
-      'sticker-pack-name': meta.packname || config.sticker?.packname || 'Elysia Assistant',
+      'sticker-pack-id': meta.packId || 'com.aimiku.sticker',
+      'sticker-pack-name': meta.packname || config.sticker?.packname || 'Ai Miku',
       'sticker-pack-publisher': meta.author || config.sticker?.author || 'Arthazy',
       emojis: meta.emojis || ['✨']
     }), 'utf8')
@@ -785,7 +788,7 @@ const ElysiaEngine = (() => {
     })
   }
 
-  function elysiaWrapPlugin(pluginCfg, fn) {
+  function mikuWrapPlugin(pluginCfg, fn) {
     const cmds = [].concat(pluginCfg.name || [], pluginCfg.alias || []).map((x) => String(x).toLowerCase()).filter(Boolean)
     const wrapped = async (m, ctx = {}) => {
       const sock = compatSock(ctx.sock || ctx.conn)
@@ -815,7 +818,7 @@ const ElysiaEngine = (() => {
     return wrapped
   }
 
-  function elysiaWrapClassic(fn) {
+  function mikuWrapClassic(fn) {
     const wrapped = async (m, ctx = {}) => {
       const sock = compatSock(ctx.sock || ctx.conn)
       const em = enhanceMessage(m, sock, ctx)
@@ -849,7 +852,7 @@ const ElysiaEngine = (() => {
     return wrapped
   }
 
-  function elysiaBindCommand(fn, primaryName, opts = {}) {
+  function mikuBindCommand(fn, primaryName, opts = {}) {
     const wrapped = async (m, ctx = {}) => fn(m, ctx)
     Object.assign(wrapped, fn)
     const rawCmds = Array.isArray(fn.command) ? fn.command : fn.command ? [fn.command] : [primaryName]
@@ -914,7 +917,7 @@ const ElysiaEngine = (() => {
     return wrapped
   }
 
-  // Built-in elysiaLib registry (includes cekbio, thumb, helperbails)
+  // Built-in mikuLib registry (includes cekbio, thumb, helperbails)
   const _builtinLibs = {
     cekbio: async () => ({
       getJamPercentage(bioData, setAt, isBusiness) {
@@ -962,16 +965,16 @@ const ElysiaEngine = (() => {
   }
 
   const _rbRegistry = new Map()
-  function elysiaMountPlugin(id, factory, libs = null) {
+  function mikuMountPlugin(id, factory, libs = null) {
     _rbRegistry.set(id, { factory, value: null, libs })
   }
 
-  async function elysiaInvokePlugin(id, m, ctx = {}) {
+  async function mikuInvokePlugin(id, m, ctx = {}) {
     const entry = _rbRegistry.get(id)
     if (!entry) return
     const sock = compatSock(ctx.sock || ctx.conn)
     const prefix = ctx.prefix || ctx.usedPrefix || m.prefix || '.'
-    const elysiaGlobal = new Proxy({}, {
+    const mikuGlobal = new Proxy({}, {
       get(_, prop) {
         if (prop === 'mainSock' || prop === 'conn') return sock
         if (prop === 'namaBot' || prop === 'botName') return global.namebot
@@ -983,18 +986,18 @@ const ElysiaEngine = (() => {
       set(_, prop, val) { global[prop] = val; return true }
     })
     const localCache = {}
-    const elysiaLib = async (name) => {
+    const mikuLib = async (name) => {
       if (entry.libs && entry.libs[name]) {
-        return (localCache[name] ||= await entry.libs[name]({ elysiaGlobal, elysiaLib }))
+        return (localCache[name] ||= await entry.libs[name]({ mikuGlobal, mikuLib }))
       }
       if (_builtinLibs[name]) {
-        return (localCache[name] ||= await _builtinLibs[name]({ elysiaGlobal, elysiaLib }))
+        return (localCache[name] ||= await _builtinLibs[name]({ mikuGlobal, mikuLib }))
       }
 
   return {}
     }
     if (!entry.value) {
-      entry.value = await entry.factory({ elysiaGlobal, elysiaLib })
+      entry.value = await entry.factory({ mikuGlobal, mikuLib })
     }
     const fn = entry.value
     const em = enhanceMessage(m, sock, ctx)
@@ -1027,16 +1030,16 @@ const ElysiaEngine = (() => {
     return fn(em, fullCtx)
   }
 
-  const elysiaStateVault = () => (global.db.dio ||= { praktis: {}, profile: {} })
-  const elysiaStateCommit = () => saveDB()
+  const mikuStateVault = () => (global.db.dio ||= { praktis: {}, profile: {} })
+  const mikuStateCommit = () => saveDB()
   const _dioRegistry = new Map()
   const _cjsRequire = _eCreateRequire(import.meta.url)
 
-  function elysiaWorldMount(id, fn, libs = null) {
+  function mikuWorldMount(id, fn, libs = null) {
     _dioRegistry.set(id, { fn, libs, mod: null, cache: new Map() })
   }
 
-  async function elysiaWorldInvoke(id, m, ctx = {}) {
+  async function mikuWorldInvoke(id, m, ctx = {}) {
     const entry = _dioRegistry.get(id)
     if (!entry) return
     if (!entry.mod) {
@@ -1080,32 +1083,32 @@ const ElysiaEngine = (() => {
     })
   }
 
-  function styleElysiaText(rawText, cat = 'tools', cmd = '') {
+  function styleMikuText(rawText, cat = 'tools', cmd = '') {
     if (typeof rawText !== 'string') return rawText;
     let t = rawText.trim();
     if (!t) return rawText;
     if (t.includes('✦「') || t.includes('╭─── ❖') || /^https?:\/\/\S+$/i.test(t) || /^[\[{]/.test(t)) {
       return t
-        .replace(/Ourin-AI|Ourin|Kaguya\s*MD|Kaguya/gi, 'Elysia Assistant')
+        .replace(/Ourin-AI|Ourin|Kaguya\s*MD|Kaguya/gi, 'Ai Miku')
         .replace(/YannRzy(?:\s*Tech)?|Yannrzy/gi, 'Arthazy');
     }
     const badges = {
-      rpg: '⚔️ ELYSIA RPG',
-      clan: '🏰 ELYSIA CLAN',
-      audio: '🎧 ELYSIA AUDIO',
-      download: '📥 ELYSIA DOWNLOAD',
-      pushkontak: '📲 ELYSIA KONTAK',
-      sticker: '🎨 ELYSIA STICKER',
-      tools: '🛠️ ELYSIA TOOLS',
-      search: '🔎 ELYSIA SEARCH',
-      maker: '✨ ELYSIA MAKER',
-      jpm: '📡 ELYSIA JPM',
-      channel: '📢 ELYSIA CHANNEL',
-      anime: '🌸 ELYSIA ANIME',
+      rpg: '⚔️ MIKU RPG',
+      clan: '🏰 MIKU CLAN',
+      audio: '🎧 MIKU AUDIO',
+      download: '📥 MIKU DOWNLOAD',
+      pushkontak: '📲 MIKU KONTAK',
+      sticker: '🎨 MIKU STICKER',
+      tools: '🛠️ MIKU TOOLS',
+      search: '🔎 MIKU SEARCH',
+      maker: '✨ MIKU MAKER',
+      jpm: '📡 MIKU JPM',
+      channel: '📢 MIKU CHANNEL',
+      anime: '🌸 MIKU ANIME',
     };
-    const badge = badges[cat] || '✦ ELYSIA ASSISTANT';
+    const badge = badges[cat] || '✦ AI MIKU';
     t = t
-      .replace(/Ourin-AI|Ourin|Kaguya\s*MD|Kaguya/gi, 'Elysia Assistant')
+      .replace(/Ourin-AI|Ourin|Kaguya\s*MD|Kaguya/gi, 'Ai Miku')
       .replace(/YannRzy(?:\s*Tech)?|Yannrzy/gi, 'Arthazy')
       .replace(/^[╭┌]──+[『「\s]*(.+?)[』」\s]*──*[╮┐]$/gm, '✦「 *$1* 」')
       .replace(/^[╰└][─━═┈]+[╯┘⬡·]*$/gm, '')
@@ -1144,8 +1147,8 @@ const ElysiaEngine = (() => {
         if (prop === 'sendMessage' && typeof target.sendMessage === 'function') {
           return (jid, content, options) => {
             if (!skipStyleCats.has(cat) && content && typeof content === 'object') {
-              if (typeof content.text === 'string') content = { ...content, text: styleElysiaText(content.text, cat, command) };
-              else if (typeof content.caption === 'string') content = { ...content, caption: styleElysiaText(content.caption, cat, command) };
+              if (typeof content.text === 'string') content = { ...content, text: styleMikuText(content.text, cat, command) };
+              else if (typeof content.caption === 'string') content = { ...content, caption: styleMikuText(content.caption, cat, command) };
             }
             if (options?.quoted?.key && (options.quoted.key.remoteJid === 'status@broadcast' || options.quoted.key.participant === '0@s.whatsapp.net')) {
               options = { ...options, quoted: m };
@@ -1155,7 +1158,7 @@ const ElysiaEngine = (() => {
         }
         if (prop === 'reply' && typeof target.reply !== 'function') {
           return (jid, text, quoted, options = {}) => {
-            const styled = (!skipStyleCats.has(cat) && typeof text === 'string') ? styleElysiaText(text, cat, command) : text;
+            const styled = (!skipStyleCats.has(cat) && typeof text === 'string') ? styleMikuText(text, cat, command) : text;
             const safeQuoted = (quoted?.key && (quoted.key.remoteJid === 'status@broadcast' || quoted.key.participant === '0@s.whatsapp.net')) ? m : quoted;
             return target.sendMessage(jid, { text: styled, ...options }, safeQuoted ? { quoted: safeQuoted } : undefined);
           };
@@ -1167,7 +1170,7 @@ const ElysiaEngine = (() => {
 
     const em = (typeof enhanceMessage === 'function') ? enhanceMessage(m, sock, ctx) : m;
     const reply = async (txt, opts = {}) => {
-      const out = (!skipStyleCats.has(cat) && typeof txt === 'string') ? styleElysiaText(txt, cat, command) : txt;
+      const out = (!skipStyleCats.has(cat) && typeof txt === 'string') ? styleMikuText(txt, cat, command) : txt;
       if (typeof m?.reply === 'function') return await m.reply(out, opts);
       if (typeof sock?.sendMessage === 'function') return await sock.sendMessage(em?.chat || m?.chat, { text: String(out), ...opts }, { quoted: m });
     };
@@ -1200,13 +1203,13 @@ const ElysiaEngine = (() => {
       participants: ctx.participants || m?.groupMembers || groupMetadata.participants || [],
       reply,
       react: (e) => (typeof m?.react === 'function' ? m.react(e) : reactTo(sock, m, e)),
-      example: (usage) => reply(`╭─── ❖ 『 💡 *PANDUAN FITUR* 』 ❖\n│ ✦ *Perintah:* ${prefix}${command}\n│ ✦ *Contoh:* ${prefix}${command} ${usage}\n╰──────────────────❖\n_✦ Elysia Assistant • by Arthazy_`),
+      example: (usage) => reply(`╭─── ❖ 『 💡 *PANDUAN FITUR* 』 ❖\n│ ✦ *Perintah:* ${prefix}${command}\n│ ✦ *Contoh:* ${prefix}${command} ${usage}\n╰──────────────────❖\n_✦ Ai Miku • by Arthazy_`),
     };
   }
 
   function enhanceHandler(fn, pluginConfig = {}) {
     if (typeof fn !== 'function') return fn;
-    if (fn.__elysiaEnhanced) return fn;
+    if (fn.__mikuEnhanced) return fn;
     const cat = String(pluginConfig?.category || 'tools').toLowerCase();
     const wrapped = async function(m, ctx = {}) {
       const rctx = buildRuntimeContext(m, ctx, cat);
@@ -1218,7 +1221,7 @@ const ElysiaEngine = (() => {
           const p = rctx.prefix || '.';
           return await rctx.reply(
             `╭─── ❖ 『 🔒 *AKSES KHUSUS PETUALANG* 』 ❖\n` +
-            `│ ✦ Kamu belum terdaftar di sistem *Elysia Assistant*!\n` +
+            `│ ✦ Kamu belum terdaftar di sistem *Ai Miku*!\n` +
             `│ ✦ Fitur *${p}${rctx.command || pluginConfig?.name}* membutuhkan Kartu Petualang.\n` +
             `├─── ❖ 『 📝 *CARA DAFTAR* 』 ❖\n` +
             `│ 📌 *Ketik:* \`${p}daftar Nama.Umur\`\n` +
@@ -1243,8 +1246,8 @@ const ElysiaEngine = (() => {
       if (rctx.m?.sender && typeof ensureUser === 'function') {
         try { ensureUser(rctx.m); } catch {}
       }
-      if (global.__elysiaRpgKernelRef) {
-        const rk = global.__elysiaRpgKernelRef;
+      if (global.__mikuRpgKernelRef) {
+        const rk = global.__mikuRpgKernelRef;
         const sender = rctx.m.sender || '';
         const pushname = rctx.m.pushName || 'Adventurer';
         const u = rk.initRpgUser ? rk.initRpgUser(sender, pushname) : {};
@@ -1256,7 +1259,7 @@ const ElysiaEngine = (() => {
           q: rctx.text || '',
           user: u,
           isAdmins: Boolean(rctx.isAdmin),
-          botname: global.namebot || config?.bot?.name || 'Elysia Assistant',
+          botname: global.namebot || config?.bot?.name || 'Ai Miku',
           XRO: () => rctx.reply('⚠️ Esta función es exclusiva del dueño.'),
           XRG: () => rctx.reply('⚠️ Esta función solo funciona dentro de un grupo.'),
           XReaction: () => rctx.react('✅'),
@@ -1264,13 +1267,13 @@ const ElysiaEngine = (() => {
           botStore: typeof rpgStore === 'function' ? rpgStore : () => global.db?.data || {},
           saveBot: typeof saveDB === 'function' ? saveDB : () => {},
           giveExp: (amt) => (typeof addExpWithLevelCheck === 'function' && typeof getDatabase === 'function' ? addExpWithLevelCheck(rctx.sock, rctx.m, getDatabase(), ensureUser(rctx.m), amt) : Promise.resolve()),
-          elysiaCmd: `${rctx.prefix}${rctx.command || pluginConfig?.name || ''}`,
+          mikuCmd: `${rctx.prefix}${rctx.command || pluginConfig?.name || ''}`,
           kaguya: `${rctx.prefix}${rctx.command || pluginConfig?.name || ''}`,
         });
       }
       return await fn.call(this, rctx.m, rctx);
     };
-    wrapped.__elysiaEnhanced = true;
+    wrapped.__mikuEnhanced = true;
     return wrapped;
   }
 
@@ -1301,23 +1304,23 @@ const ElysiaEngine = (() => {
     };
   }
 
-  const _elysiaLibs = new Map();
-  const _elysiaLibCache = new Map();
+  const _mikuLibs = new Map();
+  const _mikuLibCache = new Map();
   function defineLib(name, factory) {
-    _elysiaLibs.set(name, factory);
+    _mikuLibs.set(name, factory);
   }
-  async function elysiaLib(name, localLibs = null) {
+  async function mikuLib(name, localLibs = null) {
     if (localLibs && typeof localLibs[name] === 'function') {
       const k = 'local:' + name + ':' + String(localLibs[name]).length;
-      if (!_elysiaLibCache.has(k)) {
-        _elysiaLibCache.set(k, await localLibs[name]({ elysiaLib: (n) => elysiaLib(n, localLibs) }));
+      if (!_mikuLibCache.has(k)) {
+        _mikuLibCache.set(k, await localLibs[name]({ mikuLib: (n) => mikuLib(n, localLibs) }));
       }
-      return _elysiaLibCache.get(k);
+      return _mikuLibCache.get(k);
     }
-    if (_elysiaLibCache.has(name)) return _elysiaLibCache.get(name);
-    if (_elysiaLibs.has(name)) {
-      const val = await _elysiaLibs.get(name)({ elysiaLib });
-      _elysiaLibCache.set(name, val);
+    if (_mikuLibCache.has(name)) return _mikuLibCache.get(name);
+    if (_mikuLibs.has(name)) {
+      const val = await _mikuLibs.get(name)({ mikuLib });
+      _mikuLibCache.set(name, val);
       return val;
     }
     if (name === 'thumb') {
@@ -1328,10 +1331,10 @@ const ElysiaEngine = (() => {
     }
     return {};
   }
-  const elysiaGlobal = global;
+  const mikuGlobal = global;
 
   return {
-    buildRuntimeContext, defineLib, elysiaLib, elysiaGlobal, enhanceHandler, createWorldHandler,
+    buildRuntimeContext, defineLib, mikuLib, mikuGlobal, enhanceHandler, createWorldHandler,
     config, te, saluranCtx, getDatabase, rpgStore, makeDefaultUser, ensureUser,
     saveDB, persist, sleep, jidNumber, userOf, digits, isLidJid, resolvePhone, toPN,
     getOwners, formatWib, wibDay, durasi, clockString, formatRemaining, fiturFmt, fmt: fiturFmt, cfg, beri,
@@ -1344,10 +1347,10 @@ const ElysiaEngine = (() => {
     listReminders, addReminder, delReminders,
     SERVICES, allOwn, delOwn, mask,
     addExpWithLevelCheck, compatSock, enhanceMessage,
-    elysiaWrapPlugin, elysiaWrapClassic, elysiaBindCommand, mergePlugins, adapt,
-    elysiaMountPlugin, elysiaInvokePlugin, elysiaWorldMount, elysiaWorldInvoke, elysiaStateVault, elysiaStateCommit, getThumbFromConfig
+    mikuWrapPlugin, mikuWrapClassic, mikuBindCommand, mergePlugins, adapt,
+    mikuMountPlugin, mikuInvokePlugin, mikuWorldMount, mikuWorldInvoke, mikuStateVault, mikuStateCommit, getThumbFromConfig
   }
 })()
 
-export { ElysiaEngine };
-export default ElysiaEngine;
+export { MikuEngine };
+export default MikuEngine;

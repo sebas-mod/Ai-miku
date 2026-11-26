@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaEngine } from "../system/elysia-engine.js";
+import { MikuEngine } from "../system/miku-engine.js";
 import fs from "fs";
 import path from "path";
 import { theme, chalk, logger } from "./logger.js";
@@ -296,7 +296,7 @@ async function loadPlugin(filePath, bustCache = false) {
 
     let pInfo = {
       config: { ...defaultConfig, ...plugin.config },
-      handler: ElysiaEngine.enhanceHandler(plugin.handler, { ...defaultConfig, ...plugin.config }),
+      handler: MikuEngine.enhanceHandler(plugin.handler, { ...defaultConfig, ...plugin.config }),
       filePath: filePath,
     };
 

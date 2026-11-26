@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const fetchJSON = ElysiaRuntime.fetchJSON;
-const FriendlyError = ElysiaRuntime.FriendlyError;
-const cached = ElysiaRuntime.cached;
-const peekCache = ElysiaRuntime.peekCache;
-const guard = ElysiaRuntime.guard;
+const fetchJSON = MikuRuntime.fetchJSON;
+const FriendlyError = MikuRuntime.FriendlyError;
+const cached = MikuRuntime.cached;
+const peekCache = MikuRuntime.peekCache;
+const guard = MikuRuntime.guard;
 
 const pluginConfig = {
     name: "kurs",

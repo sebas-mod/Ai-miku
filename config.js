@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -42,7 +42,7 @@ const config = {
   },
 
   bot: {
-    name: "Elysia Assistant", // Nombre del bot
+    name: "Ai Miku", // Nombre del bot
     version: "2.0", // Versión del bot
     developer: "arthazyy", // Nombre del desarrollador
   },
@@ -93,13 +93,13 @@ const config = {
   },
 
   sticker: {
-    packname: "Elysia Assistant || arthazy", // Nombre del paquete de stickers
+    packname: "Ai Miku || arthazy", // Nombre del paquete de stickers
     author: "arthazy", // Autor del sticker
   },
 
   saluran: {
-    id: "120363393471527483@newsletter", // ID del canal principal de Elysia Assistant
-    name: "Elysia Assistant", // Nombre del canal
+    id: "120363393471527483@newsletter", // ID del canal principal de Ai Miku
+    name: "Ai Miku", // Nombre del canal
     link: "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O", // Enlace del canal (pon el enlace de tu canal)
     autoFollow: [
       "120363393471527483@newsletter",

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -119,7 +119,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'remov
     if (asDoc) {
       await client.sendMessage(
         m.chat,
-        { document: pngBuffer, fileName: `elysia-nobg-${Date.now()}.png`, mimetype: 'image/png', caption: '✂️ *Background berhasil dihapus (PNG Transparan)*' },
+        { document: pngBuffer, fileName: `miku-nobg-${Date.now()}.png`, mimetype: 'image/png', caption: '✂️ *Background berhasil dihapus (PNG Transparan)*' },
         { quoted: m }
       )
     } else {

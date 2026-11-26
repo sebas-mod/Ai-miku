@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -50,7 +50,7 @@ cambia la presentación con .setintro <texto>`
         .replace(/@date/gi, dateStr)
         .replace(/@time/gi, timeStr)
         .replace(/@desc/gi, groupMeta?.desc || 'Sin descripción')
-        .replace(/@botname/gi, config.bot?.name || 'Elysia Assistant')
+        .replace(/@botname/gi, config.bot?.name || 'Ai Miku')
 }
 
 async function handler(m, { sock }) {

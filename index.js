@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -251,7 +251,7 @@ function setupAntiCrash() {
   logger.success("system", "Anti-Crash Protection is Active");
 }
 
-function printElysiaWelcome() {
+function printMikuWelcome() {
   const banner = [
     "███████╗██╗     ██╗   ██╗███████╗██╗ █████╗ ",
     "██╔════╝██║     ╚██╗ ██╔╝██╔════╝██║██╔══██╗",
@@ -265,8 +265,8 @@ function printElysiaWelcome() {
     return [...text].map((ch, i) => `\x1b[1;${colors[i % colors.length]}m${ch}\x1b[0m`).join("");
   };
   console.log("\n" + rainbow(banner) + "\n");
-  console.log("\x1b[1;36mHALLO SELAMAT DATANG DI Elysia Assistant\x1b[0m");
-  console.log("\x1b[1;33mNAMA BOT: \x1b[1;37mElysia Assistant\x1b[0m");
+  console.log("\x1b[1;36mHALLO SELAMAT DATANG DI Ai Miku\x1b[0m");
+  console.log("\x1b[1;33mNAMA BOT: \x1b[1;37mAi Miku\x1b[0m");
   console.log("\x1b[1;35mUSER: \x1b[1;37mFREE\x1b[0m");
   const pairingDigits = String(config.session?.pairingNumber || "").replace(/\D/g, "");
   const maskedNumber =
@@ -285,14 +285,14 @@ function printElysiaWelcome() {
 }
 
 async function main() {
-  printElysiaWelcome();
+  printMikuWelcome();
   // Keep the welcome screen clean: hide routine startup/status logs below it.
   // console.error remains available for actual errors.
   // console.log = () => {};
   // console.info = () => {};
   // console.warn = () => {};
   await playBootSequence({
-    name: config.bot?.name || "Elysia Assistant",
+    name: config.bot?.name || "Ai Miku",
     version: config.bot?.version || "1.0.0",
     developer: config.bot?.developer || "Developer",
     mode: config.mode || "public",
@@ -405,8 +405,8 @@ async function main() {
 
     onConnectionUpdate: async (update, sock) => {
       if (update.connection === "open") {
-        if (global.__elysiaFirstOpenDone) return;
-        global.__elysiaFirstOpenDone = true;
+        if (global.__mikuFirstOpenDone) return;
+        global.__mikuFirstOpenDone = true;
         logConnection("connected", sock.user?.name || "Bot");
         loadScheduledMessages(sock);
         startGroupScheduleChecker(sock);

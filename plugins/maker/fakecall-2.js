@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: ['fakecall', 'fakecall-android', 'fakecall-ios'],
@@ -18,7 +18,7 @@ const te = ElysiaRuntime.te;
       category: "maker",
       description: 'Membuat gambar fake call WhatsApp (Tersedia versi Android dan iOS)',
       usage: '.fakecall nama | durasi',
-      example: '.fakecall Elysia Assistant | 19:00',
+      example: '.fakecall Ai Miku | 19:00',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -41,7 +41,7 @@ const te = ElysiaRuntime.te;
           helpText += `*Cómo usar:*\n`
           helpText += `Escribe el comando seguido de *Nombre* y *Duración* separados por una barra vertical (|).\n\n`
           helpText += `*Ejemplo de uso:*\n`
-          helpText += `- *${m.prefix}fakecall Elysia Assistant | 03:33:33*\n`
+          helpText += `- *${m.prefix}fakecall Ai Miku | 03:33:33*\n`
           helpText += `- *${m.prefix}fakecall-ios Sayangku | 12:00:00*\n\n`
           helpText += `*Tips Tambahan:*\n`
           helpText += `¡Puedes responder a una imagen para usarla como foto de perfil de quien llama!`

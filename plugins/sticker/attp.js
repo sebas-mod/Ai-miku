@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
@@ -31,7 +31,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
 const execFileAsync = promisify(execFile)
 const FONT_FILE = fileURLToPath(new URL('../../assets/fonts/Inter-Bold.ttf', import.meta.url))

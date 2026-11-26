@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
     } catch {}
 
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
 
     const infoText =
       `── .✦ INFO DEL GRUPO ✦. ── 𝜗ৎ\n\n` +
@@ -144,7 +144,7 @@ async function handler(m, { sock }) {
       `│  ✦ MODO DE INGRESO  : *${joinMode}*\n` +
       `│  ✦ DESCRIPCIÓN  : ${descPreview}\n` +
       `╰──────────────⬣\n\n` +
-      `.☘︎ ݁˖ © ${config.bot?.name || "Elysia Assistant"}`;
+      `.☘︎ ݁˖ © ${config.bot?.name || "Ai Miku"}`;
 
     const buttons = [
       {
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Elysia Assistant"}`,
+                  text: `© ${config.bot?.name || "Ai Miku"}`,
                 }),
                 header: proto.Message.InteractiveMessage.Header.fromObject({
                   hasMediaAttachment: !!headerMedia,
@@ -221,7 +221,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Elysia Assistant"}`,
+                  text: `© ${config.bot?.name || "Ai Miku"}`,
                 }),
                 nativeFlowMessage:
                   proto.Message.InteractiveMessage.NativeFlowMessage.fromObject(

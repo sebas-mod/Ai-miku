@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -69,7 +69,7 @@ import {
   loadJadibotDb,
 } from "./lib/data/jadibot-database.js";
 import { getActiveJadibots } from "./lib/features/jadibot-manager.js";
-import { handleCommand as handleCaseCommand } from "./case/elysia.js";
+import { handleCommand as handleCaseCommand } from "./case/miku.js";
 import { menfessReplyHandler } from "./lib/features/menfess.js";
 import { RateLimiterMemory } from "rate-limiter-flexible";
 import {
@@ -78,7 +78,7 @@ import {
   getDailyFeatureStatus,
   isDailyLimitExemptCommand,
 } from "./lib/data/daily-limit.js";
-import { games as elysiaGames } from "./lib/features/games.js";
+import { games as mikuGames } from "./lib/features/games.js";
 import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
@@ -528,8 +528,8 @@ async function handleSmartTriggers(m, sock, db) {
 
   try {
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
-    const botName = config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
+    const botName = config.bot?.name || "Ai Miku";
 
     let isAutoreplyEnabled = globalSmartTriggers;
 
@@ -1500,9 +1500,9 @@ async function messageHandler(msg, sock, options = {}) {
         }
       }
 
-      // Game Elysia: tangkap input langkah/tebakan saat sesi game aktif di chat
-      if (!m.fromMe && globalThis.__elysiaGameSessions?.has(m.chat)) {
-        const gameMod = await import("./lib/features/elysia-game.js").catch(() => null);
+      // Game Miku: tangkap input langkah/tebakan saat sesi game aktif di chat
+      if (!m.fromMe && globalThis.__mikuGameSessions?.has(m.chat)) {
+        const gameMod = await import("./lib/features/miku-game.js").catch(() => null);
         if (gameMod?.handleActiveGameInput) {
           const gameHandled = await gameMod.handleActiveGameInput(m, sock);
           if (gameHandled) return;
@@ -2184,7 +2184,7 @@ async function groupHandler(update, sock) {
 
       const saluranId = config.saluran?.id || "120363393471527483@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Elysia Assistant";
+        config.saluran?.name || config.bot?.name || "Ai Miku";
 
       let groupPpUrl = null;
       try {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "connect4rich",
   alias: ["connect4"],
   category: "rich",
-  description: "Susun 4 koin kristal sejajar lawan Elysia AI",
+  description: "Susun 4 koin kristal sejajar lawan Miku AI",
   usage: ".connect4rich",
   example: ".connect4rich",
   isOwner: false,
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Connect 4 — Elysia Assistant</title>
+<title>Connect 4 — Ai Miku</title>
 <style>
 ${buildGameBaseCss("puzzle")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -78,7 +78,7 @@ function play(c){
   b[r][c]=1;
   if(win(1)){over=true;document.getElementById('st').textContent='KAMU MENANG! 🎉';render();return;}
   if(b[0].every(Boolean)){over=true;document.getElementById('st').textContent='SERI!';render();return;}
-  turn=2;document.getElementById('st').textContent='Elysia AI berpikir...';render();
+  turn=2;document.getElementById('st').textContent='Miku AI berpikir...';render();
   setTimeout(ai,350);
 }
 function ai(){
@@ -86,7 +86,7 @@ function ai(){
   let best=cols[0];
   for(const p of [2,1])for(const c of cols){const r=dropRow(c);b[r][c]=p;const w=win(p);b[r][c]=0;if(w){best=c;break;}}
   const r=dropRow(best);b[r][best]=2;
-  if(win(2)){over=true;document.getElementById('st').textContent='ELYSIA AI MENANG! 💜';render();return;}
+  if(win(2)){over=true;document.getElementById('st').textContent='MIKU AI MENANG! 💜';render();return;}
   turn=1;document.getElementById('st').textContent='Giliran Kamu 🩷';render();
 }
 function render(){

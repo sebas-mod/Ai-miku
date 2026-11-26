@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -95,7 +95,7 @@ const quoteOf = (q) => { try { return q && q.key && q.message && q.chat ? q : nu
 module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     },
     "cards/arcade": (module, exports, require) => {
-    const NB = () => String(global.namebot || 'Elysia Assistant').replace(/[<>&'"`$\\]/g, '')
+    const NB = () => String(global.namebot || 'Ai Miku').replace(/[<>&'"`$\\]/g, '')
     const { BASE_CSS, safeJson } = require("../htmlcard");
 
     const BODY = String.raw`
@@ -338,7 +338,7 @@ module.exports = {
   desc: 'Arcade mini: Dino Runner, Tic Tac Toe, Doom, Flappy, Slot dalam satu kartu',
   run: async ({ sock, m, pushname }) => {
     const html = buildArcadeHtml({ playerName: pushname || String(m.sender).split('@')[0] })
-    await sendHtmlCard(sock, m, html, (global.namebot || 'Elysia Assistant') + ' Arcade', '🎮')
+    await sendHtmlCard(sock, m, html, (global.namebot || 'Ai Miku') + ' Arcade', '🎮')
   },
 }
     }

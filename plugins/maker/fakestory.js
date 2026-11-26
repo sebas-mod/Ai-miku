@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import * as _canvas from '@napi-rs/canvas'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
-const roundedRectPath = ElysiaRuntime.canvasRoundedRectPath;
-const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
-const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
+const te = MikuRuntime.te;
+const roundedRectPath = MikuRuntime.canvasRoundedRectPath;
+const drawAvatar = MikuRuntime.canvasDrawAvatar;
+const getAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
 
   const pluginConfig = {
     name: "fakestory",

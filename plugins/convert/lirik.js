@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -35,7 +35,7 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
     const { data } = await axios.get('https://lrclib.net/api/search', {
       params: { q: query },
       timeout: 15000,
-      headers: { 'User-Agent': 'ElysiaAssistant/2.0 (https://github.com/arthazy)' }
+      headers: { 'User-Agent': 'AiMiku/2.0 (https://github.com/arthazy)' }
     })
 
     if (!Array.isArray(data) || !data.length) {
@@ -53,7 +53,7 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
     let out = `🎶 *${best.trackName || 'Judul Tidak Diketahui'}*\n`
     out += `👤 *Artis* : ${best.artistName || '-'}\n`
     if (best.albumName) out += `💿 *Album* : ${best.albumName}\n`
-    out += `\n${lyrics}\n\n_Elysia Assistant_`
+    out += `\n${lyrics}\n\n_Ai Miku_`
 
     await m.react('✅')
     return m.reply(out)

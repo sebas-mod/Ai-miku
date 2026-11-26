@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -71,7 +71,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'imgbb' }) {
   try {
     const { token, cookie } = await fetchAuthToken()
     const ext = (media.mime.split('/')[1] || 'jpg').replace('jpeg', 'jpg')
-    const filename = `elysia_${crypto.randomBytes(4).toString('hex')}.${ext}`
+    const filename = `miku_${crypto.randomBytes(4).toString('hex')}.${ext}`
 
     const fd = new FormData()
     fd.append('source', new Blob([media.buffer], { type: media.mime }), filename)

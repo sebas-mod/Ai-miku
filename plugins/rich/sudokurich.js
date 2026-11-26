@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Sudoku 9x9 — Elysia Assistant</title>
+<title>Sudoku 9x9 — Ai Miku</title>
 <style>
 ${buildGameBaseCss("puzzle")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}

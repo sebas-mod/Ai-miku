@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getCaseCommands } from "../../src/case/elysia.js";
+import { getCaseCommands } from "../../src/case/miku.js";
 import fs from "fs";
 import path from "path";
 import config from "../../config.js";
-import { sendElysiaNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu } from "../../src/lib/core/native-menu.js";
 import te from "../../src/lib/core/error.js";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -213,7 +213,7 @@ async function handler(m, { sock }) {
       );
     }
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
     let text = `🔍 *ʀᴇsᴜʟᴛᴀᴅᴏs: "${keyword}"*\n`;
     text += `> Se encontraron *${matches.length}* funciones\n`;
     text += `> Elige uno de los comandos de abajo:\n\n`;
@@ -239,7 +239,7 @@ async function handler(m, { sock }) {
       id: `${m.prefix}${p.name}`,
     }));
     m.react("✅");
-    await sendElysiaNativeMenu(sock, m, {
+    await sendMikuNativeMenu(sock, m, {
       buttonId: "pilihan_carifitur",
       pickerTitle: "📋 Elige un comando",
       sections: [{ title: `Resultados para "${keyword}"`, rows: buttons }],
