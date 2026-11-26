@@ -98,7 +98,7 @@ const pluginConfig = {
   alias: ['vos2'],
   category: "maker",
   description: 'Membuat gambar kata-kata tema Windows Media Player HD tanpa nama dan foto profil.',
-  usage: '.vosv2 tu texto',
+  usage: '.vosv2 isi kata kata',
   example: '.vosv2 Jangan menyerah, terus melangkah!',
   isOwner: false,
   isPremium: false,
