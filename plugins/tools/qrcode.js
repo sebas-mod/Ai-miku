@@ -33,7 +33,7 @@ const pluginConfig = {
               caption: '¯\\_(ツ)_/¯'
           }, { quoted: m })
       } catch (e) {
-          reply('Gagal membuat QR code.')
+          reply('No se pudo crear el código QR.')
       }
   }
 

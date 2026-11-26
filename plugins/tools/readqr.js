@@ -27,7 +27,7 @@ const pluginConfig = {
 }
 
   const spec = {
-      name: 'readqr', title: 'Baca QR Code', path: 'tools/readqr', kind: 'text', image: ['url'], fields: [] }
+      name: 'readqr', title: 'Leer código QR', path: 'tools/readqr', kind: 'text', image: ['url'], fields: [] }
 
   let handler = (m, ctx) => handleApiTool(spec, m, ctx)
 

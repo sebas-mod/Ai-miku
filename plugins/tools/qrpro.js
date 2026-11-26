@@ -280,7 +280,7 @@ const pluginConfig = {
       let phone = String(numRaw || '').replace(/[^0-9+]/g, '')
       if (phone.startsWith('+')) phone = phone.slice(1)
       if (phone.startsWith('0')) phone = '62' + phone.slice(1)
-      if (phone.length < 8) return reply(`Format: ${p}qrwa 08123456789 | pesan (opsional)`)
+      if (phone.length < 8) return reply(`Formato: ${p}qrwa 08123456789 | mensaje (opcional)`)
       payload = `https://wa.me/${phone}${msg ? `?text=${encodeURIComponent(msg)}` : ''}`
       opts = { logoType: 'whatsapp', ...parseOptions(rest) }
     } else {
@@ -289,32 +289,32 @@ const pluginConfig = {
       if (!payload && m.quoted) payload = String(m.quoted.text || m.quoted.body || m.quoted.caption || '').trim()
       if (!payload) {
         return reply(
-          `*▢ QR GENERATOR PRO*\n\n` +
-          `${p}qr <teks/link>\n` +
-          `${p}qr <teks> | <preset> | <logo> | #warna | <frame>\n` +
-          `${p}qrwifi nama | password | WPA\n` +
-          `${p}qrwa 08123456789 | pesan\n` +
-          `${p}qrlist → daftar preset & logo\n\n` +
-          `Contoh: ${p}qr https://google.com | neo-pop | google`
+          `*▢ GENERADOR DE QR PRO*\n\n` +
+          `${p}qr <texto/enlace>\n` +
+          `${p}qr <texto> | <estilo> | <logo> | #color | <marco>\n` +
+          `${p}qrwifi nombre | contraseña | WPA\n` +
+          `${p}qrwa 08123456789 | mensaje\n` +
+          `${p}qrlist → lista de estilos y logos\n\n` +
+          `Ejemplo: ${p}qr https://google.com | neo-pop | google`
         )
       }
       opts = parseOptions(rest)
     }
 
-    if (payload.length > 1000) return reply('❌ Teks terlalu panjang (maksimal 1000 karakter).')
+    if (payload.length > 1000) return reply('❌ El texto es demasiado largo (máximo 1000 caracteres).')
 
     await reactTo(sock, m, '🕒')
     try {
       const svg = generateQrSvg(payload, opts)
       const png = await svgToPng(svg)
-      const caption = `*▢ QR CODE*\n\n❀ Isi : ${payload.length > 120 ? payload.slice(0, 117) + '...' : payload}\n❀ Gaya : ${opts.preset || 'custom'}`
+      const caption = `*▢ CÓDIGO QR*\n\n❀ Contenido : ${payload.length > 120 ? payload.slice(0, 117) + '...' : payload}\n❀ Estilo : ${opts.preset || 'personalizado'}`
       await sock.sendMessage(m.chat, { image: png, caption }, { quoted: m })
       return reactTo(sock, m, '✅')
     } catch (e) {
       console.error('[qrpro]', e?.message || e)
       await reactTo(sock, m, '❌')
-      if (/too big|Invalid|capacity/i.test(e?.message || '')) return reply('❌ Teks terlalu panjang untuk dijadikan QR, coba perpendek.')
-      return reply(`❌ Gagal membuat QR: ${e?.message || 'terjadi kesalahan'}`)
+      if (/too big|Invalid|capacity/i.test(e?.message || '')) return reply('❌ El texto es demasiado largo para un QR, acórtalo un poco.')
+      return reply(`❌ No se pudo crear el QR: ${e?.message || 'ocurrió un error'}`)
     }
   }
 

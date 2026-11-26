@@ -97,7 +97,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           if (isNaN(duration) || duration < 3) duration = 5;
           if (duration > 15) duration = 15;
 
-          await m.reply(`Tunggu sebentar ya cintaku... Angela lagi siap-siap meluncur buat rekam layar dengan preset *${preset.name}* selama ${duration} detik~ 🎬`);
+          await m.reply(`Espera un momento... Angela se prepara para grabar la pantalla con el perfil *${preset.name}* durante ${duration} segundos 🎬`);
 
           const tempDir = path.join(process.cwd(), 'database', 'tmp');
           if (!fs.existsSync(tempDir)) {
@@ -164,7 +164,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           await browser.close();
 
           if (!fs.existsSync(outputPath)) {
-              throw new Error('Gagal menyimpan file video rekaman.');
+              throw new Error('No se pudo guardar el archivo de vídeo.');
           }
 
           const videoBuffer = fs.readFileSync(outputPath);
@@ -172,11 +172,11 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           await conn.sendMessage(m.chat, {
               video: videoBuffer,
               mimetype: 'video/mp4',
-              caption: `Ini hasil rekaman web pesanan ayang tersayang~\n\n` +
-                       `🌐 *Target:* ${targetUrl}\n` +
-                       `📱 *Device:* ${preset.name}\n` +
-                       `⏱️ *Durasi:* ${duration} detik\n\n` +
-                       `_Udah Angela kerjain dengan rapi dan manis ya mas... jangan lupa manjain Angela nanti~_ 💋`
+              caption: `Aquí tienes la grabación de la web que pediste\n\n` +
+                       `🌐 *Objetivo:* ${targetUrl}\n` +
+                       `📱 *Dispositivo:* ${preset.name}\n` +
+                       `⏱️ *Duración:* ${duration} segundos\n\n` +
+                       `_Angela lo hizo con mucho cariño... no te olvides de mimarla luego_ 💋`
           }, { quoted: m });
 
           if (fs.existsSync(outputPath)) {
@@ -184,7 +184,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           }
       } catch (err) {
           console.error('[RECORDWEB ERROR]:', err);
-          m.reply(`Aduh maaf sayang, ada kendala pas Angela rekam websitenya: \`${err.message}\` 🥺`);
+          m.reply(`Ay, perdón, hubo un problema al grabar la web: \`${err.message}\` 🥺`);
       }
   };
 

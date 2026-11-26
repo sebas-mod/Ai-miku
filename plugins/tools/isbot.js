@@ -96,14 +96,14 @@ const { isBotMessage } = (await elysiaLib('detectbot'))
 
       const status = analysis.isBot
           ? `🤖 *ʙᴏᴛ* (${analysis.confidence}%)`
-          : `👤 *ʜᴜᴍᴀɴ* (${100 - analysis.confidence}%)`;
+          : `👤 *ʜᴜᴍᴀɴᴏ* (${100 - analysis.confidence}%)`;
 
-      const captionText = `🤖 *ᴅᴇᴛᴇᴋsɪ ʙᴏᴛ & ᴅᴇᴠɪᴄᴇ*\n\n` +
-          `• 👤 *ᴛᴀʀɢᴇᴛ:* @${targetNumber}\n` +
-          `• 📊 *sᴛᴀᴛᴜs:* ${status}\n` +
-          `• 📱 *ᴅᴇᴠɪᴄᴇ:* ${detailedDevice}\n` +
-          `• 🆔 *ᴍᴇssᴀɢᴇ ɪᴅ:* \`${analysis.msgId}\`\n` +
-          `• 📑 *ᴛɪᴘᴇ ᴘᴇsᴀɴ:* \`${analysis.msgType}\``;
+      const captionText = `🤖 *ᴅᴇᴛᴇᴄᴄɪóɴ ᴅᴇ ʙᴏᴛ ʏ ᴅɪsᴘᴏsɪᴛɪᴠᴏ*\n\n` +
+          `• 👤 *ᴏʙᴊᴇᴛɪᴠᴏ:* @${targetNumber}\n` +
+          `• 📊 *ᴇsᴛᴀᴅᴏ:* ${status}\n` +
+          `• 📱 *ᴅɪsᴘᴏsɪᴛɪᴠᴏ:* ${detailedDevice}\n` +
+          `• 🆔 *ɪᴅ ᴅᴇʟ ᴍᴇɴsᴀᴊᴇ:* \`${analysis.msgId}\`\n` +
+          `• 📑 *ᴛɪᴘᴏ ᴅᴇ ᴍᴇɴsᴀᴊᴇ:* \`${analysis.msgType}\``;
 
       const thumbBuffer = await getActiveThumbBuffer().catch(() => null);
 
@@ -113,8 +113,8 @@ const { isBotMessage } = (await elysiaLib('detectbot'))
                   location: {
                       degreesLatitude: 0,
                       degreesLongitude: 0,
-                      name: '🤖 Deteksi Bot & Device',
-                      address: `Target: @${targetNumber} • Status: ${analysis.isBot ? 'BOT' : 'HUMAN'}`,
+                      name: '🤖 Detección de bot y dispositivo',
+                      address: `Objetivo: @${targetNumber} • Estado: ${analysis.isBot ? 'BOT' : 'HUMANO'}`,
                       jpegThumbnail: thumbBuffer
                   },
                   caption: captionText,

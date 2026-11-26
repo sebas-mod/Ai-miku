@@ -62,7 +62,7 @@ const pluginConfig = {
 
   async function checkHosting(domainInput) {
       const domain = cleanDomain(domainInput)
-      if (!domain) throw new Error('Domain tidak valid.')
+      if (!domain) throw new Error('Dominio no válido.')
 
       const body = new URLSearchParams({ target: domain, submit: 'Find Host' })
       const { data: html, status } = await axios.post(BASE_URL, body, {
@@ -78,7 +78,7 @@ const pluginConfig = {
       if (status !== 200) throw new Error(`HTTP ${status} dari hostingchecker.com`)
 
     const $ = cheerio.load(html)
-      if (!$('.hcresults').length) throw new Error('Lookup gagal atau domain tidak ditemukan.')
+      if (!$('.hcresults').length) throw new Error('Falló la búsqueda o no se encontró el dominio.')
 
       const { data, whoisUrl } = parseResult($)
       const { asn, organization: asOrganization } = parseASN(data['AS (autonomous system) number and organization'])

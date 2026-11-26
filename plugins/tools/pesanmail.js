@@ -29,26 +29,26 @@ const pluginConfig = {
   const fail = (reply, e) => reply(e.friendly ? e.message : `❌ ${e.message}`)
 
   async function read(reply, prefix, id) {
-      if (!id) return reply(`Contoh: ${prefix}pesanmail <message_id>`)
+      if (!id) return reply(`Ejemplo: ${prefix}pesanmail <id_del_mensaje>`)
 
       const msg = await tempMailRead(id)
       const rawContent = msg.content || ''
 
       const links = [...new Set(rawContent.match(/(https?:\/\/[^\s"'<>]+)/g) || [])]
       const linkSection = links.length
-          ? '\n\n🔗 *Link yang Ditemukan:*\n' + links.map((link, i) => `${i + 1}. ${link}`).join('\n')
+          ? '\n\n🔗 *Enlaces encontrados:*\n' + links.map((link, i) => `${i + 1}. ${link}`).join('\n')
           : ''
 
       const cleanContent = rawContent.replace(/<[^>]*>/g, '').trim()
 
-      return reply(`📨 *Isi Pesan*
-📌 Subjek: ${msg.subject}
-👤 Dari: ${msg.from} <${msg.fromEmail}>
-🕐 Diterima: ${msg.receivedAt}
+      return reply(`📨 *Contenido del mensaje*
+📌 Asunto: ${msg.subject}
+👤 De: ${msg.from} <${msg.fromEmail}>
+🕐 Recibido: ${msg.receivedAt}
 🆔 ID: ${msg.id}
 
-📬 Pesan:
-${cleanContent || '(Tidak ada isi)'}${linkSection}`)
+📬 Mensaje:
+${cleanContent || '(sin contenido)'}${linkSection}`)
   }
 
   async function handler(m, { text, reply, prefix }) {

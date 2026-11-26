@@ -32,46 +32,46 @@ const pluginConfig = {
 
   async function create(reply, prefix) {
       const { email, deletedIn } = await tempMailCreate()
-      return reply(`📫 *Email Sementara berhasil dibuat!*
-📧 Email: ${email}
-🕐 Expired: ${deletedIn}
+      return reply(`📫 *¡Correo temporal creado!*
+📧 Correo: ${email}
+🕐 Caduca: ${deletedIn}
 
-Cek inbox:
+Ver la bandeja:
 *${prefix}tempmail cek ${email}*`)
   }
 
   async function inbox(reply, prefix, email) {
-      if (!email) return reply(`Contoh: ${prefix}tempmail cek <alamat_email>`)
+      if (!email) return reply(`Ejemplo: ${prefix}tempmail cek <correo>`)
 
       const { mailbox, messages } = await tempMailInbox(email)
-      if (!messages.length) return reply('📭 Belum ada pesan yang masuk.')
+      if (!messages.length) return reply('📭 Todavía no hay mensajes recibidos.')
 
-      let out = `📥 *Daftar Pesan Masuk*\n📫 Email: ${mailbox}\n\n`
-      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(Tanpa Subjek)'}\n📩 ID: ${v.id}`).join('\n\n')
-      return reply(out + `\n\nBaca isi pesan: *${prefix}tempmail baca <id>*`)
+      let out = `📥 *Mensajes recibidos*\n📫 Correo: ${mailbox}\n\n`
+      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(sin asunto)'}\n📩 ID: ${v.id}`).join('\n\n')
+      return reply(out + `\n\nPara leer un mensaje: *${prefix}tempmail baca <id>*`)
   }
 
   async function read(reply, prefix, id) {
-      if (!id) return reply(`Contoh: ${prefix}tempmail baca <message_id>`)
+      if (!id) return reply(`Ejemplo: ${prefix}tempmail baca <id_del_mensaje>`)
 
       const msg = await tempMailRead(id)
       const rawContent = msg.content || ''
 
       const links = [...new Set(rawContent.match(/(https?:\/\/[^\s"'<>]+)/g) || [])]
       const linkSection = links.length
-          ? '\n\n🔗 *Link yang Ditemukan:*\n' + links.map((link, i) => `${i + 1}. ${link}`).join('\n')
+          ? '\n\n🔗 *Enlaces encontrados:*\n' + links.map((link, i) => `${i + 1}. ${link}`).join('\n')
           : ''
 
       const cleanContent = rawContent.replace(/<[^>]*>/g, '').trim()
 
-      return reply(`📨 *Isi Pesan*
-📌 Subjek: ${msg.subject}
-👤 Dari: ${msg.from} <${msg.fromEmail}>
-🕐 Diterima: ${msg.receivedAt}
+      return reply(`📨 *Contenido del mensaje*
+📌 Asunto: ${msg.subject}
+👤 De: ${msg.from} <${msg.fromEmail}>
+🕐 Recibido: ${msg.receivedAt}
 🆔 ID: ${msg.id}
 
-📬 Pesan:
-${cleanContent || '(Tidak ada isi)'}${linkSection}`)
+📬 Mensaje:
+${cleanContent || '(sin contenido)'}${linkSection}`)
   }
 
   async function handler(m, { text, reply, prefix }) {
@@ -87,10 +87,10 @@ ${cleanContent || '(Tidak ada isi)'}${linkSection}`)
           if (first.includes('@')) return await inbox(reply, prefix, first)
 
           return reply(
-              `*Tempmail*\n` +
-              `• ${prefix}tempmail  → buat email baru\n` +
-              `• ${prefix}tempmail cek <email>  → lihat inbox\n` +
-              `• ${prefix}tempmail baca <id>  → baca pesan`
+              `*Correo temporal*\n` +
+              `• ${prefix}tempmail  → crear un correo nuevo\n` +
+              `• ${prefix}tempmail cek <correo>  → ver la bandeja\n` +
+              `• ${prefix}tempmail baca <id>  → leer un mensaje`
           )
       } catch (e) {
           fail(reply, e)

@@ -59,15 +59,15 @@ const pluginConfig = {
 
       if (!input) {
           return reply(
-              `*▢ TRANSLATE*\n\n` +
-              `${prefix}translate <teks>  → otomatis (Indonesia ⇄ Inggris)\n` +
-              `${prefix}translate id|ja <teks>  → pilih bahasa sendiri\n` +
-              `${prefix}english <teks>  → ke Inggris\n` +
-              `${prefix}indo <teks>  → ke Indonesia\n\n` +
-              `Bisa juga reply pesan lalu ketik ${prefix}${command}`
+              `*▢ TRADUCIR*\n\n` +
+              `${prefix}translate <texto>  → automático (indonesio ⇄ inglés)\n` +
+              `${prefix}translate id|ja <texto>  → elige tú el idioma\n` +
+              `${prefix}english <texto>  → al inglés\n` +
+              `${prefix}indo <texto>  → al indonesio\n\n` +
+              `También puedes responder a un mensaje y escribir ${prefix}${command}`
           )
       }
-      if (input.length > MAX_CHARS) return reply(`Teks terlalu panjang (${input.length} karakter, maks ${MAX_CHARS}).`)
+      if (input.length > MAX_CHARS) return reply(`El texto es demasiado largo (${input.length} caracteres, máx. ${MAX_CHARS}).`)
 
       try {
           let result
@@ -78,10 +78,10 @@ const pluginConfig = {
               if (result.from === 'id') result = await translate(input, 'en', 'id')
           }
 
-          return reply(`🌐 *Terjemahan* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
+          return reply(`🌐 *Traducción* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
       } catch (e) {
           console.error('[TRANSLATE]', e?.message || e)
-          return reply(`Gagal menerjemahkan: ${e?.response?.status ? `server menolak (HTTP ${e.response.status})` : e?.message || 'error'}.\nCoba lagi sebentar.`)
+          return reply(`No se pudo traducir: ${e?.response?.status ? `el servidor lo rechazó (HTTP ${e.response.status})` : e?.message || 'error'}.\nInténtalo de nuevo en un momento.`)
       }
   }
 

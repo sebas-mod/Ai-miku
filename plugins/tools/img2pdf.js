@@ -118,14 +118,14 @@ const toSmallCaps = (str) => {
       const validMediaMsgs = targetMessages.filter(isImageCandidate);
 
       if (!validMediaMsgs.length) {
-          let help = `*${toSmallCaps('Image to PDF Converter')}*\n\n` +
-              `*${toSmallCaps('Kirim atau reply foto / album foto')}* *${usedPrefix + command} [namafile]* ʏᴀ ᴋᴀᴋ~\n\n` +
-              `• 📌 *${toSmallCaps('Fitur:')}* Mendukung 1 foto atau banyak foto (Album Message) sekaligus!\n` +
-              `• *${toSmallCaps('Contoh:')}* \`${usedPrefix + command} Dokumen_Tugas\``;
+          let help = `*${toSmallCaps('Conversor de imagenes a PDF')}*\n\n` +
+              `*${toSmallCaps('Envía o responde a una foto / álbum de fotos')}* *${usedPrefix + command} [nombredelearchivo]*\n\n` +
+              `• 📌 *${toSmallCaps('Función:')}* ¡Admite 1 foto o varias fotos (álbum) a la vez!\n` +
+              `• *${toSmallCaps('Ejemplo:')}* \`${usedPrefix + command} Documento_Tarea\``;
           return reply(help);
       }
 
-      await reply(`⏳ *${toSmallCaps('Sedang mengubah')}* ${validMediaMsgs.length} *${toSmallCaps('gambar menjadi PDF, tunggu sebentar ya kak~')}*`);
+      await reply(`⏳ *${toSmallCaps('Convirtiendo')}* ${validMediaMsgs.length} *${toSmallCaps('imágenes a PDF, un momento...')}*`);
 
       try {
           const imageBuffers = [];
@@ -149,7 +149,7 @@ const toSmallCaps = (str) => {
           }
 
           if (!imageBuffers.length) {
-              return reply(`❌ *${toSmallCaps('Gagal mengunduh gambar!')}*`);
+              return reply(`❌ *${toSmallCaps('¡No se pudo descargar la imagen!')}*`);
           }
 
           const customFileName = (text || '').trim().replace(/[^a-zA-Z0-9_\- ]/g, '') || `angela_doc_${Date.now()}`;
@@ -177,10 +177,10 @@ const toSmallCaps = (str) => {
               doc.on('end', () => resolve(Buffer.concat(chunks)));
           });
 
-          let caption = `📄 *${toSmallCaps('Berhasil Membuat Dokumen PDF')}*\n\n` +
-              `• 📝 *${toSmallCaps('Nama File:')}* ${finalPdfName}\n` +
-              `• 🖼️ *${toSmallCaps('Total Halaman:')}* ${imageBuffers.length} Halaman\n` +
-              `• 📦 *${toSmallCaps('Ukuran:')}* ${(pdfBuffer.length / 1024).toFixed(2)} KB\n\n` +
+          let caption = `📄 *${toSmallCaps('Documento PDF creado')}*\n\n` +
+              `• 📝 *${toSmallCaps('Nombre del archivo:')}* ${finalPdfName}\n` +
+              `• 🖼️ *${toSmallCaps('Páginas totales:')}* ${imageBuffers.length} páginas\n` +
+              `• 📦 *${toSmallCaps('Tamaño:')}* ${(pdfBuffer.length / 1024).toFixed(2)} KB\n\n` +
               `꒰ © ${global.namebot} ꒱`;
 
           await client.sendMessage(m.chat, {
@@ -191,7 +191,7 @@ const toSmallCaps = (str) => {
           }, { quoted: m });
       } catch (e) {
           console.error('[IMG2PDF ERROR]', e);
-          reply(`❌ *${toSmallCaps('Terjadi kesalahan saat membuat PDF:')}* ${e.message}`);
+          reply(`❌ *${toSmallCaps('Ocurrió un error al crear el PDF:')}* ${e.message}`);
       }
   };
 

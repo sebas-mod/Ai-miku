@@ -33,15 +33,15 @@ const pluginConfig = {
       command
   }) {
       if (!text) {
-          return m.reply(`📌 *Contoh penggunaan:*\n${usedPrefix + command} 103.217.224.106`);
+          return m.reply(`📌 *Ejemplo de uso:*\n${usedPrefix + command} 103.217.224.106`);
       }
 
       const ipTarget = text.trim();
       const isIP = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ipTarget);
-      if (!isIP) return m.reply('❌ *Format IP tidak valid!*');
+      if (!isIP) return m.reply('❌ *¡Formato de IP no válido!*');
 
       try {
-          m.reply('⏳ *Sedang mengambil informasi...*');
+          m.reply('⏳ *Obteniendo información...*');
 
           let ipData = await getIPData(ipTarget);
 

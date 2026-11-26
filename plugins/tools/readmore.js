@@ -25,10 +25,10 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, usedPrefix, command, reply }) {
-    if (!text) return reply(`*ᴄᴏɴᴛᴏʜ:* ${usedPrefix}${command} teks awal|teks selengkapnya`)
+    if (!text) return reply(`*ᴇᴊᴇᴍᴘʟᴏ:* ${usedPrefix}${command} texto inicial|texto completo`)
 
     let [left, ...right] = text.split('|')
-    if (!right.length) return reply(`❌ Gunakan pemisah tanda *|*\n*ᴄᴏɴᴛᴏʜ:* ${usedPrefix}${command} Halo|Ini teks sembunyi`)
+    if (!right.length) return reply(`❌ Usa el separador *|*\n*ᴇᴊᴇᴍᴘʟᴏ:* ${usedPrefix}${command} Hola|Este texto está oculto`)
 
     const readmore = '\u200e'.repeat(4001)
     reply(`${left.trim()}${readmore}\n${right.join('|').trim()}`)

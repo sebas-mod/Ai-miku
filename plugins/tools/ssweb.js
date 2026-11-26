@@ -29,18 +29,18 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, prefix, command }) {
       if (!text) {
-          return reply(`乂 *SSWEB / RECORD WEB*
+          return reply(`乂 *SSWEB / GRABAR WEB*
 
-📌 Screenshot:
+📌 Captura de pantalla:
 ${prefix}${command} https://github.com
 
-🎥 Record video:
+🎥 Grabar vídeo:
 ${prefix}${command} video https://github.com
 
-⚙️ Opsi:
+⚙️ Opciones:
 desktop_fhd / desktop / tablet / mobile
 
-Contoh:
+Ejemplo:
 ${prefix}${command} video https://github.com desktop_fhd 8000`)
       }
 
@@ -53,24 +53,24 @@ ${prefix}${command} video https://github.com desktop_fhd 8000`)
           const device = args[1] || 'desktop_fhd'
           const duration = Number(args[2]) || 8000
 
-          if (!url) return reply('Masukkan URL website-nya.')
+          if (!url) return reply('Escribe la URL de la web.')
           if (!/^https?:\/\//i.test(url)) url = 'https://' + url
 
-          await reply(mode === 'video' ? '⏳ Lagi record website jadi video...' : '⏳ Lagi screenshot website...')
+          await reply(mode === 'video' ? '⏳ Grabando la web en vídeo...' : '⏳ Haciendo la captura de la web...')
 
           if (mode === 'video') {
               const videoUrl = await webRecord(url, device, duration)
               return sock.sendMessage(m.chat, {
                   video: { url: videoUrl },
                   mimetype: 'video/mp4',
-                  caption: `乂 *WEB RECORD*\n\n🌐 URL: ${url}\n📱 Device: ${device}\n⏱️ Duration: ${duration}ms`
+                  caption: `乂 *GRABACIÓN WEB*\n\n🌐 URL: ${url}\n📱 Dispositivo: ${device}\n⏱️ Duración: ${duration} ms`
               }, { quoted: m })
           }
 
           const imageUrl = await webScreenshot(url, device)
           return sock.sendMessage(m.chat, {
               image: { url: imageUrl },
-              caption: `乂 *SS WEB*\n\n🌐 URL: ${url}\n📱 Device: ${device}`
+              caption: `乂 *CAPTURA WEB*\n\n🌐 URL: ${url}\n📱 Dispositivo: ${device}`
           }, { quoted: m })
       } catch (e) {
           reply(e.friendly ? e.message : `Error: ${e.message}`)

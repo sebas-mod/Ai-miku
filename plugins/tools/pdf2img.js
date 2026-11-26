@@ -74,13 +74,13 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
 
       if (!/application\/pdf/i.test(mime)) {
           let help = `*${toSmallCaps('PDF to Image Converter')}*\n\n` +
-              `*${toSmallCaps('Kirim atau reply dokumen PDF dengan perintah')}* *${usedPrefix + command}* ʏᴀ ᴋᴀᴋ~\n\n` +
-              `• 📌 *${toSmallCaps('Fitur:')}* Mengonversi tiap halaman file PDF menjadi Album Foto gambar JPG!\n` +
-              `• *${toSmallCaps('Contoh:')}* Balas dokumen .pdf dengan \`${usedPrefix + command}\``;
+              `*${toSmallCaps('Envía o responde a un documento PDF con el comando')}* *${usedPrefix + command}*\n\n` +
+              `• 📌 *${toSmallCaps('Función:')}* ¡Convierte cada página del PDF en imágenes JPG de un álbum!\n` +
+              `• *${toSmallCaps('Ejemplo:')}* Responde a un documento .pdf con \`${usedPrefix + command}\``;
           return reply(help);
       }
 
-      await reply(`⏳ *${toSmallCaps('Sedang mengekstrak halaman PDF menjadi gambar album, tunggu sebentar ya kak~')}*`);
+      await reply(`⏳ *${toSmallCaps('Extrayendo las páginas del PDF como imágenes, un momento...')}*`);
 
       const id = Date.now() + '_' + Math.random().toString(36).substring(7);
       const tempPdfPath = path.join('/tmp', `pdf_${id}.pdf`);
@@ -113,7 +113,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
 
           if (!files.length) {
               if (fs.existsSync(tempPdfPath)) fs.unlinkSync(tempPdfPath);
-              return reply(`❌ *${toSmallCaps('Tidak ada halaman yang berhasil diekstrak dari PDF!')}*`);
+              return reply(`❌ *${toSmallCaps('¡No se pudo extraer ninguna página del PDF!')}*`);
           }
 
           const totalPages = files.length;

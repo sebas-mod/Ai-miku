@@ -30,7 +30,7 @@ const pluginConfig = {
   async function handler(m, { reply }) {
       await reply(KODE_BAHASA)
       await sleep(2500)
-      await reply('Kode bahasa ini dipakai untuk menentukan terjemahan dari bahasa apa ke bahasa apa. Contoh: id|en berarti dari Indonesia ke Inggris.')
+      await reply('Este código de idioma sirve para indicar de qué idioma a qué idioma se traduce. Ejemplo: id|en significa de indonesio a inglés.')
   }
 
 export { pluginConfig as config, handler }

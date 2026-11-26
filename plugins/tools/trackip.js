@@ -32,14 +32,14 @@ const pluginConfig = {
       usedPrefix,
       command
   }) {
-      if (!text) return m.reply(`📌 Contoh penggunaan:\n${usedPrefix + command} 103.217.224.106`);
+      if (!text) return m.reply(`📌 Ejemplo de uso:\n${usedPrefix + command} 103.217.224.106`);
 
       const ipTarget = text.trim();
       const isIP = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ipTarget);
-      if (!isIP) return m.reply('❌ Format IP tidak valid!');
+      if (!isIP) return m.reply('❌ ¡Formato de IP no válido!');
 
       try {
-          m.reply('⏳ Mengambil data dari 3 server...');
+          m.reply('⏳ Obteniendo datos de 3 servidores...');
 
           const [ipwho, ipapi, ipapi2] = await Promise.allSettled([
               axios.get(`https://ipwho.is/${ipTarget}`, {
@@ -84,7 +84,7 @@ const pluginConfig = {
               emoji_unicode: d1.flag?.emoji_unicode || '-'
           };
 
-          if (!result.ip) throw new Error('Gagal mengambil data dari semua server');
+          if (!result.ip) throw new Error('No se pudieron obtener datos de ningún servidor');
 
           let mapLink = `https://www.openstreetmap.org/?mlat=${result.latitude}&mlon=${result.longitude}&zoom=12`;
           let mapThumbnail = `https://static-maps.yandex.ru/1.x/?ll=${result.longitude},${result.latitude}&size=450,450&z=12&l=map&pt=${result.longitude},${result.latitude},pm2rdl`;
@@ -147,7 +147,7 @@ const pluginConfig = {
           }
       } catch (err) {
           console.error(err);
-          m.reply(`❌ Terjadi kesalahan: ${err.message}`);
+          m.reply(`❌ Ocurrió un error: ${err.message}`);
       }
   };
 

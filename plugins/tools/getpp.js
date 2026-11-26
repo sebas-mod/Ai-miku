@@ -73,7 +73,7 @@ const pluginConfig = {
                   album: ok.map(r => ({ image: r.buf, caption: cap(r), mentions: [r.jid] }))
               }, { quoted: m })
           } catch (e) {
-              console.error('[getpp] album gagal, kirim satu-satu:', e?.message || e)
+              console.error('[getpp] falló el álbum, enviando uno a uno:', e?.message || e)
               for (const r of ok) {
                   await sock.sendMessage(chat, { image: r.buf, caption: cap(r), mentions: [r.jid] }, { quoted: m }).catch(() => {})
               }

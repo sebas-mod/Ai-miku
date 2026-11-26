@@ -218,7 +218,7 @@ const pluginConfig = {
       const { depan, angka: noAngka, belakang: seriBelakang } = parsePlateInput(depanOrFull, angka, belakang)
 
       if (!SAMSAT_DATABASE[depan]) {
-          throw new Error(`Kode depan "${depan}" tidak ditemukan dalam database wilayah!`)
+          throw new Error(`¡El código inicial "${depan}" no está en la base de datos de zonas!`)
     }
 
       const controller = new AbortController()
@@ -282,7 +282,7 @@ const pluginConfig = {
 
   async function handler(m, { text, prefix, command, reply }) {
       const input = String(text || m.quoted?.text || '').trim()
-      if (!input) return reply(`*Contoh:*\n${prefix || '.'}${command} B 1234 XYZ\n${prefix || '.'}${command} D 5678 AB`)
+      if (!input) return reply(`*Ejemplo:*\n${prefix || '.'}${command} B 1234 XYZ\n${prefix || '.'}${command} D 5678 AB`)
 
       try {
           await m.react?.('⏳')
@@ -291,14 +291,14 @@ const pluginConfig = {
 
           const extra = flattenFirestore(r.firestore_data)
           return reply(
-              `🚘 *INFO PLAT & SAMSAT*\n\n` +
-              `• Plat     : ${r.plat_nomor}\n` +
-              `• Provinsi : ${r.provinsi}\n` +
-              `• Daerah   : ${r.daerah}\n` +
-              `• Samsat   : ${r.samsat}\n` +
-              `• Alamat   : ${r.alamat}` +
-              (extra.length ? `\n\n*Data tambahan*\n${extra.join('\n')}` : '') +
-              `\n\n_Info wilayah berdasarkan kode plat, bukan lokasi pemilik saat ini._`
+              `🚘 *INFO DE MATRÍCULA Y SAMSAT*\n\n` +
+              `• Matrícula : ${r.plat_nomor}\n` +
+              `• Provincia : ${r.provinsi}\n` +
+              `• Zona      : ${r.daerah}\n` +
+              `• Samsat    : ${r.samsat}\n` +
+              `• Dirección : ${r.alamat}` +
+              (extra.length ? `\n\n*Datos adicionales*\n${extra.join('\n')}` : '') +
+              `\n\n_La zona se deduce del código de la matrícula, no de dónde está el dueño ahora._`
           )
       } catch (e) {
           console.error('[SAMSAT]', e)

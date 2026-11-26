@@ -16,7 +16,7 @@ import FormData from 'form-data'
   async function getPublicToken() {
     const res = await axios.get('https://www.ilovepdf.com/pdf_to_jpg', { headers: { 'User-Agent': UA }, timeout: 30000 })
     const match = String(res.data).match(/"token":"([^"]+)"/)
-    if (!match) throw new Error('Token tidak ditemukan')
+    if (!match) throw new Error('Token no encontrado')
     return match[1]
   }
 
@@ -73,7 +73,7 @@ import FormData from 'form-data'
   const pluginConfig = {
     name: 'pdftojpg',
     category: "tools",
-    description: 'Ubah halaman PDF jadi gambar JPG',
+    description: 'Convierte páginas PDF en imágenes JPG',
     usage: '.pdftojpg [dpi: 72-300] (reply PDF)',
     example: '.pdftojpg 150',
     isOwner: false,
@@ -91,7 +91,7 @@ import FormData from 'form-data'
 
     if (!/pdf/i.test(mime)) {
       m.react('❌')
-      return m.reply(`📌 Reply atau kirim file *PDF* dengan caption *${m.prefix + m.command}*\nOpsional DPI: *${m.prefix + m.command} 300*`)
+      return m.reply(`📌 Responde o envía un archivo *PDF* con el texto *${m.prefix + m.command}*\nDPI opcional: *${m.prefix + m.command} 300*`)
     }
 
     const dpiArg = parseInt(String(m.text || '').trim(), 10)
@@ -100,7 +100,7 @@ import FormData from 'form-data'
     m.react('🕕')
     try {
       const pdf = await q.download()
-      if (!pdf?.length) throw new Error('Gagal mengunduh file PDF')
+      if (!pdf?.length) throw new Error('No se pudo descargar el archivo PDF')
 
       const name = String(q.fileName || q.msg?.fileName || 'document.pdf')
       const result = await pdfToJpg(pdf, /\.pdf$/i.test(name) ? name : name + '.pdf', dpi)

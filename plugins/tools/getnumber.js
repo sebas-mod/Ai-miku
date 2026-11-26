@@ -39,9 +39,9 @@ const pluginConfig = {
           number = m.sender.replace(/[^0-9]/g, '');
       }
 
-      if (!number) return m.reply(`*ᴄᴏɴᴛᴏʜ:* \`${usedPrefix + command} @tag/reply\``);
+      if (!number) return m.reply(`*ᴇᴊᴇᴍᴘʟᴏ:* \`${usedPrefix + command} @mención/respuesta\``);
 
-      return m.reply(`📋 *Nomor:* \`${number}\``);
+      return m.reply(`📋 *Número:* \`${number}\``);
   };
 
 export { pluginConfig as config, handler }

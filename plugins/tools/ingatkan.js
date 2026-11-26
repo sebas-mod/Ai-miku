@@ -78,19 +78,19 @@ const pluginConfig = {
       }
 
       if (due === null) {
-          return example('30m minum obat   |   14:30 meeting   |   besok 08:00 olahraga   |   1h30m rapat')
+          return example('30m tomar medicina   |   14:30 reunion   |   besok 08:00 deporte   |   1h30m reunion')
       }
-      if (due - now < MIN_MS) return reply('Waktunya terlalu dekat (minimal 10 detik).')
-      if (due - now > MAX_MS) return reply('Waktunya terlalu jauh (maksimal 1 tahun).')
+      if (due - now < MIN_MS) return reply('Falta muy poco tiempo (mínimo 10 segundos).')
+      if (due - now > MAX_MS) return reply('El tiempo es demasiado lejano (máximo 1 año).')
 
       const body = tokens.join(' ').trim() || String(m.quoted?.text || '').trim()
-      if (!body) return reply(`Isi pengingatnya apa?\nContoh: ${prefix}${command} 30m minum obat\natau reply pesan lalu ketik ${prefix}${command} 30m`)
+      if (!body) return reply(`¿Qué quieres que te recuerde?\nEjemplo: ${prefix}${command} 30m tomar medicina\no responde a un mensaje y escribe ${prefix}${command} 30m`)
       if (listReminders().filter(r => mine(r, sender)).length >= MAX_PER_USER) {
-          return reply(`Pengingat aktifmu sudah ${MAX_PER_USER} (batas maksimal). Hapus dulu lewat ${prefix}delingat`)
+          return reply(`Ya tienes ${MAX_PER_USER} recordatorios activos (el máximo). Elimina alguno con ${prefix}delingat`)
       }
 
       addReminder({ chat: jid, sender, text: body.slice(0, 500), due })
-      return reply(`⏰ Siap! Aku ingatkan:\n"${body.slice(0, 200)}"\n\nPada *${formatWib(due)}* (${formatRemaining(due)} lagi)`)
+      return reply(`⏰ ¡Listo! Te avisaré:\n"${body.slice(0, 200)}"\n\nEl *${formatWib(due)}* (en ${formatRemaining(due)})`)
   }
 
 export { pluginConfig as config, handler }

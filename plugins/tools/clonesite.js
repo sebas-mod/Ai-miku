@@ -464,25 +464,25 @@ const pluginConfig = {
 
       const { url: rawUrl, opts } = parseInput(input, isOwner)
       const parsed = netguard.parseUrl(rawUrl)
-      if (!parsed) return reply('❌ Link tidak valid atau mengarah ke alamat internal.')
+      if (!parsed) return reply('❌ Enlace no válido o que apunta a una dirección interna.')
 
       if (!isOwner) {
           const left = (cooldowns.get(m.sender) || 0) - Date.now()
           if (left > 0) return reply(`⏳ Tunggu ${Math.ceil(left / 1000)} detik lagi sebelum clone website berikutnya.`)
       }
-      if (running >= MAX_RUNNING) return reply('⏳ Bot sedang memproses clone lain. Coba lagi sebentar.')
+      if (running >= MAX_RUNNING) return reply('⏳ El bot está clonando otra web. Inténtalo de nuevo en un momento.')
 
       running++
       if (!isOwner) cooldowns.set(m.sender, Date.now() + COOLDOWN_MS)
       try {
           await reactTo(sock, m, '⏳')
-          await reply(`⏳ Mengambil source *${parsed.hostname}* ...\nDepth ${opts.depth} • maks ${opts.pages} halaman • maks ${opts.assets} file`)
+          await reply(`⏳ Descargando el código de *${parsed.hostname}* ...\nProfundidad ${opts.depth} • máx. ${opts.pages} páginas • máx. ${opts.assets} archivos`)
 
           const t0 = Date.now()
           const result = await crawl(parsed.href, opts, t0 + DEADLINE_MS)
           const { store, errors, skipped, recovered } = result
 
-          if (!store.size) throw new Error(errors[0] ? `tidak ada file yang berhasil diambil (${errors[0].error || 'HTTP ' + errors[0].status})` : 'tidak ada file yang berhasil diambil')
+          if (!store.size) throw new Error(errors[0] ? `no se pudo descargar ningún archivo (${errors[0].error || 'HTTP ' + errors[0].status})` : 'no se pudo descargar ningún archivo')
 
           const files = [...store.values()].map(v => v.meta).sort((a, b) => a.path.localeCompare(b.path))
           const byType = {}

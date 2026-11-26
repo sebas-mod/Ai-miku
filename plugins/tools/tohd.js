@@ -34,19 +34,19 @@ const pluginConfig = {
   const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
 
   async function handler(m, { sock, reply, example }) {
-      if (!m.quoted) return example('dengan reply video atau dokumen (foto/video)')
+      if (!m.quoted) return example('respondiendo a un vídeo o documento (foto/vídeo)')
 
       const q = m.quoted
       const isVideo = q.mtype === 'videoMessage'
 
       if (q.mtype !== 'documentMessage' && !isVideo) {
-          return reply(' Reply video, atau file foto/video yang dikirim dalam bentuk *Dokumen*!')
+          return reply(' ¡Responde a un vídeo, o envía una foto/vídeo como *Documento*!')
       }
 
       const mime = (q.msg || q).mimetype || (isVideo ? 'video/mp4' : '')
 
       if (!mime.includes('image') && !mime.includes('video')) {
-          return reply(' Dokumen yang direply bukan format foto atau video!')
+          return reply(' ¡El documento al que respondes no es una foto ni un vídeo!')
       }
 
       await react(sock, m, '⏳')
@@ -87,7 +87,7 @@ const pluginConfig = {
       } catch (e) {
           console.error('[SWHD ERROR]', e)
           await react(sock, m, '')
-          reply(' Terjadi kesalahan saat memproses dokumen.')
+          reply(' Ocurrió un error al procesar el documento.')
       } finally {
           for (const f of [tempIn, tempOut]) fs.promises.unlink(f).catch(() => null)
       }

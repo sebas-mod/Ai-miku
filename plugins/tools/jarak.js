@@ -29,19 +29,19 @@ const pluginConfig = {
   async function handler(m, { text }) {
     if (!text || !text.includes('|')) {
       return m.reply(
-        `📍 *ESTIMASI JARAK KOTA*\n\n` +
-        `Format penggunaan:\n` +
-        `• *.jarak asal | tujuan*\n\n` +
-        `Contoh:\n` +
+        `📍 *DISTANCIA ENTRE CIUDADES*\n\n` +
+        `Modo de uso:\n` +
+        `• *.jarak origen | destino*\n\n` +
+        `Ejemplo:\n` +
         `• *.jarak Jakarta | Bandung*\n` +
         `• *.jarak Surabaya | Yogyakarta*`
       )
     }
 
     const [from, to] = text.split('|').map(s => s.trim())
-    if (!from || !to) return m.reply('❌ Masukkan nama kota asal dan kota tujuan dengan benar!')
+    if (!from || !to) return m.reply('❌ ¡Escribe bien la ciudad de origen y la de destino!')
 
-    await m.reply(`⏳ Menghitung estimasi rute dari *${from}* ke *${to}*...`)
+    await m.reply(`⏳ Calculando la ruta de *${from}* a *${to}*...`)
 
     try {
       const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(from)}`
@@ -53,7 +53,7 @@ const pluginConfig = {
       ])
 
       if (!res1.data?.[0] || !res2.data?.[0]) {
-        return m.reply('❌ Salah satu atau kedua kota tidak ditemukan di peta!')
+        return m.reply('❌ ¡No se encontró una de las dos ciudades en el mapa!')
       }
 
       const lat1 = parseFloat(res1.data[0].lat)

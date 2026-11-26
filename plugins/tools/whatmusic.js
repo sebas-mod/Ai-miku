@@ -30,19 +30,19 @@ const pluginConfig = {
   async function handler(m, { reply, prefix, command }) {
       const media = pickMedia(m)
       if (!media || !/audio|video/.test(media.mime)) {
-          return reply(`Kirim atau reply audio/video dengan perintah *${prefix}${command}*`)
+          return reply(`Envía o responde a un audio/vídeo con el comando *${prefix}${command}*`)
       }
 
       try {
-          await reply('🔍 Mendeteksi musik...')
+          await reply('🔍 Detectando la música...')
           const track = await identifyAudio(await media.download())
-          if (!track) return reply('❌ Lagu tidak ditemukan / tidak terdeteksi.')
+          if (!track) return reply('❌ No se encontró / no se detectó la canción.')
 
-          const out = `— *SONG IDENTIFIED* —\n\n` +
-              `🎵 *Judul:* ${track.title || '-'}\n` +
-              `👤 *Artis:* ${track.artist || '-'}\n` +
-              `💿 *Album:* ${track.album || '-'}\n` +
-              `📅 *Rilis:* ${track.release_date || '-'}\n` +
+          const out = `— *CANCIÓN IDENTIFICADA* —\n\n` +
+              `🎵 *Título:* ${track.title || '-'}\n` +
+              `👤 *Artista:* ${track.artist || '-'}\n` +
+              `💿 *Álbum:* ${track.album || '-'}\n` +
+              `📅 *Lanzamiento:* ${track.release_date || '-'}\n` +
               (track.spotify?.external_urls?.spotify ? `\n🟢 Spotify: ${track.spotify.external_urls.spotify}` : '')
 
           await reply(out.trim())

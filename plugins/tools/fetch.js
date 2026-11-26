@@ -155,7 +155,7 @@ const pluginConfig = {
       }
 
       let target
-      try { target = new URL(input) } catch { return m.reply('URL tidak valid.') }
+      try { target = new URL(input) } catch { return m.reply('URL no válida.') }
 
       let res, url
       try {

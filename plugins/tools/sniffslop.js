@@ -58,12 +58,12 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, prefix, command, reply }) {
       let url = String(text || m.quoted?.text || '').trim().split(/\s+/)[0]
-      if (!url) return reply(`Masukkan link website.\n\nContoh:\n${prefix}${command} https://contoh.com`)
+      if (!url) return reply(`Escribe el enlace de una web.\n\nEjemplo:\n${prefix}${command} https://ejemplo.com`)
       if (!/^https?:\/\//i.test(url)) url = `https://${url}`
       try {
           new URL(url)
       } catch {
-          return reply('❌ Link tidak valid.')
+          return reply('❌ Enlace no válido.')
       }
 
       try {
@@ -76,7 +76,7 @@ const pluginConfig = {
       } catch (e) {
           await reactTo(sock, m, '❌')
           const d = e.response?.data
-          reply(`❌ Gagal scan website: ${d?.message || (typeof d === 'string' ? d.slice(0, 200) : e.message)}`)
+          reply(`❌ No se pudo escanear la web: ${d?.message || (typeof d === 'string' ? d.slice(0, 200) : e.message)}`)
       }
   }
 

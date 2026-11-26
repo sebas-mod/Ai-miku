@@ -65,7 +65,7 @@ const pluginConfig = {
       '-acodec', 'pcm_s16le', 'pipe:1',
     ]);
     if (buf.length < SAMPLE_RATE * MIN_WINDOW * 2) {
-      throw new Error('audio terlalu pendek setelah decode (≥3 detik)');
+      throw new Error('el audio es demasiado corto tras decodificarlo (≥3 segundos)');
     }
     return buf;
   }
@@ -477,7 +477,7 @@ const pluginConfig = {
     const urlInput = String(text || '').trim().match(/https?:\/\/\S+/i)?.[0];
 
     if (!urlInput && !/audio|video/.test(mime) && !/audio|video/i.test(String(q.mtype || ''))) {
-      return m.reply(`🎵 *Shazam*\n\nReply audio / VN / video dengan *${usedPrefix || '.'}${command}*\natau kirim link: ${usedPrefix || '.'}${command} https://.../lagu.mp3`);
+      return m.reply(`🎵 *Shazam*\n\nResponde a un audio / nota de voz / vídeo con *${usedPrefix || '.'}${command}*\no envía un enlace: ${usedPrefix || '.'}${command} https://.../cancion.mp3`);
     }
 
     await m.react('🎧');
@@ -497,7 +497,7 @@ const pluginConfig = {
           created = true;
         } else {
           await m.react('❌');
-          return m.reply('❌ Gagal mengunduh media. Reply audio/VN/video-nya.');
+          return m.reply('❌ No se pudo descargar el archivo. Responde al audio/nota de voz/vídeo.');
         }
         target = filePath;
       }
@@ -506,7 +506,7 @@ const pluginConfig = {
 
       if (!res.is_matched || !res.summary) {
         await m.react('❌');
-        return m.reply('❌ Lagu tidak ditemukan. Coba potongan audio yang lebih jelas (min. 3 detik, tanpa banyak noise).');
+        return m.reply('❌ No se encontró la canción. Prueba con un fragmento de audio más claro (mín. 3 segundos, sin mucho ruido).');
       }
 
       const s = res.summary;
@@ -527,7 +527,7 @@ const pluginConfig = {
     } catch (e) {
       console.log(e);
       await m.react('❌');
-      m.reply(`❌ Gagal: ${e?.message || e}`);
+      m.reply(`❌ Error: ${e?.message || e}`);
     } finally {
       if (created && filePath) unlink(filePath).catch(() => {});
     }

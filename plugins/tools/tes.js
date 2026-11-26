@@ -25,7 +25,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, usedPrefix, command }) {
-    await m.reply(`${global.namebot} aktif! [${usedPrefix}${command}]`)
+    await m.reply(`¡${global.namebot} está activo! [${usedPrefix}${command}]`)
   }
 
   handler.botadmin = false

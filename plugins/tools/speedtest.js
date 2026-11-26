@@ -30,11 +30,11 @@ const util = (__m => __m.default ?? __m)((await import('util')))
   const execPromise = util.promisify(exec);
 
   async function handler(m, { sock, reply }) {
-      await reply('⚡ Running speedtest, ᴍᴏʜᴏɴ ᴛᴜɴɢɢᴜ...');
+      await reply('⚡ Ejecutando el test de velocidad, espera...');
       try {
           const { stdout, stderr } = await execPromise('speedtest-cli --simple');
           if (stdout) {
-              await sock.sendMessage(m.chat, { text: `🚀 *🚀 *ʜᴀsɪʟ sᴘᴇᴇᴅᴛᴇsᴛ:**\n\n${stdout.trim()}` }, { quoted: m });
+              await sock.sendMessage(m.chat, { text: `🚀 *🚀 *ʀᴇsᴜʟᴛᴀᴅᴏ ᴅᴇʟ ᴛᴇsᴛ:**\n\n${stdout.trim()}` }, { quoted: m });
           } else if (stderr) {
               await sock.sendMessage(m.chat, { text: `⚠️ *Speedtest Error:*\n${stderr}` }, { quoted: m });
           }

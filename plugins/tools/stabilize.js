@@ -47,9 +47,9 @@ const { promisify } = (await import('node:util'))
       const h = Math.floor(sec / 3600);
       const m = Math.floor((sec % 3600) / 60);
       const s = sec % 60;
-      if (h > 0) return `${h} jam ${m} mnt ${s} dtk`;
+      if (h > 0) return `${h} h ${m} min ${s} s`;
       if (m > 0) return `${m} mnt ${s} dtk`;
-      return `${s} detik`;
+      return `${s} segundos`;
   };
 
   async function handler(m, { sock, conn, args, text, usedPrefix, command, reply }) {
@@ -59,16 +59,16 @@ const { promisify } = (await import('node:util'))
 
       if (!/video|gif/.test(mime)) {
           return reply(
-              `🎬 *VIDEO STABILIZER (NATURAL GIMBAL)*\n\n` +
-              `Balas atau kirim video/GIF dengan caption:\n` +
+              `🎬 *ESTABILIZADOR DE VÍDEO (GIMBAL NATURAL)*\n\n` +
+              `Responde o envía un vídeo/GIF con el texto:\n` +
               `• \`${usedPrefix + command}\`\n\n` +
-              `⚙️ *Pilihan Mode:*\n` +
-              `• \`${usedPrefix + command} low\` (Halus/ringan, pertahankan gerak alami)\n` +
-              `• \`${usedPrefix + command} normal\` (Sedang / default gimbal natural)\n` +
-              `• \`${usedPrefix + command} high\` (Kuat, untuk video lari/goyang kencang)\n` +
-              `• \`${usedPrefix + command} tripod\` (Mode kamera diam / static view)\n` +
-              `• \`${usedPrefix + command} <angka>\` (Custom smoothing 3–30, contoh: \`${usedPrefix + command} 12\`)\n\n` +
-              `_Menggunakan gaussian smoothing natural tanpa distorsi agar video tidak aneh/mabuk._ 🌿`
+              `⚙️ *Modos:*\n` +
+              `• \`${usedPrefix + command} low\` (suave/ligero, mantiene el movimiento natural)\n` +
+              `• \`${usedPrefix + command} normal\` (medio / gimbal natural por defecto)\n` +
+              `• \`${usedPrefix + command} high\` (fuerte, para vídeos corriendo o con mucho temblor)\n` +
+              `• \`${usedPrefix + command} tripod\` (modo cámara fija / vista estática)\n` +
+              `• \`${usedPrefix + command} <número>\` (suavizado personalizado 3–30, ejemplo: \`${usedPrefix + command} 12\`)\n\n` +
+              `_Usa un suavizado gaussiano natural sin distorsión para que el vídeo no quede raro ni maree._ 🌿`
           );
       }
 
@@ -126,11 +126,11 @@ const { promisify } = (await import('node:util'))
           }
 
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ Gagal mendownload media video. Pastikan video dapat diputar.');
+              return reply('❌ No se pudo descargar el vídeo. Comprueba que se pueda reproducir.');
           }
 
           if (media.length > 50 * 1024 * 1024) {
-              return reply('❌ Ukuran video terlalu besar! Maksimal ukuran adalah 50 MB.');
+              return reply('❌ ¡El vídeo es demasiado grande! El máximo es 50 MB.');
           }
 
           await fs.promises.writeFile(tmpIn, media);
