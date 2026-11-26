@@ -82,19 +82,19 @@ export function formatFamilyBoard(session) {
       const tag = solved.split("@")[0];
       return `│ ${idx + 1}. ✅ *${ans}* (@${tag})`;
     }
-    return `│ ${idx + 1}. ⬜ _(${ans.length} huruf)_`;
+    return `│ ${idx + 1}. ⬜ _(${ans.length} letras)_`;
   });
 
   const left = session.answers.length - Object.keys(session.solved).length;
   return (
     `╭─❖「 👨‍👩‍👧‍👦 *FAMILY 100 — ELYSIA* 」\n` +
-    `│ ❓ *Soal:* ${session.question}\n` +
-    `├───〔 *PAPAN JAWABAN* 〕\n` +
+    `│ ❓ *Pregunta:* ${session.question}\n` +
+    `├───〔 *TABLERO DE RESPUESTAS* 〕\n` +
     `${rows.join("\n")}\n` +
-    `├───〔 *INFO SESI* 〕\n` +
-    `│ 🎯 Tersisa : *${left}* jawaban\n` +
-    `│ 💰 Hadiah  : *+${session.rewardKoin.toLocaleString("id-ID")} Koin* / jawaban\n` +
-    `│ 💡 Bantuan : \`.hint\`  |  🏳️ \`.nyerah\`\n` +
+    `├───〔 *INFO DE LA PARTIDA* 〕\n` +
+    `│ 🎯 Restantes : *${left}* respuestas\n` +
+    `│ 💰 Premio    : *+${session.rewardKoin.toLocaleString("es-ES")} monedas* por respuesta\n` +
+    `│ 💡 Ayuda     : \`.hint\`  |  🏳️ \`.nyerah\`\n` +
     `╰─────────────────────❖`
   );
 }
@@ -120,8 +120,8 @@ export async function startTebakSession(
   const existing = sessions.get(m.chat);
   if (existing) {
     return m.reply(
-      `⏳ Masih ada sesi *${existing.title}* yang aktif di chat ini!\n` +
-        `> Jawab langsung di chat, atau ketik \`${m.prefix}hint\` / \`${m.prefix}nyerah\`.`
+      `⏳ ¡Todavía hay una partida de *${existing.title}* activa en este chat!\n` +
+        `> Responde directamente en el chat, o escribe \`${m.prefix}hint\` / \`${m.prefix}nyerah\`.`
     );
   }
 
@@ -152,16 +152,16 @@ export async function startTebakSession(
 
     const reveal = isMulti
       ? cur.answers.map((a, i) => `│ ${i + 1}. *${a}*`).join("\n")
-      : `│ 🔑 Jawaban: *${cur.answer}*` +
+      : `│ 🔑 Respuesta: *${cur.answer}*` +
         (cur.explanation ? `\n│ 📝 _${cur.explanation}_` : "");
 
     await sock
       .sendMessage(m.chat, {
         text:
-          `╭─❖「 ⏰ *WAKTU HABIS — ${cur.title.toUpperCase()}* 」\n` +
+          `╭─❖「 ⏰ *¡SE ACABÓ EL TIEMPO — ${cur.title.toUpperCase()}* 」\n` +
           `${reveal}\n` +
           `╰─────────────────────❖\n` +
-          `_Ketik \`.${cur.gameId}\` untuk main ronde berikutnya!_`,
+          `_Escribe \`.${cur.gameId}\` para jugar la siguiente ronda._`,
       })
       .catch(() => {});
   }, durationSec * 1000);
@@ -172,15 +172,15 @@ export async function startTebakSession(
   const caption = isMulti
     ? formatFamilyBoard(session)
     : `╭─❖「 ${emoji} *${title.toUpperCase()}* 」\n` +
-      `│ ❓ *Soal:*\n` +
+      `│ ❓ *Pregunta:*\n` +
       `│ ${question}\n` +
-      (clueText ? `│ 🏷️ *Petunjuk:* ${clueText}\n` : "") +
-      `├───〔 *DETAIL RONDE* 〕\n` +
-      `│ ⏱️ Waktu   : *${durationSec} detik*\n` +
-      `│ 💰 Hadiah  : *+${rewardKoin.toLocaleString("id-ID")} Koin* & *+${rewardExp} EXP*\n` +
-      `│ 💡 Bantuan : \`.hint\`  |  🏳️ \`.nyerah\`\n` +
+      (clueText ? `│ 🏷️ *Pista:* ${clueText}\n` : "") +
+      `├───〔 *DETALLES DE LA RONDA* 〕\n` +
+      `│ ⏱️ Tiempo   : *${durationSec} segundos*\n` +
+      `│ 💰 Premio   : *+${rewardKoin.toLocaleString("es-ES")} monedas* y *+${rewardExp} EXP*\n` +
+      `│ 💡 Ayuda    : \`.hint\`  |  🏳️ \`.nyerah\`\n` +
       `╰─────────────────────❖\n` +
-      `_Ketik jawabanmu langsung di chat ini!_`;
+      `_¡Escribe tu respuesta directamente en el chat!_`;
 
   if (imageUrl) {
     try {
@@ -199,10 +199,10 @@ export async function startTebakSession(
 export async function giveTebakHint(m) {
   const s = sessions.get(m.chat);
   if (!s) {
-    return m.reply("❌ Tidak ada sesi tebak-tebakan yang sedang berlangsung di chat ini.");
+    return m.reply("❌ No hay ninguna partida de adivinanzas en marcha en este chat.");
   }
   if (s.hintsUsed >= 2) {
-    return m.reply("⚠️ Batas bantuan (2x per ronde) sudah terpakai!");
+    return m.reply("⚠️ ¡Ya usaste las pistas de esta ronda (2 por ronda)!");
   }
   s.hintsUsed += 1;
 
@@ -212,32 +212,32 @@ export async function giveTebakHint(m) {
     const masked = makeMask(s.answers[unsolvedIdx], s.hintsUsed);
     return m.reply(
       `💡 *HINT #${s.hintsUsed} (${s.title})*\n` +
-        `> Jawaban nomor *${unsolvedIdx + 1}*: \`${masked}\``
+        `> Respuesta número *${unsolvedIdx + 1}*: \`${masked}\``
     );
   }
 
   const masked = makeMask(s.answer, s.hintsUsed);
   return m.reply(
     `💡 *HINT #${s.hintsUsed} (${s.title})*\n` +
-      `> Pola huruf: \`${masked}\``
+      `> Patrón de letras: \`${masked}\``
   );
 }
 
 export async function surrenderTebak(m) {
   const s = sessions.get(m.chat);
   if (!s) {
-    return m.reply("❌ Tidak ada sesi tebak-tebakan yang aktif di chat ini.");
+    return m.reply("❌ No hay ninguna partida de adivinanzas activa en este chat.");
   }
   clearTebak(m.chat);
 
   const reveal =
     s.answers.length > 0
       ? s.answers.map((a, i) => `│ ${i + 1}. *${a}*`).join("\n")
-      : `│ 🔑 Jawaban: *${s.answer}*` +
+      : `│ 🔑 Respuesta: *${s.answer}*` +
         (s.explanation ? `\n│ 📝 _${s.explanation}_` : "");
 
   return m.reply(
-    `╭─❖「 🏳️ *MENYERAH — ${s.title.toUpperCase()}* 」\n` +
+    `╭─❖「 🏳️ *RENDICIÓN — ${s.title.toUpperCase()}* 」\n` +
       `${reveal}\n` +
       `╰─────────────────────❖`
   );
@@ -283,8 +283,8 @@ export async function handleTebakAnswer(m, sock) {
         m.chat,
         {
           text:
-            `🎉 *SEMUA JAWABAN TERTEBAK!*\n` +
-            `> +${s.rewardKoin.toLocaleString("id-ID")} Koin untuk @${m.sender.split("@")[0]}\n\n` +
+            `🎉 *¡TODAS LAS RESPUESTAS ADIVINADAS!*\n` +
+            `> +${s.rewardKoin.toLocaleString("es-ES")} monedas para @${m.sender.split("@")[0]}\n\n` +
             formatFamilyBoard(s),
           mentions,
         },
@@ -295,7 +295,7 @@ export async function handleTebakAnswer(m, sock) {
         m.chat,
         {
           text:
-            `✅ *BENAR!* (+${s.rewardKoin.toLocaleString("id-ID")} Koin)\n\n` +
+            `✅ *¡CORRECTO!* (+${s.rewardKoin.toLocaleString("es-ES")} monedas)\n\n` +
             formatFamilyBoard(s),
           mentions,
         },
@@ -324,14 +324,14 @@ export async function handleTebakAnswer(m, sock) {
 
     await m.react?.("🎉").catch(() => {});
     await m.reply(
-      `╭─❖「 🎉 *JAWABAN BENAR!* 」\n` +
-        `│ 👤 Penjawab : @${m.sender.split("@")[0]}\n` +
-        `│ 🔑 Jawaban  : *${s.answer}*\n` +
-        (s.explanation ? `│ 📝 Info     : _${s.explanation}_\n` : "") +
-        `├───〔 *HADIAH* 〕\n` +
-        `│ 💰 Koin     : *+${totalKoin.toLocaleString("id-ID")}*` +
-        (streakBonus ? ` _(Bonus Streak x${newStreak}: +${streakBonus})_` : "") +
-        `\n│ ✨ EXP      : *+${s.rewardExp}*\n` +
+      `╭─❖「 🎉 *¡RESPUESTA CORRECTA!* 」\n` +
+        `│ 👤 Acertó    : @${m.sender.split("@")[0]}\n` +
+        `│ 🔑 Respuesta : *${s.answer}*\n` +
+        (s.explanation ? `│ 📝 Info      : _${s.explanation}_\n` : "") +
+        `├───〔 *PREMIO* 〕\n` +
+        `│ 💰 Monedas   : *+${totalKoin.toLocaleString("es-ES")}*` +
+        (streakBonus ? ` _(Racha x${newStreak}: +${streakBonus})_` : "") +
+        `\n│ ✨ EXP       : *+${s.rewardExp}*\n` +
         `╰─────────────────────❖`,
       { mentions: [m.sender] }
     );
@@ -340,7 +340,7 @@ export async function handleTebakAnswer(m, sock) {
 
   // Hampir benar (1-2 huruf meleset)
   if (target.length >= 4 && dist <= 2) {
-    await m.reply(`🔥 *Hampir benar!* Cek lagi ejaan atau susunan hurufnya ya.`);
+    await m.reply(`🔥 *¡Casi!* Revisa la ortografía o el orden de las letras.`);
     return true;
   }
 

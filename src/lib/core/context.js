@@ -91,7 +91,7 @@ async function sendWinnerPreview(sock, jid, text, title, body, options) {
     {
       caption: text,
       title: title || "🏆 WINNER!",
-      description: body || "Selamat kamu menang!",
+      description: body || "¡Felicidades, has ganado!",
       jpegThumbnail: await getJpegThumb("allmenu"),
       previewType: 0,
     },

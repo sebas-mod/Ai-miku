@@ -701,7 +701,7 @@ const ElysiaEngine = (() => {
     saveDB()
     if (newLvl > oldLvl) {
       await sock.sendMessage(m.chat, {
-        text: `🎊 *LEVEL UP!* 🎊\n👤 @${jidNumber(m.sender)} naik dari *Lv.${oldLvl}* ➔ *Lv.${newLvl}*!`,
+        text: `🎊 *¡SUBIÓ DE NIVEL!* 🎊\n👤 @${jidNumber(m.sender)} pasó de *Nv.${oldLvl}* ➔ *Nv.${newLvl}*!`,
         mentions: [m.sender]
       }, { quoted: m }).catch(() => {})
     }
@@ -1257,8 +1257,8 @@ const ElysiaEngine = (() => {
           user: u,
           isAdmins: Boolean(rctx.isAdmin),
           botname: global.namebot || config?.bot?.name || 'Elysia Assistant',
-          XRO: () => rctx.reply('⚠️ Fitur ini khusus Owner.'),
-          XRG: () => rctx.reply('⚠️ Fitur ini khusus di dalam Grup.'),
+          XRO: () => rctx.reply('⚠️ Esta función es exclusiva del dueño.'),
+          XRG: () => rctx.reply('⚠️ Esta función solo funciona dentro de un grupo.'),
           XReaction: () => rctx.react('✅'),
           botUser: () => (typeof ensureUser === 'function' ? ensureUser(rctx.m) : {}),
           botStore: typeof rpgStore === 'function' ? rpgStore : () => global.db?.data || {},

@@ -108,23 +108,23 @@ async function checkAndNotifyLevelUp(sock, m, db, user, oldExp, newExp) {
 
     const botName = config.bot?.name || "Elysia Assistant";
     const txt =
-      `╭─── ❖ 『 🎊 *ASTRAL LEVEL UP!* 』 ❖\n` +
-      `│ ✦ *Petualang:* @${m.sender.split("@")[0]}\n` +
-      `│ ✦ *Progres:* Lv.${oldLevel} ➜ *Lv.${newLevel}* (+${diff})\n` +
-      `│ ✦ *Pangkat:* *${rankInfo.title}*\n` +
-      `│ ✦ *Bintang:* ${rankInfo.starBar}\n` +
-      `├─── ❖ 『 🎁 *HADIAH NAIK LEVEL* 』 ❖\n` +
-      `│ 💰 *Bonus Koin:* +Rp ${koinBonus.toLocaleString("id-ID")}\n` +
-      `│ ⚡ *Bonus Energi:* +${energiBonus} Energi\n` +
-      `│ ❤️ *Max HP/MP/STA:* Dipulihkan Penuh!\n` +
+      `╭─── ❖ 『 🎊 *¡SUBIÓ DE NIVEL!* 』 ❖\n` +
+      `│ ✦ *Aventurero:* @${m.sender.split("@")[0]}\n` +
+      `│ ✦ *Progreso:* Nv.${oldLevel} ➜ *Nv.${newLevel}* (+${diff})\n` +
+      `│ ✦ *Rango:* *${rankInfo.title}*\n` +
+      `│ ✦ *Estrellas:* ${rankInfo.starBar}\n` +
+      `├─── ❖ 『 🎁 *PREMIO POR SUBIR DE NIVEL* 』 ❖\n` +
+      `│ 💰 *Monedas extra:* +Rp ${koinBonus.toLocaleString("es-ES")}\n` +
+      `│ ⚡ *Energía extra:* +${energiBonus} de energía\n` +
+      `│ ❤️ *HP/MP/STA máx.:* ¡Restaurados al completo!\n` +
       `╰──────────────────────────❖\n` +
-      `_💡 Ketik *${m.prefix || "."}claimlevel* setiap kelipatan 5 level untuk klaim peti ekstra!_`;
+      `_💡 Escribe *${m.prefix || "."}claimlevel* cada 5 niveles para reclamar un cofre extra._`;
 
     try {
       const rc = await import("../core/rank-canvas.js");
       const avatar = await rc.getUserAvatar(sock, m.sender);
       const img = await rc.renderLevelUp({
-        name: user.regName || user.name || m.pushName || "Petualang",
+        name: user.regName || user.name || m.pushName || "Aventurero",
         avatar,
         oldLevel,
         newLevel,

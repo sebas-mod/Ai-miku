@@ -116,7 +116,7 @@ class elysiaGames {
       const remainingCooldown = GAME_WIN_COOLDOWN - (Date.now() - lastGameWin);
       if (remainingCooldown > 0) {
         return m.reply(
-          `⏳ *COOLDOWN GAME*\n\n> Kamu baru saja memenangkan game.\n> Tunggu *${formatGameCooldown(remainingCooldown)}* lagi sebelum bermain lagi.`
+          `⏳ *ESPERA PARA JUGAR*\n\n> Acabas de ganar una partida.\n> Espera *${formatGameCooldown(remainingCooldown)}* antes de volver a jugar.`
         );
       }
 
@@ -125,13 +125,13 @@ class elysiaGames {
         if (session && session.gameType === gameType) {
           const remaining = getRemainingTime(chatId);
           const answer = session.question[cfg.answerField];
-          let text = `⚠️ *Eh ada game jalan nih, jawab dulu!*\n\n`;
+          let text = `⚠️ *¡Ey, hay una partida en curso, respóndela primero!*\n\n`;
           if (cfg.questionField && session.question[cfg.questionField]) {
             text += `\`\`\`${session.question[cfg.questionField]}\`\`\`\n\n`;
           }
           text += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-          text += `⏱️ Sisa: *${formatRemainingTime(remaining)}*\n\n`;
-          text += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+          text += `⏱️ Queda: *${formatRemainingTime(remaining)}*\n\n`;
+          text += `_Responde directamente o escribe "nyerah"\nCada fallo añade una pista_`;
           await sock.sendPreview(
             m.chat,
             {
@@ -149,7 +149,7 @@ class elysiaGames {
       const question = getRandomItem(cfg.dataFile);
       if (!question) {
         await m.reply(
-          "❌ *ᴅᴀᴛᴀ ᴛɪᴅᴀᴋ ᴛᴇʀsᴇᴅɪᴀ*\n\n> Data game tidak tersedia!",
+          "❌ *ᴅᴀᴛᴏs ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇs*\n\n> ¡No hay datos del juego!",
         );
         return;
       }
@@ -208,8 +208,8 @@ class elysiaGames {
 
       setSessionTimer(chatId, async () => {
         let text = `${pick(TIMEOUT_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n\n`;
-        text += `_Gak ada yang bisa jawab nih~_`;
+        text += `Respuesta: *${answer}*\n\n`;
+        text += `_Nadie acertó esta vez~_`;
         await m.reply(text);
       });
     };
@@ -227,8 +227,8 @@ class elysiaGames {
         endSession(chatId);
         const answer = session.question[cfg.answerField];
         let text = `${pick(SURRENDER_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n\n`;
-        text += `_@${m.sender.split("@")[0]} menyerah_`;
+        text += `Respuesta: *${answer}*\n\n`;
+        text += `_@${m.sender.split("@")[0]} se rinde_`;
         await m.reply(text, { mentions: [m.sender] });
         return true;
       }
@@ -277,7 +277,7 @@ class elysiaGames {
         ) {
           totalLimit += fastResult.bonus.limit;
           totalExp += fastResult.bonus.exp;
-          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS KILAT:* +${fastResult.bonus.limit} Limit\n⏱️ Waktu: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
+          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} límite\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
         }
 
         if (totalLimit > 0) db.updateEnergi(m.sender, totalLimit);
@@ -289,9 +289,9 @@ class elysiaGames {
         db.save();
 
         let text = `${pick(WIN_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n`;
-        text += `Pemenang: *@${m.sender.split("@")[0]}*\n`;
-        text += `Percobaan: *${session.attempts}x*\n\n`;
+        text += `Respuesta: *${answer}*\n`;
+        text += `Ganador: *@${m.sender.split("@")[0]}*\n`;
+        text += `Intentos: *${session.attempts}x*\n\n`;
 
         if (totalLimit > 0 || totalExp > 0) {
           let parts = [];

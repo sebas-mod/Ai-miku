@@ -336,9 +336,9 @@ export function buildCekResult({ title, emoji, noun, kind, symptom, tip, targetL
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const SCAN_FRAMES = [
-  { pct: 20, icon: "📡", text: "Menyalakan radar satelit dukun Elysia..." },
-  { pct: 55, icon: "🔍", text: "Menyadap aura & riwayat chat tengah malam..." },
-  { pct: 88, icon: "🧪", text: "Menganalisis sampel kelakuan dengan reagen micin..." },
+  { pct: 20, icon: "📡", text: "Encendiendo el radar satelital de Elysia..." },
+  { pct: 55, icon: "🔍", text: "Interceptando el aura y el historial de chat de medianoche..." },
+  { pct: 88, icon: "🧪", text: "Analizando muestras de comportamiento con reactivo de glutamato..." },
 ];
 
 export async function runCekAnimation(m, sock, opts) {

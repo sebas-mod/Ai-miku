@@ -238,7 +238,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     await sock.sendMessage(
       m.chat,
       {
-        text: "❌ Kartu interaktif gagal dikirim. Fitur ini membutuhkan WhatsApp versi terbaru.",
+        text: "❌ No se pudo enviar la tarjeta interactiva. Esta función necesita la versión más reciente de WhatsApp.",
       },
       { quoted: m }
     );

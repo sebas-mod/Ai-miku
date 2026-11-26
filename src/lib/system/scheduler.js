@@ -506,7 +506,7 @@ async function startGroupScheduleChecker(sock) {
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
-                    text: `⚠️ *ɢᴀɢᴀʟ ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Bot bukan admin, tidak bisa mengubah pengaturan grup.\n> Jadikan bot sebagai admin untuk mengaktifkan fitur ini.`,
+                    text: `⚠️ *ɴᴏ sᴇ ᴘᴜᴅᴏ ᴀʙʀɪʀ ᴇʟ ɢʀᴜᴘᴏ*\n\n> El bot no es administrador y no puede cambiar los ajustes del grupo.\n> Hazlo administrador para activar esta función.`,
                   });
                 } catch { }
               } else {
@@ -561,7 +561,7 @@ async function startGroupScheduleChecker(sock) {
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
-                    text: `⚠️ *ɢᴀɢᴀʟ ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Bot bukan admin, tidak bisa mengubah pengaturan grup.\n> Jadikan bot sebagai admin untuk mengaktifkan fitur ini.`,
+                    text: `⚠️ *ɴᴏ sᴇ ᴘᴜᴅᴏ ᴄᴇʀʀᴀʀ ᴇʟ ɢʀᴜᴘᴏ*\n\n> El bot no es administrador y no puede cambiar los ajustes del grupo.\n> Hazlo administrador para activar esta función.`,
                   });
                 } catch { }
               } else {

@@ -159,15 +159,15 @@ export function renderBombBoard(s, revealAll = false) {
   }
   const grid = `${cells[0]} ${cells[1]} ${cells[2]}\n${cells[3]} ${cells[4]} ${cells[5]}\n${cells[6]} ${cells[7]} ${cells[8]}`;
   return (
-    `╭─❖「 💣 *TEBAK BOM — ELYSIA* 」\n` +
+    `╭─❖「 💣 *BOMBA SORPRESA — ELYSIA* 」\n` +
     `${grid}\n` +
-    `├───〔 *STATUS* 〕\n` +
-    `│ 💎 Kotak Aman : *${s.opened.size}/8*\n` +
-    `│ 💰 Pot Hadiah : *${s.pot.toLocaleString("id-ID")} Koin*\n` +
+    `├───〔 *ESTADO* 〕\n` +
+    `│ 💎 Casillas seguras : *${s.opened.size}/8*\n` +
+    `│ 💰 Bote de premios  : *${s.pot.toLocaleString("es-ES")} monedas*\n` +
     `╰─────────────────────❖\n` +
     (revealAll
       ? ""
-      : `_Pilih angka *1-9* untuk buka kotak, atau ketik *ambil* untuk amankan hadiah!_`)
+      : `_Pulsa un número del *1-9* para abrir una casilla, o escribe *ambil* para llevarte el premio._`)
   );
 }
 
@@ -190,7 +190,7 @@ export async function handleActiveGameInput(m, sock) {
 
     const idx = Number(lower) - 1;
     if (s.board[idx]) {
-      await m.reply("⚠️ Kotak itu sudah terisi! Pilih angka lain (1-9).");
+      await m.reply("⚠️ ¡Esa casilla ya está ocupada! Elige otro número (1-9).");
       return true;
     }
 
@@ -215,17 +215,17 @@ export async function handleActiveGameInput(m, sock) {
       if (winner === "DRAW") {
         db.updateKoin(s.playerX, 500);
         if (!s.isAI) db.updateKoin(s.playerO, 500);
-        resultText = `🤝 *SERI!* Masing-masing mendapat *+500 Koin*.`;
+        resultText = `🤝 *¡EMPATE!* Cada uno recibe *+500 monedas*.`;
       } else if (winner === "X") {
         db.updateKoin(s.playerX, 2500);
         db.updateExp(s.playerX, 400);
-        resultText = `🏆 *@${s.playerX.split("@")[0]} (❌) MENANG!*\n> Hadiah: *+2.500 Koin* & *+400 EXP*`;
+        resultText = `🏆 *¡@${s.playerX.split("@")[0]} (❌) GANA!*\n> Premio: *+2.500 monedas* y *+400 EXP*`;
       } else if (s.isAI) {
-        resultText = `🤖 *Elysia AI (⭕) MENANG!* Coba lagi dengan \`.ttt\`.`;
+        resultText = `🤖 *¡Gana Elysia AI (⭕)!* Prueba otra vez con \`.ttt\`.`;
       } else {
         db.updateKoin(s.playerO, 2500);
         db.updateExp(s.playerO, 400);
-        resultText = `🏆 *@${s.playerO.split("@")[0]} (⭕) MENANG!*\n> Hadiah: *+2.500 Koin* & *+400 EXP*`;
+        resultText = `🏆 *¡@${s.playerO.split("@")[0]} (⭕) GANA!*\n> Premio: *+2.500 monedas* y *+400 EXP*`;
       }
 
       await sock.sendMessage(
@@ -274,11 +274,11 @@ export async function handleActiveGameInput(m, sock) {
       db.updateKoin(m.sender, reward);
       db.updateExp(m.sender, 350);
       await m.reply(
-        `╭─❖「 🎯 *TEBAK ANGKA BERHASIL!* 」\n` +
-          `│ 👤 Pemenang  : @${m.sender.split("@")[0]}\n` +
-          `│ 🔢 Angka     : *${s.secret}*\n` +
-          `│ 🎲 Percobaan : *${s.attempts}x*\n` +
-          `│ 💰 Hadiah    : *+${reward.toLocaleString("id-ID")} Koin* & *+350 EXP*\n` +
+        `╭─❖「 🎯 *¡NÚMERO ADIVINADO!* 」\n` +
+          `│ 👤 Ganador    : @${m.sender.split("@")[0]}\n` +
+          `│ 🔢 Número     : *${s.secret}*\n` +
+          `│ 🎲 Intentos   : *${s.attempts}x*\n` +
+          `│ 💰 Premio     : *+${reward.toLocaleString("es-ES")} monedas* y *+350 EXP*\n` +
           `╰─────────────────────❖`,
         { mentions: [m.sender] }
       );
@@ -297,13 +297,13 @@ export async function handleActiveGameInput(m, sock) {
     if (s.attempts >= s.maxAttempts) {
       clearActiveGame(m.chat);
       await m.reply(
-        `💥 *KESEMPATAN HABIS (${s.maxAttempts}x)!*\n> Angka rahasianya adalah *${s.secret}*.`
+        `💥 *¡SE ACABARON LOS INTENTOS (${s.maxAttempts}x)!*\n> El número secreto era *${s.secret}*.`
       );
       return true;
     }
 
     await m.reply(
-      `${dir} ${heat}\n> Sisa percobaan: *${s.maxAttempts - s.attempts}x*`
+      `${dir} ${heat}\n> Intentos restantes: *${s.maxAttempts - s.attempts}x*`
     );
     return true;
   }
@@ -319,9 +319,9 @@ export async function handleActiveGameInput(m, sock) {
         db.updateKoin(m.sender, 2500);
         db.updateExp(m.sender, 400);
         await m.reply(
-          `🎉 *HEBAT! KATA TERTEBAK!*\n` +
-            `> Kata: *${s.word.toUpperCase()}*\n` +
-            `> Hadiah: *+2.500 Koin* & *+400 EXP* untuk @${m.sender.split("@")[0]}`,
+          `🎉 *¡GENIAL! ¡PALABRA ADIVINADA!*\n` +
+            `> Palabra: *${s.word.toUpperCase()}*\n` +
+            `> Premio: *+2.500 monedas* y *+400 EXP* para @${m.sender.split("@")[0]}`,
           { mentions: [m.sender] }
         );
         return true;
@@ -329,7 +329,7 @@ export async function handleActiveGameInput(m, sock) {
       s.wrong += 1;
     } else {
       if (s.guessed.has(lower)) {
-        await m.reply(`⚠️ Huruf *${lower.toUpperCase()}* sudah pernah dicoba!`);
+        await m.reply(`⚠️ ¡La letra *${lower.toUpperCase()}* ya se probó!`);
         return true;
       }
       s.guessed.add(lower);
@@ -379,23 +379,23 @@ export async function handleActiveGameInput(m, sock) {
 
       let status = "";
       if (pScore > 21) {
-        status = `💥 *BUST!* Kamu kalah *${s.bet.toLocaleString("id-ID")} Koin*.`;
+        status = `💥 *¡BUST!* Pierdes *${s.bet.toLocaleString("es-ES")} monedas*.`;
       } else if (dScore > 21 || pScore > dScore) {
         const win = s.bet * 2;
         db.updateKoin(s.player, win);
         db.updateExp(s.player, 300);
-        status = `🏆 *MENANG!* Kamu menerima *+${win.toLocaleString("id-ID")} Koin*!`;
+        status = `🏆 *¡GANAS!* ¡Recibes *+${win.toLocaleString("es-ES")} monedas*!`;
       } else if (pScore === dScore) {
         db.updateKoin(s.player, s.bet);
-        status = `🤝 *PUSH (SERI)!* Taruhan *${s.bet.toLocaleString("id-ID")} Koin* dikembalikan.`;
+        status = `🤝 *¡EMPATE!* Se te devuelve la apuesta de *${s.bet.toLocaleString("es-ES")} monedas*.`;
       } else {
-        status = `🃏 *DEALER MENANG!* Kamu kalah *${s.bet.toLocaleString("id-ID")} Koin*.`;
+        status = `🃏 *¡GANA EL CRUPIER!* Pierdes *${s.bet.toLocaleString("es-ES")} monedas*.`;
       }
 
       await m.reply(
-        `╭─❖「 🃏 *BLACKJACK — HASIL* 」\n` +
-          `│ 🤵 Dealer : ${formatHand(s.dealer)} (*${dScore}*)\n` +
-          `│ 👤 Kamu   : ${formatHand(s.hand)} (*${pScore}*)\n` +
+        `╭─❖「 🃏 *BLACKJACK — RESULTADO* 」\n` +
+          `│ 🤵 Crupier : ${formatHand(s.dealer)} (*${dScore}*)\n` +
+          `│ 👤 Tú      : ${formatHand(s.hand)} (*${pScore}*)\n` +
           `╰─────────────────────❖\n` +
           `${status}`
       );
@@ -410,11 +410,11 @@ export async function handleActiveGameInput(m, sock) {
       }
       await m.reply(
         `╭─❖「 🃏 *BLACKJACK* 」\n` +
-          `│ 🤵 Dealer : ${formatHand(s.dealer, true)}\n` +
-          `│ 👤 Kamu   : ${formatHand(s.hand)} (*${score}*)\n` +
-          `│ 💰 Taruhan: *${s.bet.toLocaleString("id-ID")} Koin*\n` +
+          `│ 🤵 Crupier  : ${formatHand(s.dealer, true)}\n` +
+          `│ 👤 Tú       : ${formatHand(s.hand)} (*${score}*)\n` +
+          `│ 💰 Apuesta  : *${s.bet.toLocaleString("es-ES")} monedas*\n` +
           `╰─────────────────────❖\n` +
-          `_Ketik *hit* (tambah kartu) atau *stand* (berhenti)._`
+          `_Escribe *hit* (pedir carta) o *stand* (plantarse)._`
       );
       return true;
     }
@@ -422,7 +422,7 @@ export async function handleActiveGameInput(m, sock) {
     if (lower === "double" || lower === "d") {
       const user = db.getUser(s.player);
       if ((user?.koin || 0) < s.bet) {
-        await m.reply("❌ Koin kamu tidak cukup untuk Double Down!");
+        await m.reply("❌ ¡No tienes monedas suficientes para el Double Down!");
         return true;
       }
       db.updateKoin(s.player, -s.bet);
@@ -450,11 +450,11 @@ export async function handleActiveGameInput(m, sock) {
     db.updateExp(m.sender, 300);
 
     await m.reply(
-      `╭─❖「 ⚡ *HITUNG CEPAT BENAR!* 」\n` +
-        `│ 👤 Pemenang : @${m.sender.split("@")[0]}\n` +
-        `│ 🧮 Jawaban  : *${s.answer}*\n` +
-        `│ ⏱️ Waktu    : *${elapsed} detik*\n` +
-        `│ 💰 Hadiah   : *+${total.toLocaleString("id-ID")} Koin* & *+300 EXP*\n` +
+      `╭─❖「 ⚡ *¡CÁLCULO RÁPIDO CORRECTO!* 」\n` +
+        `│ 👤 Ganador  : @${m.sender.split("@")[0]}\n` +
+        `│ 🧮 Respuesta: *${s.answer}*\n` +
+        `│ ⏱️ Tiempo   : *${elapsed} segundos*\n` +
+        `│ 💰 Premio   : *+${total.toLocaleString("es-ES")} monedas* y *+300 EXP*\n` +
         `╰─────────────────────❖`,
       { mentions: [m.sender] }
     );
@@ -471,8 +471,8 @@ export async function handleActiveGameInput(m, sock) {
         db.updateExp(s.player, 200);
       }
       await m.reply(
-        `💰 *CASH OUT BERHASIL!*\n` +
-          `> Kamu mengamankan *+${s.pot.toLocaleString("id-ID")} Koin*!\n\n` +
+        `💰 *¡RETIRADA EXITOSA!*\n` +
+          `> ¡Te llevas *+${s.pot.toLocaleString("es-ES")} monedas*!\n\n` +
           renderBombBoard(s, true)
       );
       return true;
@@ -481,15 +481,15 @@ export async function handleActiveGameInput(m, sock) {
     if (!/^[1-9]$/.test(lower)) return false;
     const idx = Number(lower) - 1;
     if (s.opened.has(idx)) {
-      await m.reply("⚠️ Kotak itu sudah dibuka! Pilih angka lain (1-9).");
+      await m.reply("⚠️ ¡Esa casilla ya está abierta! Elige otro número (1-9).");
       return true;
     }
 
     if (idx === s.bombIndex) {
       clearActiveGame(m.chat);
       await m.reply(
-        `💥 *BOOM!! KAMU KENA BOM!*\n` +
-          `> Pot hadiah hangus. Coba lagi dengan \`.bomb\`!\n\n` +
+        `💥 *¡BOOM! ¡PISASTE LA BOMBA!*\n` +
+          `> El bote se pierde. ¡Vuelve a intentarlo con \`.bomb\`!\n\n` +
           renderBombBoard(s, true)
       );
       return true;
@@ -504,14 +504,14 @@ export async function handleActiveGameInput(m, sock) {
       db.updateKoin(s.player, jackpot);
       db.updateExp(s.player, 500);
       await m.reply(
-        `🏆 *PERFECT CLEAR! SEMUA KOTAK AMAN TERBUKA!*\n` +
-          `> Hadiah Jackpot: *+${jackpot.toLocaleString("id-ID")} Koin* & *+500 EXP*!\n\n` +
+        `🏆 *¡PERFECTO! ¡ABRISTE TODAS LAS CASILLAS SEGURAS!*\n` +
+          `> Premio gordo: *+${jackpot.toLocaleString("es-ES")} monedas* y *+500 EXP*!\n\n` +
           renderBombBoard(s, true)
       );
       return true;
     }
 
-    await m.reply(`💎 *AMAN!* Pot naik jadi *${s.pot.toLocaleString("id-ID")} Koin*.\n\n${renderBombBoard(s)}`);
+    await m.reply(`💎 *¡A SALVO!* El bote sube a *${s.pot.toLocaleString("es-ES")} monedas*.\n\n${renderBombBoard(s)}`);
     return true;
   }
 

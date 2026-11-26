@@ -49,7 +49,7 @@ function currentDateText() {
 }
 
 async function handler(m, { sock }) {
-  await runMenuLoading(sock, m.chat, "status bot");
+  await runMenuLoading(sock, m.chat, "estado del bot");
   const db = getDatabase();
   const role = m.isOwner ? "Owner" : (m.isGroup && m.isAdmin ? "Admin" : "Member");
   const waktu = currentDateText();

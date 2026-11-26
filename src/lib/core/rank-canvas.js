@@ -558,7 +558,7 @@ export async function renderTop10({
 
   const fy = y0 + 10 * step + 20;
   if (me) {
-    text(ctx, me.rank ? `Posisi kamu: #${fmtInt(me.rank)} dari ${fmtInt(me.total)} petualang` : `Kamu belum masuk peringkat  •  ${fmtInt(me.total)} petualang`, w / 2, fy + 32, {
+    text(ctx, me.rank ? `Tu posición: #${fmtInt(me.rank)} de ${fmtInt(me.total)} aventureros` : `Aún no estás en el ranking  •  ${fmtInt(me.total)} aventureros`, w / 2, fy + 32, {
       size: 32,
       weight: "800",
       color: "#fff",
@@ -653,7 +653,7 @@ export async function renderRankList({
   const rows = Math.ceil(ranks.length / cols);
   const fy = y0 + rows * (ch + gy) + 30;
   const open = ranks.filter((r) => myLevel >= r.min).length;
-  text(ctx, `Terbuka ${open} dari ${ranks.length} pangkat  •  naikkan level lewat RPG & claimlevel`, w / 2, fy, {
+  text(ctx, `Desbloqueados ${open} de ${ranks.length} rangos  •  sube de nivel con RPG y claimlevel`, w / 2, fy, {
     size: 28,
     weight: "bold",
     color: "#fff",

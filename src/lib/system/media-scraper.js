@@ -1895,14 +1895,14 @@ const _tools = (() => {
         const usage = spec.fields.map(f => (f.req ? `<${f.label}>` : `[${f.label}]`)).join('|')
         const optional = spec.fields.filter(f => !f.req).map(f => f.label)
 
-        let t = '*Command salah!*\n'
+        let t = '*¡Comando incorrecto!*\n'
         if (reason) t += `${reason}\n`
         t += `\n*${spec.title}*\n`
-        t += spec.image ? 'Reply / kirim *foto* dengan caption:\n' : 'Cara pakai:\n'
+        t += spec.image ? 'Responde / envía una *foto* con el texto:\n' : 'Cómo usarlo:\n'
         t += `${prefix}${name}${usage ? ' ' + usage : ''}`
-        if (spec.example) t += `\n\n*Contoh:*\n${prefix}${name} ${spec.example}`
-        if (spec.quoted) t += `\n\n_Atau reply pesan teks lalu ketik ${prefix}${name}_`
-        if (optional.length && !spec.hideOptionalNote) t += `\n\n_Boleh dikosongkan: ${optional.join(', ')}_`
+        if (spec.example) t += `\n\n*Ejemplo:*\n${prefix}${name} ${spec.example}`
+        if (spec.quoted) t += `\n\n_O responde a un mensaje de texto y escribe ${prefix}${name}_`
+        if (optional.length && !spec.hideOptionalNote) t += `\n\n_Opcional: ${optional.join(', ')}_`
         if (spec.extraHelp) t += `\n\n${spec.extraHelp}`
         return t
     }
@@ -2072,7 +2072,7 @@ const _tools = (() => {
         } catch (e) {
             console.error('[API-TOOL]', spec.name, e?.message || e)
             await reactTo(sock, m, '❌')
-            await m.reply('Gagal memproses. API mungkin sedang down atau data tidak valid, coba lagi nanti.')
+            await m.reply('No se pudo procesar. Puede que la API esté caída o que los datos no sean válidos, inténtalo más tarde.')
         }
     }
 
@@ -2144,12 +2144,12 @@ const _dataid = (() => {
         } catch (e) {
             if (e instanceof FriendlyError) return ctx.reply(`[ ! ] ${e.message}`)
             console.error(e)
-            return ctx.reply('[ ! ] Terjadi kesalahan saat mengambil data, coba lagi nanti.')
+            return ctx.reply('[ ! ] Ocurrió un error al obtener los datos, inténtalo más tarde.')
         }
     }
 
-    const HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
-    const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    const HARI = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+    const BULAN = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
 
     function nowWib() {
         const t = new Date(Date.now() + 7 * 3600 * 1000)
@@ -3358,7 +3358,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
         try {
             const msgPayload = coverBuffer
                 ? { image: coverBuffer, caption, footer: 'Klik tombol di bawah untuk download video 👇' }
-                : { text: caption, footer: 'Klik tombol di bawah untuk download video 👇' }
+                : { text: caption, footer: 'Pulsa el botón de abajo para descargar el vídeo 👇' }
 
             await sock.sendMessage(gid, {
                 ...msgPayload,

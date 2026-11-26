@@ -25,7 +25,7 @@ const pluginConfig = {
   alias: ["fullmenu", "am", "allcommand", "semua"],
   category: "main",
   description: "Muestra todas las funciones del bot con un diseño ordenado y compacto",
-  usage: ".allmenu [kategori]",
+  usage: ".allmenu [categoría]",
   example: ".allmenu ai",
   isOwner: false,
   isPremium: false,
