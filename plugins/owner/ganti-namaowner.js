@@ -35,7 +35,7 @@ async function handler(m, { sock, config }) {
     const nameMap = db.setting("ownerNames") || {};
     const mainOwnerNum = config.owner?.number?.[0] || "";
     const mainName = config.owner?.name || "Owner";
-    let list = `👤 *ᴏᴡɴᴇʀ ɴᴀᴍᴇ ʟɪsᴛ*\n\n`;
+    let list = `👤 *LISTA DE NOMBRES DE OWNERS*\n\n`;
     list += `👑 Main: *${mainName}* (${mainOwnerNum})\n`;
     const entries = Object.entries(nameMap);
     if (entries.length > 0) {
@@ -43,11 +43,11 @@ async function handler(m, { sock, config }) {
         list += `👤 ${num}: *${name}*\n`;
       });
     } else {
-      list += `\n> Belum ada nama custom untuk owner tambahan`;
+      list += `\n > Aún no hay nombres personalizados para owners adicionales`;
     }
-    list += `\n\n*Penggunaan:*\n`;
-    list += `\`${m.prefix}ganti-namaowner <nomor> <nama>\`\n`;
-    list += `\`${m.prefix}ganti-namaowner main <nama>\` — ganti nama owner utama`;
+    list += `\n\n*Uso:*\n`;
+    list += `\`${m.prefix}ganti-namaowner <número> <nombre>\`\n`;
+    list += `\`${m.prefix}ganti-namaowner main <nombre>\` — cambia el nombre del owner principal`;
     return m.reply(list);
   }
 
@@ -55,7 +55,7 @@ async function handler(m, { sock, config }) {
     const newName = input.slice(1).join(" ").trim();
     if (!newName) {
       return m.reply(
-        `👤 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ᴏᴡɴᴇʀ ᴜᴛᴀᴍᴀ*\n\n> Nama saat ini: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner main <nama baru>\``,
+        `👤 *CAMBIAR NOMBRE DEL OWNER PRINCIPAL*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner main <nombre nuevo>\``,
       );
     }
     try {
@@ -71,7 +71,7 @@ async function handler(m, { sock, config }) {
       fs.writeFileSync(configPath, configContent);
       config.owner.name = newName;
       return m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama owner utama diganti ke: *${newName}*`,
+        `✅ *LISTO*\n\n> Nombre del owner principal cambiado a: *${newName}*`,
       );
     } catch (error) {
       return m.reply(te(m.prefix, m.command, m.pushName));
@@ -83,14 +83,14 @@ async function handler(m, { sock, config }) {
 
   if (!targetNumber || targetNumber.length < 10) {
     return m.reply(
-      `❌ *ɢᴀɢᴀʟ*\n\n> Nomor tidak valid\n\n\`${m.prefix}ganti-namaowner 628xxx NamaOwner\``,
+      `❌ *ERROR*\n\n > Número no válido\n\n\`${m.prefix}ganti-namaowner 628xxx NombreOwner\``,
     );
   }
 
   if (!newName) {
     const currentName = getOwnerName(targetNumber);
     return m.reply(
-      `👤 *ɴᴀᴍᴀ ᴏᴡɴᴇʀ*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}ganti-namaowner ${targetNumber} <nama baru>\``,
+      `👤 *NOMBRE DEL OWNER*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}ganti-namaowner ${targetNumber} <nombre nuevo>\``,
     );
   }
 
@@ -99,7 +99,7 @@ async function handler(m, { sock, config }) {
   db.setting("ownerNames", nameMap);
 
   return m.reply(
-    `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama owner *${targetNumber}* diganti ke: *${newName}*`,
+    `✅ *LISTO*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*`,
   );
 }
 

@@ -52,14 +52,14 @@ async function handler(m, { sock }) {
 
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
-            `🚫 *ʙᴀɴ ᴜsᴇʀ*\n\n` +
-            `> Masukkan nomor atau tag user\n\n` +
-            `\`Contoh: ${m.prefix}ban 6281234567890\``
+            `🚫 *BANEAR USUARIO*\n\n` +
+            `> Escribe el número o menciona al usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}ban 6281234567890\``
         )
     }
 
     if (config.isOwner(targetNumber)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat ban owner`)
+        return m.reply(`❌ *ERROR*\n\n> No se puede banear al owner`)
     }
 
     const db = getDatabase()
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Nomor \`${targetNumber}\` sudah dibanned`)
+        return m.reply(`❌ *ERROR*\n\n> El número \`${targetNumber}\` ya está baneado`)
     }
 
     bannedList.push(targetNumber)
@@ -81,8 +81,8 @@ async function handler(m, { sock }) {
     await m.react('🚫')
 
     await m.reply(
-        `🚫 *ᴜsᴇʀ ᴅɪʙᴀɴɴᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+        `🚫 *USUARIO BANEADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 📱 ɴᴏᴍᴏʀ: \`${targetNumber}\`\n` +
         `┃ 🚫 sᴛᴀᴛᴜs: \`Banned\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴇʀ\n` +

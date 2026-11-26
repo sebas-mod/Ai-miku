@@ -54,8 +54,8 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🗑️ *DEL PLUGIN*\n\n` +
-        `Hapus plugin berdasarkan nama\n\n` +
-        `*Contoh:*\n` +
+        `Elimina un plugin por su nombre\n\n` +
+        `*Ejemplo:*\n` +
         `\`${m.prefix}delplugin bliblidl\``,
     );
   }
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`❌ *GAGAL*\n\nPlugin \`${name}\` tidak ditemukan`);
+      return m.reply(`❌ *ERROR*\n\nPlugin \`${name}\` no encontrado`);
     }
 
     let unloadResult = { success: false };
@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
         `│ Folder: \`${found.folder}\`\n` +
         `│ Unload: ${unloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
-        `Plugin sudah dihapus dan tidak aktif!`,
+        `¡El plugin se eliminó y ya no está activo!`,
     );
   } catch (error) {
     await m.react("☢");

@@ -29,9 +29,9 @@ function handler(m) {
     db.setting('botRules', null)
 
     m.reply(
-        `✅ *ʙᴏᴛ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n\n` +
-        `> Rules bot berhasil direset ke default!\n` +
-        `> Ketik \`${m.prefix}rules\` untuk melihat.`
+        `✅ *REGLAS DEL BOT RESTABLECIDAS*\n\n` +
+        `> ¡Las reglas del bot se restablecieron por defecto!\n` +
+        `> Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

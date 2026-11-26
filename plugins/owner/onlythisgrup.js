@@ -34,27 +34,27 @@ async function handler(m, { sock }) {
         if (current && (current === m.chat || current.jid === m.chat)) {
             db.setting('onlyThisGroup', null)
             db.save()
-            return m.reply(`🔓 *UNLOCKED*\n\nBot kembali aktif di semua grup secara publik.`)
+            return m.reply(`🔓 *UNLOCKED*\n\nEl bot vuelve a estar activo en todos los grupos públicamente.`)
         }
 
         const botNumber = sock.user.id.split(':')[0] + '@s.whatsapp.net'
         const groupMetadata = await sock.groupMetadata(m.chat).catch(() => null)
 
         if (!groupMetadata) {
-            return m.reply(`❌ Gagal mendapatkan metadata grup.`)
+            return m.reply(`❌ No se pudieron obtener los datos del grupo.`)
         }
 
         const participants = groupMetadata.participants
         const isBotAdmin = Boolean(m.isBotAdmin) || participants.some(p => p.admin && isBotParticipant(p, [botNumber]))
 
         if (!isBotAdmin) {
-            return m.reply(`❌ *AKSES DITOLAK*\n\nBot harus menjadi admin di grup ini terlebih dahulu agar bisa mengambil tautan undangan (link grup).`)
+            return m.reply(`❌ *ACCESO DENEGADO*\n\nEl bot debe ser administrador de este grupo para poder obtener el enlace de invitación.`)
         }
 
         const inviteCode = await sock.groupInviteCode(m.chat).catch(() => null)
 
         if (!inviteCode) {
-            return m.reply(`❌ Gagal mengambil tautan undangan grup. Pastikan bot adalah admin yang sah.`)
+            return m.reply(`❌ No se pudo obtener el enlace de invitación. Asegúrate de que el bot sea administrador.`)
         }
 
         const inviteLink = `https://chat.whatsapp.com/${inviteCode}`
@@ -68,12 +68,12 @@ async function handler(m, { sock }) {
         db.save()
 
         await m.reply(
-            `🔒 *LOCKED BERHASIL*\n\n` +
-            `Mulai sekarang, bot hanya bisa digunakan secara eksklusif di grup:\n` +
+            `🔒 *BLOQUEO APLICADO*\n\n` +
+            `Desde ahora, el bot solo puede usarse exclusivamente en el grupo:\n` +
             `*${groupName}*\n\n` +
-            `Pengguna di grup lain akan diarahkan untuk bergabung melalui tautan:\n` +
+            `Los usuarios de otros grupos serán dirigidos a unirse mediante el enlace:\n` +
             `${inviteLink}\n\n` +
-            `Ketik \`.onlythisgrup\` lagi untuk membuka kunci.`
+            `Escribe \`.onlythisgrup\` de nuevo para desbloquear.`
         )
     } catch (error) {
         console.error(error)

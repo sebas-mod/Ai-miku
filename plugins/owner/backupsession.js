@@ -45,17 +45,17 @@ async function handler(m) {
         const target = backupSessionNow()
         if (!target) {
             await m.react('❌')
-            return m.reply('❌ Backup gagal. Folder session / creds.json tidak ditemukan.')
+            return m.reply('❌ Error en la copia. No se encontró la carpeta session ni creds.json.')
         }
 
         await m.react('✅')
         await m.reply(
-            `╭┈┈⬡「 💾 *ʙᴀᴄᴋᴜᴘ sᴇssɪᴏɴ* 」\n` +
+            `╭┈┈⬡「 💾 *COPIA DE SESIÓN* 」\n` +
             `┃ 📁 Lokasi: *database/backup-session/${path.basename(target)}*\n` +
-            `┃ 📦 Ukuran: *${fmt(dirSize(target))}*\n` +
-            `┃ 🗂️ Backup tersimpan: *${listBackups().length}*\n` +
+            `┃ 📦 Tamaño: *${fmt(dirSize(target))}*\n` +
+            `┃ 🗂️ Copias guardadas: *${listBackups().length}*\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> Backup hanya dibuat manual lewat perintah ini. Backup lama di luar batas terakhir otomatis dihapus.`
+            `> Las copias solo se crean manualmente con este comando. Las copias antiguas fuera del límite se eliminan automáticamente.`
         )
     } catch (error) {
         await m.react('❌')

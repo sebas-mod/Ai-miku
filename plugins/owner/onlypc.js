@@ -33,10 +33,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `💬 *Only Private*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}onlypc on* — Bot hanya bisa diakses di private chat\n` +
-        `> *${m.prefix}onlypc off* — Bot bisa diakses di mana saja\n\n` +
-        `_Jika aktif, mode Only Group akan otomatis nonaktif_`
+        `*USO:*\n` +
+        `> *${m.prefix}onlypc on* — El bot solo puede usarse en chats privados\n` +
+        `> *${m.prefix}onlypc off* — El bot puede usarse en cualquier lugar\n\n` +
+        `_Si está activo, el modo Solo Grupo se desactiva automáticamente_`
     );
   }
 
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
     return m.reply(
       `💬 *Only Private Aktif*\n\n` +
-        `> Bot hanya bisa diakses di private chat\n` +
+        `> El bot solo puede usarse en chats privados\n` +
         `> Mode Only Group dinonaktifkan`
     );
   }
@@ -56,12 +56,12 @@ async function handler(m, { sock }) {
     await m.react("❌");
     return m.reply(
       `💬 *Only Private Nonaktif*\n\n` +
-        `> Bot bisa diakses di mana saja`
+        `> El bot puede usarse en cualquier lugar`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}onlypc on* atau *${m.prefix}onlypc off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}onlypc on* o *${m.prefix}onlypc off*`
   );
 }
 

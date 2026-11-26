@@ -37,16 +37,16 @@ function buildLsOutput(rawTarget = "") {
   const targetPath = path.resolve(baseDir, relInput);
 
   if (!fs.existsSync(targetPath)) {
-    return `❌ Path tidak ditemukan: \`${relInput}\``;
+    return `❌ Ruta no encontrada: \`${relInput}\``;
   }
 
   const stat = fs.statSync(targetPath);
   if (!stat.isDirectory()) {
     return (
       `📄 *FILE INFO*\n\n` +
-      `• Nama: \`${path.basename(targetPath)}\`\n` +
+      `• Nombre: \`${path.basename(targetPath)}\`\n` +
       `• Path: \`${path.relative(baseDir, targetPath) || "."}\`\n` +
-      `• Ukuran: *${formatBytes(stat.size)}*`
+      `• Tamaño: *${formatBytes(stat.size)}*`
     );
   }
 

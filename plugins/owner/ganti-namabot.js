@@ -29,7 +29,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
 
     if (!newName) {
-        return m.reply(`🤖 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ʙᴏᴛ*\n\n> Nama saat ini: *${config.bot?.name || '-'}*\n\n*Penggunaan:*\n\`${m.prefix}ganti-namabot <nama baru>\``)
+        return m.reply(`🤖 *CAMBIAR NOMBRE DEL BOT*\n\n> Nombre actual: *${config.bot?.name || '-'}*\n\n*Uso:*\n\`${m.prefix}ganti-namabot <nombre nuevo>\``)
     }
 
     try {
@@ -45,7 +45,7 @@ async function handler(m, { sock, config }) {
 
         config.bot.name = newName
 
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama bot diganti ke: *${newName}*`)
+        m.reply(`✅ *LISTO*\n\n> Nombre del bot cambiado a: *${newName}*`)
 
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

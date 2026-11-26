@@ -58,10 +58,10 @@ function handler(m) {
 
     if (groupIds.length === 0) {
         return m.reply(
-            `📋 *DAFTAR SEWA*\n\n` +
+            `📋 *LISTA DE ALQUILER*\n\n` +
             `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
-            `Belum ada grup terdaftar\n\n` +
-            `Tambah dengan: *${m.prefix}addsewa <link> <durasi>*`
+            `Aún no hay grupos registrados\n\n` +
+            `Añade con: *${m.prefix}addsewa <link> <durasi>*`
         )
     }
 
@@ -76,7 +76,7 @@ function handler(m) {
     const active = sorted.filter(id => sewaGroups[id].isLifetime || sewaGroups[id].expiredAt > Date.now())
     const expired = sorted.filter(id => !sewaGroups[id].isLifetime && sewaGroups[id].expiredAt <= Date.now())
 
-    let text = `📋 *DAFTAR SEWA*\n\n`
+    let text = `📋 *LISTA DE ALQUILER*\n\n`
     text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
     text += `Total: *${groupIds.length}* grup (${active.length} aktif, ${expired.length} expired)\n\n`
 
@@ -95,7 +95,7 @@ function handler(m) {
 
     text += `*AKSI:*\n`
     text += `• *${m.prefix}renewsewa <id> <durasi>* — Perpanjang\n`
-    text += `• *${m.prefix}delsewa <id>* — Hapus dari whitelist`
+    text += `• *${m.prefix}delsewa <id>* — Elimina de la lista de alquiler`
 
     return m.reply(text)
 }

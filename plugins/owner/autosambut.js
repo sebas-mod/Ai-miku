@@ -55,7 +55,7 @@ async function handler(m, { sock, db }) {
     groupData.autoSambut = {
       enabled: false,
       delayMs: 2 * 60 * 60 * 1000,
-      pesanList: ["Halo {user}! Selamat datang kembali 🙇‍♂️"],
+      pesanList: ["¡Hola {user}! Bienvenido de nuevo 🙇‍♂️"],
       lastChats: {}
     };
     database.setGroup(m.chat, { autoSambut: groupData.autoSambut });
@@ -69,7 +69,7 @@ async function handler(m, { sock, db }) {
   }
   // Fallback
   if (!Array.isArray(groupData.autoSambut.pesanList) || groupData.autoSambut.pesanList.length === 0) {
-    groupData.autoSambut.pesanList = ["Halo {user}! Selamat datang kembali 🙇‍♂️"];
+    groupData.autoSambut.pesanList = ["¡Hola {user}! Bienvenido de nuevo 🙇‍♂️"];
   }
 
   if (!action) {
@@ -79,21 +79,21 @@ async function handler(m, { sock, db }) {
 
     return m.reply(
       `⚠️ *SISTEM AUTO SAMBUT*\n\n` +
-      `Sistem otomatis menyambut owner di grup secara acak ketika owner muncul setelah lama idle.\n` +
+      `El sistema saluda al owner en el grupo de forma aleatoria cuando aparece tras mucho tiempo inactivo.\n` +
       `Status: *${status}*\n` +
       `Batas Waktu Idle: *${formatTime(delayMs)}*\n` +
-      `Jumlah Pesan Acak: *${totalPesan} Sapaan*\n\n` +
-      `*PENGGUNAAN UTAMA:*\n` +
-      `• *${m.prefix}autosambut on/off* — Menghidupkan/mematikan fitur di grup ini\n` +
+      `Mensajes aleatorios: *${totalPesan} saludos*\n\n` +
+      `*USO PRINCIPAL:*\n` +
+      `• *${m.prefix}autosambut on/off* — Activa/desactiva la función en este grupo\n` +
       `• *${m.prefix}autosambut delay <waktu>* — Mengubah batas waktu idle\n\n` +
-      `*PENGATURAN PESAN ACAK (LIST):*\n` +
-      `• *${m.prefix}autosambut list* — Melihat semua sapaan yang telah didaftarkan\n` +
-      `• *${m.prefix}autosambut add <teks>* — Menambah teks sambutan baru ke daftar\n` +
-      `• *${m.prefix}autosambut del <angka>* — Menghapus pesan pada nomor urutan tertentu\n\n` +
+      `*AJUSTES DE MENSAJES ALEATORIOS (LISTA):*\n` +
+      `• *${m.prefix}autosambut list* — Ver todos los saludos registrados\n` +
+      `• *${m.prefix}autosambut add <texto>* — Añadir un nuevo saludo a la lista\n` +
+      `• *${m.prefix}autosambut del <angka>* — Eliminar el mensaje de un número de la lista\n\n` +
       `*PENJELASAN KHUSUS:*\n` +
-      `1. Gunakan format waktu: *s* (detik), *m* (menit), *h* (jam), *d* (hari). Contoh: *${m.prefix}autosambut delay 30m*\n` +
-      `2. Gunakan *{name}* untuk menyebut pushname owner, dan *{user}* untuk me-mention owner.\n` +
-      `3. Jika kamu menambahkan atribut *--global* di akhir setiap perintah, maka pengaturan di grup *ini* akan langsung dicopy ke SEMUA grup yang bot singgahi!`
+      `1. Usa el formato de tiempo: *s* (segundos), *m* (minutos), *h* (horas), *d* (días). Ejemplo: *${m.prefix}autosambut delay 30m*\n` +
+      `2. Usa *{name}* para nombrar al owner y *{user}* para mencionarlo.\n` +
+      `3. Si añades *--global* al final de cada comando, ¡los ajustes de *este* grupo se copiarán a TODOS los grupos donde esté el bot!`
     );
   }
 
@@ -113,21 +113,21 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`${isEnable ? '✅' : '❌'} *Fitur Auto Sambut Global ${isEnable ? 'Diaktifkan' : 'Dinonaktifkan'}!*\n\nSemua grup (${count}) sekarang menggunakan sistem sapaan yang sama dengan grup ini.`);
+      return m.reply(`${isEnable ? '✅' : '❌'} *¡Saludo automático global ${isEnable ? 'activado' : 'desactivado'}!*\n\nTodos los grupos (${count}) usan ahora el mismo sistema de saludo que este grupo.`);
     }
 
     groupData.autoSambut.enabled = isEnable;
     database.setGroup(m.chat, { autoSambut: groupData.autoSambut });
-    return m.reply(isEnable ? `✅ *Fitur Auto Sambut Diaktifkan!*` : `❌ *Fitur Auto Sambut Dinonaktifkan.*`);
+    return m.reply(isEnable ? `✅ *¡Saludo automático activado!*` : `❌ *Saludo automático desactivado.*`);
   }
 
   if (action === "delay") {
     const timeInput = args[1];
-    if (!timeInput) return m.reply(`Tolong berikan waktu! Contoh: \`${m.prefix}autosambut delay 2h\``);
+    if (!timeInput) return m.reply(`¡Indica un tiempo! Ejemplo: \`${m.prefix}autosambut delay 2h\``);
 
     const parsedMs = parseTime(timeInput);
     if (!parsedMs) {
-      return m.reply(`Format waktu tidak dikenali. Gunakan angka dan akhiran s, m, h, d, w, y. Contoh: \`2h\` (2 jam), \`30m\` (30 menit).`);
+      return m.reply(`Formato de tiempo no reconocido. Usa un número y las terminaciones s, m, h, d, w, y. Ejemplo: \`2h\` (2 horas), \`30m\` (30 minutos).`);
     }
 
     if (isGlobal) {
@@ -144,27 +144,27 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`⏱️ *Delay Auto Sambut Global Diubah ke ${formatTime(parsedMs)} untuk ${count} grup!*`);
+      return m.reply(`⏱️ *¡Retardo del saludo automático global cambiado a ${formatTime(parsedMs)} para ${count} grupos!*`);
     }
 
     groupData.autoSambut.delayMs = parsedMs;
     database.setGroup(m.chat, { autoSambut: groupData.autoSambut });
-    return m.reply(`⏱️ *Delay Auto Sambut Diubah!*\n\nSekarang bot akan menyambutmu setelah kamu tidak mengetik apa-apa di grup ini selama *${formatTime(parsedMs)}* berturut-turut.`);
+    return m.reply(`⏱️ *¡Retardo del saludo automático cambiado!*\n\nAhora el bot te saludará cuando estés *${formatTime(parsedMs)}* sin escribir nada en este grupo.`);
   }
 
   if (action === "list") {
-    let listText = `📜 *DAFTAR PESAN AUTO SAMBUT*\n\nTotal ada *${groupData.autoSambut.pesanList.length}* sapaan acak yang terdaftar di grup ini:\n\n`;
+    let listText = `📜 *LISTA DE MENSAJES DE SALUDO*\n\nHay *${groupData.autoSambut.pesanList.length}* saludos aleatorios registrados en este grupo:\n\n`;
     groupData.autoSambut.pesanList.forEach((text, index) => {
       listText += `*${index + 1}.* ${text}\n\n`;
     });
-    listText += `_Gunakan \`${m.prefix}autosambut del <angka>\` untuk menghapus salah satu._`;
+    listText += `_Usa \`${m.prefix}autosambut del <número>\` para eliminar uno._`;
     return m.reply(listText);
   }
 
   if (action === "add") {
     const newMsg = args.slice(1).filter(v => v !== '--global').join(" ").trim();
     if (!newMsg) {
-      return m.reply(`Tolong masukkan teks sambutannya.\nContoh: \`${m.prefix}autosambut add Halo bosku {user}!\``);
+      return m.reply(`Escribe el texto del saludo.\nEjemplo: \`${m.prefix}autosambut add ¡Hola jefe {user}!\``);
     }
 
     groupData.autoSambut.pesanList.push(newMsg);
@@ -184,19 +184,19 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`💬 *Pesan Baru Ditambahkan ke Daftar Global (${count} grup)!*\n\nPesan terdaftar:\n"${newMsg}"`);
+      return m.reply(`💬 *¡Nuevo mensaje añadido a la lista global (${count} grupos)!*\n\nMensaje registrado:\n"${newMsg}"`);
     }
 
-    return m.reply(`💬 *Pesan Baru Berhasil Ditambahkan!*\nKini ada ${groupData.autoSambut.pesanList.length} sapaan acak di dalam daftar.`);
+    return m.reply(`💬 *¡Nuevo mensaje añadido!*\nAhora hay ${groupData.autoSambut.pesanList.length} saludos aleatorios en la lista.`);
   }
 
   if (action === "del") {
     const indexInput = parseInt(args[1]);
     if (isNaN(indexInput) || indexInput < 1 || indexInput > groupData.autoSambut.pesanList.length) {
-      return m.reply(`Tolong masukkan angka urutan pesan yang valid.\nLihat daftar angka dengan \`${m.prefix}autosambut list\`.`);
+      return m.reply(`Escribe un número de mensaje válido.\nConsulta la lista con \`${m.prefix}autosambut list\`.`);
     }
     if (groupData.autoSambut.pesanList.length <= 1) {
-      return m.reply(`Gagal dihapus! Harus ada minimal 1 pesan di dalam daftar sapaan grup ini.`);
+      return m.reply(`¡No se pudo eliminar! Debe quedar al menos 1 mensaje en la lista de saludos del grupo.`);
     }
 
     const removedMsg = groupData.autoSambut.pesanList.splice(indexInput - 1, 1)[0];
@@ -216,17 +216,17 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`🗑️ *Pesan Berhasil Dihapus Secara Global (${count} grup)!*\n\nTerhapus:\n"${removedMsg}"`);
+      return m.reply(`🗑️ *¡Mensaje eliminado globalmente (${count} grupos)!*\n\nEliminado:\n"${removedMsg}"`);
     }
 
-    return m.reply(`🗑️ *Pesan Berhasil Dihapus!*\n\nTerhapus:\n"${removedMsg}"\nSisa daftar sapaan: ${groupData.autoSambut.pesanList.length}`);
+    return m.reply(`🗑️ *¡Mensaje eliminado!*\n\nEliminado:\n"${removedMsg}"\nSaludos restantes: ${groupData.autoSambut.pesanList.length}`);
   }
 
   if (action === "pesan") {
-    return m.reply(`⚠️ Perintah \`pesan\` telah usang dan digantikan oleh sistem acak.\nSilakan gunakan \`${m.prefix}autosambut add <teks>\` untuk menambahkan sapaan, atau \`${m.prefix}autosambut list\` untuk melihat daftar sapaan.`);
+    return m.reply(`⚠️ El comando \`pesan\` está obsoleto y se sustituyó por el sistema aleatorio.\nUsa \`${m.prefix}autosambut add <texto>\` para añadir un saludo, o \`${m.prefix}autosambut list\` para ver la lista de saludos.`);
   }
 
-  return m.reply(`Perintah tidak valid. Coba ketik \`${m.prefix}autosambut\` tanpa embel-embel untuk melihat buku panduannya.`);
+  return m.reply(`Comando no válido. Prueba a escribir \`${m.prefix}autosambut\` sin nada más para ver la guía.`);
 }
 
 export { pluginConfig as config, handler };

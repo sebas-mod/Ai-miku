@@ -31,9 +31,9 @@ async function handler(m) {
 
     if (!action) {
         return m.reply(
-            `👁️ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ*\n\n` +
+            `👁️ *AUTO-LECTURA DE HISTORIAS*\n\n` +
             `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n\n` +
-            `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
+            `*CÓMO USAR:*\n` +
             `> \`${m.prefix}autoreadsw on\` — Aktifkan\n` +
             `> \`${m.prefix}autoreadsw off\` — Matikan`
         )
@@ -44,8 +44,8 @@ async function handler(m) {
         db.save()
         await m.react('✅')
         return m.reply(
-            `✅ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Bot akan otomatis membaca semua story WA`
+            `✅ *AUTO-LECTURA DE HISTORIAS ACTIVA*\n\n` +
+            `> El bot leerá automáticamente todas las historias de WA`
         )
     }
 
@@ -53,10 +53,10 @@ async function handler(m) {
         db.setting('autoReadSW', { enabled: false })
         db.save()
         await m.react('✅')
-        return m.reply(`❌ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ ᴅɪᴍᴀᴛɪᴋᴀɴ*`)
+        return m.reply(`❌ *AUTO-LECTURA DE HISTORIAS DESACTIVADA*`)
     }
 
-    return m.reply(`❌ Gunakan \`on\` atau \`off\``)
+    return m.reply(`❌ Usa \`on\` o \`off\``)
 }
 
 export { pluginConfig as config, handler }

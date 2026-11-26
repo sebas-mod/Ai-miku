@@ -47,19 +47,19 @@ const VARIANTS = {
   v6: {
     id: 6,
     name: "SIMPLE DOCUMENT",
-    desc: "Seperti V2 tapi tanpa fake contact quote (quoted ori)",
+    desc: "Como V2 pero sin cita falsa de contacto (cita original)",
     emoji: "📄",
   },
   v7: {
     id: 7,
     name: "FAKE LOCATION",
-    desc: "Teks dengan fake quoted location message",
+    desc: "Texto con cita falsa de ubicación",
     emoji: "📍",
   },
   v8: {
     id: 8,
     name: "FAKE SIGNUP",
-    desc: "Teks dengan fake quoted signup message",
+    desc: "Texto con cita falsa de registro",
     emoji: "🥠",
   },
   v10: {
@@ -77,7 +77,7 @@ async function handler(m, { sock, db }) {
     const selected = VARIANTS[variant];
     if (!selected) {
       await m.reply(
-        `❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1, v2, v3, v6, v7, v8, v10*`
+        `❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1, v2, v3, v6, v7, v8, v10*`
       );
       return;
     }
@@ -109,16 +109,16 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "💬 Pilih Variant Reply",
-        sections: [{ title: "Daftar Variant Reply", rows }],
+        title: "💬 Elige la variante de respuesta",
+        sections: [{ title: "Lista de variantes de respuesta", rows }],
       }),
     },
   ];
 
   const bodys =
     `💬📨 *REPLY VARIANT*\n\n` +
-    `Atur tampilan balasan bot ketika membalas pesan user 💬✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "BASIC"}* 🎯\n`;
+    `Configura cómo responde el bot a los mensajes de los usuarios 💬✨\n` +
+    `Variante activa: *V${current} — ${VARIANTS[`v${current}`]?.name || "BASIC"}* 🎯\n`;
 
   await sock.sendButton(
     m.chat,

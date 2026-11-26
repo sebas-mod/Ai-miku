@@ -96,7 +96,7 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
   if (!inviteCode)
     return {
       joined: false,
-      reason: "Tidak ada invite code, tambahkan bot secara manual",
+      reason: "No hay código de invitación; añade el bot manualmente",
     };
   try {
     const botJid = sock.user?.id?.split(":")[0] + "@s.whatsapp.net";
@@ -106,12 +106,12 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
         const pJid = p.id?.split(":")[0] + "@s.whatsapp.net";
         return pJid === botJid || p.id === botJid;
       });
-      if (isMember) return { joined: true, reason: "Bot sudah ada di grup" };
+      if (isMember) return { joined: true, reason: "El bot ya está en el grupo" };
     }
     await sock.groupAcceptInvite(inviteCode);
-    return { joined: true, reason: "Bot berhasil join grup" };
+    return { joined: true, reason: "El bot se unió al grupo" };
   } catch (e) {
-    return { joined: false, reason: e.message || "Gagal join grup" };
+    return { joined: false, reason: e.message || "No se pudo unir al grupo" };
   }
 }
 
@@ -126,21 +126,21 @@ async function handler(m, { sock }) {
   if (args.length < 2) {
     return m.reply(
       `📝 *TAMBAH SEWA*\n\n` +
-        `Format: *${m.prefix}addsewa <link/id> <durasi>*\n\n` +
-        `*FORMAT DURASI:*\n` +
-        `• 30i = 30 menit\n` +
-        `• 12h = 12 jam\n` +
-        `• 7d = 7 hari\n` +
-        `• 1m = 1 bulan (30 hari)\n` +
-        `• 1y = 1 tahun\n` +
+        `Formato: *${m.prefix}addsewa <enlace/id> <duración>*\n\n` +
+        `*FORMATOS DE DURACIÓN:*\n` +
+        `• 30i = 30 minutos\n` +
+        `• 12h = 12 horas\n` +
+        `• 7d = 7 días\n` +
+        `• 1m = 1 mes (30 días)\n` +
+        `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
         `*INPUT GRUP:*\n` +
         `• Link: https://chat.whatsapp.com/xxx\n` +
         `• ID: 120363xxx@g.us\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `• ${m.prefix}addsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}addsewa 120363xxx 1m\n\n` +
-        `💡 Jika pakai link, bot akan otomatis join ke grup tersebut!`,
+        `💡 Si usas un enlace, ¡el bot se unirá automáticamente a ese grupo!`,
     );
   }
 
@@ -150,7 +150,7 @@ async function handler(m, { sock }) {
 
   if (!expiredAt)
     return m.reply(
-      `❌ Format durasi tidak valid\n\nContoh: 7d, 1m, 1y, lifetime`,
+      `❌ Formato de duración no válido\n\nContoh: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -159,7 +159,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup tidak ditemukan atau link tidak valid`);
+      return m.reply(`❌ Grupo no encontrado o enlace no válido`);
     }
 
     const { id: groupId, name: groupName, inviteCode } = result;
@@ -178,10 +178,10 @@ async function handler(m, { sock }) {
       ? "Permanent"
       : timeHelper.fromTimestamp(expiredAt, "D MMMM YYYY HH:mm");
 
-    let text = `✅ *SEWA BERHASIL DITAMBAHKAN*\n\n`;
+    let text = `✅ *ALQUILER AÑADIDO*\n\n`;
     text += `Grup: *${groupName}*\n`;
     text += `ID: ${groupId.split("@")[0]}\n`;
-    text += `Durasi: *${formatDuration(durationStr)}*\n`;
+    text += `Duración: *${formatDuration(durationStr)}*\n`;
     text += `Expired: *${expiredStr}*\n\n`;
 
     const joinResult = await tryJoinGroup(sock, inviteCode, groupId);
@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
         await new Promise((r) => setTimeout(r, 2000));
         await sock.sendText(
           groupId,
-          `👋 *Halo Semuanya!*, perkenalkan, aku ${config.bot?.name}\n\n- Masa sewa: *${formatDuration(durationStr)}*\n- Aku akan keluar pada: *${expiredStr}*\n\nKetik *${m.prefix}menu* untuk melihat fitur dari bot ini.`,
+          `👋 *¡Hola a todos!*, les presento, soy ${config.bot?.name}\n\n- Duración del alquiler: *${formatDuration(durationStr)}*\n- Saldré el: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para ver las funciones de este bot.`,
           null,
           {
             contextInfo: saluranCtx(),
@@ -200,7 +200,7 @@ async function handler(m, { sock }) {
         );
       } catch {}
     } else {
-      text += `⚠️ Auto-join gagal: ${joinResult.reason}\nTambahkan bot ke grup secara manual.`;
+      text += `⚠️ Error al unirse automáticamente: ${joinResult.reason}\nAñade el bot al grupo manualmente.`;
     }
 
     await m.react("✅");

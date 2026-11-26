@@ -36,10 +36,10 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (active.length === 0) {
-        return m.reply(`❌ Tidak ada jadibot yang aktif saat ini`)
+        return m.reply(`❌ No hay ningún jadibot activo ahora`)
     }
 
-    let txt = `🟢 *ᴊᴀᴅɪʙᴏᴛ ᴀᴋᴛɪꜰ*\n\n`
+    let txt = `🟢 *JADIBOT ACTIVO*\n\n`
     txt += `> 📊 Total: *${active.length}* bot aktif\n\n`
 
     active.forEach((s, i) => {
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         txt += `   ⏱️ *${uptime}* — 👤 @${owner}\n\n`
     })
 
-    txt += `> \`${m.prefix}stopalljadibot\` — Hentikan semua`
+    txt += `> \`${m.prefix}stopalljadibot\` — Detén todas`
 
     const mentions = active.flatMap(s => [s.jid, s.ownerJid].filter(Boolean))
 
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🛑 Stop Semua',
+                    display_text: '🛑 Detener todo',
                     id: `${m.prefix}stopalljadibot`
                 })
             }

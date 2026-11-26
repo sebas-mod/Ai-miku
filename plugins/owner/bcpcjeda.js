@@ -53,12 +53,12 @@ async function handler(m) {
   if (!input) {
     return m.reply(
       `⏱️ *JEDA BROADCAST PRIVATE*\n\n` +
-      `Jeda saat ini: *${formatDelay(current)}* (${current}ms)\n\n` +
-      `*CARA PAKAI:*\n` +
+      `Pausa actual: *${formatDelay(current)}* (${current}ms)\n\n` +
+      `*CÓMO USAR:*\n` +
       `> \`${m.prefix}bcpcjeda <angka><satuan>\`\n\n` +
       `*SATUAN:*\n` +
       `• \`s\` — detik\n• \`m\` — menit\n• \`h\` — jam\n• \`d\` — hari\n\n` +
-      `*CONTOH:*\n` +
+      `*EJEMPLO:*\n` +
       `> \`${m.prefix}bcpcjeda 5s\` → 5 detik\n` +
       `> \`${m.prefix}bcpcjeda 2m\` → 2 menit\n` +
       `> \`${m.prefix}bcpcjeda 1h\` → 1 jam`
@@ -67,7 +67,7 @@ async function handler(m) {
 
   const ms = parseDelay(input)
   if (!ms || ms < 1000) {
-    return m.reply('❌ Format salah. Contoh: `5s`, `2m`, `1h`, `1d`')
+    return m.reply('❌ Formato incorrecto. Ejemplo: `5s`, `2m`, `1h`, `1d`')
   }
 
   const prev = current

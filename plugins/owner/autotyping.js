@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `⌨️ *Auto Typing*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
+        `*USO:*\n` +
         `> *${m.prefix}autotyping on* — Aktifkan\n` +
         `> *${m.prefix}autotyping off* — Nonaktifkan\n\n` +
-        `_Bot akan menampilkan indikator typing saat menerima pesan_`
+        `_El bot mostrará el indicador de escritura al recibir mensajes_`
     );
   }
 
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
     return m.reply(
       `⌨️ *Auto Typing Aktif*\n\n` +
-        `> Bot akan menampilkan indikator typing`,
+        `> El bot mostrará el indicador de escritura`,
       { contextInfo: ctx }
     );
   }
@@ -56,12 +56,12 @@ async function handler(m, { sock }) {
     db.setting("autoTyping", false);
     return m.reply(
       `⌨️ *Auto Typing Nonaktif*\n\n` +
-        `> Bot tidak akan menampilkan indikator typing`
+        `> El bot no mostrará el indicador de escritura`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}autotyping on* atau *${m.prefix}autotyping off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}autotyping on* o *${m.prefix}autotyping off*`
   );
 }
 

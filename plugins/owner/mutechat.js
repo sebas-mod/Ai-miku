@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '🔇 *ᴍᴜᴛᴇ ᴄʜᴀᴛ*\n\n' +
+            '🔇 *SILENCIAR CHAT*\n\n' +
             '> `.mutechat 628xxx` — Mute chat\n' +
-            '> `.mutechat` (di private chat) — Mute chat ini\n' +
-            '> `.mutechat buka 628xxx` — Unmute chat'
+            '> `.mutechat` (en chat privado) — Silencia este chat\n' +
+            '> `.mutechat buka 628xxx` — Activa el sonido del chat'
         )
     }
 
@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
         const target = targetJid.split('@')[0]
         return m.reply(
             mute
-                ? `🔇 *ᴄʜᴀᴛ ᴅɪᴍᴜᴛᴇ*\n\n> Target: ${target}`
-                : `🔊 *ᴄʜᴀᴛ ᴅɪᴜɴᴍᴜᴛᴇ*\n\n> Target: ${target}`
+                ? `🔇 *CHAT SILENCIADO*\n\n> Target: ${target}`
+                : `🔊 *CHAT CON SONIDO*\n\n> Target: ${target}`
         )
     } catch (err) {
-        return m.reply(`❌ Gagal: ${err.message}`)
+        return m.reply(`❌ Error: ${err.message}`)
     }
 }
 

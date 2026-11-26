@@ -28,11 +28,11 @@ const pluginConfig = {
 const VALID_MODES = ['md', 'store', 'pushkontak', 'otp', 'all']
 
 const MODE_DESCRIPTIONS = {
-    md: 'Mode default, semua fitur kecuali panel/store/pushkontak',
+    md: 'Modo por defecto, todas las funciones salvo panel/store/pushkontak',
     store: 'Mode store manual, main + group + sticker + owner + store',
     pushkontak: 'Mode pushkontak, main + group + sticker + owner + pushkontak',
     otp: 'Mode OTP service, main + group + sticker + owner + otp',
-    all: 'Mode full, SEMUA fitur dari semua mode bisa diakses'
+    all: 'Modo completo, TODAS las funciones de todos los modos están disponibles'
 }
 
 async function handler(m, { sock }) {
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     const groupMode = groupData.botMode || null
 
     if (!mode) {
-        let txt = `╭┈┈⬡「 🤖 *ʙᴏᴛ ᴍᴏᴅᴇ* 」\n`
+        let txt = `╭┈┈⬡「 🤖 *MODO DEL BOT* 」\n`
         txt += `┃ ㊗ ɢʟᴏʙᴀʟ: *${globalMode.toUpperCase()}*\n`
 
         if (m.isGroup) {
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
         }
         txt += `╰┈┈⬡\n\n`
 
-        txt += `╭┈┈⬡「 📋 *ᴀᴠᴀɪʟᴀʙʟᴇ ᴍᴏᴅᴇs* 」\n`
+        txt += `╭┈┈⬡「 📋 *MODOS DISPONIBLES* 」\n`
 
         const currentMode = m.isGroup ? (groupMode || globalMode) : globalMode
 
@@ -65,10 +65,10 @@ async function handler(m, { sock }) {
         }
         txt += `╰┈┈⬡\n\n`
 
-        txt += `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n`
+        txt += `*FLAG STORE:*\n`
         txt += `> \`${m.prefix}botmode store\` - Manual order\n`
         txt += `> \`${m.prefix}botmode md\` → Mode default\n`
-        txt += `> \`${m.prefix}botmode all\` → Semua fitur`
+        txt += `> \`${m.prefix}botmode all\` → Todas las funciones`
 
         await m.reply(txt)
         return
@@ -76,8 +76,8 @@ async function handler(m, { sock }) {
 
     if (!VALID_MODES.includes(mode)) {
         return m.reply(
-            `❌ *ᴍᴏᴅᴇ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-            `> Mode tersedia: \`${VALID_MODES.join(', ')}\``
+            `❌ *MODO NO VÁLIDO*\n\n` +
+            `> Modos disponibles: \`${VALID_MODES.join(', ')}\``
         )
     }
 
@@ -104,16 +104,16 @@ async function handler(m, { sock }) {
 
     let extraInfo = ''
     if (mode === 'store' && m.isGroup) {
-        extraInfo = `\n\n📋 *Manual mode*\n> Admin perlu confirm order manual`
+        extraInfo = `\n\n📋 *Modo manual*\n> El admin debe confirmar el pedido manualmente`
     }
 
     await m.reply(
-        `✅ *ᴍᴏᴅᴇ ᴅɪᴜʙᴀʜ*\n\n` +
+        `✅ *MODO CAMBIADO*\n\n` +
         `> Mode: *${mode.toUpperCase()}*\n` +
         `> ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +
         `\n\n` +
-        (m.isGroup ? `> _Mode grup ini juga diubah._` : `> _Mode global diubah._`)
+        (m.isGroup ? `> _El modo de este grupo también cambió._` : `> _El modo global cambió._`)
     )
 
     console.log(`[BotMode] Changed to ${mode.toUpperCase()} by ${m.pushName} (${m.sender})`)

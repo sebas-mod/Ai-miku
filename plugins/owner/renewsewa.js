@@ -89,17 +89,17 @@ async function handler(m, { sock }) {
     return m.reply(
       `📝 *PERPANJANG SEWA*\n\n` +
         `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
-        `*FORMAT DURASI:*\n` +
-        `• 30i = 30 menit\n` +
-        `• 12h = 12 jam\n` +
-        `• 7d = 7 hari\n` +
+        `*FORMATOS DE DURACIÓN:*\n` +
+        `• 30i = 30 minutos\n` +
+        `• 12h = 12 horas\n` +
+        `• 7d = 7 días\n` +
         `• 1m = 1 bulan\n` +
-        `• 1y = 1 tahun\n` +
+        `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `• ${m.prefix}renewsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}renewsewa 120363xxx 1m\n\n` +
-        `💡 Durasi ditambahkan ke sisa waktu yang ada, bukan di-reset`,
+        `💡 La duración se suma al tiempo restante; no se reinicia`,
     );
   }
 
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
 
   if (!durationMs)
     return m.reply(
-      `❌ Format durasi tidak valid\nContoh: 7d, 1m, 1y, lifetime`,
+      `❌ Formato de duración no válido\nContoh: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup tidak ditemukan`);
+      return m.reply(`❌ Grup no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `❌ Grup tidak terdaftar\nGunakan *${m.prefix}addsewa* untuk menambahkan`,
+        `❌ El grupo no está registrado\nUsa *${m.prefix}addsewa* para añadirlo`,
       );
     }
 
@@ -137,7 +137,7 @@ async function handler(m, { sock }) {
     } else {
       if (existing.isLifetime) {
         await m.react("❌");
-        return m.reply(`❌ Grup ini sudah Permanent, tidak perlu diperpanjang`);
+        return m.reply(`❌ Este grupo ya es permanente; no hace falta renovarlo`);
       }
       const baseTime =
         existing.expiredAt > Date.now() ? existing.expiredAt : Date.now();

@@ -29,13 +29,13 @@ async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
       `💎 *SISTEM CAP PREMIUM*\n\n` +
-      `Sistem eksklusif untuk mengubah status akses banyak fitur sekaligus menjadi Premium.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}capprem <nama_fitur1> <nama_fitur2> ...* — Bisa banyak sekaligus\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `Sistema exclusivo para convertir varias funciones a Premium a la vez.\n\n` +
+      `*USO:*\n` +
+      `- *${m.prefix}capprem <nama_fitur1> <nama_fitur2> ...* — Pueden ser varias a la vez\n\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capprem hd jpm warn*\n\n` +
       `*PENJELASAN:*\n` +
-      `Masukkan satu atau lebih nama fitur yang ingin dijadikan Premium. Pisahkan dengan spasi.`
+      `Escribe uno o varios nombres de funciones para hacerlas Premium. Sepáralos con espacios.`
     );
   }
 
@@ -63,15 +63,15 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let msg = `✅ *STATUS BERHASIL DIUBAH*\n\n`;
+  let msg = `✅ *ESTADO ACTUALIZADO*\n\n`;
   if (successList.length > 0) {
-    msg += `*Berhasil (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Correctas (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   if (failedList.length > 0) {
-    msg += `*Gagal (Tidak ditemukan):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Con error (no encontradas):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
 
-  msg += `_Fitur di atas (yang berhasil) sekarang hanya bisa diakses oleh member Premium._`;
+  msg += `_Las funciones anteriores (las correctas) ahora solo están disponibles para miembros Premium._`;
 
   return m.reply(msg.trim());
 }

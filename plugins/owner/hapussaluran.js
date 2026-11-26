@@ -25,11 +25,11 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '🗑️ *ʜᴀᴘᴜs sᴀʟᴜʀᴀɴ*\n\n' +
-            '> `.hapussaluran <id_saluran>` — Hapus saluran\n\n' +
-            '📝 Contoh:\n' +
+            '🗑️ *ELIMINAR CANAL*\n\n' +
+            '> `.hapussaluran <id_saluran>` — Elimina el canal\n\n' +
+            '📝 Ejemplo:\n' +
             '> `.hapussaluran 120363xxx@newsletter`\n\n' +
-            '⚠️ Saluran akan dihapus secara permanen'
+            '⚠️ El canal se eliminará permanentemente'
         )
     }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
         return m.reply(`🗑️ *Saluran dihapus*\n\n> ID: ${targetJid}`)
     } catch (err) {
-        return m.reply(`❌ Gagal menghapus saluran: ${err.message}`)
+        return m.reply(`❌ Error al eliminar el canal: ${err.message}`)
     }
 }
 

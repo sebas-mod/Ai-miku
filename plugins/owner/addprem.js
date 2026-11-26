@@ -144,9 +144,9 @@ function parseDurationArgs(durationArgs) {
   }
 
   const parts = [];
-  if (totalDays > 0) parts.push(`${totalDays} hari`);
-  if (totalHours > 0) parts.push(`${totalHours} jam`);
-  if (totalMins > 0) parts.push(`${totalMins} menit`);
+  if (totalDays > 0) parts.push(`${totalDays} días`);
+  if (totalHours > 0) parts.push(`${totalHours} horas`);
+  if (totalMins > 0) parts.push(`${totalMins} minutos`);
 
   return { ms: totalMs, label: parts.join(" ") };
 }
@@ -172,10 +172,10 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbPremiums = getJadibotPremiums(jadibotId);
       if (jbPremiums.length === 0) {
         return m.reply(
-          `💎 Belum ada premium di jadibot ini\nGunakan \`${p}addprem\` untuk menambah`,
+          `💎 Aún no hay premium en este jadibot\nUsa \`${p}addprem\` para añadir`,
         );
       }
-      let txt = `💎 *DAFTAR PREMIUM JADIBOT* — ${jadibotId}\n\n`;
+      let txt = `💎 *LISTA DE PREMIUM JADIBOT* — ${jadibotId}\n\n`;
       const mentions = jbPremiums
         .map((item) => (typeof item === "string" ? item : item.jid))
         .map(toMentionJid)
@@ -190,9 +190,9 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     }
 
     if (db.data.premium.length === 0) {
-      return m.reply(`💎 Belum ada premium terdaftar`);
+      return m.reply(`💎 Aún no hay premium registrados`);
     }
-    let txt = `💎 *DAFTAR PREMIUM*\n\n`;
+    let txt = `💎 *LISTA DE PREMIUM*\n\n`;
     const now = Date.now();
     const mentions = db.data.premium
       .map((item) => (typeof item === "string" ? item : item.id))
@@ -215,14 +215,14 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
   if (!targetNumber) {
     return m.reply(
-      `💎 *${isAdd ? "ADD" : "DEL"} PREMIUM*\n\n` +
-        `Masukkan nomor, @tag, atau reply pesan user.\n\n` +
-        `📌 *Contoh (bisa salah satu atau digabung):*\n` +
-        `• \`${p}${cmd} 6281234567890 30day\` (hari)\n` +
-        `• \`${p}${cmd} 6281234567890 5h\` (jam)\n` +
-        `• \`${p}${cmd} 6281234567890 30m\` (menit)\n` +
+      `💎 *${isAdd ? "AÑADIR" : "QUITAR"} PREMIUM*\n\n` +
+        `Escribe el número, menciona con @ o responde a un mensaje del usuario.\n\n` +
+        `📌 *Ejemplo (puede ser uno o varios):*\n` +
+        `• \`${p}${cmd} 6281234567890 30day\` (días)\n` +
+        `• \`${p}${cmd} 6281234567890 5h\` (horas)\n` +
+        `• \`${p}${cmd} 6281234567890 30m\` (minutos)\n` +
         `• \`${p}${cmd} 6281234567890 2day 5h 30m\` (gabungan)\n` +
-        `• \`${p}${cmd} 6281234567890\` (default 30 hari)`,
+        `• \`${p}${cmd} 6281234567890\` (por defecto 30 días)`,
     );
   }
 
@@ -231,7 +231,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`❌ Format nomor tidak valid`);
+    return m.reply(`❌ Formato de número no válido`);
   }
 
   if (isJadibot && jadibotId) {
@@ -239,18 +239,18 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (addJadibotPremium(jadibotId, targetNumber)) {
         await m.react("💎");
         return m.reply(
-          `✅ Berhasil menambahkan *${targetNumber}* sebagai premium jadibot`,
+          `✅ Se añadió *${targetNumber}* como premium de jadibot`,
         );
       }
-      return m.reply(`❌ \`${targetNumber}\` sudah premium di Jadibot ini`);
+      return m.reply(`❌ \`${targetNumber}\` ya es premium en este Jadibot`);
     } else if (isDel) {
       if (removeJadibotPremium(jadibotId, targetNumber)) {
         await m.react("✅");
         return m.reply(
-          `✅ Berhasil menghapus *${targetNumber}* dari premium jadibot`,
+          `✅ Se eliminó *${targetNumber}* de la lista de premium de jadibot`,
         );
       }
-      return m.reply(`❌ \`${targetNumber}\` bukan premium di Jadibot ini`);
+      return m.reply(`❌ \`${targetNumber}\` no es premium en este Jadibot`);
     }
     return;
   }
@@ -259,8 +259,8 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     const parsed = parseDurationArgs(durationArgs);
     if (!parsed) {
       return m.reply(
-        `❌ Format waktu tidak valid!\n\n` +
-          `Gunakan satuan *day* (hari), *m* (menit), atau *jam*:\n` +
+        `❌ ¡Formato de tiempo no válido!\n\n` +
+          `Usa la unidad *day* (día), *m* (minuto) o *jam* (hora):\n` +
           `• \`${p}${cmd} ${targetNumber} 7day\`\n` +
           `• \`${p}${cmd} ${targetNumber} 30m\`\n` +
           `• \`${p}${cmd} ${targetNumber} 1day 30m\``,
@@ -318,7 +318,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
     await m.react("💎");
     return m.reply(
-      `✅ Berhasil ${existingIndex !== -1 ? "memperpanjang" : "menambahkan"} premium *${targetNumber}* selama *${durationLabel}*\nExpired: *${formatDateTime(newExpired)}*`,
+      `✅ ${existingIndex !== -1 ? "Premium renovado" : "Premium añadido"} *${targetNumber}* durante *${durationLabel}*\nVence: *${formatDateTime(newExpired)}*`,
     );
   } else if (isDel) {
     const index = db.data.premium.findIndex((item) =>
@@ -340,7 +340,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
     db.save();
     await m.react("✅");
-    return m.reply(`✅ Berhasil menghapus *${targetNumber}* dari premium`);
+    return m.reply(`✅ Se eliminó a *${targetNumber}* de premium`);
   }
 }
 

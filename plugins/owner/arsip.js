@@ -50,11 +50,11 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `📁 *${count} grup diarsipkan*\n\n> Private chat tidak bisa diarsipkan sekaligus (tidak ada daftar chat)`,
+        `📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar de una vez (no hay lista de chats)`,
       );
     } catch (err) {
       global.isFetchingGroups = false;
-      return m.reply(`❌ Gagal: ${err.message}`);
+      return m.reply(`❌ Error: ${err.message}`);
     }
   } else {
     if (m.mentionedJid?.length > 0) {
@@ -71,12 +71,12 @@ async function handler(m, { sock }) {
 
   if (!targetJid) {
     return m.reply(
-      "📁 *ᴀʀsɪᴘ ᴄʜᴀᴛ*\n\n" +
+      "📁 *ARCHIVAR CHAT*\n\n" +
         "> `.arsip 628xxx` — Arsipkan chat\n" +
-        "> `.arsip` (di private chat) — Arsipkan chat ini\n" +
-        "> `.arsip` (reply pesan) — Arsipkan chat pengirim\n" +
-        "> `.arsip buka 628xxx` — Buka arsip chat\n" +
-        "> `.arsip semua` — Arsipkan semua chat",
+        "> `.arsip` (en chat privado) — Archiva este chat\n" +
+        "> `.arsip` (responde a un mensaje) — Archiva el chat del remitente\n" +
+        "> `.arsip buka 628xxx` — Abre el chat archivado\n" +
+        "> `.arsip todos` — Archiva todos los chats",
     );
   }
 
@@ -86,11 +86,11 @@ async function handler(m, { sock }) {
     const target = targetJid.split("@")[0];
     return m.reply(
       archive
-        ? `📁 *ᴄʜᴀᴛ ᴅɪᴀʀsɪᴘᴋᴀɴ*\n\n> Target: ${target}\n> Gunakan \`.arsip buka ${target}\` untuk membuka`
-        : `📂 *ᴀʀsɪᴘ ᴅɪʙᴜᴋᴀ*\n\n> Target: ${target}`,
+        ? `📁 *CHAT ARCHIVADO*\n\n > Objetivo: ${target}\n> Usa \`.arsip buka ${target}\` para abrirlo`
+        : `📂 *CHAT DESARCHIVADO*\n\n> Target: ${target}`,
     );
   } catch (err) {
-    return m.reply(`❌ Gagal: ${err.message}`);
+    return m.reply(`❌ Error: ${err.message}`);
   }
 }
 

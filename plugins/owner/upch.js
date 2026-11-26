@@ -74,13 +74,13 @@ async function handler(m, { sock }) {
     if (!isMedia && !caption) {
         return m.reply(
             `📤 *UPLOAD SALURAN*\n\n` +
-            `Kirim/reply media dengan caption:\n` +
+            `Envía o responde a un multimedia con el texto:\n` +
             `  \`${m.prefix}upch 12xxx@newsletter <teks opsional>\`\n\n` +
             `*Support:*\n` +
             `  🖼️ Gambar\n` +
             `  🎥 Video\n` +
             `  🎵 Audio/VN\n` +
-            `  📝 Teks (tanpa media)`
+            `  📝 Texto (sin multimedia)`
         )
     }
 
@@ -90,11 +90,11 @@ async function handler(m, { sock }) {
         if (!isMedia && caption) {
             await sock.sendMessage(chId, { text: caption })
             await m.react("✅")
-            return m.reply(`✅ Teks berhasil dikirim ke saluran`)
+            return m.reply(`✅ El texto se envió al canal`)
         }
 
         const mediaBuf = await downloadMediaMessage(quoted, "buffer", {})
-        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("Media terlalu kecil atau gagal download")
+        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("El multimedia es demasiado pequeño o no se pudo descargar")
 
         if (isImage) {
             await sock.sendMessage(chId, {
@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Gambar berhasil dikirim ke saluran")
+            return m.reply("✅ La imagen se envió al canal")
         }
 
         if (isVideo) {
@@ -111,12 +111,12 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Video berhasil dikirim ke saluran")
+            return m.reply("✅ El vídeo se envió al canal")
         }
 
         if (isAudio) {
             const opusBuf = await toOggOpus(mediaBuf)
-            if (opusBuf.length < 5000) throw new Error("Konversi opus gagal")
+            if (opusBuf.length < 5000) throw new Error("Error al convertir a opus")
             const waveform = generateWaveform(opusBuf)
             await sock.sendMessage(chId, {
                 audio: opusBuf,
@@ -125,10 +125,10 @@ async function handler(m, { sock }) {
                 waveform: Array.from(waveform)
             })
             await m.react("✅")
-            return m.reply("✅ Audio berhasil dikirim ke saluran")
+            return m.reply("✅ El audio se envió al canal")
         }
 
-        m.reply("❌ Tipe media tidak didukung")
+        m.reply("❌ Tipo de multimedia no compatible")
     } catch (e) {
         console.error("[UpCh]", e)
         await m.react("☢")

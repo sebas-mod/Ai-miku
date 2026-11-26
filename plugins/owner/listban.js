@@ -29,11 +29,11 @@ async function handler(m, { sock }) {
     const bannedUsers = config.bannedUsers && config.bannedUsers.length > 0 ? config.bannedUsers : (db.setting('bannedUsers') || [])
 
     if (bannedUsers.length === 0) {
-        return m.reply(`🚫 *ʟɪsᴛ ʙᴀɴɴᴇᴅ*\n\n> Tidak ada user yang dibanned\n\n\`Gunakan: ${m.prefix}ban <nomor>\``)
+        return m.reply(`🚫 *LISTA DE BANEADOS*\n\n> No hay usuarios baneados\n\n\`Usa: ${m.prefix}ban <número>\``)
     }
 
-    let caption = `🚫 *ʟɪsᴛ ʙᴀɴɴᴇᴅ*\n\n`
-    caption += `╭┈┈⬡「 ⛔ *ᴜsᴇʀs* 」\n`
+    let caption = `🚫 *LISTA DE BANEADOS*\n\n`
+    caption += `╭┈┈⬡「 ⛔ *USUARIOS* 」\n`
 
     for (let i = 0; i < bannedUsers.length; i++) {
         caption += `┃ ${i + 1}. \`${bannedUsers[i]}\`\n`

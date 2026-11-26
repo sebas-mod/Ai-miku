@@ -36,19 +36,19 @@ async function handler(m, { sock }) {
     try {
         const isRealOwner = validateOwner(m);
         if (!isRealOwner) {
-            return await m.reply('🚫 *ᴀᴋsᴇs ᴅɪᴛᴏʟᴀᴋ*\n\n> Hanya owner yang bisa mengubah mode bot!');
+            return await m.reply('🚫 *ACCESO DENEGADO*\n\n> ¡Solo el owner puede cambiar el modo del bot!');
         }
         const currentMode = config.mode;
         if (currentMode === 'public') {
-            return await m.reply('ℹ️ Bot sudah dalam mode *public*');
+            return await m.reply('ℹ️ El bot ya está en modo *público*');
         }
         config.mode = 'public';
         const db = getDatabase();
         db.setting('botMode', 'public');
 
-        const responseText = `🌐 *ᴍᴏᴅᴇ ᴘᴜʙʟɪᴄ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Bot sekarang merespon semua user!\n\n` +
-            `_Gunakan .self untuk menutup akses_`;
+        const responseText = `🌐 *MODO PÚBLICO ACTIVO*\n\n` +
+            `> ¡El bot ahora responde a todos los usuarios!\n\n` +
+            `_Usa .self para cerrar el acceso_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to PUBLIC by ${m.pushName} (${m.sender})`);
     } catch (error) {

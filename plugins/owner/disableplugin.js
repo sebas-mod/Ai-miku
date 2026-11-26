@@ -64,9 +64,9 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `🔌 *ᴅɪsᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Masukkan nama plugin yang ingin dinonaktifkan\n\n` +
-        `*Contoh:*\n` +
+      `🔌 *DESACTIVAR PLUGIN*\n\n` +
+        `> Escribe el nombre del plugin que quieres desactivar\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}disableplugin sticker\`\n` +
         `> \`${m.prefix}disableplugin tiktok\``,
     );
@@ -75,13 +75,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`❌ Plugin *${pluginName}* tidak ditemukan!`);
+    return m.reply(`❌ Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled === false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* sudah dinonaktifkan!`);
+    return m.reply(`⚠️ Plugin *${pluginName}* ya está desactivado!`);
   }
 
   try {
@@ -92,14 +92,14 @@ async function handler(m, { sock }) {
     fs.writeFileSync(filePath, content);
 
     await m.reply(
-      `✅ *ᴘʟᴜɢɪɴ ᴅɪsᴀʙʟᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `✅ *PLUGIN DESACTIVADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
         `┃ 📁 Category: *${category}*\n` +
         `┃ 📄 File: *${file}*\n` +
         `┃ 🔴 Status: *Disabled*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot atau gunakan hot reload untuk apply.`,
+        `> Reinicia el bot o usa la recarga en caliente para aplicarlo.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

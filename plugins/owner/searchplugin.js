@@ -93,9 +93,9 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `🔍 *sᴇᴀʀᴄʜ ᴘʟᴜɢɪɴ*\n\n` +
+      `🔍 *BUSCAR PLUGIN*\n\n` +
         `> Cari dan tampilkan info plugin\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+        `*EJEMPLO:*\n` +
         `> \`${m.prefix}splugin sticker\`\n` +
         `> \`${m.prefix}splugin menu\``,
     );
@@ -114,14 +114,14 @@ async function handler(m, { sock }) {
     if (!info) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Plugin \`${name}\` tidak ditemukan`,
+        `❌ *NO ENCONTRADO*\n\n> Plugin \`${name}\` no encontrado`,
       );
     }
 
     if (info.error) {
       await m.react("⚠️");
       return m.reply(
-        `⚠️ *ᴘʟᴜɢɪɴ ᴇʀʀᴏʀ*\n\n` +
+        `⚠️ *ERROR DE PLUGIN*\n\n` +
           `> File: \`${info.file}\`\n` +
           `> Folder: \`${info.folder}\`\n` +
           `> Error: \`${info.error}\``,
@@ -131,16 +131,16 @@ async function handler(m, { sock }) {
     const aliases = Array.isArray(info.alias)
       ? info.alias.join(", ")
       : info.alias || "-";
-    const isEnabled = info.isEnabled !== false ? "✅ Ya" : "❌ Tidak";
-    const isOwner = info.isOwner ? "✅ Ya" : "❌ Tidak";
-    const isPremium = info.isPremium ? "✅ Ya" : "❌ Tidak";
-    const isGroup = info.isGroup ? "✅ Ya" : "❌ Tidak";
-    const isAdmin = info.isAdmin ? "✅ Ya" : "❌ Tidak";
+    const isEnabled = info.isEnabled !== false ? "✅ Sí" : "❌ No";
+    const isOwner = info.isOwner ? "✅ Sí" : "❌ No";
+    const isPremium = info.isPremium ? "✅ Sí" : "❌ No";
+    const isGroup = info.isGroup ? "✅ Sí" : "❌ No";
+    const isAdmin = info.isAdmin ? "✅ Sí" : "❌ No";
 
     await m.react("✅");
     return m.reply(
-      `📋 *ɪɴꜰᴏ ᴘʟᴜɢɪɴ*\n\n` +
-        `╭┈┈⬡「 📝 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `📋 *INFO DEL PLUGIN*\n\n` +
+        `╭┈┈⬡「 📝 *DETALLE* 」\n` +
         `┃ 📛 ɴᴀᴍᴀ: \`${info.name || "-"}\`\n` +
         `┃ 🏷️ ᴀʟɪᴀs: \`${aliases}\`\n` +
         `┃ 📁 ᴄᴀᴛᴇɢᴏʀʏ: \`${info.category || "-"}\`\n` +
@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
         `┃ 📝 ᴜsᴀɢᴇ: \`${info.usage || "-"}\`\n` +
         `┃ 📌 ᴇxᴀᴍᴘʟᴇ: \`${info.example || "-"}\`\n` +
         `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *sᴇᴛᴛɪɴɢs* 」\n` +
+        `╭┈┈⬡「 ⚙️ *AJUSTES* 」\n` +
         `┃ 🔓 ᴇɴᴀʙʟᴇᴅ: ${isEnabled}\n` +
         `┃ 👑 ᴏᴡɴᴇʀ ᴏɴʟʏ: ${isOwner}\n` +
         `┃ 💎 ᴘʀᴇᴍɪᴜᴍ: ${isPremium}\n` +

@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (active.length === 0) {
-        return m.reply(`❌ Tidak ada jadibot yang aktif`)
+        return m.reply(`❌ No hay ningún jadibot activo`)
     }
 
     await m.react('🕕')
@@ -41,11 +41,11 @@ async function handler(m, { sock }) {
         const names = stopped.map(id => `@${id}`).join(', ')
 
         await sock.sendMessage(m.chat, {
-            text: `🛑 *sᴇᴍᴜᴀ ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴇɴᴛɪᴋᴀɴ*\n\n` +
+            text: `🛑 *TODOS LOS JADIBOTS DETENIDOS*\n\n` +
                 `> 📊 Total: *${stopped.length}* jadibot\n` +
-                `> 💾 Session: *Tersimpan*\n\n` +
+                `> 💾 Sesión: *guardada*\n\n` +
                 `Dihentikan: ${names}\n\n` +
-                `> Semua session disimpan dan bisa diaktifkan ulang.`,
+                `> Todas las sesiones se guardaron y pueden reactivarse.`,
             mentions: stopped.map(id => id + '@s.whatsapp.net')
         }, { quoted: m })
     } catch (error) {

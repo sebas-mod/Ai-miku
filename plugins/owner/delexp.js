@@ -51,21 +51,21 @@ async function handler(m, { sock }) {
 
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⭐ *ᴅᴇʟ ᴇxᴘ*\n\n` +
-            `> \`.delexp <jumlah>\` - dari diri sendiri\n` +
-            `> \`.delexp <jumlah> @user\` - dari user\n\n` +
-            `\`Contoh: ${m.prefix}delexp 5000\``
+            `⭐ *QUITAR EXP*\n\n` +
+            `> \`.delexp <jumlah>\` - de ti mismo\n` +
+            `> \`.delexp <jumlah> @user\` - del usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}delexp 5000\``
         )
     }
 
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah harus lebih dari 0`)
+        return m.reply(`❌ *ERROR*\n\n> La cantidad debe ser mayor que 0`)
     }
 
     const user = db.getUser(targetJid)
 
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di database`)
+        return m.reply(`❌ *ERROR*\n\n> Usuario no encontrado en la base de datos`)
     }
 
     const newExp = db.updateExp(targetJid, -amount)
@@ -73,8 +73,8 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     await m.reply(
-        `✅ *ᴇxᴘ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+        `✅ *EXP REDUCIDA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
         `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
         `┃ ⭐ sɪsᴀ: *${formatNumber(newExp)}*\n` +

@@ -61,11 +61,11 @@ async function handler(m, { sock }) {
 
     if (!targetJid || (!isUnlimited && amount <= 0)) {
         return m.reply(
-            `⚡ *ᴀᴅᴅ ᴇɴᴇʀɢɪ*\n\n` +
-            `> \`.addenergi <jumlah>\` - ke diri sendiri\n` +
-            `> \`.addenergi <jumlah> @user\` - ke user\n` +
+            `⚡ *AÑADIR ENERGÍA*\n\n` +
+            `> \`.addenergi <cantidad>\` - para ti mismo\n` +
+            `> \`.addenergi <cantidad> @user\` - a un usuario\n` +
             `> \`.addenergi --unlimited\` - unlimited\n\n` +
-            `\`Contoh: ${m.prefix}addenergi 100\``
+            `\`Ejemplo: ${m.prefix}addenergi 100\``
         )
     }
 
@@ -78,8 +78,8 @@ async function handler(m, { sock }) {
     if (!isUnlimited && effectiveUnlimited) {
         return m.reply(
             `⚡ *INFORMASI*\n` +
-            `@${targetJid.split('@')[0]} sudah memiliki energi *∞ Unlimited*\n` +
-            `Tidak perlu menambahkan energi lagi`,
+            `@${targetJid.split('@')[0]} ya tiene energía *∞ Ilimitada*\n` +
+            `No hace falta añadir más energía`,
             { mentions: [targetJid] }
         )
     }
@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ *Energi @${targetJid.split('@')[0]} sekarang unlimited / tidak terbatas*`,
+            `✅ *Energi @${targetJid.split('@')[0]} ahora es ilimitada / sin límite*`,
             { mentions: [targetJid] }
         )
     } else {
@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ Energi *@${targetJid.split('@')[0]}* berhasil di tambahkan sebanyak *${formatNumber(amount)}*!\nSekarang dia mempunyai *${formatNumber(newEnergi)}* energi`,
+            `✅ Energi *@${targetJid.split('@')[0]}* se añadieron correctamente *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newEnergi)}* energi`,
             { mentions: [targetJid] }
         )
     }

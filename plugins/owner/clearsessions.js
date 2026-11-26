@@ -34,18 +34,18 @@ async function handler(m) {
 
         if (!r.found) {
             await m.react('❌')
-            return m.reply('❌ Folder session tidak ditemukan.')
+            return m.reply('❌ No se encontró la carpeta session.')
         }
 
         await m.react('✅')
         await m.reply(
-            `╭┈┈⬡「 🗑️ *ᴄʟᴇᴀʀ sᴇssɪᴏɴ* 」\n` +
+            `╭┈┈⬡「 🗑️ *LIMPIAR SESIÓN* 」\n` +
             `┃ 🧹 Sesi & kunci grup dihapus: *${r.files}*\n` +
             `┃ 💾 Ruang kosong: *${fmt(r.bytes)}*\n` +
-            (r.failed ? `┃ ⚠️ Gagal hapus: *${r.failed}* file\n` : '') +
+            (r.failed ? `┃ ⚠️ No se pudieron borrar: *${r.failed}* archivos\n` : '') +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> creds.json tetap aman, bot tidak logout. Sesi chat dibentuk ulang otomatis; ` +
-            `kalau ada pesan sempat gagal terbaca sebentar, itu normal. Mau jaga-jaga? Jalankan *.backupsession* sebelum membersihkan.`
+            `> creds.json sigue a salvo y el bot no cierra sesión. Las sesiones de chat se recrean automáticamente; ` +
+            `si algún mensaje no se leyó por un momento, es normal. ¿Quieres ir sobre seguro? Ejecuta *.backupsession* antes de limpiar.`
         )
     } catch (error) {
         await m.react('❌')

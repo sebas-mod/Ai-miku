@@ -105,7 +105,7 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `📦 *ʙᴀᴄᴋᴜᴘ sᴄʀɪᴘᴛ*\n\n> Memproses backup...\n> Mohon tunggu sebentar...`,
+    `📦 *COPIA DEL SCRIPT*\n\n> Procesando la copia...\n> Espera un momento...`,
   );
   try {
     const projectRoot = process.cwd();
@@ -142,12 +142,12 @@ async function handler(m, { sock }) {
       output.on("close", () => {
         try {
           if (!fs.existsSync(zipFilePath)) {
-            fail(new Error("File backup tidak ditemukan setelah proses zip"));
+            fail(new Error("No se encontró el archivo de copia tras el proceso zip"));
             return;
           }
           const stats = fs.statSync(zipFilePath);
           if (stats.size <= 0) {
-            fail(new Error("File backup kosong atau 0KB"));
+            fail(new Error("El archivo de copia está vacío o pesa 0 KB"));
             return;
           }
           succeed();
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
 
       addDirectory(projectRoot);
       if (fileCount === 0) {
-        fail(new Error("Tidak ada file yang masuk ke backup script"));
+        fail(new Error("Ningún archivo entró en la copia del script"));
         return;
       }
       archive.finalize();
@@ -201,8 +201,8 @@ async function handler(m, { sock }) {
         fileName: zipFileName,
         mimetype: "application/zip",
         caption:
-          `✅ *ʙᴀᴄᴋᴜᴘ sᴇʟᴇsᴀɪ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+          `✅ *COPIA COMPLETADA*\n\n` +
+          `╭┈┈⬡「 📋 *DETALLE* 」\n` +
           `┃ 📝 ɴᴀᴍᴀ: \`${zipFileName}\`\n` +
           `┃ 📊 sɪᴢᴇ: \`${fileSizeMB} MB\`\n` +
           `┃ 📁 ꜰɪʟᴇ: \`${fileCount}\`\n` +

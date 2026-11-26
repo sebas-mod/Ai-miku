@@ -34,12 +34,12 @@ async function handler(m) {
 
     if (!action) {
         return m.reply(
-            `👁️ *ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ sᴛᴏʀʏ*\n\n` +
+            `👁️ *AUTO-REACCIÓN A HISTORIAS*\n\n` +
             `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n` +
             `> Emoji: *${current.emoji}*\n\n` +
-            `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
+            `*CÓMO USAR:*\n` +
             `> \`${m.prefix}autoreactsw on\` — Aktifkan (emoji default 🔥)\n` +
-            `> \`${m.prefix}autoreactsw on 😍\` — Aktifkan dengan emoji\n` +
+            `> \`${m.prefix}autoreactsw on 😍\` — Actívalo con un emoji\n` +
             `> \`${m.prefix}autoreactsw off\` — Matikan`
         )
     }
@@ -49,9 +49,9 @@ async function handler(m) {
         db.save()
         await m.react('✅')
         return m.reply(
-            `✅ *ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ sᴛᴏʀʏ ᴀᴋᴛɪꜰ*\n\n` +
+            `✅ *AUTO-REACCIÓN A HISTORIAS ACTIVA*\n\n` +
             `> Emoji: *${emoji}*\n` +
-            `> Bot akan otomatis react semua story WA`
+            `> El bot reaccionará automáticamente a todas las historias de WA`
         )
     }
 
@@ -59,10 +59,10 @@ async function handler(m) {
         db.setting('autoReactSW', { enabled: false, emoji: current.emoji })
         db.save()
         await m.react('✅')
-        return m.reply(`❌ *ᴀᴜᴛᴏ ʀᴇᴀᴄᴛ sᴛᴏʀʏ ᴅɪᴍᴀᴛɪᴋᴀɴ*`)
+        return m.reply(`❌ *AUTO-REACCIÓN A HISTORIAS DESACTIVADA*`)
     }
 
-    return m.reply(`❌ Gunakan \`on\` atau \`off\``)
+    return m.reply(`❌ Usa \`on\` o \`off\``)
 }
 
 export { pluginConfig as config, handler }

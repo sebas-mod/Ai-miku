@@ -44,7 +44,7 @@ async function handler(m, { args }) {
     const name = key === 'ppkosong' ? 'ppKosong' : key
     const valid = [...thumbKeys]
     if (!valid.includes(name)) {
-        return m.reply(`❌ Key tidak dikenal.\nPilihan: ${valid.join(', ')}`)
+        return m.reply(`❌ Clave no reconocida.\nOpciones: ${valid.join(', ')}`)
     }
 
     const current = { ...(db.setting('mediaUrl') || {}) }
@@ -52,11 +52,11 @@ async function handler(m, { args }) {
     if (value === 'reset') {
         delete current[name]
         db.setting('mediaUrl', current)
-        return m.reply(`♻️ Override *${name}* dihapus, kembali memakai config.js`)
+        return m.reply(`♻️ Se eliminó la personalización de *${name}*; se vuelve a usar config.js`)
     }
 
     if (!isUrl(value)) {
-        return m.reply(`❌ URL tidak valid.\nContoh: \`${m.prefix}setthumb ${name} https://example.com/file\``)
+        return m.reply(`❌ URL no válida.\nEjemplo: \`${m.prefix}setthumb ${name} https://example.com/file\``)
     }
 
     current[name] = value

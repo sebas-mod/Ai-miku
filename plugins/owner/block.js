@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         targetJid = m.quoted.sender || m.quoted.participant
     } else if (m.args[0]) {
         let num = m.args[0].replace(/[^0-9]/g, '')
-        if (!num) return m.reply('❌ Nomor tidak valid.')
+        if (!num) return m.reply('❌ Número no válido.')
         targetJid = num + '@s.whatsapp.net'
     } else if (!m.isGroup) {
         targetJid = m.chat
@@ -38,26 +38,26 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
+            '⚠️ *CÓMO USAR*\n\n' +
             '> `.block 628xxx` — Blokir via nomor\n' +
-            '> `.block` (reply pesan) — Blokir pengirim\n' +
-            '> `.block @mention` — Blokir yang di-mention\n' +
-            '> `.block` (di private chat) — Blokir user ini'
+            '> `.block` (responde a un mensaje) — Bloquea al remitente\n' +
+            '> `.block @mención` — Bloquea al mencionado\n' +
+            '> `.block` (en chat privado) — Bloquea a este usuario'
         )
     }
 
     const botJid = sock.user?.id?.split(':')[0] + '@s.whatsapp.net'
     if (targetJid === botJid) {
-        return m.reply('❌ Tidak bisa blokir nomor bot sendiri.')
+        return m.reply('❌ No puedes bloquear el número del propio bot.')
     }
 
     try {
         await sock.updateBlockStatus(targetJid, 'block')
         await m.react('🚫')
         return m.reply(
-            `🚫 *ɴᴏᴍᴏʀ ᴅɪʙʟᴏᴋɪʀ*\n\n` +
+            `🚫 *NÚMERO BLOQUEADO*\n\n` +
             `> Target: @${targetJid.split('@')[0]}\n` +
-            `> Gunakan \`.unblock\` untuk membuka blokir`,
+            `> Usa \`.unblock\` para desbloquear`,
             { mentions: [targetJid] }
         )
     } catch (err) {

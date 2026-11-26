@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `📖 *Auto Read*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
+        `*USO:*\n` +
         `> *${m.prefix}autoread on* — Aktifkan\n` +
         `> *${m.prefix}autoread off* — Nonaktifkan\n\n` +
-        `_Bot akan otomatis membaca pesan masuk_`
+        `_El bot leerá automáticamente los mensajes entrantes_`
     );
   }
 
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
     return m.reply(
       `📖 *Auto Read Aktif*\n\n` +
-        `> Bot akan otomatis membaca pesan masuk`,
+        `> El bot leerá automáticamente los mensajes entrantes`,
       { contextInfo: ctx }
     );
   }
@@ -56,12 +56,12 @@ async function handler(m, { sock }) {
     db.setting("autoRead", false);
     return m.reply(
       `📖 *Auto Read Nonaktif*\n\n` +
-        `> Bot tidak akan otomatis membaca pesan`
+        `> El bot no leerá los mensajes automáticamente`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}autoread on* atau *${m.prefix}autoread off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}autoread on* o *${m.prefix}autoread off*`
   );
 }
 

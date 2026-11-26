@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     }
     const dbPath = path.join(process.cwd(), 'database', 'db.json')
     if (!fs.existsSync(dbPath)) {
-        return m.reply(`❌ File database tidak ditemukan!`)
+        return m.reply(`❌ File database no encontrado!`)
     }
     try {
         const stats = fs.statSync(dbPath)
@@ -44,8 +44,8 @@ async function handler(m, { sock }) {
             document: data,
             fileName: fileName,
             mimetype: 'application/json',
-            caption: `📦 *ᴅᴀᴛᴀʙᴀsᴇ ʙᴀᴄᴋᴜᴘ*\n\n` +
-                `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
+            caption: `📦 *COPIA DE LA BASE DE DATOS*\n\n` +
+                `╭┈┈⬡「 📋 *INFO* 」\n` +
                 `┃ 📁 File: \`db.json\`\n` +
                 `┃ 📊 Size: \`${(stats.size / 1024).toFixed(2)} KB\`\n` +
                 `┃ 📅 Date: \`${now.format('DD/MM/YYYY')}\`\n` +

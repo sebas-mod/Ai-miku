@@ -48,15 +48,15 @@ async function handler(m, { sock }) {
     targetGroupJid = m.chat;
     try {
       const meta = m.groupMetadata;
-      groupName = meta.subject || "Grup ini";
+      groupName = meta.subject || "Este grupo";
     } catch {
-      groupName = "Grup ini";
+      groupName = "Este grupo";
     }
   } else if (input) {
     const inviteCode = await extractInviteCode(input);
 
     if (!inviteCode) {
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Link invite tidak valid`);
+      return m.reply(`❌ *ERROR*\n\n> Enlace de invitación no válido`);
     }
 
     try {
@@ -65,22 +65,22 @@ async function handler(m, { sock }) {
       groupName = groupInfo.subject || "Unknown";
     } catch (error) {
       return m.reply(
-        `❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat mengambil info grup dari link`,
+        `❌ *ERROR*\n\n> No se pudo obtener la información del grupo desde el enlace`,
       );
     }
   } else {
     return m.reply(
-      `🚪 *ʟᴇᴀᴠᴇ ɢʀᴜᴘ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
+      `🚪 *SALIR DEL GRUPO*\n\n` +
+        `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
         `┃ ◦ Di grup: \`.leave\`\n` +
         `┃ ◦ Via link: \`.leave <link>\`\n` +
         `╰┈┈⬡\n\n` +
-        `\`Contoh: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
+        `\`Ejemplo: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
     );
   }
 
   if (!targetGroupJid) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Grup tidak ditemukan`);
+    return m.reply(`❌ *ERROR*\n\n> Grup no encontrado`);
   }
 
   await m.react("🕕");
@@ -94,9 +94,9 @@ async function handler(m, { sock }) {
     if (m.isGroup && targetGroupJid === m.chat) {
       await sock.sendMessage(m.chat, {
         text:
-          `👋 *ɢᴏᴏᴅʙʏᴇ*\n\n` +
-          `> Bot akan keluar dari grup ini.\n` +
-          `> Terima kasih sudah menggunakan bot!`,
+          `👋 *DESPEDIDA*\n\n` +
+          `> El bot saldrá de este grupo.\n` +
+          ` > ¡Gracias por usar el bot!`,
         contextInfo: {
           forwardingScore: 9999,
           isForwarded: true
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
     if (!m.isGroup || targetGroupJid !== m.chat) {
       await m.react("✅");
       await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ*\n\n` + `> Bot telah keluar dari: *${groupName}*`,
+        `✅ *SALIDA COMPLETADA*\n\n` + `> El bot salió de: *${groupName}*`,
       );
     }
   } catch (error) {

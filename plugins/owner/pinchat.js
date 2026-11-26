@@ -29,8 +29,8 @@ async function sendPinCarousel(m, sock, { pinned, target, error } = {}) {
 
     if (!image) {
         await m.reply(error || (pinned
-            ? `📌 *ᴄʜᴀᴛ ᴅɪᴘɪɴ*\n\n> Target: ${target}`
-            : `📍 *ᴘɪɴ ᴅɪʜᴀᴘᴜs*\n\n> Target: ${target}`));
+            ? `📌 *CHAT FIJADO*\n\n> Target: ${target}`
+            : `📍 *FIJADO ELIMINADO*\n\n> Target: ${target}`));
         return;
     }
 
@@ -51,29 +51,29 @@ async function sendPinCarousel(m, sock, { pinned, target, error } = {}) {
         const prefix = config.command?.prefix || '.';
         const cards = [
             await makeCard(
-                pinned ? '📌 Chat Berhasil Dipin' : '📍 Pin Chat Dihapus',
-                `Target chat: ${target}\n\n${pinned ? 'Chat sudah dipindahkan ke bagian pin.' : 'Chat sudah dikeluarkan dari bagian pin.'}`,
-                pinned ? '📍 Buka Panduan' : '📌 Pin Lagi',
+                pinned ? '📌 Chat fijado' : '📍 Fijado eliminado',
+                `Chat objetivo: ${target}\n\n${pinned ? 'El chat se movió a la sección de fijados.' : 'El chat se quitó de la sección de fijados.'}`,
+                pinned ? '📍 Abrir guía' : '📌 Fijar de nuevo',
                 pinned ? `${prefix}pin` : `${prefix}pin`,
             ),
             await makeCard(
                 '📖 Panduan .pin',
-                `• ${prefix}pin 628xxx — Pin chat\n• ${prefix}pin — Pin chat saat private chat\n• ${prefix}pin buka 628xxx — Unpin chat\n\nGeser ke kanan untuk melihat panduan.`,
-                '📌 Gunakan .pin',
+                `• ${prefix}pin 628xxx — Fija el chat\n• ${prefix}pin — Fija el chat en privado\n• ${prefix}pin buka 628xxx — Quita el fijado\n\nDesliza a la derecha para ver la guía.`,
+                '📌 Usa .pin',
                 `${prefix}pin`,
             ),
         ];
 
         const carousel = new Carousel(sock)
             .setBody(pinned ? '📌 *PIN CHAT*' : '📍 *UNPIN CHAT*')
-            .setFooter('Geser kartu ke kanan untuk melihat panduan.');
+            .setFooter('Desliza la tarjeta a la derecha para ver la guía.');
         carousel.addCard(cards);
         await carousel.send(m.chat, { quoted: m.raw });
     } catch (carouselError) {
         console.error('[PIN CAROUSEL ERROR]:', carouselError);
         await m.reply(error || (pinned
-            ? `📌 *ᴄʜᴀᴛ ᴅɪᴘɪɴ*\n\n> Target: ${target}`
-            : `📍 *ᴘɪɴ ᴅɪʜᴀᴘᴜs*\n\n> Target: ${target}`));
+            ? `📌 *CHAT FIJADO*\n\n> Target: ${target}`
+            : `📍 *FIJADO ELIMINADO*\n\n> Target: ${target}`));
     }
 }
 
@@ -103,10 +103,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '📌 *ᴘɪɴ ᴄʜᴀᴛ*\n\n' +
+            '📌 *FIJAR CHAT*\n\n' +
             '> `.pinchat 628xxx` — Pin chat\n' +
-            '> `.pinchat` (di private chat) — Pin chat ini\n' +
-            '> `.pinchat buka 628xxx` — Unpin chat'
+            '> `.pinchat` (en chat privado) — Fija este chat\n' +
+            '> `.pinchat buka 628xxx` — Quita el fijado del chat'
         )
     }
 
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
         return sendPinCarousel(m, sock, {
             pinned: pin,
             target: targetJid.split('@')[0],
-            error: `❌ Gagal: ${err.message}`,
+            error: `❌ Error: ${err.message}`,
         });
     }
 }

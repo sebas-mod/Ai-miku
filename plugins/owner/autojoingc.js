@@ -59,9 +59,9 @@ async function autoJoinDetector(m, sock) {
     } catch (e) {
       const msg = e.message || String(e);
       if (msg.includes("already") || msg.includes("participant")) {
-        await m.reply(`⚠️ Sudah ada di grup tersebut`);
+        await m.reply(`⚠️ Ya está en ese grupo`);
       } else if (msg.includes("expired") || msg.includes("revoked")) {
-        await m.reply(`❌ Link grup sudah expired/revoked`);
+        await m.reply(`❌ El enlace del grupo expiró o fue revocado`);
       } else {
         await m.reply(te(m.prefix, m.command, m.pushName));
       }

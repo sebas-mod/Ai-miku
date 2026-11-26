@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: ["sv", "svkontak"],
     category: "owner",
     description: "Menyimpan kontak dari grup menjadi file VCF",
-    usage: ".savekontak <nama>",
+    usage: ".savekontak <nombre>",
     example: ".savekontak Fulan",
     isOwner: true,
     isPremium: false,
@@ -35,15 +35,15 @@ async function handler(m, { sock, args }) {
             if (chats[target]) {
                 groups.push(chats[target]);
             } else {
-                return m.reply("❌ Grup tidak ditemukan.");
+                return m.reply("❌ Grupo no encontrado.");
             }
         }
 
         if (groups.length === 0) {
-            return m.reply("❌ Bot tidak berada di grup mana pun.");
+            return m.reply("❌ El bot no está en ningún grupo.");
         }
 
-        m.reply(`⏳ Sedang mengekstrak kontak dari ${groups.length} grup...`);
+        m.reply(`⏳ Extrayendo contactos de ${groups.length} grupos...`);
 
         let vcards = "";
         let count = 0;
@@ -67,14 +67,14 @@ async function handler(m, { sock, args }) {
         }
 
         if (count === 0) {
-            return m.reply("❌ Tidak ada kontak yang bisa diekstrak.");
+            return m.reply("❌ No hay contactos que extraer.");
         }
 
         await sock.sendMessage(m.chat, {
             document: Buffer.from(vcards, "utf8"),
             fileName: `${baseName}_${count}_Kontak.vcf`,
             mimetype: "text/vcard",
-            caption: `✅ *Berhasil mengekstrak ${count} kontak ke dalam VCF.*`
+            caption: `✅ *Se extrajeron ${count} contactos al archivo VCF.*`
         }, { quoted: m });
 
         await sock.sendMessage(m.chat, {
@@ -92,12 +92,12 @@ async function handler(m, { sock, args }) {
     const groupList = Object.values(chats);
 
     if (groupList.length === 0) {
-        return m.reply("❌ Bot tidak berada di grup mana pun.");
+        return m.reply("❌ El bot no está en ningún grupo.");
     }
 
     const sections = [
         {
-            title: "Daftar Grup",
+            title: "Lista de grupos",
             rows: groupList.map(g => ({
                 header: "",
                 title: g.subject,
@@ -109,28 +109,28 @@ async function handler(m, { sock, args }) {
 
     await sock.sendMessage(m.chat, {
         text: `📇 *SISTEM SAVE KONTAK (VCF)*\n\n` +
-            `Sistem ekstraksi kontak otomatis dari grup yang diikuti bot.\n` +
-            `Nama Base: *${baseName}*\n\n` +
-            `*PENGGUNAAN:*\n` +
-            `• *${m.prefix || "."}savekontak <nama>* — Menyimpan dengan nama kustom\n` +
-            `• *${m.prefix || "."}savekontak* — Menyimpan dengan nama default "User"\n\n` +
-            `*PENJELASAN ALUR PENGGUNAAN:*\n` +
-            `1. Pilih grup spesifik dari tombol *Pilih Grup* di bawah, atau klik *Semua Grup* untuk mengekstrak kontak secara global.\n` +
-            `2. Bot akan mengumpulkan nomor peserta dan mengabaikan nomor bot sendiri.\n` +
-            `3. Hasil akan dikirim berupa file dokumen (*.vcf*) beserta list kontak WhatsApp agar bisa langsung disave.`,
+            `Sistema de extracción automática de contactos de los grupos donde está el bot.\n` +
+            `Nombre base: *${baseName}*\n\n` +
+            `*USO:*\n` +
+            `• *${m.prefix || "."}savekontak <nombre>* — Guarda con un nombre personalizado\n` +
+            `• *${m.prefix || "."}savekontak* — Guarda con el nombre por defecto "User"\n\n` +
+            `*EXPLICACIÓN DEL PROCESO:*\n` +
+            `1. Elige un grupo concreto en el botón *Elegir grupo* de abajo, o pulsa *Todos los grupos* para extraer los contactos globalmente.\n` +
+            `2. El bot recopilará los números de los participantes e ignorará su propio número.\n` +
+            `3. El resultado se enviará como documento (*.vcf*) junto con una lista de contactos de WhatsApp para guardarlos directamente.`,
         footer: "Powered by ReviewBot",
         interactiveButtons: [
             {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                    title: "Pilih Grup",
+                    title: "Elegir grupo",
                     sections
                 })
             },
             {
                 name: "quick_reply",
                 buttonParamsJson: JSON.stringify({
-                    display_text: "Semua Grup",
+                    display_text: "Todos los grupos",
                     id: `${m.prefix}savekontak get all ${baseName}`
                 })
             }

@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m) {
     if (!m.quoted) {
-        return m.reply('❌ *Reply pesan yang ingin di-inspect*')
+        return m.reply('❌ *Responde al mensaje que quieres inspeccionar*')
     }
 
     try {

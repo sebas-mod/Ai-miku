@@ -43,7 +43,7 @@ async function handler(m) {
       `╭─── ❖ 『 🧹 *STATUS AUTO CLEAR CACHE* 』 ❖\n` +
         `│ 📂 *Folder:* \`database/cache\`\n` +
         `│ 📄 *Jumlah File:* ${stats.fileCount} file\n` +
-        `│ 💾 *Total Ukuran:* ${stats.formattedSize}\n` +
+        `│ 💾 *Tamaño total:* ${stats.formattedSize}\n` +
         `│ ⚙️ *Auto Clear:* ${opt.enabled ? "✅ Aktif" : "❌ Nonaktif"}\n` +
         `│ ⏱️ *Interval:* Tiap ${opt.intervalMinutes || 60} menit\n` +
         `╰──────────────────────────❖`
@@ -66,7 +66,7 @@ async function handler(m) {
 
   const r = clearDatabaseCache();
   if (r.missing || r.deleted === 0) {
-    return m.reply(`✨ Folder \`database/cache\` sudah bersih (0 file).`);
+    return m.reply(`✨ Folder \`database/cache\` ya está limpia (0 archivos).`);
   }
 
   return m.reply(

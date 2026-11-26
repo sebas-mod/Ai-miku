@@ -40,9 +40,9 @@ async function handler(m, { sock, store }) {
 
     if (!code) {
         return m.reply(
-            `⚙️ *ᴇᴠᴀʟ*\n\n` +
-            `> Masukkan kode JavaScript!\n\n` +
-            `*Contoh:*\n` +
+            `⚙️ *EVAL*\n\n` +
+            `> ¡Escribe código JavaScript!\n\n` +
+            `*Ejemplo:*\n` +
             `> .$ 1 + 1\n` +
             `> .$ m.chat\n` +
             `> .$ db.getUser(m.sender)`
@@ -84,8 +84,8 @@ async function handler(m, { sock, store }) {
     const type = isError ? result?.name || 'Error' : typeof result
 
     await m.reply(
-        `⚙️ *ᴇᴠᴀʟ ʀᴇsᴜʟᴛ*\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
+        `⚙️ *RESULTADO DE EVAL*\n\n` +
+        `╭┈┈⬡「 📋 *INFO* 」\n` +
         `┃ ${status}\n` +
         `┃ Type: ${type}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +

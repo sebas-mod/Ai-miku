@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
 
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ERROR*\n\n> No hay miembros en este grupo`)
         }
 
         await m.react('🕕')
@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
         await m.react('🗑️')
 
         await m.reply(
-            `🗑️ *ᴅᴇʟ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
-            `╭┈┈⬡「 📋 *ʜᴀsɪʟ* 」\n` +
+            `🗑️ *QUITAR PREMIUM A TODOS*\n\n` +
+            `╭┈┈⬡「 📋 *RESULTADO* 」\n` +
             `┃ 👥 ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀ: \`${participants.length}\`\n` +
             `┃ ✅ ᴅɪʜᴀᴘᴜs: \`${removedCount}\`\n` +
             `┃ ⏭️ ʙᴜᴋᴀɴ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +

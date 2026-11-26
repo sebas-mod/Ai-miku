@@ -36,21 +36,21 @@ async function handler(m, { sock }) {
     try {
         const isRealOwner = validateOwner(m);
         if (!isRealOwner) {
-            return await m.reply('🚫 *ᴀᴋsᴇs ᴅɪᴛᴏʟᴀᴋ*\n\n> Hanya owner yang bisa mengubah mode bot!');
+            return await m.reply('🚫 *ACCESO DENEGADO*\n\n> ¡Solo el owner puede cambiar el modo del bot!');
         }
         const currentMode = config.mode;
         if (currentMode === 'self') {
-            return await m.reply('ℹ️ Bot sudah dalam mode *self*');
+            return await m.reply('ℹ️ El bot ya está en modo *self*');
         }
         config.mode = 'self';
         const db = getDatabase();
         db.setting('botMode', 'self');
 
-        const responseText = `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Bot sekarang hanya merespon:\n` +
+        const responseText = `🔒 *MODO SELF ACTIVO*\n\n` +
+            `> El bot ahora solo responde a:\n` +
             `> • Owner bot\n` +
             `> • Bot sendiri (fromMe)\n\n` +
-            `_Gunakan .public untuk membuka akses_`;
+            `_Usa .public para abrir el acceso_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to SELF by ${m.pushName} (${m.sender})`);
     } catch (error) {

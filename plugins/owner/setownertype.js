@@ -27,8 +27,8 @@ const pluginConfig = {
 }
 
 const VARIANTS = {
-    1: { name: 'Current Design', desc: 'Tampilan default saat ini' },
-    2: { name: 'Multiple Contact', desc: 'Kirim contact card semua owner' }
+    1: { name: 'Current Design', desc: 'Diseño actual por defecto' },
+    2: { name: 'Multiple Contact', desc: 'Envía la tarjeta de contacto de todos los owners' }
 }
 
 async function handler(m, { sock, db }) {
@@ -62,7 +62,7 @@ async function handler(m, { sock, db }) {
     }
 
     await sock.sendMessage(m.chat, {
-        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Type saat ini: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Pilih variant owner:`,
+        text: `🎨 *TIPO DE OWNER*\n\n > Tipo actual: *V${current}*\n> _${VARIANTS[current].name}_\n\n > Elige la variante de owner:`,
         footer: config.bot?.name || 'Elysia Assistant',
         contextInfo: {
             mentionedJid: [m.sender],

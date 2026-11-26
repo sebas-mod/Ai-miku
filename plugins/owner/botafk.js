@@ -36,8 +36,8 @@ async function handler(m, { sock }) {
         const duration = formatDuration(afkDuration)
 
         return m.reply(
-            `✅ *ʙᴏᴛ ᴋᴇᴍʙᴀʟɪ ᴏɴʟɪɴᴇ*\n\n` +
-            `╭┈┈⬡「 📊 *sᴛᴀᴛɪsᴛɪᴋ ᴀꜰᴋ* 」\n` +
+            `✅ *BOT DE NUEVO EN LÍNEA*\n\n` +
+            `╭┈┈⬡「 📊 *ESTADÍSTICAS DE AFK* 」\n` +
             `┃ ⏱️ ᴅᴜʀᴀsɪ: \`${duration}\`\n` +
             `┃ 📝 ᴀʟᴀsᴀɴ: \`${currentAfk.reason || '-'}\`\n` +
             `╰┈┈⬡\n\n` +
@@ -54,18 +54,18 @@ async function handler(m, { sock }) {
 
         await m.react('💤')
         return m.reply(
-            `💤 *ʙᴏᴛ ᴀꜰᴋ ᴀᴋᴛɪꜰ*\n\n` +
-            `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+            `💤 *BOT AFK ACTIVO*\n\n` +
+            `╭┈┈⬡「 📋 *INFO* 」\n` +
             `┃ 📝 ᴀʟᴀsᴀɴ: \`${reason}\`\n` +
             `┃ ⏰ sᴇᴊᴀᴋ: \`${moment().tz('Asia/Jakarta').format('HH:mm:ss')}\`\n` +
             `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n` +
+            `╭┈┈⬡「 🔒 *ACCESO* 」\n` +
             `┃ ✅ Owner bot\n` +
             `┃ ✅ Bot sendiri (fromMe)\n` +
-            `┃ ❌ Semua user lain\n` +
+            `┃ ❌ Todos los demás usuarios\n` +
             `╰┈┈⬡\n\n` +
-            `> User lain akan dapat pesan AFK\n` +
-            `> Ketik \`${m.prefix}botafk\` untuk kembali online`
+            `> Los demás usuarios recibirán el mensaje de AFK\n` +
+            `> Escribe \`${m.prefix}botafk\` para volver a estar en línea`
         )
     }
 }
