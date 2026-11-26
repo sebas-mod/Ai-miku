@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (action === 'private') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas en privado!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas en privado!`)
         }
 
         const subAction = args[1]?.toLowerCase()
@@ -51,19 +51,19 @@ async function handler(m, { sock }) {
         if (subAction === 'on') {
             db.setting('autoreplyPrivate', true)
             m.react('✅')
-            return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá solo en los chats privados`)
+            return m.reply(`✅ *AUTORESPUESTA PRIVADO ACTIVADO*\n\n> El bot responderá solo en los chats privados`)
         }
 
         if (subAction === 'off') {
             db.setting('autoreplyPrivate', false)
             m.react('❌')
-            return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá solo en los chats privados`)
+            return m.reply(`❌ *AUTORESPUESTA PRIVADO DESACTIVADO*\n\n> El bot no responderá solo en los chats privados`)
         }
 
         const currentStatus = db.setting('autoreplyPrivate') ?? false
         return m.reply(
             `📱 *AUTOREPLY PRIVATE*\n\n` +
-            `Status: *${currentStatus ? '✅ ACTIVO' : '❌ INACTIVO'}*\n\n` +
+            `Estado: *${currentStatus ? '✅ ACTIVO' : '❌ INACTIVO'}*\n\n` +
             `*COMANDOS DISPONIBLES:*\n` +
             `• *${m.prefix}autoreply private on* — Activar private\n` +
             `• *${m.prefix}autoreply private off* — Desactivar private`
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
 
     if (action === 'global') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas globales!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas globales!`)
         }
 
         const subAction = args[1]?.toLowerCase()
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
             const pipeIdx = fullBody.indexOf('|')
             if (pipeIdx === -1) {
                 return m.reply(
-                    `❌ *ꜰᴏʀᴍᴀᴛ sᴀʟᴀʜ*\n\n` +
+                    `❌ *FORMATO INCORRECTO*\n\n` +
                     `> Usa format: \`trigger|reply\`\n\n` +
                     `> Ejemplo:\n` +
                     `> \`${m.prefix}autoreply global add hola|¡Hola {name}!\``
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
             const reply = fullBody.substring(pipeIdx + 1)
 
             if (!trigger.trim() || !reply) {
-                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El disparador y la respuesta no pueden estar vacíos!`)
+                return m.reply(`❌ *FALLIDO*\n\n> ¡El disparador y la respuesta no pueden estar vacíos!`)
             }
 
             const existingIndex = globalCustomReplies.findIndex(r => r.trigger.toLowerCase() === trigger.trim().toLowerCase())
@@ -121,12 +121,12 @@ async function handler(m, { sock }) {
         if (subAction === 'del' || subAction === 'rm') {
             const trigger = args.slice(2).join(' ').toLowerCase().trim()
             if (!trigger) {
-                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Indica el disparador que quieres borrar!`)
+                return m.reply(`❌ *FALLIDO*\n\n> ¡Indica el disparador que quieres borrar!`)
             }
 
             const index = globalCustomReplies.findIndex(r => r.trigger === trigger)
             if (index === -1) {
-                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
+                return m.reply(`❌ *FALLIDO*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
             }
 
             globalCustomReplies.splice(index, 1)
@@ -141,7 +141,7 @@ async function handler(m, { sock }) {
             if (globalCustomReplies.length === 0) {
                 return m.reply(
                     `📋 *GLOBAL AUTOREPLY*\n\n` +
-                    `Status: *❌ SIN DATOS*\n\n` +
+                    `Estado: *❌ SIN DATOS*\n\n` +
                     `*COMANDOS DISPONIBLES:*\n` +
                     `• *${m.prefix}autoreply global add <trigger>|<reply>*`
                 )
@@ -159,7 +159,7 @@ async function handler(m, { sock }) {
         }
 
         return m.reply(
-            `📱 *ɢʟᴏʙᴀʟ ᴀᴜᴛᴏʀᴇᴘʟʏ*\n\n` +
+            `📱 *GLOBAL AUTORESPUESTA*\n\n` +
             `> \`${m.prefix}autoreply global add trigger|reply\`\n` +
             `> \`${m.prefix}autoreply global del trigger\`\n` +
             `> \`${m.prefix}autoreply global list\``
@@ -178,7 +178,7 @@ async function handler(m, { sock }) {
     }
 
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo los administradores pueden configurar las respuestas automáticas en el grupo!`)
+        return m.reply(`❌ *FALLIDO*\n\n> ¡Solo los administradores pueden configurar las respuestas automáticas en el grupo!`)
     }
 
     const groupData = db.getGroup(m.chat) || {}
@@ -223,13 +223,13 @@ async function handler(m, { sock }) {
     if (action === 'on') {
         db.setGroup(m.chat, { ...groupData, autoreply: true })
         m.react('✅')
-        return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá solo en este grupo`)
+        return m.reply(`✅ *AUTORESPUESTA ACTIVADO*\n\n> El bot responderá solo en este grupo`)
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...groupData, autoreply: false })
         m.react('❌')
-        return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá solo en este grupo`)
+        return m.reply(`❌ *AUTORESPUESTA DESACTIVADO*\n\n> El bot no responderá solo en este grupo`)
     }
 
     if (action === 'add') {
@@ -238,7 +238,7 @@ async function handler(m, { sock }) {
 
         if (pipeIdx === -1) {
             return m.reply(
-                `❌ *FORMAT SALAH*\n\n` +
+                `❌ *FORMATO INCORRECTO*\n\n` +
                 `Usa el formato: *trigger|reply*\n\n` +
                 `*Text Only:*\n` +
                 `• ${m.prefix}ar add hola|¡Hola {name}! 👋\n\n` +
@@ -248,7 +248,7 @@ async function handler(m, { sock }) {
                 `*Placeholder:*\n` +
                 `• {name} - Nombre del usuario\n` +
                 `• {tag} - Tag @user\n` +
-                `• {sender} - Nomor user\n` +
+                `• {sender} - Número del usuario\n` +
                 `• {botname} - Nombre del bot\n` +
                 `• {time} - Hora actual\n` +
                 `• {date} - Fecha actual`
@@ -261,7 +261,7 @@ async function handler(m, { sock }) {
         const reply = fullBody.substring(pipeIdx + 1)
 
         if (!trigger) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El disparador no puede estar vacío!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡El disparador no puede estar vacío!`)
         }
 
         let imageBuffer = null
@@ -335,14 +335,14 @@ async function handler(m, { sock }) {
         const trigger = args.slice(1).join(' ').toLowerCase().trim()
 
         if (!trigger) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Indica el disparador que quieres borrar!\n\n\`${m.prefix}autoreply del hola\``)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡Indica el disparador que quieres borrar!\n\n\`${m.prefix}autoreply del hola\``)
         }
 
         const customReplies = groupData.customReplies || []
         const index = customReplies.findIndex(r => r.trigger === trigger)
 
         if (index === -1) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
         }
 
         if (customReplies[index].image) {

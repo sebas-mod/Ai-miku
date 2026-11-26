@@ -47,10 +47,10 @@ async function handler(m, { sock }) {
 
     if (!mode) {
         let txt = `╭┈┈⬡「 🤖 *MODO DEL BOT* 」\n`
-        txt += `┃ ㊗ ɢʟᴏʙᴀʟ: *${globalMode.toUpperCase()}*\n`
+        txt += `┃ ㊗ GLOBAL: *${globalMode.toUpperCase()}*\n`
 
         if (m.isGroup) {
-            txt += `┃ ㊗ ɢʀᴜᴘ: *${(groupMode || 'INHERIT').toUpperCase()}*\n`
+            txt += `┃ ㊗ GRUPO: *${(groupMode || 'INHERIT').toUpperCase()}*\n`
         }
         txt += `╰┈┈⬡\n\n`
 
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
 
         txt += `*FLAG STORE:*\n`
         txt += `> \`${m.prefix}botmode store\` - Manual order\n`
-        txt += `> \`${m.prefix}botmode md\` → Mode default\n`
+        txt += `> \`${m.prefix}botmode md\` → Modo predeterminado\n`
         txt += `> \`${m.prefix}botmode all\` → Todas las funciones`
 
         await m.reply(txt)
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
 
     await m.reply(
         `✅ *MODO CAMBIADO*\n\n` +
-        `> Mode: *${mode.toUpperCase()}*\n` +
+        `> Modo: *${mode.toUpperCase()}*\n` +
         `> ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +
         `\n\n` +

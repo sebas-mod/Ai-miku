@@ -59,7 +59,7 @@ function handler(m) {
     if (groupIds.length === 0) {
         return m.reply(
             `📋 *LISTA DE ALQUILER*\n\n` +
-            `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
+            `Estado: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n` +
             `Aún no hay grupos registrados\n\n` +
             `Añade con: *${m.prefix}addsewa <link> <durasi>*`
         )
@@ -77,8 +77,8 @@ function handler(m) {
     const expired = sorted.filter(id => !sewaGroups[id].isLifetime && sewaGroups[id].expiredAt <= Date.now())
 
     let text = `📋 *LISTA DE ALQUILER*\n\n`
-    text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-    text += `Total: *${groupIds.length}* grup (${active.length} aktif, ${expired.length} expired)\n\n`
+    text += `Estado del sistema: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+    text += `Total: *${groupIds.length}* grupos (${active.length} activos, ${expired.length} caducados)\n\n`
 
     for (let i = 0; i < sorted.length; i++) {
         const gid = sorted[i]

@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `🚪 *SALIR DEL GRUPO*\n\n` +
         `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
-        `┃ ◦ Di grup: \`.leave\`\n` +
+        `┃ ◦ En el grupo: \`.leave\`\n` +
         `┃ ◦ Via link: \`.leave <link>\`\n` +
         `╰┈┈⬡\n\n` +
         `\`Ejemplo: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
@@ -80,7 +80,7 @@ async function handler(m, { sock }) {
   }
 
   if (!targetGroupJid) {
-    return m.reply(`❌ *ERROR*\n\n> Grup no encontrado`);
+    return m.reply(`❌ *ERROR*\n\n> Grupo no encontrado`);
   }
 
   await m.react("🕕");

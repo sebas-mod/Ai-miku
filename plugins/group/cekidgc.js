@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
       groupMeta = await sock.groupMetadata(groupJid);
     } else {
       return m.reply(
-        `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗚𝗥𝗨𝗣 ✦. ── 𝜗ৎ\n\n` +
+        `── .✦ COMPROBAR ID DEL GRUPO ✦. ── 𝜗ৎ\n\n` +
           `> Úsalo dentro del grupo o envía un enlace de grupo\n\n` +
           `> \`${m.prefix}cekidgc\` — dentro del grupo\n` +
           `> \`${m.prefix}cekidgc https://chat.whatsapp.com/xxx\``,
@@ -130,19 +130,19 @@ async function handler(m, { sock }) {
     const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
 
     const infoText =
-      `── .✦ 𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢 ✦. ── 𝜗ৎ\n\n` +
+      `── .✦ INFO DEL GRUPO ✦. ── 𝜗ৎ\n\n` +
       `╭─〔 ${groupName} 〕───⬣\n` +
-      `│  ✦ ɴᴀᴍᴀ        : *${groupName}*\n` +
-      `│  ✦ ɪᴅ             : \`${groupJid}\`\n` +
-      `│  ✦ ᴍᴇᴍʙᴇʀ     : *${memberCount}*\n` +
-      `│  ✦ ᴀᴅᴍɪɴ        : *${adminCount}*\n` +
-      `│  ✦ ᴏᴡɴᴇʀ       : @${groupOwner.replace(/@.+/g, "")}\n` +
-      `│  ✦ ᴅɪʙᴜᴀᴛ       : *${createdAt}*\n` +
-      `│  ✦ ᴋᴏᴍᴜɴɪᴛᴀs : *${isCommunity}*\n` +
-      `│  ✦ ᴇᴅɪᴛ ɪɴꜰᴏ   : *${isRestrict}*\n` +
-      `│  ✦ ᴀɴɴᴏᴜɴᴄᴇ : *${isAnnounce}*\n` +
-      `│  ✦ ᴊᴏɪɴ ᴍᴏᴅᴇ  : *${joinMode}*\n` +
-      `│  ✦ ᴅᴇsᴋʀɪᴘsɪ  : ${descPreview}\n` +
+      `│  ✦ NOMBRE        : *${groupName}*\n` +
+      `│  ✦ ID             : \`${groupJid}\`\n` +
+      `│  ✦ MIEMBROS    : *${memberCount}*\n` +
+      `│  ✦ ADMIN        : *${adminCount}*\n` +
+      `│  ✦ PROPIETARIO       : @${groupOwner.replace(/@.+/g, "")}\n` +
+      `│  ✦ CREADO       : *${createdAt}*\n` +
+      `│  ✦ COMUNIDAD : *${isCommunity}*\n` +
+      `│  ✦ EDITAR INFO   : *${isRestrict}*\n` +
+      `│  ✦ ANUNCIOS : *${isAnnounce}*\n` +
+      `│  ✦ MODO DE INGRESO  : *${joinMode}*\n` +
+      `│  ✦ DESCRIPCIÓN  : ${descPreview}\n` +
       `╰──────────────⬣\n\n` +
       `.☘︎ ݁˖ © ${config.bot?.name || "Elysia Assistant"}`;
 

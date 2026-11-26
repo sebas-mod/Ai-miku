@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     if (!m.text && m.args?.length === 0) {
         await m.reply(
             `⚠️ *CÓMO USAR*\n\n` +
-            `> \`${m.prefix}setdeskgc Deskripsi baru\`\n` +
+            `> \`${m.prefix}setdeskgc Descripción nueva\`\n` +
             `> \`${m.prefix}setdeskgc clear\` - Eliminar descripción`
         )
         return
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
         }
     } catch (error) {
         await m.reply(
-            `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n` +
+            `❌ *FALLIDO*\n\n` +
             `> No se puede cambiar la descripción del grupo.\n` +
             `> _${error.message}_`
         )

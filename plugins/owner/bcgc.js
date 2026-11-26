@@ -57,10 +57,10 @@ function parseDelay(input) {
 }
 
 function formatDelay(ms) {
-  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} hari`;
-  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} jam`;
-  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} menit`;
-  return `${(ms / 1000).toFixed(0)} detik`;
+  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} días`;
+  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} horas`;
+  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} minutos`;
+  return `${(ms / 1000).toFixed(0)} segundos`;
 }
 
 async function handler(m, { sock }) {
@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
   if (input.toLowerCase() === "off") {
     db.setting("bcgcEnabled", false);
     return m.reply(
-      `✅ *Broadcast Grup Dinonaktifkan*\n\n> Broadcast grup telah dimatikan.`,
+      `✅ *Difusión a grupos desactivada*\n\n> La difusión a grupos se ha desactivado.`,
     );
   }
 
@@ -105,20 +105,20 @@ async function handler(m, { sock }) {
     const enabled = db.setting("bcgcEnabled");
     const jeda = db.setting("jedaBcgc") || 5000;
     return m.reply(
-      `📢 *Broadcast Grup*\n\n` +
+      `📢 *Difusión a grupos*\n\n` +
         `Envía un mensaje a todos los grupos a la vez con un solo comando.\n\n` +
         `*Estado actual:*\n` +
-        `> Broadcast: *${enabled ? "✅ Aktif" : "❌ Nonaktif"}*\n` +
+        `> Broadcast: *${enabled ? "✅ Activo" : "❌ Inactivo"}*\n` +
         `> Jeda: *${formatDelay(jeda)}* (*${jeda}ms*)\n\n` +
         `*USO:*\n` +
-        `> *${m.prefix}bcgc on* — Aktifkan broadcast\n` +
+        `> *${m.prefix}bcgc on* — Activar difusión\n` +
         `> *${m.prefix}bcgc off* — Nonaktifkan broadcast\n` +
         `> *${m.prefix}bcgc <mensaje>* — Envía una difusión de texto\n` +
         `> *${m.prefix}bcgc* (responde a foto/vídeo/audio/documento) — Envía con multimedia\n` +
         `> *${m.prefix}bcgc* (responde a un mensaje de texto) — Envía el contenido del mensaje respondido\n\n` +
         `*JEDA:*\n` +
-        `> *${m.prefix}jedabcgc 5s* — Set jeda 5 detik\n` +
-        `> *${m.prefix}jedabcgc 2m* — Set jeda 2 menit\n\n` +
+        `> *${m.prefix}jedabcgc 5s* — Establece el intervalo en 5 segundos\n` +
+        `> *${m.prefix}jedabcgc 2m* — Establece el intervalo en 2 minutos\n\n` +
         `*STOP:*\n` +
         `> *${m.prefix}stopbcgc* — Detén la difusión en curso`,
     );
@@ -209,12 +209,12 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
 
     await m.reply(
-      `📢 *Broadcast Grup Dimulai*\n\n` +
+      `📢 *Difusión a grupos iniciada*\n\n` +
         ` > 📝 Mensaje: *${text.substring(0, 50)}${text.length > 50 ? "..." : ""}*\n` +
         ` > 📷 Multimedia: *${mediaBuffer ? mediaType : "Ninguno"}*\n` +
-        `> 👥 Target: *${groupIds.length}* grup\n` +
+        `> 👥 Target: *${groupIds.length}* grupos\n` +
         `> ⏱️ Jeda: *${formatDelay(jeda)}*\n` +
-        `> 📊 Estimasi: *${Math.ceil((groupIds.length * jeda) / 60000)} menit*\n\n` +
+        `> 📊 Estimasi: *${Math.ceil((groupIds.length * jeda) / 60000)} minutos*\n\n` +
         `_Enviando a todos los grupos..._`,
     );
 
@@ -227,7 +227,7 @@ async function handler(m, { sock }) {
         delete global.stopBcgc;
         delete global.statusBcgc;
         await m.reply(
-          `⏹️ *Broadcast Grup Dihentikan*\n\n` +
+          `⏹️ *Difusión a grupos detenida*\n\n` +
             `> ✅ Correctos: *${success}*\n` +
             `> ❌ Fallidos: *${failed}*\n` +
             `> ⏸️ Sisa: *${groupIds.length - success - failed}*`,
@@ -310,18 +310,18 @@ async function handleSetDelay(m, db, input) {
 
   if (!input) {
     return m.reply(
-      `⏱️ *Jeda Broadcast Grup*\n\n` +
+      `⏱️ *Intervalo de difusión a grupos*\n\n` +
         `Ajusta la pausa entre envíos a cada grupo.\n` +
         `Cuanto mayor sea la pausa, más seguro frente a la detección de spam.\n\n` +
         `> Pausa actual: *${formatDelay(current)}* (*${current}ms*)\n\n` +
         `*CÓMO USAR:*\n` +
         `> *${m.prefix}jedabcgc <angka><satuan>*\n\n` +
         `*SATUAN:*\n` +
-        `> *s* — detik • *m* — menit • *h* — jam • *d* — hari\n\n` +
+        `> *s* — segundos • *m* — minutos • *h* — horas • *d* — días\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}jedabcgc 5s* → 5 detik\n` +
-        `> *${m.prefix}jedabcgc 2m* → 2 menit\n` +
-        `> *${m.prefix}jedabcgc 1h* → 1 jam`,
+        `> *${m.prefix}jedabcgc 5s* → 5 segundos\n` +
+        `> *${m.prefix}jedabcgc 2m* → 2 minutos\n` +
+        `> *${m.prefix}jedabcgc 1h* → 1 hora`,
     );
   }
 
@@ -332,10 +332,10 @@ async function handleSetDelay(m, db, input) {
 
   db.setting("jedaBcgc", ms);
   return m.reply(
-    `✅ *Jeda Broadcast Grup Diubah*\n\n` +
+    `✅ *Intervalo de difusión cambiado*\n\n` +
       `> Sebelumnya: *${formatDelay(current)}* (*${current}ms*)\n` +
-      `> Sekarang: *${formatDelay(ms)}* (*${ms}ms*)\n\n` +
-      `> Estimasi 100 grup: *${Math.ceil((100 * ms) / 60000)} menit*`,
+      `> Ahora: *${formatDelay(ms)}* (*${ms}ms*)\n\n` +
+      `> Estimación para 100 grupos: *${Math.ceil((100 * ms) / 60000)} minutos*`,
   );
 }
 

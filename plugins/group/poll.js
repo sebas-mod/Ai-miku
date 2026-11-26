@@ -78,14 +78,14 @@ async function handler(m, { sock }) {
     if (question.length > 255) {
         await m.reply(
             `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
-            `> Pertanyaan terlalu panjang!\n` +
+            `> ¡La pregunta es demasiado larga!\n` +
             `> Máximo 255 caracteres.`
         );
         return;
     }
 
     try {
-        const pollMsg = `✅ Success membuat poll`;
+        const pollMsg = `✅ Encuesta creada con éxito`;
 
         await m.reply(pollMsg, { mentions: [m.sender] });
 
@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `❌ *ERROR*\n\n` +
             `> No se pudo crear la encuesta.\n` +
             `> _${error.message}_`
         );

@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
       `🆓 *SISTEM CAP FREE*\n\n` +
       `Sistema para volver públicas y gratuitas varias funciones a la vez.\n\n` +
       `*USO:*\n` +
-      `- *${m.prefix}capfree <nama_fitur1> <nama_fitur2> ...* — Pueden ser varias a la vez\n\n` +
+      `- *${m.prefix}capfree <función1> <función2> ...* — Pueden ser varias a la vez\n\n` +
       `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capfree hd jpm warn*\n\n` +
       `*PENJELASAN:*\n` +

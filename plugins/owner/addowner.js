@@ -286,7 +286,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       );
       if (!found) {
         return m.reply(
-          `❌ \`${targetNumber}\` bukan owner panel.\n\n> Current list: ${ownerList.join(", ") || "empty"}`,
+          `❌ \`${targetNumber}\` no es owner del panel.\n\n> Current list: ${ownerList.join(", ") || "empty"}`,
         );
       }
       config.pterodactyl.ownerPanels = ownerList.filter(
@@ -333,7 +333,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     } else if (isDel) {
       const index = db.data.owner.indexOf(targetNumber);
       if (index === -1) {
-        return m.reply(`❌ \`${targetNumber}\` bukan full owner.`);
+        return m.reply(`❌ \`${targetNumber}\` no es full owner.`);
       }
 
       db.data.owner.splice(index, 1);

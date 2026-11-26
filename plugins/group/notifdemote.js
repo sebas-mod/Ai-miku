@@ -32,7 +32,7 @@ function handler(m, { sock, db }) {
 
     if (!['on', 'off'].includes(args)) {
         const status = group.notifDemote === true ? '✅ Activo' : '❌ Inactivo'
-        return m.reply(`👤 *ɴᴏᴛɪꜰ ᴅᴇᴍᴏᴛᴇ*\n\n> Status: ${status}\n\n*Uso:*\n\`${m.prefix}notifdemote on\` - Activar\n\`${m.prefix}notifdemote off\` - Desactivar`)
+        return m.reply(`👤 *NOTIF. DEGRADACIÓN*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notifdemote on\` - Activar\n\`${m.prefix}notifdemote off\` - Desactivar`)
     }
 
     if (args === 'on') {

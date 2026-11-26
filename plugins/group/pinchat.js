@@ -67,7 +67,7 @@ async function handler(m, { sock, args }) {
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `❌ *ERROR*\n\n` +
             `> No se pudo fijar el mensaje.\n` +
             `> _${error.message}_`
         );

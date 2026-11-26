@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📝 *sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀ* 」\n` +
+      `📝 *ESTABLECER BIENVENIDA*\n\n` +
+        `╭┈┈⬡「 📋 *MARCADORES* 」\n` +
         `┃ ◦ \`{user}\` - Nombre del miembro\n` +
         `┃ ◦ \`{number}\` - Número del miembro\n` +
         `┃ ◦ \`{group}\` - Nombre del grupo\n` +
@@ -39,14 +39,14 @@ async function handler(m, { sock }) {
         `┃ ◦ \`{count}\` - Número de miembros\n` +
         `┃ ◦ \`{owner}\` - Nombre del propietario del grupo\n` +
         `┃ ◦ \`{date}\` - Tanggal (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Waktu (HH:mm WIB)\n` +
-        `┃ ◦ \`{day}\` - Hari (Senin, Selasa, dll)\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{day}\` - Día (lunes, martes, etc.)\n` +
         `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefix bot\n` +
         `╰┈┈⬡\n\n` +
         `\`Ejemplo:\`\n` +
         `\`${m.prefix}setwelcome ¡Hola {user}! 👋\`\n` +
-        `\`Bienvenido di {group} pada {day}, {date}\``,
+        `\`Bienvenido a {group} el {day}, {date}\``,
     );
   }
 

@@ -40,7 +40,7 @@ async function handler(m) {
         await m.react('✅')
         await m.reply(
             `╭┈┈⬡「 🗑️ *LIMPIAR SESIÓN* 」\n` +
-            `┃ 🧹 Sesi & kunci grup dihapus: *${r.files}*\n` +
+            `┃ 🧹 Sesiones y claves de grupo eliminadas: *${r.files}*\n` +
             `┃ 💾 Ruang kosong: *${fmt(r.bytes)}*\n` +
             (r.failed ? `┃ ⚠️ No se pudieron borrar: *${r.failed}* archivos\n` : '') +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +

@@ -97,7 +97,7 @@ async function handler(m, { sock, db }) {
 
     let report =
       `✅ *DIFUSIÓN SWGC TERMINADA*\n\n` +
-      `> Total: *${total}* grup\n` +
+      `> Total: *${total}* grupos\n` +
       `> Correctos: *${success}* ✅\n` +
       `> Fallidos: *${failed}* ❌`;
 
@@ -166,7 +166,7 @@ async function handler(m, { sock, db }) {
     return m.reply(
       `⚠️ *CÓMO USAR*\n\n` +
         `> \`${m.prefix}swgcall teks\` - Historia de texto a todos los grupos\n` +
-        `> Reply gambar/video/audio + \`${m.prefix}swgcall\`\n` +
+        `> Responde con imagen/video/audio + \`${m.prefix}swgcall\`\n` +
         `> Envía una imagen/vídeo con el texto \`${m.prefix}swgcall\`\n\n` +
         `⚠️ _¡Esta función enviará la historia a TODOS los grupos!_`,
     );
@@ -193,7 +193,7 @@ async function handler(m, { sock, db }) {
     const mediaType = rawContent.text
       ? "Teks"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
@@ -213,7 +213,7 @@ async function handler(m, { sock, db }) {
       text:
         `📢 *CONFIRMACIÓN DE DIFUSIÓN SWGC*\n\n` +
         `> Media: *${mediaType}*\n` +
-        `> Total Grup: *${groupList.length}*\n` +
+        `> Total de grupos: *${groupList.length}*\n` +
         `> Estimasi: *~${estimatedTime} segundos*\n\n` +
         `⚠️ _¡La historia se publicará en TODOS los grupos!_\n` +
         `_Pulsa confirmar para continuar._`,

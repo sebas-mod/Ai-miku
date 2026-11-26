@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
             const num = p.id
             const expDate = new Date(p.expired).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
             const remaining = Math.ceil((p.expired - Date.now()) / (1000 * 60 * 60 * 24))
-            txt += `${i + 1}. @${num} — ${expDate} (${remaining > 0 ? remaining + 'd' : 'Expired'})\n`
+            txt += `${i + 1}. @${num} — ${expDate} (${remaining > 0 ? remaining + 'd' : 'Caducado'})\n`
             mentions.push(`${num}@s.whatsapp.net`)
         })
         txt += `\nTotal: *${partners.length}* partner`

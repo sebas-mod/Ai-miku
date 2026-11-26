@@ -73,7 +73,7 @@ import fetch from 'node-fetch'
       let caption = `🛍️ *SHOPEE VIDEO DOWNLOADER* 🛍️\n\n`;
       if (data.username) caption += `*Username:* ${data.username}\n`;
       caption += `*Calidad:* ${best.quality}\n`;
-      caption += `\n> Dibuat oleh bot kesayanganmu`;
+      caption += `\n> Creado por tu bot favorito`;
 
       await sock.sendMessage(m.chat, {
         video: { url: videoUrl },

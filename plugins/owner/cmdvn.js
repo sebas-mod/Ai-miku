@@ -34,7 +34,7 @@ function handler(m) {
         const status = current ? '✅ ON' : '❌ OFF'
         return m.reply(
             `🎤 *COMANDO POR NOTA DE VOZ*\n\n` +
-            `> Status: *${status}*\n\n` +
+            `> Estado: *${status}*\n\n` +
             `> \`${m.prefix}cmdvn on\` — Command via VN\n` +
             `> \`${m.prefix}cmdvn off\` — Command via text (default)\n\n` +
             `> Con ON, envía una nota de voz con el nombre del comando\n` +

@@ -34,11 +34,11 @@ async function handler(m, { sock, db }) {
         const status = group.antitagsw || 'off'
 
         await m.reply(
-            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ sᴇᴛᴛɪɴɢs*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `📢 *ANTITAGSW AJUSTES*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
             `> Esta función elimina los mensajes de etiqueta de estado\n` +
             `> (groupStatusMentionMessage)\n\n` +
-            `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
+            `\`\`\`━━━ OPCIONES ━━━\`\`\`\n` +
             `> \`${m.prefix}antitagsw on\` → Activar\n` +
             `> \`${m.prefix}antitagsw off\` → Desactivar`
         )

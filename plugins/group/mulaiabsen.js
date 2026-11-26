@@ -51,8 +51,8 @@ async function handler(m, { sock }) {
   const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
 
   await m.reply(
-    `📋 *ABSEN UDAH JALAN NIHH*\n\n` +
-      `「 📋 *ɪɴғᴏ* 」\n` +
+    `📋 *LA ASISTENCIA YA ESTÁ ABIERTA*\n\n` +
+      `「 📋 *INFO* 」\n` +
       `📝 ${keterangan}\n` +
       `👑 Creado por: @${m.sender.split("@")[0]}\n` +
       `👥 Participantes: 0\n\n` +

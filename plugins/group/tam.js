@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
   if (!sorted.length) {
     return m.reply(
-      `📊 *ᴛᴏᴘ ᴍɪᴇᴍʙʀᴏs ᴀᴄᴛɪᴠᴏs*\n\n` + `- Aún no hay datos de actividad en este grupo`,
+      `📊 *TOP DE MIEMBROS ACTIVOS*\n\n` + `- Aún no hay datos de actividad en este grupo`,
     );
   }
 

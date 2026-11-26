@@ -264,7 +264,7 @@ const pluginConfig = {
         }
         if (!bufs.length) throw new Error('Error al descargar las fotos del carrusel.')
 
-        const cap = (i) => i === 0 ? `${caption}\n\n🖼️ Slide ${r.images.length} foto` : `Slide ${i + 1}/${r.images.length}`
+        const cap = (i) => i === 0 ? `${caption}\n\n🖼️ Diapositiva ${r.images.length} de fotos` : `Diapositiva ${i + 1}/${r.images.length}`
 
         await sendAlbum(conn, m.chat, bufs.map((buffer, i) => ({ type: 'image', buffer, caption: cap(i) })), { quoted: m })
       } else {

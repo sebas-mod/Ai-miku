@@ -80,7 +80,7 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     return m.reply(
-      `✅ *PLUGIN DIHAPUS*\n\n` +
+      `✅ *PLUGIN ELIMINADO*\n\n` +
         `╭─〔 *DETAIL* 〕───⬣\n` +
         `│ File: \`${found.file}\`\n` +
         `│ Folder: \`${found.folder}\`\n` +

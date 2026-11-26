@@ -272,7 +272,7 @@ const pluginConfig = {
       const caption =
         `*— YOUTUBE MUSIC —*\n\n` +
         `❀ Título : ${song.title}\n` +
-        `❀ Artis : ${song.artist}\n` +
+        `❀ Artista : ${song.artist}\n` +
         (song.album ? `❀ Album : ${song.album}\n` : '') +
         (song.duration ? `❀ Duración : ${song.duration}\n` : '') +
         `❀ Link : https://music.youtube.com/watch?v=${song.videoId}`

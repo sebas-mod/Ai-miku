@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📝 *sᴇᴛ ɢᴏᴏᴅʙʏᴇ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀ* 」\n` +
+      `📝 *ESTABLECER DESPEDIDA*\n\n` +
+        `╭┈┈⬡「 📋 *MARCADORES* 」\n` +
         `┃ ◦ \`{user}\` - Nombre del miembro\n` +
         `┃ ◦ \`{number}\` - Número del miembro\n` +
         `┃ ◦ \`{group}\` - Nombre del grupo\n` +
@@ -39,8 +39,8 @@ async function handler(m, { sock }) {
         `┃ ◦ \`{count}\` - Miembros restantes\n` +
         `┃ ◦ \`{owner}\` - Nombre del propietario del grupo\n` +
         `┃ ◦ \`{date}\` - Tanggal (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Waktu (HH:mm WIB)\n` +
-        `┃ ◦ \`{day}\` - Hari (Senin, Selasa, dll)\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{day}\` - Día (lunes, martes, etc.)\n` +
         `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefix bot\n` +
         `╰┈┈⬡\n\n` +

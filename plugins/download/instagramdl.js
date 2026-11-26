@@ -42,7 +42,7 @@ const JHICog = ElysiaRuntime.JHICog;
 
     if (!raw) {
       return m.reply(
-        `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
+        `📸 *INSTAGRAM DESCARGADOR*\n\n` +
           `> \`${m.prefix}instagramdl <url>\`\n` +
           `> \`${m.prefix}instagramdl <username> [mode]\`\n\n` +
           `*EJEMPLO:*\n` +
@@ -134,7 +134,7 @@ const JHICog = ElysiaRuntime.JHICog;
         count++;
       }
       if (!flat.length) throw new Error('No hay contenido para enviar');
-      flat[0].caption = `📸 *Instagram ${mode}* @${res.data.username}\n📦 Total: ${items.length}${items.length > MAX_ITEMS ? ` (dikirim ${MAX_ITEMS})` : ''}`;
+      flat[0].caption = `📸 *Instagram ${mode}* @${res.data.username}\n📦 Total: ${items.length}${items.length > MAX_ITEMS ? ` (enviados ${MAX_ITEMS})` : ''}`;
       await sendAlbum(sock, m.chat, flat, { quoted: m });
       await m.react("✅");
     } catch (err) {

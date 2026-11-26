@@ -80,7 +80,7 @@ async function handler(m, { sock, db }) {
 
         await m.reply(
             `🛡️ *ANTI SPAM DIPERBARUI*\n\n` +
-            `> Status: *${isEnable ? "ACTIVO ✅" : "INACTIVO ❌"}*\n\n` +
+            `> Estado: *${isEnable ? "ACTIVO ✅" : "INACTIVO ❌"}*\n\n` +
             `El bot ahora ${isEnable ? "vigilará de cerca" : "dejará de vigilar"} cualquier spam o flood de mensajes de los miembros de este grupo`
         )
     } else {

@@ -94,7 +94,7 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🔍 *BUSCAR PLUGIN*\n\n` +
-        `> Cari dan tampilkan info plugin\n\n` +
+        `> Busca y muestra info del plugin\n\n` +
         `*EJEMPLO:*\n` +
         `> \`${m.prefix}splugin sticker\`\n` +
         `> \`${m.prefix}splugin menu\``,
@@ -141,21 +141,21 @@ async function handler(m, { sock }) {
     return m.reply(
       `📋 *INFO DEL PLUGIN*\n\n` +
         `╭┈┈⬡「 📝 *DETALLE* 」\n` +
-        `┃ 📛 ɴᴀᴍᴀ: \`${info.name || "-"}\`\n` +
-        `┃ 🏷️ ᴀʟɪᴀs: \`${aliases}\`\n` +
-        `┃ 📁 ᴄᴀᴛᴇɢᴏʀʏ: \`${info.category || "-"}\`\n` +
-        `┃ 📄 ᴅᴇsᴄ: ${info.description || "-"}\n` +
-        `┃ 📝 ᴜsᴀɢᴇ: \`${info.usage || "-"}\`\n` +
-        `┃ 📌 ᴇxᴀᴍᴘʟᴇ: \`${info.example || "-"}\`\n` +
+        `┃ 📛 NOMBRE: \`${info.name || "-"}\`\n` +
+        `┃ 🏷️ ALIAS: \`${aliases}\`\n` +
+        `┃ 📁 CATEGORÍA: \`${info.category || "-"}\`\n` +
+        `┃ 📄 DESC: ${info.description || "-"}\n` +
+        `┃ 📝 USO: \`${info.usage || "-"}\`\n` +
+        `┃ 📌 EJEMPLO: \`${info.example || "-"}\`\n` +
         `╰┈┈⬡\n\n` +
         `╭┈┈⬡「 ⚙️ *AJUSTES* 」\n` +
-        `┃ 🔓 ᴇɴᴀʙʟᴇᴅ: ${isEnabled}\n` +
-        `┃ 👑 ᴏᴡɴᴇʀ ᴏɴʟʏ: ${isOwner}\n` +
-        `┃ 💎 ᴘʀᴇᴍɪᴜᴍ: ${isPremium}\n` +
-        `┃ 👥 ɢʀᴏᴜᴘ ᴏɴʟʏ: ${isGroup}\n` +
-        `┃ 🛡️ ᴀᴅᴍɪɴ ᴏɴʟʏ: ${isAdmin}\n` +
-        `┃ ⏱️ ᴄᴏᴏʟᴅᴏᴡɴ: \`${info.cooldown || 0}s\`\n` +
-        `┃ 🎫 ʟɪᴍɪᴛ: \`${info.limit || 0}\`\n` +
+        `┃ 🔓 HABILITADO: ${isEnabled}\n` +
+        `┃ 👑 PROPIETARIO SOLO: ${isOwner}\n` +
+        `┃ 💎 PREMIUM: ${isPremium}\n` +
+        `┃ 👥 GRUPO SOLO: ${isGroup}\n` +
+        `┃ 🛡️ ADMIN SOLO: ${isAdmin}\n` +
+        `┃ ⏱️ ESPERA: \`${info.cooldown || 0}s\`\n` +
+        `┃ 🎫 LÍMITE: \`${info.limit || 0}\`\n` +
         `╰┈┈⬡`,
     );
   } catch (error) {

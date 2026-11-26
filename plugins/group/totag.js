@@ -29,7 +29,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     if (!m.quoted) {
         return m.reply(
-            `📢 *ᴛᴏᴛᴀɢ*\n\n` +
+            `📢 *TOTAG*\n\n` +
             `> Responde al mensaje que quieres reenviar a todos los miembros\n\n` +
             `> Ejemplo: Responde a un mensaje y escribe \`${m.prefix}totag\``
         )

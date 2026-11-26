@@ -59,8 +59,8 @@ async function handler(m, { sock }) {
             return m.reply(
                 `✅ *DESPEDIDA GLOBAL ON*\n\n` +
                 `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Goodbye: *AKTIF*\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ✅ Despedida: *ACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> ¡Los miembros que salgan recibirán un mensaje de despedida!`
             )
@@ -68,8 +68,8 @@ async function handler(m, { sock }) {
             return m.reply(
                 `❌ *DESPEDIDA GLOBAL OFF*\n\n` +
                 `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Goodbye: *NONAKTIF*\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ❌ Despedida: *INACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> La despedida se desactivó en todos los grupos.`
             )

@@ -48,13 +48,13 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <text x="550" y="105" text-anchor="middle" font-family="Times New Roman, serif" font-size="34" font-weight="700">IJAZAH</text>
       <text x="550" y="145" text-anchor="middle" font-family="Times New Roman, serif" font-size="17">EJEMPLO / SOLO POR DIVERSIÓN</text>
       <line x1="220" y1="170" x2="880" y2="170" stroke="#333" stroke-width="2"/>
-      <text x="550" y="235" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Diberikan kepada</text>
+      <text x="550" y="235" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Otorgado a</text>
       <text x="550" y="290" text-anchor="middle" font-family="Times New Roman, serif" font-size="30" font-weight="700">${escapeXml(nama).toUpperCase()}</text>
       <text x="550" y="340" text-anchor="middle" font-family="Times New Roman, serif" font-size="20">${escapeXml(gelar).toUpperCase()}</text>
       <text x="550" y="390" text-anchor="middle" font-family="Times New Roman, serif" font-size="18">${escapeXml(universitas).toUpperCase()}</text>
       <line x1="220" y1="425" x2="880" y2="425" stroke="#888" stroke-width="1"/>
       <text x="550" y="485" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">No. Ijazah: ${ijazahNo}</text>
-      <text x="550" y="525" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tahun Lulus: ${tahun}</text>
+      <text x="550" y="525" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Año de graduación: ${tahun}</text>
       <text x="550" y="630" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOCUMENTO DE EJEMPLO — SIN VALIDEZ OFICIAL</text>
     </svg>`
 

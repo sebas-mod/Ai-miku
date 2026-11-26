@@ -153,7 +153,7 @@ const pluginConfig = {
           results.slice(0, 10).forEach((v, i) => {
               list += `*${i + 1}.* ${v.title} - ${v.artist}\n📅 ${v.releaseDate}\n\n`
           })
-          list += `Ketik *${p}ncsplay [número]* para reproducir una canción de los resultados.\nEjemplo: *${p}ncsplay 1*`
+          list += `Escribe *${p}ncsplay [número]* para reproducir una canción de los resultados.\nEjemplo: *${p}ncsplay 1*`
 
           searchResults.set(m.sender, results.slice(0, 10))
           return m.reply(list)

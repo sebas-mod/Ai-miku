@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     if (!targetJid) {
         return m.reply(
             '⚠️ *CÓMO USAR*\n\n' +
-            '> `.block 628xxx` — Blokir via nomor\n' +
+            '> `.block 628xxx` — Blokir por número\n' +
             '> `.block` (responde a un mensaje) — Bloquea al remitente\n' +
             '> `.block @mención` — Bloquea al mencionado\n' +
             '> `.block` (en chat privado) — Bloquea a este usuario'

@@ -37,21 +37,21 @@ async function handler(m, { sock }) {
   const sewaGroups = Object.keys(db.db.data.sewa.groups || {});
   if (!args || args === "status") {
     return m.reply(
-      `🔧 *SISTEM SEWA BOT*\n\n` +
-        `Status: *${currentStatus ? "✅ AKTIF" : "❌ NONAKTIF"}*\n` +
-        `Grup terdaftar: *${sewaGroups.length}*\n\n` +
+      `🔧 *SISTEMA DE ALQUILER DEL BOT*\n\n` +
+        `Estado: *${currentStatus ? "✅ ACTIVO" : "❌ INACTIVO"}*\n` +
+        `Grupos registrados: *${sewaGroups.length}*\n\n` +
         `*COMANDOS DISPONIBLES:*\n` +
-        `• *${m.prefix}sewabot on* — Aktifkan sistem sewa\n` +
+        `• *${m.prefix}sewabot on* — Activar el sistema de alquiler\n` +
         `• *${m.prefix}sewabot off* — Nonaktifkan sistem sewa\n` +
         `• *${m.prefix}sewabot leave* — Sal de todos los grupos fuera de la lista de alquiler\n\n` +
-        `*KELOLA SEWA:*\n` +
-        `• *${m.prefix}addsewa <link> <durasi>* — Tambah grup + auto join\n` +
+        `*GESTIÓN DEL ALQUILER:*\n` +
+        `• *${m.prefix}addsewa <link> <durasi>* — Añadir grupo + unirse automáticamente\n` +
         `• *${m.prefix}delsewa <link/id>* — Elimina el grupo de la lista de alquiler\n` +
         `• *${m.prefix}renewsewa <link/id> <durasi>* — Perpanjang sewa\n` +
         `• *${m.prefix}listsewa* — Ver todos los grupos registrados\n` +
-        `• *${m.prefix}checksewa* — Cek sisa sewa (di grup)\n\n` +
+        `• *${m.prefix}checksewa* — Comprueba el alquiler restante (en el grupo)\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
-        `30i (menit) \u2022 12h (jam) \u2022 7d (hari) \u2022 1m (bulan) \u2022 1y (tahun) \u2022 lifetime\n\n` +
+        `30i (minutos) \u2022 12h (horas) \u2022 7d (días) \u2022 1m (meses) \u2022 1y (años) \u2022 lifetime\n\n` +
         `*CARA KERJA:*\n` +
         `1. Añade el grupo con *${m.prefix}addsewa*\n` +
         `2. El bot se une automáticamente si usas un enlace\n` +
@@ -88,9 +88,9 @@ async function handler(m, { sock }) {
         pendingConfirmations.delete(m.sender);
     }, 60000);
     return m.reply(
-      `⚠️ *KONFIRMASI AKTIVASI SEWA*\n\n` +
+      `⚠️ *CONFIRMACIÓN DE ACTIVACIÓN DEL ALQUILER*\n\n` +
         `Si se activa:\n` +
-        `• ✅ ${sewaGroups.length} grup ter-whitelist tetap aman\n` +
+        `• ✅ ${sewaGroups.length} grupos en la lista blanca siguen seguros\n` +
         `• ❌ ¡Se abandonarán todos los demás grupos!\n\n` +
         `Escribe *${m.prefix}sewabot confirm* para continuar\nEscribe *${m.prefix}sewabot cancel* para cancelar\n\n` +
         `💡 Asegúrate de registrar los grupos importantes con:\n*${m.prefix}addsewa <enlace del grupo> <duración>*`,
@@ -100,14 +100,14 @@ async function handler(m, { sock }) {
     const pending = pendingConfirmations.get(m.sender);
     if (!pending || pending.type !== "sewabot_on") {
       return m.reply(
-        `❌ No hay solicitudes pendientes\nEscribe *${m.prefix}sewabot on* dulu`,
+        `❌ No hay solicitudes pendientes\nEscribe *${m.prefix}sewabot on* primero`,
       );
     }
     pendingConfirmations.delete(m.sender);
     db.db.data.sewa.enabled = true;
     db.db.write();
     await m.react("🕕");
-    await m.reply(`🕕 Sistem sewa diaktifkan, memproses auto-leave...`);
+    await m.reply(`🕕 Sistema de alquiler activado, procesando la salida automática...`);
     try {
       global.isFetchingGroups = true;
       const allGroups = await sock.groupFetchAllParticipating();
@@ -138,8 +138,8 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `✅ *SEWA BOT AKTIF*\n\n` +
-          `Grup whitelist: *${sewaGroups.length}*\n` +
+        `✅ *ALQUILER DEL BOT ACTIVO*\n\n` +
+          `Grupos en la lista blanca: *${sewaGroups.length}*\n` +
           `Salida de: *${leftCount}* grupos\n` +
           `Fallidos: *${failedCount}* grupos`,
       );
@@ -193,7 +193,7 @@ async function handler(m, { sock }) {
       delete global.sewaLeaving;
       await m.react("✅");
       return m.reply(
-        `✅ Terminado\n\nSalidas correctas: *${leftCount}* grup\nFallidos: *${failedCount}* grupos`,
+        `✅ Terminado\n\nSalidas correctas: *${leftCount}* grupos\nFallidos: *${failedCount}* grupos`,
       );
     } catch (e) {
       delete global.sewaLeaving;

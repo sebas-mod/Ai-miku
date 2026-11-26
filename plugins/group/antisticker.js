@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antisticker ? '✅ ON' : '❌ OFF'
-        await m.reply(`🎭 *AntiSticker*\n\n> Status: *${status}*\n\n> \`.antisticker on/off\``)
+        await m.reply(`🎭 *AntiSticker*\n\n> Estado: *${status}*\n\n> \`.antisticker on/off\``)
         return
     }
 

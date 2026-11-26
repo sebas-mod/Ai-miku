@@ -82,7 +82,7 @@ import axios from 'axios'
 
       if (!url) {
           return m.reply(
-              `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
+              `*GOOGLE DRIVE*\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
               `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
@@ -99,13 +99,13 @@ import axios from 'axios'
 
       if (!url.match(/drive\.google/i)) {
           return m.reply(
-              `💔 *ᴇʀʀᴏʀ*\n\n` +
-              `> URL no válida. Envía un enlace de Google Drive correcto, darling~ 🥺`
+              `💔 *ERROR*\n\n` +
+              `> URL no válida. Envía un enlace de Google Drive correcto, cariño~ 🥺`
           )
       }
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n *${global.namebot || 'Bot'}:* Estoy obteniendo el archivo de Google Drive, darling~ espera un momento 📁`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n *${global.namebot || 'Bot'}:* Estoy obteniendo el archivo de Google Drive, cariño~ espera un momento 📁`)
 
       try {
           const data = await drive(url)
@@ -114,7 +114,7 @@ import axios from 'axios'
               m.react('💔')
               return m.reply(
                   `💔 *ERROR*\n\n` +
-                  `> No se puede acceder al archivo o el enlace alcanzó su límite, darling~ 🥺`
+                  `> No se puede acceder al archivo o el enlace alcanzó su límite, cariño~ 🥺`
               )
           }
 
@@ -122,12 +122,12 @@ import axios from 'axios'
               document: { url: data.downloadUrl },
               fileName: data.fileName,
               mimetype: data.mimetype,
-              caption: `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
+              caption: `*GOOGLE DRIVE*\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
                       `┃ 📄 *NOMBRE*: ${data.fileName}\n` +
                       `┃ 📦 *TAMAÑO*: ${data.fileSize}\n` +
                       `┃\n` +
-                      `┃ *${global.namebot || 'Bot'}:* Aquí tienes el archivo, darling~ 📂\n` +
+                      `┃ *${global.namebot || 'Bot'}:* Aquí tienes el archivo, cariño~ 📂\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -136,9 +136,9 @@ import axios from 'axios'
           console.error('[GDrive] Error:', err)
           m.react('💔')
           return m.reply(
-              `💔 *ᴇʀʀᴏʀ*\n\n` +
+              `💔 *ERROR*\n\n` +
               `> ${err.message}\n\n` +
-              `> Inténtalo de nuevo, darling~ 🥺`
+              `> Inténtalo de nuevo, cariño~ 🥺`
           )
       }
   }

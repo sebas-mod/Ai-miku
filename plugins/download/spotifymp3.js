@@ -52,7 +52,7 @@ const pluginConfig = {
       if (!meta) return null
       try {
         const audio = await fs.promises.readFile(P(`${key}.mp3`))
-        if (audio.length < CACHE_MIN_ITEM) throw new Error('cache rusak')
+        if (audio.length < CACHE_MIN_ITEM) throw new Error('caché dañada')
         const now = new Date()
         fs.promises.utimes(P(`${key}.mp3`), now, now).catch(() => null)
         const thumb = await fs.promises.readFile(P(`${key}.jpg`)).catch(() => null)

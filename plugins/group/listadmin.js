@@ -33,22 +33,22 @@ async function handler(m, { sock }) {
         const admins = participants.filter(p => p.admin)
 
         if (admins.length === 0) {
-            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No hay administradores en este grupo.`)
+            await m.reply(`❌ *FALLIDO*\n\n> No hay administradores en este grupo.`)
             return
         }
 
         const owner = admins.find(a => a.admin === 'superadmin')
         const regularAdmins = admins.filter(a => a.admin === 'admin')
 
-        let adminList = `👑 *ʟɪsᴛ ᴀᴅᴍɪɴ*\n\n`
+        let adminList = `👑 *LISTA DE ADMINS*\n\n`
 
         if (owner) {
-            adminList += `\`\`\`━━━ ᴏᴡɴᴇʀ ━━━\`\`\`\n`
+            adminList += `\`\`\`━━━ PROPIETARIO ━━━\`\`\`\n`
             adminList += `\`\`\`👑 @${getParticipantJid(owner).split('@')[0]}\`\`\`\n\n`
         }
 
         if (regularAdmins.length > 0) {
-            adminList += `\`\`\`━━━ ᴀᴅᴍɪɴ ━━━\`\`\`\n`
+            adminList += `\`\`\`━━━ ADMIN ━━━\`\`\`\n`
             regularAdmins.forEach((admin, i) => {
                 adminList += `\`\`\`${i + 1}. @${getParticipantJid(admin).split('@')[0]}\`\`\`\n`
             })

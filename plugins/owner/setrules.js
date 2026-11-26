@@ -31,8 +31,8 @@ function handler(m) {
         return m.reply(
             `📝 *REGLAS DEL BOT*\n\n` +
             `> Escribe el nuevo texto de las reglas\n\n` +
-            `\`Contoh:\`\n` +
-            `\`${m.prefix}setrules 1. Jangan spam\\n2. Hormati sesama\``
+            `\`Ejemplo:\`\n` +
+            `\`${m.prefix}setrules 1. No hagas spam\\n2. Respeta a los demás\``
         )
     }
 

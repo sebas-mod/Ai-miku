@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
   if (!action) {
     const status = groupData.antimedia ? "✅ ON" : "❌ OFF";
     await m.reply(
-      `🖼️ *AntiMedia*\n\n> Status: *${status}*\n\n> \`.antimedia on/off\``,
+      `🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``,
     );
     return;
   }

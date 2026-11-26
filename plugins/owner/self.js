@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         const responseText = `🔒 *MODO SELF ACTIVO*\n\n` +
             `> El bot ahora solo responde a:\n` +
             `> • Owner bot\n` +
-            `> • Bot sendiri (fromMe)\n\n` +
+            `> • El propio bot (fromMe)\n\n` +
             `_Usa .public para abrir el acceso_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to SELF by ${m.pushName} (${m.sender})`);

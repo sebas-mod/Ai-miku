@@ -33,7 +33,7 @@ function handler(m) {
             `📝 *REGLAS DEL GRUPO*\n\n` +
             `> Envía el nuevo texto de las reglas\n\n` +
             `\`Ejemplo:\`\n` +
-            `\`${m.prefix}setrulesgrup 1. Jangan spam
+            `\`${m.prefix}setrulesgrup 1. No hagas spam
 2. Hormati sesama\``
         )
     }

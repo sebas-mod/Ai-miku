@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
         `✅ *NIVEL AÑADIDO*\n\n` +
         `Se añadieron *${levels} niveles* a *@${targetJid.split('@')[0]}*.\n\n` +
         `*Statistik Terkini:*\n` +
-        `- Level Sekarang: *${finalLevel}*\n` +
+        `- Nivel actual: *${finalLevel}*\n` +
         `- Rol actual: *${getRole(finalLevel)}*\n` +
         `- Total XP: *${user.exp.toLocaleString()}* XP`,
         { mentions: [targetJid] }

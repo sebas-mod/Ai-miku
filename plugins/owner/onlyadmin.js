@@ -39,9 +39,9 @@ async function handler(m) {
         return m.reply(
             '✅ *ONLYADMIN ACTIVO*\n\n' +
             '╭┈┈⬡「 🔒 *ACCESO* 」\n' +
-            '┃ ✅ Admin grup\n' +
+            '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner bot\n' +
-            '┃ ❌ Member biasa\n' +
+            '┃ ❌ Miembro normal\n' +
             '╰┈┈⬡\n\n' +
             '> Usa `.onlyadmin off` para desactivarlo'
         )
@@ -60,10 +60,10 @@ async function handler(m) {
         return m.reply(
             '✅ *ONLYADMIN ACTIVO*\n\n' +
             '╭┈┈⬡「 🔒 *ACCESO* 」\n' +
-            '┃ ✅ Admin grup\n' +
+            '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner bot\n' +
             '┃ ✅ Chat privado (todos)\n' +
-            '┃ ❌ Member biasa di grup\n' +
+            '┃ ❌ Miembro normal del grupo\n' +
             '╰┈┈⬡\n\n' +
             '> Usa `.onlyadmin off` para desactivarlo'
         )
@@ -72,9 +72,9 @@ async function handler(m) {
     if (!args || args === 'status') {
         return m.reply(
             `🔒 *ONLYADMIN*\n\n` +
-            `> Status: ${current ? '✅ Aktif' : '❌ Nonaktif'}\n\n` +
+            `> Estado: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
             `*Uso:*\n` +
-            `> \`.onlyadmin on\` — Aktifkan\n` +
+            `> \`.onlyadmin on\` — Activar\n` +
             `> \`.onlyadmin off\` — Nonaktifkan\n\n` +
             `_Solo administradores de grupo, el owner y los chats privados pueden usar el bot_`
         )
@@ -89,10 +89,10 @@ async function handler(m) {
         return m.reply(
             '✅ *ONLYADMIN ACTIVO*\n\n' +
             '╭┈┈⬡「 🔒 *ACCESO* 」\n' +
-            '┃ ✅ Admin grup\n' +
+            '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner bot\n' +
             '┃ ✅ Chat privado (todos)\n' +
-            '┃ ❌ Member biasa di grup\n' +
+            '┃ ❌ Miembro normal del grupo\n' +
             '╰┈┈⬡'
         )
     }

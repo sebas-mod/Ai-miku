@@ -32,10 +32,10 @@ async function handler(m) {
     if (!action) {
         return m.reply(
             `👁️ *AUTO-LECTURA DE HISTORIAS*\n\n` +
-            `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n\n` +
+            `> Estado: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n\n` +
             `*CÓMO USAR:*\n` +
-            `> \`${m.prefix}autoreadsw on\` — Aktifkan\n` +
-            `> \`${m.prefix}autoreadsw off\` — Matikan`
+            `> \`${m.prefix}autoreadsw on\` — Activar\n` +
+            `> \`${m.prefix}autoreadsw off\` — Desactivar`
         )
     }
 

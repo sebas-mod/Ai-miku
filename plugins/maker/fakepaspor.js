@@ -125,7 +125,7 @@ const config = ElysiaRuntime.config;
                       `┃ ✅ *ÉXITO*\n` +
                       `┃\n` +
                       `┃ 👤 *NOMBRE*: ${nama}\n` +
-                      `┃ 🎂 *EDAD*: ${umur} tahun\n` +
+                      `┃ 🎂 *EDAD*: ${umur} años\n` +
                       `┃ 🏳️ *PAÍS*: ${negara}\n` +
                       `┃\n` +
                       `┃ ⚠️ *¡Solo para contenido!*\n` +

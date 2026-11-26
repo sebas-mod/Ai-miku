@@ -32,7 +32,7 @@ async function handler(m, { sock, db }) {
         const status = group.antiremove || 'off'
         await m.reply(
             `🗑️ *AntiRemove*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
             `> \`.antiremove on/off\``
         )
         return

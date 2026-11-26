@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
 
         if (groupMeta.announce) {
             await m.reply(
-                `⚠️ *ᴠᴀʟɪᴅᴀᴄɪóɴ ꜰᴀʟʟɪᴅᴀ*\n\n` +
+                `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
                 `> El grupo ya está \`cerrado\`.\n` +
                 `> Solo los administradores pueden enviar mensajes.`
             );
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `❌ *ERROR*\n\n` +
             `> No se pudo cerrar el grupo.\n` +
             `> _${error.message}_`
         );

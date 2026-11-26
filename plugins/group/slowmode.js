@@ -56,8 +56,8 @@ async function handler(m, { sock }) {
 
         return m.reply(
             `🐢 *SLOWMODE*\n\n` +
-            `Status: ${enabled ? `✅ ON (${delay}s)` : '❌ OFF'}\n` +
-            `Mode: *${mode}*\n\n` +
+            `Estado: ${enabled ? `✅ ON (${delay}s)` : '❌ OFF'}\n` +
+            `Modo: *${mode}*\n\n` +
             `*Uso:*\n` +
             `*.slowmode on 30* — todos los mensajes + comandos\n` +
             `*.slowmode onlycommand 30* — solo comandos\n` +

@@ -32,7 +32,7 @@ function handler(m, { sock, db }) {
 
     if (!['on', 'off'].includes(args)) {
         const status = group.notifPromote === true ? '✅ Activo' : '❌ Inactivo'
-        return m.reply(`👑 *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ*\n\n> Status: ${status}\n\n*Uso:*\n\`${m.prefix}notifpromote on\` - Activar\n\`${m.prefix}notifpromote off\` - Desactivar`)
+        return m.reply(`👑 *NOTIF. ASCENSO*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notifpromote on\` - Activar\n\`${m.prefix}notifpromote off\` - Desactivar`)
     }
 
     if (args === 'on') {

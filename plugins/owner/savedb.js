@@ -28,7 +28,7 @@ const pluginConfig = {
 }
 async function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
     const dbPath = path.join(process.cwd(), 'database', 'db.json')
     if (!fs.existsSync(dbPath)) {

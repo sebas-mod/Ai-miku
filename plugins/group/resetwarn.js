@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
     if (!targetUser) {
         await m.reply(
             `⚠️ *CÓMO USAR*\n\n` +
-            `> Reply pesan user + \`${m.prefix}resetwarn\`\n` +
+            `> Responde al mensaje del usuario + \`${m.prefix}resetwarn\`\n` +
             `> O: \`${m.prefix}resetwarn @user\``
         )
         return

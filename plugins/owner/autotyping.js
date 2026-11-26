@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
     const current = db.setting("autoTyping") ?? config.features?.autoTyping ?? true;
     return m.reply(
       `⌨️ *Auto Typing*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
-        `> *${m.prefix}autotyping on* — Aktifkan\n` +
+        `> *${m.prefix}autotyping on* — Activar\n` +
         `> *${m.prefix}autotyping off* — Nonaktifkan\n\n` +
         `_El bot mostrará el indicador de escritura al recibir mensajes_`
     );
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     db.setting("autoTyping", true);
     const ctx = saluranCtx();
     return m.reply(
-      `⌨️ *Auto Typing Aktif*\n\n` +
+      `⌨️ *Escritura automática activa*\n\n` +
         `> El bot mostrará el indicador de escritura`,
       { contextInfo: ctx }
     );
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("autoTyping", false);
     return m.reply(
-      `⌨️ *Auto Typing Nonaktif*\n\n` +
+      `⌨️ *Escritura automática inactiva*\n\n` +
         `> El bot no mostrará el indicador de escritura`
     );
   }

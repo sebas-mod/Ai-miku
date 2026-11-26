@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     if (!targetJid) {
         return m.reply(
             '⚠️ *CÓMO USAR*\n\n' +
-            '> `.unblock 628xxx` — Unblock via nomor\n' +
+            '> `.unblock 628xxx` — Unblock por número\n' +
             '> `.unblock` (responde a un mensaje) — Desbloquea al remitente\n' +
             '> `.unblock @mención` — Desbloquea al mencionado\n' +
             '> `.unblock` (en chat privado) — Desbloquea a este usuario'

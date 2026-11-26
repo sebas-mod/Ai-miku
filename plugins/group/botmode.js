@@ -80,9 +80,9 @@ function handler(m, { sock }) {
             `\n╭─「 📋 *OPCIONES* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
-            `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n` +
+            `*TIENDA DE FLAGS:*\n` +
             `> \`${m.prefix}botmode store\` - Manual order\n\n` +
-            `> _Pengaturan per-grup_`
+            `> _Configuración por grupo_`
         )
     }
 
@@ -110,17 +110,17 @@ function handler(m, { sock }) {
     let extraInfo = ''
     if (mode === 'store') {
         const products = newGroupData.storeConfig?.products || []
-        extraInfo = `\n\n📋 *Manual mode*\n` +
+        extraInfo = `\n\n📋 *Modo manual*\n` +
             `> El administrador debe confirmar el pedido manualmente\n` +
-            `> Product: \`${products.length}\` item\n\n` +
-            `*ᴘᴀɴᴅᴜᴀɴ:*\n` +
+            `> Producto: \`${products.length}\` artículo\n\n` +
+            `*GUÍA:*\n` +
             `> \`${m.prefix}addprod <código> <precio> <nombre>\`\n` +
             `> \`${m.prefix}listprod\` - Ver productos`
     }
 
     return m.reply(
         `✅ *MODO CAMBIADO*\n\n` +
-        `> Mode: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
+        `> Modo: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
         `> Grupo: *${m.chat.split('@')[0]}*\n` +
         extraInfo +
         `\n\n> Escribe \`${m.prefix}menu\` para ver el menú.`

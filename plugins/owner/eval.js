@@ -33,7 +33,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, store }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
 
     const code = m.fullArgs?.trim() || m.text?.trim()

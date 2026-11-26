@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     ]
 
     await m.reply(
-        `🕕 *Membuat backup database...*\n\n` +
+        `🕕 *Creando copia de seguridad de la base de datos...*\n\n` +
         `╭┈┈⬡「 📦 *QUÉ SE RESPALDA* 」\n` +
         backupContents.map(c => `┃ ${c}`).join('\n') +
         `\n╰┈┈┈┈┈┈┈┈⬡`
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
             `📁 Files: ${result.files}\n` +
             `🔖 Schema: v${SCHEMA_VERSION}\n\n` +
             `> Copia segura, compatible con futuras actualizaciones.\n` +
-            `> Backup telah dikirim ke owner utama.`
+            `> Copia enviada al propietario principal.`
         )
     } else {
         await m.reply(`❌ Error en la copia: ${result.error}`)

@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
       `💎 *SISTEM CAP PREMIUM*\n\n` +
       `Sistema exclusivo para convertir varias funciones a Premium a la vez.\n\n` +
       `*USO:*\n` +
-      `- *${m.prefix}capprem <nama_fitur1> <nama_fitur2> ...* — Pueden ser varias a la vez\n\n` +
+      `- *${m.prefix}capprem <función1> <función2> ...* — Pueden ser varias a la vez\n\n` +
       `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capprem hd jpm warn*\n\n` +
       `*PENJELASAN:*\n` +

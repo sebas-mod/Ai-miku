@@ -149,7 +149,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
         ) || result.data[0];
 
         const caption =
-          `🎵 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗢 𝗪 𝗡 𝗟 𝗢 𝗔 𝗗 𝗘 𝗥*\n\n` +
+          `🎵 *DESCARGADOR DE TIKTOK*\n\n` +
           `- Author: *${result.author.nickname}* (${result.author.fullname})\n` +
           `- Caption: ${result.title || "-"}\n` +
           `- Music: ${result.music_info.title} - ${result.music_info.author}\n` +
@@ -173,7 +173,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
         );
       } else {
         const caption =
-          `📸 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗢 𝗪 𝗡 𝗟 𝗢 𝗔 𝗗 𝗘 𝗥*\n\n` +
+          `📸 *DESCARGADOR DE TIKTOK*\n\n` +
           `- Author: *${result.author.nickname}* (${result.author.fullname})\n` +
           `- Caption: ${result.title || "-"}\n` +
           `- Music: ${result.music_info.title} - ${result.music_info.author}\n` +

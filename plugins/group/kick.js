@@ -113,13 +113,13 @@ async function handler(m, { sock }) {
     }
 
     if (!targetParticipant) {
-      await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El usuario no está en el grupo!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡El usuario no está en el grupo!`);
       return;
     }
 
     const botNum = cleanDigits(sock.user?.id || sock.user?.jid);
     if (isBotParticipant(targetParticipant, [botNum])) {
-      await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No puedes expulsar al propio bot!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsar al propio bot!`);
       return;
     }
 
@@ -134,12 +134,12 @@ async function handler(m, { sock }) {
       .filter(Boolean);
 
     if (senderNum && targetIds.includes(senderNum)) {
-      await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No puedes expulsarte a ti mismo!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsarte a ti mismo!`);
       return;
     }
 
     if (targetParticipant.admin) {
-      await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No puedes expulsar a un administrador del grupo!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsar a un administrador del grupo!`);
       return;
     }
 

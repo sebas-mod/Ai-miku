@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
         )
     } catch (error) {
         await m.reply(
-            `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n` +
+            `❌ *FALLIDO*\n\n` +
             `> No se puede cambiar el nombre del grupo.\n` +
             `> _${error.message}_`
         )

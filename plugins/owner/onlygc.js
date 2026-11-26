@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     const current = db.setting("onlyGc") || false;
     return m.reply(
       `🏘️ *Only Group*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}onlygc on* — El bot solo puede usarse en grupos\n` +
         `> *${m.prefix}onlygc off* — El bot puede usarse en cualquier lugar\n\n` +
@@ -45,9 +45,9 @@ async function handler(m, { sock }) {
     db.setting("onlyPc", false);
     await m.react("✅");
     return m.reply(
-      `🏘️ *Only Group Aktif*\n\n` +
+      `🏘️ *Solo grupos activado*\n\n` +
         `> El bot solo puede usarse en grupos\n` +
-        `> Mode Only Private dinonaktifkan`
+        `> Modo Solo privados desactivado`
     );
   }
 
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     db.setting("onlyGc", false);
     await m.react("❌");
     return m.reply(
-      `🏘️ *Only Group Nonaktif*\n\n` +
+      `🏘️ *Solo grupos desactivado*\n\n` +
         `> El bot puede usarse en cualquier lugar`
     );
   }

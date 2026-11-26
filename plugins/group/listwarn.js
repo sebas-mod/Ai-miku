@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
       return;
     }
 
-    let txt = `⚠️ *ᴡᴀʀɴɪɴɢ @${targetName}*\n\n`;
+    let txt = `⚠️ *ADVERTENCIA @${targetName}*\n\n`;
     txt += `> Total: *${userWarnings.length}/${maxWarns}*\n\n`;
 
     userWarnings.forEach((w, i) => {

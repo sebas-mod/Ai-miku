@@ -58,7 +58,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "menit", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minutos", h: "horas", d: "días", m: "meses", y: "años" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -125,7 +125,7 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *TAMBAH SEWA*\n\n` +
+      `📝 *AÑADIR ALQUILER*\n\n` +
         `Formato: *${m.prefix}addsewa <enlace/id> <duración>*\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
@@ -134,7 +134,7 @@ async function handler(m, { sock }) {
         `• 1m = 1 mes (30 días)\n` +
         `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
-        `*INPUT GRUP:*\n` +
+        `*INTRODUCE EL GRUPO:*\n` +
         `• Link: https://chat.whatsapp.com/xxx\n` +
         `• ID: 120363xxx@g.us\n\n` +
         `*EJEMPLO:*\n` +
@@ -179,10 +179,10 @@ async function handler(m, { sock }) {
       : timeHelper.fromTimestamp(expiredAt, "D MMMM YYYY HH:mm");
 
     let text = `✅ *ALQUILER AÑADIDO*\n\n`;
-    text += `Grup: *${groupName}*\n`;
+    text += `Grupo: *${groupName}*\n`;
     text += `ID: ${groupId.split("@")[0]}\n`;
     text += `Duración: *${formatDuration(durationStr)}*\n`;
-    text += `Expired: *${expiredStr}*\n\n`;
+    text += `Caducidad: *${expiredStr}*\n\n`;
 
     const joinResult = await tryJoinGroup(sock, inviteCode, groupId);
 

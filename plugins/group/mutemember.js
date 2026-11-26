@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
             return pJid === targetNumber && (p.admin === 'admin' || p.admin === 'superadmin')
         })
         if (isTargetAdmin) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se puede silenciar a un administrador del grupo`)
+            return m.reply(`❌ *FALLIDO*\n\n> No se puede silenciar a un administrador del grupo`)
         }
     }
 
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyMuted) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El miembro @${targetNumber} ya está silenciado`, { mentions: [targetJid] })
+        return m.reply(`❌ *FALLIDO*\n\n> El miembro @${targetNumber} ya está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.push(targetJid)
@@ -93,9 +93,9 @@ async function handler(m, { sock }) {
     await m.reply(
         `🔇 *MIEMBRO SILENCIADO*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
-        `┃ 🔇 sᴛᴀᴛᴜs: \`Muted\`\n` +
-        `┃ 📊 ᴛᴏᴛᴀʟ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
+        `┃ 👤 MIEMBRO: @${targetNumber}\n` +
+        `┃ 🔇 ESTADO: \`Muted\`\n` +
+        `┃ 📊 TOTAL SILENCIADOS: \`${mutedMembers.length}\` MIEMBRO\n` +
         `╰┈┈⬡\n\n` +
         `> Todos los mensajes de este miembro se borrarán automáticamente\n` +
         `> Usa \`${m.prefix}unmutemember\` para quitar el silencio`,

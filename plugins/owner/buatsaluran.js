@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
         "> `.buatsaluran Nombre|Descripción`\n\n" +
         "📝 Ejemplo:\n" +
         "> `.buatsaluran Info Bot`\n" +
-        "> `.buatsaluran Info Bot|Update terbaru bot kami`",
+        "> `.buatsaluran Info del bot|Últimas novedades del bot`",
     );
   }
 

@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
     if (currentStatus) {
       return m.reply(
         `⚠️ *NOTIF ETIQUETA YA ACTIVA*\n\n` +
-          `> Status: *✅ ON*\n` +
+          `> Estado: *✅ ON*\n` +
           `> Las notificaciones de cambio de etiqueta ya están activas en este grupo.\n\n` +
           `_Usa \`${m.prefix}notifgantitag off\` para desactivarlo._`,
       );
@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
     if (!currentStatus) {
       return m.reply(
         `⚠️ *NOTIF ETIQUETA YA INACTIVA*\n\n` +
-          `> Status: *❌ OFF*\n` +
+          `> Estado: *❌ OFF*\n` +
           `> Las notificaciones de cambio de etiqueta ya están desactivadas en este grupo.\n\n` +
           `_Usa \`${m.prefix}notifgantitag on\` para activarlo._`,
       );
@@ -115,8 +115,8 @@ async function handler(m, { sock }) {
   }
   m.reply(
     `🏷️ *NOTIF CAMBIO DE ETIQUETA*\n\n` +
-      `> Status: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
-      `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
+      `> Estado: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
+      `\`\`\`━━━ OPCIONES ━━━\`\`\`\n` +
       `> \`${m.prefix}notifgantitag on\` → Activar\n` +
       `> \`${m.prefix}notifgantitag off\` → Desactivar\n` +
       `> \`${m.prefix}notifgantitag on all\` → Global ON (owner)\n` +
@@ -168,9 +168,9 @@ async function handleLabelChange(msg, sock) {
     } catch {}
     let notifText = "";
     if (label && label.trim()) {
-      notifText = `🎉 @${participant.split("@")[0]} telah mengubah label menjadi *${label}*`;
+      notifText = `🎉 @${participant.split("@")[0]} ha cambiado la etiqueta a *${label}*`;
     } else {
-      notifText = `🥗 @${participant.split("@")[0]} telah menghapus label`;
+      notifText = `🥗 @${participant.split("@")[0]} ha eliminado la etiqueta`;
     }
     console.log(notifText);
     await sock.sendText(groupJid, notifText, null, {

@@ -33,8 +33,8 @@ async function handler(m, { db }) {
     if (!action) {
         const status = group.antiswgc || 'off'
         await m.reply(
-            `📡 *ᴀɴᴛɪsᴡɢᴄ*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `📡 *ANTISWGC*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
             `> Esta función detecta las menciones masivas de estado como:\n` +
             `> • groupStatusMentionMessage\n` +
             `> • groupMentionedMessage\n` +

@@ -318,7 +318,7 @@ const pluginConfig = {
         reqHead['Referer'] = `${BASE}/apps`;
         reqHead['Sec-Fetch-Site'] = 'same-origin';
 
-        const { data: sData, status: sStat } = await axios.get(`${BASE}/search?q=${encQ}`, { headers: reqHead, validateStatus: () => true, timeout: 30000 });
+        const { data: sData, status: sStat } = await axios.get(`${BASE}/search?q=${encQ}`, { headers: reqHead, validateEstado: () => true, timeout: 30000 });
         if (sStat !== 200) throw new Error(`Search API HTTP ${sStat}`);
 
         const results = parseSearch(sData);
@@ -335,7 +335,7 @@ const pluginConfig = {
         reqHead['Referer'] = `${BASE}/apps`;
         reqHead['Sec-Fetch-Site'] = 'same-origin';
 
-        const { data: dData, status: dStat } = await axios.get(`${BASE}/app/${id}`, { headers: reqHead, validateStatus: () => true, timeout: 30000 });
+        const { data: dData, status: dStat } = await axios.get(`${BASE}/app/${id}`, { headers: reqHead, validateEstado: () => true, timeout: 30000 });
         if (dStat !== 200) throw new Error(`Detail API HTTP ${dStat}`);
 
         const d = parseDetail(dData, id);
@@ -354,7 +354,7 @@ const pluginConfig = {
         reqHead['Referer'] = `${BASE}/app/${id}`;
         reqHead['Sec-Fetch-Site'] = 'same-origin';
 
-        const { data: dlData, status: dlStat } = await axios.get(`${BASE}/apps/${id}/download`, { headers: reqHead, validateStatus: () => true, timeout: 30000 });
+        const { data: dlData, status: dlStat } = await axios.get(`${BASE}/apps/${id}/download`, { headers: reqHead, validateEstado: () => true, timeout: 30000 });
         if (dlStat !== 200) throw new Error(`Download API HTTP ${dlStat}`);
 
         const link = parseDownloadLink(dlData);
@@ -445,7 +445,7 @@ const pluginConfig = {
           `Versi    : ${a.version || '-'} (${a.version_code || '-'})\n` +
           `Tamaño   : ${a.size || '-'}\n` +
           `Categoría : ${a.category || '-'}\n` +
-          `Unduhan  : ${Number(a.downloads || 0).toLocaleString('es-ES')}\n` +
+          `Descargas  : ${Number(a.downloads || 0).toLocaleString('es-ES')}\n` +
           `Developer: ${a.author?.name || '-'}\n` +
           `Android  : ${a.min_android || '-'} (SDK ${a.min_sdk || '-'})\n` +
           `ABI      : ${(a.abi || []).join(', ') || '-'}\n` +

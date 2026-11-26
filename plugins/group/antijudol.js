@@ -35,9 +35,9 @@ function handler(m) {
         const status = groupData.antijudol || 'off'
         const mode = groupData.antijudolMode || 'remove'
         return m.reply(
-            `🎰 *ᴀɴᴛɪᴊᴜᴅᴏʟ*\n\n` +
-            `> Status: *${status.toUpperCase()}*\n` +
-            `> Mode: *${mode.toUpperCase()}*\n\n` +
+            `🎰 *ANTIAPUESTAS*\n\n` +
+            `> Estado: *${status.toUpperCase()}*\n` +
+            `> Modo: *${mode.toUpperCase()}*\n\n` +
             `> Detecta contenido de apuestas como judi, slot, gacor, maxwin, togel, bonos para miembros, enlaces alternativos y patrones similares.\n\n` +
             `> \`${m.prefix}antijudol on\`\n` +
             `> \`${m.prefix}antijudol off\`\n` +

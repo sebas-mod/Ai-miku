@@ -71,12 +71,12 @@ async function handler(m, { sock }) {
         await m.reply(
             `🗑️ *QUITAR PREMIUM A TODOS*\n\n` +
             `╭┈┈⬡「 📋 *RESULTADO* 」\n` +
-            `┃ 👥 ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀ: \`${participants.length}\`\n` +
-            `┃ ✅ ᴅɪʜᴀᴘᴜs: \`${removedCount}\`\n` +
-            `┃ ⏭️ ʙᴜᴋᴀɴ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +
-            `┃ 💎 sɪsᴀ ᴘʀᴇᴍɪᴜᴍ: \`${db.data.premium.length}\`\n` +
+            `┃ 👥 TOTAL DE MIEMBROS: \`${participants.length}\`\n` +
+            `┃ ✅ ELIMINADO: \`${removedCount}\`\n` +
+            `┃ ⏭️ NO ES PREMIUM: \`${notPremCount}\`\n` +
+            `┃ 💎 RESTANTE PREMIUM: \`${db.data.premium.length}\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Grup: ${groupMeta.subject}`
+            `> Grupo: ${groupMeta.subject}`
         )
 
     } catch (error) {

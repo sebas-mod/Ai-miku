@@ -39,10 +39,10 @@ function parseDelay(input) {
 }
 
 function formatDelay(ms) {
-  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} hari`
-  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} jam`
-  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} menit`
-  return `${(ms / 1000).toFixed(0)} detik`
+  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} días`
+  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} horas`
+  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} minutos`
+  return `${(ms / 1000).toFixed(0)} segundos`
 }
 
 async function handler(m) {
@@ -57,11 +57,11 @@ async function handler(m) {
       `*CÓMO USAR:*\n` +
       `> \`${m.prefix}bcpcjeda <angka><satuan>\`\n\n` +
       `*SATUAN:*\n` +
-      `• \`s\` — detik\n• \`m\` — menit\n• \`h\` — jam\n• \`d\` — hari\n\n` +
+      `• \`s\` — segundos\n• \`m\` — minutos\n• \`h\` — horas\n• \`d\` — días\n\n` +
       `*EJEMPLO:*\n` +
-      `> \`${m.prefix}bcpcjeda 5s\` → 5 detik\n` +
-      `> \`${m.prefix}bcpcjeda 2m\` → 2 menit\n` +
-      `> \`${m.prefix}bcpcjeda 1h\` → 1 jam`
+      `> \`${m.prefix}bcpcjeda 5s\` → 5 segundos\n` +
+      `> \`${m.prefix}bcpcjeda 2m\` → 2 minutos\n` +
+      `> \`${m.prefix}bcpcjeda 1h\` → 1 hora`
     )
   }
 
@@ -74,9 +74,9 @@ async function handler(m) {
   db.setting('jedaBcpc', ms)
 
   return m.reply(
-    `✅ *Jeda broadcast private diubah*\n\n` +
+    `✅ *Intervalo de difusión privada cambiado*\n\n` +
     `Sebelumnya: *${formatDelay(prev)}*\n` +
-    `Sekarang: *${formatDelay(ms)}*`
+    `Ahora: *${formatDelay(ms)}*`
   )
 }
 

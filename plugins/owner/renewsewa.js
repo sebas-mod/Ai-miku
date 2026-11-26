@@ -57,7 +57,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "menit", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minutos", h: "horas", d: "días", m: "meses", y: "años" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -87,13 +87,13 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *PERPANJANG SEWA*\n\n` +
+      `📝 *RENOVAR ALQUILER*\n\n` +
         `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +
         `• 7d = 7 días\n` +
-        `• 1m = 1 bulan\n` +
+        `• 1m = 1 mes\n` +
         `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
         `*EJEMPLO:*\n` +
@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup no encontrado`);
+      return m.reply(`❌ Grupo no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -157,15 +157,15 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let text = `✅ *SEWA DIPERPANJANG*\n\n`;
-    text += `Grup: *${groupName}*\n`;
-    text += `Tambahan: *${formatDuration(durationStr)}*\n`;
-    text += `Expired baru: *${expiredStr}*`;
+    let text = `✅ *ALQUILER RENOVADO*\n\n`;
+    text += `Grupo: *${groupName}*\n`;
+    text += `Añadido: *${formatDuration(durationStr)}*\n`;
+    text += `Nueva caducidad: *${expiredStr}*`;
 
     try {
       await sock.sendText(
         groupId,
-        `📢 Sewa bot telah diperpanjang!\n\nTambahan: *${formatDuration(durationStr)}*\nExpired baru: *${expiredStr}*`,
+        `📢 ¡El alquiler del bot se ha renovado!\n\nAñadido: *${formatDuration(durationStr)}*\nNueva caducidad: *${expiredStr}*`,
         null,
         {
           contextInfo: saluranCtx(),

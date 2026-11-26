@@ -31,13 +31,13 @@ async function handler(m, { sock }) {
         const existingCmds = listStickerCommands()
         if (existingCmds.length === 0) {
             return m.reply(
-                `🖼️ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅs*\n\n` +
+                `🖼️ *STICKER COMANDOS*\n\n` +
                 `> No hay comandos de sticker registrados.\n` +
                 `> Añade uno con \`.addcmdsticker\``
             )
         }
 
-        let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅs*\n\n`
+        let txt = `🖼️ *STICKER COMANDOS*\n\n`
         txt += `╭┈┈⬡「 📋 *LISTA* 」\n`
 
         for (const cmd of existingCmds) {
@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
     if (deleted) {
         await m.react('✅')
         await m.reply(
-            `✅ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴅɪʜᴀᴘᴜs*\n\n` +
+            `✅ *STICKER COMANDO ELIMINADO*\n\n` +
             `> 🗑️ \`${deletedCmd}\` se ha eliminado.`
         )
     } else {

@@ -59,8 +59,8 @@ async function handler(m, { sock }) {
             return m.reply(
                 `✅ *BIENVENIDA GLOBAL ON*\n\n` +
                 `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Welcome: *AKTIF*\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ✅ Bienvenida: *ACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> ¡Todos los miembros nuevos serán recibidos automáticamente!`
             )
@@ -68,8 +68,8 @@ async function handler(m, { sock }) {
             return m.reply(
                 `❌ *BIENVENIDA GLOBAL OFF*\n\n` +
                 `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Welcome: *NONAKTIF*\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ❌ Bienvenida: *INACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> La bienvenida se desactivó en todos los grupos.`
             )

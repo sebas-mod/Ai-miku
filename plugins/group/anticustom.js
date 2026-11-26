@@ -181,9 +181,9 @@ async function startWizard(m, sock, mode, isFirstSetup = false) {
 
 function buildGuideMessage(m, status, mode, rules) {
   return (
-    `🛡️ *ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n` +
+    `🛡️ *ANTICUSTOM*\n\n` +
     `> Estado: *${status.toUpperCase()}*\n` +
-    `> Mode default: *${normalizeAction(mode).toUpperCase()}*\n` +
+    `> Modo predeterminado: *${normalizeAction(mode).toUpperCase()}*\n` +
     `> Total de reglas: *${rules.length}*\n\n` +
     `Si quieres añadir otro AntiCustom:\n` +
     `> \`${m.prefix}anticustom add\`\n\n` +
@@ -230,7 +230,7 @@ async function handler(m, { sock }) {
       return;
     }
     clearSession(sessionKey);
-    await m.reply("✅ Sesi AntiCustom dibatalkan.");
+    await m.reply("✅ Sesión de AntiCustom cancelada.");
     return;
   }
 
@@ -267,7 +267,7 @@ async function handler(m, { sock }) {
       return;
     }
     await m.reply(
-      `📋 *ʟɪsᴛ ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n${rules.map(formatRule).join("\n\n")}`,
+      `📋 *LISTA ANTICUSTOM*\n\n${rules.map(formatRule).join("\n\n")}`,
     );
     return;
   }

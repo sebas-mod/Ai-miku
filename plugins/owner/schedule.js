@@ -894,7 +894,7 @@ ${truncateText(parsed.customText, 180)}`);
       const text = `📊 *ESTADO DE LOS RECORDATORIOS*
 
 📝 Jadwal aktif: ${status.scheduledMessagesCount}
-🏷️ Kategori aktif: ${categories.length ? categories.join(", ") : "-"}
+🏷️ Categorías activas: ${categories.length ? categories.join(", ") : "-"}
 📨 Reminder terkirim: ${status.totalMessagesSent}
 🔄 Daily limit reset: ${status.dailyResetEnabled ? "✅ Active" : "❌ Inactive"}
 📅 Last reset: ${status.lastLimitReset}

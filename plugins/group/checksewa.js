@@ -61,9 +61,9 @@ function handler(m) {
     if (sewaData.isLifetime) {
         m.react('♾️')
         return m.reply(
-            `♾️ *STATUS SEWA*\n\n` +
+            `♾️ *ESTADO DEL ALQUILER*\n\n` +
             `Grupo: *${groupName}*\n` +
-            `Status: *Permanent* ♾️\n` +
+            `Estado: *Permanent* ♾️\n` +
             `Terdaftar sejak: *${addedDate}*\n\n` +
             `El bot quedará activo para siempre en este grupo.`
         )
@@ -74,7 +74,7 @@ function handler(m) {
 
     if (countdown.expired) {
         return m.reply(
-            `❌ *SEWA EXPIRED*\n\n` +
+            `❌ *ALQUILER CADUCADO*\n\n` +
             `Grupo: *${groupName}*\n` +
             `Berakhir: *${expiredStr}*\n\n` +
             `Contacta al dueño del bot para renovar el alquiler.`
@@ -85,7 +85,7 @@ function handler(m) {
     const isAlmostExpired = diff <= 259200000
 
     m.react(isAlmostExpired ? '⚠️' : '⏱️')
-    let text = `⏱️ *STATUS SEWA*\n\n`
+    let text = `⏱️ *ESTADO DEL ALQUILER*\n\n`
     text += `Grupo: *${groupName}*\n`
     text += `Tiempo restante: *${countdown.text}*\n`
     text += `Berakhir: *${expiredStr}*\n`

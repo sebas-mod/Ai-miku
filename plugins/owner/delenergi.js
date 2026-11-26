@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `⚡ *QUITAR ENERGÍA*\n\n` +
-            `> \`.delenergi <jumlah>\` - de ti mismo\n` +
-            `> \`.delenergi <jumlah> @user\` - del usuario\n\n` +
+            `> \`.delenergi <cantidad>\` - de ti mismo\n` +
+            `> \`.delenergi <cantidad> @user\` - del usuario\n\n` +
             `\`Ejemplo: ${m.prefix}delenergi 50\``
         )
     }
@@ -77,9 +77,9 @@ async function handler(m, { sock }) {
     await m.reply(
         `✅ *ENERGÍA REDUCIDA*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
-        `┃ ⚡ sɪsᴀ: *${formatNumber(newEnergi)}*\n` +
+        `┃ 👤 USUARIO: @${targetJid.split('@')[0]}\n` +
+        `┃ ➖ RESTADO: *-${formatNumber(amount)}*\n` +
+        `┃ ⚡ RESTANTE: *${formatNumber(newEnergi)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

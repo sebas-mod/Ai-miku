@@ -33,9 +33,9 @@ function handler(m, { sock }) {
     if (!option) {
         const status = group.autoforward ? '✅ ON' : '❌ OFF'
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-            `┃ ◦ Status: *${status}*\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
+            `╭┈┈⬡「 📋 *INFO* 」\n` +
+            `┃ ◦ Estado: *${status}*\n` +
             `╰┈┈⬡\n\n` +
             `> Usa: \`${m.prefix}autoforward on/off\`\n\n` +
             `_Esta función reenviará todos los mensajes a este grupo_`
@@ -46,11 +46,11 @@ function handler(m, { sock }) {
         db.setGroup(groupId, { ...group, autoforward: true })
         m.react('✅')
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
             `╭┈┈⬡「 ✅ *ACTIVO* 」\n` +
-            `┃ ◦ Status: *ON*\n` +
+            `┃ ◦ Estado: *ON*\n` +
             `╰┈┈⬡\n\n` +
-            `> _Semua pesan akan di-forward_`
+            `> _Todos los mensajes serán reenviados_`
         )
     }
 
@@ -58,9 +58,9 @@ function handler(m, { sock }) {
         db.setGroup(groupId, { ...group, autoforward: false })
         m.react('❌')
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
             `╭┈┈⬡「 ❌ *INACTIVO* 」\n` +
-            `┃ ◦ Status: *OFF*\n` +
+            `┃ ◦ Estado: *OFF*\n` +
             `╰┈┈⬡`
         )
     }

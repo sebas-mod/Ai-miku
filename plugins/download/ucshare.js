@@ -294,7 +294,7 @@ const pluginConfig = {
           lines.push(`${f.no}. ${f.is_video ? '🎬' : '📄'} ${f.file_name}`)
           lines.push(`    ${detail}`)
       }
-      if (share.files.length > LIST_MAX) lines.push(`... dan ${share.files.length - LIST_MAX} file lain`)
+      if (share.files.length > LIST_MAX) lines.push(`... y ${share.files.length - LIST_MAX} archivos más`)
       if (share.folders.length) {
           lines.push('')
           lines.push(`📁 Carpeta (aún no se puede abrir su contenido): ${share.folders.slice(0, 5).map(f => f.name).join(', ')}`)

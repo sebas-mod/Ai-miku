@@ -52,7 +52,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <text x="550" y="380" text-anchor="middle" font-family="Times New Roman, serif" font-size="19">se le concede permiso por el siguiente motivo:</text>
       <text x="550" y="430" text-anchor="middle" font-family="Times New Roman, serif" font-size="24" font-weight="700">${escapeXml(alasan).toUpperCase()}</text>
       <text x="550" y="500" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tanggal: ${escapeXml(tanggal)}</text>
-      <text x="790" y="580" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Kepala Sekolah</text>
+      <text x="790" y="580" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Director</text>
       <text x="790" y="625" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Dr. Elysia Assistant, M.Pd</text>
       <text x="550" y="690" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOCUMENTO DE EJEMPLO — SIN VALIDEZ OFICIAL</text>
     </svg>`
@@ -70,7 +70,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
-      const alasan = parts[1] || 'Sakit'
+      const alasan = parts[1] || 'Enfermedad'
 
       m.react('💕')
       await m.reply(`⏳ *Processing...*`)

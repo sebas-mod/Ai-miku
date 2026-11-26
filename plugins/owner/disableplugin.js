@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
         `┃ 📁 Category: *${category}*\n` +
         `┃ 📄 File: *${file}*\n` +
-        `┃ 🔴 Status: *Disabled*\n` +
+        `┃ 🔴 Estado: *Disabled*\n` +
         `╰┈┈⬡\n\n` +
         `> Reinicia el bot o usa la recarga en caliente para aplicarlo.`,
     );

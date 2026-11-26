@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
       `⚙️ *SISTEM CAP ENERGI*\n\n` +
       `Sistema para cambiar dinámicamente cuánta energía consumen varias funciones a la vez.\n\n` +
       `*USO:*\n` +
-      `- *${m.prefix}capenergi <nama_fitur1> <nama_fitur2> ... <jumlah>*\n\n` +
+      `- *${m.prefix}capenergi <función1> <función2> ... <cantidad>*\n\n` +
       `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capenergi hd jpm 5* (las funciones HD y JPM consumen 5 de energía)\n` +
       `- *${m.prefix}capenergi hd 0* (la función HD pasa a ser gratis en energía)\n\n` +

@@ -103,7 +103,7 @@ function parseHeaders(headerArgs) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Owner Only!*");
+    return m.reply("❌ *¡Solo el owner!*");
   }
 
   let input = m.fullArgs?.trim() || m.text?.trim();
@@ -335,7 +335,7 @@ async function handler(m, { sock }) {
               mimetype: "application/json",
               caption:
                 header +
-                `\n\n📄 Pretty JSON dikirim sebagai file (${formatSize(pretty.length)})`,
+                `\n\n📄 JSON formateado enviado como archivo (${formatSize(pretty.length)})`,
             },
             { quoted: m },
           );
@@ -347,7 +347,7 @@ async function handler(m, { sock }) {
               document: buffer,
               fileName,
               mimetype: mimeType || "application/octet-stream",
-              caption: header + "\n\n📎 Full response dikirim sebagai file",
+              caption: header + "\n\n📎 Respuesta completa enviada como archivo",
             },
             { quoted: m },
           );
@@ -360,7 +360,7 @@ async function handler(m, { sock }) {
             document: buffer,
             fileName,
             mimetype: mimeType || "application/octet-stream",
-            caption: header + "\n\n📎 Full response dikirim sebagai file",
+            caption: header + "\n\n📎 Respuesta completa enviada como archivo",
           },
           { quoted: m },
         );
@@ -373,7 +373,7 @@ async function handler(m, { sock }) {
           document: buffer,
           fileName,
           mimetype: mimeType || "application/octet-stream",
-          caption: header + "\n\n📎 Full response dikirim sebagai file",
+          caption: header + "\n\n📎 Respuesta completa enviada como archivo",
         },
         { quoted: m },
       );

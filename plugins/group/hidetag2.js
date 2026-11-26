@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `📢 *HIDETAG 2*\n\n` +
             `• \`${m.prefix}h2 <text>\`\n` +
-            `• Reply pesan + \`${m.prefix}h2\``
+            `• Responde al mensaje + \`${m.prefix}h2\``
         )
     }
     try {

@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
     return m.reply(
       `📊 *QUITAR NIVEL*\n\n` +
         `╭┈┈⬡「 📋 *USO* 」\n` +
-        `┃ > \`.dellevel <jumlah>\` - ke diri sendiri\n` +
-        `┃ > \`.dellevel <jumlah> @user\` - ke orang lain\n` +
+        `┃ > \`.dellevel <cantidad>\` - a ti mismo\n` +
+        `┃ > \`.dellevel <cantidad> @user\` - a otra persona\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `> Ejemplo: \`${m.prefix}dellevel 5\``,
     );
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     `✅ *NIVEL REDUCIDO*\n\n` +
       `╭┈┈⬡「 📋 *DETALLE* 」\n` +
       `┃ 👤 User: @${targetJid.split("@")[0]}\n` +
-      `┃ ➖ Kurang: *-${levels} Level*\n` +
+      `┃ ➖ Restado: *-${levels} Level*\n` +
       `┃ 🚄 Exp Removed: *-${expToRemove.toLocaleString("id-ID")}*\n` +
       `┃ 📊 Level: *${oldLevel} → ${newLevel}*\n` +
       `┃ ${getRole(newLevel)}\n` +

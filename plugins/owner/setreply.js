@@ -86,7 +86,7 @@ async function handler(m, { sock, db }) {
     await db.save();
 
     await m.reply(
-      `✅ *REPLY VARIANT DIUBAH*\n\n` +
+      `✅ *VARIANTE DE RESPUESTA CAMBIADA*\n\n` +
         `${selected.emoji} *V${selected.id} — ${selected.name}*` +
         (selected.desc ? `\n_${selected.desc}_` : "")
     );

@@ -76,9 +76,9 @@ async function handler(m, { sock }) {
 
         await sock.sendMessage(m.chat, {
             text: `🗑️ *JADIBOT ELIMINADO*\n\n` +
-                `> 📱 Nomor: *@${id}*\n` +
-                `> 🗑️ Status: *Deleted*\n\n` +
-                `Session telah dihapus secara permanen.\n` +
+                `> 📱 Número: *@${id}*\n` +
+                `> 🗑️ Estado: *Deleted*\n\n` +
+                `La sesión se ha eliminado de forma permanente.\n` +
                 `El usuario necesita \`.jadibot\` de nuevo para crear una sesión nueva.`,
             mentions: [target]
         }, { quoted: m })

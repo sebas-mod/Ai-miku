@@ -29,7 +29,7 @@ const pluginConfig = {
     if (!text) throw `¡Envía un título!
 
 Ejemplo:
-${usedPrefix + command} dj 30 detik`
+${usedPrefix + command} dj 30 segundos`
 
     let search = await yts(text)
     let videos = search.videos.slice(0, 10)

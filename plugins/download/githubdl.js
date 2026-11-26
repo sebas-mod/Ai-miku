@@ -54,7 +54,7 @@ const te = ElysiaRuntime.te;
       }
 
       if (!repo) {
-          return m.reply(`❌ *ʀᴇᴘᴏ ʀᴇǫᴜᴇʀɪᴅᴏ*\n\n> Envía el nombre del repositorio`)
+          return m.reply(`❌ *REPO REQUERIDO*\n\n> Envía el nombre del repositorio`)
       }
 
       await m.react('🕕')
@@ -64,7 +64,7 @@ const te = ElysiaRuntime.te;
 
           if (!repoInfo.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʀᴇᴘᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> \`${username}/${repo}\` no existe`)
+              return m.reply(`❌ *REPO NO ENCONTRADO*\n\n> \`${username}/${repo}\` no existe`)
           }
 
           const repoData = await repoInfo.json()
@@ -76,7 +76,7 @@ const te = ElysiaRuntime.te;
           const checkRes = await fetch(zipUrl, { method: 'HEAD' })
           if (!checkRes.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʀᴀᴍᴀ ɴᴏ ᴇxɪsᴛᴇ*\n\n> Branch \`${branch}\` no encontrado\n> Default: \`${defaultBranch}\``)
+              return m.reply(`❌ *RAMA NO EXISTE*\n\n> Branch \`${branch}\` no encontrado\n> Default: \`${defaultBranch}\``)
           }
 
           await sock.sendMedia(m.chat, zipUrl, null, m, {

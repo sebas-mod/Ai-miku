@@ -30,7 +30,7 @@ async function handler(m) {
 
     if (!introText) {
         return m.reply(
-            `📝 *sᴇᴛ ɪɴᴛʀᴏ*\n\n` +
+            `📝 *ESTABLECER INTRO*\n\n` +
             `> ¡Envía el mensaje de presentación!\n\n` +
             `*Marcadores disponibles:*\n` +
             `> @user - Nombre del usuario\n` +
@@ -51,7 +51,7 @@ async function handler(m) {
     db.save()
 
     await m.reply(
-        `✅ *ɪɴᴛʀᴏ ᴅɪsᴀᴠᴇ!*\n` +
+        `✅ *¡INTRO DESACTIVADA!*\n` +
         `El mensaje de presentación del grupo se ha actualizado.\n` +
         `Escribe *${m.prefix}intro* para ver el resultado.`
     )

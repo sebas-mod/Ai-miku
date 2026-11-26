@@ -31,7 +31,7 @@ async function handler(m) {
   if (!arg || !["on", "off"].includes(arg)) {
     const current = db.setting("autoJoinGc") || false;
     return m.reply(
-      `🔗 *AUTO JOIN GROUP*\n\nStatus: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — aktifkan\n\`${m.prefix}autojoingc off\` — nonaktifkan`,
+      `🔗 *UNIRSE AUTOMÁTICAMENTE A GRUPOS*\n\nEstado: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — activar\n\`${m.prefix}autojoingc off\` — desactivar`,
     );
   }
   const enabled = arg === "on";

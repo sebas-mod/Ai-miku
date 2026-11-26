@@ -64,7 +64,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekarcis <nombre> | <película> | <jam>\nEjemplo: .fakekarcis Elysia Assistant | DITF | 21:00`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekarcis <nombre> | <película> | <hora>\nEjemplo: .fakekarcis Elysia Assistant | DITF | 21:00`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'

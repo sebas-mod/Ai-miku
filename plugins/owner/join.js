@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
 
   if (!sourceText) {
     return m.reply(
-      `🔗 *Join Grup*\n\n` +
+      `🔗 *Unirse a un grupo*\n\n` +
         `El bot se unirá al grupo con el enlace de invitación que indiques.\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}join <link>* — Join via link langsung\n` +

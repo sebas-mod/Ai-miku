@@ -31,7 +31,7 @@ if (!global.resetDbPending) global.resetDbPending = {}
 
 async function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
 
     const confirm = m.args?.[0]?.toLowerCase()
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
             `> • Todas las estadísticas\n\n` +
             `╭┈┈⬡「 ⚠️ *CONFIRMACIÓN* 」\n` +
             `┃ Escribe: *.resetdb confirm*\n` +
-            `┃ dalam 60 detik\n` +
+            `┃ en 60 segundos\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
             `> ❌ ¡Esta acción NO se puede deshacer!`
         )

@@ -41,14 +41,14 @@ function handler(m) {
 
     let txt = `🔗 *LISTA DE ANTIENLACES*\n\n`
 
-    txt += `╭┈┈⬡「 📌 *ᴅᴇꜰᴀᴜʟᴛ* 」\n`
+    txt += `╭┈┈⬡「 📌 *PREDETERMINADO* 」\n`
     DEFAULT_BLOCKED_LINKS.forEach((l, i) => {
         txt += `┃ ${i + 1}. \`${l}\`\n`
     })
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
     if (customList.length > 0) {
-        txt += `╭┈┈⬡「 ➕ *ᴄᴜsᴛᴏᴍ* 」\n`
+        txt += `╭┈┈⬡「 ➕ *PERSONALIZADO* 」\n`
         customList.forEach((l, i) => {
             txt += `┃ ${i + 1}. \`${l}\`\n`
         })

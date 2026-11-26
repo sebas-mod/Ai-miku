@@ -130,8 +130,8 @@ async function handler(m, { sock }) {
         const maxWarn = groupData.toxicMaxWarn || 3
         const method = groupData.toxicMethod || 'kick'
 
-        let txt = `🛡️ *ᴀɴᴛɪᴛᴏxɪᴄ*\n\n`
-        txt += `> Status: *${status}*\n`
+        let txt = `🛡️ *ANTITÓXICO*\n\n`
+        txt += `> Estado: *${status}*\n`
         txt += `> Palabras: *${toxicCount}*\n`
         txt += `> Avisos máx.: *${maxWarn}*\n`
         txt += `> Método: *${method}*\n\n`
@@ -139,8 +139,8 @@ async function handler(m, { sock }) {
         txt += `> \`.antitoxic on/off\`\n`
         txt += `> \`.antitoxic warn <1-10>\`\n`
         txt += `> \`.antitoxic metode kick/delete\`\n`
-        txt += `> \`.addtoxic <kata>\`\n`
-        txt += `> \`.deltoxic <kata>\`\n`
+        txt += `> \`.addtoxic <palabra>\`\n`
+        txt += `> \`.deltoxic <palabra>\`\n`
         txt += `> \`.listtoxic\``
 
         await m.reply(txt)

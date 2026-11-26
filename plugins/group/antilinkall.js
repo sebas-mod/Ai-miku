@@ -38,7 +38,7 @@ function handler(m, { sock }) {
     return m.reply(
       `🔗 *Antilink All*\n\n` +
         `> Estado: *${status === "on" ? "Activado ✅" : "Desactivado ❌"}*\n` +
-        `> Mode: *${mode.toUpperCase()}*\n\n` +
+        `> Modo: *${mode.toUpperCase()}*\n\n` +
         `*DETEKSI:*\n` +
         `> • https:// / http:// (con protocolo)\n` +
         `> • www. (subdomain)\n` +
@@ -47,7 +47,7 @@ function handler(m, { sock }) {
         `*USO:*\n` +
         `> *${m.prefix}antilinkall on* — Activar\n` +
         `> *${m.prefix}antilinkall off* — Desactivar\n` +
-        `> *${m.prefix}antilinkall metode kick* — Mode kick user\n` +
+        `> *${m.prefix}antilinkall metode kick* — Modo expulsar usuario\n` +
         `> *${m.prefix}antilinkall metode remove* — Modo borrar mensaje`
     );
   }

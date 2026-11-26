@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
     }
 
     caption += `╰┈┈⬡\n\n`
-    caption += `> ᴛᴏᴛᴀʟ: \`${bannedUsers.length}\` ʙᴀɴɴᴇᴅ ᴜsᴇʀ`
+    caption += `> TOTAL: \`${bannedUsers.length}\` BANEADO USUARIO`
 
     await m.reply(caption)
 }

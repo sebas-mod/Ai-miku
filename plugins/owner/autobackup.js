@@ -36,11 +36,11 @@ async function handler(m, { sock }) {
 
     let txt = `🗂️ *SISTEMA DE COPIA AUTOMÁTICA*\n\n`;
     txt += `╭┈┈⬡「 📊 *ESTADO* 」\n`;
-    txt += `┃ 🔘 Status: ${status.enabled ? "✅ *ON*" : "❌ *OFF*"}\n`;
+    txt += `┃ 🔘 Estado: ${status.enabled ? "✅ *ON*" : "❌ *OFF*"}\n`;
     txt += `┃ ⏱️ Interval: ${status.interval}\n`;
     txt += `┃ 📅 Last Backup: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
     txt += `┃ #️⃣ Total: ${status.backupCount} backup\n`;
-    txt += `┃ 📤 Dikirim ke: ${ownerNum}\n`;
+    txt += `┃ 📤 Enviado a: ${ownerNum}\n`;
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
     txt += `*CÓMO USAR:*\n`;
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
             `*EJEMPLO:*\n` +
             `> \`${m.prefix}autobackup on 30m\` - cada 30 minutos\n` +
             `> \`${m.prefix}autobackup on 6h\` - cada 6 horas\n` +
-            `> \`${m.prefix}autobackup on 1d\` - tiap 1 hari`,
+            `> \`${m.prefix}autobackup on 1d\` - cada 1 día`,
         );
       }
 
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
         `✅ *COPIA AUTOMÁTICA ACTIVADA*\n\n` +
           `╭┈┈⬡「 ⚙️ *AJUSTES* 」\n` +
           `┃ ⏱️ Interval: ${result.interval}\n` +
-          `┃ 📤 Dikirim ke: ${ownerNum}\n` +
+          `┃ 📤 Enviado a: ${ownerNum}\n` +
           `┃ 📦 Exclude: node_modules, .git, storages, dll\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
           ` > La primera copia se enviará en ${result.interval}`,
@@ -141,7 +141,7 @@ async function handler(m, { sock }) {
         await triggerManualBackup(sock);
         await m.react("✅");
         return m.reply(
-          `✅ *COPIA COMPLETADA*\n\n> Backup telah dikirim ke owner!`,
+          `✅ *COPIA COMPLETADA*\n\n> ¡Copia enviada al propietario!`,
         );
       } catch (error) {
         await m.react('☢');

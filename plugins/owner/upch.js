@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
             `Envía o responde a un multimedia con el texto:\n` +
             `  \`${m.prefix}upch 12xxx@newsletter <teks opsional>\`\n\n` +
             `*Support:*\n` +
-            `  🖼️ Gambar\n` +
+            `  🖼️ Imagen\n` +
             `  🎥 Video\n` +
             `  🎵 Audio/VN\n` +
             `  📝 Texto (sin multimedia)`

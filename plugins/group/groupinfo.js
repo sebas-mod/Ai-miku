@@ -71,9 +71,9 @@ async function handler(m, { sock, db }) {
         let text = `👥 *INFO DEL GRUPO*\n\n`
         text += `Nombre: *${groupMeta.subject}*\n`
         text += `ID: ${m.chat}\n`
-        text += `Owner: ${ownerDisplay}\n`
+        text += `Propietario: ${ownerDisplay}\n`
         text += `Creado: ${createdDate}\n`
-        text += `Status: ${isOpen ? '🔓 Terbuka' : '🔒 Tertutup'}\n\n`
+        text += `Estado: ${isOpen ? '🔓 Terbuka' : '🔒 Tertutup'}\n\n`
 
         text += `📊 *MIEMBROS*\n`
         text += `Total: ${participants.length}\n`

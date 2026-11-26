@@ -55,14 +55,14 @@ async function handler(m, { sock, plugins }) {
   if (isAdd) {
     if (!target)
       return m.reply(
-        `❌ *Target Invalid*\n\nTag user / Reply chat / Tulis nomor target`,
+        `❌ *Objetivo no válido*\n\nTag user / Reply chat / Escribe el número objetivo`,
       );
     const cleanArgs = m.args.filter(
       (a) => !a.includes("@") && !/^\d{10,}$/.test(a),
     );
     if (cleanArgs.length < 2) {
       return m.reply(
-        `⚠️ *Format Salah*\n\n` +
+        `⚠️ *Formato incorrecto*\n\n` +
           `Format: \`${m.prefix}addakses <command> <durasi> <target>\`\n\n` +
           `*Ejemplo:*\n` +
           `> \`${m.prefix}addakses addowner 30d @user\` (30 días)\n` +
@@ -155,9 +155,9 @@ async function handler(m, { sock, plugins }) {
 
     await m.reply(
       `✅ *ACCESO CONCEDIDO*\n\n` +
-        `┃ 🔑 ᴄᴍᴅ: \`${commandTarget}\`\n` +
-        `┃ ⏱️ ᴅᴜʀᴀsɪ: *${durationTarget}*\n` +
-        `┃ 👤 ᴛᴀʀɢᴇᴛ: @${target.split("@")[0]}\n`,
+        `┃ 🔑 CMD: \`${commandTarget}\`\n` +
+        `┃ ⏱️ DURACIÓN: *${durationTarget}*\n` +
+        `┃ 👤 OBJETIVO: @${target.split("@")[0]}\n`,
       { mentions: [target] },
     );
   }

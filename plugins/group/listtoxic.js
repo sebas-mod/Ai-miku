@@ -35,23 +35,23 @@ async function handler(m, { sock }) {
     let text = `📋 *LISTA DE PALABRAS TÓXICAS*\n\n`
 
     if (customWords.length > 0) {
-        text += `╭┈┈⬡「 ✏️ *ᴄᴜsᴛᴏᴍ* (${customWords.length}) 」\n`
+        text += `╭┈┈⬡「 ✏️ *PERSONALIZADO* (${customWords.length}) 」\n`
         for (let i = 0; i < customWords.length; i++) {
             text += `┃ ${i + 1}. ${customWords[i]}\n`
         }
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     }
 
-    text += `╭┈┈⬡「 📦 *ᴅᴇꜰᴀᴜʟᴛ* (${defaultWords.length}) 」\n`
+    text += `╭┈┈⬡「 📦 *PREDETERMINADO* (${defaultWords.length}) 」\n`
 
     for (let i = 0; i < defaultWords.length; i++) {
         text += `┃ ${i + 1}. ${defaultWords[i]}\n`
     }
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
-    text += `Total: *${customWords.length + defaultWords.length}* kata\n`
-    text += `\`.addtoxic <kata>\` para añadir\n`
-    text += `\`.deltoxic <kata>\` para eliminar`
+    text += `Total: *${customWords.length + defaultWords.length}* palabras\n`
+    text += `\`.addtoxic <palabra>\` para añadir\n`
+    text += `\`.deltoxic <palabra>\` para eliminar`
 
     await m.reply(text)
 }

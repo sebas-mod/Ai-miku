@@ -140,7 +140,7 @@ const te = ElysiaRuntime.te;
 
       ctx.fillStyle = "#65676b";
       ctx.font = "bold 15px sans-serif";
-      ctx.fillText("👍 Suka · 💬 Komentar · ↗️ Bagikan", postX + 30, postY + 580);
+      ctx.fillText("👍 Me gusta · 💬 Comentar · ↗️ Compartir", postX + 30, postY + 580);
 
       const buffer = await canvas.encode("png");
       await sock.sendMessage(m.chat, { image: buffer, caption: "💬 *Fake FB Comment*" }, { quoted: m });

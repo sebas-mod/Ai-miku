@@ -35,9 +35,9 @@ function handler(m) {
         const status = groupData.antiphising || 'off'
         const mode = groupData.antiphisingMode || 'remove'
         return m.reply(
-            `🎣 *ᴀɴᴛɪᴘʜɪsɪɴɢ*\n\n` +
-            `> Status: *${status.toUpperCase()}*\n` +
-            `> Mode: *${mode.toUpperCase()}*\n\n` +
+            `🎣 *ANTIPHISHING*\n\n` +
+            `> Estado: *${status.toUpperCase()}*\n` +
+            `> Modo: *${mode.toUpperCase()}*\n\n` +
             `> Detecta mensajes de phishing como enlaces para hacer clic, verificación de cuentas, inicios de sesión falsos, acortadores sospechosos, URL con IP, punycode y patrones similares.\n\n` +
             `> \`${m.prefix}antiphising on\`\n` +
             `> \`${m.prefix}antiphising off\`\n` +

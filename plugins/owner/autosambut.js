@@ -37,11 +37,11 @@ function parseTime(str) {
 }
 
 function formatTime(ms) {
-  if (ms < 60000) return `${ms / 1000} detik`;
-  if (ms < 3600000) return `${ms / 60000} menit`;
-  if (ms < 86400000) return `${ms / 3600000} jam`;
-  if (ms < 604800000) return `${ms / 86400000} hari`;
-  return `${ms / 86400000} hari`;
+  if (ms < 60000) return `${ms / 1000} segundos`;
+  if (ms < 3600000) return `${ms / 60000} minutos`;
+  if (ms < 86400000) return `${ms / 3600000} horas`;
+  if (ms < 604800000) return `${ms / 86400000} días`;
+  return `${ms / 86400000} días`;
 }
 
 async function handler(m, { sock, db }) {
@@ -73,19 +73,19 @@ async function handler(m, { sock, db }) {
   }
 
   if (!action) {
-    const status = groupData.autoSambut.enabled ? "Aktif ✅" : "Nonaktif ❌";
+    const status = groupData.autoSambut.enabled ? "Activo ✅" : "Inactivo ❌";
     const delayMs = groupData.autoSambut.delayMs || 7200000;
     const totalPesan = groupData.autoSambut.pesanList.length;
 
     return m.reply(
       `⚠️ *SISTEM AUTO SAMBUT*\n\n` +
       `El sistema saluda al owner en el grupo de forma aleatoria cuando aparece tras mucho tiempo inactivo.\n` +
-      `Status: *${status}*\n` +
-      `Batas Waktu Idle: *${formatTime(delayMs)}*\n` +
+      `Estado: *${status}*\n` +
+      `Límite de inactividad: *${formatTime(delayMs)}*\n` +
       `Mensajes aleatorios: *${totalPesan} saludos*\n\n` +
       `*USO PRINCIPAL:*\n` +
       `• *${m.prefix}autosambut on/off* — Activa/desactiva la función en este grupo\n` +
-      `• *${m.prefix}autosambut delay <waktu>* — Mengubah batas waktu idle\n\n` +
+      `• *${m.prefix}autosambut delay <waktu>* — Cambia el límite de inactividad\n\n` +
       `*AJUSTES DE MENSAJES ALEATORIOS (LISTA):*\n` +
       `• *${m.prefix}autosambut list* — Ver todos los saludos registrados\n` +
       `• *${m.prefix}autosambut add <texto>* — Añadir un nuevo saludo a la lista\n` +

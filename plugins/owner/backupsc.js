@@ -203,10 +203,10 @@ async function handler(m, { sock }) {
         caption:
           `✅ *COPIA COMPLETADA*\n\n` +
           `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-          `┃ 📝 ɴᴀᴍᴀ: \`${zipFileName}\`\n` +
-          `┃ 📊 sɪᴢᴇ: \`${fileSizeMB} MB\`\n` +
-          `┃ 📁 ꜰɪʟᴇ: \`${fileCount}\`\n` +
-          `┃ 📅 ᴛᴀɴɢɢᴀʟ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
+          `┃ 📝 NOMBRE: \`${zipFileName}\`\n` +
+          `┃ 📊 TAMAÑO: \`${fileSizeMB} MB\`\n` +
+          `┃ 📁 ARCHIVO: \`${fileCount}\`\n` +
+          `┃ 📅 FECHA: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
           `╰┈┈⬡`,
         contextInfo: {
           forwardingScore: 9999,

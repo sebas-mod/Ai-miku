@@ -30,7 +30,7 @@ function handler(m) {
 
     if (!link) {
         return m.reply(
-            `🔗 *ᴀᴅᴅ ᴀɴᴛɪʟɪɴᴋ*\n\n` +
+            `🔗 *AÑADIR ANTILINK*\n\n` +
             `> Envía el dominio o patrón de enlace que quieres bloquear\n\n` +
             `\`Ejemplo:\`\n` +
             `\`${m.prefix}addantilink tiktok.com\`\n` +
@@ -50,7 +50,7 @@ function handler(m) {
     db.setGroup(m.chat, { antilinkList })
 
     m.reply(
-        `✅ *ᴀɴᴛɪʟɪɴᴋ ᴅɪᴛᴀᴍʙᴀʜ*\n\n` +
+        `✅ *ANTILINK AÑADIDO*\n\n` +
         `> Link: \`${link}\`\n` +
         `> Total: *${antilinkList.length}* link\n\n` +
         `> Usa \`${m.prefix}listantilink\` para ver la lista`

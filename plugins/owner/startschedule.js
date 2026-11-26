@@ -57,7 +57,7 @@ async function handler(m, { sock, args }) {
 > Scheduler: *${result.name}*
 > Status: ✅ Aktif
 
-_Scheduler telah dimulai kembali_`);
+_El programador se ha reiniciado_`);
         } else {
             await m.reply(`❌ Programador no encontrado o ya activo
 

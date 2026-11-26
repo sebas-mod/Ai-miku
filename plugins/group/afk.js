@@ -74,7 +74,7 @@ async function checkAfk(m, sock) {
         if (m.isCommand && m.command?.toLowerCase() === 'afk') return
         removeAfkUser(m.sender)
         const duration = formatDuration(Date.now() - afkData.time)
-        await m.reply(`👋 *ᴀꜰᴋ ʙᴇʀᴀᴋʜɪʀ*\n\n` +
+        await m.reply(`👋 *AFK TERMINADO*\n\n` +
                 `\`\`\`¡@${m.sender.split('@')[0]} ya ha vuelto!\`\`\`\n` +
                 `🍀 \`Duración AFK:\` *${duration}*`, { mentions: [m.sender] })
     }
@@ -83,7 +83,7 @@ async function checkAfk(m, sock) {
             const mentionedAfk = getAfkUser(mentioned)
             if (mentionedAfk) {
                 const duration = formatDuration(Date.now() - mentionedAfk.time)
-                await m.reply(`💤 *ᴜsᴇʀ ᴀꜰᴋ*\n\n` +
+                await m.reply(`💤 *USUARIO AFK*\n\n` +
                         `\`\`\`¡Shhh, no molestar!\`\`\` \`@${mentioned.split('@')[0]}\` está AFK\n` +
                         `🍀 \`Alasan:\` *${mentionedAfk.reason}*\n` +
                         `🍀 \`Desde:\` *${duration} atrás*`, { mentions: [mentioned] })

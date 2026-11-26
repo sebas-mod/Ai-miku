@@ -45,7 +45,7 @@ const TeraBoxDL = ElysiaRuntime.TeraBoxDL;
           `> *${m.prefix}terabox <link>*\n\n` +
           `*EJEMPLO:*\n` +
           `> *${m.prefix}terabox https://terabox.com/s/xxx*\n\n` +
-          `_File dikirim sebagai dokumen, mungkin agak lama_`,
+          `_Archivo enviado como documento, puede tardar un poco_`,
       );
     }
 

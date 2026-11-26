@@ -100,7 +100,7 @@ function parseDurationArgs(durationArgs) {
   if (!joined) {
     return {
       ms: 30 * 24 * 60 * 60 * 1000,
-      label: "30 hari",
+      label: "30 días",
     };
   }
 
@@ -260,7 +260,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     if (!parsed) {
       return m.reply(
         `❌ ¡Formato de tiempo no válido!\n\n` +
-          `Usa la unidad *day* (día), *m* (minuto) o *jam* (hora):\n` +
+          `Usa la unidad *day* (día), *m* (minuto) o *h* (hora):\n` +
           `• \`${p}${cmd} ${targetNumber} 7day\`\n` +
           `• \`${p}${cmd} ${targetNumber} 30m\`\n` +
           `• \`${p}${cmd} ${targetNumber} 1day 30m\``,
@@ -326,7 +326,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     );
 
     if (index === -1) {
-      return m.reply(`❌ *${targetNumber}* bukan premium`);
+      return m.reply(`❌ *${targetNumber}* no es premium`);
     }
 
     db.data.premium.splice(index, 1);

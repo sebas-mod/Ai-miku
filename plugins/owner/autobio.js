@@ -30,23 +30,23 @@ async function handler(m, { sock, db }) {
 
   if (!arg) {
     const status = db.setting("autobio_status") || false;
-    const text = db.setting("autobio_text") || "Bot aktif | 🕒 {clock} | ⏳ {runtime}";
+    const text = db.setting("autobio_text") || "Bot activo | 🕒 {clock} | ⏳ {runtime}";
     const intervalMs = db.setting("autobio_interval") || 60000;
 
     return m.reply(
       `📝 *AUTO BIO SETTINGS*\n\n` +
-      `> Status: *${status ? "Aktif ✅" : "Nonaktif ❌"}*\n` +
-      `> Interval: *${intervalMs / 1000} detik*\n` +
+      `> Estado: *${status ? "Activo ✅" : "Inactivo ❌"}*\n` +
+      `> Intervalo: *${intervalMs / 1000} segundos*\n` +
       `> Teks Bio: ${text}\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}autobio on/off* — Activa/desactiva la función\n` +
-      `- *${m.prefix}autobio ganti_setiap <waktu>* — Ajusta el intervalo. Ejemplo: \`.autobio ganti_setiap 30 detik\` o \`1 hora\`\n` +
-      `- *${m.prefix}autobio <teks>* — Mengatur teks bio\n\n` +
+      `- *${m.prefix}autobio ganti_setiap <tiempo>* — Ajusta el intervalo. Ejemplo: \`.autobio ganti_setiap 30 segundos\` o \`1 hora\`\n` +
+      `- *${m.prefix}autobio <teks>* — Ajusta el texto de la biografía\n\n` +
       `*PLACEHOLDERS DISPONIBLES:*\n` +
       `- \`{clock}\` — Muestra la hora actual\n` +
-      `- \`{runtime}\` — Menampilkan lama bot menyala\n` +
+      `- \`{runtime}\` — Muestra cuánto tiempo lleva el bot encendido\n` +
       `- \`{botname}\` — Muestra el nombre del bot desde config\n` +
-      `- \`{version}\` — Menampilkan versi bot`
+      `- \`{version}\` — Muestra la versión del bot`
     );
   }
 
@@ -71,13 +71,13 @@ async function handler(m, { sock, db }) {
   if (option.startsWith("ganti_setiap")) {
     const timeStr = arg.replace(/ganti_setiap/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio ganti_setiap 30 detik` o `1 hora`");
+      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio ganti_setiap 30 segundos` o `1 hora`");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("❌ *Format Salah*\n\nEscribe un número válido. Ejemplo: `.autobio ganti_setiap 30 detik`");
+      return m.reply("❌ *Formato incorrecto*\n\nEscribe un número válido. Ejemplo: `.autobio ganti_setiap 30 segundos`");
     }
 
     if (timeStr.includes("d") || timeStr.includes("detik")) ms = value * 1000;
@@ -98,7 +98,7 @@ async function handler(m, { sock, db }) {
       startAutoBioChecker(sock);
     } catch (e) {}
 
-    return m.reply(`✅ *Interval Diubah*\n\nLa bio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).`);
+    return m.reply(`✅ *Intervalo cambiado*\n\nLa bio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).`);
   }
 
   db.setting("autobio_text", arg);
@@ -111,7 +111,7 @@ async function handler(m, { sock, db }) {
   } catch (e) {}
 
   return m.reply(
-    `✅ *TEKS BIO DIUBAH*\n\n` +
+    `✅ *TEXTO DE LA BIOGRAFÍA CAMBIADO*\n\n` +
     `El nuevo formato de autobio se ha guardado:\n` +
     `> ${arg}`
   );

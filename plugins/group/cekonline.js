@@ -32,10 +32,10 @@ async function handler(m, { sock }) {
 
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
+            return m.reply(`❌ *FALLIDO*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
         }
 
-        await m.reply(`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟɪ́ɴᴇᴀ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)
+        await m.reply(`🔍 *BUSCANDO MIEMBROS EN LÍNEA...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)
 
         const presences = {}
 
@@ -69,11 +69,11 @@ async function handler(m, { sock }) {
         const onlineMembers = Object.keys(presences)
         const mentions = onlineMembers
 
-        let text = `📊 *ᴄᴇᴋ ᴏɴʟɪɴᴇ*\n\n`
+        let text = `📊 *COMPROBAR EN LÍNEA*\n\n`
         text += `╭┈┈⬡「 📋 *INFO DEL GRUPO* 」\n`
-        text += `┃ 👥 ɴᴀᴍᴀ: *${groupMetadata.subject}*\n`
-        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` miembros\n`
-        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` miembros\n`
+        text += `┃ 👥 NOMBRE: *${groupMetadata.subject}*\n`
+        text += `┃ 👤 TOTAL: \`${participants.length}\` miembros\n`
+        text += `┃ 🟢 EN LÍNEA: \`${onlineMembers.length}\` miembros\n`
         text += `╰┈┈⬡\n\n`
 
         if (onlineMembers.length === 0) {

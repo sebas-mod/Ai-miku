@@ -81,9 +81,9 @@ const pluginConfig = {
               `• Paquete : ${meta.package}\n• Versión : ${meta.file.vername || '-'} (${meta.file.vercode || '-'})\n• Tamaño : ${fmtBytes(size)}\n` +
               `• Developer : ${gp?.developer || meta.developer?.name || '-'}\n` +
               `• Rating : ${gp?.rating || (meta.stats?.rating?.avg ? meta.stats.rating.avg.toFixed(1) : '-')}\n` +
-              `• Unduhan : ${gp?.installs || (meta.stats?.downloads ? meta.stats.downloads.toLocaleString('id-ID') + '+' : '-')}\n` +
+              `• Descargas : ${gp?.installs || (meta.stats?.downloads ? meta.stats.downloads.toLocaleString('id-ID') + '+' : '-')}\n` +
               `• Min SDK : ${meta.file.hardware?.sdk || '-'}\n• MD5 : ${meta.file.md5sum || '-'}\n` +
-              `• Keamanan : ${meta.file.malware?.rank || 'UNKNOWN'}\n• Update : ${meta.modified || meta.updated || '-'}`
+              `• Seguridad : ${meta.file.malware?.rank || 'UNKNOWN'}\n• Actualización : ${meta.modified || meta.updated || '-'}`
 
           const icon = meta.icon
           if (icon) await sock.sendMessage(m.chat, { image: { url: icon }, caption }, { quoted: m }).catch(() => reply(caption))

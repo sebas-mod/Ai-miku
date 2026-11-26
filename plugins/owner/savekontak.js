@@ -108,7 +108,7 @@ async function handler(m, { sock, args }) {
     ];
 
     await sock.sendMessage(m.chat, {
-        text: `📇 *SISTEM SAVE KONTAK (VCF)*\n\n` +
+        text: `📇 *SISTEMA DE GUARDADO DE CONTACTOS (VCF)*\n\n` +
             `Sistema de extracción automática de contactos de los grupos donde está el bot.\n` +
             `Nombre base: *${baseName}*\n\n` +
             `*USO:*\n` +

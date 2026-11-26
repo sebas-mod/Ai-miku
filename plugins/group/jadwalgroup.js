@@ -52,8 +52,8 @@ async function handler(m, { sock }) {
     const action = args[0]?.toLowerCase() || rawArgs.split(/\s+/)[0]?.toLowerCase();
     const group = db.getGroup(m.chat) || {};
 
-    const defaultOpenMsg = `🔓 *ʜᴏʀᴀʀɪᴏ ᴀᴘᴇʀᴛᴜʀᴀ*\n\n> El grupo se abre automáticamente según el horario.\n> Hora: {time} WIB`;
-    const defaultCloseMsg = `🔒 *ʜᴏʀᴀʀɪᴏ ᴄɪᴇʀʀᴇ*\n\n> El grupo se cierra automáticamente según el horario.\n> Hora: {time} WIB`;
+    const defaultOpenMsg = `🔓 *HORARIO APERTURA*\n\n> El grupo se abre automáticamente según el horario.\n> Hora: {time} WIB`;
+    const defaultCloseMsg = `🔒 *HORARIO CIERRE*\n\n> El grupo se cierra automáticamente según el horario.\n> Hora: {time} WIB`;
 
     const renderMessage = (template, time) => {
         const meta = m.groupMetadata || {};
@@ -78,11 +78,11 @@ async function handler(m, { sock }) {
         const closeMsg = group.scheduleCloseMsg || defaultCloseMsg;
 
         await m.reply(
-            `⏰ *ʜᴏʀᴀʀɪᴏ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
-            `「 📋 *ᴇsᴛᴀᴅᴏ* 」\n` +
-            `🔓 ᴀᴘᴇʀᴛᴜʀᴀ: *${openTime || 'Sin programar'}*\n` +
-            `🔒 ᴄɪᴇʀʀᴇ: *${closeTime || 'Sin programar'}*\n\n` +
-            `「 💬 *ᴍᴇɴsᴀᴊᴇ* 」\n` +
+            `⏰ *HORARIO DEL GRUPO*\n\n` +
+            `「 📋 *ESTADO* 」\n` +
+            `🔓 APERTURA: *${openTime || 'Sin programar'}*\n` +
+            `🔒 CIERRE: *${closeTime || 'Sin programar'}*\n\n` +
+            `「 💬 *MENSAJE* 」\n` +
             `🔓 Apertura: ${openMsg}\n` +
             `🔒 Cierre: ${closeMsg}\n\n` +
             `*Cómo se usa:*\n` +
@@ -143,7 +143,7 @@ async function handler(m, { sock }) {
 
     if (action !== 'open' && action !== 'close') {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀᴄɪᴏ́ɴ ꜰᴀʟʟɪᴅᴀ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> ¡La acción debe ser \`open\`, \`close\`, \`setopen\` o \`setclose\`!\n\n` +
             `> Ejemplo:\n` +
             `> \`${m.prefix}jadwalgroup open 06:00 ¡Buenos días {group}!\`\n` +
@@ -188,11 +188,11 @@ async function handler(m, { sock }) {
     const savedMsg = action === 'open' ? (group.scheduleOpenMsg || defaultOpenMsg) : (group.scheduleCloseMsg || defaultCloseMsg);
 
     await m.reply(
-        `✅ *ʜᴏʀᴀʀɪᴏ ɢᴜᴀʀᴅᴀᴅᴏ*\n\n` +
-        `╭┈┈⬡「 ⏰ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪᴏ́ɴ* 」\n` +
-        `┃ ㊗ ${emoji} ᴀᴄᴄɪᴏ́ɴ: *${actionText}*\n` +
-        `┃ ㊗ ⏱️ ʜᴏʀᴀ: *${formattedTime} WIB*\n` +
-        `┃ ㊗ 📡 ᴇsᴛᴀᴅᴏ: *🟢 Activado*\n` +
+        `✅ *HORARIO GUARDADO*\n\n` +
+        `╭┈┈⬡「 ⏰ *CONFIGURACIÓN* 」\n` +
+        `┃ ㊗ ${emoji} ACCIÓN: *${actionText}*\n` +
+        `┃ ㊗ ⏱️ HORA: *${formattedTime} WIB*\n` +
+        `┃ ㊗ 📡 ESTADO: *🟢 Activado*\n` +
         `╰┈┈⬡\n\n` +
         `💬 *Mensaje:*\n\n` +
         '```\n' + savedMsg + '\n```\n\n' +

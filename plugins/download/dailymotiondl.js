@@ -44,7 +44,7 @@ const DailymotionDL = ElysiaRuntime.DailymotionDL;
           `> *${m.prefix}dailymotiondl <link>*\n\n` +
           `*EJEMPLO:*\n` +
           `> *${m.prefix}dailymotiondl https://www.dailymotion.com/video/xxx*\n\n` +
-          `_Proses konversi mungkin agak lama_`,
+          `_El proceso de conversión puede tardar un poco_`,
       );
     }
 

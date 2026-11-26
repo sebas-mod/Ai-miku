@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
             }]
         }, m.chat)
 
-        await m.reply(`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\n> El chat del grupo ha sido limpiado por @${m.sender.split('@')[0]}`, { mentions: [m.sender] })
+        await m.reply(`✅ *CHAT LIMPIADO*\n\n> El chat del grupo ha sido limpiado por @${m.sender.split('@')[0]}`, { mentions: [m.sender] })
 
     } catch (error) {
         try {
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
                 }
             }, m.chat)
 
-            await m.reply(`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\nEl chat del grupo en el WhatsApp del bot ha sido limpiado por @${m.sender.split('@')[0]}\nMíralo tú mismo en tu WhatsApp del bot`, { mentions: [m.sender] })
+            await m.reply(`✅ *CHAT LIMPIADO*\n\nEl chat del grupo en el WhatsApp del bot ha sido limpiado por @${m.sender.split('@')[0]}\nMíralo tú mismo en tu WhatsApp del bot`, { mentions: [m.sender] })
         } catch (e) {
             m.react('☢')
             m.reply(te(m.prefix, m.command, m.pushName))

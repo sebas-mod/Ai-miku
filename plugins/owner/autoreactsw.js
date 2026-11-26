@@ -35,12 +35,12 @@ async function handler(m) {
     if (!action) {
         return m.reply(
             `👁️ *AUTO-REACCIÓN A HISTORIAS*\n\n` +
-            `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n` +
+            `> Estado: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n` +
             `> Emoji: *${current.emoji}*\n\n` +
             `*CÓMO USAR:*\n` +
-            `> \`${m.prefix}autoreactsw on\` — Aktifkan (emoji default 🔥)\n` +
+            `> \`${m.prefix}autoreactsw on\` — Activar (emoji predeterminado 🔥)\n` +
             `> \`${m.prefix}autoreactsw on 😍\` — Actívalo con un emoji\n` +
-            `> \`${m.prefix}autoreactsw off\` — Matikan`
+            `> \`${m.prefix}autoreactsw off\` — Desactivar`
         )
     }
 

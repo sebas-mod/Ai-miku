@@ -79,9 +79,9 @@ async function handler(m, { sock }) {
     await m.reply(
         `✅ *USUARIO DESBANEADO*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 📱 ɴᴏᴍᴏʀ: \`${targetNumber}\`\n` +
-        `┃ ✅ sᴛᴀᴛᴜs: \`Unbanned\`\n` +
-        `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴇʀ\n` +
+        `┃ 📱 NÚMERO: \`${targetNumber}\`\n` +
+        `┃ ✅ ESTADO: \`Unbanned\`\n` +
+        `┃ 📊 TOTAL: \`${bannedList.length}\` USUARIO\n` +
         `╰┈┈⬡`
     )
 }

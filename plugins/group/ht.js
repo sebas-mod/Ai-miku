@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
             const finalText = text || quotedText
 
             if (!finalText) {
-                return m.reply('❌ *Pesan kosong*')
+                return m.reply('❌ *Mensaje vacío*')
             }
 
             return sock.sendMessage(m.chat, {

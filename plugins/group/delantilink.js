@@ -59,7 +59,7 @@ function handler(m) {
     db.setGroup(m.chat, { antilinkList })
 
     m.reply(
-        `✅ *ᴀɴᴛɪʟɪɴᴋ ᴅɪʜᴀᴘᴜs*\n\n` +
+        `✅ *ANTILINK ELIMINADO*\n\n` +
         `> Link: \`${link}\`\n` +
         `> Sisa: *${antilinkList.length}* link`
     )

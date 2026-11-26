@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         )
     } catch (error) {
         await m.reply(
-            `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n` +
+            `❌ *FALLIDO*\n\n` +
             `> No se puede eliminar la foto del grupo.\n` +
             `> _${error.message}_`
         )

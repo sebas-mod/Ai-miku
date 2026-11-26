@@ -180,7 +180,7 @@ async function handler(m, { sock }) {
     await m.reply(
       `✅ *SWGCV2 ALL TERMINADO*\n\n` +
       `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-      `┃ 🌐 Total Grup: *${groupIds.length}*\n` +
+      `┃ 🌐 Total de grupos: *${groupIds.length}*\n` +
       `┃ ✅ Sukses: *${successCount}*\n` +
       `┃ ❌ Fallidos: *${failCount}*\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +

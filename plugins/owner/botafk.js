@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
         return m.reply(
             `✅ *BOT DE NUEVO EN LÍNEA*\n\n` +
             `╭┈┈⬡「 📊 *ESTADÍSTICAS DE AFK* 」\n` +
-            `┃ ⏱️ ᴅᴜʀᴀsɪ: \`${duration}\`\n` +
-            `┃ 📝 ᴀʟᴀsᴀɴ: \`${currentAfk.reason || '-'}\`\n` +
+            `┃ ⏱️ DURACIÓN: \`${duration}\`\n` +
+            `┃ 📝 MOTIVO: \`${currentAfk.reason || '-'}\`\n` +
             `╰┈┈⬡\n\n` +
             `> Bot siap menerima command!`
         )
@@ -56,12 +56,12 @@ async function handler(m, { sock }) {
         return m.reply(
             `💤 *BOT AFK ACTIVO*\n\n` +
             `╭┈┈⬡「 📋 *INFO* 」\n` +
-            `┃ 📝 ᴀʟᴀsᴀɴ: \`${reason}\`\n` +
-            `┃ ⏰ sᴇᴊᴀᴋ: \`${moment().tz('Asia/Jakarta').format('HH:mm:ss')}\`\n` +
+            `┃ 📝 MOTIVO: \`${reason}\`\n` +
+            `┃ ⏰ DESDE: \`${moment().tz('Asia/Jakarta').format('HH:mm:ss')}\`\n` +
             `╰┈┈⬡\n\n` +
             `╭┈┈⬡「 🔒 *ACCESO* 」\n` +
             `┃ ✅ Owner bot\n` +
-            `┃ ✅ Bot sendiri (fromMe)\n` +
+            `┃ ✅ El propio bot (fromMe)\n` +
             `┃ ❌ Todos los demás usuarios\n` +
             `╰┈┈⬡\n\n` +
             `> Los demás usuarios recibirán el mensaje de AFK\n` +
@@ -76,10 +76,10 @@ function formatDuration(ms) {
     const hours = Math.floor(minutes / 60)
     const days = Math.floor(hours / 24)
 
-    if (days > 0) return `${days} hari ${hours % 24} jam`
-    if (hours > 0) return `${hours} jam ${minutes % 60} menit`
-    if (minutes > 0) return `${minutes} menit ${seconds % 60} detik`
-    return `${seconds} detik`
+    if (days > 0) return `${days} días ${hours % 24} horas`
+    if (hours > 0) return `${hours} horas ${minutes % 60} minutos`
+    if (minutes > 0) return `${minutes} minutos ${seconds % 60} segundos`
+    return `${seconds} segundos`
 }
 
 export { pluginConfig as config, handler }

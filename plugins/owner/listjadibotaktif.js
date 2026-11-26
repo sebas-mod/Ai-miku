@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
     }
 
     let txt = `🟢 *JADIBOT ACTIVO*\n\n`
-    txt += `> 📊 Total: *${active.length}* bot aktif\n\n`
+    txt += `> 📊 Total: *${active.length}* bots activos\n\n`
 
     active.forEach((s, i) => {
         const uptime = formatUptime(Date.now() - s.startedAt)

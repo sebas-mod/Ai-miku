@@ -55,7 +55,7 @@ async function handler(m, { sock, db }) {
     db.setting("welcomeType", id);
     await db.save();
     await m.reply(
-      `✅ *WELCOME TYPE DIUBAH*\n\n` +
+      `✅ *TIPO DE BIENVENIDA CAMBIADO*\n\n` +
         `${VARIANTS[id].emoji} *V${id} — ${VARIANTS[id].name}*\n` +
         `_${VARIANTS[id].desc}_`,
     );

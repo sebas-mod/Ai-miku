@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
                 const groupInfo = await sock.groupGetInviteInfo(linkMatch[1])
                 targetGroup = groupInfo.id
             } catch (e) {
-                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El enlace del grupo no es válido o ya caducó!`)
+                return m.reply(`❌ *FALLIDO*\n\n> ¡El enlace del grupo no es válido o ya caducó!`)
             }
         } else if (arg.includes('@g.us')) {
             targetGroup = arg
@@ -71,11 +71,11 @@ async function handler(m, { sock }) {
     }
 
     if (targetNumbers.length === 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Introduce un número válido!`)
+        return m.reply(`❌ *FALLIDO*\n\n> ¡Introduce un número válido!`)
     }
 
     if (!targetGroup) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Ejecútalo en el grupo o incluye el enlace del grupo!\n\n\`${m.prefix}add <número> <enlace_grupo>\``)
+        return m.reply(`❌ *FALLIDO*\n\n> ¡Ejecútalo en el grupo o incluye el enlace del grupo!\n\n\`${m.prefix}add <número> <enlace_grupo>\``)
     }
 
     try {
@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
         )
 
         if (!botParticipant || !['admin', 'superadmin'].includes(botParticipant.admin)) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no es admin en el grupo *${groupMeta.subject}*!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡El bot no es admin en el grupo *${groupMeta.subject}*!`)
         }
 
         if (!m.isGroup) {
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
             )
 
             if (!senderParticipant || !['admin', 'superadmin'].includes(senderParticipant.admin)) {
-                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No eres admin en el grupo *${groupMeta.subject}*!`)
+                return m.reply(`❌ *FALLIDO*\n\n> ¡No eres admin en el grupo *${groupMeta.subject}*!`)
             }
         }
 
@@ -116,7 +116,7 @@ async function handler(m, { sock }) {
         }
 
         if (validNumbers.length === 0) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Todos esos números ya están en el grupo!`)
+            return m.reply(`❌ *FALLIDO*\n\n> ¡Todos esos números ya están en el grupo!`)
         }
 
         m.react('🕕')
@@ -154,13 +154,13 @@ async function handler(m, { sock }) {
         }
 
         if (failedList.length > 0) {
-            resultText += `❌ *ꜰᴀʟʟɪᴅᴏs (${failedList.length}):*\n`
+            resultText += `❌ *FALLIDOS (${failedList.length}):*\n`
             failedList.forEach(f => resultText += `• @${f.num} (${f.status})\n`)
             resultText += `\n`
         }
 
         if (alreadyInGroup.length > 0) {
-            resultText += `⏭️ *sᴜᴅᴀʜ ᴅɪ ɢʀᴜᴘ (${alreadyInGroup.length}):*\n`
+            resultText += `⏭️ *YA EN GRUPO (${alreadyInGroup.length}):*\n`
             alreadyInGroup.forEach(n => resultText += `• @${n}\n`)
         }
 
@@ -171,9 +171,9 @@ async function handler(m, { sock }) {
         m.react('❌')
 
         if (error.message?.includes('not-authorized')) {
-            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no tiene permiso para añadir miembros!`)
+            await m.reply(`❌ *FALLIDO*\n\n> ¡El bot no tiene permiso para añadir miembros!`)
         } else if (error.message?.includes('forbidden')) {
-            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no tiene acceso a este grupo!`)
+            await m.reply(`❌ *FALLIDO*\n\n> ¡El bot no tiene acceso a este grupo!`)
         } else {
             m.reply(te(m.prefix, m.command, m.pushName))
         }

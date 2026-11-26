@@ -52,8 +52,8 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `⭐ *QUITAR EXP*\n\n` +
-            `> \`.delexp <jumlah>\` - de ti mismo\n` +
-            `> \`.delexp <jumlah> @user\` - del usuario\n\n` +
+            `> \`.delexp <cantidad>\` - de ti mismo\n` +
+            `> \`.delexp <cantidad> @user\` - del usuario\n\n` +
             `\`Ejemplo: ${m.prefix}delexp 5000\``
         )
     }
@@ -75,9 +75,9 @@ async function handler(m, { sock }) {
     await m.reply(
         `✅ *EXP REDUCIDA*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
-        `┃ ⭐ sɪsᴀ: *${formatNumber(newExp)}*\n` +
+        `┃ 👤 USUARIO: @${targetJid.split('@')[0]}\n` +
+        `┃ ➖ RESTADO: *-${formatNumber(amount)}*\n` +
+        `┃ ⭐ RESTANTE: *${formatNumber(newExp)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

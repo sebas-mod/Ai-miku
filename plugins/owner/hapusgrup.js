@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         return m.reply(
             '🗑️ *ELIMINAR GRUPO*\n\n' +
             '> `.hapusgrup` (dentro del grupo) — Sal de este grupo\n' +
-            '> `.hapusgrup <id_grup>` — Sal de un grupo concreto\n\n' +
+            '> `.hapusgrup <id_grupo>` — Sal de un grupo concreto\n\n' +
             '⚠️ El bot saldrá del grupo; no lo elimina permanentemente'
         )
     }
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
         return m.reply(
             `🗑️ *BOT SALIÓ DEL GRUPO*\n\n` +
-            `> Grup: ${groupName}\n` +
+            `> Grupo: ${groupName}\n` +
             `> ID: ${targetJid}`
         )
     } catch (err) {

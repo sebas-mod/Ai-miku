@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antidocument ? '✅ ON' : '❌ OFF'
-        await m.reply(`📄 *AntiDocument*\n\n> Status: *${status}*\n\n> \`.antidocument on/off\``)
+        await m.reply(`📄 *AntiDocument*\n\n> Estado: *${status}*\n\n> \`.antidocument on/off\``)
         return
     }
 

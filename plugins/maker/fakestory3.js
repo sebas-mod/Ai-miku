@@ -246,7 +246,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
         m.chat,
         {
           image: resultBuffer,
-          caption: `📷 *HISTORIA FALSA*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+          caption: `📷 *HISTORIA FALSA*\n\n> USUARIO: \`${username}\``,
         },
         { quoted: m },
       );

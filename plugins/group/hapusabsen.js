@@ -44,7 +44,7 @@ async function handler(m) {
         `✅ *¡ASISTENCIA CERRADA!*\n\n` +
         `Penyebab?\n` +
         `📝 ${absen.keterangan}\n` +
-        `👥 Total hadir: ${totalPeserta}\n\n` +
+        `👥 Total de presentes: ${totalPeserta}\n\n` +
         `La sesión de asistencia se ha eliminado.`
     )
 }

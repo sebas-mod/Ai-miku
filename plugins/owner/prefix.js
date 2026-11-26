@@ -107,7 +107,7 @@ function handler(m, { sock }) {
                 `> Added: \`${newPrefixes.join('` `')}\`\n\n` +
                 `*Prefijos activos:*\n` +
                 `> \`${getAllPrefixes().join('` `')}\`` +
-                `${data.noprefix ? '\n> + *noprefix* aktif' : ''}`
+                `${data.noprefix ? '\n> + *noprefix* activo' : ''}`
             )
             break
         }
@@ -152,7 +152,7 @@ function handler(m, { sock }) {
 
             replyText += `\n*Prefijos activos:*\n`
             replyText += `> \`${getAllPrefixes().join('` `')}\``
-            if (data.noprefix) replyText += `\n> + *noprefix* aktif`
+            if (data.noprefix) replyText += `\n> + *noprefix* activo`
 
             m.reply(replyText)
             break
@@ -195,7 +195,7 @@ function handler(m, { sock }) {
                 `> Deleted: \`${deleted.length > 0 ? deleted.join('` `') : 'None'}\`\n\n` +
                 `*Prefijos activos:*\n` +
                 `> \`${getAllPrefixes().join('` `')}\`` +
-                `${data.noprefix ? '\n> + *noprefix* aktif' : ''}`
+                `${data.noprefix ? '\n> + *noprefix* activo' : ''}`
             )
             break
         }
@@ -207,7 +207,7 @@ function handler(m, { sock }) {
             let text = `📋 *LISTA DE PREFIJOS*\n\n`
             text += `╭┈┈⬡「 ⚙️ *CONFIG* 」\n`
             text += `┃ Default: \`${configPref}\`\n`
-            text += `┃ Noprefix: ${data.noprefix ? '✅ Aktif' : '❌ Nonaktif'}\n`
+            text += `┃ Noprefix: ${data.noprefix ? '✅ Activo' : '❌ Inactivo'}\n`
             text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
             if (data.prefixes.length > 0) {
@@ -218,7 +218,7 @@ function handler(m, { sock }) {
                 text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
             }
 
-            text += `*Total prefix aktif:* ${all.length}`
+            text += `*Total de prefijos activos:* ${all.length}`
             if (data.noprefix) text += ` + noprefix`
             text += `\n> \`${all.join('` `')}\``
 
@@ -236,7 +236,7 @@ function handler(m, { sock }) {
                 `> ¡Se eliminaron todos los prefijos de la base de datos!\n` +
                 `> Noprefix dinonaktifkan!\n` +
                 `> Solo quedan los prefijos de config.js\n\n` +
-                `*Prefix aktif:* \`${config.command?.prefix || '.'}\``
+                `*Prefijo activo:* \`${config.command?.prefix || '.'}\``
             )
             break
         }

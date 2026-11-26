@@ -32,7 +32,7 @@ async function handler(m) {
     await m.react(isEnable ? '⚡' : '🔌')
     return m.reply(
         isEnable
-            ? '⚡ *SISTEMA DE ENERGÍA ACTIVADO*\n\n> Setiap command sekarang memerlukan energi.'
+            ? '⚡ *SISTEMA DE ENERGÍA ACTIVADO*\n\n> Ahora cada comando requiere energía.'
             : '🔌 *SISTEMA DE ENERGÍA DESACTIVADO*\n\n > Los comandos ya no consumen energía.'
     )
 }

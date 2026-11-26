@@ -196,7 +196,7 @@ function handler(m, { sock }) {
   if (!args || args === "status") {
     return m.reply(
       `🤖 *AntiBot*\n\n` +
-      `> Status: ${current ? "✅ Activo" : "❌ Inactivo"}\n\n` +
+      `> Estado: ${current ? "✅ Activo" : "❌ Inactivo"}\n\n` +
       `> Deteksi: *Smart Heuristic*\n\n` +
       `> \`.antibot on/off\``,
     );

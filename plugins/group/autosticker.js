@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
     if (!arg) {
         const status = current ? '✅ Activado' : '❌ Desactivado'
         return m.reply(
-            `🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n` +
-            `> Status: ${status}\n\n` +
+            `🖼️ *AUTOSTICKER*\n\n` +
+            `> Estado: ${status}\n\n` +
             `> Usa:\n` +
-            `> \`${m.prefix}autosticker on\` - aktifkan\n` +
+            `> \`${m.prefix}autosticker on\` - activar\n` +
             `> \`${m.prefix}autosticker off\` - nonaktifkan\n\n` +
             `> _Convierte imágenes y videos en stickers automáticamente_`
         )
@@ -46,20 +46,20 @@ async function handler(m, { sock }) {
 
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya estaba activado!`)
+            return m.reply(`🖼️ *AUTOSTICKER*\n\n> ¡Ya estaba activado!`)
         }
         db.setGroup(m.chat, { autosticker: true })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ ¡Activado correctamente!\n> Las imágenes y vídeos se convertirán solos en sticker`)
+        return m.reply(`🖼️ *AUTOSTICKER*\n\n> ✅ ¡Activado correctamente!\n> Las imágenes y vídeos se convertirán solos en sticker`)
     }
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya estaba desactivado!`)
+            return m.reply(`🖼️ *AUTOSTICKER*\n\n> ¡Ya estaba desactivado!`)
         }
         db.setGroup(m.chat, { autosticker: false })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ ¡Desactivado correctamente!`)
+        return m.reply(`🖼️ *AUTOSTICKER*\n\n> ❌ ¡Desactivado correctamente!`)
     }
 
     return m.reply(`❌ Usa: \`${m.prefix}autosticker on/off\``)

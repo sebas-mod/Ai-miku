@@ -35,8 +35,8 @@ async function handler(m, { sock }) {
     if (!arg) {
         const status = current ? '✅ Activado' : '❌ Desactivado'
         return m.reply(
-            `🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n` +
-            `> Status: ${status}\n\n` +
+            `🎬 *AUTOMEDIA*\n\n` +
+            `> Estado: ${status}\n\n` +
             `> Uso:\n` +
             `> \`${m.prefix}automedia on\` - activar\n` +
             `> \`${m.prefix}automedia off\` - desactivar\n\n` +
@@ -47,20 +47,20 @@ async function handler(m, { sock }) {
 
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya estaba activado!`)
+            return m.reply(`🎬 *AUTOMEDIA*\n\n> ¡Ya estaba activado!`)
         }
         db.setGroup(m.chat, { automedia: true })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ ¡Activado correctamente!\n> Los stickers se convertirán solos en imagen/vídeo`)
+        return m.reply(`🎬 *AUTOMEDIA*\n\n> ✅ ¡Activado correctamente!\n> Los stickers se convertirán solos en imagen/vídeo`)
     }
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya estaba desactivado!`)
+            return m.reply(`🎬 *AUTOMEDIA*\n\n> ¡Ya estaba desactivado!`)
         }
         db.setGroup(m.chat, { automedia: false })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ ¡Desactivado correctamente!`)
+        return m.reply(`🎬 *AUTOMEDIA*\n\n> ❌ ¡Desactivado correctamente!`)
     }
 
     return m.reply(`❌ Usa: \`${m.prefix}automedia on/off\``)

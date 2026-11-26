@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     if (!commandName) {
         const existingCmds = listStickerCommands()
 
-        let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴛᴏ ᴄᴏᴍᴍᴀɴᴅ*\n\n`
+        let txt = `🖼️ *STICKER A COMANDO*\n\n`
         txt += `> Responde al sticker y escribe el comando que quieres usar como atajo.\n\n`
         txt += `*Ejemplo:*\n`
         txt += `> Reply sticker, y escribe:\n`

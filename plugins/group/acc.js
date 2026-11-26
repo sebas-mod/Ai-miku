@@ -44,8 +44,8 @@ async function handler(m, { sock }) {
 
     if (!sub || !['list', 'approve', 'reject'].includes(sub)) {
         return m.reply(
-            `📋 *ᴊᴏɪɴ ʀᴇQᴜᴇsᴛ ᴍᴀɴᴀɢᴇʀ*\n\n` +
-            `╭┈┈⬡「 📌 *ᴄᴏᴍᴍᴀɴᴅ* 」\n` +
+            `📋 *GESTOR DE SOLICITUDES DE INGRESO*\n\n` +
+            `╭┈┈⬡「 📌 *COMANDO* 」\n` +
             `┃ ${m.prefix}acc list\n` +
             `┃ ${m.prefix}acc approve all\n` +
             `┃ ${m.prefix}acc reject all\n` +
@@ -141,7 +141,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         return m.reply(
-            `📋 *ʀᴇsᴜʟᴛᴀᴅᴏ ${label.toUpperCase()}*\n\n` +
+            `📋 *RESULTADO ${label.toUpperCase()}*\n\n` +
             text + `\n` +
             `> ✅ ${successCount}/${targets.length} correctos`
         )

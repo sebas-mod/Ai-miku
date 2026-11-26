@@ -37,7 +37,7 @@ async function handler(m, { args }) {
         const rows = thumbKeys.map((k) => `• ${k}: ${getThumbUrl(k) || '-'}`)
         return m.reply(
             `🖼️ *MEDIA BOT*\n\n${rows.join('\n')}\n\n` +
-            `Ubah: \`${m.prefix}setthumb <key> <url>\`\nHapus override: \`${m.prefix}setthumb <key> reset\``
+            `Cambiar: \`${m.prefix}setthumb <key> <url>\`\nEliminar override: \`${m.prefix}setthumb <key> reset\``
         )
     }
 

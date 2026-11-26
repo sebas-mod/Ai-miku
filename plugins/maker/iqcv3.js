@@ -123,7 +123,7 @@ const config = ElysiaRuntime.config;
               if (res.statusCode !== 200) {
                   file.close(() => {
                       if (fs.existsSync(dest)) fs.unlinkSync(dest)
-                      reject(new Error(`HTTP ${res.statusCode} untuk ${url}`))
+                      reject(new Error(`HTTP ${res.statusCode} para ${url}`))
                   })
                   return
               }
@@ -164,7 +164,7 @@ const config = ElysiaRuntime.config;
   function registerFont(family, ...basenames) {
       const file = findFontFile(FONTS_DIR, basenames)
       if (!file) {
-          throw new Error(`Font tidak ditemukan: "${family}" di folder ${FONTS_DIR}`)
+          throw new Error(`Fuente no encontrada: "${family}" en la carpeta ${FONTS_DIR}`)
       }
       GlobalFonts.registerFromPath(file, family)
   }
@@ -283,7 +283,7 @@ const config = ElysiaRuntime.config;
           }
 
           if (!nama || nama.length < 1) {
-              return m.reply('❌ *Usa el formato:*\n.iqc <nombre> <waktu>\n\n📌 *Ejemplo:*\n.iqc mie ayam 13.56\n.iqc Bakso 20.30')
+              return m.reply('❌ *Usa el formato:*\n.iqc <nombre> <hora>\n\n📌 *Ejemplo:*\n.iqc mie ayam 13.56\n.iqc Bakso 20.30')
           }
 
           if (!waktu) {

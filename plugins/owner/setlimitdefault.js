@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
             `📊 *LÍMITE POR DEFECTO*\n\n` +
             `> Límite por defecto actual: \`${currentDefault}\`\n\n` +
             `*Cómo usar:*\n` +
-            `> \`${m.prefix}setlimitdefault <jumlah>\`\n\n` +
+            `> \`${m.prefix}setlimitdefault <cantidad>\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`${m.prefix}setlimitdefault 50\``
         )
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
     await m.reply(
         `✅ *LISTO*\n\n` +
-        `> Default limit diubah menjadi: \`${newLimit}\`\n` +
+        `> Límite predeterminado cambiado a: \`${newLimit}\`\n` +
         `> Los usuarios nuevos recibirán este límite`
     )
 }

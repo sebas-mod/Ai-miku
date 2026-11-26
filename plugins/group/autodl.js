@@ -34,8 +34,8 @@ function handler(m, { sock }) {
 
     if (!args || args === 'status') {
         return m.reply(
-            `🔗 *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Status: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
+            `🔗 *AUTO DESCARGA*\n\n` +
+            `> Estado: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
             `*Platform Support:*\n` +
             `> TikTok, Instagram, Facebook\n` +
             `> YouTube, Twitter/X\n` +

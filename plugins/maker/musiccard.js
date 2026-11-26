@@ -73,7 +73,7 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
     }
 
     let judul = text;
-    let nama = "Unknown Artist";
+    let nama = "Artista desconocido";
 
     if (text.includes("|")) {
       const parts = text.split("|");

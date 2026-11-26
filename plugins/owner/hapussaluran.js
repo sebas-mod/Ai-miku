@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
     try {
         await sock.newsletterDelete(targetJid)
         await m.react('✅')
-        return m.reply(`🗑️ *Saluran dihapus*\n\n> ID: ${targetJid}`)
+        return m.reply(`🗑️ *Canal eliminado*\n\n> ID: ${targetJid}`)
     } catch (err) {
         return m.reply(`❌ Error al eliminar el canal: ${err.message}`)
     }

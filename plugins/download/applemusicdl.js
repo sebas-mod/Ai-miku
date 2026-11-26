@@ -89,7 +89,7 @@ const pluginConfig = {
       const opt = { headers: h, validateStatus: () => true, timeout: 60000 }
       const form = (o) => new URLSearchParams(o).toString()
 
-      const home = await axios.get(`${BASE}/`, { headers: { ...h, Accept: 'text/html,*/*' }, validateStatus: () => true, timeout: 30000 })
+      const home = await axios.get(`${BASE}/`, { headers: { ...h, Accept: 'text/html,*/*' }, validateEstado: () => true, timeout: 30000 })
       const cookie = (home.headers['set-cookie'] || []).map(c => String(c).split(';')[0]).join('; ')
       h.Cookie = cookie ? `${cookie}; quality=320; rank=1; dcount=1` : 'quality=320; rank=1; dcount=1'
 

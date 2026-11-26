@@ -185,7 +185,7 @@ const pluginConfig = {
           ['PUESTO', `#${fmt(rank)}`, `de ${fmt(total)}`, '#ff8fb8'],
           ['MONEY', fmt(money), '', '#ffb36b'],
           ['LIMIT', limit, '', '#b69cff'],
-          ['STREAK', `${fmt(streak)}`, 'hari', '#ff7aa8']
+          ['STREAK', `${fmt(streak)}`, 'días', '#ff7aa8']
       ]
       const cw = (W - tx - 80 - 3 * 14) / 4
       stats.forEach(([label, val, sub, color], i) => {

@@ -34,7 +34,7 @@ const f = ElysiaRuntime.f;
     const url = m.text?.trim();
     if (!url) {
       return m.reply(
-        `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
+        `📌 *PINTEREST DESCARGA*\n\n` +
           `> Descarga imágenes/videos de Pinterest\n\n` +
           `*EJEMPLO:*\n` +
           `> \`${m.prefix}pindl https://pin.it/xxx\`\n` +

@@ -52,8 +52,8 @@ async function handler(m, { sock }) {
         }
 
         text += `━━━━━━━━━━━━━━━━━━━\n`;
-        text += `✅ Aktif: ${status.summary.totalActive}\n`;
-        text += `❌ Nonaktif: ${status.summary.totalInactive}\n\n`;
+        text += `✅ Activos: ${status.summary.totalActive}\n`;
+        text += `❌ Inactivos: ${status.summary.totalInactive}\n\n`;
 
         text += `> Usa \`.stopschedule <key>\` para detener\n`;
         text += `> Usa \`.startschedule <key>\` para iniciar`;

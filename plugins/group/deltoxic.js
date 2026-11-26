@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
 
     if (!word) {
         return m.reply(
-            `🗑️ *ᴅᴇʟ ᴛᴏxɪᴄ*\n\n` +
-            `> Usa: \`.deltoxic <kata>\`\n\n` +
+            `🗑️ *DEL TÓXICO*\n\n` +
+            `> Usa: \`.deltoxic <palabra>\`\n\n` +
             `\`Ejemplo: ${m.prefix}deltoxic katakasar\``
         )
     }
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const index = toxicWords.indexOf(word)
 
     if (index === -1) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Kata \`${word}\` no está en la lista`)
+        return m.reply(`❌ *FALLIDO*\n\n> La palabra \`${word}\` no está en la lista`)
     }
 
     toxicWords.splice(index, 1)
@@ -53,8 +53,8 @@ async function handler(m, { sock }) {
     await m.reply(
         `✅ *PALABRA TÓXICA ELIMINADA*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 📝 ᴋᴀᴛᴀ: \`${word}\`\n` +
-        `┃ 📊 sɪsᴀ: \`${toxicWords.length}\` kata\n` +
+        `┃ 📝 PALABRA: \`${word}\`\n` +
+        `┃ 📊 RESTANTE: \`${toxicWords.length}\` palabras\n` +
         `╰┈┈⬡`
     )
 }

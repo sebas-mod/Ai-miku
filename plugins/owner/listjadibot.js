@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
 
     let txt = `🤖 *LISTA DE JADIBOTS*\n\n`
     txt += `> 📊 Total: *${sessions.length}* session\n`
-    txt += `> 🟢 Aktif: *${active.length}*\n`
+    txt += `> 🟢 Activos: *${active.length}*\n`
     txt += `> ⚫ Offline: *${sessions.length - active.length}*\n\n`
 
     sessions.forEach((s, i) => {
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         txt += `${status} *${i + 1}.* @${s.id} — _${label}_\n`
     })
 
-    txt += `\n> \`${m.prefix}listjadibotaktif\` — Detail aktif\n`
+    txt += `\n> \`${m.prefix}listjadibotaktif\` — Detalle de activos\n`
     txt += `> \`${m.prefix}stopalljadibot\` — Detén todas\n`
     txt += `> \`${m.prefix}stopdandeletejadibot @user\` — Elimina la sesión`
 

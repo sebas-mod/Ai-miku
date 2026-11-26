@@ -48,9 +48,9 @@ async function handler(m, { sock }) {
             return sock.sendMessage(m.chat, {
                 text: `✅ *GRUPO DESBANEADO*\n\n` +
                     `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-                    `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                    `┃ 📊 sᴛᴀᴛᴜs: *✅ ACTIVO*\n` +
-                    `┃ 👤 ᴜɴʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+                    `┃ 📛 GRUPO: *${groupName}*\n` +
+                    `┃ 📊 ESTADO: *✅ ACTIVO*\n` +
+                    `┃ 👤 DESBANEADO POR: @${m.sender.split('@')[0]}\n` +
                     `╰┈┈⬡\n\n` +
                     `> Todos los miembros ya pueden volver a usar el bot.`,
                 mentions: [m.sender]
@@ -69,9 +69,9 @@ async function handler(m, { sock }) {
 
         await m.reply(`🚫 *GRUPO BANEADO*\n\n` +
                 `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-                `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                `┃ 📊 sᴛᴀᴛᴜs: *🔴 BANNED*\n` +
-                `┃ 👤 ʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+                `┃ 📛 GRUPO: *${groupName}*\n` +
+                `┃ 📊 ESTADO: *🔴 BANNED*\n` +
+                `┃ 👤 BANEADO POR: @${m.sender.split('@')[0]}\n` +
                 `╰┈┈⬡\n\n` +
                 `> Los miembros normales no pueden usar el bot en este grupo.\n` +
                 `> Solo el propietario puede usar el bot.`, {  mentions: [m.sender] })

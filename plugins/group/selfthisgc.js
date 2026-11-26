@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
     `🔒 *MODO SELF ACTIVO*\n\n` +
       `> Ahora el bot en este grupo solo responde a:\n` +
       `> • Propietario del bot\n` +
-      `> • Bot sendiri (fromMe)\n\n` +
+      `> • El propio bot (fromMe)\n\n` +
       `📋 *Los demás grupos no se ven afectados*\n\n` +
       `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
   );

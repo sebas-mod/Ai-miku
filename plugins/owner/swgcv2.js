@@ -70,7 +70,7 @@ async function handler(m, { sock, db }) {
     }
 
     try {
-      let groupName = "Grup";
+      let groupName = "Grupo";
       try {
         const meta = await sock.groupMetadata(targetGroupId);
         groupName = meta.subject;
@@ -141,7 +141,7 @@ async function handler(m, { sock, db }) {
       const mediaType = pendingData.rawContent.text
         ? "Teks"
         : pendingData.rawContent.image
-          ? "Gambar"
+          ? "Imagen"
           : pendingData.rawContent.video
             ? "Video"
             : pendingData.rawContent.audio
@@ -247,7 +247,7 @@ async function handler(m, { sock, db }) {
     await m.reply(
       `⚠️ *CÓMO USAR*\n\n` +
       `> \`${m.prefix}swgcv2 teks\` - Story teks\n` +
-      `> Reply gambar/video/audio + \`${m.prefix}swgcv2\`\n` +
+      `> Responde con imagen/video/audio + \`${m.prefix}swgcv2\`\n` +
       `> Envía una imagen/vídeo con el texto \`${m.prefix}swgcv2\``,
     );
     return;
@@ -280,7 +280,7 @@ async function handler(m, { sock, db }) {
     const mediaType = rawContent.text
       ? "Teks"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
@@ -296,7 +296,7 @@ async function handler(m, { sock, db }) {
       text:
         `📋 *ELIGE UN GRUPO PARA PUBLICAR LA HISTORIA V2*\n\n` +
         `> Media: *${mediaType}*\n` +
-        `> Total Grup: *${groupList.length}*\n\n` +
+        `> Total de grupos: *${groupList.length}*\n\n` +
         `_Elige un grupo de la lista de abajo:_`,
       contextInfo: {
         ...saluranCtx()

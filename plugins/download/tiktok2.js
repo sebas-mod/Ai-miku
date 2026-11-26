@@ -131,8 +131,8 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」\n` +
-              `┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}tiktok2 <url>\`\n` +
+              `╭┈┈⬡「 🎵 *DESCARGADOR DE TIKTOK* 」\n` +
+              `┃ ㊗ USO: \`${m.prefix}tiktok2 <url>\`\n` +
               `╰┈┈⬡\n\n` +
               `> Ejemplo: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
           )
@@ -179,7 +179,7 @@ const te = ElysiaRuntime.te;
           }
 
           if (result.type === 'photo' && result.slides.length > 0) {
-              await m.reply(`📸 *Enviando ${result.slides.length} slide...*`)
+              await m.reply(`📸 *Enviando ${result.slides.length} diapositivas...*`)
 
               const mediaList = []
               for (let i = 0; i < result.slides.length; i++) {

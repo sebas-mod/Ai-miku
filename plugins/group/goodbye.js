@@ -413,7 +413,7 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `✅ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
+        `✅ *DESPEDIDA GLOBAL ACTIVADA*\n\n` +
         `> ¡Despedida activada en *${count}* grupos!`,
       );
     } catch (err) {
@@ -436,7 +436,7 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `❌ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
+        `❌ *DESPEDIDA GLOBAL DESACTIVADA*\n\n` +
         `> ¡Despedida desactivada en *${count}* grupos!`,
       );
     } catch (err) {
@@ -447,8 +447,8 @@ async function handler(m, { sock }) {
   if (sub === "on") {
     if (currentStatus) {
       return m.reply(
-        `⚠️ *ɢᴏᴏᴅʙʏᴇ ᴀʟʀᴇᴀᴅʏ ᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *✅ ON*\n` +
+        `⚠️ *DESPEDIDA YA ACTIVA*\n\n` +
+        `> Estado: *✅ ON*\n` +
         `> La despedida ya está activa en este grupo.\n\n` +
         `_Usa \`${m.prefix}goodbye off\` para desactivarla._`,
       );
@@ -464,8 +464,8 @@ async function handler(m, { sock }) {
   if (sub === "off") {
     if (!currentStatus) {
       return m.reply(
-        `⚠️ *ɢᴏᴏᴅʙʏᴇ ᴀʟʀᴇᴀᴅʏ ɪɴᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *❌ OFF*\n` +
+        `⚠️ *DESPEDIDA YA INACTIVA*\n\n` +
+        `> Estado: *❌ OFF*\n` +
         `> La despedida ya estaba desactivada en este grupo.\n\n` +
         `_Usa \`${m.prefix}goodbye on\` para activarla._`,
       );
@@ -478,9 +478,9 @@ async function handler(m, { sock }) {
     );
   }
   m.reply(
-    `👋 *ɢᴏᴏᴅʙʏᴇ sᴇᴛᴛɪɴɢs*\n\n` +
-    `> Status: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
-    `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
+    `👋 *AJUSTES DE DESPEDIDA*\n\n` +
+    `> Estado: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
+    `\`\`\`━━━ OPCIONES ━━━\`\`\`\n` +
     `> \`${m.prefix}goodbye on\` → Activar\n` +
     `> \`${m.prefix}goodbye off\` → Desactivar\n` +
     `> \`${m.prefix}goodbye on all\` → Global ON (owner)\n` +

@@ -138,11 +138,11 @@ async function handler(m, { sock }) {
         text:
           `📱 *DIFUSIÓN PRIVADA*\n\n` +
           `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-          `┃ 📝 ᴘᴇsᴀɴ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
+          `┃ 📝 MENSAJE: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
           `┃ 📷 MULTIMEDIA: \`${mediaBuffer ? mediaType : "Ninguna"}\`\n` +
-          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` kontak\n` +
-          `┃ ⏱️ ᴊᴇᴅᴀ: \`${jeda}ms\`\n` +
-          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} menit\`\n` +
+          `┃ 👥 OBJETIVO: \`${filtered.length}\` kontak\n` +
+          `┃ ⏱️ INTERVALO: \`${jeda}ms\`\n` +
+          `┃ 📊 ESTIMACIÓN: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
           `╰┈┈⬡\n\n` +
           `> Memulai broadcast...`,
         contextInfo: ctx,
@@ -184,9 +184,9 @@ async function handler(m, { sock }) {
         text:
           `✅ *DIFUSIÓN PRIVADA TERMINADA*\n\n` +
           `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
-          `┃ ✅ ʙᴇʀʜᴀsɪʟ: \`${success}\`\n` +
-          `┃ ❌ ɢᴀɢᴀʟ: \`${failed}\`\n` +
-          `┃ 📊 ᴛᴏᴛᴀʟ: \`${filtered.length}\`\n` +
+          `┃ ✅ EXITOSO: \`${success}\`\n` +
+          `┃ ❌ FALLIDO: \`${failed}\`\n` +
+          `┃ 📊 TOTAL: \`${filtered.length}\`\n` +
           `╰┈┈⬡`,
         contextInfo: ctx,
       },

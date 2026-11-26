@@ -424,14 +424,14 @@ const pluginConfig = {
       return reply(
         '📦 *TIKTOK STICKER PACK*\n\n' +
         '*Cómo usar:*\n' +
-        `> ${p}${cmd} <url> [jumlah] [anim|static]\n\n` +
+        `> ${p}${cmd} <url> [cantidad] [anim|static]\n\n` +
         '*Ejemplo:*\n' +
         `> ${p}${cmd} https://vt.tiktok.com/xxxx\n` +
         `> ${p}${cmd} https://vt.tiktok.com/xxxx 20 anim\n\n` +
         '*Info:*\n' +
         `> Obtén stickers de los comentarios del video, por defecto ${DEFAULT_PACK} stickers (máx. ${HARD_MAX_PACK})\n` +
         '> Un pack no puede mezclar animados y estáticos\n' +
-        '> `anim` / `static` buat milih jenisnya (default: otomatis)'
+        '> `anim` / `static` para elegir el tipo (predeterminado: automático)'
       )
     }
 
@@ -493,11 +493,11 @@ const pluginConfig = {
       await reactTo(sock, m, '✅')
 
       let info = `✅ *Sticker Pack TikTok*\n\n` +
-        `> Isi: ${final.length} stiker ${isAnim ? 'animasi' : 'statis'}\n` +
+        `> Contenido: ${final.length} stickers ${isAnim ? 'animados' : 'estáticos'}\n` +
         `> De: ${author}`
       if (skipped && mode === 'auto') {
         info += `\n\nℹ️ ${skipped} stickers ${isAnim ? 'estáticos' : 'animados'} no incluidos (el pack no puede mezclar). ` +
-          `Pake \`${p}${cmd} <url> ${isAnim ? 'static' : 'anim'}\` buat versi satunya.`
+          `Usa \`${p}${cmd} <url> ${isAnim ? 'static' : 'anim'}\` para la otra versión.`
       }
       return reply(info)
     } catch (error) {

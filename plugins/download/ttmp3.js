@@ -95,8 +95,8 @@ const ttdown = ElysiaRuntime.ttdown;
 
     if (!url) {
       return m.reply(
-        `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」
-┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}ttmp3 <url>\`
+        `╭┈┈⬡「 🎵 *DESCARGADOR DE TIKTOK* 」
+┃ ㊗ USO: \`${m.prefix}ttmp3 <url>\`
 ╰┈┈⬡
 
 > Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,

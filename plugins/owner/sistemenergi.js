@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
       `🎛️ *KONTROL SISTEM ENERGI*\n\n` +
       `Función principal para activar o desactivar globalmente todo el sistema de consumo de energía del bot.\n\n` +
       `*ESTADO ACTUAL:*\n` +
-      `- Mode: *${currentStatus ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
+      `- Modo: *${currentStatus ? "ACTIVO 🔋" : "INACTIVO (ILIMITADO) ♾️"}*\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}sistemenergi on* — Menghidupkan potongan energi\n` +
-      `- *${m.prefix}sistemenergi off* — Mematikan potongan energi (Unlimited mode)\n\n` +
+      `- *${m.prefix}sistemenergi off* — Desactiva el consumo de energía (modo ilimitado)\n\n` +
       `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}sistemenergi on*`
     );
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     `✅ *ESTADO DEL SISTEMA DE ENERGÍA ACTUALIZADO*\n\n` +
     `El sistema de energía se ha *${isEnabled ? "ACTIVADO" : "DESACTIVADO"}*.\n\n` +
     `*Status Terkini:*\n` +
-    `- Mode: *${isEnabled ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
+    `- Modo: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (ILIMITADO) ♾️"}*\n\n` +
     `_Todos los cambios se guardaron y se aplicarán en breve al sistema del bot._`
   );
 }

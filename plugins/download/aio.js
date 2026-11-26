@@ -34,7 +34,7 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
 
     if (!url) {
       return m.reply(
-        `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
+        `📥 *DESCARGADOR TODO EN UNO*\n\n` +
           `> ¡Descargas de varias plataformas!\n\n` +
           `╭┈┈⬡「 🌐 *PLATAFORMA* 」\n` +
           `┃ • Instagram\n` +

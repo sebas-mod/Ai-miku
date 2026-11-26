@@ -210,13 +210,13 @@ async function createGiveaway(session, sock, m) {
 
   const giveawayText =
     "🎉 *G I V E A W A Y*\n\n" +
-    `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-    `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
-    `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
-    `┃ 👥 ɢᴀɴᴀᴅᴏʀᴇs: ${giveaway.winners}\n` +
-    `┃ ⏰ ꜰɪɴᴀʟɪᴢᴀ: ${endTimeFormatted}\n` +
-    `┃ ⏱️ ᴅᴜʀᴀᴄɪᴏ́ɴ: ${remaining}\n` +
-    `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
+    `╭┈┈⬡「 📋 *INFO* 」\n` +
+    `┃ 🎁 TÍTULO: *${giveaway.title}*\n` +
+    `┃ 🏆 PREMIO: *${giveaway.prizeName}*\n` +
+    `┃ 👥 GANADORES: ${giveaway.winners}\n` +
+    `┃ ⏰ FINALIZA: ${endTimeFormatted}\n` +
+    `┃ ⏱️ DURACIÓN: ${remaining}\n` +
+    `┃ 🆔 ID: \`${giveawayId}\`\n` +
     `╰┈┈⬡\n\n` +
     `> ¡Pulsa el botón *Join* para participar!`;
 
@@ -277,9 +277,9 @@ async function endGiveaway(giveawayId, sock, db) {
       text:
         `😔 *SORTEO FINALIZADO*\n\n` +
         `El sorteo *${giveaway.title}* terminó sin participantes.\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-        `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-        `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: 0\n` +
+        `╭┈┈⬡「 📋 *INFO* 」\n` +
+        `┃ 🆔 ID: \`${giveawayId}\`\n` +
+        `┃ 👥 PARTICIPANTES: 0\n` +
         `╰┈┈⬡`,
       contextInfo: getCtx(),
     });
@@ -304,7 +304,7 @@ async function endGiveaway(giveawayId, sock, db) {
       fromMe: false,
     },
     message: {
-      conversation: "Yeyy aku menang",
+      conversation: "Yeyy, ¡gané!",
     },
   };
 
@@ -313,14 +313,14 @@ async function endGiveaway(giveawayId, sock, db) {
     {
       text:
         `🎊 *¡SORTEO FINALIZADO!*\n\n` +
-        `╭┈┈⬡「 🏆 *ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
+        `╭┈┈⬡「 🏆 *GANADORES* 」\n` +
         `${winnerText}\n` +
         `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-        `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
-        `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
-        `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-        `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: ${giveaway.participants.length}\n` +
+        `╭┈┈⬡「 📋 *INFO* 」\n` +
+        `┃ 🎁 TÍTULO: *${giveaway.title}*\n` +
+        `┃ 🏆 PREMIO: *${giveaway.prizeName}*\n` +
+        `┃ 🆔 ID: \`${giveawayId}\`\n` +
+        `┃ 👥 PARTICIPANTES: ${giveaway.participants.length}\n` +
         `╰┈┈⬡\n\n` +
         `> ¡El premio se envía al chat privado del ganador!`,
       contextInfo: { ...getCtx(), mentionedJid: giveaway.winnerList },
@@ -338,7 +338,7 @@ async function endGiveaway(giveawayId, sock, db) {
           fromMe: false,
         },
         message: {
-          conversation: "Yeyy aku menang",
+          conversation: "Yeyy, ¡gané!",
         },
       };
       const ctx = getCtx();
@@ -347,12 +347,12 @@ async function endGiveaway(giveawayId, sock, db) {
         winnerJid,
         {
           text:
-            `🎉 *sᴇʟᴀᴍᴀᴛ!*\n\n` +
+            `🎉 *¡FELICIDADES!*\n\n` +
             `> ¡Has ganado el sorteo!\n\n` +
             `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-            `┃ 🎁 ᴛɪᴛʟᴇ: \`${giveaway.title}\`\n` +
-            `┃ 🏆 ʜᴀᴅɪᴀʜ: *${giveaway.prizeName}*\n` +
-            `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
+            `┃ 🎁 TÍTULO: \`${giveaway.title}\`\n` +
+            `┃ 🏆 PREMIO: *${giveaway.prizeName}*\n` +
+            `┃ 🆔 ID: \`${giveawayId}\`\n` +
             `╰┈┈⬡\n\n` +
             `╭┈┈⬡「 🎁 *DETALLE DEL PREMIO* 」\n` +
             `${giveaway.prizeDetails || "Habla con un administrador para más detalles"}\n` +
@@ -549,13 +549,13 @@ async function handler(m, { sock }) {
     await sock.sendMessage(giveaway.chatId, {
       text:
         `🔄 *¡SORTEO REPETIDO!*\n\n` +
-        `╭┈┈⬡「 🏆 *ɴᴜᴇᴠᴏs ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
+        `╭┈┈⬡「 🏆 *NUEVOS GANADORES* 」\n` +
         `${winnerText}\n` +
         `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-        `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
-        `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
-        `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
+        `╭┈┈⬡「 📋 *INFO* 」\n` +
+        `┃ 🎁 TÍTULO: *${giveaway.title}*\n` +
+        `┃ 🏆 PREMIO: *${giveaway.prizeName}*\n` +
+        `┃ 🆔 ID: \`${giveawayId}\`\n` +
         `╰┈┈⬡`,
       contextInfo: { ...getCtx(), mentionedJid: giveaway.winnerList },
     });
@@ -566,14 +566,14 @@ async function handler(m, { sock }) {
         ctx.mentionedJid = [winnerJid];
         await sock.sendMessage(winnerJid, {
           text:
-            `🎉 *¡ꜰᴇʟɪᴄɪᴅᴀᴅᴇs!*\n\n` +
+            `🎉 *¡FELICIDADES!*\n\n` +
             `> ¡Has ganado el sorteo (repetición)!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇs* 」\n` +
-            `┃ 🎁 ᴛɪ́ᴛᴜʟᴏ: \`${giveaway.title}\`\n` +
-            `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
-            `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
+            `╭┈┈⬡「 📋 *DETALLES* 」\n` +
+            `┃ 🎁 TÍTULO: \`${giveaway.title}\`\n` +
+            `┃ 🏆 PREMIO: *${giveaway.prizeName}*\n` +
+            `┃ 🆔 ID: \`${giveawayId}\`\n` +
             `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🎁 *ᴅᴇᴛᴀʟʟᴇs ᴅᴇʟ ᴘʀᴇᴍɪᴏ* 」\n` +
+            `╭┈┈⬡「 🎁 *DETALLES DEL PREMIO* 」\n` +
             `${giveaway.prizeDetails || "Habla con un administrador para más detalles"}\n` +
             `╰┈┈⬡\n\n` +
             `> _Este mensaje es información oficial del bot._`,

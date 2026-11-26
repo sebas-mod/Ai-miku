@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     const args = text.split('|')
 
     if (args.length < 2) {
-        let txt = `👥 *BUAT GRUP BARU* 👥\n\n`
+        let txt = `👥 *CREAR GRUPO NUEVO* 👥\n\n`
         txt += `¡Hola, Owner! ¿Quieres crear un grupo nuevo al instante?\n\n`
         txt += `*Cómo usar:*\n`
         txt += `👉 \`${m.prefix}buatgrup Nombre del grupo | 628xxx,628yyy | Duración(minutos)\`\n\n`
@@ -74,10 +74,10 @@ async function handler(m, { sock }) {
         let successTxt = `👥 *GRUPO CREADO* 👥\n\n`
         successTxt += `✨ *Nombre:* ${name}\n`
         successTxt += `🆔 *ID:* ${group.id}\n`
-        successTxt += `👤 *Peserta:* ${participants.length} orang\n`
+        successTxt += `👤 *Participantes:* ${participants.length} personas\n`
 
         if (durationMs > 0) {
-            successTxt += `⏳ *Masa Aktif:* ${durationMins} Menit\n`
+            successTxt += `⏳ *Duración activa:* ${durationMins} minutos\n`
             successTxt += `\n⚠️ _Este grupo se eliminará automáticamente y todos los miembros serán expulsados cuando acabe el tiempo._\n`
         }
 

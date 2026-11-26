@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
+        return m.reply(`❌ *FALLIDO*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
@@ -97,9 +97,9 @@ async function handler(m, { sock }) {
     await m.reply(
         `🔊 *MIEMBRO REACTIVADO*\n\n` +
         `╭┈┈⬡「 📋 *DETALLE* 」\n` +
-        `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
-        `┃ 🔊 sᴛᴀᴛᴜs: \`Unmuted\`\n` +
-        `┃ 📊 sɪsᴀ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
+        `┃ 👤 MIEMBRO: @${targetNumber}\n` +
+        `┃ 🔊 ESTADO: \`Unmuted\`\n` +
+        `┃ 📊 SILENCIADOS RESTANTES: \`${mutedMembers.length}\` MIEMBRO\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

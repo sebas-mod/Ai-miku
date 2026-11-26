@@ -40,7 +40,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
   async function generateFakeNikah(nama1, nama2) {
       const now = new Date()
       const tanggal = now.toLocaleDateString('id-ID')
-      const tempat = ['Masjid Al-Aqsa', 'Gedung Serbaguna', 'Hotel Bintang 5', 'Balai Desa'][Math.floor(Math.random() * 4)]
+      const tempat = ['Mezquita Al-Aqsa', 'Centro de eventos', 'Hotel 5 estrellas', 'Ayuntamiento'][Math.floor(Math.random() * 4)]
       const aktaNo = '474/KUA/' + Math.floor(Math.random() * 1000) + '/' + now.getFullYear()
       const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}" viewBox="0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}">
@@ -76,7 +76,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
               `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakenikah <nama1> | <nama2>\n` +
+              `┃   ${m.prefix}fakenikah <nombre1> | <nombre2>\n` +
               `┃\n` +
               `┃ ✦ *Ejemplo*\n` +
               `┃\n` +

@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
     const current = db.setting("autoRead") ?? config.features?.autoRead ?? false;
     return m.reply(
       `📖 *Auto Read*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
-        `> *${m.prefix}autoread on* — Aktifkan\n` +
+        `> *${m.prefix}autoread on* — Activar\n` +
         `> *${m.prefix}autoread off* — Nonaktifkan\n\n` +
         `_El bot leerá automáticamente los mensajes entrantes_`
     );
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     db.setting("autoRead", true);
     const ctx = saluranCtx();
     return m.reply(
-      `📖 *Auto Read Aktif*\n\n` +
+      `📖 *Lectura automática activa*\n\n` +
         `> El bot leerá automáticamente los mensajes entrantes`,
       { contextInfo: ctx }
     );
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("autoRead", false);
     return m.reply(
-      `📖 *Auto Read Nonaktif*\n\n` +
+      `📖 *Lectura automática inactiva*\n\n` +
         `> El bot no leerá los mensajes automáticamente`
     );
   }

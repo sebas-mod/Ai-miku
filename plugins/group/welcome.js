@@ -375,7 +375,7 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `✅ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+        `✅ *BIENVENIDA GLOBAL ACTIVADA*\n\n` +
         `> ¡Bienvenida activada en *${count}* grupos!`,
       );
     } catch (err) {
@@ -398,7 +398,7 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `❌ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+        `❌ *BIENVENIDA GLOBAL DESACTIVADA*\n\n` +
         `> ¡Bienvenida desactivada en *${count}* grupos!`,
       );
     } catch (err) {
@@ -409,7 +409,7 @@ async function handler(m, { sock }) {
   if (sub === "on") {
     if (currentStatus) {
       return m.reply(
-        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ʏᴀ ᴀᴄᴛɪᴠᴏ*\n\n` +
+        `⚠️ *BIENVENIDA YA ACTIVA*\n\n` +
         `> Estado: *✅ ON*\n` +
         `> La bienvenida ya está activa en este grupo.\n\n` +
         `_Usa \`${m.prefix}welcome off\` para desactivarla._`,
@@ -417,7 +417,7 @@ async function handler(m, { sock }) {
     }
     db.setGroup(m.chat, { welcome: true });
     return m.reply(
-      `✅ *ᴡᴇʟᴄᴏᴍᴇ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+      `✅ *BIENVENIDA ACTIVADO*\n\n` +
       `> ¡Mensaje de bienvenida activado!\n` +
       `> Los nuevos miembros recibirán la bienvenida automáticamente.\n\n` +
       `_Usa \`${m.prefix}setwelcome\` para personalizar el mensaje._`,
@@ -426,7 +426,7 @@ async function handler(m, { sock }) {
   if (sub === "off") {
     if (!currentStatus) {
       return m.reply(
-        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ʏᴀ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+        `⚠️ *BIENVENIDA YA DESACTIVADA*\n\n` +
         `> Estado: *❌ OFF*\n` +
         `> La bienvenida ya estaba desactivada en este grupo.\n\n` +
         `_Usa \`${m.prefix}welcome on\` para activarla._`,
@@ -434,15 +434,15 @@ async function handler(m, { sock }) {
     }
     db.setGroup(m.chat, { welcome: false });
     return m.reply(
-      `❌ *ᴡᴇʟᴄᴏᴍᴇ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+      `❌ *BIENVENIDA DESACTIVADO*\n\n` +
       `> Mensaje de bienvenida desactivado.\n` +
       `> Los nuevos miembros ya no recibirán la bienvenida.`,
     );
   }
   m.reply(
-    `👋 *ᴀᴊᴜsᴛᴇs ᴅᴇ ʙɪᴇɴᴠᴇɴɪᴅᴀ*\n\n` +
+    `👋 *AJUSTES DE BIENVENIDA*\n\n` +
     `> Estado: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
-    `\`\`\`━━━ ᴏᴘᴄɪᴏɴᴇs ━━━\`\`\`\n` +
+    `\`\`\`━━━ OPCIONES ━━━\`\`\`\n` +
     `> \`${m.prefix}welcome on\` → Activar\n` +
     `> \`${m.prefix}welcome off\` → Desactivar\n` +
     `> \`${m.prefix}welcome on all\` → Activar en todo (dueño)\n` +
