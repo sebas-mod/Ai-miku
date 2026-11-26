@@ -45,7 +45,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
       const content = m.text?.trim()
       if (!content) {
-          return m.reply(`✏️ *CATATAN*\n\nMasukkan teks yang mau ditulis.\n\nContoh:\n${m.prefix}${pluginConfig.name} ${pluginConfig.example.split(' ').slice(1).join(' ')}`)
+          return m.reply(`✏️ *CATATAN*\n\nEscribe el texto que quieres escribir.\n\nEjemplo:\n${m.prefix}${pluginConfig.name} ${pluginConfig.example.split(' ').slice(1).join(' ')}`)
       }
 
       try {

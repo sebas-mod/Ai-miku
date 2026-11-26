@@ -9,7 +9,7 @@
 import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas } from '@napi-rs/canvas';
 
-  const FEATURE_CREDIT = "Fitur By: Elysia Assistant MD";
+  const FEATURE_CREDIT = "Función de: Elysia Assistant MD";
 
   const pluginConfig = {
       name: 'iqc5',
@@ -124,10 +124,10 @@ import { createCanvas } from '@napi-rs/canvas';
       if (!targetText) {
           return m.reply(
               `💬 *FAKE QUOTE iOS*\n\n` +
-              `Gunakan:\n` +
-              `• ${m.prefix}iqc5 teks kamu\n` +
-              `• Reply pesan teks lalu ${m.prefix}iqc\n\n` +
-              `Fitur ini bekerja lokal tanpa API eksternal.`,
+              `Usa:\n` +
+              `• ${m.prefix}iqc5 tu texto\n` +
+              `• Responde a un mensaje de texto y luego ${m.prefix}iqc\n\n` +
+              `Esta función funciona localmente, sin API externa.`,
           );
       }
 
@@ -143,7 +143,7 @@ import { createCanvas } from '@napi-rs/canvas';
       } catch (error) {
           console.error('[IQC Plugin Error]', error);
           await m.react?.('❌');
-          await m.reply('❌ Gagal membuat IQC. Silakan coba lagi.');
+          await m.reply('❌ No se pudo crear el IQC. Inténtalo de nuevo.');
       }
   }
 

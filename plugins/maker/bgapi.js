@@ -51,7 +51,7 @@ const pluginConfig = {
   	const isMedia = /image|sticker/.test(mime || '');
 
   	if (!isMedia) {
-  		return reply(`❌ *Cara Penggunaan:*\nKirim atau reply gambar/stiker dengan *${usedPrefix + command}*`);
+  		return reply(`❌ *Cómo usar:*\nEnvía o responde con una imagen/sticker con *${usedPrefix + command}*`);
   	}
 
   	await sock.sendMessage(m.chat, { react: { text: '🕒', key: m.key } }).catch(() => null);
@@ -63,7 +63,7 @@ const pluginConfig = {
 
   	if (!mediaBuffer) {
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null);
-  		return reply('❌ Gagal mengunduh gambar/stiker.');
+  		return reply('❌ No se pudo descargar la imagen/sticker.');
   	}
 
   	let transparentBuffer;
@@ -80,7 +80,7 @@ const pluginConfig = {
   		bgImg = await loadImage(BACKGROUND_URL);
   	} catch (e) {
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null);
-  		return reply('❌ Gagal memuat gambar/background.');
+  		return reply('❌ No se pudo cargar la imagen/fondo.');
   	}
 
   	const canvasWidth = bgImg.width;

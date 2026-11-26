@@ -55,7 +55,7 @@ const te = ElysiaRuntime.te;
   const SY = BG_H / 2280;
 
   const state = {
-      text: "Kesendirian adalah teman terbaik ku😂😂",
+      text: "La soledad es mi mejor amiga😂😂",
       time: "22.54",
       bubbleColor:  "#ffc5d5",
       textColor:    "#111111",
@@ -461,12 +461,12 @@ const te = ElysiaRuntime.te;
 
           if (!targetText && !targetImgBuffer) {
               return m.reply(
-                  `*FITUR FAKE QUOTE iOS PINK*\n\n` +
-                  `Sistem ini akan mengubah teks yang kamu berikan menjadi gambar *quote* bergaya iOS dengan tema Pink yang cantik dan elegan.\n\n` +
-                  `*CARA PENGGUNAAN:*\n` +
-                  `- Ketik \`${m.prefix}iqcpink <teks kamu>\`\n` +
-                  `- Atau balas (*reply*) pesan orang lain dengan perintah \`${m.prefix}iqcpink\`\n\n` +
-                  `_Pesan yang dibalas akan otomatis diubah menjadi quote menggunakan nama dan foto profil pembuat pesan tersebut!_`
+                  `*FUNCIÓN DE CITA FALSA DE iOS PINK*\n\n` +
+                  `Este sistema convierte tu texto en una imagen de *cita* al estilo iOS con un tema rosa bonito y elegante.\n\n` +
+                  `*CÓMO USAR:*\n` +
+                  `- Escribe \`${m.prefix}iqcpink <tu texto>\`\n` +
+                  `- O responde a un mensaje de otra persona con \`${m.prefix}iqcpink\`\n\n` +
+                  `_¡El mensaje respondido se convertirá automáticamente en una cita con el nombre y la foto de perfil de su autor!_`
               );
           }
 
@@ -505,7 +505,7 @@ const te = ElysiaRuntime.te;
           appleEmojiMap = null;
           console.error("[iqcpink error]:", error);
           await m.react('❌');
-          m.reply(`❌ *GAGAL MEMPROSES QUOTE*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar quote pink. Silakan coba lagi beberapa saat.`);
+          m.reply(`❌ *ERROR AL PROCESAR LA CITA*\n\nLo siento, hubo un error al crear la imagen de la cita rosa. Inténtalo de nuevo en un momento.`);
       }
   }
 

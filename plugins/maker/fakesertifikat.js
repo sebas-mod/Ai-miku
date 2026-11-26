@@ -74,17 +74,17 @@ const config = ElysiaRuntime.config;
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ* 💕\n\n` +
+              `💕 *CERTIFICADO FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakesertifikat <nama> | <penghargaan>\n` +
+              `┃   ${m.prefix}fakesertifikat <nombre> | <premio>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}fakesertifikat Elysia Assistant | Best Darling Award\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau award apa darling~?\n` +
+              `┃ 💗 *Elysia Assistant:* ¿Qué premio quieres, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -94,20 +94,20 @@ const config = ElysiaRuntime.config;
       let penghargaan = parts[1] || AWARDS[Math.floor(Math.random() * AWARDS.length)]
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin sertifikat darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el certificado, darling~`)
 
       try {
           const imageBuffer = await generateFakeSertifikat(nama, penghargaan)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ* 💕\n\n` +
+              caption: `💕 *CERTIFICADO FALSO* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ 👤 *ɴᴀᴍᴀ*: ${nama}\n` +
-                      `┃ 🏆 *ᴘᴇɴɢʜᴀʀɢᴀᴀɴ*: ${penghargaan}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ 👤 *NOMBRE*: ${nama}\n` +
+                      `┃ 🏆 *HOMENAJE*: ${penghargaan}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Selamat ya darling! 🗿\n` +
+                      `┃ 💗 *Elysia Assistant:* ¡Felicidades, darling! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -116,7 +116,7 @@ const config = ElysiaRuntime.config;
       } catch (err) {
           console.error('[FakeSertifikat] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

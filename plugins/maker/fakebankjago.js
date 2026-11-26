@@ -90,20 +90,20 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
       const [nama,nominal] = m.text?.split(',')
       if (!nama || !nominal) {
-          return m.reply(`*FAKE BANK*\n\n> Masukkan teks untuk chat\n\n\`Contoh: ${m.prefix}fakebank Elysia Assistant,10000\``)
+          return m.reply(`*BANCO FALSO*\n\n> Escribe el texto del chat\n\n\`Ejemplo: ${m.prefix}fakebank Elysia Assistant,10000\``)
       }
-      if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
+      if(isNaN(nominal)) return m.reply(`*INTRODUCE UN NÚMERO*`)
       m.react('🕕')
 
       try {
           const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
           const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: '2-digit', hour12: false })
           const h = Number(hour)
-          let waktu = 'Malam'
-          if (h >= 4 && h < 11) waktu = 'Pagi'
-          else if (h >= 11 && h < 15) waktu = 'Siang'
-          else if (h >= 15 && h < 18) waktu = 'Sore'
-          const fake = await generateImage(saldo, `Selamat ${waktu}, ${nama}`)
+          let waktu = 'noche'
+          if (h >= 4 && h < 11) waktu = 'día'
+          else if (h >= 11 && h < 15) waktu = 'tarde'
+          else if (h >= 15 && h < 18) waktu = 'tarde'
+          const fake = await generateImage(saldo, `¡Feliz ${waktu}, ${nama}!`)
           await sock.sendMedia(m.chat, fake, null, m, {
               type: 'image',
           })

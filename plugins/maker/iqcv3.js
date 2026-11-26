@@ -79,7 +79,7 @@ const config = ElysiaRuntime.config;
       safeZones: {
           namaAtas: {
               a: 980, b: 1080, c: 250, d: 630,
-              label: 'nama atas', color: 'rgba(255, 80, 80, 0.9)',
+              label: 'nombre arriba', color: 'rgba(255, 80, 80, 0.9)',
               fontSize: 55, maxChars: 25,
               font: 'SFProSemiBold', align: 'left',
           },
@@ -90,14 +90,14 @@ const config = ElysiaRuntime.config;
           },
           waktu: {
               a: 1750, b: 1860, c: 233, d: 424,
-              label: 'waktu', color: 'rgba(80, 160, 255, 0.9)',
+              label: 'hora', color: 'rgba(80, 160, 255, 0.9)',
               fontSize: 45, maxChars: 10,
               font: 'SFProRegular', textColor: '#555555', align: 'center',
           },
           namaBawah: {
               a: 2701, b: 2880, c: 700, d: 1160,
               centerY: 2787,
-              label: 'nama bawah', color: 'rgba(255, 200, 0, 0.9)',
+              label: 'nombre abajo', color: 'rgba(255, 200, 0, 0.9)',
               fontSize: 67, maxChars: 25,
               font: 'SFProSemiBold', textColor: '#100e0e', align: 'left',
           },
@@ -283,7 +283,7 @@ const config = ElysiaRuntime.config;
           }
 
           if (!nama || nama.length < 1) {
-              return m.reply('❌ *Gunakan format:*\n.iqc <nama> <waktu>\n\n📌 *Contoh:*\n.iqc mie ayam 13.56\n.iqc Bakso 20.30')
+              return m.reply('❌ *Usa el formato:*\n.iqc <nombre> <waktu>\n\n📌 *Ejemplo:*\n.iqc mie ayam 13.56\n.iqc Bakso 20.30')
           }
 
           if (!waktu) {
@@ -291,7 +291,7 @@ const config = ElysiaRuntime.config;
               waktu = `${now.getHours()}.${String(now.getMinutes()).padStart(2, '0')}`
           }
 
-          await m.reply('⏳ *Sedang membuat gambar IQC...*')
+          await m.reply('⏳ *Creando la imagen IQC...*')
 
           await downloadAll()
 
@@ -304,14 +304,14 @@ const config = ElysiaRuntime.config;
 
           await sock.sendMessage(m.chat, {
               image: fs.readFileSync(outputPath),
-              caption: `✨ *IQC Generated!*\n\n📝 *Nama:* ${nama}\n⏰ *Waktu:* ${waktu}\n💾 *Ukuran:* ${(buffer.length / 1024).toFixed(2)} KB`
+              caption: `✨ *¡IQC creado!*\n\n📝 *Nombre:* ${nama}\n⏰ *Hora:* ${waktu}\n💾 *Tamaño:* ${(buffer.length / 1024).toFixed(2)} KB`
           }, { quoted: m })
 
           fs.unlinkSync(outputPath)
 
       } catch (error) {
           console.error('IQC Plugin Error:', error)
-          await m.reply(`❌ *GAGAL MEMBUAT IQC*\n> ${error.message}`)
+          await m.reply(`❌ *ERROR AL CREAR EL IQC*\n> ${error.message}`)
       }
   }
 

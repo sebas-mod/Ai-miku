@@ -57,7 +57,7 @@ const te = ElysiaRuntime.te;
     const input = m.text?.trim();
 
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan nama!\nContoh: \`${m.prefix}${m.command} Fauzan | Guild | rand\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan | Guild | rand\``);
     }
 
     const parts = input.split("|").map(v => v.trim());
@@ -71,7 +71,7 @@ const te = ElysiaRuntime.te;
 
     const index = parseInt(bgPick, 10) - 1;
     if (isNaN(index) || index < 0 || index >= backgroundList.length) {
-      return m.reply(`⚠️ Background tidak valid! Pilih angka 1–${backgroundList.length} atau 'rand'.`);
+      return m.reply(`⚠️ ¡Fondo no válido! Elige un número del 1 al ${backgroundList.length} o 'rand'.`);
     }
 
     await m.react("🕕");
@@ -136,7 +136,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: `🔥 Profil FF berhasil dibuat!\n👤 Nama: ${nickname}\n🛡️ Guild: ${guild || "-"}`
+        caption: `🔥 ¡Perfil de FF creado!\n👤 Nombre: ${nickname}\n🛡️ Guild: ${guild || "-"}`
       }, { quoted: m });
 
       await m.react("✅");

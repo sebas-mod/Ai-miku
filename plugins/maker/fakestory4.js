@@ -175,11 +175,11 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       if (!imageTopBuffer) {
         m.react("❌");
         return m.reply(
-          `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 4*\n\n` +
-            `> Kirim/reply 1-2 gambar!\n\n` +
-            `> Format: \`${m.prefix}fakestory4 <nama>\`\n` +
-            `> Contoh: \`${m.prefix}fakestory4 Misaki\`\n\n` +
-            `> Tips: Kirim gambar + reply gambar lain untuk 2 gambar berbeda`,
+          `📷 *HISTORIA FALSA 4*\n\n` +
+            `> ¡Envía o responde con 1-2 imágenes!\n\n` +
+            `> Format: \`${m.prefix}fakestory4 <nombre>\`\n` +
+            `> Ejemplo: \`${m.prefix}fakestory4 Misaki\`\n\n` +
+            `> Consejo: envía una imagen y responde con otra para tener 2 imágenes distintas`,
         );
       }
       const resultBuffer = await createFakeStory(
@@ -192,7 +192,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
         m.chat,
         {
           image: resultBuffer,
-          caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+          caption: `📷 *HISTORIA FALSA*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
         },
         { quoted: m },
       );

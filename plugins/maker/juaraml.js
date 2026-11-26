@@ -41,11 +41,11 @@ const te = ElysiaRuntime.te;
     const name = m.text?.trim();
 
     if (!name) {
-      return m.reply(`⚠️ Harap masukkan namanya!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     if (name.length > 50) {
-      return m.reply(`⚠️ Nama terlalu panjang! Maksimal 50 huruf.`);
+      return m.reply(`⚠️ ¡El nombre es demasiado largo! Máximo 50 caracteres.`);
     }
 
     await m.react("🕕");

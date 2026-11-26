@@ -265,12 +265,12 @@ const pluginConfig = {
     if (!quote) {
       return reply(
         `💬 *COMMENT QUOTE CARD*\n\n` +
-        `${p}${command || 'commentquote'} teks | nama | negara | like | unlike\n\n` +
-        `Contoh:\n${p}${command || 'commentquote'} Jangan takut gagal | Arthazy | ID | 999 | 0\n\n` +
-        `Hanya teks yang wajib diisi. Negara = kode 2 huruf (ID, US, JP, ...). Bisa juga reply pesan teks.`
+        `${p}${command || 'commentquote'} texto | nombre | país | likes | dislikes\n\n` +
+        `Ejemplo:\n${p}${command || 'commentquote'} No tengas miedo de fallar | Arthazy | ID | 999 | 0\n\n` +
+        `Solo el texto es obligatorio. País = código de 2 letras (ES, US, JP, ...). También puedes responder a un mensaje de texto.`
       )
     }
-    if (quote.length > 500) return reply('❌ Teks terlalu panjang (maksimal 500 karakter).')
+    if (quote.length > 500) return reply('❌ Texto demasiado largo (máximo 500 caracteres).')
 
     const name = (parts[1] || m.pushName || 'User').slice(0, 30)
     const country = /^[a-z]{2}$/i.test(parts[2] || '') ? parts[2].toUpperCase() : 'ID'
@@ -285,8 +285,8 @@ const pluginConfig = {
     } catch (e) {
       console.error('[commentquote]', e?.message || e)
       await reactTo(sock, m, '❌')
-      if (/Cannot find (module|package)/i.test(e?.message || '')) return reply('❌ Fitur ini butuh @napi-rs/canvas, belum terpasang di server.')
-      return reply(`❌ Gagal membuat gambar: ${e?.message || 'terjadi kesalahan'}`)
+      if (/Cannot find (module|package)/i.test(e?.message || '')) return reply('❌ Esta función necesita @napi-rs/canvas, que no está instalado en el servidor.')
+      return reply(`❌ Error al crear la imagen: ${e?.message || 'ocurrió un error'}`)
     }
   }
 

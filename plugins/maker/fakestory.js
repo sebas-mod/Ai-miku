@@ -171,10 +171,10 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       if (!isImage) {
         m.react("❌");
         return m.reply(
-          `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n` +
-            `> Reply 1 atau 2 gambar!\n\n` +
-            `> Format: \`${m.prefix}fakestory <nama>\`\n` +
-            `> Contoh: \`${m.prefix}fakestory Misaki\``,
+          `📷 *HISTORIA FALSA*\n\n` +
+            `> ¡Responde con 1 o 2 imágenes!\n\n` +
+            `> Format: \`${m.prefix}fakestory <nombre>\`\n` +
+            `> Ejemplo: \`${m.prefix}fakestory Misaki\``,
         );
       }
       if (m.isImage && m.download) {
@@ -186,7 +186,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       }
       if (!imageTopBuffer) {
         m.react("❌");
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+        return m.reply(`❌ *ERROR*\n\n> No se pudo descargar la imagen`);
       }
       const resultBuffer = await createFakeStory(
         username,

@@ -39,7 +39,7 @@ import { join } from 'node:path'
 
   async function handler(m, { sock, text, prefix, command }) {
     if (!text) {
-      return m.reply(`*Format Salah, Kak!* ✨\n\n> Contoh penggunaan:\n\`${prefix + command} Katanya just friend kok manggil sayang\`\n> Atau pakai custom nama:\n\`${prefix + command} Rin|Katanya just friend kok manggil sayang\``)
+      return m.reply(`*¡Formato incorrecto!* ✨\n\n> Ejemplo de uso:\n\`${prefix + command} Dice que solo somos amigos y me llama cariño\`\n> O usa un nombre personalizado:\n\`${prefix + command} Rin|Dice que solo somos amigos y me llama cariño\``)
     }
 
     let txtUsername, txtMeme
@@ -153,7 +153,7 @@ import { join } from 'node:path'
     } catch (e) {
       console.error("[Fmeme Error]", e)
       await m.react("❌")
-      throw 'Maaf Kak, terjadi kendala saat memproses gambar meme.'
+      throw 'Lo siento, hubo un problema al procesar la imagen del meme.'
     }
   }
 

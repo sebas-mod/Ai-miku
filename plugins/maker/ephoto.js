@@ -63,10 +63,10 @@ const pluginConfig = {
       const list = EFFECTS.map(e => `• \`${prefix}${e}\``).join('\n')
 
       return reply(
-          `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
-          `> Buat efek text keren!\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴇꜰᴇᴋ* 」\n${list}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> *Contoh:* ${prefix}glitchtext Elysia Assistant`
+          `🎨 *EFECTOS EPHOTO*\n\n` +
+          ` > ¡Crea efectos de texto geniales!\n\n` +
+          `╭┈┈⬡「 📋 *LISTA DE EFECTOS* 」\n${list}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `> *Ejemplo:* ${prefix}glitchtext Elysia Assistant`
       )
   }
 

@@ -37,9 +37,9 @@ const te = ElysiaRuntime.te;
 
     if (!inputName) {
       return m.reply(
-        `🚀 *ɴᴀsᴀ ʙᴏᴀʀᴅɪɴɢ ᴘᴀss*\n\n` +
-        `> *Penggunaan:* \`${prefix}boardingpass <Nama>\`\n` +
-        `> *Contoh:* \`${prefix}boardingpass Alex\``
+        `🚀 *PASE DE ABORDAR*\n\n` +
+        `> *Uso:* \`${prefix}boardingpass <Nombre>\`\n` +
+        `> *Ejemplo:* \`${prefix}boardingpass Alex\``
       );
     }
 

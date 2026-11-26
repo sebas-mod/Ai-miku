@@ -32,7 +32,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
     const text = m.text?.trim();
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Hola\``);
     }
 
     let media = null;
@@ -40,14 +40,14 @@ const te = ElysiaRuntime.te;
     const type = getContentType(msgObj.message);
 
     if (!type || type !== "imageMessage") {
-      return m.reply(`⚠️ Harap kirim atau reply foto dengan perintah \`${m.prefix}${m.command} <teks>\``);
+      return m.reply(`⚠️ Envía o responde a una foto con el comando \`${m.prefix}${m.command} <texto>\``);
     }
 
     await m.react("🕕");
 
     try {
       media = await downloadMediaMessage(msgObj, "buffer", {});
-      if (!media) throw new Error("Gagal membaca media");
+      if (!media) throw new Error("No se pudo leer el multimedia");
 
       const bgURL = "https://raw.githubusercontent.com/kayzzaoshi-code/Uploader/main/file_1772226320613.jpeg";
       const blueTickURL = "https://raw.githubusercontent.com/kayzzaoshi-code/Uploader/main/file_1772220719294.jpeg";

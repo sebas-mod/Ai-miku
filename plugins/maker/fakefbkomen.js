@@ -65,7 +65,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
     const text = m.text?.trim();
     if (!text || !text.includes("|")) {
-      return m.reply(`⚠️ Harap masukkan nama dan komentar yang dipisahkan dengan tanda |!\nContoh: \`${m.prefix}${m.command} Fauzan|Ini komentar\``);
+      return m.reply(`⚠️ ¡Escribe el nombre y el comentario separados por |!\nEjemplo: \`${m.prefix}${m.command} Fauzan|Este es mi comentario\``);
     }
 
     const [nama, ...komenArr] = text.split("|");
@@ -76,14 +76,14 @@ const te = ElysiaRuntime.te;
     const type = getContentType(msgObj.message);
 
     if (!type || type !== "imageMessage") {
-      return m.reply(`⚠️ Harap kirim atau reply foto dengan perintah \`${m.prefix}${m.command}\``);
+      return m.reply(`⚠️ Envía o responde a una foto con el comando \`${m.prefix}${m.command}\``);
     }
 
     await m.react("🕕");
 
     try {
       media = await downloadMediaMessage(msgObj, "buffer", {});
-      if (!media) throw new Error("Gagal membaca media");
+      if (!media) throw new Error("No se pudo leer el multimedia");
 
       const avatar = await loadImage(media);
       const canvas = createCanvas(1280, 780);
@@ -126,7 +126,7 @@ const te = ElysiaRuntime.te;
 
       ctx.fillStyle = "#65676b";
       ctx.font = "13px sans-serif";
-      ctx.fillText("baru saja · 🌍", postX + 70, postHeaderY + 45);
+      ctx.fillText("hace un momento · 🌍", postX + 70, postHeaderY + 45);
 
       const imgX = postX + 30;
       const imgY = postHeaderY + 80;

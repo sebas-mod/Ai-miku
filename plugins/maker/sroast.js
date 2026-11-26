@@ -66,7 +66,7 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
     const input = m.text?.trim();
 
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} aku | JELEK | banget\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} yo | FEO | mucho\``);
     }
 
     const parts = input.split('|').map(v => v.trim());

@@ -54,7 +54,7 @@ const te = ElysiaRuntime.te;
     const text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} Halo (sambil balas gambar)\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Hola (respondiendo a una imagen)\``);
     }
 
     const msg = m.message;
@@ -62,7 +62,7 @@ const te = ElysiaRuntime.te;
     const isImage = getContentType(msg) === "imageMessage" || m.mtype === "imageMessage";
 
     if (!isImage && !isQuotedImage) {
-      return m.reply(`⚠️ Harap kirim atau balas gambar dengan caption \`${m.prefix}${m.command} ${text}\``);
+      return m.reply(`⚠️ Envía o responde a una imagen con el texto \`${m.prefix}${m.command} ${text}\``);
     }
 
     await m.react("🕕");
@@ -137,7 +137,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "✨ Berhasil membuat efek dymc!"
+        caption: "✨ ¡Efecto dymc creado!"
       }, { quoted: m });
 
       await m.react("✅");

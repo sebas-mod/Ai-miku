@@ -83,22 +83,22 @@ const config = ElysiaRuntime.config;
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ᴘᴀꜱᴘᴏʀ* 💕\n\n` +
+              `💕 *PASAPORTE FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakepaspor <nama> | <umur> | <negara>\n` +
+              `┃   ${m.prefix}fakepaspor <nombre> | <edad> | <país>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}fakepaspor Elysia Assistant | 20 | Jepang\n` +
               `┃   ${m.prefix}fakepaspor Darling | 18 | Indonesia\n` +
               `┃\n` +
-              `┃ ⚠️ *Peringatan!*\n` +
-              `┃   Fitur ini cuma buat konten/gaguan\n` +
-              `┃   JANGAN dipakai buat hal ilegal!\n` +
+              `┃ ⚠️ *¡Advertencia!*\n` +
+              `┃   Esta función es solo para contenido/bromas\n` +
+              `┃   ¡NO lo uses para nada ilegal!\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau bikin paspor palsu siapa darling~?\n` +
+              `┃ 💗 *Elysia Assistant:* ¿A nombre de quién hago el pasaporte falso, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -109,27 +109,27 @@ const config = ElysiaRuntime.config;
       const negara = parts[2] || 'Indonesia'
 
       if (nama.length > 30) {
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> Nama terlalu panjang darling~ maksimal 30 karakter 🥺`)
+          return m.reply(`💔 *ERROR*\n\n> El nombre es demasiado largo, darling~ máximo 30 caracteres 🥺`)
       }
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin fake paspor darling~ tunggu sebentar yaa 🎨`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el pasaporte falso, darling~ espera un momento 🎨`)
 
       try {
           const imageBuffer = await generateFakePaspor(nama, umur, negara)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ᴘᴀꜱᴘᴏʀ* 💕\n\n` +
+              caption: `💕 *PASAPORTE FALSO* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
+                      `┃ ✅ *ÉXITO*\n` +
                       `┃\n` +
-                      `┃ 👤 *ɴᴀᴍᴀ*: ${nama}\n` +
-                      `┃ 🎂 *ᴜᴍᴜʀ*: ${umur} tahun\n` +
-                      `┃ 🏳️ *ɴᴇɢᴀʀᴀ*: ${negara}\n` +
+                      `┃ 👤 *NOMBRE*: ${nama}\n` +
+                      `┃ 🎂 *EDAD*: ${umur} tahun\n` +
+                      `┃ 🏳️ *PAÍS*: ${negara}\n` +
                       `┃\n` +
-                      `┃ ⚠️ *Cuma buat konten!*\n` +
-                      `┃ 💗 *Elysia Assistant:* Ini paspornya darling~ jangan dipake beneran ya! 🗿\n` +
+                      `┃ ⚠️ *¡Solo para contenido!*\n` +
+                      `┃ 💗 *Elysia Assistant:* Aquí está tu pasaporte, darling~ ¡no lo uses de verdad! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -139,9 +139,9 @@ const config = ElysiaRuntime.config;
           console.error('[FakePaspor] Error:', err)
           m.react('💔')
           return m.reply(
-              `💔 *ᴇʀʀᴏʀ*\n\n` +
+              `💔 *ERROR*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Vuelve a intentarlo, darling~ 🥺`
           )
       }
   }

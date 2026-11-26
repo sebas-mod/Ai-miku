@@ -62,7 +62,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakesp <nama> | <instansi>\nContoh: .fakesp Elysia Assistant | OSIS`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakesp <nombre> | <institución>\nEjemplo: .fakesp Elysia Assistant | OSIS`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -73,7 +73,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeSP(nama, instansi)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE SURAT PANGGILAN* 💕\n\n✅ Nama: ${nama}\n📌 Instansi: ${instansi}\n\n💗 *Elysia Assistant:* Kamu dipanggil nih darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *CITACIÓN FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Institución: ${instansi}\n\n💗 *Elysia Assistant:* Te han citado, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

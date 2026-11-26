@@ -74,17 +74,17 @@ const config = ElysiaRuntime.config;
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ᴛɪᴋᴇᴛ ᴘᴇꜱᴀᴡᴀᴛ* 💕\n\n` +
+              `💕 *BILLETE DE AVIÓN FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}faketiket <dari> | <tujuan> | <nama>\n` +
+              `┃   ${m.prefix}faketiket <origen> | <destino> | <nombre>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}faketiket Jakarta | Tokyo | Elysia Assistant\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau kemana darling~?\n` +
+              `┃ 💗 *Elysia Assistant:* ¿A dónde quieres ir, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -95,20 +95,20 @@ const config = ElysiaRuntime.config;
       const nama = parts[2] || 'Darling'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin tiket pesawat darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el billete de avión, darling~`)
 
       try {
           const imageBuffer = await generateFakeTiket(dari, tujuan, nama)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ᴛɪᴋᴇᴛ* 💕\n\n` +
+              caption: `💕 *ENTRADA FALSA* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ ✈️ *ʀᴜᴛᴇ*: ${dari} → ${tujuan}\n` +
-                      `┃ 👤 *ɴᴀᴍᴀ*: ${nama}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ ✈️ *RUTA*: ${dari} → ${tujuan}\n` +
+                      `┃ 👤 *NOMBRE*: ${nama}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Ini tiketnya darling~ selamat jalan-jalan! 🗿\n` +
+                      `┃ 💗 *Elysia Assistant:* Aquí tienes tu billete, darling~ ¡buen viaje! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -117,7 +117,7 @@ const config = ElysiaRuntime.config;
       } catch (err) {
           console.error('[FakeTiket] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

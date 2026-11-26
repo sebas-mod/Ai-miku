@@ -37,11 +37,11 @@ const te = ElysiaRuntime.te;
     const name = m.text?.trim();
     if (!name) {
       return m.reply(
-        `🎮 *ꜰᴀᴋᴇ ᴍʟ ᴘʀᴏꜰɪʟᴇ*\n\n` +
-          `> Masukkan nama untuk profile\n\n` +
-          `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-          `> 1. Kirim foto + caption \`${m.prefix}fakeml <nama>\`\n` +
-          `> 2. Reply foto dengan \`${m.prefix}fakeml <nama>\``,
+        `🎮 *PERFIL ML FALSO*\n\n` +
+          `> Escribe un nombre para el perfil\n\n` +
+          `*CÓMO USAR:*\n` +
+          `> 1. Envía una foto con el texto \`${m.prefix}fakeml <nombre>\`\n` +
+          `> 2. Responde a la foto con \`${m.prefix}fakeml <nombre>\``,
       );
     }
     let buffer = null;
@@ -68,7 +68,7 @@ const te = ElysiaRuntime.te;
       }
     }
     if (!buffer) {
-      return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+      return m.reply(`❌ ¡Envía o responde a una imagen para usarla como avatar!`);
     }
     m.react("🕕");
     try {
@@ -87,7 +87,7 @@ const te = ElysiaRuntime.te;
       );
       m.react("✅");
     } catch (error) { m.react("❌");
-      m.reply(`Coba lagi`);
+      m.reply(`Inténtalo de nuevo`);
     }
   }
 

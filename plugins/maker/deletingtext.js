@@ -82,7 +82,7 @@ const pluginConfig = {
 
   async function handler(m, { sock, reply, prefix, command, text }) {
       if (!text) {
-          return reply(`╭─── ❖ 『 ✨ *ELYSIA ARTWORK* 』 ❖\n│ ✦ Masukkan teks yang ingin dibuat!\n│ ✦ *Contoh:* ${prefix}${command} Elysia Assistant`)
+          return reply(`╭─── ❖ 『 ✨ *ELYSIA ARTWORK* 』 ❖\n│ ✦ ¡Escribe el texto que quieres crear!\n│ ✦ *Ejemplo:* ${prefix}${command} Elysia Assistant`)
       }
 
       await m.react('🕕')
@@ -98,7 +98,7 @@ const pluginConfig = {
           await m.react('✅')
       } catch (e) {
           await m.react('❌')
-          await reply(`╭─── ❖ 『 ⚠️ *GAGAL MEMPROSES* 』 ❖\n│ ✦ *Detail:* ${e.message}\n╰──────────────────❖\n_✦ Elysia Assistant sudah mencoba memproses, silakan coba sesaat lagi ya~_`)
+          await reply(`╭─── ❖ 『 ⚠️ *ERROR AL PROCESAR* 』 ❖\n│ ✦ *Detail:* ${e.message}\n╰──────────────────❖\n_✦ Elysia Assistant ya lo intentó, vuelve a probar en un momento~_`)
       }
   }
 

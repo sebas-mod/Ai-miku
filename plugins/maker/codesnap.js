@@ -32,7 +32,7 @@ const te = ElysiaRuntime.te;
     const code = m.text?.trim() || m.quoted?.text?.trim();
 
     if (!code) {
-      return m.reply(`⚠️ Harap masukkan kodenya!\nContoh: \`${m.prefix}${m.command} console.log('hello')\``);
+      return m.reply(`⚠️ Harap masukkan kodenya!\nEjemplo: \`${m.prefix}${m.command} console.log('hello')\``);
     }
 
     await m.react("🕕");

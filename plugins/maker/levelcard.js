@@ -182,7 +182,7 @@ const pluginConfig = {
       ctx.textAlign = 'left'
 
       const stats = [
-          ['PERINGKAT', `#${fmt(rank)}`, `dari ${fmt(total)}`, '#ff8fb8'],
+          ['PUESTO', `#${fmt(rank)}`, `de ${fmt(total)}`, '#ff8fb8'],
           ['MONEY', fmt(money), '', '#ffb36b'],
           ['LIMIT', limit, '', '#b69cff'],
           ['STREAK', `${fmt(streak)}`, 'hari', '#ff7aa8']
@@ -219,7 +219,7 @@ const pluginConfig = {
       const who = m.mentionedJid?.[0] || m.quoted?.sender || m.sender
       const users = rpgStore().users
       const user = users[who]
-      if (!user) return m.reply('User itu belum ada di database. Suruh dia pakai bot dulu ya~')
+      if (!user) return m.reply('Ese usuario aún no está en la base de datos. Dile que use el bot primero~')
 
       const level = Math.max(0, Math.floor(angka(user.level)))
       const { min, xp } = xpRange(level, global.multiplier)
@@ -239,7 +239,7 @@ const pluginConfig = {
 
       await conn.sendMessage(m.chat, {
           image: buf,
-          caption: `*Kartu Level ${nama}*\n Level ${level} • Peringkat #${rank}\n Kurang ${fmt(Math.max(0, xp - (angka(user.exp) - min)))} EXP lagi ke level berikutnya`
+          caption: `*Tarjeta de nivel ${nama}*\n Nivel ${level} • Puesto #${rank}\n Faltan ${fmt(Math.max(0, xp - (angka(user.exp) - min)))} EXP para el siguiente nivel`
       }, { quoted: m })
   }
 

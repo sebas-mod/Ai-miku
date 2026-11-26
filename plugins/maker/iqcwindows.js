@@ -60,17 +60,17 @@ const pluginConfig = {
       return reply(
         `🪟 *IQC WINDOWS (Media Player)*\n\n` +
         `Meme jendela Windows Media Player XP.\n\n` +
-        `• ${p}iqcwin <teks>\n` +
-        `• kirim/reply foto + ${p}iqcwin <teks> → foto ganti tokoh 3D\n` +
-        `• reply pesan + ${p}iqcwin → teks dari pesan itu\n\n` +
-        `Contoh: ${p}iqcwin padahal cuma std kirian`
+        `• ${p}iqcwin <texto>\n` +
+        `• envía/responde a una foto + ${p}iqcwin <texto> → la foto sustituye al personaje 3D\n` +
+        `• responde a un mensaje + ${p}iqcwin → usa el texto de ese mensaje\n\n` +
+        `Ejemplo: ${p}iqcwin padahal cuma std kirian`
       )
     }
-    if (message.length > 120) return reply('❌ Teks terlalu panjang (maksimal 120 huruf).')
+    if (message.length > 120) return reply('❌ Texto demasiado largo (máximo 120 caracteres).')
 
     let canvasLib
     try { canvasLib = await import('@napi-rs/canvas') } catch {
-      return reply('❌ Fitur ini butuh @napi-rs/canvas, belum terpasang di server.')
+      return reply('❌ Esta función necesita @napi-rs/canvas, que no está instalado en el servidor.')
     }
     const { createCanvas, loadImage, GlobalFonts } = canvasLib.default ?? canvasLib
 
@@ -263,10 +263,10 @@ const pluginConfig = {
       const octx = out.getContext('2d')
       octx.save(); rr(octx, 0, 0, W, H, 26); octx.clip(); octx.drawImage(canvas, 0, 0); octx.restore()
 
-      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Nih hasilnya' }, { quoted: m })
+      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Aquí tienes el resultado' }, { quoted: m })
     } catch (e) {
       console.error('[iqcwin]', e?.stack || e)
-      return reply('❌ Gagal membuat gambar. Coba lagi beberapa saat.')
+      return reply('❌ No se pudo crear la imagen. Inténtalo de nuevo en un momento.')
     }
   }
 

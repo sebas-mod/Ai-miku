@@ -48,7 +48,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <rect x="30" y="30" width="1040" height="700" rx="10" fill="none" stroke="#333" stroke-width="4"/>
       <rect x="45" y="45" width="1010" height="670" rx="8" fill="none" stroke="#888" stroke-width="2"/>
       <text x="550" y="110" text-anchor="middle" font-family="Times New Roman, serif" font-size="34" font-weight="700">SERTIFIKAT NIKAH</text>
-      <text x="550" y="150" text-anchor="middle" font-family="Times New Roman, serif" font-size="17">CONTOH / UNTUK HIBURAN</text>
+      <text x="550" y="150" text-anchor="middle" font-family="Times New Roman, serif" font-size="17">EJEMPLO / SOLO POR DIVERSIÓN</text>
       <line x1="220" y1="180" x2="880" y2="180" stroke="#333" stroke-width="2"/>
       <text x="550" y="245" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Menerangkan pasangan</text>
       <text x="550" y="305" text-anchor="middle" font-family="Times New Roman, serif" font-size="28" font-weight="700">${escapeXml(nama1).toUpperCase()}</text>
@@ -57,7 +57,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <text x="550" y="460" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tanggal: ${escapeXml(tanggal)}</text>
       <text x="550" y="495" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tempat: ${escapeXml(tempat)}</text>
       <text x="550" y="535" text-anchor="middle" font-family="Times New Roman, serif" font-size="13">No. Akta: ${escapeXml(aktaNo)}</text>
-      <text x="550" y="650" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOKUMEN CONTOH — TIDAK BERLAKU SEBAGAI DOKUMEN RESMI</text>
+      <text x="550" y="650" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOCUMENTO DE EJEMPLO — SIN VALIDEZ OFICIAL</text>
     </svg>`
 
       const template = await loadImage(Buffer.from(svg))
@@ -72,17 +72,17 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ ɴɪᴋᴀʜ* 💕\n\n` +
+              `💕 *CERTIFICADO DE MATRIMONIO FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
               `┃   ${m.prefix}fakenikah <nama1> | <nama2>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}fakenikah Elysia Assistant | Darling\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau nikah sama siapa darling~?\n` +
+              `┃ 💗 *Elysia Assistant:* ¿Con quién te quieres casar, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -92,19 +92,19 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       const nama2 = parts[1] || 'Darling'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin sertifikat nikah darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando el certificado de matrimonio, darling~`)
 
       try {
           const imageBuffer = await generateFakeNikah(nama1, nama2)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ ɴɪᴋᴀʜ* 💕\n\n` +
+              caption: `💕 *CERTIFICADO DE MATRIMONIO FALSO* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ 💑 *ᴘᴀꜱᴀɴɢᴀɴ*: ${nama1} & ${nama2}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ 💑 *PAREJA*: ${nama1} & ${nama2}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Selamat ya darling! Semoga langgeng~ 🗿\n` +
+                      `┃ 💗 *Elysia Assistant:* ¡Felicidades, darling! Que dure para siempre~ 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -113,7 +113,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       } catch (err) {
           console.error('[FakeNikah] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

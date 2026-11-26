@@ -60,7 +60,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakeidcard <nama> | <jabatan>\nContoh: .fakeidcard Elysia Assistant | CEO`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeidcard <nombre> | <cargo>\nEjemplo: .fakeidcard Elysia Assistant | CEO`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -71,7 +71,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeIDCard(nama, jabatan)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE ID CARD* 💕\n\n✅ Nama: ${nama}\n📌 Jabatan: ${jabatan}\n\n💗 *Elysia Assistant:* Ini ID card nya darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA DE ID FALSA* 💕\n\n✅ Nombre: ${nama}\n📌 Cargo: ${jabatan}\n\n💗 *Elysia Assistant:* Aquí tienes tu tarjeta, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

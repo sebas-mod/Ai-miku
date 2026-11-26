@@ -357,12 +357,12 @@ async function handler(m, { sock, text }) {
   const input = String(text || '').trim();
   if (!input || !input.includes(',')) {
     return m.reply(
-      `❌ *Format VOS salah!*\n\n` +
-      `VOS wajib menggunakan format:*\n` +
-      `> ${m.prefix}vos nama,kata kata\n\n` +
-      `*Contoh yang benar:*\n` +
-      `> ${m.prefix}vos Jack,lu ajah bikin gua minder 🔥\n\n` +
-      `_Kalau tidak memakai tanda koma (,) setelah nama, VOS tidak akan diproses._`
+      `❌ *¡Formato de VOS incorrecto!*\n\n` +
+      `VOS debe usar el formato:*\n` +
+      `> ${m.prefix}vos nombre,tu texto\n\n` +
+      `*Ejemplo correcto:*\n` +
+      `> ${m.prefix}vos Jack,tú sí que me dejas acomplejado 🔥\n\n` +
+      `_Si no pones una coma (,) después del nombre, VOS no se procesará._`
     );
   }
 
@@ -371,11 +371,11 @@ async function handler(m, { sock, text }) {
   const quote = input.slice(comma + 1).trim();
 
   if (!name || !quote) {
-    return m.reply(`❌ *Format VOS salah!*\n\nGunakan:\n> ${m.prefix}vos nama,kata kata\n\nContoh:\n> ${m.prefix}vos Jack,lu ajah bikin gua minder 🔥`);
+    return m.reply(`❌ *¡Formato de VOS incorrecto!*\n\nUsa:\n> ${m.prefix}vos nombre,tu texto\n\nEjemplo:\n> ${m.prefix}vos Jack,tú sí que me dejas acomplejado 🔥`);
   }
 
   if (quote.length > 420) {
-    return m.reply('❌ Kata-katanya terlalu panjang. Maksimal 420 karakter agar gambar tetap jelas.');
+    return m.reply('❌ El texto es demasiado largo. Máximo 420 caracteres para que la imagen siga clara.');
   }
 
   await m.react('🕕');
@@ -395,7 +395,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error('[VOS] Error:', error?.stack || error);
     await m.react('❌');
-    await m.reply('❌ Gagal membuat gambar VOS. Coba lagi sebentar.');
+    await m.reply('❌ No se pudo crear la imagen VOS. Inténtalo de nuevo en un momento.');
   }
 }
 

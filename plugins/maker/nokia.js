@@ -32,13 +32,13 @@ const te = ElysiaRuntime.te;
     const input = m.text?.trim();
 
     if (!input || !input.includes("|")) {
-      return m.reply(`⚠️ Harap masukkan nama dan pesan dipisah dengan tanda |\nContoh: \`${m.prefix}${m.command} Bot|Halo semuanya\``);
+      return m.reply(`⚠️ |Escribe el nombre y el mensaje separados por ||\nEjemplo: \`${m.prefix}${m.command} Bot|Hola a todos\``);
     }
 
     const [nama, text] = input.split("|").map((v) => v.trim());
 
     if (!nama || !text) {
-      return m.reply(`⚠️ Harap lengkapi nama dan pesan!\nContoh: \`${m.prefix}${m.command} Bot|Halo\``);
+      return m.reply(`⚠️ ¡Completa el nombre y el mensaje!\nEjemplo: \`${m.prefix}${m.command} Bot|Hola\``);
     }
 
     await m.react("🕕");
@@ -96,7 +96,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: `📱 Pesan nokia dari ${nama}`
+        caption: `📱 Mensaje de Nokia de ${nama}`
       }, { quoted: m });
 
       await m.react("✅");

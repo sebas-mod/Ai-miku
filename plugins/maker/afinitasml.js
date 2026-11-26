@@ -35,14 +35,14 @@ const te = ElysiaRuntime.te;
     const type = getContentType(msgObj.message);
 
     if (!type || type !== "imageMessage") {
-      return m.reply(`⚠️ Harap kirim atau reply foto dengan perintah \`${m.prefix}${m.command}\``);
+      return m.reply(`⚠️ Envía o responde a una foto con el comando \`${m.prefix}${m.command}\``);
     }
 
     await m.react("🕕");
 
     try {
       media = await downloadMediaMessage(msgObj, "buffer", {});
-      if (!media) throw new Error("Gagal membaca media");
+      if (!media) throw new Error("No se pudo leer el multimedia");
 
       const bgNum = m.text?.trim() || "";
 

@@ -32,11 +32,11 @@ const te = ElysiaRuntime.te;
     const text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan nama!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     if (text.length > 20) {
-      return m.reply("⚠️ Nama terlalu panjang! Maksimal 20 karakter.");
+      return m.reply("⚠️ ¡El nombre es demasiado largo! Máximo 20 caracteres.");
     }
 
     await m.react("🕕");
@@ -63,7 +63,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "🎉 Ini dia sertifikat MVP kamu!"
+        caption: "🎉 ¡Aquí tienes tu certificado de MVP!"
       }, { quoted: m });
 
       await m.react("✅");

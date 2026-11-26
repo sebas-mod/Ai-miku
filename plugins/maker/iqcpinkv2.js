@@ -59,11 +59,11 @@ import { join, dirname } from 'node:path'
           tsColor: '#6b6b6b', maxTextW: 440, maxLines: 14, maxH: 489, imgMinW: 240, imgMaxW: 360 },
       menu: { x: 22, y: 691, w: 342, h: 385, r: 40, iconCx: 71, labelX: 105, fontSize: 23, red: '#c10b27',
           rows: [
-              { y: 732, label: 'Balas', icon: 'reply' },
+              { y: 732, label: 'Responder', icon: 'reply' },
               { y: 787, label: 'Teruskan', icon: 'forward' },
               { y: 842, label: 'Salin', icon: 'copy' },
               { y: 898, label: 'Beri bintang', icon: 'star' },
-              { y: 954, label: 'Hapus', icon: 'trash', red: true },
+              { y: 954, label: 'Eliminar', icon: 'trash', red: true },
               { divider: 994, x1: 55, x2: 332 },
               { y: 1035, label: 'Lainnya...', icon: 'more' },
           ] },
@@ -496,12 +496,12 @@ import { join, dirname } from 'node:path'
 
           if (!targetText && !imageBuffer) {
               return m.reply(
-                  `*FITUR FAKE CHAT iPHONE PINK V2*\n\n` +
-                  `Mengubah teks atau gambar menjadi tampilan chat iPhone bertema pink lengkap dengan bar reaksi dan menu konteks.\n\n` +
-                  `*CARA PENGGUNAAN:*\n` +
-                  `- Ketik \`${m.prefix}${m.command} <teks kamu>\`\n` +
-                  `- Kirim / balas (*reply*) gambar dengan \`${m.prefix}${m.command} [teks]\`\n` +
-                  `- Atau balas pesan teks dengan \`${m.prefix}${m.command}\``
+                  `*FUNCIÓN DE CHAT FALSO IPHONE ROSA V2*\n\n` +
+                  `Convierte texto o imágenes en una vista de chat de iPhone con tema rosa, con barra de reacciones y menú contextual.\n\n` +
+                  `*CÓMO USAR:*\n` +
+                  `- Escribe \`${m.prefix}${m.command} <tu texto>\`\n` +
+                  `- Envía o responde a una imagen con \`${m.prefix}${m.command} [teks]\`\n` +
+                  `- O responde a un mensaje de texto con \`${m.prefix}${m.command}\``
               )
           }
 
@@ -518,7 +518,7 @@ import { join, dirname } from 'node:path'
       } catch (error) {
           console.error('[iqcpinkv2 error]:', error)
           await m.react('❌')
-          m.reply(`❌ *GAGAL MEMBUAT GAMBAR*\n\n> ${error.message}`)
+          m.reply(`❌ *ERROR AL CREAR LA IMAGEN*\n\n> ${error.message}`)
       }
   }
 

@@ -37,7 +37,7 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
       const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
 
       if (parts.length < 2) {
-          return m.reply(`🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ʟᴏɢᴏ*\n\n> Masukkan 2 teks untuk logo\n\n> Contoh: ${m.prefix}balogo Blue & Archive`)
+          return m.reply(`🎮 *LOGO BLUE ARCHIVE*\n\n> Escribe 2 textos para el logo\n\n> Ejemplo: ${m.prefix}balogo Blue & Archive`)
       }
 
       const textL = parts[0]

@@ -81,7 +81,7 @@ const pluginConfig = {
       ensureFonts()
       const {
           cover, title = 'Canción de ejemplo', artist = 'Artista', playlistTitle = 'Radio de ejemplo',
-          playlistDesc = 'Memainkan dari Playlist', duration = '3:14', currentTime = '0:00',
+          playlistDesc = 'Reproduciendo desde la playlist', duration = '3:14', currentTime = '0:00',
           clock = '18.21', battery = '18', isPlaying = false, shuffle = true, lyricsTitle = 'Pratinjau lirik'
       } = o
 
@@ -251,10 +251,10 @@ const pluginConfig = {
       if (!raw && !cover) {
           return reply(
               `🎧 *FAKE SPOTIFY*\n\n` +
-              `Kirim atau balas *gambar* (jadi cover) dengan caption:\n` +
-              `${prefix + command} judul|artis|playlist|durasi|waktu|jam|baterai\n\n` +
-              `Contoh:\n${prefix + command} Sialan|Juicy Luicy|Radio Sialan|3:45|1:20|18.21|18\n\n` +
-              `Semua bagian boleh dikosongkan. Tambahkan *play* di akhir untuk tampilan sedang diputar.`
+              `Envía o responde a una *imagen* (será la portada) con el texto:\n` +
+              `${prefix + command} título|artista|playlist|duración|tiempo|hora|batería\n\n` +
+              `Ejemplo:\n${prefix + command} Sialan|Juicy Luicy|Radio Sialan|3:45|1:20|18.21|18\n\n` +
+              `Todas las partes pueden dejarse vacías. Añade *play* al final para mostrar que se está reproduciendo.`
           )
       }
 
@@ -273,7 +273,7 @@ const pluginConfig = {
           return sock.sendMessage(m.chat, { image: r.buffer, caption: `🎧 ${o.title || 'Canción de ejemplo'} — ${o.artist || 'Artista'}` }, { quoted: m })
       } catch (e) {
           console.error('[fakespotify]', e)
-          return reply(`❌ Gagal membuat gambar: ${e.message || e}`)
+          return reply(`❌ Error al crear la imagen: ${e.message || e}`)
       }
   }
 

@@ -35,7 +35,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
               m.react('❌')
               return m.reply(
                   `📷 *FAKE IMG IOS*\n\n` +
-                  `Tolong Reply gambar nya`
+                  `Responde a la imagen`
               )
           }
 
@@ -48,7 +48,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
 
           if (!imageBuffer) {
               m.react('❌')
-              return m.reply(`❌ *Gomen ne~* ✦\n\n> Tidak bisa download gambar~ 🥺`)
+              return m.reply(`❌ *Gomen ne~* ✦\n\n> No se pudo descargar la imagen~ 🥺`)
           }
 
       m.react('🕕')
@@ -66,7 +66,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
 
       } catch (error) {
           m.react('❌')
-          m.reply(`❌ *Gomen ne~* ✦\n\n> ${error.message}\n\n_Ai udah coba yang terbaik tapi gagal juga... coba lagi nanti ya~ 🌸_`)
+          m.reply(`❌ *Gomen ne~* ✦\n\n> ${error.message}\n\n_Lo intenté con todas mis fuerzas pero también falló... inténtalo de nuevo más tarde~ 🌸_`)
       }
   }
 

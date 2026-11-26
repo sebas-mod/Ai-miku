@@ -32,18 +32,18 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
     const raw = m.text?.trim();
     if (!raw || !raw.includes("|")) {
       return m.reply(
-        `🐦 *ꜰᴀᴋᴇ ᴛᴡᴇᴇᴛ*\n\n` +
-          `- Buat tweet palsu buat hiburan 😂\n` +
-          `- Format dipisah pakai |\n\n` +
-          `- Bisa pakai reply gambar` +
-          `\`${m.prefix}fake-tweet | Nama | Username | Teks tweet\``,
+        `🐦 *TUIT FALSO*\n\n` +
+          `- Crea tuits falsos para entretenerte 😂\n` +
+          `- |Separa el formato con ||\n\n` +
+          `- Puedes responder a una imagen` +
+          `\`${m.prefix}fake-tweet | Nombre | Usuario || Texto del tweet\``,
       );
     }
 
     const parts = raw.split("|").map((s) => s.trim());
     if (parts.length < 4) {
       return m.reply(
-        `🐦 *ꜰᴏʀᴍᴀᴛ ᴋᴜʀᴀɴɢ*\n\n` + `- Butuh: Nama | Username | Teks tweet`,
+        `🐦 *FORMATO INCOMPLETO*\n\n` + `- Necesita: Nombre | Usuario | Texto del tweet`,
       );
     }
 

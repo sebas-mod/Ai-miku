@@ -31,11 +31,11 @@ const te = ElysiaRuntime.te;
   ];
 
   const MENU_ICONS = [
-    { unicode: '\uf3e5', text: 'Balas',           color: '#000000' },
+    { unicode: '\uf3e5', text: 'Responder',           color: '#000000' },
     { unicode: '\uf064', text: 'Teruskan',         color: '#000000' },
     { unicode: '\uf0c5', text: 'Salin',            color: '#000000' },
     { unicode: '\uf1ab', text: 'Terjemahkan',      color: '#000000' },
-    { unicode: '\uf2ed', text: 'Hapus untuk saya', color: '#000000' },
+    { unicode: '\uf2ed', text: 'Eliminar para mí', color: '#000000' },
     { unicode: '\uf024', text: 'Laporkan',         color: '#ea4335' },
   ];
 
@@ -266,7 +266,7 @@ const te = ElysiaRuntime.te;
 
     if (!text) {
       return m.reply(
-        `💬 *ᴛɪᴋᴛᴏᴋ ǫᴜᴏᴛᴇ*\n\n> Masukkan teks atau reply pesan yang ingin dijadikan quote.\n\n\`Contoh: ${m.prefix}ttqc Hallo Dunia\``,
+        `💬 *CITA DE TIKTOK*\n\n> Escribe un texto o responde a un mensaje para convertirlo en cita.\n\n\`Ejemplo: ${m.prefix}ttqc Hallo Dunia\``,
       );
     }
 

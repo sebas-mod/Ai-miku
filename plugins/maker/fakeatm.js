@@ -66,7 +66,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakeatm <nama> | <bank>\nContoh: .fakeatm Elysia Assistant | BCA`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakeatm <nombre> | <banco>\nEjemplo: .fakeatm Elysia Assistant | BCA`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -77,7 +77,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeATM(nama, bank)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE KARTU ATM* 💕\n\n✅ Nama: ${nama}\n🏦 Bank: ${bank}\n\n💗 *Elysia Assistant:* Saldo nya banyak ya darling~ 🗿` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA ATM FALSA* 💕\n\n✅ Nombre: ${nama}\n🏦 Bank: ${bank}\n\n💗 *Elysia Assistant:* ¡Qué saldo tan alto, darling~ 🗿` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

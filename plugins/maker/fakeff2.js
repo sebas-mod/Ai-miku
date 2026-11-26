@@ -40,12 +40,12 @@ const te = ElysiaRuntime.te;
     await loadFont();
     const input = m.text?.trim();
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Fauzan|2\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Fauzan|2\``);
     }
 
     const [text, bgNum] = input.split("|");
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!`);
+      return m.reply(`⚠️ ¡Escribe el texto!`);
     }
 
     await m.react("🕕");

@@ -46,7 +46,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <rect x="28" y="28" width="1044" height="704" rx="10" fill="none" stroke="#333" stroke-width="4"/>
       <rect x="42" y="42" width="1016" height="676" rx="8" fill="none" stroke="#777" stroke-width="2"/>
       <text x="550" y="105" text-anchor="middle" font-family="Times New Roman, serif" font-size="34" font-weight="700">IJAZAH</text>
-      <text x="550" y="145" text-anchor="middle" font-family="Times New Roman, serif" font-size="17">CONTOH / UNTUK HIBURAN</text>
+      <text x="550" y="145" text-anchor="middle" font-family="Times New Roman, serif" font-size="17">EJEMPLO / SOLO POR DIVERSIÓN</text>
       <line x1="220" y1="170" x2="880" y2="170" stroke="#333" stroke-width="2"/>
       <text x="550" y="235" text-anchor="middle" font-family="Times New Roman, serif" font-size="15">Diberikan kepada</text>
       <text x="550" y="290" text-anchor="middle" font-family="Times New Roman, serif" font-size="30" font-weight="700">${escapeXml(nama).toUpperCase()}</text>
@@ -55,7 +55,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       <line x1="220" y1="425" x2="880" y2="425" stroke="#888" stroke-width="1"/>
       <text x="550" y="485" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">No. Ijazah: ${ijazahNo}</text>
       <text x="550" y="525" text-anchor="middle" font-family="Times New Roman, serif" font-size="16">Tahun Lulus: ${tahun}</text>
-      <text x="550" y="630" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOKUMEN CONTOH — TIDAK BERLAKU SEBAGAI DOKUMEN RESMI</text>
+      <text x="550" y="630" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="#666">DOCUMENTO DE EJEMPLO — SIN VALIDEZ OFICIAL</text>
     </svg>`
 
       const template = await loadImage(Buffer.from(svg))
@@ -70,17 +70,17 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ɪᴊᴀᴢᴀʜ* 💕\n\n` +
+              `💕 *DIPLOMA FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakeijazah <nama> | <gelar> | <universitas>\n` +
+              `┃   ${m.prefix}fakeijazah <nombre> | <título> | <universidad>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}fakeijazah Elysia Assistant | S.Kom | Universitas Zero\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau lulusan mana darling~?\n` +
+              `┃ 💗 *Elysia Assistant:* ¿De qué universidad quieres ser, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -91,21 +91,21 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       const universitas = parts[2] || 'Universitas Zero'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin fake ijazah darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Elysia Assistant:* Creando un diploma falso, darling~`)
 
       try {
           const imageBuffer = await generateFakeIjazah(nama, gelar, universitas)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ɪᴊᴀᴢᴀʜ* 💕\n\n` +
+              caption: `💕 *DIPLOMA FALSO* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ 👨‍🎓 *ɴᴀᴍᴀ*: ${nama}\n` +
-                      `┃ 🎓 *ɢᴇʟᴀʀ*: ${gelar}\n` +
-                      `┃ 🏛️ *ᴜɴɪᴠᴇʀꜱɪᴛᴀꜱ*: ${universitas}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ 👨‍🎓 *NOMBRE*: ${nama}\n` +
+                      `┃ 🎓 *TÍTULO*: ${gelar}\n` +
+                      `┃ 🏛️ *UNIVERSIDAD*: ${universitas}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Selamat ya darling! 🗿\n` +
+                      `┃ 💗 *Elysia Assistant:* ¡Felicidades, darling! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -114,7 +114,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       } catch (err) {
           console.error('[FakeIjazah] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

@@ -43,11 +43,11 @@ const te = ElysiaRuntime.te;
     const text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     if (text.length > 25) {
-      return m.reply("⚠️ Nama terlalu panjang! Maksimal 25 karakter.");
+      return m.reply("⚠️ ¡El nombre es demasiado largo! Máximo 25 caracteres.");
     }
 
     await m.react("🕕");
@@ -74,7 +74,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "🏀 Gambar basket berhasil dibuat!"
+        caption: "🏀 ¡Imagen de baloncesto creada!"
       }, { quoted: m });
 
       await m.react("✅");

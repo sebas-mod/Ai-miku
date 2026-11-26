@@ -64,7 +64,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakekarcis <nama> | <film> | <jam>\nContoh: .fakekarcis Elysia Assistant | DITF | 21:00`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekarcis <nombre> | <película> | <jam>\nEjemplo: .fakekarcis Elysia Assistant | DITF | 21:00`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -76,7 +76,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeKarcis(nama, film, jam)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE KARCIS BIOSKOP* 💕\n\n✅ Nama: ${nama}\n🎬 Film: ${film}\n⏰ Jam: ${jam}\n\n💗 *Elysia Assistant:* Selamat menonton darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *ENTRADA DE CINE FALSA* 💕\n\n✅ Nombre: ${nama}\n🎬 Film: ${film}\n⏰ Hora: ${jam}\n\n💗 *Elysia Assistant:* Disfruta la película, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

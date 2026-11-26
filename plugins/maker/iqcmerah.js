@@ -308,7 +308,7 @@ import { fileURLToPath } from 'node:url';
 
       const cleanText = String(text || '').trim();
       if (cleanText.length > 1500) {
-          throw new Error('Teks terlalu panjang. Maksimal 1500 karakter.');
+          throw new Error('Texto demasiado largo. Máximo 1500 caracteres.');
       }
 
       const fontSize = 29;
@@ -400,11 +400,11 @@ import { fileURLToPath } from 'node:url';
 
           if (!targetText) {
               return m.reply(
-                  `🔴 *FITUR FAKE QUOTE iOS MERAH*\n\n` +
-                  `Ketik: ${m.prefix}iqcmerah kata kata kamu\n` +
-                  `Atau reply pesan lalu ketik ${m.prefix}iqcmerah\n\n` +
-                  `✅ Teks panjang otomatis turun ke baris baru\n` +
-                  `✅ Ukuran font tetap jelas\n` +
+                  `🔴 *FUNCIÓN DE CITA FALSA DE iOS MERAH*\n\n` +
+                  `Escribe: ${m.prefix}iqcmerah tu texto\n` +
+                  `O responde a un mensaje y escribe ${m.prefix}iqcmerah\n\n` +
+                  `✅ El texto largo pasa automáticamente a una nueva línea\n` +
+                  `✅ El tamaño de la fuente se mantiene legible\n` +
                   `✅ Support WEmoji / emoji WhatsApp`
               );
           }
@@ -437,10 +437,10 @@ import { fileURLToPath } from 'node:url';
           console.error('[iqcmerah error]:', error);
           await m.react('❌');
           await m.reply(
-              `❌ *GAGAL MEMPROSES QUOTE*\n\n` +
-              `${error?.message === 'Teks terlalu panjang. Maksimal 1500 karakter.'
+              `❌ *ERROR AL PROCESAR LA CITA*\n\n` +
+              `${error?.message === 'Texto demasiado largo. Máximo 1500 caracteres.'
                 ? error.message
-                : 'Terjadi kesalahan saat membuat IQC merah. Coba lagi.'}`
+                : 'Hubo un error al crear el IQC rojo. Inténtalo de nuevo.'}`
           );
       }
   }

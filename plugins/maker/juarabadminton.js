@@ -37,9 +37,9 @@ const te = ElysiaRuntime.te;
 
     if (!inputName) {
       return m.reply(
-        `🏸 *ᴊᴜᴀʀᴀ ʙᴀᴅᴍɪɴᴛᴏɴ ᴄᴇʀᴛɪғɪᴄᴀᴛᴇ*\n\n` +
-        `> *Penggunaan:* \`${prefix}juarabadminton <Nama>\`\n` +
-        `> *Contoh:* \`${prefix}juarabadminton Alex\``
+        `🏸 *CERTIFICADO DE CAMPEÓN DE BÁDMINTON*\n\n` +
+        `> *Uso:* \`${prefix}juarabadminton <Nombre>\`\n` +
+        `> *Ejemplo:* \`${prefix}juarabadminton Alex\``
       );
     }
 

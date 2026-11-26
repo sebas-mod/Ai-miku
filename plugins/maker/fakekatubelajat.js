@@ -60,7 +60,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakekartupelajar <nama> | <sekolah>\nContoh: .fakekartupelajar Elysia Assistant | SMA 02`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekartupelajar <nombre> | <colegio>\nEjemplo: .fakekartupelajar Elysia Assistant | SMA 02`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -71,7 +71,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeKartuPelajar(nama, sekolah)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE KARTU PELAJAR* 💕\n\n✅ Nama: ${nama}\n🏫 Sekolah: ${sekolah}\n\n💗 *Elysia Assistant:* Ini kartu pelajarnya darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *CARNET DE ESTUDIANTE FALSO* 💕\n\n✅ Nombre: ${nama}\n🏫 Colegio: ${sekolah}\n\n💗 *Elysia Assistant:* Aquí tienes tu carnet, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

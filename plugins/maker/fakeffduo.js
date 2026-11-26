@@ -40,7 +40,7 @@ const te = ElysiaRuntime.te;
     await loadFont();
     const input = m.text?.trim();
     if (!input || !input.includes("|")) {
-      return m.reply(`⚠️ Harap masukkan 2 nama dipisah dengan tanda |\nContoh: \`${m.prefix}${m.command} Fauzan|Bot|1\``);
+      return m.reply(`⚠️ Escribe 2 nombres separados por |\nEjemplo: \`${m.prefix}${m.command} Fauzan|Bot|1\``);
     }
 
     const parts = input.split("|");
@@ -49,14 +49,14 @@ const te = ElysiaRuntime.te;
     const bg = parseInt(parts[2]?.trim() || "1");
 
     if (!name1 || !name2) {
-      return m.reply(`⚠️ Parameter name1 dan name2 diperlukan!`);
+      return m.reply(`⚠️ ¡Se necesitan los parámetros name1 y name2!`);
     }
 
     const githubBaseUrl = "https://raw.githubusercontent.com/Raavfy-24/Maker/refs/heads/main";
     const max = 50;
 
     if (bg < 1 || bg > max) {
-      return m.reply(`⚠️ Background harus 1-${max}`);
+      return m.reply(`⚠️ El fondo debe ser de 1 a ${max}`);
     }
 
     await m.react("🕕");

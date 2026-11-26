@@ -31,7 +31,7 @@ const te = ElysiaRuntime.te;
     let text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     await m.react("🕕");
@@ -97,7 +97,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "✨ Logo p302 berhasil dibuat!"
+        caption: "✨ ¡Logo p302 creado!"
       }, { quoted: m });
 
       await m.react("✅");
