@@ -249,21 +249,21 @@ const CONNECTION_CLOSED_REASONS = [
   },
   {
     match: /restart required/i,
-    reason: "Restart diperlukan",
-    action: "Menyambungkan ulang otomatis",
+    reason: "Hace falta reiniciar",
+    action: "Reconectando automáticamente",
     fatal: false,
   },
   {
     match: /Connection Closed|write EOF|ECONNRESET|ETIMEDOUT|timeout/i,
-    reason: "Koneksi terputus / timeout",
-    action: "Mencoba sambung ulang",
+    reason: "Conexión cortada / tiempo agotado",
+    action: "Reintentando conectar",
     fatal: false,
   },
 ];
 
 function parseDisconnectError(lastDisconnect) {
   const statusCode = lastDisconnect?.error?.output?.statusCode;
-  const errorMessage = lastDisconnect?.error?.message || "Koneksi terputus";
+      const errorMessage = lastDisconnect?.error?.message || "Conexión cortada";
 
   if (statusCode && ERROR_MESSAGES[statusCode]) {
     return {

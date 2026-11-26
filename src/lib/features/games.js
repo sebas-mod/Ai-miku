@@ -48,15 +48,15 @@ const WIN_MESSAGES = [
 ];
 
 const TIMEOUT_MESSAGES = [
-  "⏱️ *Yah telat, waktu habis!*",
-  "⏱️ *WAKTU HABIS!*",
-  "⏱️ *Telat bro, waktu dah abis!*",
+  "⏱️ *¡Uy, se acabó el tiempo!*",
+  "⏱️ *¡TIEMPO AGOTADO!*",
+  "⏱️ *¡Tarde, ya no queda tiempo!*",
 ];
 
 const SURRENDER_MESSAGES = [
-  "🏳️ *Yahhh nyerah deh...*",
-  "🏳️ *MENYERAH!*",
-  "🏳️ *Yah sayang banget nyerah...*",
+  "🏳️ *Y bueno, se rindió...*",
+  "🏳️ *¡SE RINDIÓ!*",
+  "🏳️ *Vaya, qué pena que se rindiera...*",
 ];
 
 function pick(arr) {
