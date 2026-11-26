@@ -150,7 +150,7 @@ const fetchUrlBuffer = async (url) => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const ctype = res.headers.get("content-type") || "";
-  if (!/^image\//i.test(ctype)) throw new Error("URL bukan file gambar");
+  if (!/^image\//i.test(ctype)) throw new Error("La URL no es un archivo de imagen");
   return Buffer.from(await res.arrayBuffer());
 };
 
@@ -250,7 +250,7 @@ const uploadWallpaper = async (sock, imgBuf) => {
     });
 
     if (!up?.directPath) {
-      throw new Error("Server CDN tidak mengembalikan directPath");
+      throw new Error("El servidor CDN no devolvió directPath");
     }
 
     return {

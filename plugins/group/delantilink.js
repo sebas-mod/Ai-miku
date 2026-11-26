@@ -33,15 +33,15 @@ function handler(m) {
         const antilinkList = groupData.antilinkList || []
 
         if (antilinkList.length === 0) {
-            return m.reply(`📋 Daftar antilink kosong!`)
+            return m.reply(`📋 ¡La lista de antienlaces está vacía!`)
         }
 
-        let txt = `🔗 *ᴅᴀꜰᴛᴀʀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
+        let txt = `🔗 *LISTA DE ANTIENLACES*\n\n`
         antilinkList.forEach((l, i) => {
             txt += `> ${i + 1}. \`${l}\`\n`
         })
         txt += `\n> Total: *${antilinkList.length}* link`
-        txt += `\n\n\`${m.prefix}delantilink <domain>\` untuk hapus`
+        txt += `\n\n\`${m.prefix}delantilink <domain>\` para eliminar`
 
         return m.reply(txt)
     }
@@ -52,7 +52,7 @@ function handler(m) {
     const index = antilinkList.findIndex(l => l === link)
 
     if (index === -1) {
-        return m.reply(`⚠️ Link \`${link}\` tidak ditemukan di daftar antilink!`)
+        return m.reply(`⚠️ Link \`${link}\` ¡no se encontró en la lista de antienlaces!`)
     }
 
     antilinkList.splice(index, 1)

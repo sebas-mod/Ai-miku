@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         const admins = participants.filter(p => p.admin)
 
         if (admins.length === 0) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada admin di grup ini.`)
+            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No hay administradores en este grupo.`)
             return
         }
 
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
                 adminList += `\`\`\`${i + 1}. @${getParticipantJid(admin).split('@')[0]}\`\`\`\n`
             })
         }
-        adminList += `\n\`Total Admin: ${admins.length}\``
+        adminList += `\n\`Total de administradores: ${admins.length}\``
 
         const mentions = admins.map(a => getParticipantJid(a))
 

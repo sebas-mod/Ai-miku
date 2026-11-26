@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         await sock.groupRevokeInvite(m.chat)
 
         m.react('✅')
-        m.reply(`✅ *ʟɪɴᴋ ɢʀᴜᴘ ᴅɪʀᴇsᴇᴛ*\nLink grup lama sudah tidak berlaku.\nGunakan \`${m.prefix}linkgc\` untuk mendapatkan link baru.`)
+        m.reply(`✅ *ᴇɴʟᴀᴄᴇ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴏ*\nEl enlace anterior del grupo ya no es válido.\nUsa \`${m.prefix}linkgc\` para obtener un enlace nuevo.`)
 
     } catch (err) {
         m.react('☢')

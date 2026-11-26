@@ -24,27 +24,27 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ Hanya admin grup yang bisa menggunakan fitur ini`)
+        return m.reply(`❌ Solo los administradores del grupo pueden usar esta función`)
     }
 
     const args = m.args[0]?.toLowerCase()
     const group = db.getGroup(m.chat) || {}
 
     if (!['on', 'off'].includes(args)) {
-        const status = group.notifDemote === true ? '✅ Aktif' : '❌ Nonaktif'
-        return m.reply(`👤 *ɴᴏᴛɪꜰ ᴅᴇᴍᴏᴛᴇ*\n\n> Status: ${status}\n\n*Penggunaan:*\n\`${m.prefix}notifdemote on\` - Aktifkan\n\`${m.prefix}notifdemote off\` - Nonaktifkan`)
+        const status = group.notifDemote === true ? '✅ Activo' : '❌ Inactivo'
+        return m.reply(`👤 *ɴᴏᴛɪꜰ ᴅᴇᴍᴏᴛᴇ*\n\n> Status: ${status}\n\n*Uso:*\n\`${m.prefix}notifdemote on\` - Activar\n\`${m.prefix}notifdemote off\` - Desactivar`)
     }
 
     if (args === 'on') {
         group.notifDemote = true
         db.setGroup(m.chat, group)
-        return m.reply(`✅ *ɴᴏᴛɪꜰ ᴅᴇᴍᴏᴛᴇ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`✅ *NOTIF DEGRADACIÓN ACTIVADO*`)
     }
 
     if (args === 'off') {
         group.notifDemote = false
         db.setGroup(m.chat, group)
-        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴅᴇᴍᴏᴛᴇ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`❌ *NOTIF DEGRADACIÓN DESACTIVADO*`)
     }
 }
 

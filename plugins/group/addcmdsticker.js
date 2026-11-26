@@ -35,17 +35,17 @@ async function handler(m, { sock }) {
 
         let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴛᴏ ᴄᴏᴍᴍᴀɴᴅ*\n\n`
         txt += `> Responde al sticker y escribe el comando que quieres usar como atajo.\n\n`
-        txt += `*Contoh:*\n`
-        txt += `> Reply sticker, lalu ketik:\n`
+        txt += `*Ejemplo:*\n`
+        txt += `> Reply sticker, y escribe:\n`
         txt += `> \`.addcmdsticker menu\`\n\n`
 
         if (existingCmds.length > 0) {
-            txt += `╭┈┈⬡「 📋 *ᴀᴋᴛɪꜰ* 」\n`
+            txt += `╭┈┈⬡「 📋 *ACTIVO* 」\n`
             for (const cmd of existingCmds.slice(0, 10)) {
                 txt += `┃ 🖼️ → \`${cmd.command}\`\n`
             }
             if (existingCmds.length > 10) {
-                txt += `┃ ... dan ${existingCmds.length - 10} lainnya\n`
+                txt += `┃ ... y ${existingCmds.length - 10} más\n`
             }
             txt += `╰┈┈┈┈┈┈┈┈⬡`
         }
@@ -80,12 +80,12 @@ async function handler(m, { sock }) {
     if (success) {
         await m.react('✅')
         await m.reply(
-            `✅ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ*\n\n` +
+            `✅ *COMANDO DE STICKER AÑADIDO*\n\n` +
             `> 🖼️ Sticker → \`.${cleanCmd}\`\n\n` +
             `_¡Envía ese sticker para ejecutar el comando!_`
         )
     } else {
-        await m.reply('❌ Gagal menyimpan sticker command!')
+        await m.reply('❌ ¡No se pudo guardar el comando de sticker!')
     }
 }
 

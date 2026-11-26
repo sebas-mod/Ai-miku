@@ -166,13 +166,13 @@ async function askPrizeDetails(m, sock, session) {
           "🎁 *GIVEAWAY CREATOR*\n\n" +
           "Pregunta 3/3:\nIndica el premio con este formato:\n" +
           "nombre del premio | detalles del premio\n\n" +
-          "Contoh: Premium Account | Email: xxx@gmail.com | Password: xxx",
+          "Ejemplo: Cuenta Premium | Email: xxx@gmail.com | Contraseña: xxx",
         contextInfo: getCtx(),
       },
       { quoted: m },
     );
   } catch (e) {
-    await m.reply("⚠️ Gagal mengirim PM. Silakan chat bot dulu lalu ulangi.");
+    await m.reply("⚠️ No se pudo enviar el mensaje privado. Habla primero con el bot y vuelve a intentarlo.");
     createSessions.delete(session.adminJid);
   }
 }
@@ -348,13 +348,13 @@ async function endGiveaway(giveawayId, sock, db) {
         {
           text:
             `🎉 *sᴇʟᴀᴍᴀᴛ!*\n\n` +
-            `> Kamu memenangkan giveaway!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+            `> ¡Has ganado el sorteo!\n\n` +
+            `╭┈┈⬡「 📋 *DETALLE* 」\n` +
             `┃ 🎁 ᴛɪᴛʟᴇ: \`${giveaway.title}\`\n` +
             `┃ 🏆 ʜᴀᴅɪᴀʜ: *${giveaway.prizeName}*\n` +
             `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
             `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🎁 *ᴅᴇᴛᴀɪʟ ʜᴀᴅɪᴀʜ* 」\n` +
+            `╭┈┈⬡「 🎁 *DETALLE DEL PREMIO* 」\n` +
             `${giveaway.prizeDetails || "Habla con un administrador para más detalles"}\n` +
             `╰┈┈⬡\n\n` +
             `> _Este mensaje es información oficial del bot._`,

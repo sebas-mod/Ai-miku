@@ -25,19 +25,19 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const DEFAULT_INTRO = `halo kak @user 🖐
+const DEFAULT_INTRO = `hola @user 🖐
 
-Kenalan dulu yukk
-- Nama :
-- Umur :
-- Asal :
-- Hobi :
-- Status :
+Preséntate un poco
+- Nombre :
+- Edad :
+- Origen :
+- Aficiones :
+- Estado :
 
-Semoga betah yahh, di grup @group
+Espero que estés a gusto en el grupo @group
 
-> Untuk Owner:
-ganti intro bawaan dengan .setintro <text>`
+> Para el propietario:
+cambia la presentación con .setintro <texto>`
  function parsePlaceholders(text, m, groupMeta) {
     const now = moment().tz('Asia/Jakarta')
     const dateStr = now.format('D MMMM YYYY')
@@ -45,11 +45,11 @@ ganti intro bawaan dengan .setintro <text>`
 
     return text
         .replace(/@user/gi, `@${m.sender.split('@')[0]}`)
-        .replace(/@group/gi, groupMeta?.subject || 'Grup')
+        .replace(/@group/gi, groupMeta?.subject || 'Grupo')
         .replace(/@count/gi, groupMeta?.participants?.length || '0')
         .replace(/@date/gi, dateStr)
         .replace(/@time/gi, timeStr)
-        .replace(/@desc/gi, groupMeta?.desc || 'Tidak ada deskripsi')
+        .replace(/@desc/gi, groupMeta?.desc || 'Sin descripción')
         .replace(/@botname/gi, config.bot?.name || 'Elysia Assistant')
 }
 

@@ -29,12 +29,12 @@ async function handler(m, { sock }) {
         await sock.removeProfilePicture(m.chat)
 
         await m.reply(
-            `✅ PP Grup sekarang sudah botak`
+            `✅ La foto del grupo ahora está vacía`
         )
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat menghapus foto grup.\n` +
+            `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n` +
+            `> No se puede eliminar la foto del grupo.\n` +
             `> _${error.message}_`
         )
     }

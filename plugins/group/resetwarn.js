@@ -36,9 +36,9 @@ async function handler(m, { sock }) {
 
     if (!targetUser) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *CÓMO USAR*\n\n` +
             `> Reply pesan user + \`${m.prefix}resetwarn\`\n` +
-            `> Atau: \`${m.prefix}resetwarn @user\``
+            `> O: \`${m.prefix}resetwarn @user\``
         )
         return
     }
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split('@')[0]
 
     if (!warnings[targetUser] || warnings[targetUser].length === 0) {
-        await m.reply(`✅ @${targetName} tidak memiliki warning.`, { mentions: [targetUser] })
+        await m.reply(`✅ @${targetName} no tiene advertencias.`, { mentions: [targetUser] })
         return
     }
 
@@ -59,10 +59,10 @@ async function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, warnings: warnings })
 
     await m.reply(
-        `✅ *ᴡᴀʀɴɪɴɢ ᴅɪʀᴇsᴇᴛ*\n` +
-        `Warning @${targetName} berhasil direset!\n` +
+        `✅ *ADVERTENCIAS REINICIADAS*\n` +
+        `¡Las advertencias de @${targetName} se han reiniciado!\n` +
         `Sebelumnya: *${prevCount}/${maxWarns}*\n` +
-        `Sekarang: *0/${maxWarns}*`,
+        `Ahora: *0/${maxWarns}*`,
         { mentions: [targetUser] }
     )
 }

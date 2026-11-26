@@ -30,9 +30,9 @@ function handler(m) {
 
     if (!text) {
         return m.reply(
-            `📝 *sᴇᴛ ɢʀᴜᴘ ʀᴜʟᴇs*\n\n` +
-            `> Masukkan teks rules yang baru\n\n` +
-            `\`Contoh:\`\n` +
+            `📝 *REGLAS DEL GRUPO*\n\n` +
+            `> Envía el nuevo texto de las reglas\n\n` +
+            `\`Ejemplo:\`\n` +
             `\`${m.prefix}setrulesgrup 1. Jangan spam
 2. Hormati sesama\``
         )
@@ -41,9 +41,9 @@ function handler(m) {
     db.setGroup(m.chat, { groupRules: text })
 
     m.reply(
-        `✅ *ɢʀᴜᴘ ʀᴜʟᴇs ᴅɪᴜᴘᴅᴀᴛᴇ*\n\n` +
-        `Rules grup berhasil diubah!\n` +
-        `Ketik \`${m.prefix}rulesgrup\` untuk melihat.`
+        `✅ *REGLAS DEL GRUPO ACTUALIZADAS*\n\n` +
+        `¡Las reglas del grupo se han actualizado!\n` +
+        `Escribe \`${m.prefix}rulesgrup\` para verlas.`
     )
 }
 

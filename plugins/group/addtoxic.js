@@ -31,24 +31,24 @@ async function handler(m, { sock }) {
     if (!word) {
         return m.reply(
             `📝 *ᴀᴅᴅ ᴛᴏxɪᴄ*\n\n` +
-            `> Gunakan: \`.addtoxic <kata>\`\n\n` +
-            `\`Contoh: ${m.prefix}addtoxic katakasar\``
+            `> Usa: \`.addtoxic <kata>\`\n\n` +
+            `\`Ejemplo: ${m.prefix}addtoxic katakasar\``
         )
     }
 
     if (word.length < 2) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata terlalu pendek (min 2 huruf)`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Kata terlalu pendek (min 2 huruf)`)
     }
 
     if (word.length > 30) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata terlalu panjang (max 30 huruf)`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Kata terlalu panjang (max 30 huruf)`)
     }
 
     const groupData = db.getGroup(m.chat) || {}
     const toxicWords = groupData.toxicWords || []
 
     if (toxicWords.includes(word)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata \`${word}\` sudah ada di daftar`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Kata \`${word}\` ya está en la lista`)
     }
 
     toxicWords.push(word)
@@ -57,8 +57,8 @@ async function handler(m, { sock }) {
     m.react('✅')
 
     await m.reply(
-        `✅ *ᴋᴀᴛᴀ ᴛᴏxɪᴄ ᴅɪᴛᴀᴍʙᴀʜ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+        `✅ *PALABRA TÓXICA AÑADIDA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 📝 ᴋᴀᴛᴀ: \`${word}\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ: \`${toxicWords.length}\` kata\n` +
         `╰┈┈⬡`

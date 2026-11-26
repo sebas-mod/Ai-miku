@@ -41,7 +41,7 @@ function resolvePlaceholders(
   return template
     .replace(/{user}/gi, `@${username}`)
     .replace(/{number}/gi, username)
-    .replace(/{group}/gi, groupName || "Grup")
+    .replace(/{group}/gi, groupName || "Grupo")
     .replace(/{desc}/gi, groupDesc || "")
     .replace(/{count}/gi, memberCount?.toString() || "0")
     .replace(/{owner}/gi, groupOwner || "Admin")
@@ -163,7 +163,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       groupMeta?.participants || [],
     );
     const memberCount = groupMeta?.participants?.length || 0;
-    const groupName = groupMeta?.subject || "Grup";
+    const groupName = groupMeta?.subject || "Grupo";
     let userName = realParticipant?.split("@")[0] || "User";
     let ppUrl =
       "https://cdn.gimita.id/download/pp%20kosong%20wa%20default%20(1)_1769506608569_52b57f5b.jpg";
@@ -215,7 +215,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "👋 Halo @" + userName,
+                        display_text: "👋 Hola @" + userName,
                         id: "hi",
                       }),
                     },
@@ -292,7 +292,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           remoteJid: realParticipant
         },
         message: {
-          conversation: `Halo semuanya! 👋`
+          conversation: `¡Hola a todos! 👋`
         }
       };
 
@@ -327,7 +327,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                   {
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
-                      display_text: "👋 Halo",
+                      display_text: "👋 Hola",
                       id: "hi"
                     })
                   }

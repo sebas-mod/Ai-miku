@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
   const db = getDatabase();
   const limit = Math.min(Math.max(parseInt(m.text) || 10, 1), 20);
   const group = db.getGroup(m.chat) || {};
-  const chatName = group.name || "Grup";
+  const chatName = group.name || "Grupo";
   const chatStats = group.chatStats || {};
 
   const sorted = Object.entries(chatStats)
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
   if (!sorted.length) {
     return m.reply(
-      `📊 *ᴛᴏᴘ ᴀᴄᴛɪᴠᴇ ᴍᴇᴍʙᴇʀ*\n\n` + `- Belum ada data aktivitas di grup ini`,
+      `📊 *ᴛᴏᴘ ᴍɪᴇᴍʙʀᴏs ᴀᴄᴛɪᴠᴏs*\n\n` + `- Aún no hay datos de actividad en este grupo`,
     );
   }
 

@@ -31,14 +31,14 @@ async function handler(m, { sock }) {
 
   if (global.absensi[chatId]) {
     return m.reply(
-      `❌ *ᴍᴀsɪʜ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-        `> Masih ada sesi absen di grup ini!\n\n` +
-        `> Ketik *.hapusabsen* untuk menghapus\n` +
-        `> atau *.cekabsen* untuk melihat daftar`,
+      `❌ *TODAVÍA HAY UNA ASISTENCIA ABIERTA*\n\n` +
+        `> ¡Todavía hay una sesión de asistencia en este grupo!\n\n` +
+        `> Escribe *.hapusabsen* para eliminarla\n` +
+        `> o *.cekabsen* para ver la lista`,
     );
   }
 
-  const keterangan = m.text?.trim() || "Absen Harian";
+  const keterangan = m.text?.trim() || "Asistencia diaria";
 
   global.absensi[chatId] = {
     keterangan: keterangan,
@@ -54,11 +54,11 @@ async function handler(m, { sock }) {
     `📋 *ABSEN UDAH JALAN NIHH*\n\n` +
       `「 📋 *ɪɴғᴏ* 」\n` +
       `📝 ${keterangan}\n` +
-      `👑 Dibuat oleh: @${m.sender.split("@")[0]}\n` +
-      `👥 Peserta: 0\n\n` +
-      `Untuk kamu yang mau ikutan absen, silahkan ketik *${m.prefix}absen*` +
-      `Untuk admin yang mau cek absen, silahkan ketik *${m.prefix}cekabsen*` +
-      `Untuk admin yang mau hapus absen, silahkan ketik *${m.prefix}hapusabsen*`,
+      `👑 Creado por: @${m.sender.split("@")[0]}\n` +
+      `👥 Participantes: 0\n\n` +
+      `Si quieres participar en la asistencia, escribe *${m.prefix}absen*` +
+      `Si eres administrador y quieres revisar la asistencia, escribe *${m.prefix}cekabsen*` +
+      `Si eres administrador y quieres borrar la asistencia, escribe *${m.prefix}hapusabsen*`,
     { mentions: [m.sender] },
   );
 }

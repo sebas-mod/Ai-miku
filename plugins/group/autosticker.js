@@ -37,10 +37,10 @@ async function handler(m, { sock }) {
         return m.reply(
             `🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n` +
             `> Status: ${status}\n\n` +
-            `> Gunakan:\n` +
+            `> Usa:\n` +
             `> \`${m.prefix}autosticker on\` - aktifkan\n` +
             `> \`${m.prefix}autosticker off\` - nonaktifkan\n\n` +
-            `> _Otomatis jadikan gambar/video jadi sticker_`
+            `> _Convierte imágenes y videos en stickers automáticamente_`
         )
     }
 
@@ -55,14 +55,14 @@ async function handler(m, { sock }) {
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah nonaktif!`)
+            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya estaba desactivado!`)
         }
         db.setGroup(m.chat, { autosticker: false })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ Berhasil dinonaktifkan!`)
+        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ ¡Desactivado correctamente!`)
     }
 
-    return m.reply(`❌ Gunakan: \`${m.prefix}autosticker on/off\``)
+    return m.reply(`❌ Usa: \`${m.prefix}autosticker on/off\``)
 }
 
 async function autoStickerHandler(m, sock) {

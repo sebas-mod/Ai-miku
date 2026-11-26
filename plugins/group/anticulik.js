@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
         `El bot saldrá solo del grupo si lo añade alguien desconocido sin permiso.\n\n` +
         `*STATUS:*\n` +
         `> Modo: *${status === "on" ? "Activado ✅" : "Desactivado ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticulik on* — Aktifkan\n` +
-        `> *${m.prefix}anticulik off* — Nonaktifkan\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}anticulik on* — Activar\n` +
+        `> *${m.prefix}anticulik off* — Desactivar\n\n` +
         `_Si está activo, el bot solo puede entrar con *${m.prefix}join* o si lo añade el dueño_`
     );
   }
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     db.setting("anticulik", "on");
     const ctx = saluranCtx();
     return m.reply(
-      `🛡️ *Anti Culik Aktif*\n\n` +
+      `🛡️ *Anti Secuestro Activo*\n\n` +
         `> El bot saldrá solo si lo añaden sin permiso\n` +
         `> La única forma de que entre: *${m.prefix}join* por el dueño\n\n` +
         `_El miembro que añada el bot recibirá un aviso_`,
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("anticulik", "off");
     return m.reply(
-      `🛡️ *Anti Culik Nonaktif*\n\n` +
+      `🛡️ *Anti Secuestro Inactivo*\n\n` +
         `> El bot no saldrá solo si lo añaden a un grupo\n` +
         `> Cualquiera puede añadir el bot a un grupo`
     );
@@ -113,8 +113,8 @@ async function handleAntiCulik(event, sock, db) {
   await sock.sendMessage(event.id, {
     text:
       `🛡️ *Anti Culik*\n\n` +
-      `Minimal izin dulu ya bang, jangan asal culik 🗿\n\n` +
-      `> Bot ditambah oleh ${inviterMention} tanpa izin\n` +
+      `Pide permiso primero, no secuestres a lo loco 🗿\n\n` +
+      `> El bot fue añadido por ${inviterMention} sin permiso\n` +
       `> El bot va a salir de este grupo\n\n` +
       `_Contacta al dueño para añadir el bot de la forma correcta_`,
     contextInfo: saluranCtx(),

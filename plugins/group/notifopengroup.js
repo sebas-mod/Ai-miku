@@ -24,27 +24,27 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ Hanya admin grup yang bisa menggunakan fitur ini`)
+        return m.reply(`❌ Solo los administradores del grupo pueden usar esta función`)
     }
 
     const args = m.args[0]?.toLowerCase()
     const group = db.getGroup(m.chat) || {}
 
     if (!['on', 'off'].includes(args)) {
-        const status = group.notifOpenGroup === true ? '✅ Aktif' : '❌ Nonaktif'
-        return m.reply(`🔓 *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ*\n\n> Status: ${status}\n\n*Penggunaan:*\n\`${m.prefix}notifopengroup on\` - Aktifkan\n\`${m.prefix}notifopengroup off\` - Nonaktifkan`)
+        const status = group.notifOpenGroup === true ? '✅ Activo' : '❌ Inactivo'
+        return m.reply(`🔓 *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ*\n\n> Status: ${status}\n\n*Uso:*\n\`${m.prefix}notifopengroup on\` - Activar\n\`${m.prefix}notifopengroup off\` - Desactivar`)
     }
 
     if (args === 'on') {
         group.notifOpenGroup = true
         db.setGroup(m.chat, group)
-        return m.reply(`✅ *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`✅ *NOTIF APERTURA DE GRUPO ACTIVADO*`)
     }
 
     if (args === 'off') {
         group.notifOpenGroup = false
         db.setGroup(m.chat, group)
-        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`❌ *NOTIF APERTURA DE GRUPO DESACTIVADO*`)
     }
 }
 

@@ -70,22 +70,22 @@ async function handler(m, { sock }) {
         const mentions = onlineMembers
 
         let text = `📊 *ᴄᴇᴋ ᴏɴʟɪɴᴇ*\n\n`
-        text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ ɢʀᴜᴘ* 」\n`
+        text += `╭┈┈⬡「 📋 *INFO DEL GRUPO* 」\n`
         text += `┃ 👥 ɴᴀᴍᴀ: *${groupMetadata.subject}*\n`
-        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` member\n`
-        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` member\n`
+        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` miembros\n`
+        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` miembros\n`
         text += `╰┈┈⬡\n\n`
 
         if (onlineMembers.length === 0) {
             text += `> _Ningún miembro detectado en línea_\n`
             text += `> _Asegúrate de que los miembros hayan abierto WhatsApp_`
         } else {
-            text += `╭┈┈⬡「 🟢 *ᴍᴇᴍʙᴇʀ ᴏɴʟɪɴᴇ* 」\n`
+            text += `╭┈┈⬡「 🟢 *MIEMBROS EN LÍNEA* 」\n`
 
             let count = 0
             for (const jid of onlineMembers) {
                 if (count >= 50) {
-                    text += `┃ ... dan ${onlineMembers.length - 50} member lainnya\n`
+                    text += `┃ ... dan ${onlineMembers.length - 50} miembros más\n`
                     break
                 }
                 const number = jid.split('@')[0]

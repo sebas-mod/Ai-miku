@@ -30,11 +30,11 @@ async function handler(m, { sock }) {
 
   if (args !== "on" && args !== "off") {
     return m.reply(
-      `🎮 *FITUR GAME GRUP*\n\n` +
-        `Gunakan perintah ini untuk mengatur akses member ke fitur game.\n\n` +
-        `• *${m.prefix}game on* - Member bisa main game\n` +
-        `• *${m.prefix}game off* - Member tidak bisa main game\n\n` +
-        `*Catatan:* Admin tetap bisa mengakses game meskipun dimatikan.`,
+      `🎮 *FUNCIONES DE JUEGO DEL GRUPO*\n\n` +
+        `Usa este comando para controlar el acceso de los miembros a los juegos.\n\n` +
+        `• *${m.prefix}game on* - Los miembros pueden jugar\n` +
+        `• *${m.prefix}game off* - Los miembros no pueden jugar\n\n` +
+        `*Nota:* Los administradores pueden acceder a los juegos aunque estén desactivados.`,
     );
   }
 
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
   const isEnable = args === "on";
 
   if (group.game === isEnable) {
-    return m.reply(`🎮 Fitur game sudah *${isEnable ? "AKTIF" : "NONAKTIF"}* di grup ini.`);
+    return m.reply(`🎮 La función de juegos ya está *${isEnable ? "ACTIVA" : "INACTIVA"}* en este grupo.`);
   }
 
   group.game = isEnable;
@@ -52,10 +52,10 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ Berhasil *${isEnable ? "MENGAKTIFKAN" : "MENONAKTIFKAN"}* fitur game di grup ini!\n\n` +
+    `✅ La función de juegos se ha *${isEnable ? "ACTIVADO" : "DESACTIVADO"}* en este grupo!\n\n` +
     (isEnable
-      ? `Member sekarang bisa menggunakan semua perintah di menu game.`
-      : `Member tidak akan bisa menggunakan perintah game lagi.`),
+      ? `Ahora los miembros pueden usar todos los comandos del menú de juegos.`
+      : `Los miembros ya no podrán usar los comandos de juegos.`),
   );
 }
 

@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
       return;
     }
 
-    let txt = `⚠️ *ᴅᴀꜰᴛᴀʀ ᴡᴀʀɴɪɴɢ*\n\n`;
+    let txt = `⚠️ *LISTA DE ADVERTENCIAS*\n\n`;
 
     usersWithWarnings.forEach((user, i) => {
       const count = warnings[user].length;

@@ -35,12 +35,12 @@ async function handler(m, { sock, db }) {
         return m.reply(
             `🛡️ *ANTI SPAM GROUP*\n\n` +
             `Esta función protege al grupo de los miembros que envían mensajes repetidos muy rápido y de forma abusiva, molestando a los demás\n\n` +
-            `*Cara pakai:*\n` +
+            `*Cómo usar:*\n` +
             `> \`${m.prefix}antispam on\` (Activa el antispam)\n` +
             `> \`${m.prefix}antispam off\` (Desactiva el antispam)\n\n` +
-            `*Pilih Metode Hukuman:*\n` +
+            `*Elige el método de castigo:*\n` +
             `> \`${m.prefix}antispam warning\` (Amonesta hasta 3 veces)\n` +
-            `> \`${m.prefix}antispam kick\` (Otomatis tendang spammer langsung tanpa ampun)\n` +
+            `> \`${m.prefix}antispam kick\` (Expulsa al spammer al instante y sin piedad)\n` +
             `> \`${m.prefix}antispam delete\` (Borra todos los mensajes de spam enviados)\n\n` +
             `*Atur Sensitivitas Jeda (Delay):*\n` +
             `> \`${m.prefix}antispam 2\` (Fija un máximo de 2 segundos entre mensajes)\n` +
@@ -80,7 +80,7 @@ async function handler(m, { sock, db }) {
 
         await m.reply(
             `🛡️ *ANTI SPAM DIPERBARUI*\n\n` +
-            `> Status: *${isEnable ? "AKTIF ✅" : "NONAKTIF ❌"}*\n\n` +
+            `> Status: *${isEnable ? "ACTIVO ✅" : "INACTIVO ❌"}*\n\n` +
             `El bot ahora ${isEnable ? "vigilará de cerca" : "dejará de vigilar"} cualquier spam o flood de mensajes de los miembros de este grupo`
         )
     } else {
@@ -156,7 +156,7 @@ async function handleSpamAction(m, sock, db) {
             spamTracker.set(chatKey, userData)
         } else {
             await m.reply(
-                `⚠️ *TEGURAN SPAM TERDETEKSI*\n\n` +
+                `⚠️ *AVISO DE SPAM DETECTADO*\n\n` +
                 `> Aviso ${userData.warnings} de un máximo de 3\n\n` +
                 `Hola @${senderId.split("@")[0]}, ¡no envíes mensajes repetidos rápidamente en este grupo! Nuestro sistema detectó tu actividad como spam. Respeta la comodidad de los demás miembros`,
                 { mentions: [senderId] }
@@ -175,7 +175,7 @@ async function handleSpamAction(m, sock, db) {
             spamTracker.delete(chatKey)
         } else {
             await m.reply(
-                `⚠️ *SPAM TERDETEKSI*\n\n` +
+                `⚠️ *SPAM DETECTADO*\n\n` +
                 `Se detectó spam abusivo de @${senderId.split("@")[0]}, pero el bot no puede expulsarlo porque ahora mismo no es administrador del grupo. Hazlo admin para que esta función trabaje al máximo.`,
                 { mentions: [senderId] }
             )

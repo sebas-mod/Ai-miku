@@ -33,23 +33,23 @@ async function handler(m, { sock }) {
 
   if (groupData.mutegc) {
     return m.reply(
-      `🔇 *Mute GC Sudah Aktif*\n\n` +
-        `> Member tidak bisa menggunakan command bot di grup ini\n` +
-        `> Hanya admin grup dan owner bot yang bisa akses\n\n` +
-        `_Ketik *${m.prefix}unmutegc* untuk membuka_`
+      `🔇 *Mute del grupo ya activo*\n\n` +
+        `> Los miembros no pueden usar los comandos del bot en este grupo\n` +
+        `> Solo los administradores del grupo y el propietario del bot tienen acceso\n\n` +
+        `_Escribe *${m.prefix}unmutegc* para abrir_`
     );
   }
 
   db.setGroup(m.chat, { mutegc: true });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔇 *Mute GC Aktif*\n\n` +
-      `> Grup: *${groupName}*\n` +
-      `> Member tidak bisa menggunakan command bot\n` +
-      `> Admin grup dan owner bot tetap bisa akses\n\n` +
-      `_Ketik *${m.prefix}unmutegc* untuk membuka_`,
+    `🔇 *Mute del grupo activo*\n\n` +
+      `> Grupo: *${groupName}*\n` +
+      `> Los miembros no pueden usar los comandos del bot\n` +
+      `> Los administradores del grupo y el propietario del bot siguen teniendo acceso\n\n` +
+      `_Escribe *${m.prefix}unmutegc* para abrir_`,
     { contextInfo: ctx }
   );
 }

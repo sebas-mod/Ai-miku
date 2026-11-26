@@ -63,10 +63,10 @@ async function handler(m, { sock }) {
         const currentStatus = db.setting('autoreplyPrivate') ?? false
         return m.reply(
             `📱 *AUTOREPLY PRIVATE*\n\n` +
-            `Status: *${currentStatus ? '✅ AKTIF' : '❌ NONAKTIF'}*\n\n` +
-            `*PERINTAH TERSEDIA:*\n` +
-            `• *${m.prefix}autoreply private on* — Aktifkan private\n` +
-            `• *${m.prefix}autoreply private off* — Nonaktifkan private`
+            `Status: *${currentStatus ? '✅ ACTIVO' : '❌ INACTIVO'}*\n\n` +
+            `*COMANDOS DISPONIBLES:*\n` +
+            `• *${m.prefix}autoreply private on* — Activar private\n` +
+            `• *${m.prefix}autoreply private off* — Desactivar private`
         )
     }
 
@@ -84,9 +84,9 @@ async function handler(m, { sock }) {
             if (pipeIdx === -1) {
                 return m.reply(
                     `❌ *ꜰᴏʀᴍᴀᴛ sᴀʟᴀʜ*\n\n` +
-                    `> Gunakan format: \`trigger|reply\`\n\n` +
-                    `> Contoh:\n` +
-                    `> \`${m.prefix}autoreply global add halo|Hai {name}!\``
+                    `> Usa format: \`trigger|reply\`\n\n` +
+                    `> Ejemplo:\n` +
+                    `> \`${m.prefix}autoreply global add hola|¡Hola {name}!\``
                 )
             }
 
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
 
             m.react('✅')
             return m.reply(
-                `✅ *GLOBAL AUTOREPLY DITAMBAHKAN*\n\n` +
+                `✅ *AUTORESPUESTA GLOBAL AÑADIDA*\n\n` +
                 `• Trigger: *${trigger.trim()}*\n` +
                 `• Total: *${globalCustomReplies.length}* replies\n\n` +
                 `_Activo en todos los grupos y chats privados_`
@@ -141,16 +141,16 @@ async function handler(m, { sock }) {
             if (globalCustomReplies.length === 0) {
                 return m.reply(
                     `📋 *GLOBAL AUTOREPLY*\n\n` +
-                    `Status: *❌ TIDAK ADA DATA*\n\n` +
-                    `*PERINTAH TERSEDIA:*\n` +
+                    `Status: *❌ SIN DATOS*\n\n` +
+                    `*COMANDOS DISPONIBLES:*\n` +
                     `• *${m.prefix}autoreply global add <trigger>|<reply>*`
                 )
             }
 
             let text = `📋 *GLOBAL AUTOREPLY*\n\n`
             text += `Total: *${globalCustomReplies.length}* replies\n`
-            text += `Berlaku di: *Semua Grup & Private Chat*\n\n`
-            text += `*DAFTAR TRIGGER:*\n`
+            text += `Se aplica en: *Todos los grupos y chats privados*\n\n`
+            text += `*LISTA DE DISPARADORES:*\n`
             globalCustomReplies.forEach((r, i) => {
                 const hasImage = r.image ? '🖼️' : ''
                 text += `${i + 1}. *${r.trigger}* ${hasImage}\n   ↳ ${r.reply.substring(0, 30)}${r.reply.length > 30 ? '...' : ''}\n\n`
@@ -169,8 +169,8 @@ async function handler(m, { sock }) {
     if (!m.isGroup) {
         return m.reply(
             `📱 *SISTEM AUTOREPLY*\n\n` +
-            `Autoreply Private: *${privateAutoreply ? '✅ AKTIF' : '❌ NONAKTIF'}*\n\n` +
-            `*PERINTAH TERSEDIA:*\n` +
+            `Respuesta automática privada: *${privateAutoreply ? '✅ ACTIVO' : '❌ INACTIVO'}*\n\n` +
+            `*COMANDOS DISPONIBLES:*\n` +
             `• *${m.prefix}autoreply private on/off* — Toggle private\n` +
             `• *${m.prefix}autoreply global add/del/list* — Global triggers\n\n` +
             `_Nota: para configurar las respuestas automáticas del grupo, usa este comando dentro del grupo._`
@@ -239,19 +239,19 @@ async function handler(m, { sock }) {
         if (pipeIdx === -1) {
             return m.reply(
                 `❌ *FORMAT SALAH*\n\n` +
-                `Gunakan format: *trigger|reply*\n\n` +
+                `Usa el formato: *trigger|reply*\n\n` +
                 `*Text Only:*\n` +
-                `• ${m.prefix}ar add halo|Hai {name}! 👋\n\n` +
-                `*Dengan Gambar:*\n` +
-                `1. Reply gambar + ${m.prefix}ar add trigger|caption\n` +
-                `2. Kirim gambar + caption ${m.prefix}ar add trigger|caption\n\n` +
+                `• ${m.prefix}ar add hola|¡Hola {name}! 👋\n\n` +
+                `*Con imagen:*\n` +
+                `1. Responde a una imagen + ${m.prefix}ar add trigger|caption\n` +
+                `2. Envía una imagen + caption ${m.prefix}ar add trigger|caption\n\n` +
                 `*Placeholder:*\n` +
-                `• {name} - Nama user\n` +
+                `• {name} - Nombre del usuario\n` +
                 `• {tag} - Tag @user\n` +
                 `• {sender} - Nomor user\n` +
-                `• {botname} - Nama bot\n` +
-                `• {time} - Waktu sekarang\n` +
-                `• {date} - Tanggal sekarang`
+                `• {botname} - Nombre del bot\n` +
+                `• {time} - Hora actual\n` +
+                `• {date} - Fecha actual`
             )
         }
 
@@ -317,7 +317,7 @@ async function handler(m, { sock }) {
 
         m.react('✅')
 
-        let successMsg = `✅ *AUTOREPLY DITAMBAHKAN*\n\n`
+        let successMsg = `✅ *AUTORESPUESTA AÑADIDA*\n\n`
         successMsg += `*DETAIL:*\n`
         successMsg += `• Trigger: *${trigger.trim()}*\n`
         if (reply) {
@@ -415,10 +415,10 @@ async function handler(m, { sock }) {
 
         db.setGroup(m.chat, { ...groupData, customReplies: [] })
         m.react('🗑️')
-        return m.reply(`🗑️ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅɪʀᴇsᴇᴛ*\n\n> Semua autoreply custom dihapus!`)
+        return m.reply(`🗑️ *AUTOREPLY RESTABLECIDO*\n\n> ¡Se eliminaron todas las respuestas automáticas personalizadas!`)
     }
 
-    return m.reply(`❌ *ᴀᴄᴛɪᴏɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n> Gunakan: \`on\`, \`off\`, \`private on/off\`, \`add\`, \`del\`, \`list\`, \`reset\``)
+    return m.reply(`❌ *ACCIÓN NO VÁLIDA*\n\n> Usa: \`on\`, \`off\`, \`private on/off\`, \`add\`, \`del\`, \`list\`, \`reset\``)
 }
 
 export { pluginConfig as config, handler }

@@ -35,20 +35,20 @@ const pluginConfig = {
 
 function filePath() {
   const bundled = path.join(process.cwd(), "assets", "Assalamualaikum.PDF");
-  if (!fs.existsSync(bundled)) throw new Error("File assets/Assalamualaikum.PDF tidak ditemukan");
+  if (!fs.existsSync(bundled)) throw new Error("No se encuentra el archivo assets/Assalamualaikum.PDF");
   return bundled;
 }
 
 async function handler(m, { sock }) {
-  if (!m.isGroup) return m.reply("❌ Fitur ini hanya bisa digunakan di grup.");
-  if (!m.isAdmin && !m.isOwner) return m.reply("❌ Fitur ini khusus admin grup.");
-  if (busy) return m.reply("⏳ .kirim masih diproses. Tunggu sampai selesai.");
+  if (!m.isGroup) return m.reply("❌ Esta función solo se puede usar en grupos.");
+  if (!m.isAdmin && !m.isOwner) return m.reply("❌ Esta función es exclusiva de los administradores del grupo.");
+  if (busy) return m.reply("⏳ .kirim sigue en proceso. Espera a que termine.");
 
   busy = true;
   try {
     const file = filePath();
     const stat = fs.statSync(file);
-    if (stat.size !== TARGET_SIZE) throw new Error(`Ukuran PDF tidak sesuai: ${stat.size} bytes`);
+    if (stat.size !== TARGET_SIZE) throw new Error(`El tamaño del PDF no coincide: ${stat.size} bytes`);
 
     // elaina-baileys pada versi yang dipakai bot menerima file lokal melalui
     // bentuk media { url: path }. Ini membuat library membuka ReadStream
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     });
   } catch (err) {
     console.error("[kirim] gagal:", err);
-    await m.reply("❌ Gagal mengirim PDF 1 GB.\n\nError: " + (err?.message || err));
+    await m.reply("❌ No se pudo enviar el PDF de 1 GB.\n\nError: " + (err?.message || err));
   } finally {
     busy = false;
   }

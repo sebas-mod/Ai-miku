@@ -79,11 +79,11 @@ function formatAction(action) {
 
 function parsePatternAnswer(text) {
   const raw = String(text || "").trim();
-  if (!raw) return { error: "Jawabannya masih kosong." };
+  if (!raw) return { error: "La respuesta está vacía." };
 
   if (/^regex\s*:/i.test(raw)) {
     const pattern = raw.replace(/^regex\s*:/i, "").trim();
-    if (!pattern) return { error: "Regex kosong. Isi setelah `regex:` ya." };
+    if (!pattern) return { error: "Regex vacío. Escribe algo después de `regex:`." };
     try {
       new RegExp(pattern, "i");
     } catch {
@@ -117,7 +117,7 @@ function parsePatternAnswer(text) {
 
 function buildSummary(session) {
   return (
-    `> Judul: *${session.title}*\n` +
+    `> Título: *${session.title}*\n` +
     `> Tipe deteksi: *${session.type}*\n` +
     `> Pattern: ${session.patterns.map((item) => `\`${item}\``).join(", ")}\n` +
     `> Action: *${formatAction(session.action)}*`
@@ -236,7 +236,7 @@ async function handler(m, { sock }) {
 
   if (sub === "on") {
     db.setGroup(m.chat, { anticustom: "on" });
-    await m.reply("✅ *AntiCustom diaktifkan*");
+    await m.reply("✅ *AntiCustom activado*");
     return;
   }
 
@@ -256,7 +256,7 @@ async function handler(m, { sock }) {
     }
     db.setGroup(m.chat, { anticustom: "on", anticustomMode: action });
     await m.reply(
-      `✅ *Mode default AntiCustom sekarang ${action.toUpperCase()}*`,
+      `✅ *El modo predeterminado de AntiCustom ahora es ${action.toUpperCase()}*`,
     );
     return;
   }
@@ -275,7 +275,7 @@ async function handler(m, { sock }) {
   if (sub === "del" || sub === "delete" || sub === "remove") {
     const name = args.slice(1).join(" ").trim().toLowerCase();
     if (!name) {
-      await m.reply("❌ Format: `.anticustom del <judul>`");
+      await m.reply("❌ Formato: `.anticustom del <título>`");
       return;
     }
 

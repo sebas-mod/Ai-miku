@@ -144,9 +144,9 @@ async function handler(m, { sock }) {
         if (!text) {
             return m.reply(
                 `📢 *HIDETAG*\n\n` +
-                `• Reply pesan lalu ketik \`${m.prefix}ht\`\n` +
-                `• Atau ketik \`${m.prefix}ht <pesan>\`\n\n` +
-                `Support: teks, gambar, video, sticker, audio, dokumen`
+                `• Responde a un mensaje y escribe \`${m.prefix}ht\`\n` +
+                `• O escribe \`${m.prefix}ht <mensaje>\`\n\n` +
+                `Compatible con: texto, imágenes, videos, stickers, audio y documentos`
             )
         }
 

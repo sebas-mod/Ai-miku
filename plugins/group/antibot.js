@@ -32,7 +32,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antibot: "🤖 *AntiBot* — @%user% terdeteksi sebagai bot dan di-kick.",
+    antibot: "🤖 *AntiBot* — @%user% fue detectado como bot y expulsado.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {
@@ -196,7 +196,7 @@ function handler(m, { sock }) {
   if (!args || args === "status") {
     return m.reply(
       `🤖 *AntiBot*\n\n` +
-      `> Status: ${current ? "✅ Aktif" : "❌ Nonaktif"}\n\n` +
+      `> Status: ${current ? "✅ Activo" : "❌ Inactivo"}\n\n` +
       `> Deteksi: *Smart Heuristic*\n\n` +
       `> \`.antibot on/off\``,
     );
@@ -206,7 +206,7 @@ function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, antibot: true });
     db.save();
     m.react("✅");
-    return m.reply(`✅ *AntiBot diaktifkan*`);
+    return m.reply(`✅ *AntiBot activado*`);
   }
 
   if (args === "off") {

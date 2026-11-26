@@ -52,12 +52,12 @@ async function handler(m, { sock }) {
     const action = args[0]?.toLowerCase() || rawArgs.split(/\s+/)[0]?.toLowerCase();
     const group = db.getGroup(m.chat) || {};
 
-    const defaultOpenMsg = `🔓 *ᴊᴀᴅᴡᴀʟ ᴏᴘᴇɴ*\n\n> Grup dibuka otomatis sesuai jadwal.\n> Waktu: {time} WIB`;
-    const defaultCloseMsg = `🔒 *ᴊᴀᴅᴡᴀʟ ᴄʟᴏsᴇ*\n\n> Grup ditutup otomatis sesuai jadwal.\n> Waktu: {time} WIB`;
+    const defaultOpenMsg = `🔓 *ʜᴏʀᴀʀɪᴏ ᴀᴘᴇʀᴛᴜʀᴀ*\n\n> El grupo se abre automáticamente según el horario.\n> Hora: {time} WIB`;
+    const defaultCloseMsg = `🔒 *ʜᴏʀᴀʀɪᴏ ᴄɪᴇʀʀᴇ*\n\n> El grupo se cierra automáticamente según el horario.\n> Hora: {time} WIB`;
 
     const renderMessage = (template, time) => {
         const meta = m.groupMetadata || {};
-        const subject = meta.subject || group.subject || 'Grup';
+        const subject = meta.subject || group.subject || 'Grupo';
         const count = meta.participants?.length ?? group.memberCount ?? '-';
         const now = new Date();
         const date = now.toLocaleDateString('id-ID', { timeZone: 'Asia/Jakarta' });

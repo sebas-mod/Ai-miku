@@ -51,10 +51,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            `🔇 *MUTE MEMBER*\n\n` +
+            `🔇 *SILENCIAR MIEMBRO*\n\n` +
             `> Silencia a un miembro concreto en este grupo\n` +
             `> El bot borra los mensajes del miembro silenciado\n\n` +
-            `\`Contoh:\`\n` +
+            `\`Ejemplo:\`\n` +
             `> ${m.prefix}mutemember @user\n` +
             `> ${m.prefix}mutemember 6281234567890\n` +
             `> Responde al mensaje del miembro + ${m.prefix}mutemember`
@@ -91,8 +91,8 @@ async function handler(m, { sock }) {
 
     m.react('🔇')
     await m.reply(
-        `🔇 *MEMBER DIMUTE*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+        `🔇 *MIEMBRO SILENCIADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
         `┃ 🔇 sᴛᴀᴛᴜs: \`Muted\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +

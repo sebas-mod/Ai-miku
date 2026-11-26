@@ -30,9 +30,9 @@ async function handler(m, { sock }) {
 
         if (groupMeta.announce) {
             await m.reply(
-                `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Grup sudah dalam keadaan \`tertutup\`.\n` +
-                `> Hanya admin yang bisa mengirim pesan.`
+                `⚠️ *ᴠᴀʟɪᴅᴀᴄɪóɴ ꜰᴀʟʟɪᴅᴀ*\n\n` +
+                `> El grupo ya está \`cerrado\`.\n` +
+                `> Solo los administradores pueden enviar mensajes.`
             );
             return;
         }
@@ -41,14 +41,14 @@ async function handler(m, { sock }) {
 
         const senderNum = m.sender.split('@')[0];
 
-        const successMsg = `✅ @${senderNum} telah menutup grup ini`;
+        const successMsg = `✅ @${senderNum} ha cerrado este grupo`;
 
         await m.reply(successMsg, {mentions: [m.sender]})
 
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal menutup grup.\n` +
+            `> No se pudo cerrar el grupo.\n` +
             `> _${error.message}_`
         );
     }

@@ -35,9 +35,9 @@ async function handler(m, { sock }) {
 
   if (isSelfGroup) {
     return m.reply(
-      `ℹ️ *ɢʀᴜᴘ ɪɴɪ sᴜᴅᴀʜ ᴍᴏᴅᴇ sᴇʟꜰ*\n\n` +
-        `> Bot hanya merespon owner & bot sendiri\n\n` +
-        `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+      `ℹ️ *ESTE GRUPO YA ESTÁ EN MODO SELF*\n\n` +
+        `> El bot solo responde al propietario y a sí mismo\n\n` +
+        `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
     );
   }
 
@@ -50,12 +50,12 @@ async function handler(m, { sock }) {
 
   m.react("🔒");
   return m.reply(
-    `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
-      `> Bot di grup ini sekarang hanya merespon:\n` +
-      `> • Owner bot\n` +
+    `🔒 *MODO SELF ACTIVO*\n\n` +
+      `> Ahora el bot en este grupo solo responde a:\n` +
+      `> • Propietario del bot\n` +
       `> • Bot sendiri (fromMe)\n\n` +
-      `📋 *Grup lain tidak terpengaruh*\n\n` +
-      `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+      `📋 *Los demás grupos no se ven afectados*\n\n` +
+      `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
   );
 }
 

@@ -55,9 +55,9 @@ async function handler(m, { sock }) {
 
   if (!targetJid) {
     await m.reply(
-      `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
+      `❌ *OBJETIVO NO ENCONTRADO*\n\n` +
         `> ¡Responde a un mensaje del usuario, menciónalo o escribe su número!\n` +
-        `> Contoh: \`${m.prefix}kick @user\``
+        `> Ejemplo: \`${m.prefix}kick @user\``
     );
     return;
   }

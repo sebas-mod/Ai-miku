@@ -44,7 +44,7 @@ function handler(m, { sock }) {
         `> • www. (subdomain)\n` +
         `> • Domain extension (.com, .id, .io, .net, dll)\n` +
         `> • Shortlink (bit.ly, t.me, tinyurl, dll)\n\n` +
-        `*PENGGUNAAN:*\n` +
+        `*USO:*\n` +
         `> *${m.prefix}antilinkall on* — Activar\n` +
         `> *${m.prefix}antilinkall off* — Desactivar\n` +
         `> *${m.prefix}antilinkall metode kick* — Mode kick user\n` +
@@ -87,7 +87,7 @@ function handler(m, { sock }) {
   if (option === "kick") {
     db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "kick" });
     return m.reply(
-      `✅ *Antilink All — Mode Kick*\n\n> User yang kirim link akan di-kick`
+      `✅ *Antilink All — Modo expulsión*\n\n> El usuario que envíe un enlace será expulsado`
     );
   }
 

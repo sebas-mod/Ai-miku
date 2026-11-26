@@ -38,7 +38,7 @@ function handler(m) {
             `🎰 *ᴀɴᴛɪᴊᴜᴅᴏʟ*\n\n` +
             `> Status: *${status.toUpperCase()}*\n` +
             `> Mode: *${mode.toUpperCase()}*\n\n` +
-            `> Deteksi konten judol seperti judi, slot, gacor, maxwin, togel, bonus member, link alternatif, dan pola sejenis.\n\n` +
+            `> Detecta contenido de apuestas como judi, slot, gacor, maxwin, togel, bonos para miembros, enlaces alternativos y patrones similares.\n\n` +
             `> \`${m.prefix}antijudol on\`\n` +
             `> \`${m.prefix}antijudol off\`\n` +
             `> \`${m.prefix}antijudol metode kick\`\n` +
@@ -48,7 +48,7 @@ function handler(m) {
 
     if (option === 'on') {
         db.setGroup(m.chat, { antijudol: 'on' })
-        return m.reply('✅ *AntiJudol diaktifkan*')
+        return m.reply('✅ *AntiJudol activado*')
     }
 
     if (option === 'off') {
@@ -60,26 +60,26 @@ function handler(m) {
         const method = m.args?.[1]?.toLowerCase()
         if (method === 'kick') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-            return m.reply('✅ *AntiJudol mode KICK diaktifkan*')
+            return m.reply('✅ *AntiJudol en modo EXPULSAR activado*')
         }
         if (method === 'remove' || method === 'delete') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-            return m.reply('✅ *AntiJudol mode DELETE diaktifkan*')
+            return m.reply('✅ *AntiJudol en modo BORRAR activado*')
         }
-        return m.reply(`❌ Metode tidak valid! Gunakan: \`kick\` atau \`remove\``)
+        return m.reply(`❌ ¡Método no válido! Usa: \`kick\` o \`remove\``)
     }
 
     if (option === 'kick') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-        return m.reply('✅ *AntiJudol mode KICK diaktifkan*')
+        return m.reply('✅ *AntiJudol en modo EXPULSAR activado*')
     }
 
     if (option === 'remove' || option === 'delete') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-        return m.reply('✅ *AntiJudol mode DELETE diaktifkan*')
+        return m.reply('✅ *AntiJudol en modo BORRAR activado*')
     }
 
-    return m.reply('❌ Opsi tidak valid! Gunakan: `on`, `off`, `metode kick`, `metode remove`')
+    return m.reply('❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick` o `metode remove`')
 }
 
 export { pluginConfig as config, handler }

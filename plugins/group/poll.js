@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
 
     if (!text || text.trim() === '') {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> ¡Formato no válido!\n\n` +
             `*Format:*\n` +
             `> \`.poll pertanyaan | opsi1, opsi2\`\n\n` +
-            `*Contoh:*\n` +
+            `*Ejemplo:*\n` +
             `> \`.poll ¿Qué comemos? | Arroz frito, Fideos\`\n\n` +
             `*Opsi tambahan:*\n` +
             `> \`.poll multi | pertanyaan | opsi1, opsi2, opsi3, dst\`\n` +
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (parts.length < 2) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> Format: \`pertanyaan | opsi1, opsi2, ...\``
         );
         return;
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
     if (options.length < 2) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> ¡Mínimo 2 opciones!`
         );
         return;
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
 
     if (options.length > 12) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> ¡Máximo 12 opciones!`
         );
         return;
@@ -77,9 +77,9 @@ async function handler(m, { sock }) {
 
     if (question.length > 255) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> Pertanyaan terlalu panjang!\n` +
-            `> Maksimal 255 karakter.`
+            `> Máximo 255 caracteres.`
         );
         return;
     }
@@ -100,7 +100,7 @@ async function handler(m, { sock }) {
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal membuat poll.\n` +
+            `> No se pudo crear la encuesta.\n` +
             `> _${error.message}_`
         );
     }

@@ -39,7 +39,7 @@ function handler(m) {
     const groupData = db.getGroup(m.chat) || {}
     const customList = groupData.antilinkList || []
 
-    let txt = `🔗 *ᴅᴀꜰᴛᴀʀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
+    let txt = `🔗 *LISTA DE ANTIENLACES*\n\n`
 
     txt += `╭┈┈⬡「 📌 *ᴅᴇꜰᴀᴜʟᴛ* 」\n`
     DEFAULT_BLOCKED_LINKS.forEach((l, i) => {
@@ -57,8 +57,8 @@ function handler(m) {
 
     txt += `> Default: *${DEFAULT_BLOCKED_LINKS.length}* link\n`
     txt += `> Custom: *${customList.length}* link\n\n`
-    txt += `\`${m.prefix}addantilink <link>\` untuk tambah\n`
-    txt += `\`${m.prefix}delantilink <link>\` untuk hapus`
+    txt += `\`${m.prefix}addantilink <link>\` para añadir\n`
+    txt += `\`${m.prefix}delantilink <link>\` para eliminar`
 
     m.reply(txt)
 }

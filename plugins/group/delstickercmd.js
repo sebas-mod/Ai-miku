@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         }
 
         let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅs*\n\n`
-        txt += `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
+        txt += `╭┈┈⬡「 📋 *LISTA* 」\n`
 
         for (const cmd of existingCmds) {
             txt += `┃ 🖼️ → \`.${cmd.command}\`\n`
@@ -90,9 +90,9 @@ async function handler(m, { sock }) {
         )
     } else {
         await m.reply(
-            `❌ Gagal menghapus!\n\n` +
+            `❌ ¡No se pudo borrar!\n\n` +
             `> Responde al sticker que quieres eliminar, o\n` +
-            `> Ketik nama command: \`.delstickercmd menu\``
+            `> Escribe el nombre del comando: \`.delstickercmd menu\``
         )
     }
 }

@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
 
     if (!target) {
         await m.reply(
-            `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Reply pesan user atau mention!\n` +
-            `> Contoh: \`${m.prefix}promote @user\``
+            `❌ *OBJETIVO NO ENCONTRADO*\n\n` +
+            `> ¡Responde al mensaje del usuario o menciónalo!\n` +
+            `> Ejemplo: \`${m.prefix}promote @user\``
         )
         return
     }
@@ -49,19 +49,19 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di grup!`)
+            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Usuario no encontrado en el grupo!`)
             return
         }
 
         if (participant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User sudah menjadi admin!`)
+            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El usuario ya es administrador!`)
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'promote')
 
         await m.reply(
-            `✅ @${target.split('@')[0]} sekarang menjadi admin!`,
+            `✅ @${target.split('@')[0]} ¡ahora es administrador!`,
             { mentions: [target] }
         )
 

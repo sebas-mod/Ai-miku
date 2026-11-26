@@ -75,9 +75,9 @@ function handler(m, { sock }) {
         }
 
         return m.reply(
-            `🔧 *ʙᴏᴛ ᴍᴏᴅᴇ*\n\n` +
+            `🔧 *MODO DEL BOT*\n\n` +
             `> Modo actual: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Desconocido'})\n` +
-            `\n╭─「 📋 *ᴘɪʟɪʜᴀɴ* 」\n` +
+            `\n╭─「 📋 *OPCIONES* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
             `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n` +
@@ -111,17 +111,17 @@ function handler(m, { sock }) {
     if (mode === 'store') {
         const products = newGroupData.storeConfig?.products || []
         extraInfo = `\n\n📋 *Manual mode*\n` +
-            `> Admin perlu confirm order manual\n` +
+            `> El administrador debe confirmar el pedido manualmente\n` +
             `> Product: \`${products.length}\` item\n\n` +
             `*ᴘᴀɴᴅᴜᴀɴ:*\n` +
-            `> \`${m.prefix}addprod <kode> <harga> <nama>\`\n` +
-            `> \`${m.prefix}listprod\` - Lihat produk`
+            `> \`${m.prefix}addprod <código> <precio> <nombre>\`\n` +
+            `> \`${m.prefix}listprod\` - Ver productos`
     }
 
     return m.reply(
-        `✅ *ᴍᴏᴅᴇ ᴅɪᴜʙᴀʜ*\n\n` +
+        `✅ *MODO CAMBIADO*\n\n` +
         `> Mode: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
-        `> Grup: *${m.chat.split('@')[0]}*\n` +
+        `> Grupo: *${m.chat.split('@')[0]}*\n` +
         extraInfo +
         `\n\n> Escribe \`${m.prefix}menu\` para ver el menú.`
     )

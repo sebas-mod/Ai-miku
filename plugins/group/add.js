@@ -30,16 +30,16 @@ async function handler(m, { sock }) {
 
     if (args.length === 0) {
         return m.reply(
-            `👥 *ᴀᴅᴅ ᴍᴇᴍʙᴇʀ*\n\n` +
-            `> Cara pakai:\n` +
+            `👥 *AÑADIR MIEMBRO*\n\n` +
+            `> Cómo usar:\n` +
             `> 1. En el grupo: \`${m.prefix}add <número>\`\n` +
             `> 2. Multiple: \`${m.prefix}add <nomor1> <nomor2> ...\`\n` +
             `> 3. En privado: \`${m.prefix}add <número> <enlace_grupo>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}add 6281234567890\`\n` +
             `> \`${m.prefix}add 628123 628456 628789\`\n` +
             `> \`${m.prefix}add 628123 https://chat.whatsapp.com/xxx\`\n\n` +
-            `> Syarat:\n` +
+            `> Requisitos:\n` +
             `> - El bot debe ser admin en el grupo de destino\n` +
             `> - Quien ejecute el comando debe ser admin`
         )

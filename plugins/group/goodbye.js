@@ -47,7 +47,7 @@ function resolvePlaceholders(
   return template
     .replace(/{user}/gi, `@${username}`)
     .replace(/{number}/gi, username)
-    .replace(/{group}/gi, groupName || "Grup")
+    .replace(/{group}/gi, groupName || "Grupo")
     .replace(/{desc}/gi, groupDesc || "")
     .replace(/{count}/gi, memberCount?.toString() || "0")
     .replace(/{owner}/gi, groupOwner || "Admin")
@@ -185,7 +185,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       }
     }
     const memberCount = groupMeta?.participants?.length || 0;
-    const groupName = groupMeta?.subject || "Grup";
+    const groupName = groupMeta?.subject || "Grupo";
     let userName = realParticipant?.split("@")[0] || "User";
     let ppUrl =
       "https://cdn.gimita.id/download/pp%20kosong%20wa%20default%20(1)_1769506608569_52b57f5b.jpg";
@@ -237,7 +237,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "👋 Selamat Tinggal",
+                        display_text: "👋 Hasta luego",
                         id: "bye",
                       }),
                     },
@@ -314,7 +314,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
           remoteJid: realParticipant
         },
         message: {
-          conversation: `Selamat tinggal semuanya! 👋`
+          conversation: `¡Hasta luego a todos! 👋`
         }
       };
 
@@ -349,7 +349,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
                   {
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
-                      display_text: "👋 Selamat Tinggal",
+                      display_text: "👋 Hasta luego",
                       id: "bye"
                     })
                   }
@@ -455,7 +455,7 @@ async function handler(m, { sock }) {
     }
     db.setGroup(m.chat, { goodbye: true, leave: true });
     return m.reply(
-      `✅ *ɢᴏᴏᴅʙʏᴇ ᴀᴋᴛɪꜰ*\n\n` +
+      `✅ *DESPEDIDA ACTIVADA*\n\n` +
       `> ¡Mensaje de despedida activado!\n` +
       `> Quien salga del grupo recibirá un mensaje.\n\n` +
       `_Usa \`${m.prefix}setgoodbye\` para personalizar el mensaje._`,
@@ -472,7 +472,7 @@ async function handler(m, { sock }) {
     }
     db.setGroup(m.chat, { goodbye: false, leave: false });
     return m.reply(
-      `❌ *ɢᴏᴏᴅʙʏᴇ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
+      `❌ *DESPEDIDA DESACTIVADA*\n\n` +
       `> Mensaje de despedida desactivado.\n` +
       `> Quien salga del grupo ya no recibirá mensaje.`,
     );
@@ -481,8 +481,8 @@ async function handler(m, { sock }) {
     `👋 *ɢᴏᴏᴅʙʏᴇ sᴇᴛᴛɪɴɢs*\n\n` +
     `> Status: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
     `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-    `> \`${m.prefix}goodbye on\` → Aktifkan\n` +
-    `> \`${m.prefix}goodbye off\` → Nonaktifkan\n` +
+    `> \`${m.prefix}goodbye on\` → Activar\n` +
+    `> \`${m.prefix}goodbye off\` → Desactivar\n` +
     `> \`${m.prefix}goodbye on all\` → Global ON (owner)\n` +
     `> \`${m.prefix}goodbye off all\` → Global OFF (owner)\n` +
     `> \`${m.prefix}setgoodbye\` → Mensaje personalizado\n` +

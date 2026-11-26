@@ -37,8 +37,8 @@ function handler(m, { sock }) {
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ ◦ Status: *${status}*\n` +
             `╰┈┈⬡\n\n` +
-            `> Gunakan: \`${m.prefix}autoforward on/off\`\n\n` +
-            `_Fitur ini akan meneruskan semua pesan ke grup ini_`
+            `> Usa: \`${m.prefix}autoforward on/off\`\n\n` +
+            `_Esta función reenviará todos los mensajes a este grupo_`
         )
     }
 
@@ -47,7 +47,7 @@ function handler(m, { sock }) {
         m.react('✅')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ✅ *ᴀᴋᴛɪꜰ* 」\n` +
+            `╭┈┈⬡「 ✅ *ACTIVO* 」\n` +
             `┃ ◦ Status: *ON*\n` +
             `╰┈┈⬡\n\n` +
             `> _Semua pesan akan di-forward_`
@@ -59,13 +59,13 @@ function handler(m, { sock }) {
         m.react('❌')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ❌ *ɴᴏɴᴀᴋᴛɪꜰ* 」\n` +
+            `╭┈┈⬡「 ❌ *INACTIVO* 」\n` +
             `┃ ◦ Status: *OFF*\n` +
             `╰┈┈⬡`
         )
     }
 
-    return m.reply(`❌ Gunakan: on atau off`)
+    return m.reply(`❌ Usa: on u off`)
 }
 
 export { pluginConfig as config, handler }

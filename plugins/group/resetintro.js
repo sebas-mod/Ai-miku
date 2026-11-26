@@ -30,7 +30,7 @@ async function handler(m) {
     const groupData = db.getGroup(m.chat) || db.setGroup(m.chat)
 
     if (!groupData.intro) {
-        return m.reply(`❌ Grup ini sudah menggunakan intro default!`)
+        return m.reply(`❌ ¡Este grupo ya usa la presentación predeterminada!`)
     }
 
     delete groupData.intro
@@ -38,9 +38,9 @@ async function handler(m) {
     db.save()
 
     await m.reply(
-        `✅ *ɪɴᴛʀᴏ ᴅɪʀᴇsᴇᴛ!*\n` +
-        `Intro grup dikembalikan ke default.\n\n` +
-        `Ketik *${m.prefix}intro* untuk melihat hasilnya.`
+        `✅ *¡PRESENTACIÓN RESTABLECIDA!*\n` +
+        `La presentación del grupo se ha restablecido.\n\n` +
+        `Escribe *${m.prefix}intro* para ver el resultado.`
     )
 }
 

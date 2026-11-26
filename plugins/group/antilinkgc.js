@@ -37,7 +37,7 @@ function handler(m, { sock }) {
 
         return m.reply(
             `🔗 *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ*\n\n` +
-            `╭┈┈⬡「 📋 *sᴛᴀᴛᴜs* 」\n` +
+            `╭┈┈⬡「 📋 *ESTADO* 」\n` +
             `┃ ◦ Status: *${status.toUpperCase()}*\n` +
             `┃ ◦ Mode: *${mode.toUpperCase()}*\n` +
             `╰┈┈⬡\n\n` +
@@ -45,7 +45,7 @@ function handler(m, { sock }) {
             `> • chat.whatsapp.com (grupos)\n` +
             `> • wa.me (kontak)\n` +
             `> • whatsapp.com/channel (saluran)\n\n` +
-            `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
+            `*CÓMO USAR:*\n` +
             `> \`${m.prefix}antilinkgc on\` - Activar\n` +
             `> \`${m.prefix}antilinkgc off\` - Desactivar\n` +
             `> \`${m.prefix}antilinkgc metode kick\` - Mode kick user\n` +

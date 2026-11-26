@@ -60,8 +60,8 @@ async function handler(m, { sock }) {
     const reason = m.text || 'Sin motivo'
     setAfkUser(m.sender, reason)
     await m.reply(
-        `💤 *ᴀꜰᴋ ᴀᴋᴛɪꜰ*\n\n` +
-        `\`\`\`@${m.sender.split('@')[0]} sekarang AFK\`\`\`\n` +
+        `💤 *AFK ACTIVO*\n\n` +
+        `\`\`\`@${m.sender.split('@')[0]} ahora está AFK\`\`\`\n` +
         `🍀 \`Alasan:\` *${reason}*\n\n` +
         `_Escribe cualquier cosa para desactivar el AFK._`,
         { mentions: [m.sender] }
@@ -76,7 +76,7 @@ async function checkAfk(m, sock) {
         const duration = formatDuration(Date.now() - afkData.time)
         await m.reply(`👋 *ᴀꜰᴋ ʙᴇʀᴀᴋʜɪʀ*\n\n` +
                 `\`\`\`¡@${m.sender.split('@')[0]} ya ha vuelto!\`\`\`\n` +
-                `🍀 \`Durasi AFK:\` *${duration}*`, { mentions: [m.sender] })
+                `🍀 \`Duración AFK:\` *${duration}*`, { mentions: [m.sender] })
     }
     if (m.isGroup && m.mentionedJid && m.mentionedJid.length > 0) {
         for (const mentioned of m.mentionedJid) {
@@ -84,7 +84,7 @@ async function checkAfk(m, sock) {
             if (mentionedAfk) {
                 const duration = formatDuration(Date.now() - mentionedAfk.time)
                 await m.reply(`💤 *ᴜsᴇʀ ᴀꜰᴋ*\n\n` +
-                        `\`\`\`Hustt, jangan di ganggu!\`\`\` \`@${mentioned.split('@')[0]}\` lagi AFK\n` +
+                        `\`\`\`¡Shhh, no molestar!\`\`\` \`@${mentioned.split('@')[0]}\` está AFK\n` +
                         `🍀 \`Alasan:\` *${mentionedAfk.reason}*\n` +
                         `🍀 \`Desde:\` *${duration} atrás*`, { mentions: [mentioned] })
             }

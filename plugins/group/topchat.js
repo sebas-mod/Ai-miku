@@ -37,11 +37,11 @@ async function handler(m, { sock }) {
   if (sorted.length === 0) {
     return m.reply(
       `📊 *ᴄʜᴀᴛ sᴛᴀᴛɪsᴛɪᴄs*\n\n` +
-      `> Belum ada data chat di grup ini.\n` +
-      `> Data akan tercatat otomatis setelah member aktif chat.`,
+      `> Aún no hay datos de chat en este grupo.\n` +
+      `> Los datos se registrarán automáticamente cuando los miembros chateen.`,
     );
   }
-  let txt = `📊 *TOTAL CHAT*\nBerikut ini adalah jumlah pesan yang dikirim oleh member di grup ini:\n\n`;
+  let txt = `📊 *CHAT TOTAL*\nEstos son los mensajes enviados por los miembros de este grupo:\n\n`;
   for (let i = 0; i < sorted.length; i++) {
     const { jid, count } = sorted[i];
     const name = group.chatStats[jid]?.name || jid.split("@")[0];

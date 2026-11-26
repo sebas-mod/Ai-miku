@@ -33,10 +33,10 @@ async function handler(m, { db }) {
         return m.reply(
             `╭─〔 🛡️ *SPAMCLOSE* 〕\n` +
             `│ Status : *${current ? 'ON 🟢' : 'OFF 🔴'}*\n` +
-            `│ Trigger: *5 pesan beruntun*\n` +
+            `│ Disparador: *5 mensajes seguidos*\n` +
             `│ Sticker : *ikut terdeteksi*\n` +
             `╰─╮\n` +
-            `   ↳ Gunakan: *.spamclose on/off*`
+            `   ↳ Usa: *.spamclose on/off*`
         );
     }
 
@@ -50,8 +50,8 @@ async function handler(m, { db }) {
 
     return m.reply(
         enabled
-            ? `╭─〔 🛡️ *SPAMCLOSE AKTIF* 〕\n│ ✅ Mode: *ON*\n│ 🔢 Trigger: *5 pesan beruntun*\n│ 🧩 Sticker: *ikut dihitung*\n│ 🔒 Grup akan ditutup otomatis\n╰─╯`
-            : `╭─〔 🛡️ *SPAMCLOSE NONAKTIF* 〕\n│ 🔴 Mode: *OFF*\n│ Bot tidak akan menutup grup karena spam.\n╰─╯`
+            ? `╭─〔 🛡️ *SPAMCLOSE ACTIVO* 〕\n│ ✅ Modo: *ON*\n│ 🔢 Disparador: *5 mensajes seguidos*\n│ 🧩 Stickers: *también cuentan*\n│ 🔒 El grupo se cerrará automáticamente\n╰─╯`
+            : `╭─〔 🛡️ *SPAMCLOSE DESACTIVADO* 〕\n│ 🔴 Modo: *OFF*\n│ El bot no cerrará el grupo por spam.\n╰─╯`
     );
 }
 

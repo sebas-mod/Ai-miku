@@ -40,8 +40,8 @@ async function handler(m, { sock }) {
             `> Uso:\n` +
             `> \`${m.prefix}automedia on\` - activar\n` +
             `> \`${m.prefix}automedia off\` - desactivar\n\n` +
-            `> _Otomatis jadikan sticker jadi gambar_\n` +
-            `> Video gak jadi bang`
+            `> _Convierte stickers en imágenes automáticamente_\n` +
+            `> El video no se envió`
         )
     }
 
