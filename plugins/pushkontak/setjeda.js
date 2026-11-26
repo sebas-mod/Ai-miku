@@ -1,0 +1,54 @@
+/**
+———–·「 Information 」·–———
+✧ bot name: elysia assistant
+✧ getsc & website: arthazyspace.my.id
+✧ creator/dev: arthazy
+✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
+————–· 「 YT: ARTHAZYY 」·–————
+ */
+import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+
+const jpmCfg = ElysiaRuntime.jpmCfg;
+const jpmSetCfg = ElysiaRuntime.jpmSetCfg;
+
+const pluginConfig = {
+    name: "setjeda",
+    alias: ["setdelay", "jeda"],
+    category: "pushkontak",
+    description: "Fitur pushkontak setjeda",
+    usage: ".setjeda",
+    example: ".setjeda",
+    isOwner: true,
+    isPremium: false,
+    isGroup: false,
+    isPrivate: false,
+    cooldown: 5,
+    energi: 0,
+    isEnabled: true
+}
+
+  async function handler(m, { text, prefix, reply }) {
+      const [target, raw] = String(text || '').trim().split(/\s+/)
+      const cfg = jpmCfg()
+
+      if (!target || !raw) {
+          return reply(
+              `*▢ SET JEDA*\n` +
+              `• Jeda push : ${cfg.delayPushKontak}ms\n` +
+              `• Jeda jpm : ${cfg.delayJpm}ms\n\n` +
+              `Contoh:\n${prefix}setjeda push 5000\n${prefix}setjeda jpm 6000\n\n1 detik = 1000ms`
+          )
+      }
+
+      const key = { push: 'delayPushKontak', jpm: 'delayJpm' }[target.toLowerCase()]
+      if (!key) return reply('❌ Pilihan: *push* atau *jpm*')
+
+      const ms = parseInt(raw)
+      if (isNaN(ms) || ms < 1000) return reply('❌ Masukkan angka minimal 1000 (1 detik).')
+      if (ms > 60000) return reply('❌ Maksimal 60000 (1 menit).')
+
+      jpmSetCfg(key, ms)
+      return reply(`*▢ JEDA ${target.toUpperCase()} DIUBAH*\n• Jeda : ${ms}ms (${ms / 1000} detik)`)
+  }
+
+export { pluginConfig as config, handler }

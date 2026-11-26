@@ -1,0 +1,42 @@
+/**
+———–·「 Information 」·–———
+✧ bot name: elysia assistant
+✧ getsc & website: arthazyspace.my.id
+✧ creator/dev: arthazy
+✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
+————–· 「 YT: ARTHAZYY 」·–————
+ */
+import { getVercelToken, vercelRequest, sanitizeProjectName, missingTokenReply } from "../../src/lib/features/elysia-vercel.js";
+
+const pluginConfig = {
+  name: "vdelete",
+  alias: ["verceldelete", "vdel"],
+  category: "vercel",
+  description: "Hapus proyek dari akun Vercel kamu",
+  usage: ".vdelete <nama-proyek>",
+  example: ".vdelete web-lama",
+  isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
+  cooldown: 5, energi: 0, isEnabled: true,
+};
+
+async function handler(m) {
+  const token = getVercelToken(m.sender);
+  if (!token) return m.reply(missingTokenReply(m.prefix));
+
+  const proj = sanitizeProjectName(m.text);
+  if (!proj) {
+    return m.reply(`🗑️ Masukkan nama proyek Vercel yang ingin dihapus!\n> Contoh: \`${m.prefix}vdelete web-lama\``);
+  }
+
+  await m.react("🕕");
+  try {
+    await vercelRequest(token, "DELETE", `/v9/projects/${encodeURIComponent(proj)}`);
+    await m.react("✅");
+    await m.reply(`🗑️ Proyek Vercel *${proj}* berhasil dihapus permanen.`);
+  } catch (err) {
+    await m.react("❌");
+    await m.reply(`❌ Gagal menghapus proyek *${proj}*: ${err.message}`);
+  }
+}
+
+export { pluginConfig as config, handler };

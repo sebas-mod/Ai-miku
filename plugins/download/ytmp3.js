@@ -1,0 +1,87 @@
+/**
+———–·「 Information 」·–———
+✧ bot name: elysia assistant
+✧ getsc & website: arthazyspace.my.id
+✧ creator/dev: arthazy
+✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
+————–· 「 YT: ARTHAZYY 」·–————
+ */
+import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import axios from 'axios'
+
+const fallbackToMp3Buffer = ElysiaRuntime.fallbackToMp3Buffer;
+const ytdl = ElysiaRuntime.ytdl;
+
+  const pluginConfig = {
+    name: "ytmp3",
+    alias: ["ytm3", "musikyt"],
+    category: "download",
+    description: "Download audio YouTube",
+    usage: ".ytmp3 <url>",
+    example: ".ytmp3 https://youtube.com/watch?v=xxx",
+    cooldown: 20,
+    energi: 2,
+    isEnabled: true,
+  };
+
+  async function getAudioDownload(url) {
+    try {
+      const { data } = await axios.get(
+        `https://my.izuka-api.xyz/api/downloader/ytmp3?url=${encodeURIComponent(url)}`, { timeout: 60000 }
+      );
+      const download = data?.result?.download_url;
+      const title = data?.result?.title;
+      if (download) {
+        return { download, title };
+      }
+    } catch {}
+
+    const fallback = await ytdl(url, "mp3");
+    if (fallback?.status && fallback?.dl) {
+      return { download: fallback.dl, title: fallback.title, isFallback: true };
+    }
+
+    throw new Error(fallback?.mess || "Gagal mendapatkan audio download URL");
+  }
+
+  async function handler(m, { sock }) {
+    const url = m.text?.trim();
+    if (!url)
+      return m.reply(`Contoh: ${m.prefix}ytmp3 https://youtube.com/watch?v=xxx`);
+    if (!url.includes("youtube.com") && !url.includes("youtu.be"))
+      return m.reply("❌ URL harus YouTube");
+
+    m.react("🕕");
+
+    try {
+      const result = await getAudioDownload(url);
+
+      if (result.isFallback) {
+        const mp3Buffer = await fallbackToMp3Buffer(result.download);
+        await sock.sendMessage(
+          m.chat,
+          {
+            audio: mp3Buffer,
+            mimetype: "audio/mpeg",
+            ptt: false,
+            fileName: `${result.title || "audio"}.mp3`,
+          },
+          { quoted: m },
+        );
+      } else {
+        await sock.sendMedia(m.chat, result.download, null, m, {
+          type: "audio",
+          mimetype: "audio/mpeg",
+          ptt: false,
+          fileName: result.title || "audio.mp3",
+        });
+      }
+      m.react("✅");
+    } catch (err) {
+      console.error("[YTMP3]", err);
+      m.react("❌");
+      m.reply("Gagal mengunduh audio.");
+    }
+  }
+
+export { pluginConfig as config, handler }

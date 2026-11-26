@@ -1,0 +1,62 @@
+/**
+———–·「 Information 」·–———
+✧ bot name: elysia assistant
+✧ getsc & website: arthazyspace.my.id
+✧ creator/dev: arthazy
+✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
+————–· 「 YT: ARTHAZYY 」·–————
+ */
+import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import axios from 'axios'
+
+const config = ElysiaRuntime.config;
+
+  const pluginConfig = {
+    name: "ttp",
+    alias: ["stikerteks"],
+    category: "sticker",
+    description: "Membuat stiker keren dari teks",
+    usage: ".ttp <teks>",
+    example: ".ttp Hai Cantik",
+    isOwner: false,
+    isPremium: false,
+    isGroup: false,
+    isPrivate: false,
+    cooldown: 5,
+    energi: 1,
+    isEnabled: true,
+  };
+
+  async function handler(m, { sock }) {
+    const text = m.args.join(" ") || m.text?.trim();
+
+    if (!text) {
+      return m.reply("❌ *Waduh, teksnya mana nih?*\n\nKamu harus memasukkan teks yang ingin dijadikan stiker.\n\nContoh: `.ttp Hai Cantik`");
+    }
+
+    await m.react("🕕");
+
+    try {
+      const apiUrl = `https://api.nexray.eu.cc/maker/ttp?text=${encodeURIComponent(text)}`;
+
+      const res = await axios.get(apiUrl, {
+        responseType: "arraybuffer",
+        timeout: 30000
+      });
+
+      const imageBuffer = Buffer.from(res.data);
+
+      await sock.sendImageAsSticker(m.chat, imageBuffer, m, {
+        packname: config.sticker.packname,
+        author: config.sticker.author,
+      });
+
+      await m.react("✅");
+    } catch (err) {
+      console.error("[TTP Maker]", err.message);
+      await m.react("☢");
+      m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat stiker. Silakan coba beberapa saat lagi ya.");
+    }
+  }
+
+export { pluginConfig as config, handler }

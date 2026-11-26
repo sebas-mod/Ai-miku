@@ -1,0 +1,61 @@
+/**
+———–·「 Information 」·–———
+✧ bot name: elysia assistant
+✧ getsc & website: arthazyspace.my.id
+✧ creator/dev: arthazy
+✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
+————–· 「 YT: ARTHAZYY 」·–————
+ */
+import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+
+const jpmBlacklist = ElysiaRuntime.jpmBlacklist;
+const jpmSetBlacklist = ElysiaRuntime.jpmSetBlacklist;
+
+const pluginConfig = {
+    name: "blacklistjpm",
+    alias: ["bljpm", "jpmbl", "jpmblacklist", "listblacklistjpm"],
+    category: "jpm",
+    description: "Fitur jpm blacklistjpm",
+    usage: ".blacklistjpm",
+    example: ".blacklistjpm",
+    isOwner: true,
+    isPremium: false,
+    isGroup: false,
+    isPrivate: false,
+    cooldown: 5,
+    energi: 0,
+    isEnabled: true
+}
+
+  async function handler(m, { sock, text, prefix, command, reply }) {
+      const [act = '', ...rest] = String(text || '').trim().split(/\s+/)
+      const action = act.toLowerCase()
+      let list = jpmBlacklist(false)
+      const jids = rest.join('').split(',').map(v => v.trim()).filter(v => v.endsWith('@g.us'))
+      const targets = jids.length ? jids : (m.isGroup ? [m.chat] : [])
+
+      if (action === 'add') {
+          if (!targets.length) return reply('❌ Tulis JID grup (berakhiran @g.us), atau pakai perintah ini di dalam grup.')
+          const baru = targets.filter(j => !list.includes(j))
+          jpmSetBlacklist(false, [...list, ...baru])
+          return reply(`*▢ BLACKLIST JPM*\n• Ditambah : ${baru.length} grup\n• Sudah ada : ${targets.length - baru.length} grup\n• Total : ${list.length + baru.length} grup`)
+      }
+      if (['del', 'remove', 'hapus'].includes(action)) {
+          if (!targets.length) return reply('❌ Tulis JID grup (berakhiran @g.us), atau pakai perintah ini di dalam grup.')
+          const sisa = list.filter(j => !targets.includes(j))
+          jpmSetBlacklist(false, sisa)
+          return reply(`*▢ BLACKLIST JPM*\n• Dihapus : ${list.length - sisa.length} grup\n• Sisa : ${sisa.length} grup`)
+      }
+      if (action === 'list' || command.includes('list')) {
+          if (!list.length) return reply('*▢ BLACKLIST JPM*\n• Belum ada grup di blacklist')
+          const rows = []
+          for (const [i, id] of list.entries()) {
+              const meta = await sock.groupMetadata(id).catch(() => null)
+              rows.push(`${i + 1}. ${meta?.subject || 'Grup tidak dikenal'}\n   ${id}`)
+          }
+          return reply(`*▢ BLACKLIST JPM*\n• Total : ${list.length} grup\n\n${rows.join('\n')}`)
+      }
+      return reply(`*▢ BLACKLIST JPM*\n\nGrup di blacklist tidak menerima JPM.\n\n• ${prefix}${command} list\n• ${prefix}${command} add <jid1>,<jid2>\n• ${prefix}${command} del <jid1>,<jid2>\n\nTanpa jid, perintah berlaku untuk grup tempat dipakai.\n• Total saat ini : ${list.length} grup`)
+  }
+
+export { pluginConfig as config, handler }
