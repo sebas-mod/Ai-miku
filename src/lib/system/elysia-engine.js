@@ -51,14 +51,14 @@ const ElysiaEngine = (() => {
       users: loaded.users || {},
       groups: loaded.groups || {},
       settings: loaded.settings || {},
-      rpgData: loaded.rpgData || { users: {}, chats: {}, settings: {}, simulator: {}, bridge: {} },
+      rpgData: loaded.rpgData || { users: {}, chats: {}, settings: {}, bridge: {} },
       fitur: loaded.fitur || {},
       fun: loaded.fun || { pacar: {}, tembak: {}, couple: {} },
       dio: loaded.dio || { praktis: {}, profile: {} },
       reminders: loaded.reminders || []
     }
   }
-  global.db.rpgData ||= { users: {}, chats: {}, settings: {}, simulator: {}, bridge: {} }
+  global.db.rpgData ||= { users: {}, chats: {}, settings: {}, bridge: {} }
   global.db.rpgData.users ||= {}
   global.db.fitur ||= {}
   global.db.groups ||= {}
@@ -200,7 +200,7 @@ const ElysiaEngine = (() => {
   }
 
   function rpgStore() {
-    global.db.rpgData ||= { users: {}, chats: {}, settings: {}, simulator: {}, bridge: {} }
+    global.db.rpgData ||= { users: {}, chats: {}, settings: {}, bridge: {} }
     global.db.rpgData.users ||= {}
     return global.db.rpgData
   }
