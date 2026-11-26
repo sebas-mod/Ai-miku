@@ -74,7 +74,7 @@ const addExpWithLevelCheck = ElysiaRuntime.addExpWithLevelCheck;
     await addExpWithLevelCheck(sock, m, db, user, expGain);
 
     await m.react("✅");
-    let txt = `ALHAMDULILLAH PAKET SAMPAI! 📦\n\nBarang: *${item}*\n💵 Ongkir: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+    let txt = `PAKET SAMPAI! 📦\n\nBarang: *${item}*\n💵 Ongkir: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
     if (tips > 0) txt += `🎁 Tips Tambahan: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBerhasil nganter tepat waktu! 🚚💨`;
     m.reply(txt);

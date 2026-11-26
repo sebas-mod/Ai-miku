@@ -80,7 +80,7 @@ const pluginConfig = {
   async function renderSpotify(o = {}) {
       ensureFonts()
       const {
-          cover, title = 'Bersenja Gurau', artist = 'Raim Laode', playlistTitle = 'Radio Bersenja Gurau',
+          cover, title = 'Canción de ejemplo', artist = 'Artista', playlistTitle = 'Radio de ejemplo',
           playlistDesc = 'Memainkan dari Playlist', duration = '3:14', currentTime = '0:00',
           clock = '18.21', battery = '18', isPlaying = false, shuffle = true, lyricsTitle = 'Pratinjau lirik'
       } = o
@@ -270,7 +270,7 @@ const pluginConfig = {
 
       try {
           const r = await renderSpotify(o)
-          return sock.sendMessage(m.chat, { image: r.buffer, caption: `🎧 ${o.title || 'Bersenja Gurau'} — ${o.artist || 'Raim Laode'}` }, { quoted: m })
+          return sock.sendMessage(m.chat, { image: r.buffer, caption: `🎧 ${o.title || 'Canción de ejemplo'} — ${o.artist || 'Artista'}` }, { quoted: m })
       } catch (e) {
           console.error('[fakespotify]', e)
           return reply(`❌ Gagal membuat gambar: ${e.message || e}`)

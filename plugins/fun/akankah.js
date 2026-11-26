@@ -27,7 +27,7 @@ const answers = [
     'Ya, pasti akan terjadi!',
     'Tidak, sepertinya tidak akan.',
     'Mungkin akan, mungkin tidak.',
-    'InsyaAllah akan terjadi!',
+    'Pasti akan terjadi!',
     'Hmm, sulit diprediksi.',
     'Pasti! Yakin saja!',
     'Kayaknya nggak deh.',
@@ -41,7 +41,7 @@ const answers = [
     'Pasti akan, aku yakin!',
     'Nggak akan, cari yang lain aja.',
     'Akan, tapi butuh waktu.',
-    'InsyaAllah!',
+    '¡Claro que sí!',
     'Kalau jodoh, pasti akan.',
     'Akan terjadi di saat yang tepat!'
 ];

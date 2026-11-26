@@ -27,7 +27,7 @@ const pluginConfig = {
 async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
   const query = (text || (args || []).join(' ') || m.quoted?.text || '').trim()
   if (!query) {
-    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nKetik judul lagu atau penyanyi:\nContoh: \`${usedPrefix + command} Hindia Evaluasi\``)
+    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nKetik judul lagu atau penyanyi:\nContoh: \`${usedPrefix + command} Coldplay Yellow\``)
   }
 
   await m.react('⏳')

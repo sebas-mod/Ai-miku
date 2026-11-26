@@ -1500,15 +1500,6 @@ async function messageHandler(msg, sock, options = {}) {
         }
       }
 
-      // Tebak Elysia: tangkap jawaban langsung saat sesi tebak aktif di chat
-      if (!m.fromMe && globalThis.__elysiaTebakSessions?.has(m.chat)) {
-        const tebakMod = await import("./lib/features/elysia-tebak.js").catch(() => null);
-        if (tebakMod?.handleTebakAnswer) {
-          const tebakHandled = await tebakMod.handleTebakAnswer(m, sock);
-          if (tebakHandled) return;
-        }
-      }
-
       // Game Elysia: tangkap input langkah/tebakan saat sesi game aktif di chat
       if (!m.fromMe && globalThis.__elysiaGameSessions?.has(m.chat)) {
         const gameMod = await import("./lib/features/elysia-game.js").catch(() => null);

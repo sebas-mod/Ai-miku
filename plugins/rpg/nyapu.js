@@ -61,7 +61,7 @@ const addExpWithLevelCheck = ElysiaRuntime.addExpWithLevelCheck;
     await addExpWithLevelCheck(sock, m, db, user, expGain);
 
     await m.react("✅");
-    m.reply(`ALHAMDULILLAH SELESAI BERES-BERES! 🧹\n\n💵 Gaji Harian: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBumi makin bersih dan asri! 🌍`);
+    m.reply(`SELESAI BERES-BERES! 🧹\n\n💵 Gaji Harian: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBumi makin bersih dan asri! 🌍`);
   }
 
 export { pluginConfig as config, handler }

@@ -70,7 +70,7 @@ const addExpWithLevelCheck = ElysiaRuntime.addExpWithLevelCheck;
 
     await m.react("✅");
 
-    let txt = `ALHAMDULILLAH ORDERAN KELAR! 🏍️\n\n`;
+    let txt = `ORDERAN KELAR! 🏍️\n\n`;
     txt += `Rincian narik ojol hari ini:\n`;
     txt += `📱 Tipe: *${order.type}*\n`;
     txt += `💵 Tarif: *+Rp ${earning.toLocaleString("id-ID")}*\n`;

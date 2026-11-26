@@ -66,7 +66,7 @@ const addExpWithLevelCheck = ElysiaRuntime.addExpWithLevelCheck;
 
     await m.react("✅");
 
-    let txt = `ALHAMDULILLAH HASIL NGAMEN! 🎸\n\n`;
+    let txt = `HASIL NGAMEN! 🎸\n\n`;
     txt += `Lokasi: *${loc.name}*\n`;
     txt += `💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP: *+${expGain}*\n`;

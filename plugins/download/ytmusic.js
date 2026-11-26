@@ -244,7 +244,7 @@ const pluginConfig = {
       return m.reply(
         `*YouTube Music*\n\n` +
         `Busca y reproduce canciones de YouTube Music.\n\n` +
-        `Ejemplo:\n${usedPrefix + command} bernadya satu bulan\n${usedPrefix + command} list bernadya`
+        `Ejemplo:\n${usedPrefix + command} coldplay yellow\n${usedPrefix + command} list coldplay`
       )
     }
 

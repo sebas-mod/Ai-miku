@@ -341,7 +341,7 @@ minuman: Rp200`, fakes('Create'))
   }
   const nikah = ['*🕐 kamu sedang mempersiapkan diri*',
   '*memulai akad pernikahan...*',
-  `*kamu menyerahkan mas kawin dengan seperangkat alat sholat berupa EMAS* `,
+  `*kamu menyerahkan mas kawin berupa EMAS* `,
   '*semua orang bilang sah*😊 !!!',
   `🎉 *selamat sekarang kamu sudah menikah dengan ${_db[id].pasangan}*`
   ]

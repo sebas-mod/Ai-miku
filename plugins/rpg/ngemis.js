@@ -52,7 +52,7 @@ const addExpWithLevelCheck = ElysiaRuntime.addExpWithLevelCheck;
       const heal = Math.floor(Math.random() * 20) + 10;
       user.rpg.stamina = Math.min(100, user.rpg.stamina + heal);
       await m.react("🍱");
-      return m.reply(`ALHAMDULILLAH DIKASIH NASI PADANG! 🍱\n\nAda bapak-bapak baik hati yang ngasih kamu bungkus nasi sisa rapet!\n Stamina bertambah: *+${heal}*\n💵 Uang didapat: 0\n\nWah, perut kenyang hati senang! 🥰`);
+      return m.reply(`DIKASIH NASI PADANG! 🍱\n\nAda bapak-bapak baik hati yang ngasih kamu bungkus nasi sisa rapet!\n Stamina bertambah: *+${heal}*\n💵 Uang didapat: 0\n\nWah, perut kenyang hati senang! 🥰`);
     }
 
     if (gacha > 0.9) {

@@ -31,8 +31,8 @@ const ICONS = {
     ai: '🤖', media: '📷', game: '🎮', maker: '🖼️', fun: '🎭',
     group: '👥', owner: '👑', premium: '💎', info: '📊', search: '🔍',
     canvas: '🎨', anime: '🌸', nsfw: '🔞', utility: '🛠️', economy: '💰',
-    stalker: '🔎', random: '🎲', religi: '🕌', islamic: '☪️', cek: '✅',
-    store: '🛒', panel: '🖥️', convert: '🔄', primbon: '🔮', tts: '🗣️',
+    stalker: '🔎', random: '🎲',
+    store: '🛒', panel: '🖥️', convert: '🔄', tts: '🗣️',
     otp: '🔑', vps: '☁️', pushkontak: '📱', jpm: '🎰', ephoto: '📸',
     other: '📦'
 }

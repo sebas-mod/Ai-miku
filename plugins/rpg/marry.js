@@ -83,7 +83,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
     txt += `👨‍💼/👰 @${target.split("@")[0]}\n\n`;
     txt += `🎉 *MEREKA RESMI MENJADI PASANGAN!* 🎉\n\n`;
     txt += `💍 Biaya Resepsi: *Rp -${marriageCost.toLocaleString("id-ID")}*\n\n`;
-    txt += `> _"Semoga langgeng sampai akhir hayat server ini!" - Pendeta Bot_ 🥺`;
+    txt += `> _"Que dure hasta el final de los tiempos del servidor" - Bot_ 🥺`;
 
     await m.reply(txt, { mentions: [m.sender, target] });
   }

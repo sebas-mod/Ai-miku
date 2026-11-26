@@ -27,7 +27,7 @@ const answers = [
     'Karena memang sudah takdirnya begitu.',
     'Hmm, pertanyaan bagus! Aku juga bingung.',
     'Karena itulah cara kerjanya.',
-    'Karena Tuhan berkehendak demikian.',
+    'Porque así estaba escrito.',
     'Aku nggak tau, cari di Google aja.',
     'Karena ya gitu aja.',
     'Mungkin karena kebetulan?',
