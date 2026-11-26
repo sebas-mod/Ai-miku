@@ -117,14 +117,14 @@ const pluginConfig = {
           });
 
           if (res.data.success) return res.data;
-          throw new Error('ipwho gagal');
+          throw new Error('ipwho falló');
       } catch {
           const res2 = await axios.get(`http://ip-api.com/json/${ip}`, {
               timeout: 8000
           });
 
           if (res2.data.status !== 'success') {
-              throw new Error('Semua API gagal');
+              throw new Error('Fallaron todas las APIs');
           }
 
           return {

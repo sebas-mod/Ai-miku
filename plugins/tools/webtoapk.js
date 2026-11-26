@@ -229,10 +229,10 @@ const pluginConfig = {
         mimetype: 'application/vnd.android.package-archive',
         fileName: `${safeName}.apk`,
         caption:
-          `✅ *APK berhasil dibuat*\n\n` +
-          `> Nama   : ${appName}\n` +
-          `> Package: ${first.packageName}\n` +
-          `> Ukuran : ${(apk.length / 1024 / 1024).toFixed(2)} MB`,
+          `✅ *APK creado*\n\n` +
+          `> Nombre  : ${appName}\n` +
+          `> Package : ${first.packageName}\n` +
+          `> Tamaño  : ${(apk.length / 1024 / 1024).toFixed(2)} MB`,
       }, { quoted: m })
 
       await reactTo(sock, m, '✅')

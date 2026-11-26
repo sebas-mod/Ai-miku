@@ -109,7 +109,7 @@ const { promisify } = (await import('node:util'))
           zoom = Math.min(6, Math.max(1, Math.round(smoothing / 4)));
       }
 
-      reply(global.mess?.wait || '⏳ _Sedang mengunduh dan menstabilkan video secara natural... Mohon tunggu._ 🪄');
+      reply(global.mess?.wait || '⏳ _Descargando y estabilizando el vídeo de forma natural... Espera un momento._ 🪄');
 
       const id = `${Date.now()}_${crypto.randomBytes(4).toString('hex')}`;
       const tmpDir = os.tmpdir();
@@ -190,7 +190,7 @@ const { promisify } = (await import('node:util'))
           ], { maxBuffer: 10 * 1024 * 1024 });
 
           if (!fs.existsSync(tmpOut) || fs.statSync(tmpOut).size === 0) {
-              throw new Error('Hasil video stabilisasi kosong atau tidak terbentuk.');
+              throw new Error('El vídeo estabilizado salió vacío o no se generó.');
           }
 
           const outBuffer = await fs.promises.readFile(tmpOut);

@@ -210,7 +210,7 @@ const pluginConfig = {
           )
       }
       const a = ACTIONS[key]
-      if (a.need && !arg) return reply(`Isi ${a.need}\nContoh: ${prefix + command} ${key} ${a.need.split('contoh: ')[1]}`)
+      if (a.need && !arg) return reply(`Indica ${a.need}\nEjemplo: ${prefix + command} ${key} ${a.need.split('ejemplo: ')[1]}`)
 
       await reply('⏳ Obteniendo datos del portal del BGN…')
       try {
