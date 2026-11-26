@@ -33,13 +33,13 @@ async function handler(m, { sock }) {
     const arg = args[0]?.toLowerCase()
 
     if (!arg) {
-        const status = current ? '✅ Aktif' : '❌ Nonaktif'
+        const status = current ? '✅ Activado' : '❌ Desactivado'
         return m.reply(
             `🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n` +
             `> Status: ${status}\n\n` +
-            `> Gunakan:\n` +
-            `> \`${m.prefix}automedia on\` - aktifkan\n` +
-            `> \`${m.prefix}automedia off\` - nonaktifkan\n\n` +
+            `> Uso:\n` +
+            `> \`${m.prefix}automedia on\` - activar\n` +
+            `> \`${m.prefix}automedia off\` - desactivar\n\n` +
             `> _Otomatis jadikan sticker jadi gambar_\n` +
             `> Video gak jadi bang`
         )
@@ -47,23 +47,23 @@ async function handler(m, { sock }) {
 
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> Sudah aktif!`)
+            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya estaba activado!`)
         }
         db.setGroup(m.chat, { automedia: true })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ Berhasil diaktifkan!\n> Sticker akan otomatis jadi gambar/video`)
+        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ ¡Activado correctamente!\n> Los stickers se convertirán solos en imagen/vídeo`)
     }
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> Sudah nonaktif!`)
+            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya estaba desactivado!`)
         }
         db.setGroup(m.chat, { automedia: false })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ Berhasil dinonaktifkan!`)
+        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ ¡Desactivado correctamente!`)
     }
 
-    return m.reply(`❌ Gunakan: \`${m.prefix}automedia on/off\``)
+    return m.reply(`❌ Usa: \`${m.prefix}automedia on/off\``)
 }
 
 async function autoMediaHandler(m, sock) {

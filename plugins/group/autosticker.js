@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     const arg = args[0]?.toLowerCase()
 
     if (!arg) {
-        const status = current ? '✅ Aktif' : '❌ Nonaktif'
+        const status = current ? '✅ Activado' : '❌ Desactivado'
         return m.reply(
             `🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n` +
             `> Status: ${status}\n\n` +
@@ -46,11 +46,11 @@ async function handler(m, { sock }) {
 
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah aktif!`)
+            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya estaba activado!`)
         }
         db.setGroup(m.chat, { autosticker: true })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ Berhasil diaktifkan!\n> Gambar/video akan otomatis jadi sticker`)
+        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ ¡Activado correctamente!\n> Las imágenes y vídeos se convertirán solos en sticker`)
     }
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {

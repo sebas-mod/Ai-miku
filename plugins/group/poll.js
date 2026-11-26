@@ -10,9 +10,9 @@ const pluginConfig = {
     name: 'poll',
     alias: ['voting', 'vote', 'survei'],
     category: 'group',
-    description: 'Buat polling/voting di grup',
+    description: 'Crea una encuesta/votación en el grupo',
     usage: '.poll <pertanyaan> | <opsi1>, <opsi2>, ...',
-    example: '.poll Makan apa? | Nasi Goreng, Mie Ayam, Bakso',
+    example: '.poll ¿Qué comemos? | Arroz frito, Fideos, Albóndigas',
     isOwner: false,
     isPremium: false,
     isGroup: true,
@@ -28,14 +28,14 @@ async function handler(m, { sock }) {
     if (!text || text.trim() === '') {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Format tidak valid!\n\n` +
+            `> ¡Formato no válido!\n\n` +
             `*Format:*\n` +
             `> \`.poll pertanyaan | opsi1, opsi2\`\n\n` +
             `*Contoh:*\n` +
-            `> \`.poll Makan siang apa? | Nasi Goreng, Mie Ayam\`\n\n` +
+            `> \`.poll ¿Qué comemos? | Arroz frito, Fideos\`\n\n` +
             `*Opsi tambahan:*\n` +
             `> \`.poll multi | pertanyaan | opsi1, opsi2, opsi3, dst\`\n` +
-            `> (untuk pilihan ganda)`
+            `> (para opciones múltiples)`
         );
         return;
     }
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
     if (options.length < 2) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Minimal 2 opsi pilihan!`
+            `> ¡Mínimo 2 opciones!`
         );
         return;
     }
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
     if (options.length > 12) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Maksimal 12 opsi pilihan!`
+            `> ¡Máximo 12 opciones!`
         );
         return;
     }

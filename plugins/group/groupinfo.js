@@ -14,7 +14,7 @@ const pluginConfig = {
     name: 'groupinfo',
     alias: ['infogroup', 'gcinfo', 'infogc', 'gc'],
     category: 'group',
-    description: 'Menampilkan informasi lengkap grup',
+    description: 'Muestra la información completa del grupo',
     usage: '.groupinfo',
     example: '.groupinfo',
     isOwner: false,

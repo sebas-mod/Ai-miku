@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         const existingCmds = listStickerCommands()
 
         let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴛᴏ ᴄᴏᴍᴍᴀɴᴅ*\n\n`
-        txt += `> Reply sticker + ketik command yang ingin dijadikan shortcut.\n\n`
+        txt += `> Responde al sticker y escribe el comando que quieres usar como atajo.\n\n`
         txt += `*Contoh:*\n`
         txt += `> Reply sticker, lalu ketik:\n`
         txt += `> \`.addcmdsticker menu\`\n\n`
@@ -55,12 +55,12 @@ async function handler(m, { sock }) {
 
     // Validasi reply sticker
     if (!m.quoted) {
-        return m.reply('⚠️ *Reply sticker* yang ingin dijadikan command!')
+        return m.reply('⚠️ ¡*Responde al sticker* que quieres convertir en comando!')
     }
 
     const stickerHash = getQuotedStickerHash(m)
     if (!stickerHash) {
-        return m.reply('⚠️ Pesan yang di-reply bukan *sticker*!')
+        return m.reply('⚠️ ¡El mensaje al que respondes no es un *sticker*!')
     }
 
     // Validasi command exists
@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
 
     if (!plugin) {
         return m.reply(
-            `❌ Command \`${cleanCmd}\` tidak ditemukan!\n\n` +
-            `> Pastikan command yang ingin dijadikan shortcut valid.`
+            `❌ ¡No se encontró el comando \`${cleanCmd}\`!\n\n` +
+            `> Asegúrate de que el comando que quieres usar como atajo existe.`
         )
     }
 
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
         await m.reply(
             `✅ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ*\n\n` +
             `> 🖼️ Sticker → \`.${cleanCmd}\`\n\n` +
-            `_Kirim sticker tersebut untuk menjalankan command!_`
+            `_¡Envía ese sticker para ejecutar el comando!_`
         )
     } else {
         await m.reply('❌ Gagal menyimpan sticker command!')

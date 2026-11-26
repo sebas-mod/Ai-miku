@@ -13,8 +13,8 @@ const pluginConfig = {
     name: 'mutemember',
     alias: ['mutmember', 'silentmember', 'bisukanmember'],
     category: 'group',
-    description: 'Bisukan member tertentu (pesan akan dihapus bot)',
-    usage: '.mutemember <@tag/reply/nomor>',
+    description: 'Silencia a un miembro concreto (el bot borra sus mensajes)',
+    usage: '.mutemember <@mención/respuesta/número>',
     example: '.mutemember @user',
     isOwner: false,
     isPremium: false,
@@ -52,12 +52,12 @@ async function handler(m, { sock }) {
     if (!targetJid) {
         return m.reply(
             `🔇 *MUTE MEMBER*\n\n` +
-            `> Bisukan member tertentu di grup ini\n` +
-            `> Pesan member yang dimute akan dihapus oleh bot\n\n` +
+            `> Silencia a un miembro concreto en este grupo\n` +
+            `> El bot borra los mensajes del miembro silenciado\n\n` +
             `\`Contoh:\`\n` +
             `> ${m.prefix}mutemember @user\n` +
             `> ${m.prefix}mutemember 6281234567890\n` +
-            `> Reply pesan member + ${m.prefix}mutemember`
+            `> Responde al mensaje del miembro + ${m.prefix}mutemember`
         )
     }
 
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
             return pJid === targetNumber && (p.admin === 'admin' || p.admin === 'superadmin')
         })
         if (isTargetAdmin) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat mute admin grup`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se puede silenciar a un administrador del grupo`)
         }
     }
 
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyMuted) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Member @${targetNumber} sudah dimute`, { mentions: [targetJid] })
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El miembro @${targetNumber} ya está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.push(targetJid)
@@ -97,8 +97,8 @@ async function handler(m, { sock }) {
         `┃ 🔇 sᴛᴀᴛᴜs: \`Muted\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
         `╰┈┈⬡\n\n` +
-        `> Semua pesan dari member ini akan dihapus otomatis\n` +
-        `> Gunakan \`${m.prefix}unmutemember\` untuk unmute`,
+        `> Todos los mensajes de este miembro se borrarán automáticamente\n` +
+        `> Usa \`${m.prefix}unmutemember\` para quitar el silencio`,
         { mentions: [targetJid] }
     )
 }

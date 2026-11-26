@@ -14,7 +14,7 @@ const pluginConfig = {
     alias: ['unmutmember', 'unsilentmember', 'unbisukanmember', 'listmutemember', 'listmute'],
     category: 'group',
     description: 'Membuka mute member tertentu',
-    usage: '.unmutemember <@tag/reply/nomor>',
+    usage: '.unmutemember <@mención/respuesta/número>',
     example: '.unmutemember @user',
     isOwner: false,
     isPremium: false,
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply(`🔇 *LIST MUTED MEMBERS*\n\n> Tidak ada member yang dimute di grup ini`)
+            return m.reply(`🔇 *MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`)
         }
 
         let txt = `🔇 *LIST MUTED MEMBERS*\n\n╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
             `\`Contoh:\`\n` +
             `> ${m.prefix}unmutemember @user\n` +
             `> ${m.prefix}unmutemember 6281234567890\n` +
-            `> Reply pesan member + ${m.prefix}unmutemember`
+            `> Responde al mensaje del miembro + ${m.prefix}unmutemember`
         )
     }
 
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Member @${targetNumber} tidak sedang dimute`, { mentions: [targetJid] })
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
