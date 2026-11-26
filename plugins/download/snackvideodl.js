@@ -34,13 +34,13 @@ const te = ElysiaRuntime.te;
           return m.reply(
               `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
               `> \`${m.prefix}snackvideodl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}snackvideodl https://www.snackvideo.com/@xxx/video/xxx\``
           )
       }
 
       if (!url.match(/snackvideo\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link SnackVideo.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de SnackVideo.`)
       }
 
       await m.react('🕕')
@@ -49,7 +49,7 @@ const te = ElysiaRuntime.te;
           const data = await snackvideo(url)
 
           if (!data?.status || !data?.result?.videoUrl) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
           }
 
           const result = data.result

@@ -27,7 +27,7 @@ const pluginConfig = {
   async function handler(m, { conn, text, usedPrefix, command }) {
       try {
           if (!text) {
-              return m.reply(`*Contoh: ${usedPrefix + command} https://x.com/...*`);
+              return m.reply(`*Ejemplo: ${usedPrefix + command} https://x.com/...*`);
           }
 
           await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
@@ -54,7 +54,7 @@ const pluginConfig = {
           const html = json?.data;
 
           if (!html) {
-              return m.reply('*Gagal mengambil data video 🍂*');
+              return m.reply('*Error al obtener los datos del video 🍂*');
           }
 
           const title = html.match(/<h3>(.*?)<\/h3>/)?.[1]?.trim() || 'Twitter Video';
@@ -68,22 +68,22 @@ const pluginConfig = {
               }));
 
           if (!mp4.length) {
-              return m.reply('*Video tidak ditemukan 🍂*');
+              return m.reply('*Video no encontrado 🍂*');
           }
 
           const best = mp4[0];
 
           let caption = `*🐦 Twitter Downloader*\n\n`;
-          caption += `*📌 Judul:* ${title}\n`;
-          caption += `*⏱️ Durasi:* ${duration}\n`;
-          caption += `*🎞️ Kualitas:* ${best.quality}\n`;
+          caption += `*📌 Título:* ${title}\n`;
+          caption += `*⏱️ Duración:* ${duration}\n`;
+          caption += `*🎞️ Calidad:* ${best.quality}\n`;
 
           const vres = await fetch(best.url, {
               headers: { 'User-Agent': 'Mozilla/5.0', 'Referer': 'https://savetwitter.net/' }
           });
-          if (!vres.ok) throw new Error(`Gagal unduh video (HTTP ${vres.status})`);
+          if (!vres.ok) throw new Error(`Error al descargar el video (HTTP ${vres.status})`);
           const videoBuffer = Buffer.from(await vres.arrayBuffer());
-          if (!videoBuffer.length) throw new Error('File video kosong');
+          if (!videoBuffer.length) throw new Error('El archivo de video está vacío');
 
           let thumb
           try {
@@ -98,7 +98,7 @@ const pluginConfig = {
 
           await conn.sendMessage(m.chat, content, { quoted: m });
       } catch (e) {
-          await m.reply(`*Terjadi kesalahan saat memproses video 🍂*\n\n${e.message}`);
+          await m.reply(`*Ocurrió un error al procesar el video 🍂*\n\n${e.message}`);
       } finally {
           await conn.sendMessage(m.chat, { react: { text: '', key: m.key } });
       }

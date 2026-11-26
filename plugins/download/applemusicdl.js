@@ -60,7 +60,7 @@ const pluginConfig = {
           timeout: 15000
       })
       const results = typeof data === 'string' ? JSON.parse(data).results : data?.results
-      if (!results?.length) throw new Error('Lagu tidak ketemu, coba keyword lain.')
+      if (!results?.length) throw new Error('Canción no encontrada, prueba con otra palabra clave.')
 
       return results.map(i => {
           const slug = i.trackViewUrl?.match(/album\/([^/]+)/)?.[1] || 'song'
@@ -103,7 +103,7 @@ const pluginConfig = {
       const album = meta?.albumname || ''
       const thumb = meta?.thumb || ''
       const token = meta?.token || 'none'
-      if (!title) throw new Error('Data lagu tidak ketemu.')
+      if (!title) throw new Error('No se encontraron los datos de la canción.')
 
       const r2 = await axios.post(`${BASE}/api/composer/swd.php`,
           form({ song_name: title, artist_name: artist, url, token, zip_download: 'false', quality: '320' }), opt)
@@ -130,7 +130,7 @@ const pluginConfig = {
               }
           }
       }
-      if (!dlink || !String(dlink).trim()) throw new Error('Server download sedang bermasalah, coba lagi nanti.')
+      if (!dlink || !String(dlink).trim()) throw new Error('El servidor de descargas está fallando, inténtalo de nuevo más tarde.')
 
       await sleep(4000)
 
@@ -150,7 +150,7 @@ const pluginConfig = {
       const input = String(text || '').trim()
 
       if (['amcari', 'applecari'].includes(command)) {
-          if (!input) return reply(`*▢ APPLE MUSIC CARI*\n\nContoh:\n${prefix}amcari menuju senja`)
+          if (!input) return reply(`*▢ BUSCAR EN APPLE MUSIC*\n\nEjemplo:\n${prefix}amcari menuju senja`)
           await react(sock, m, '🕒')
           try {
               const list = await searchApple(input)
@@ -160,7 +160,7 @@ const pluginConfig = {
                   `   ${s.genre} • ${s.date}\n` +
                   `   ${s.url}`
               ).join('\n\n')
-              const caption = `*▢ APPLE MUSIC: ${input}*\n\n${body}\n\n_Ambil lagunya: ${prefix}amplay <judul / url>_`
+              const caption = `*▢ APPLE MUSIC: ${input}*\n\n${body}\n\n_Escucha la canción: ${prefix}amplay <título / url>_`
               if (list[0].thumb) {
                   await sock.sendMessage(m.chat, { image: { url: list[0].thumb }, caption }, { quoted: m })
               } else {
@@ -173,7 +173,7 @@ const pluginConfig = {
           }
       }
 
-      if (!input) return reply(`*▢ APPLE MUSIC PLAY*\n\nContoh:\n${prefix}amplay menuju senja\n${prefix}amplay https://music.apple.com/id/song/menuju-senja/936241610`)
+      if (!input) return reply(`*▢ APPLE MUSIC PLAY*\n\nEjemplo:\n${prefix}amplay menuju senja\n${prefix}amplay https://music.apple.com/id/song/menuju-senja/936241610`)
       await react(sock, m, '🕒')
       try {
           let url = input
@@ -189,11 +189,11 @@ const pluginConfig = {
 
           const caption =
               `*▢ APPLE MUSIC*\n\n` +
-              `❀ Judul  : ${dl.title}\n` +
-              `❀ Artis  : ${dl.artist}\n` +
+              `❀ Título  : ${dl.title}\n` +
+              `❀ Artista: ${dl.artist}\n` +
               `❀ Album  : ${dl.album || extra?.album || '-'}\n` +
-              `❀ Durasi : ${extra?.duration || '-'}\n` +
-              `❀ Link   : ${url}`
+              `❀ Duración : ${extra?.duration || '-'}\n` +
+              `❀ Enlace   : ${url}`
           const cover = dl.thumb || extra?.thumb
           if (cover) await sock.sendMessage(m.chat, { image: { url: cover }, caption }, { quoted: m }).catch(() => reply(caption))
           else await reply(caption)

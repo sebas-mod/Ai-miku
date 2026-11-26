@@ -26,7 +26,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, text }) {
-    if (!text) throw 'Masukkan judul lagu atau link SoundCloud!'
+    if (!text) throw '¡Envía el título de la canción o un enlace de SoundCloud!'
 
     await m.react('🕒')
 
@@ -39,16 +39,16 @@ const pluginConfig = {
       let json = await res.json()
 
       if (!json.status || json.result.length === 0)
-        throw 'Lagu tidak ditemukan.'
+        throw 'Canción no encontrada.'
 
       let data = json.result[0]
 
       let caption = `SOUNDCLOUD DOWNLOADER
 
-Judul: ${data.title}
-Artis: ${data.artist}
-Plays: ${data.plays}
-Durasi: ${data.duration_seconds}s
+Título: ${data.title}
+Artista: ${data.artist}
+Reproducciones: ${data.plays}
+Duración: ${data.duration_seconds}s
 URL: ${data.url}`
 
       await conn.sendMessage(
@@ -70,7 +70,7 @@ URL: ${data.url}`
         { quoted: m }
       )
     } catch (e) {
-      throw 'Yahh error.'
+      throw 'Uy, error.'
     }
   }
 

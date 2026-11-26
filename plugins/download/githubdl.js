@@ -47,14 +47,14 @@ const te = ElysiaRuntime.te;
           return m.reply(
               `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
               `> \`${m.prefix}githubdl <user> <repo> <branch>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}githubdl niceplugin NiceBot main\`\n` +
               `> \`${m.prefix}githubdl https://github.com/user/repo\``
           )
       }
 
       if (!repo) {
-          return m.reply(`❌ *ʀᴇᴘᴏ ᴅɪʙᴜᴛᴜʜᴋᴀɴ*\n\n> Masukkan nama repository`)
+          return m.reply(`❌ *ʀᴇᴘᴏ ʀᴇǫᴜᴇʀɪᴅᴏ*\n\n> Envía el nombre del repositorio`)
       }
 
       await m.react('🕕')
@@ -64,7 +64,7 @@ const te = ElysiaRuntime.te;
 
           if (!repoInfo.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʀᴇᴘᴏ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> \`${username}/${repo}\` tidak ada`)
+              return m.reply(`❌ *ʀᴇᴘᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> \`${username}/${repo}\` no existe`)
           }
 
           const repoData = await repoInfo.json()
@@ -76,7 +76,7 @@ const te = ElysiaRuntime.te;
           const checkRes = await fetch(zipUrl, { method: 'HEAD' })
           if (!checkRes.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʙʀᴀɴᴄʜ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n> Branch \`${branch}\` tidak ditemukan\n> Default: \`${defaultBranch}\``)
+              return m.reply(`❌ *ʀᴀᴍᴀ ɴᴏ ᴇxɪsᴛᴇ*\n\n> Branch \`${branch}\` no encontrado\n> Default: \`${defaultBranch}\``)
           }
 
           await sock.sendMedia(m.chat, zipUrl, null, m, {

@@ -141,7 +141,7 @@ const pluginConfig = {
       return { download: fallback.dl, title: fallback.title, fallback: true }
     }
 
-    throw new Error(fallback?.mess || 'Gagal mendapatkan audio')
+    throw new Error(fallback?.mess || 'Error al obtener el audio')
   }
 
   async function downloadAudio(url, fallback = false) {
@@ -156,7 +156,7 @@ const pluginConfig = {
 
     const type = String(res.headers['content-type'] || '').toLowerCase()
     if (type.includes('text/html') || type.includes('application/json')) {
-      throw new Error('URL download tidak mengembalikan audio')
+      throw new Error('La URL de descarga no devolvió audio')
     }
 
     return Buffer.from(res.data)
@@ -182,7 +182,7 @@ const pluginConfig = {
     const query = (text || '').trim()
 
     if (!query) {
-      return m.reply(`🎵 *PLAY*\n\nContoh:\n${usedPrefix + command} komang`)
+      return m.reply(`🎵 *PLAY*\n\nEjemplo:\n${usedPrefix + command} komang`)
     }
 
     await m.react('🕐')
@@ -194,7 +194,7 @@ const pluginConfig = {
 
       if (!hit) {
         const search = await yts(query)
-        if (!search.videos?.length) throw new Error('Lagu/video tidak ditemukan')
+        if (!search.videos?.length) throw new Error('Canción/video no encontrado')
 
         const video = search.videos[0]
         info = {
@@ -233,9 +233,9 @@ const pluginConfig = {
 
       const caption =
         `🎵 *NOW PLAYING*\n\n` +
-        `📌 *Judul:* ${info.title}\n` +
+        `📌 *Título:* ${info.title}\n` +
         `👤 *Channel:* ${info.author || '-'}\n` +
-        `⏱️ *Durasi:* ${info.timestamp || '-'}\n` +
+        `⏱️ *Duración:* ${info.timestamp || '-'}\n` +
         `👀 *Views:* ${formatNumber(info.views)}\n` +
         `📅 *Upload:* ${info.ago || '-'}\n\n` +
         `🔗 *YouTube:* ${info.url}`
@@ -256,7 +256,7 @@ const pluginConfig = {
     } catch (e) {
       console.error('[PLAY]', e)
       await m.react('❌')
-      return m.reply(`❌ *PLAY GAGAL*\n\n${e?.message || 'Gagal mengambil audio.'}`)
+      return m.reply(`❌ *PLAY FALLÓ*\n\n${e?.message || 'Error al obtener el audio.'}`)
     }
   }
 

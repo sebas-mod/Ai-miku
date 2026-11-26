@@ -28,14 +28,14 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, text, command }) {
-    if (!text) throw 'Masukkan query atau link!'
+    if (!text) throw '¡Envía una búsqueda o un enlace!'
 
     if (command === 'sfile') {
       const results = await sfileSearch(text)
 
-      if (!results.length) throw 'File tidak ditemukan'
+      if (!results.length) throw 'Archivo no encontrado'
 
-      let msg = '🔎 Hasil pencarian:\n\n'
+      let msg = '🔎 Resultados de búsqueda:\n\n'
 
       results.slice(0, 10).forEach((v, i) => {
         msg += `${i + 1}. ${v.title}\n`
@@ -47,12 +47,12 @@ const pluginConfig = {
     }
 
     if (command === 'sfiledl') {
-      if (!text.includes('sfile.co')) throw 'Link tidak valid'
+      if (!text.includes('sfile.co')) throw 'Enlace no válido'
 
       const { metadata, download } = await sfileDownload(text, true)
 
-      const caption = `📄 Nama: ${metadata.filename}
-📦 Tipe: ${metadata.mimetype}
+      const caption = `📄 Nombre: ${metadata.filename}
+📦 Tipo: ${metadata.mimetype}
 ⬇️ Download: ${metadata.download_count}
 👤 Author: ${metadata.author_name}`
 

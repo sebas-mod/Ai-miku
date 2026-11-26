@@ -32,10 +32,10 @@ const RedNoteDL = ElysiaRuntime.RedNoteDL;
       m.react("❌");
       return m.reply(
         `📕 *RedNote Downloader*\n\n` +
-          `Download video atau foto dari XiaoHongShu (RedNote).\n\n` +
-          `*PENGGUNAAN:*\n` +
+          `Descarga videos o fotos de XiaoHongShu (RedNote).\n\n` +
+          `*USO:*\n` +
           `> *${m.prefix}rednotedl <link>*\n\n` +
-          `*CONTOH:*\n` +
+          `*EJEMPLO:*\n` +
           `> *${m.prefix}rednotedl https://www.xiaohongshu.com/xxx*`,
       );
     }
@@ -47,7 +47,7 @@ const RedNoteDL = ElysiaRuntime.RedNoteDL;
 
       if (!result.status) {
         m.react("☢");
-        return m.reply(`❌ *RedNote Gagal*\n\n> ${result.error}`);
+        return m.reply(`❌ *RedNote falló*\n\n> ${result.error}`);
       }
 
       if (result.type === "video" && result.results?.[0]) {
@@ -62,7 +62,7 @@ const RedNoteDL = ElysiaRuntime.RedNoteDL;
         }
         if (result.results.length > 5) {
           await m.reply(
-            `_Masih ada ${result.results.length - 5} foto lagi, maksimal 5_`,
+            `_Quedan ${result.results.length - 5} fotos más, máximo 5_`,
           );
         }
       }
@@ -71,7 +71,7 @@ const RedNoteDL = ElysiaRuntime.RedNoteDL;
     } catch (e) {
       console.error(e);
       m.react("☢");
-      m.reply("❌ Gagal mengambil data RedNote, coba lagi nanti");
+      m.reply("❌ Error al obtener los datos de RedNote, inténtalo más tarde");
     }
   }
 

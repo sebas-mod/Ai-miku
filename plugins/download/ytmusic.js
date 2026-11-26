@@ -206,7 +206,7 @@ const pluginConfig = {
 
   async function downloadAudio(stream) {
     const headers = { 'User-Agent': stream.ua, Origin: 'https://www.youtube.com', Referer: 'https://www.youtube.com/' }
-    if (stream.size && stream.size > MAX_FILE_BYTES) throw new Error('File audio terlalu besar')
+    if (stream.size && stream.size > MAX_FILE_BYTES) throw new Error('Archivo de audio demasiado grande')
 
     if (stream.size) {
       const CHUNK = 4 * 1024 * 1024
@@ -243,8 +243,8 @@ const pluginConfig = {
     if (!query) {
       return m.reply(
         `*YouTube Music*\n\n` +
-        `Cari & putar lagu dari YouTube Music.\n\n` +
-        `Contoh:\n${usedPrefix + command} bernadya satu bulan\n${usedPrefix + command} list bernadya`
+        `Busca y reproduce canciones de YouTube Music.\n\n` +
+        `Ejemplo:\n${usedPrefix + command} bernadya satu bulan\n${usedPrefix + command} list bernadya`
       )
     }
 
@@ -254,7 +254,7 @@ const pluginConfig = {
       const songs = parseSongs(data)
       if (!songs.length) {
         await m.react('❌')
-        return m.reply(`Lagu untuk \`${query}\` tidak ditemukan.`)
+        return m.reply(`Canción para \`${query}\` no encontrada.`)
       }
 
       if (listOnly) {
@@ -262,19 +262,19 @@ const pluginConfig = {
           `${i + 1}. *${s.title}*${s.explicit ? ' 🅴' : ''}\n   ${s.artist}${s.album ? ' • ' + s.album : ''}${s.duration ? ' • ' + s.duration : ''}\n   https://music.youtube.com/watch?v=${s.videoId}`
         )
         await m.react('✅')
-        return m.reply(`*— YOUTUBE MUSIC —*\n_Hasil untuk:_ ${query}\n\n${lines.join('\n\n')}`)
+        return m.reply(`*— YOUTUBE MUSIC —*\n_Resultados para:_ ${query}\n\n${lines.join('\n\n')}`)
       }
 
       const song = songs[0]
       const stream = await getAudioStream(song.videoId)
-      if (!stream) throw new Error('Stream audio tidak tersedia untuk lagu ini')
+      if (!stream) throw new Error('Stream de audio no disponible para esta canción')
 
       const caption =
         `*— YOUTUBE MUSIC —*\n\n` +
-        `❀ Judul : ${song.title}\n` +
+        `❀ Título : ${song.title}\n` +
         `❀ Artis : ${song.artist}\n` +
         (song.album ? `❀ Album : ${song.album}\n` : '') +
-        (song.duration ? `❀ Durasi : ${song.duration}\n` : '') +
+        (song.duration ? `❀ Duración : ${song.duration}\n` : '') +
         `❀ Link : https://music.youtube.com/watch?v=${song.videoId}`
 
       try {

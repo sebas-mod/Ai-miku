@@ -63,7 +63,7 @@ import axios from 'axios'
           const data = JSON.parse(response.data.slice(4))
           const { fileName, sizeBytes, downloadUrl } = data
 
-          if (!downloadUrl) throw new Error("Link Download Limit!")
+          if (!downloadUrl) throw new Error("¡Enlace con límite de descargas!")
 
           return {
               downloadUrl: downloadUrl,
@@ -84,15 +84,15 @@ import axios from 'axios'
           return m.reply(
               `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
               `┃   ${m.prefix}gdrive <url>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}gdrive https://drive.google.com/file/d/xxx/view\n` +
               `┃\n` +
-              `┃ *${global.namebot || 'Bot'}:* Mau download file dari Google Drive apa darling~?\n` +
+              `┃ *${global.namebot || 'Bot'}:* ¿Qué archivo de Google Drive quieres descargar, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -100,12 +100,12 @@ import axios from 'axios'
       if (!url.match(/drive\.google/i)) {
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
-              `> URL tidak valid. Kirim link Google Drive yang bener darling~ 🥺`
+              `> URL no válida. Envía un enlace de Google Drive correcto, darling~ 🥺`
           )
       }
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n *${global.namebot || 'Bot'}:* Lagi mengambil file dari Google Drive darling~ tunggu sebentar yaa 📁`)
+      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n *${global.namebot || 'Bot'}:* Estoy obteniendo el archivo de Google Drive, darling~ espera un momento 📁`)
 
       try {
           const data = await drive(url)
@@ -114,7 +114,7 @@ import axios from 'axios'
               m.react('💔')
               return m.reply(
                   `💔 *ɢᴀɢᴀʟ*\n\n` +
-                  `> File tidak dapat diakses atau link limit darling~ 🥺`
+                  `> No se puede acceder al archivo o el enlace alcanzó su límite, darling~ 🥺`
               )
           }
 
@@ -127,7 +127,7 @@ import axios from 'axios'
                       `┃ 📄 *ɴᴀᴍᴀ*: ${data.fileName}\n` +
                       `┃ 📦 *ᴜᴋᴜʀᴀɴ*: ${data.fileSize}\n` +
                       `┃\n` +
-                      `┃ *${global.namebot || 'Bot'}:* Ini file nya darling~ 📂\n` +
+                      `┃ *${global.namebot || 'Bot'}:* Aquí tienes el archivo, darling~ 📂\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -138,7 +138,7 @@ import axios from 'axios'
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, darling~ 🥺`
           )
       }
   }

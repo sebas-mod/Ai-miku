@@ -34,13 +34,13 @@ const te = ElysiaRuntime.te;
           return m.reply(
               `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
               `> \`${m.prefix}capcutdl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}capcutdl https://www.capcut.com/t/xxx\``
           )
       }
 
       if (!url.match(/capcut\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link CapCut.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de CapCut.`)
       }
 
       await m.react('🕕')
@@ -49,7 +49,7 @@ const te = ElysiaRuntime.te;
           const data = await capcut(url)
 
           if (!data?.status || !data?.originalVideoUrl) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
           }
 
           await sock.sendMedia(m.chat, data.originalVideoUrl, null, m, {

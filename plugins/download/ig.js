@@ -43,8 +43,8 @@ const pluginConfig = {
   			`📸 *INSTAGRAM DOWNLOADER (IGEXPORT)*\n\n` +
   			`Format:\n` +
   			`• \`${usedPrefix + command} <URL Postingan / Reel Instagram>\`\n` +
-  			`• Atau balas pesan yang berisi tautan dengan \`${usedPrefix + command}\`\n\n` +
-  			`*Contoh:*\n` +
+  			`• O responde a un mensaje que contenga un enlace con \`${usedPrefix + command}\`\n\n` +
+  			`*Ejemplo:*\n` +
   			`• \`${usedPrefix + command} https://www.instagram.com/reel/C8xyz123/\``
   		)
   	}
@@ -67,13 +67,13 @@ const pluginConfig = {
   		})
 
   		if (!data?.ok) {
-  			throw new Error('Media Instagram tidak ditemukan atau akun bersifat privat.')
+  			throw new Error('Contenido de Instagram no encontrado o cuenta privada.')
   		}
 
   		if (isReel) {
   			const videoUrl = data.media?.videoUrl
   			if (!videoUrl) {
-  				throw new Error('Video Reel tidak ditemukan pada respon server.')
+  				throw new Error('Video Reel no encontrado en la respuesta del servidor.')
   			}
 
   			const caption = [
@@ -97,7 +97,7 @@ const pluginConfig = {
 
   		const items = (data.media?.items || []).filter(item => item?.url)
   		if (!items.length) {
-  			throw new Error('Tidak ada media yang dapat diunduh.')
+  			throw new Error('No hay contenido para descargar.')
   		}
 
   		if (items.length > 1) {
@@ -141,7 +141,7 @@ const pluginConfig = {
   	} catch (e) {
   		console.error('[IGEXPORT ERROR]:', e.response?.data || e.message || e)
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null)
-  		return reply(`❌ Gagal mengunduh media Instagram: ${e.message || e}`)
+  		return reply(`❌ Error al descargar el contenido de Instagram: ${e.message || e}`)
   	}
   }
 

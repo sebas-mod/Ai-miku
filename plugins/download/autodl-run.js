@@ -60,7 +60,7 @@ const pluginConfig = {
               new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 90_000))
           ])
           const media = result?.media || []
-          if (!media.length) throw new Error('media kosong')
+          if (!media.length) throw new Error('contenido vacío')
 
           const caption = result.title ? String(result.title).slice(0, 900) : undefined
           const video = media.find(x => x.type === 'video')

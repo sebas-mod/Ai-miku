@@ -38,14 +38,14 @@ const pluginConfig = {
       return m ? m[1] : null
   }
 
-  const fmtNum = n => new Intl.NumberFormat('id-ID').format(Number(n) || 0)
+  const fmtNum = n => new Intl.NumberFormat('es-ES').format(Number(n) || 0)
 
   async function findVideo(query) {
       if (isYtUrl(query)) {
           const id = ytId(query)
-          if (!id) throw new Error('Link YouTube tidak valid')
+          if (!id) throw new Error('Enlace de YouTube no válido')
           const v = await yts({ videoId: id })
-          if (!v) throw new Error('Video tidak ditemukan')
+          if (!v) throw new Error('Video no encontrado')
           return {
               videoId: id,
               url: `https://youtu.be/${id}`,
@@ -59,7 +59,7 @@ const pluginConfig = {
 
       const res = await yts(query)
       const v = res?.videos?.[0]
-      if (!v) throw new Error('Lagu tidak ditemukan')
+      if (!v) throw new Error('Canción no encontrada')
       return {
           videoId: v.videoId,
           url: v.url,
@@ -114,7 +114,7 @@ const pluginConfig = {
       })
       const type = String(res.headers['content-type'] || '').toLowerCase()
       if (type.includes('text/html') || type.includes('application/json')) {
-          throw new Error('link download bukan file audio')
+          throw new Error('la URL de descarga no es un archivo de audio')
       }
       return Buffer.from(res.data)
   }
@@ -125,7 +125,7 @@ const pluginConfig = {
       for await (const src of audioSources(url)) {
           try {
               const buf = await fetchBuffer(src.dl)
-              if (buf.length < 10 * 1024) throw new Error('file terlalu kecil')
+              if (buf.length < 10 * 1024) throw new Error('archivo demasiado pequeño')
 
               const kind = sniffAudio(buf)
               if (kind === 'mp3') return buf
@@ -134,14 +134,14 @@ const pluginConfig = {
                   const mp3 = await fallbackToMp3Buffer(src.dl)
                   if (mp3?.length > 10 * 1024) return Buffer.from(mp3)
               }
-              throw new Error('isi file bukan audio')
+              throw new Error('el archivo no es audio')
           } catch (e) {
               console.error(`[PLAYElysia Assistant] ${src.name} gagal:`, e.message)
               errors.push(`${src.name}: ${String(e.message).slice(0, 60)}`)
           }
       }
 
-      throw new Error('Semua sumber download gagal' + (errors.length ? ` (${errors.join('; ')})` : ''))
+      throw new Error('Todas las fuentes de descarga fallaron' + (errors.length ? ` (${errors.join('; ')})` : ''))
   }
 
   async function getThumb(video) {
@@ -167,22 +167,22 @@ const pluginConfig = {
       if (!query) {
           return m.reply(
               `🎵 *PLAY Elysia Assistant*\n\n` +
-              `> Contoh: ${p}${command} multo\n` +
-              `> Contoh: ${p}${command} https://youtube.com/watch?v=xxxxx`
+              `> Ejemplo: ${p}${command} multo\n` +
+              `> Ejemplo: ${p}${command} https://youtube.com/watch?v=xxxxx`
           )
       }
 
       await m.react('🎧')
 
       try {
-          await m.reply('🎵 *Elysia Assistant MD:* Darling~ lagi nyari lagunya ya... tunggu sebentar 🦋')
+          await m.reply('🎵 *Elysia Assistant MD:* Darling~ estoy buscando la canción... espera un momento 🦋')
 
           const video = await findVideo(query)
 
           await m.reply(
               `📥 *Downloading:* ${video.title}\n` +
-              `⏱️ *Durasi:* ${video.timestamp}\n\n` +
-              `Tunggu bentar lagi ya darling~`
+              `⏱️ *Duración:* ${video.timestamp}\n\n` +
+              `Espera un momentito, darling~`
           )
 
           const [audio, thumb] = await Promise.all([
@@ -222,15 +222,15 @@ const pluginConfig = {
           const msg = String(err?.message || err)
 
           if (msg.includes('getaddrinfo') || msg.includes('ENOTFOUND')) {
-              return m.reply('❌ *Error:* Koneksi internet bermasalah, coba lagi ya darling~ 🗿')
+              return m.reply('❌ *Error:* Problema de conexión a internet, inténtalo de nuevo, darling~ 🗿')
           }
           if (msg.toLowerCase().includes('signature')) {
-              return m.reply('❌ *Error:* YouTube lagi update, coba lagi nanti ya darling~ 🦋')
+              return m.reply('❌ *Error:* YouTube se está actualizando, inténtalo más tarde, darling~ 🦋')
           }
           if (/Command failed|ffmpeg/i.test(msg)) {
-              return m.reply('❌ *Error:* Gagal memproses audio (sumber download lagi bermasalah), coba lagi nanti ya darling~ 🦋')
+              return m.reply('❌ *Error:* no se pudo procesar el audio (la fuente de descarga está fallando), inténtalo más tarde, darling~ 🦋')
           }
-          return m.reply(`❌ *Error:* ${msg.substring(0, 150)}\n\n> Coba lagi nanti ya darling~`)
+          return m.reply(`❌ *Error:* ${msg.substring(0, 150)}\n\n> Inténtalo más tarde, darling~`)
       }
   }
 

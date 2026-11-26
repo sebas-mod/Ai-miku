@@ -38,7 +38,7 @@ const pluginConfig = {
     )
 
     if (!data || data.code !== 0 || !data.data?.videos?.length) {
-      throw 'Hasil tidak ditemukan'
+      throw 'Resultado no encontrado'
     }
 
     const v = data.data.videos[0]
@@ -55,7 +55,7 @@ const pluginConfig = {
     )
 
     if (!data || data.code !== 0) {
-      throw 'Gagal mengambil data TikTok'
+      throw 'Error al obtener los datos de TikTok'
     }
 
     return data.data
@@ -68,7 +68,7 @@ const pluginConfig = {
 
     if (!input) {
       return m.reply(
-        `Contoh:\n` +
+        `Ejemplo:\n` +
         `${usedPrefix + command} https://vt.tiktok.com/xxxx\n` +
         `${usedPrefix + command} kurumi edit`
       )
@@ -84,7 +84,7 @@ const pluginConfig = {
       const res = await getTikTok(url)
 
       if (!res.music) {
-        throw 'Audio TikTok tidak ditemukan'
+        throw 'Audio de TikTok no encontrado'
       }
 
       const title = (res.title || '-').replace(/\s+/g, ' ').trim()
@@ -94,9 +94,9 @@ const pluginConfig = {
       const caption = `
 — TIKTOK MUSIC —
 
-❀ Judul : ${title.length > 80 ? title.slice(0, 80) + '...' : title}
+❀ Título : ${title.length > 80 ? title.slice(0, 80) + '...' : title}
 ❀ Uploader : ${uploader}
-❀ Durasi : ${duration}
+❀ Duración : ${duration}
 `.trim()
 
       await conn.sendMessage(

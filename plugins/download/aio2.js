@@ -41,18 +41,18 @@ const pluginConfig = {
       let res = await fetch(api)
       let json = await res.json()
 
-      if (!json.status) throw 'Gagal mengambil data.'
+      if (!json.status) throw 'No se pudieron obtener los datos.'
 
       let data = json.result
       let videoUrl = data.download_url
 
       await conn.sendMessage(m.chat, {
         video: { url: videoUrl },
-        caption: data.title || 'Video berhasil diunduh'
+        caption: data.title || 'Video descargado'
       }, { quoted: m })
     } catch (e) {
       console.error(e)
-      conn.reply(m.chat, '⚠️ Gagal mengambil video.', m)
+      conn.reply(m.chat, '⚠️ No se pudo obtener el video.', m)
     }
   }
 

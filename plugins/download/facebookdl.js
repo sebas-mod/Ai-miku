@@ -32,15 +32,15 @@ const fbdown = ElysiaRuntime.fbdown;
 
       if (!url) {
           return m.reply(
-              `⚠️ *CARA PAKAI*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `- \`${m.prefix}facebookdl <url>\`\n\n` +
-              `*Contoh:*\n` +
+              `*Ejemplo:*\n` +
               `- \`${m.prefix}facebookdl https://www.facebook.com/watch?v=xxx\``
           )
       }
 
       if (!url.match(/facebook\.com|fb\.watch|fb\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link Facebook.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de Facebook.`)
       }
 
       await m.react('🕕')
@@ -50,7 +50,7 @@ const fbdown = ElysiaRuntime.fbdown;
 
           if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
               await m.react('❌')
-              return m.reply(`❌ Gagal mengambil video. Coba link lain atau pastikan postingan bersifat publik.\n\n_Catatan: Sistem saat ini belum mendukung download foto Facebook, hanya video._`)
+              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace o comprueba que la publicación sea pública.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
           }
 
           let video = data.result.medias.find(m => m.quality === "hd") ||
@@ -59,16 +59,16 @@ const fbdown = ElysiaRuntime.fbdown;
 
           if (!video || !video.url) {
               await m.react('❌')
-              return m.reply(`❌ Video tidak ditemukan di link tersebut.\n\n_Catatan: Sistem saat ini belum mendukung download foto Facebook, hanya video._`)
+              return m.reply(`❌ Video no encontrado en ese enlace.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
           }
 
           let caption = `🎥 *FACEBOOK DOWNLOADER*\n\n`
-          caption += `*Judul:* ${data.result.title || "Video Facebook"}\n`
-          caption += `*Kualitas:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
+          caption += `*Título:* ${data.result.title || "Video Facebook"}\n`
+          caption += `*Calidad:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
           if (video.formattedSize) {
-              caption += `*Ukuran:* ${video.formattedSize}\n`
+              caption += `*Tamaño:* ${video.formattedSize}\n`
           }
-          caption += `\n_Catatan: Fitur ini tidak mensupport postingan foto._`
+          caption += `\n_Nota: Esta función no admite publicaciones con fotos._`
 
           await sock.sendMedia(m.chat, video.url, caption, m, {
               type: 'video',

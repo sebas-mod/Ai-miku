@@ -41,19 +41,19 @@ const pluginConfig = {
       }
     )
 
-    if (!res.ok) throw "Server tidak merespon"
+    if (!res.ok) throw "El servidor no responde"
 
     const data = await res.json().catch(() => ({}))
     const video = data?.medias?.[0]?.url
 
-    if (!video) throw "Media tidak tersedia"
+    if (!video) throw "Contenido no disponible"
 
     return video
   }
 
   async function handler(m, { text, conn }) {
-    if (!text) throw "Masukkan link CapCut"
-    if (!/capcut\.com/.test(text)) throw "Link tidak valid"
+    if (!text) throw "Envía el enlace de CapCut"
+    if (!/capcut\.com/.test(text)) throw "Enlace no válido"
 
     await m.react("✨")
 
@@ -70,7 +70,7 @@ const pluginConfig = {
     } catch (e) {
       console.log(e)
       await m.react("❌")
-      m.reply("Gagal mengambil video")
+      m.reply("No se pudo obtener el video")
     }
   }
 

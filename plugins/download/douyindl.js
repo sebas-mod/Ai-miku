@@ -37,7 +37,7 @@ import axios from 'axios'
         await new Promise(r => setTimeout(r, 1000));
       }
     }
-    throw new Error("Gagal mengambil data dari server");
+    throw new Error("No se pudieron obtener los datos del servidor");
   }
 
   async function handler(m, { sock }) {
@@ -46,10 +46,10 @@ import axios from 'axios'
       m.react("❌");
       return m.reply(
         `🎵 *Douyin Downloader*\n\n` +
-          `Download video atau audio dari Douyin (TikTok China).\n\n` +
-          `*PENGGUNAAN:*\n` +
+          `Descarga videos o audios de Douyin (TikTok China).\n\n` +
+          `*USO:*\n` +
           `> *${m.prefix}douyindl <link>*\n\n` +
-          `*CONTOH:*\n` +
+          `*EJEMPLO:*\n` +
           `> *${m.prefix}douyindl https://v.douyin.com/xxx*`,
       );
     }
@@ -78,7 +78,7 @@ import axios from 'axios'
     } catch (e) {
       console.error(e);
       m.react("☢");
-      m.reply("❌ Gagal mengambil data Douyin, coba lagi nanti");
+      m.reply("❌ Error al obtener los datos de Douyin, inténtalo más tarde");
     }
   }
 

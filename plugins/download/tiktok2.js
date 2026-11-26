@@ -134,12 +134,12 @@ const te = ElysiaRuntime.te;
               `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」\n` +
               `┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}tiktok2 <url>\`\n` +
               `╰┈┈⬡\n\n` +
-              `> Contoh: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
+              `> Ejemplo: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
           )
       }
 
       if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-          return m.reply('❌ URL tidak valid. Gunakan link TikTok.')
+          return m.reply('❌ URL no válida. Usa un enlace de TikTok.')
       }
 
       m.react('⏱️')
@@ -201,7 +201,7 @@ const te = ElysiaRuntime.te;
               }
 
               if (mediaList.length === 0) {
-                  throw new Error('Gagal mengunduh gambar slide')
+                  throw new Error('Error al descargar las imágenes del carrusel')
               }
 
               const opener = generateWAMessageFromContent(
@@ -260,7 +260,7 @@ const te = ElysiaRuntime.te;
           }
 
           if (result.mp3.length > 0) {
-              m.reply(`*NOTE*\n> Konten ini tidak memiliki video/slide, mengirim audio saja...`)
+              m.reply(`*NOTA*\n> Este contenido no tiene video/carrusel, enviando solo el audio...`)
               await sock.sendMessage(
                   m.chat,
                   {
@@ -273,7 +273,7 @@ const te = ElysiaRuntime.te;
               return
           }
 
-          throw new Error('Tidak ada media yang dapat diunduh')
+          throw new Error('No hay contenido para descargar')
       } catch (err) {
           console.error('[TikTokDL2] Error:', err)
           m.react('☢')

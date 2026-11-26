@@ -61,17 +61,17 @@ const pluginConfig = {
   }
 
   async function handler(m, { conn, text, usedPrefix, command }) {
-    if (!text) throw `Contoh:\n${usedPrefix + command} https://www.mediafire.com/file/xxxxx`
+    if (!text) throw `Ejemplo:\n${usedPrefix + command} https://www.mediafire.com/file/xxxxx`
 
     await m.react('🕒')
 
     try {
       let res = await mediafiredl(text)
-      if (!res.download) throw 'Link download tidak ditemukan.'
+      if (!res.download) throw 'Enlace de descarga no encontrado.'
 
       let sizeMB = sizeToMB(res.filesize)
       if (sizeMB > 100) {
-        return m.reply(`❌ File terlalu besar (${res.filesize})\nBatas maksimal: 100 MB`)
+        return m.reply(`❌ El archivo es demasiado grande (${res.filesize})\nLímite máximo: 100 MB`)
       }
 
       let ext = res.download.split('.').pop().split('?')[0]
@@ -83,13 +83,13 @@ const pluginConfig = {
         fileName,
         caption:
   `📦 MediaFire Downloader
-📝 Nama: ${res.filename}
-📁 Tipe: ${res.filetype}
-📏 Ukuran: ${res.filesize}
+📝 Nombre: ${res.filename}
+📁 Tipo: ${res.filetype}
+📏 Tamaño: ${res.filesize}
 📅 Upload: ${res.uploaded}`
       }, { quoted: m })
     } catch (e) {
-      m.reply(typeof e === 'string' ? e : '❌ Gagal mengambil file MediaFire.')
+      m.reply(typeof e === 'string' ? e : '❌ Error al obtener el archivo de MediaFire.')
     }
   }
 

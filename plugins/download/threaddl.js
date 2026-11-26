@@ -68,7 +68,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
     const url = m.text?.trim();
 
     if (!url || !/threads/i.test(url)) {
-      return m.reply("❌ *Waduh, Link Threads-nya mana nih?*\n\nKamu harus memasukkan tautan (link) dari postingan Threads yang ingin diunduh. Pastikan linknya benar ya! \n\nContoh: `.threaddl https://www.threads.net/@zuck/post/xxx`");
+      return m.reply("❌ *¿Y el enlace de Threads?*\n\nDebes enviar el enlace de la publicación de Threads que quieres descargar. ¡Asegúrate de que sea correcto!\n\nEjemplo: `.threaddl https://www.threads.net/@zuck/post/xxx`");
     }
 
     await m.react("🕕");
@@ -101,15 +101,15 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
 
       if (res.status >= 300 || data.success !== true || result.length === 0) {
         await m.react("❌");
-        return m.reply(`⚠️ *Aduh, gagal mengambil data dari Threads!*\n\nMungkin postingan ini bersifat privat, sudah dihapus, atau link yang kamu berikan kurang tepat.\n\nAlasan sistem: ${data.message || data.error || "Tidak diketahui"}`);
+        return m.reply(`⚠️ *¡Uy, no se pudieron obtener los datos de Threads!*\n\nQuizá la publicación es privada, ya se eliminó o el enlace que enviaste no es correcto.\n\nMotivo del sistema: ${data.message || data.error || "Desconocido"}`);
       }
 
       const captionText = `*THREADS DOWNLOADER*
 
-Halo! Ini hasil unduhan Threads yang kamu minta:
+¡Hola! Este es el resultado de la descarga de Threads que pediste:
 
-👤 *Pembuat*: ${info.author || "Unknown"}
-📝 *Teks Postingan*: ${cleanText(info.title) || cleanText(info.description) || "Tidak ada deskripsi."}
+👤 *Autor*: ${info.author || "Unknown"}
+📝 *Texto de la publicación*: ${cleanText(info.title) || cleanText(info.description) || "Sin descripción."}
 📊 *Jumlah File Media*: ${result.length} file
 
 *Semoga bermanfaat ya!* Jangan lupa mampir lagi kalau mau download yang lain. 🚀`;
@@ -139,7 +139,7 @@ Halo! Ini hasil unduhan Threads yang kamu minta:
     } catch (err) {
       console.error("[ThreadsDL]", err.message);
       await m.react("☢");
-      m.reply("😔 *Sepertinya ada gangguan di sistemku.* \n\nTerjadi kesalahan fatal saat mencoba memproses link Threads tersebut. Silakan coba lagi nanti ya!");
+      m.reply("😔 *Parece que hay un problema en mi sistema.* \n\nOcurrió un error fatal al procesar ese enlace de Threads. ¡Inténtalo de nuevo más tarde!");
     }
   }
 

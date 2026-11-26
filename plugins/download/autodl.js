@@ -36,8 +36,8 @@ const pluginConfig = {
 
       if (!ON.test(arg) && !OFF.test(arg)) {
           return reply(
-              `*▢ AUTO DOWNLOAD*\nStatus chat ini: ${chat.autodl ? '✅ ON' : '❌ OFF'}\n\n` +
-              `${prefix}autodl on  → link otomatis diunduh\n${prefix}autodl off\n\n` +
+              `*▢ AUTO DOWNLOAD*\nEstado de este chat: ${chat.autodl ? '✅ ON' : '❌ OFF'}\n\n` +
+              `${prefix}autodl on  → los enlaces se descargan automáticamente\n${prefix}autodl off\n\n` +
               `Mendukung: TikTok, Instagram, YouTube, Facebook, Twitter/X.`
           )
       }
@@ -47,8 +47,8 @@ const pluginConfig = {
       chat.autodl = on
       saveDB(global.db)
       return reply(on
-          ? '✅ Auto-download *aktif*. Kirim link TikTok / IG / YouTube / FB / X dan bot akan mengunduhnya.'
-          : '❌ Auto-download *dimatikan* di chat ini.')
+          ? '✅ Auto-descarga *activa*. Envía un enlace de TikTok / IG / YouTube / FB / X y el bot lo descargará.'
+          : '❌ Auto-download *desactivada* en este chat.')
   }
 
 export { pluginConfig as config, handler }

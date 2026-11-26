@@ -35,7 +35,7 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
     if (!url) {
       return m.reply(
         `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-          `> Download dari berbagai platform!\n\n` +
+          `> ¡Descargas de varias plataformas!\n\n` +
           `╭┈┈⬡「 🌐 *ᴘʟᴀᴛꜰᴏʀᴍ* 」\n` +
           `┃ • Instagram\n` +
           `┃ • TikTok\n` +
@@ -46,12 +46,12 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
           `┃ • CapCut\n` +
           `┃ • Threads / Reddit\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> *Contoh:* ${m.prefix}aio https://instagram.com/p/xxx`,
+          `> *Ejemplo:* ${m.prefix}aio https://instagram.com/p/xxx`,
       );
     }
 
     if (!url.startsWith("http")) {
-      return m.reply(`❌ URL tidak valid! Harus dimulai dengan http/https`);
+      return m.reply(`❌ ¡URL no válida! Debe empezar por http/https`);
     }
 
     await m.react("🕕");
@@ -61,7 +61,7 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
 
       if (!result?.media?.length) {
         await m.react("❌");
-        return m.reply(`❌ Gagal mengambil media. Pastikan URL valid.`);
+        return m.reply(`❌ No se pudo obtener el contenido. Comprueba que la URL sea válida.`);
       }
 
       const ctxInfo = saluranCtx();

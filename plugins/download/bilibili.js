@@ -36,7 +36,7 @@ const pluginConfig = {
   async function bilibilidl(url, quality = '480P') {
     try {
       let aid = /\/video\/(\d+)/.exec(url)?.[1]
-      if (!aid) throw new Error('ID Video tidak ditemukan')
+      if (!aid) throw new Error('ID del video no encontrado')
 
       const appInfo = await axios.get(url).then(res => res.data)
       const $ = cheerio.load(appInfo)
@@ -64,7 +64,7 @@ const pluginConfig = {
       }).then(res => res.data)
 
       const selectedVideo = response.data.playurl.video.find(v => v.stream_info.desc_words === quality)
-      if (!selectedVideo) throw new Error('Video tidak ditemukan dengan kualitas itu')
+      if (!selectedVideo) throw new Error('No se encontró el video con esa calidad')
 
       const videoUrl = selectedVideo.video_resource.url || selectedVideo.video_resource.backup_url[0]
       const audioUrl = response.data.playurl.audio_resource[0].url || response.data.playurl.audio_resource[0].backup_url[0]
@@ -129,7 +129,7 @@ const pluginConfig = {
   }
 
   async function handler(m, { conn, args, usedPrefix, command }) {
-    if (!args[0]) throw `Contoh: ${usedPrefix + command} https://www.bilibili.tv/video/4793817472438784`
+    if (!args[0]) throw `Ejemplo: ${usedPrefix + command} https://www.bilibili.tv/video/4793817472438784`
 
     m.reply('wait...')
     try {
@@ -139,7 +139,7 @@ const pluginConfig = {
         caption: `🎬 *${result.title}*\n📝 ${result.description}\n👀 ${result.views} tayangan | ❤️ ${result.like}`
       }, { quoted: m })
     } catch (e) {
-      throw `yahh error: ${e.message}`
+      throw `uy, error: ${e.message}`
     }
   }
 

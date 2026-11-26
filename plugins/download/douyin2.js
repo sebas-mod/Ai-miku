@@ -27,7 +27,7 @@ const pluginConfig = {
 
   async function handler(m, { conn, args }) {
     if (!args[0]) {
-      return m.reply('Masukkan link Douyin!\n\nContoh:\n.douyin https://v.douyin.com/xxxxx')
+      return m.reply('¡Envía el enlace de Douyin!\n\nEjemplo:\n.douyin https://v.douyin.com/xxxxx')
     }
 
     try {
@@ -38,7 +38,7 @@ const pluginConfig = {
       let json = await res.json()
 
       if (!json.status || !json.result) {
-        throw 'Gagal mengambil data Douyin'
+        throw 'No se pudieron obtener los datos de Douyin'
       }
 
       let data = json.result
@@ -49,13 +49,13 @@ const pluginConfig = {
       let video = medias.find(v => v.type === 'video')
 
       if (!video?.url) {
-        return m.reply('Video tidak ditemukan')
+        return m.reply('Video no encontrado')
       }
 
       let caption = `
 *DOUYIN DOWNLOADER*
 
-📌 *Judul:* ${title}
+📌 *Título:* ${title}
 `.trim()
 
       let thumbBuffer = null
@@ -71,7 +71,7 @@ const pluginConfig = {
       }, { quoted: m })
     } catch (e) {
       console.error(e)
-      m.reply('Terjadi kesalahan saat mengambil video')
+      m.reply('Ocurrió un error al obtener el video')
     }
   }
 

@@ -33,7 +33,7 @@ const pluginConfig = {
   const run = (cmd) => new Promise((resolve, reject) => exec(cmd, (err, _o, stderr) => err ? reject(new Error(stderr || err.message)) : resolve()))
 
   async function handler(m, { conn, text, usedPrefix, command }) {
-    if (!text) throw `Contoh:\n${usedPrefix + command} https://www.instagram.com/reel/xxxxx/`
+    if (!text) throw `Ejemplo:\n${usedPrefix + command} https://www.instagram.com/reel/xxxxx/`
 
     const tmpDir = path.join(process.cwd(), 'database', 'tmp')
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true })
@@ -46,7 +46,7 @@ const pluginConfig = {
     try {
       const res = await igDownloadAuto(text.trim(), 'fastdl')
       const video = res.media.find(v => v.type === 'Video')
-      if (!video) throw 'Audio tidak tersedia, link ini tidak berisi video/reel.'
+      if (!video) throw 'Audio no disponible, este enlace no contiene un video/reel.'
 
       const { data } = await axios.get(video.url, { responseType: 'arraybuffer', headers: { 'User-Agent': 'Mozilla/5.0' } })
       fs.writeFileSync(inPath, Buffer.from(data))
@@ -61,7 +61,7 @@ const pluginConfig = {
     } catch (e) {
       console.log(e)
       await m.react('❌')
-      m.reply(typeof e === 'string' ? e : `❌ Gagal mengambil audio Instagram.\n> ${e?.message || ''}`)
+      m.reply(typeof e === 'string' ? e : `❌ Error al obtener el audio de Instagram.\n> ${e?.message || ''}`)
     } finally {
       try { fs.unlinkSync(inPath) } catch {}
       try { fs.unlinkSync(outPath) } catch {}

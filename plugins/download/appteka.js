@@ -57,7 +57,7 @@ const pluginConfig = {
       if (idRegex.test(t)) return t.toLowerCase();
       const m = String(t).match(/\/apps?\/([0-9a-f]{3}r\d+)/i);
       if (m !== null) return m[1].toLowerCase();
-      throw new Error(`Bukan app_id/URL Appteka yang valid: ${t}`);
+      throw new Error(`app_id/URL de Appteka no válida: ${t}`);
     };
 
     const humanSize = (b) => {
@@ -307,8 +307,8 @@ const pluginConfig = {
       const cleanMode = pick(mode, '').toLowerCase();
       const cleanTarget = pick(target, '');
 
-      if (cleanMode === '') throw new Error('Mode tidak boleh kosong (search, detail, download)');
-      if (cleanTarget === '') throw new Error('Target (query/url/id) tidak boleh kosong');
+      if (cleanMode === '') throw new Error('El modo no puede estar vacío (search, detail, download)');
+      if (cleanTarget === '') throw new Error('El objetivo (query/url/id) no puede estar vacío');
 
       if (cleanMode === 'search') {
         const encQ = encodeURIComponent(cleanTarget).replace(/%20/g, '+');
@@ -339,7 +339,7 @@ const pluginConfig = {
         if (dStat !== 200) throw new Error(`Detail API HTTP ${dStat}`);
 
         const d = parseDetail(dData, id);
-        if (d.app === null ? (d.meta.title === null ? true : false) : false) throw new Error('Halaman detail tidak bisa di-parse');
+        if (d.app === null ? (d.meta.title === null ? true : false) : false) throw new Error('No se pudo analizar la página de detalles');
 
         baseRes.data.mode = 'detail';
         baseRes.data.id = id;
@@ -358,7 +358,7 @@ const pluginConfig = {
         if (dlStat !== 200) throw new Error(`Download API HTTP ${dlStat}`);
 
         const link = parseDownloadLink(dlData);
-        if (link === null) throw new Error('Link APK tidak ditemukan di halaman download');
+        if (link === null) throw new Error('Enlace del APK no encontrado en la página de descarga');
 
         baseRes.data.mode = 'download';
         baseRes.data.id = id;
@@ -366,7 +366,7 @@ const pluginConfig = {
         for (let i = 0; i < lKeys.length; i++) baseRes.data[lKeys[i]] = link[lKeys[i]];
 
       } else {
-        throw new Error(`Mode tidak dikenal: ${cleanMode} (pakai: search, detail, download)`);
+        throw new Error(`Modo desconocido: ${cleanMode} (usa: search, detail, download)`);
       }
 
       return JSON.stringify(baseRes, null, 2);
@@ -400,10 +400,10 @@ const pluginConfig = {
     if (!input) {
       return reply(
         `*APPTEKA*\n\n` +
-        `Cari aplikasi : ${p}appteka <nama aplikasi>\n` +
+        `Buscar app    : ${p}appteka <nombre de la app>\n` +
         `Detail        : ${p}appteka detail <id/link>\n` +
-        `Download APK  : ${p}appteka dl <id/link>\n\n` +
-        `Contoh:\n${p}appteka subway surf\n${p}appteka dl ee8r335328`
+        `Descargar APK : ${p}appteka dl <id/link>\n\n` +
+        `Ejemplo:\n${p}appteka subway surf\n${p}appteka dl ee8r335328`
       )
     }
 
@@ -415,35 +415,35 @@ const pluginConfig = {
     if (!MODES[words[0].toLowerCase()] && words.length === 1 && ID_OR_LINK.test(words[0])) mode = 'detail'
 
     const target = rest.join(' ').trim()
-    if (!target) return reply(`Tulis target-nya. Contoh: ${p}appteka ${mode === 'download' ? 'dl' : mode} ee8r335328`)
+    if (!target) return reply(`Escribe el objetivo. Ejemplo: ${p}appteka ${mode === 'download' ? 'dl' : mode} ee8r335328`)
 
     try {
-      await reply('Memproses, tunggu sebentar...')
+      await reply('Procesando, espera un momento...')
       const res = JSON.parse(await JHAppteka(mode, target))
-      if (!res.status) return reply(`Gagal: ${res.error}`)
+      if (!res.status) return reply(`Error: ${res.error}`)
       const d = res.data
 
       if (mode === 'search') {
         const list = (d.results || []).slice(0, 10)
-        if (!list.length) return reply(`Aplikasi "${d.query}" tidak ditemukan.`)
+        if (!list.length) return reply(`No se encontró la aplicación "${d.query}".`)
         const lines = list.map((a, i) => {
           const meta = [a.version && `v${a.version}`, a.size, a.category].filter(Boolean).join(' | ')
           return `${i + 1}. *${a.title || a.id}*${meta ? `\n   ${meta}` : ''}\n   id: ${a.id}`
         })
         return reply(
-          `*HASIL: ${d.query}*\nDitemukan ${d.count} aplikasi\n\n${lines.join('\n\n')}\n\n` +
+          `*HASIL: ${d.query}*\nSe encontraron ${d.count} aplicaciones\n\n${lines.join('\n\n')}\n\n` +
           `Detail: ${p}appteka detail <id>\nDownload: ${p}appteka dl <id>`
         )
       }
 
       if (mode === 'detail') {
         const a = d.app
-        if (!a) return reply(`Gagal membaca detail.${d.meta?.description ? `\n${d.meta.description}` : ''}`)
+        if (!a) return reply(`No se pudieron leer los detalles.${d.meta?.description ? `\n${d.meta.description}` : ''}`)
         const caption =
           `*${a.title}*\n\n` +
           `Package  : ${a.package || '-'}\n` +
           `Versi    : ${a.version || '-'} (${a.version_code || '-'})\n` +
-          `Ukuran   : ${a.size || '-'}\n` +
+          `Tamaño   : ${a.size || '-'}\n` +
           `Kategori : ${a.category || '-'}\n` +
           `Unduhan  : ${Number(a.downloads || 0).toLocaleString('id-ID')}\n` +
           `Developer: ${a.author?.name || '-'}\n` +
@@ -472,10 +472,10 @@ const pluginConfig = {
           document: { url: d.url },
           fileName: /\.apk$/i.test(d.filename) ? d.filename : `${d.filename}.apk`,
           mimetype: 'application/vnd.android.package-archive'
-        }, { quoted: m }).catch(() => reply(`File tidak bisa dikirim lewat chat (batas ${MAX_SEND_MB} MB atau link bermasalah). Unduh manual lewat link di atas.`))
+        }, { quoted: m }).catch(() => reply(`El archivo no se puede enviar por chat (límite ${MAX_SEND_MB} MB o el enlace falla). Descárgalo manualmente desde el enlace de arriba.`))
       }
     } catch (e) {
-      return reply(`Gagal: ${e.message || e}`)
+      return reply(`Error: ${e.message || e}`)
     }
   }
 

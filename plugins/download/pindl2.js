@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { conn, args }) {
     try {
-      if (!args[0]) return m.reply('Mana link Pinnya?')
+      if (!args[0]) return m.reply('¿Y el enlace del Pin?')
       let pinterestUrl = args[0]
 
       let { csrfToken, cookies } = await getSnappinToken()

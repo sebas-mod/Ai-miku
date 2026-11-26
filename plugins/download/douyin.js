@@ -21,7 +21,7 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
     const html = await res.text()
     const cookie = parseCookies(res.headers.getSetCookie?.() || [])
     const match = html.match(/id="token"[^>]*value="([^"]+)"/)
-    if (!match) throw new Error('Token tidak ditemukan di halaman')
+    if (!match) throw new Error('Token no encontrado en la página')
     return { cookie, token: match[1] }
   }
 
@@ -49,7 +49,7 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
           signal: AbortSignal.timeout(30000)
         })
 
-        if (!res.ok) throw new Error(`video-data gagal (status ${res.status})`)
+        if (!res.ok) throw new Error(`error en video-data (estado ${res.status})`)
 
         const newCookie = parseCookies(res.headers.getSetCookie?.() || [])
         const data = await res.json()
@@ -76,7 +76,7 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
       },
       signal: AbortSignal.timeout(60000)
     })
-    if (!res.ok) throw new Error(`download gagal (status ${res.status})`)
+    if (!res.ok) throw new Error(`error en la descarga (estado ${res.status})`)
     return Buffer.from(await res.arrayBuffer())
   }
 
@@ -104,8 +104,8 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
     if (!url) {
       m.react('❌')
       return m.reply(
-        `📌 Contoh:\n*${m.prefix + m.command} https://v.douyin.com/xxxx*\n` +
-        `*${m.prefix + m.command} https://v.douyin.com/xxxx 2* (pilih kualitas)`
+        `📌 Ejemplo:\n*${m.prefix + m.command} https://v.douyin.com/xxxx*\n` +
+        `*${m.prefix + m.command} https://v.douyin.com/xxxx 2* (elige calidad)`
       )
     }
 
@@ -113,14 +113,14 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
     try {
       const data = await getVideoData(url)
       const medias = Array.isArray(data.medias) ? data.medias : []
-      if (!medias.length) throw new Error('Media tidak ditemukan')
+      if (!medias.length) throw new Error('Contenido no encontrado')
 
       let media
       if (idxArg !== undefined) {
         media = medias[Number(idxArg) - 1]
         if (!media) {
           const list = medias.map((x, i) => `${i + 1}. ${x.quality} (${x.extension}${x.formattedSize ? ', ' + x.formattedSize : ''})`).join('\n')
-          return m.reply(`❌ Nomor kualitas tidak valid.\n\n*Pilihan:*\n${list}`)
+          return m.reply(`❌ Número de calidad no válido.\n\n*Opciones:*\n${list}`)
         }
       } else {
         media = medias.find(x => /mp4/i.test(x.extension)) || medias[0]
@@ -129,10 +129,10 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
       const buffer = await downloadMedia(media.url, data._cookie)
       const caption =
         `🎬 *DOUYIN DOWNLOADER*\n\n` +
-        `- Judul: ${data.title || '-'}\n` +
-        `- Durasi: ${data.duration || '-'}\n` +
-        `- Kualitas: ${media.quality || '-'}\n` +
-        `- Ukuran: ${media.formattedSize || '-'}`
+        `- Título: ${data.title || '-'}\n` +
+        `- Duración: ${data.duration || '-'}\n` +
+        `- Calidad: ${media.quality || '-'}\n` +
+        `- Tamaño: ${media.formattedSize || '-'}`
 
       const ext = String(media.extension || 'mp4').toLowerCase()
       if (/^(mp4|mov|webm)$/.test(ext)) {
@@ -147,13 +147,13 @@ import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
 
       if (idxArg === undefined && medias.length > 1) {
         const list = medias.map((x, i) => `${i + 1}. ${x.quality} (${x.extension})`).join('\n')
-        await m.reply(`💡 Kualitas lain:\n${list}\n\nPakai: *${m.prefix + m.command} <url> <nomor>*`)
+        await m.reply(`💡 Otras calidades:\n${list}\n\nUsa: *${m.prefix + m.command} <url> <número>*`)
       }
       m.react('✅')
     } catch (e) {
       console.error('[Douyin] Error:', e)
       m.react('❌')
-      m.reply(`❌ *Gagal mengunduh*\n\n> ${e.message}`)
+      m.reply(`❌ *Error al descargar*\n\n> ${e.message}`)
     }
   }
 

@@ -140,7 +140,7 @@ const pluginConfig = {
       return { download: fallback.dl, title: fallback.title, fallback: true }
     }
 
-    throw new Error(fallback?.mess || 'Gagal mendapatkan audio')
+    throw new Error(fallback?.mess || 'Error al obtener el audio')
   }
 
   async function downloadAudio(url, fallback = false) {
@@ -155,7 +155,7 @@ const pluginConfig = {
 
     const type = String(res.headers['content-type'] || '').toLowerCase()
     if (type.includes('text/html') || type.includes('application/json')) {
-      throw new Error('URL download tidak mengembalikan audio')
+      throw new Error('La URL de descarga no devolvió audio')
     }
 
     return Buffer.from(res.data)
@@ -204,7 +204,7 @@ const pluginConfig = {
 
       if (!hit) {
         const search = await yts(query)
-        if (!search.videos?.length) throw new Error('Lagu/video tidak ditemukan')
+        if (!search.videos?.length) throw new Error('Canción/video no encontrado')
 
         const video = search.videos[0]
         info = {
@@ -277,7 +277,7 @@ const pluginConfig = {
     } catch (e) {
       console.error('[PLAY2]', e)
       await m.react('❌')
-      return conn.reply(m.chat, `⚠️ Gagal mengambil audio.\n${e?.message || ''}`.trim(), m)
+      return conn.reply(m.chat, `⚠️ Error al obtener el audio.\n${e?.message || ''}`.trim(), m)
     }
   }
 

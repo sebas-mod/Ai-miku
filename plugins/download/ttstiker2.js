@@ -93,7 +93,7 @@ const pluginConfig = {
         })
         if (res.status === 200 && res.data && typeof res.data === 'object' && !Array.isArray(res.data)) {
           if ('comments' in res.data || 'has_more' in res.data || 'status_code' in res.data) return res.data
-          throw new Error('bukan payload komentar')
+          throw new Error('no es un payload de comentarios')
         }
         throw new Error('HTTP ' + res.status)
       } catch {
@@ -145,9 +145,9 @@ const pluginConfig = {
     try {
       u = new URL(/^https?:\/\//i.test(input) ? input : 'https://' + input)
     } catch {
-      throw new Error('URL tidak valid')
+      throw new Error('URL no válida')
     }
-    if (!isTiktokHost(u.hostname)) throw new Error('URL bukan dari TikTok')
+    if (!isTiktokHost(u.hostname)) throw new Error('La URL no es de TikTok')
 
     let videoId = extractVideoId(u.pathname) || extractVideoId(u.search)
     let author = (u.pathname.match(/\/@([^/]+)/) || [])[1] || null
@@ -183,7 +183,7 @@ const pluginConfig = {
       } catch {  }
     }
 
-    if (!videoId) throw new Error('video_id nggak ketemu dari link itu')
+    if (!videoId) throw new Error('video_id no encontrado en ese enlace')
     return {
       videoId,
       author,
@@ -423,20 +423,20 @@ const pluginConfig = {
     if (!url) {
       return reply(
         '📦 *TIKTOK STICKER PACK*\n\n' +
-        '*Cara pakai:*\n' +
+        '*Cómo usar:*\n' +
         `> ${p}${cmd} <url> [jumlah] [anim|static]\n\n` +
-        '*Contoh:*\n' +
+        '*Ejemplo:*\n' +
         `> ${p}${cmd} https://vt.tiktok.com/xxxx\n` +
         `> ${p}${cmd} https://vt.tiktok.com/xxxx 20 anim\n\n` +
         '*Info:*\n' +
-        `> Ambil stiker dari komentar video, default ${DEFAULT_PACK} stiker (maks ${HARD_MAX_PACK})\n` +
-        '> Satu pack gak bisa campur animasi & statis\n' +
+        `> Obtén stickers de los comentarios del video, por defecto ${DEFAULT_PACK} stickers (máx. ${HARD_MAX_PACK})\n` +
+        '> Un pack no puede mezclar animados y estáticos\n' +
         '> `anim` / `static` buat milih jenisnya (default: otomatis)'
       )
     }
 
     if (activeChats.has(m.chat)) {
-      return reply('⏳ Masih ada proses jalan di chat ini, tunggu bentar ya.')
+      return reply('⏳ Todavía hay un proceso en curso en este chat, espera un momento.')
     }
     activeChats.add(m.chat)
     await reactTo(sock, m, '⏳')
@@ -449,8 +449,8 @@ const pluginConfig = {
         await reactTo(sock, m, '❌')
         return reply(
           scraped.verification
-            ? '❌ TikTok minta verifikasi / lagi nge-limit. Coba lagi beberapa menit lagi.'
-            : `❌ Gak ada stiker di komentar video ini.\n\n> Komentar kepindai: ${scraped.scanned}`
+            ? '❌ TikTok pide verificación o está limitando. Inténtalo de nuevo en unos minutos.'
+            : `❌ No hay stickers en los comentarios de este video.\n\n> Comentarios analizados: ${scraped.scanned}`
         )
       }
 
@@ -464,7 +464,7 @@ const pluginConfig = {
       }
       if (!items.length) {
         await reactTo(sock, m, '❌')
-        return reply('❌ Stiker ketemu tapi gagal diunduh/dikonversi. Coba lagi nanti.')
+        return reply('❌ Se encontraron stickers pero no se pudieron descargar/convertir. Inténtalo más tarde.')
       }
 
       const anim = items.filter((x) => x.animated)
@@ -476,7 +476,7 @@ const pluginConfig = {
 
       if (!chosen.length) {
         await reactTo(sock, m, '❌')
-        return reply(`❌ Gak ada stiker ${mode === 'anim' ? 'animasi' : 'statis'} di video ini.\n\n> Ketemu: ${anim.length} animasi, ${stat.length} statis`)
+        return reply(`❌ No hay stickers ${mode === 'anim' ? 'animados' : 'estáticos'} en este video.\n\n> Encontrados: ${anim.length} animados, ${stat.length} estáticos`)
       }
       const isAnim = chosen === anim
       const final = chosen.slice(0, limit)
@@ -494,17 +494,17 @@ const pluginConfig = {
 
       let info = `✅ *Sticker Pack TikTok*\n\n` +
         `> Isi: ${final.length} stiker ${isAnim ? 'animasi' : 'statis'}\n` +
-        `> Dari: ${author}`
+        `> De: ${author}`
       if (skipped && mode === 'auto') {
-        info += `\n\nℹ️ ${skipped} stiker ${isAnim ? 'statis' : 'animasi'} gak dimasukin (pack gak boleh campur). ` +
+        info += `\n\nℹ️ ${skipped} stickers ${isAnim ? 'estáticos' : 'animados'} no incluidos (el pack no puede mezclar). ` +
           `Pake \`${p}${cmd} <url> ${isAnim ? 'static' : 'anim'}\` buat versi satunya.`
       }
       return reply(info)
     } catch (error) {
       console.error('[TTSTIKER2 ERROR]', error)
       await reactTo(sock, m, '❌')
-      const msg = error?.response?.data?.message || error?.message || 'Gagal ngambil stiker.'
-      return reply(`❌ *Gagal*\n\n> ${msg}`)
+      const msg = error?.response?.data?.message || error?.message || 'Error al obtener los stickers.'
+      return reply(`❌ *Error*\n\n> ${msg}`)
     } finally {
       activeChats.delete(m.chat)
     }

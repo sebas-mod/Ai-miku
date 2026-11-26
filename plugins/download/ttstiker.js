@@ -68,7 +68,7 @@ const pluginConfig = {
         })
         if (res.status === 200 && res.data && typeof res.data === 'object' && !Array.isArray(res.data)) {
           if ('comments' in res.data || 'has_more' in res.data || 'status_code' in res.data) return res.data
-          throw new Error('bukan payload komentar')
+          throw new Error('no es un payload de comentarios')
         }
         throw new Error('HTTP ' + res.status)
       } catch {
@@ -93,9 +93,9 @@ const pluginConfig = {
     try {
       u = new URL(/^https?:\/\//i.test(input) ? input : 'https://' + input)
     } catch {
-      throw new Error('URL tidak valid')
+      throw new Error('URL no válida')
     }
-    if (!/(?:^|\.)tiktok\.com$/i.test(u.hostname)) throw new Error('URL bukan TikTok')
+    if (!/(?:^|\.)tiktok\.com$/i.test(u.hostname)) throw new Error('La URL no es de TikTok')
 
     let videoId = extractVideoId(u.pathname) || extractVideoId(u.search)
     let author = (u.pathname.match(/\/@([^/]+)/) || [])[1] || null
@@ -123,7 +123,7 @@ const pluginConfig = {
         }
       }
     }
-    if (!videoId) throw new Error('video_id tidak ditemukan dari URL')
+    if (!videoId) throw new Error('video_id no encontrado en la URL')
     return { videoId, author, canonical: `https://www.tiktok.com/@${author || 'user'}/video/${videoId}` }
   }
 
@@ -217,7 +217,7 @@ const pluginConfig = {
         cursor += COUNT
         continue
       }
-      if (page.status_code === 10204) throw new Error('TikTok minta verifikasi, coba lagi nanti')
+      if (page.status_code === 10204) throw new Error('TikTok pide verificación, inténtalo más tarde')
       fail = 0
       pages++
       for (const c of page.comments || []) inspect(c, true)
@@ -295,8 +295,8 @@ const pluginConfig = {
     if (!url) {
       return m.reply(
         `*TikTok Stiker Komentar*\n\n` +
-        `Ambil stiker yang dikirim orang di kolom komentar video TikTok (support animasi).\n\n` +
-        `Contoh:\n${usedPrefix + command} https://vt.tiktok.com/xxxx\n${usedPrefix + command} https://vt.tiktok.com/xxxx 5\n\n` +
+        `Obtén los stickers que la gente envía en los comentarios de un video de TikTok (compatible con animaciones).\n\n` +
+        `Ejemplo:\n${usedPrefix + command} https://vt.tiktok.com/xxxx\n${usedPrefix + command} https://vt.tiktok.com/xxxx 5\n\n` +
         `Jumlah default ${DEFAULT_LIMIT}, maksimal ${MAX_LIMIT}.`
       )
     }
@@ -310,7 +310,7 @@ const pluginConfig = {
 
       if (!stickers.length) {
         await m.react('❌')
-        return m.reply(`Tidak ada stiker di komentar yang berhasil dipindai (${scanned} komentar). Coba video lain.`)
+        return m.reply(`No se encontraron stickers en los comentarios analizados (${scanned} comentarios). Prueba con otro video.`)
       }
 
       const bufs = []
@@ -320,14 +320,14 @@ const pluginConfig = {
         try { bufs.push(await toStickerWebp(buf)) } catch {}
       }
       const sent = bufs.length
-      if (!sent) throw new Error('semua stiker gagal diunduh')
+      if (!sent) throw new Error('no se pudo descargar ningún sticker')
       await sendStickerPack(conn, m.chat, bufs, m, {
         name: 'TikTok Stiker',
         publisher: global.namebot || 'Bot',
         description: `Stiker komentar TikTok (${sent})`,
         emojis: ['😀']
       })
-      await m.reply(`✅ ${sent} stiker dari ${scanned} komentar dipindai.`)
+      await m.reply(`✅ ${sent} stickers de ${scanned} comentarios analizados.`)
       await m.react('✅')
     } catch (e) {
       await m.react('❌')

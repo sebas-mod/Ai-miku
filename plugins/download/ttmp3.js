@@ -70,7 +70,7 @@ const ttdown = ElysiaRuntime.ttdown;
     });
 
     if (!fs.existsSync(outputFile) || fs.statSync(outputFile).size <= 0) {
-      throw new Error("Gagal mengekstrak audio TikTok");
+      throw new Error("Error al extraer el audio de TikTok");
     }
 
     return {
@@ -99,12 +99,12 @@ const ttdown = ElysiaRuntime.ttdown;
 ┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}ttmp3 <url>\`
 ╰┈┈⬡
 
-> Contoh: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
+> Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
       );
     }
 
     if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-      return m.reply("❌ URL tidak valid. Gunakan link TikTok.");
+      return m.reply("❌ URL no válida. Usa un enlace de TikTok.");
     }
 
     m.react("🕕");
@@ -120,7 +120,7 @@ const ttdown = ElysiaRuntime.ttdown;
           result.downloads.find((d) => d.type === "nowatermark");
 
         if (!videoDownload?.url) {
-          throw new Error("Audio TikTok tidak ditemukan.");
+          throw new Error("Audio de TikTok no encontrado.");
         }
 
         const extractedAudio = await extractAudioFromVideo(videoDownload.url);

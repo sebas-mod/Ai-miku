@@ -45,13 +45,13 @@ const mediafire = ElysiaRuntime.mediafire;
       return m.reply(
         `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
           `> \`${m.prefix}mediafiredl <url>\`\n\n` +
-          `> Contoh:\n` +
+          `> Ejemplo:\n` +
           `> \`${m.prefix}mediafiredl https://www.mediafire.com/file/xxx\``,
       );
     }
 
     if (!url.match(/mediafire\.com/i)) {
-      return m.reply(`❌ *URL tidak valid. Gunakan link MediaFire.*`);
+      return m.reply(`❌ *URL no válida. Usa un enlace de MediaFire.*`);
     }
     await m.react("🕕");
 

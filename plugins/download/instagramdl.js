@@ -58,7 +58,7 @@ const JHICog = ElysiaRuntime.JHICog;
       if (/instagram\.com/i.test(raw)) {
         if (!IG_REGEX.test(raw)) {
           await m.react("❌");
-          return m.reply(`❌ URL tidak valid. Gunakan link Instagram (reel/post/story).`);
+          return m.reply(`❌ URL no válida. Usa un enlace de Instagram (reel/post/story).`);
         }
 
         const result = await igDownloadAuto(raw, 'fastdl');
@@ -90,16 +90,16 @@ const JHICog = ElysiaRuntime.JHICog;
       const mode = (modeRaw || 'stories').toLowerCase();
       if (!MODES.includes(mode)) {
         await m.react("❌");
-        return m.reply(`❌ Mode tidak dikenal.\n\n*Mode:* ${MODES.join(', ')}`);
+        return m.reply(`❌ Modo desconocido.\n\n*Mode:* ${MODES.join(', ')}`);
       }
 
       const res = await JHICog(mode, uname, extraId);
-      if (!res.status) throw new Error(res.error || 'Gagal mengambil data');
+      if (!res.status) throw new Error(res.error || 'Error al obtener los datos');
 
       const items = res.data.items || [];
       if (!items.length) {
         await m.react("❌");
-        return m.reply(`❌ Tidak ada ${mode} untuk @${res.data.username}.`);
+        return m.reply(`❌ No hay ${mode} para @${res.data.username}.`);
       }
 
       if (mode === 'profile') {
@@ -116,7 +116,7 @@ const JHICog = ElysiaRuntime.JHICog;
 
       if (mode === 'highlights') {
         const list = items.map((h, i) => `${i + 1}. *${h.title || '-'}*\n   ID: \`${h.id}\``).join('\n');
-        await m.reply(`✨ *Highlights @${res.data.username}*\n\n${list}\n\n> Ambil isi: \`${m.prefix}instagramdl ${res.data.username} highlightstories <ID>\``);
+        await m.reply(`✨ *Highlights @${res.data.username}*\n\n${list}\n\n> Obtén contenido: \`${m.prefix}instagramdl ${res.data.username} highlightstories <ID>\``);
         await m.react("✅");
         return;
       }
@@ -133,7 +133,7 @@ const JHICog = ElysiaRuntime.JHICog;
         }
         count++;
       }
-      if (!flat.length) throw new Error('Tidak ada media yang bisa dikirim');
+      if (!flat.length) throw new Error('No hay contenido para enviar');
       flat[0].caption = `📸 *Instagram ${mode}* @${res.data.username}\n📦 Total: ${items.length}${items.length > MAX_ITEMS ? ` (dikirim ${MAX_ITEMS})` : ''}`;
       await sendAlbum(sock, m.chat, flat, { quoted: m });
       await m.react("✅");

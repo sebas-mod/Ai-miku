@@ -34,13 +34,13 @@ const likee = ElysiaRuntime.likee;
           return m.reply(
               `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
               `> \`${m.prefix}likeedl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}likeedl https://likee.video/@xxx\``
           )
       }
 
       if (!url.match(/likee\.(video|com)/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link Likee.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de Likee.`)
       }
 
       await m.react('🕕')
@@ -49,13 +49,13 @@ const likee = ElysiaRuntime.likee;
           const data = await likee(url)
 
           if (!data) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
           }
 
           const videoUrl = data.without_watermark || data.with_watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video tidak ditemukan.`)
+              return m.reply(`❌ Video no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {

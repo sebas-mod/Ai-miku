@@ -59,7 +59,7 @@ const pluginConfig = {
           }
 
           if (finalData.status !== 'completed') {
-              throw new Error('Waktu tunggu habis. Silahkan coba lagi nanti.')
+              throw new Error('Se agotó el tiempo de espera. Inténtalo de nuevo más tarde.')
           }
 
           const downloadUrl = `${apiBase}${finalData.fileUrl}`

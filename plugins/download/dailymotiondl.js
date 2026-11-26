@@ -39,10 +39,10 @@ const DailymotionDL = ElysiaRuntime.DailymotionDL;
       m.react("❌");
       return m.reply(
         `🎬 *Dailymotion Downloader*\n\n` +
-          `Download video dari Dailymotion, otomatis dikonversi ke MP4.\n\n` +
-          `*PENGGUNAAN:*\n` +
+          `Descarga videos de Dailymotion, convertidos automáticamente a MP4.\n\n` +
+          `*USO:*\n` +
           `> *${m.prefix}dailymotiondl <link>*\n\n` +
-          `*CONTOH:*\n` +
+          `*EJEMPLO:*\n` +
           `> *${m.prefix}dailymotiondl https://www.dailymotion.com/video/xxx*\n\n` +
           `_Proses konversi mungkin agak lama_`,
       );
@@ -55,14 +55,14 @@ const DailymotionDL = ElysiaRuntime.DailymotionDL;
 
       if (!result.status) {
         m.react("☢");
-        return m.reply(`❌ *Dailymotion Gagal*\n\n> ${result.error}`);
+        return m.reply(`❌ *Dailymotion falló*\n\n> ${result.error}`);
       }
 
       let caption =
         `🎬 *Dailymotion*\n\n` +
         `> 📌 ${result.title}\n` +
-        `> ⏱️ Durasi: ${result.duration}\n` +
-        `> 📺 Kualitas: ${result.quality}`;
+        `> ⏱️ Duración: ${result.duration}\n` +
+        `> 📺 Calidad: ${result.quality}`;
 
       if (result.thumbnail) {
         await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -108,7 +108,7 @@ const DailymotionDL = ElysiaRuntime.DailymotionDL;
     } catch (e) {
       console.error(e);
       m.react("☢");
-      m.reply("❌ Gagal mengambil data Dailymotion, coba lagi nanti");
+      m.reply("❌ No se pudieron obtener los datos de Dailymotion, inténtalo de nuevo más tarde");
     }
   }
 

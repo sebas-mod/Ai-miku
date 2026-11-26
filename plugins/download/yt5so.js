@@ -57,17 +57,17 @@ const pluginConfig = {
                   const sdVideo = videoQualities.find(v => v.quality.toLowerCase().includes('sd'));
                   const videoUrl = hdVideo ? hdVideo.downloadLink : sdVideo ? sdVideo.downloadLink : null;
 
-                  if (!videoUrl) throw new Error("Tidak ada link download yang tersedia.");
+                  if (!videoUrl) throw new Error("No hay enlace de descarga disponible.");
                   return { videoUrl };
               } else if (/^(https?:\/\/)?(www\.)?instagram\.com\/(p|reel)\/.+/i.test(url)) {
                   const videoUrl = $('a[title="Download Video"]').attr("href");
-                  if (!videoUrl) throw new Error("Tidak ada link download yang tersedia.");
+                  if (!videoUrl) throw new Error("No hay enlace de descarga disponible.");
                   return { videoUrl };
               } else {
-                  throw new Error("URL tidak valid. Harap masukkan URL Facebook atau Instagram.");
+                  throw new Error("URL no válida. Envía una URL de Facebook o Instagram.");
               }
           } else {
-              throw new Error("Gagal mengambil video: " + response.data.message);
+              throw new Error("Error al obtener el video: " + response.data.message);
           }
       } catch (error) {
           throw error;
@@ -76,14 +76,14 @@ const pluginConfig = {
 
   async function handler(m, { conn, text }) {
       try {
-          if (!text) throw "Masukkan URL Facebook Atau Instagram.";
+          if (!text) throw "Envía una URL de Facebook o Instagram.";
 
           const result = await yt5sIo(text);
 
           if (result.videoUrl) {
               await conn.sendMessage(m.chat, { video: { url: result.videoUrl }, mimetype: 'video/mp4' }, { quoted: m });
           } else {
-              throw "Gagal Download ";
+              throw "Error al descargar ";
           }
       } catch (error) {
           await conn.sendMessage(m.chat, { text: `Error: ${error.message || error}` }, { quoted: m });

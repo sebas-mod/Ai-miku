@@ -26,15 +26,15 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, conn, usedPrefix, command }) {
-    if (!text) throw `Masukkan judul!
+    if (!text) throw `¡Envía un título!
 
-Contoh:
+Ejemplo:
 ${usedPrefix + command} dj 30 detik`
 
     let search = await yts(text)
     let videos = search.videos.slice(0, 10)
 
-    if (!videos.length) throw 'Video tidak ditemukan.'
+    if (!videos.length) throw 'Video no encontrado.'
 
     let caption = `*YouTube Search*\n`
     caption += `Query: ${text}\n\n`

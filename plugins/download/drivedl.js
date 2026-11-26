@@ -30,10 +30,10 @@ const pluginConfig = {
 
   async function handler(m, { args, usedPrefix, command, conn }) {
     const url = args[0]
-    if (!url) throw `Contoh: ${usedPrefix + command} https://drive.google.com/file/d/xxxxxxxxx/view`
+    if (!url) throw `Ejemplo: ${usedPrefix + command} https://drive.google.com/file/d/xxxxxxxxx/view`
 
     const fileId = await extractGDrive(url)
-    if (!fileId) throw 'URL Google Drive tidak valid!'
+    if (!fileId) throw '¡URL de Google Drive no válida!'
 
     try {
       const apiKey = 'AIzaSyAA9ERw-9LZVEohRYtCWka_TQc6oXmvcVU'
@@ -43,12 +43,12 @@ const pluginConfig = {
       const metadata = await axios.get(metaUrl)
       const { name, size, mimeType } = metadata.data
 
-      m.reply(`Mendownload file...\n\n• Nama: ${name}\n• Ukuran: ${await formatSize(size)}\n• Tipe: ${mimeType}`)
+      m.reply(`Descargando archivo...\n\n• Nombre: ${name}\n• Tamaño: ${await formatSize(size)}\n• Tipo: ${mimeType}`)
 
       const res = await axios.get(downloadUrl, { responseType: 'arraybuffer' })
 
       if (res.status !== 200) {
-        throw `Gagal mengunduh file: ${res.status} ${res.statusText}`
+        throw `Error al descargar el archivo: ${res.status} ${res.statusText}`
       }
 
       const buffer = Buffer.from(res.data, 'binary')
@@ -59,11 +59,11 @@ const pluginConfig = {
         document: { url: tmpPath },
         fileName: name,
         mimetype: mimeType || 'application/octet-stream',
-        caption: `File berhasil diunduh!\n\n• Nama: ${name}\n• Ukuran: ${await formatSize(size)}`
+        caption: `¡Archivo descargado!\n\n• Nombre: ${name}\n• Tamaño: ${await formatSize(size)}`
       }, { quoted: m })
     } catch (err) {
       console.error(err)
-      throw typeof err === 'string' ? err : `Terjadi kesalahan: ${err.response?.status} ${err.response?.statusText}`
+      throw typeof err === 'string' ? err : `Ocurrió un error: ${err.response?.status} ${err.response?.statusText}`
     }
   }
 

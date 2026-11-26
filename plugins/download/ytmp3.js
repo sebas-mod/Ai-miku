@@ -41,15 +41,15 @@ const ytdl = ElysiaRuntime.ytdl;
       return { download: fallback.dl, title: fallback.title, isFallback: true };
     }
 
-    throw new Error(fallback?.mess || "Gagal mendapatkan audio download URL");
+    throw new Error(fallback?.mess || "Error al obtener la URL de descarga del audio");
   }
 
   async function handler(m, { sock }) {
     const url = m.text?.trim();
     if (!url)
-      return m.reply(`Contoh: ${m.prefix}ytmp3 https://youtube.com/watch?v=xxx`);
+      return m.reply(`Ejemplo: ${m.prefix}ytmp3 https://youtube.com/watch?v=xxx`);
     if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-      return m.reply("❌ URL harus YouTube");
+      return m.reply("❌ La URL debe ser de YouTube");
 
     m.react("🕕");
 
@@ -80,7 +80,7 @@ const ytdl = ElysiaRuntime.ytdl;
     } catch (err) {
       console.error("[YTMP3]", err);
       m.react("❌");
-      m.reply("Gagal mengunduh audio.");
+      m.reply("Error al descargar el audio.");
     }
   }
 

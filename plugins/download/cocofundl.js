@@ -34,13 +34,13 @@ const te = ElysiaRuntime.te;
           return m.reply(
               `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
               `> \`${m.prefix}cocofundl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}cocofundl https://www.cocofun.com/share/post/xxx\``
           )
       }
 
       if (!url.match(/cocofun\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link CocoFun.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de CocoFun.`)
       }
 
       await m.react('🕕')
@@ -49,14 +49,14 @@ const te = ElysiaRuntime.te;
           const data = await cocofun(url)
 
           if (!data?.status || !data?.result) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
           }
 
           const result = data.result
           const videoUrl = result.no_watermark || result.watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video tidak ditemukan.`)
+              return m.reply(`❌ Video no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {
