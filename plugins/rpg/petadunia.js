@@ -41,7 +41,7 @@ const pluginConfig = {
       aurora: { name: 'Aurora', icon: '❄️', pos: [0, -1], danger: 4, desc: 'Kota salju di utara', mobs: ['Serigala Salju', 'Yeti', 'Golem Es', 'Ratu Salju'], loot: 'ikan' },
       barat: { name: 'Lembah Barat', icon: '🌲', pos: [-1, 0], danger: 2, desc: 'Hutan lebat dan petani', mobs: ['Goblin Hutan', 'Beruang', 'Ent Muda', 'Dryad Marah'], loot: 'apel' },
       tengah: { name: 'Desa Tengah', icon: '🏘️', pos: [0, 0], danger: 1, desc: 'Pusat perjalanan, aman', mobs: ['Slime', 'Tikus Raksasa', 'Anjing Liar', 'Bandit Kecil'], loot: 'ayam' },
-      timur: { name: 'Kota Timur', icon: '🏙️', pos: [1, 0], danger: 3, desc: 'Kota dagang yang ramai', mobs: ['Preman Gang', 'Robot Penjaga', 'Pencopet', 'Ninja Bayaran'], loot: 'potion' },
+      timur: { name: 'Kota Timur', icon: '🏙️', pos: [1, 0], danger: 3, desc: 'Kota dagang yang ramai', mobs: ['Geng Jalanan', 'Robot Penjaga', 'Pencopet', 'Ninja Bayaran'], loot: 'potion' },
       selatan: { name: 'Bandar Selatan', icon: '🌊', pos: [0, 1], danger: 5, desc: 'Pelabuhan penuh bajak laut', mobs: ['Kepiting Raksasa', 'Bajak Laut', 'Hiu', 'Kraken'], loot: 'udang' }
   }
   const EDGES = [['aurora', 'tengah'], ['barat', 'tengah'], ['tengah', 'timur'], ['tengah', 'selatan'], ['timur', 'selatan'], ['barat', 'selatan']]

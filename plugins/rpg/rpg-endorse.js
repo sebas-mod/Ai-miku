@@ -37,12 +37,8 @@ const pluginConfig = {
   'Adidas',
   'Samsung',
   'Xiaomi',
-  'Tokopedia',
   'Shopee',
-  'Gojek',
-  'Grab',
-  'Indomie',
-  'Teh Botol'
+  'Grab'
   ]
 
   let chosen = brand[Math.floor(Math.random() * brand.length)]

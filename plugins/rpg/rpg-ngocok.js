@@ -37,7 +37,7 @@ const pluginConfig = {
   let timers = cooldown - (now - user.lastngocok)
 
   if(user.stamina < 20)
-  return m.reply('Stamina tidak cukup\nGunakan *.warteg* atau *.makan*')
+  return m.reply('Stamina tidak cukup\nGunakan *.makan*')
 
   if(now - user.lastngocok < cooldown)
   return m.reply(`Kamu masih kelelahan\nTunggu ${clockString(timers)} lagi`)

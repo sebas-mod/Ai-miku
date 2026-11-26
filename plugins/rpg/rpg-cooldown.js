@@ -34,7 +34,6 @@ const pluginConfig = {
   dagang: 300000,
   mining: 300000,
   nebang: 300000,
-  nguli: 300000,
   claim: 86400000,
   weekly: 604800000,
   monthly: 2592000000
@@ -56,7 +55,6 @@ const pluginConfig = {
 💰 Dagang    : ${cek(user.lastdagang, cooldown.dagang)}
 ⛏️ Mining    : ${cek(user.lastmining, cooldown.mining)}
 🌲 Nebang    : ${cek(user.lastnebang, cooldown.nebang)}
-🪨 Nguli     : ${cek(user.lastnguli, cooldown.nguli)}
 
 🎁 Daily     : ${cek(user.lastclaim, cooldown.claim)}
 📦 Weekly    : ${cek(user.lastweekly, cooldown.weekly)}

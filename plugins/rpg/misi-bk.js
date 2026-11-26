@@ -29,7 +29,6 @@ const pluginConfig = {
       let caption = `
 🚨 Silahkan Pilih Misi Kamu:
 
-🛵 Ojek
 🚀 Roket
 👮 Polisi
 🚶 Rob
@@ -37,7 +36,7 @@ const pluginConfig = {
 🚖 Taxy
 
 Contoh:
-${usedPrefix}ojek
+${usedPrefix}roket
 `.trim()
       m.reply(caption)
   }
