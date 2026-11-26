@@ -43,7 +43,7 @@ const mediafire = ElysiaRuntime.mediafire;
 
     if (!url) {
       return m.reply(
-        `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+        `⚠️ *CÓMO USAR*\n\n` +
           `> \`${m.prefix}mediafiredl <url>\`\n\n` +
           `> Ejemplo:\n` +
           `> \`${m.prefix}mediafiredl https://www.mediafire.com/file/xxx\``,

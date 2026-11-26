@@ -110,7 +110,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
 
 👤 *Autor*: ${info.author || "Unknown"}
 📝 *Texto de la publicación*: ${cleanText(info.title) || cleanText(info.description) || "Sin descripción."}
-📊 *Jumlah File Media*: ${result.length} file
+📊 *Cantidad de archivos*: ${result.length} file
 
 *Semoga bermanfaat ya!* Jangan lupa mampir lagi kalau mau download yang lain. 🚀`;
 

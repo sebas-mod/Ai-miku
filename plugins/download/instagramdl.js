@@ -45,10 +45,10 @@ const JHICog = ElysiaRuntime.JHICog;
         `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
           `> \`${m.prefix}instagramdl <url>\`\n` +
           `> \`${m.prefix}instagramdl <username> [mode]\`\n\n` +
-          `*ᴄᴏɴᴛᴏʜ:*\n` +
+          `*EJEMPLO:*\n` +
           `> \`${m.prefix}instagramdl https://www.instagram.com/reel/xxx\`\n` +
           `> \`${m.prefix}instagramdl jkt48.fiony stories\`\n\n` +
-          `*ᴍᴏᴅᴇ:* ${MODES.join(', ')}`,
+          `*MODO:* ${MODES.join(', ')}`,
       );
     }
 
@@ -90,7 +90,7 @@ const JHICog = ElysiaRuntime.JHICog;
       const mode = (modeRaw || 'stories').toLowerCase();
       if (!MODES.includes(mode)) {
         await m.react("❌");
-        return m.reply(`❌ Modo desconocido.\n\n*Mode:* ${MODES.join(', ')}`);
+        return m.reply(`❌ Modo desconocido.\n\n*Modos:* ${MODES.join(', ')}`);
       }
 
       const res = await JHICog(mode, uname, extraId);
@@ -139,7 +139,7 @@ const JHICog = ElysiaRuntime.JHICog;
       await m.react("✅");
     } catch (err) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+      return m.reply(`❌ *ERROR AL DESCARGAR*\n\n> ${err.message}`);
     }
   }
 

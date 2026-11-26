@@ -195,7 +195,7 @@ const pluginConfig = {
               `👤 *Artist:* ${video.author}\n` +
               `⏱️ *Duration:* ${video.timestamp}\n` +
               `👁️ *Views:* ${fmtNum(video.views)}\n\n` +
-              `🦋 *Elysia Assistant MD:* Selamat menikmati darling~ jangan lupa putar ulang kalo suka! 💕`
+              `🦋 *Elysia Assistant MD:* Disfruta, querido~ ¡no olvides volver a escucharla si te gusta! 💕`
 
           if (thumb) {
               await conn.sendMessage(m.chat, { image: thumb, caption }, { quoted: m })

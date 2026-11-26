@@ -32,7 +32,7 @@ const likee = ElysiaRuntime.likee;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}likeedl <url>\`\n\n` +
               `> Ejemplo:\n` +
               `> \`${m.prefix}likeedl https://likee.video/@xxx\``

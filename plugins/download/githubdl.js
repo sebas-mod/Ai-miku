@@ -45,7 +45,7 @@ const te = ElysiaRuntime.te;
 
       if (!username) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}githubdl <user> <repo> <branch>\`\n\n` +
               `> Ejemplo:\n` +
               `> \`${m.prefix}githubdl niceplugin NiceBot main\`\n` +

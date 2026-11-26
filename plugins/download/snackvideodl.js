@@ -32,7 +32,7 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}snackvideodl <url>\`\n\n` +
               `> Ejemplo:\n` +
               `> \`${m.prefix}snackvideodl https://www.snackvideo.com/@xxx/video/xxx\``

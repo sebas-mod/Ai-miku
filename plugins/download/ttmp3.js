@@ -141,7 +141,7 @@ const ttdown = ElysiaRuntime.ttdown;
       cleanupTempFiles();
       console.error("[TikTokDL] Error:", err);
       m.react("❌");
-      m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+      m.reply(`❌ *ERROR AL DESCARGAR*\n\n> ${err.message}`);
     }
   }
 

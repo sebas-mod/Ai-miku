@@ -431,7 +431,7 @@ const pluginConfig = {
           return `${i + 1}. *${a.title || a.id}*${meta ? `\n   ${meta}` : ''}\n   id: ${a.id}`
         })
         return reply(
-          `*HASIL: ${d.query}*\nSe encontraron ${d.count} aplicaciones\n\n${lines.join('\n\n')}\n\n` +
+          `*RESULTADO: ${d.query}*\nSe encontraron ${d.count} aplicaciones\n\n${lines.join('\n\n')}\n\n` +
           `Detail: ${p}appteka detail <id>\nDownload: ${p}appteka dl <id>`
         )
       }
@@ -444,8 +444,8 @@ const pluginConfig = {
           `Package  : ${a.package || '-'}\n` +
           `Versi    : ${a.version || '-'} (${a.version_code || '-'})\n` +
           `Tamaño   : ${a.size || '-'}\n` +
-          `Kategori : ${a.category || '-'}\n` +
-          `Unduhan  : ${Number(a.downloads || 0).toLocaleString('id-ID')}\n` +
+          `Categoría : ${a.category || '-'}\n` +
+          `Unduhan  : ${Number(a.downloads || 0).toLocaleString('es-ES')}\n` +
           `Developer: ${a.author?.name || '-'}\n` +
           `Android  : ${a.min_android || '-'} (SDK ${a.min_sdk || '-'})\n` +
           `ABI      : ${(a.abi || []).join(', ') || '-'}\n` +
@@ -464,7 +464,7 @@ const pluginConfig = {
         const caption =
           `*APPTEKA DOWNLOAD*\n\n` +
           `File    : ${d.filename}\n` +
-          `Berlaku sampai: ${d.expires_at ? new Date(d.expires_at).toLocaleString('id-ID') : '-'}\n\n` +
+          `Válido hasta: ${d.expires_at ? new Date(d.expires_at).toLocaleString('es-ES') : '-'}\n\n` +
           `Link:\n${d.url}`
 
         await reply(caption)

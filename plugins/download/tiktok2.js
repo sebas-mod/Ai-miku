@@ -179,7 +179,7 @@ const te = ElysiaRuntime.te;
           }
 
           if (result.type === 'photo' && result.slides.length > 0) {
-              await m.reply(`📸 *Mengirim ${result.slides.length} slide...*`)
+              await m.reply(`📸 *Enviando ${result.slides.length} slide...*`)
 
               const mediaList = []
               for (let i = 0; i < result.slides.length; i++) {

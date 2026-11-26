@@ -113,7 +113,7 @@ import axios from 'axios'
           if (data.error || !data.downloadUrl) {
               m.react('💔')
               return m.reply(
-                  `💔 *ɢᴀɢᴀʟ*\n\n` +
+                  `💔 *ERROR*\n\n` +
                   `> No se puede acceder al archivo o el enlace alcanzó su límite, darling~ 🥺`
               )
           }
@@ -124,8 +124,8 @@ import axios from 'axios'
               mimetype: data.mimetype,
               caption: `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ 📄 *ɴᴀᴍᴀ*: ${data.fileName}\n` +
-                      `┃ 📦 *ᴜᴋᴜʀᴀɴ*: ${data.fileSize}\n` +
+                      `┃ 📄 *NOMBRE*: ${data.fileName}\n` +
+                      `┃ 📦 *TAMAÑO*: ${data.fileSize}\n` +
                       `┃\n` +
                       `┃ *${global.namebot || 'Bot'}:* Aquí tienes el archivo, darling~ 📂\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`

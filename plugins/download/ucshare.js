@@ -280,11 +280,11 @@ const pluginConfig = {
           `*▢ UC SHARE*`,
           ``,
           `• Título: ${s.title || '-'}`,
-          `• Pemilik: ${s.author || '-'}`,
+          `• Propietario: ${s.author || '-'}`,
           `• Isi: ${share.files.length} file${share.folders.length ? `, ${share.folders.length} folder` : ''}`
       ]
       if (s.total_size) lines.push(`• Total: ${s.total_size}`)
-      if (s.expired_at && s.expired_at !== '-') lines.push(`• Berlaku: ${s.is_permanent ? 'permanen' : `sampai ${s.expired_at}`}`)
+      if (s.expired_at && s.expired_at !== '-') lines.push(`• Válido: ${s.is_permanent ? 'permanente' : `hasta ${s.expired_at}`}`)
       lines.push('')
 
       for (const f of share.files.slice(0, LIST_MAX)) {

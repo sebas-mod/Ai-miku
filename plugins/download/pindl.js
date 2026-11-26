@@ -36,7 +36,7 @@ const f = ElysiaRuntime.f;
       return m.reply(
         `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
           `> Descarga imágenes/videos de Pinterest\n\n` +
-          `*ᴄᴏɴᴛᴏʜ:*\n` +
+          `*EJEMPLO:*\n` +
           `> \`${m.prefix}pindl https://pin.it/xxx\`\n` +
           `> \`${m.prefix}pindl https://pinterest.com/pin/xxx\``,
       );

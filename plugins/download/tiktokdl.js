@@ -156,7 +156,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
           `- Duration: ${result.duration}\n` +
           `- Uploaded: ${result.taken_at}\n` +
           `- Region: ${result.region}\n\n` +
-          `*Statistik Video:*\n` +
+          `*Estadísticas del video:*\n` +
           `- Views: *${result.stats.views}*\n` +
           `- Likes: *${result.stats.likes}*\n` +
           `- Comments: *${result.stats.comment}*\n` +

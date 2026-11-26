@@ -297,7 +297,7 @@ const pluginConfig = {
         `*TikTok Stiker Komentar*\n\n` +
         `Obtén los stickers que la gente envía en los comentarios de un video de TikTok (compatible con animaciones).\n\n` +
         `Ejemplo:\n${usedPrefix + command} https://vt.tiktok.com/xxxx\n${usedPrefix + command} https://vt.tiktok.com/xxxx 5\n\n` +
-        `Jumlah default ${DEFAULT_LIMIT}, maksimal ${MAX_LIMIT}.`
+        `Cantidad predeterminada ${DEFAULT_LIMIT}, máximo ${MAX_LIMIT}.`
       )
     }
 
