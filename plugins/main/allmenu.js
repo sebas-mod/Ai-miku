@@ -38,7 +38,6 @@ const pluginConfig = {
 
 const CATEGORY_EMOJIS = {
   owner: "👑",
-  rpg: "⚔️",
   rich: "🕹️",
   stalker: "🔎",
   roleplay: "🎭",
