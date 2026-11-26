@@ -11,8 +11,8 @@ const pluginConfig = {
     name: 'jadwalgroup',
     alias: ['schedulegroup', 'jdwlgrup', 'autoopenclose'],
     category: 'group',
-    description: 'Jadwal buka/tutup grup otomatis',
-    usage: '.jadwalgroup <open/close> <HH:MM> [pesan]',
+    description: 'Programa la apertura y el cierre automáticos del grupo',
+    usage: '.jadwalgroup <open/close> <HH:MM> [mensaje]',
     example: '.jadwalgroup open 06:00 Selamat pagi {group}! Grup dibuka.',
     isOwner: false,
     isPremium: false,
@@ -78,20 +78,20 @@ async function handler(m, { sock }) {
         const closeMsg = group.scheduleCloseMsg || defaultCloseMsg;
 
         await m.reply(
-            `⏰ *ᴊᴀᴅᴡᴀʟ ɢʀᴜᴘ*\n\n` +
-            `「 📋 *sᴛᴀᴛᴜs* 」\n` +
-            `🔓 ᴏᴘᴇɴ: *${openTime || 'Tidak aktif'}*\n` +
-            `🔒 ᴄʟᴏsᴇ: *${closeTime || 'Tidak aktif'}*\n\n` +
-            `「 💬 *ᴘᴇsᴀɴ* 」\n` +
-            `🔓 Open: ${openMsg}\n` +
-            `🔒 Close: ${closeMsg}\n\n` +
-            `*Cara Penggunaan:*\n` +
-            `\`${m.prefix}jadwalgroup open 06:00 Pesan custom\`\n` +
-            `\`${m.prefix}jadwalgroup close 22:00 Pesan custom\`\n` +
-            `\`${m.prefix}jadwalgroup setopen Pesan custom\`\n` +
-            `\`${m.prefix}jadwalgroup setclose Pesan custom\`\n` +
+            `⏰ *ʜᴏʀᴀʀɪᴏ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
+            `「 📋 *ᴇsᴛᴀᴅᴏ* 」\n` +
+            `🔓 ᴀᴘᴇʀᴛᴜʀᴀ: *${openTime || 'Sin programar'}*\n` +
+            `🔒 ᴄɪᴇʀʀᴇ: *${closeTime || 'Sin programar'}*\n\n` +
+            `「 💬 *ᴍᴇɴsᴀᴊᴇ* 」\n` +
+            `🔓 Apertura: ${openMsg}\n` +
+            `🔒 Cierre: ${closeMsg}\n\n` +
+            `*Cómo se usa:*\n` +
+            `\`${m.prefix}jadwalgroup open 06:00 Mensaje personalizado\`\n` +
+            `\`${m.prefix}jadwalgroup close 22:00 Mensaje personalizado\`\n` +
+            `\`${m.prefix}jadwalgroup setopen Mensaje personalizado\`\n` +
+            `\`${m.prefix}jadwalgroup setclose Mensaje personalizado\`\n` +
             `\`${m.prefix}jadwalgroup hapus open\` / \`${m.prefix}jadwalgroup hapus close\`\n\n` +
-            `Placeholder: \`{group}\` \`{time}\` \`{date}\` \`{day}\` \`{count}\` \`{prefix}\``
+            `Marcadores: \`{group}\` \`{time}\` \`{date}\` \`{day}\` \`{count}\` \`{prefix}\``
         );
         return;
     }
@@ -105,10 +105,10 @@ async function handler(m, { sock }) {
             : rawArgs.replace(/^\s*set(?:pesan|message)\b\s*(?:open|close)\b\s*/i, '').trim();
 
         if (type !== 'open' && type !== 'close') {
-            return m.reply(`⚠️ Gunakan: \`${m.prefix}jadwalgroup setopen Pesan...\` atau \`${m.prefix}jadwalgroup setclose Pesan...\``);
+            return m.reply(`⚠️ Usa: \`${m.prefix}jadwalgroup setopen Mensaje...\` o \`${m.prefix}jadwalgroup setclose Mensaje...\``);
         }
         if (!message) {
-            return m.reply(`⚠️ Pesan custom belum diisi.\nContoh: \`${m.prefix}jadwalgroup set${type} Grup {group} ${type === 'open' ? 'dibuka' : 'ditutup'} jam {time}\``);
+            return m.reply(`⚠️ Falta el mensaje personalizado.\nEjemplo: \`${m.prefix}jadwalgroup set${type} Grupo {group} ${type === 'open' ? 'abierto' : 'cerrado'} a las {time}\``);
         }
 
         if (type === 'open') group.scheduleOpenMsg = message;
@@ -116,13 +116,13 @@ async function handler(m, { sock }) {
         db.setGroup(m.chat, group);
         if (db.save) db.save();
         m.react?.('✅');
-        return m.reply(`✅ Pesan jadwal *${type.toUpperCase()}* berhasil disimpan.\n\n> ${message}`);
+        return m.reply(`✅ Mensaje de horario *${type.toUpperCase()}* guardado.\n\n> ${message}`);
     }
 
     if (action === 'hapus' || action === 'delete' || action === 'remove') {
         const type = args[1]?.toLowerCase();
         if (type !== 'open' && type !== 'close') {
-            return m.reply(`⚠️ Gunakan: \`${m.prefix}jadwalgroup hapus open\` atau \`${m.prefix}jadwalgroup hapus close\``);
+            return m.reply(`⚠️ Usa: \`${m.prefix}jadwalgroup hapus open\` o \`${m.prefix}jadwalgroup hapus close\``);
         }
 
         if (args[2]?.toLowerCase() === 'pesan' || args[2]?.toLowerCase() === 'message' || args[2]?.toLowerCase() === 'text') {
@@ -130,7 +130,7 @@ async function handler(m, { sock }) {
             else delete group.scheduleCloseMsg;
             db.setGroup(m.chat, group);
             if (db.save) db.save();
-            return m.reply(`✅ Pesan custom *${type.toUpperCase()}* direset ke default.`);
+            return m.reply(`✅ El mensaje personalizado de *${type.toUpperCase()}* volvió al valor por defecto.`);
         }
 
         // Backward compatible: hapus open/close = hapus jadwal waktunya.
@@ -138,16 +138,16 @@ async function handler(m, { sock }) {
         else delete group.scheduleClose;
         db.setGroup(m.chat, group);
         if (db.save) db.save();
-        return m.reply(`✅ Jadwal *${type.toUpperCase()}* otomatis telah dihapus.`);
+        return m.reply(`✅ Se ha eliminado el horario automático de *${type.toUpperCase()}*.`);
     }
 
     if (action !== 'open' && action !== 'close') {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Action harus \`open\`, \`close\`, \`setopen\`, atau \`setclose\`!\n\n` +
-            `> Contoh:\n` +
-            `> \`${m.prefix}jadwalgroup open 06:00 Selamat pagi {group}!\`\n` +
-            `> \`${m.prefix}jadwalgroup close 22:00 Waktunya istirahat, {group}.\``
+            `⚠️ *ᴠᴀʟɪᴅᴀᴄɪᴏ́ɴ ꜰᴀʟʟɪᴅᴀ*\n\n` +
+            `> ¡La acción debe ser \`open\`, \`close\`, \`setopen\` o \`setclose\`!\n\n` +
+            `> Ejemplo:\n` +
+            `> \`${m.prefix}jadwalgroup open 06:00 ¡Buenos días {group}!\`\n` +
+            `> \`${m.prefix}jadwalgroup close 22:00 Hora de descansar, {group}.\``
         );
         return;
     }
@@ -159,12 +159,12 @@ async function handler(m, { sock }) {
     if (!time && args[1]) time = args[1];
 
     if (!time) {
-        return m.reply(`⚠️ Waktu harus diisi!\nContoh: \`${m.prefix}jadwalgroup ${action} 08:00 Pesan custom\``);
+        return m.reply(`⚠️ ¡Falta la hora!\nEjemplo: \`${m.prefix}jadwalgroup ${action} 08:00 Mensaje personalizado\``);
     }
 
     const parsed = parseTime(time);
     if (!parsed) {
-        return m.reply(`⚠️ Format waktu tidak valid!\nGunakan HH:MM, contoh \`06:00\`, \`22:30\`, \`08:15\`.`);
+        return m.reply(`⚠️ ¡Formato de hora no válido!\nUsa HH:MM, por ejemplo \`06:00\`, \`22:30\`, \`08:15\`.`);
     }
 
     const formattedTime = formatTime(parsed.hours, parsed.minutes);
@@ -183,21 +183,21 @@ async function handler(m, { sock }) {
     db.setGroup(m.chat, group);
     if (db.save) db.save();
 
-    const actionText = action === 'open' ? 'BUKA' : 'TUTUP';
+    const actionText = action === 'open' ? 'ABRIR' : 'CERRAR';
     const emoji = action === 'open' ? '🔓' : '🔒';
     const savedMsg = action === 'open' ? (group.scheduleOpenMsg || defaultOpenMsg) : (group.scheduleCloseMsg || defaultCloseMsg);
 
     await m.reply(
-        `✅ *ᴊᴀᴅᴡᴀʟ ᴅɪsɪᴍᴘᴀɴ*\n\n` +
-        `╭┈┈⬡「 ⏰ *sᴇᴛᴛɪɴɢ* 」\n` +
-        `┃ ㊗ ${emoji} ᴀᴋsɪ: *${actionText}*\n` +
-        `┃ ㊗ ⏱️ ᴡᴀᴋᴛᴜ: *${formattedTime} WIB*\n` +
-        `┃ ㊗ 📡 sᴛᴀᴛᴜs: *🟢 Aktif*\n` +
+        `✅ *ʜᴏʀᴀʀɪᴏ ɢᴜᴀʀᴅᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 ⏰ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪᴏ́ɴ* 」\n` +
+        `┃ ㊗ ${emoji} ᴀᴄᴄɪᴏ́ɴ: *${actionText}*\n` +
+        `┃ ㊗ ⏱️ ʜᴏʀᴀ: *${formattedTime} WIB*\n` +
+        `┃ ㊗ 📡 ᴇsᴛᴀᴅᴏ: *🟢 Activado*\n` +
         `╰┈┈⬡\n\n` +
-        `💬 *Pesan:*\n\n` +
+        `💬 *Mensaje:*\n\n` +
         '```\n' + savedMsg + '\n```\n\n' +
-        `> Untuk ubah pesan tanpa mengubah jam:\n` +
-        `> \`${m.prefix}jadwalgroup set${action} pesan baru...\``
+        `> Para cambiar el mensaje sin tocar la hora:\n` +
+        `> \`${m.prefix}jadwalgroup set${action} mensaje nuevo...\``
     );
 }
 

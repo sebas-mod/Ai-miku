@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'add',
     alias: ['addmember', 'invite'],
     category: 'group',
-    description: 'Menambahkan member ke grup (support multiple)',
+    description: 'Añade miembros al grupo (admite varios a la vez)',
     usage: '.add <nomor1> [nomor2] [nomor3]... [link_grup]',
     example: '.add 6281234567890 6281234567890',
     isOwner: false,
@@ -32,16 +32,16 @@ async function handler(m, { sock }) {
         return m.reply(
             `👥 *ᴀᴅᴅ ᴍᴇᴍʙᴇʀ*\n\n` +
             `> Cara pakai:\n` +
-            `> 1. Di grup: \`${m.prefix}add <nomor>\`\n` +
+            `> 1. En el grupo: \`${m.prefix}add <número>\`\n` +
             `> 2. Multiple: \`${m.prefix}add <nomor1> <nomor2> ...\`\n` +
-            `> 3. Di private: \`${m.prefix}add <nomor> <link_grup>\`\n\n` +
+            `> 3. En privado: \`${m.prefix}add <número> <enlace_grupo>\`\n\n` +
             `> Contoh:\n` +
             `> \`${m.prefix}add 6281234567890\`\n` +
             `> \`${m.prefix}add 628123 628456 628789\`\n` +
             `> \`${m.prefix}add 628123 https://chat.whatsapp.com/xxx\`\n\n` +
             `> Syarat:\n` +
-            `> - Bot harus admin di grup target\n` +
-            `> - Yang jalankan command harus admin`
+            `> - El bot debe ser admin en el grupo de destino\n` +
+            `> - Quien ejecute el comando debe ser admin`
         )
     }
 
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
                 const groupInfo = await sock.groupGetInviteInfo(linkMatch[1])
                 targetGroup = groupInfo.id
             } catch (e) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Link grup tidak valid atau sudah expired!`)
+                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El enlace del grupo no es válido o ya caducó!`)
             }
         } else if (arg.includes('@g.us')) {
             targetGroup = arg
@@ -71,11 +71,11 @@ async function handler(m, { sock }) {
     }
 
     if (targetNumbers.length === 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Masukkan nomor yang valid!`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Introduce un número válido!`)
     }
 
     if (!targetGroup) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jalankan di grup atau sertakan link grup!\n\n\`${m.prefix}add <nomor> <link_grup>\``)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Ejecútalo en el grupo o incluye el enlace del grupo!\n\n\`${m.prefix}add <número> <enlace_grupo>\``)
     }
 
     try {
@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
         )
 
         if (!botParticipant || !['admin', 'superadmin'].includes(botParticipant.admin)) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot bukan admin di grup *${groupMeta.subject}*!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no es admin en el grupo *${groupMeta.subject}*!`)
         }
 
         if (!m.isGroup) {
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
             )
 
             if (!senderParticipant || !['admin', 'superadmin'].includes(senderParticipant.admin)) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kamu bukan admin di grup *${groupMeta.subject}*!`)
+                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No eres admin en el grupo *${groupMeta.subject}*!`)
             }
         }
 
@@ -116,7 +116,7 @@ async function handler(m, { sock }) {
         }
 
         if (validNumbers.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Semua nomor sudah ada di grup!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Todos esos números ya están en el grupo!`)
         }
 
         m.react('🕕')
@@ -139,22 +139,22 @@ async function handler(m, { sock }) {
             }
         }
 
-        let resultText = `🥗 @${m.sender.split('@')[0]} telah menambahkan member ke grup\n\n`
+        let resultText = `🥗 @${m.sender.split('@')[0]} ha añadido miembros al grupo\n\n`
 
         if (successList.length > 0) {
-            resultText += `Ada *${successList.length}* member yang berhasil ditambahkan:\n`
+            resultText += `Se añadieron *${successList.length}* miembros correctamente:\n`
             successList.forEach(n => resultText += `• @${n}\n`)
             resultText += `\n`
         }
 
         if (invitedList.length > 0) {
-            resultText += `📨 *Dan ada juga *${invitedList.length}* member yang diundang:*\n`
+            resultText += `📨 *Y también se invitó a ${invitedList.length} miembros:*\n`
             invitedList.forEach(n => resultText += `• @${n}\n`)
             resultText += `\n`
         }
 
         if (failedList.length > 0) {
-            resultText += `❌ *ɢᴀɢᴀʟ (${failedList.length}):*\n`
+            resultText += `❌ *ꜰᴀʟʟɪᴅᴏs (${failedList.length}):*\n`
             failedList.forEach(f => resultText += `• @${f.num} (${f.status})\n`)
             resultText += `\n`
         }
@@ -171,9 +171,9 @@ async function handler(m, { sock }) {
         m.react('❌')
 
         if (error.message?.includes('not-authorized')) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak memiliki izin untuk menambah member!`)
+            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no tiene permiso para añadir miembros!`)
         } else if (error.message?.includes('forbidden')) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak memiliki akses ke grup ini!`)
+            await m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El bot no tiene acceso a este grupo!`)
         } else {
             m.reply(te(m.prefix, m.command, m.pushName))
         }

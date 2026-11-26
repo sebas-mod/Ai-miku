@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'botmode',
     alias: ['setmode', 'mode'],
     category: 'group',
-    description: 'Atur mode bot untuk grup ini',
+    description: 'Configura el modo del bot para este grupo',
     usage: '.botmode <md/pushkontak/store/otp/all>',
     example: '.botmode store',
     isOwner: false,
@@ -27,25 +27,25 @@ const pluginConfig = {
 const MODES = {
     md: {
         name: 'Multi-Device',
-        desc: 'Mode default dengan semua fitur standar',
+        desc: 'Modo por defecto con todas las funciones estándar',
         allowedCategories: null,
         excludeCategories: ['pushkontak', 'store']
     },
     all: {
         name: 'All Features',
-        desc: 'Semua fitur dari semua mode bisa diakses',
+        desc: 'Se puede acceder a todas las funciones de todos los modos',
         allowedCategories: null,
         excludeCategories: null
     },
     pushkontak: {
         name: 'Push Kontak',
-        desc: 'Mode khusus untuk push kontak ke member',
+        desc: 'Modo especial para enviar contactos a los miembros',
         allowedCategories: ['owner', 'main', 'group', 'sticker', 'pushkontak'],
         excludeCategories: null
     },
     store: {
         name: 'Store/Toko',
-        desc: 'Mode khusus untuk toko manual',
+        desc: 'Modo especial para tienda manual',
         allowedCategories: ['main', 'group', 'sticker', 'owner', 'store'],
         excludeCategories: null
     },
@@ -76,7 +76,7 @@ function handler(m, { sock }) {
 
         return m.reply(
             `🔧 *ʙᴏᴛ ᴍᴏᴅᴇ*\n\n` +
-            `> Mode saat ini: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Unknown'})\n` +
+            `> Modo actual: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Desconocido'})\n` +
             `\n╭─「 📋 *ᴘɪʟɪʜᴀɴ* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
@@ -87,7 +87,7 @@ function handler(m, { sock }) {
     }
 
     if (!Object.keys(MODES).includes(mode)) {
-        return m.reply(`❌ Mode tidak valid. Pilihan: \`${Object.keys(MODES).join(', ')}\``)
+        return m.reply(`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``)
     }
 
     const newGroupData = {
@@ -123,7 +123,7 @@ function handler(m, { sock }) {
         `> Mode: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
         `> Grup: *${m.chat.split('@')[0]}*\n` +
         extraInfo +
-        `\n\n> Ketik \`${m.prefix}menu\` untuk melihat menu.`
+        `\n\n> Escribe \`${m.prefix}menu\` para ver el menú.`
     )
 }
 

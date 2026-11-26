@@ -14,7 +14,7 @@ const pluginConfig = {
     name: 'autoreply',
     alias: ['smarttrigger', 'smarttriggers', 'ar'],
     category: 'group',
-    description: 'Mengatur autoreply/smart triggers per grup',
+    description: 'Configura las respuestas automáticas y los disparadores por grupo',
     usage: '.autoreply on/off/add/del/list/private',
     example: '.autoreply on',
     isOwner: false,
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (action === 'private') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Hanya owner yang bisa mengatur autoreply private!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas en privado!`)
         }
 
         const subAction = args[1]?.toLowerCase()
@@ -51,13 +51,13 @@ async function handler(m, { sock }) {
         if (subAction === 'on') {
             db.setting('autoreplyPrivate', true)
             m.react('✅')
-            return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴛᴇ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*\n\n> Bot akan merespon otomatis di private chat`)
+            return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá solo en los chats privados`)
         }
 
         if (subAction === 'off') {
             db.setting('autoreplyPrivate', false)
             m.react('❌')
-            return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴛᴇ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*\n\n> Bot tidak akan merespon otomatis di private chat`)
+            return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá solo en los chats privados`)
         }
 
         const currentStatus = db.setting('autoreplyPrivate') ?? false
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
 
     if (action === 'global') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Hanya owner yang bisa mengatur global autoreply!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo el dueño puede configurar las respuestas automáticas globales!`)
         }
 
         const subAction = args[1]?.toLowerCase()
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
             const reply = fullBody.substring(pipeIdx + 1)
 
             if (!trigger.trim() || !reply) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Trigger dan reply tidak boleh kosong!`)
+                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El disparador y la respuesta no pueden estar vacíos!`)
             }
 
             const existingIndex = globalCustomReplies.findIndex(r => r.trigger.toLowerCase() === trigger.trim().toLowerCase())
@@ -114,19 +114,19 @@ async function handler(m, { sock }) {
                 `✅ *GLOBAL AUTOREPLY DITAMBAHKAN*\n\n` +
                 `• Trigger: *${trigger.trim()}*\n` +
                 `• Total: *${globalCustomReplies.length}* replies\n\n` +
-                `_Aktif di semua grup dan private chat_`
+                `_Activo en todos los grupos y chats privados_`
             )
         }
 
         if (subAction === 'del' || subAction === 'rm') {
             const trigger = args.slice(2).join(' ').toLowerCase().trim()
             if (!trigger) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Masukkan trigger yang mau dihapus!`)
+                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Indica el disparador que quieres borrar!`)
             }
 
             const index = globalCustomReplies.findIndex(r => r.trigger === trigger)
             if (index === -1) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Trigger \`${trigger}\` tidak ditemukan!`)
+                return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
             }
 
             globalCustomReplies.splice(index, 1)
@@ -134,7 +134,7 @@ async function handler(m, { sock }) {
             await db.save()
 
             m.react('🗑️')
-            return m.reply(`🗑️ *GLOBAL AUTOREPLY DIHAPUS*\n\nTrigger *${trigger}* berhasil dihapus!`)
+            return m.reply(`🗑️ *AUTOREPLY GLOBAL ELIMINADO*\n\n¡El disparador *${trigger}* se ha borrado!`)
         }
 
         if (subAction === 'list' || !subAction) {
@@ -173,12 +173,12 @@ async function handler(m, { sock }) {
             `*PERINTAH TERSEDIA:*\n` +
             `• *${m.prefix}autoreply private on/off* — Toggle private\n` +
             `• *${m.prefix}autoreply global add/del/list* — Global triggers\n\n` +
-            `_Catatan: Untuk setting autoreply grup, gunakan perintah ini di dalam grup._`
+            `_Nota: para configurar las respuestas automáticas del grupo, usa este comando dentro del grupo._`
         )
     }
 
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Hanya admin yang bisa mengatur autoreply di grup!`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Solo los administradores pueden configurar las respuestas automáticas en el grupo!`)
     }
 
     const groupData = db.getGroup(m.chat) || {}
@@ -189,32 +189,32 @@ async function handler(m, { sock }) {
         const effectiveStatus = groupStatus ?? globalSmartTriggers
         const customReplies = groupData.customReplies || []
 
-        let text = `🤖 *SISTEM AUTOREPLY GRUP*\n\n`
-        text += `Status Global: *${globalSmartTriggers ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-        text += `Status Grup Ini: *${groupStatus === undefined ? 'DEFAULT' : (groupStatus ? '✅ AKTIF' : '❌ NONAKTIF')}*\n`
-        text += `Status Private: *${privateAutoreply ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-        text += `Efektif di Grup: *${effectiveStatus ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-        text += `Total Custom Reply (Grup): *${customReplies.length}*\n\n`
-        text += `*MANAJEMEN GRUP:*\n`
-        text += `• *${m.prefix}autoreply on* — Aktifkan di grup ini\n`
-        text += `• *${m.prefix}autoreply off* — Nonaktifkan di grup ini\n`
-        text += `• *${m.prefix}autoreply add <trigger>|<reply>* — Tambah custom reply\n`
-        text += `• *${m.prefix}autoreply del <trigger>* — Hapus custom reply\n`
-        text += `• *${m.prefix}autoreply list* — Lihat semua trigger di grup ini\n`
-        text += `• *${m.prefix}autoreply reset* — Hapus SEMUA custom di grup ini\n\n`
+        let text = `🤖 *SISTEMA DE AUTOREPLY DEL GRUPO*\n\n`
+        text += `Estado global: *${globalSmartTriggers ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+        text += `Estado de este grupo: *${groupStatus === undefined ? 'POR DEFECTO' : (groupStatus ? '✅ ACTIVO' : '❌ INACTIVO')}*\n`
+        text += `Estado en privado: *${privateAutoreply ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+        text += `Efectivo en el grupo: *${effectiveStatus ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+        text += `Respuestas personalizadas (grupo): *${customReplies.length}*\n\n`
+        text += `*GESTIÓN DEL GRUPO:*\n`
+        text += `• *${m.prefix}autoreply on* — Activar en este grupo\n`
+        text += `• *${m.prefix}autoreply off* — Desactivar en este grupo\n`
+        text += `• *${m.prefix}autoreply add <disparador>|<respuesta>* — Añadir respuesta personalizada\n`
+        text += `• *${m.prefix}autoreply del <disparador>* — Borrar respuesta personalizada\n`
+        text += `• *${m.prefix}autoreply list* — Ver todos los disparadores de este grupo\n`
+        text += `• *${m.prefix}autoreply reset* — Borrar TODAS las personalizaciones de este grupo\n\n`
 
         if (m.isOwner) {
-            text += `*MANAJEMEN GLOBAL (OWNER):*\n`
-            text += `• *${m.prefix}autoreply global add <trigger>|<reply>*\n`
-            text += `• *${m.prefix}autoreply global del <trigger>*\n`
-            text += `• *${m.prefix}autoreply global list* — Trigger yang berlaku aktif\n`
-            text += `• *${m.prefix}autoreply private on/off* — Toggle bot reply di DM\n\n`
+            text += `*GESTIÓN GLOBAL (DUEÑO):*\n`
+            text += `• *${m.prefix}autoreply global add <disparador>|<respuesta>*\n`
+            text += `• *${m.prefix}autoreply global del <disparador>*\n`
+            text += `• *${m.prefix}autoreply global list* — Disparadores globales activos\n`
+            text += `• *${m.prefix}autoreply private on/off* — Activar o desactivar la respuesta del bot en privado\n\n`
         }
 
-        text += `*CARA PENAMBAHAN GAMBAR:*\n`
-        text += `1. Kirim gambar beserta caption: *${m.prefix}autoreply add trigger|reply*\n`
-        text += `2. Atau reply gambar dengan: *${m.prefix}autoreply add trigger|reply*\n\n`
-        text += `*DAPAT MENGGUNAKAN PLACEHOLDER:*\n`
+        text += `*CÓMO AÑADIR IMÁGENES:*\n`
+        text += `1. Envía una imagen con el texto: *${m.prefix}autoreply add disparador|respuesta*\n`
+        text += `2. O responde a una imagen con: *${m.prefix}autoreply add disparador|respuesta*\n\n`
+        text += `*PUEDES USAR MARCADORES:*\n`
         text += `{name} • {tag} • {sender} • {botname} • {time} • {date}`
 
         return m.reply(text)
@@ -223,13 +223,13 @@ async function handler(m, { sock }) {
     if (action === 'on') {
         db.setGroup(m.chat, { ...groupData, autoreply: true })
         m.react('✅')
-        return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*\n\n> Bot akan merespon otomatis di grup ini`)
+        return m.reply(`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá solo en este grupo`)
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...groupData, autoreply: false })
         m.react('❌')
-        return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*\n\n> Bot tidak akan merespon otomatis di grup ini`)
+        return m.reply(`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá solo en este grupo`)
     }
 
     if (action === 'add') {
@@ -261,7 +261,7 @@ async function handler(m, { sock }) {
         const reply = fullBody.substring(pipeIdx + 1)
 
         if (!trigger) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Trigger tidak boleh kosong!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡El disparador no puede estar vacío!`)
         }
 
         let imageBuffer = null
@@ -326,7 +326,7 @@ async function handler(m, { sock }) {
         if (imagePath) {
             successMsg += `• Image: ✅ Tersimpan\n`
         }
-        successMsg += `\nTotal: *${customReplies.length}* replies di grup ini`
+        successMsg += `\nTotal: *${customReplies.length}* respuestas en este grupo`
 
         return m.reply(successMsg)
     }
@@ -335,14 +335,14 @@ async function handler(m, { sock }) {
         const trigger = args.slice(1).join(' ').toLowerCase().trim()
 
         if (!trigger) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Masukkan trigger yang mau dihapus!\n\n\`${m.prefix}autoreply del halo\``)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡Indica el disparador que quieres borrar!\n\n\`${m.prefix}autoreply del hola\``)
         }
 
         const customReplies = groupData.customReplies || []
         const index = customReplies.findIndex(r => r.trigger === trigger)
 
         if (index === -1) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Trigger \`${trigger}\` tidak ditemukan!`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> ¡No se encontró el disparador \`${trigger}\`!`)
         }
 
         if (customReplies[index].image) {
@@ -358,9 +358,9 @@ async function handler(m, { sock }) {
 
         m.react('🗑️')
         return m.reply(
-            `🗑️ *AUTOREPLY DIHAPUS*\n\n` +
-            `Trigger *${trigger}* berhasil dihapus!\n` +
-            `Sisa: *${customReplies.length}* replies`
+            `🗑️ *AUTOREPLY BORRADO*\n\n` +
+            `¡El disparador *${trigger}* se ha borrado!\n` +
+            `Quedan: *${customReplies.length}* respuestas`
         )
     }
 
@@ -368,15 +368,15 @@ async function handler(m, { sock }) {
         const customReplies = groupData.customReplies || []
 
         const defaultTriggers = [
-            { trigger: '@mention', reply: '👋 Hai! Ada yang manggil bot?' },
-            { trigger: 'p', reply: '💬 Budayakan salam sebelum percakapan!' },
-            { trigger: 'bot / elysia', reply: '🤖 Bot aktif dan siap!' },
-            { trigger: 'assalamualaikum', reply: 'Waalaikumsalam saudaraku' }
+            { trigger: '@mention', reply: '👋 ¡Hola! ¿Alguien llamó al bot?' },
+            { trigger: 'p', reply: '💬 ¡Saluda antes de empezar a hablar!' },
+            { trigger: 'bot / elysia', reply: '🤖 ¡Bot activo y listo!' },
+            { trigger: 'assalamualaikum', reply: 'Waalaikumsalam, hermano' }
         ]
 
-        let text = `📋 *DAFTAR AUTOREPLY GRUP*\n\n`
+        let text = `📋 *LISTA DE AUTOREPLY DEL GRUPO*\n\n`
 
-        text += `*DEFAULT TRIGGERS:*\n`
+        text += `*DISPARADORES POR DEFECTO:*\n`
         defaultTriggers.forEach((r, i) => {
             text += `• *${r.trigger}*\n`
             text += `  ↳ ${r.reply}\n`
@@ -395,10 +395,10 @@ async function handler(m, { sock }) {
             text += `\n`
         } else {
             text += `*CUSTOM TRIGGERS:*\n`
-            text += `_Belum ada custom trigger di grup ini_\n\n`
+            text += `_Todavía no hay disparadores personalizados en este grupo_\n\n`
         }
 
-        text += `_Catatan: Default triggers bawaan bot tidak bisa di-edit._`
+        text += `_Nota: los disparadores por defecto del bot no se pueden editar._`
 
         return m.reply(text)
     }

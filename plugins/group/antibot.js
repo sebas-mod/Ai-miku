@@ -16,7 +16,7 @@ const pluginConfig = {
   name: ["antibot", "botdetect"],
   alias: [],
   category: "group",
-  description: "Deteksi dan kick bot WhatsApp (baileys) dari grup",
+  description: "Detecta y expulsa bots de WhatsApp (baileys) del grupo",
   usage: ".antibot <on/off>",
   example: ".antibot on",
   isOwner: false,
@@ -216,7 +216,7 @@ function handler(m, { sock }) {
     return m.reply(`❌ *AntiBot dinonaktifkan*`);
   }
 
-  return m.reply(`❌ Gunakan \`.antibot on\` atau \`.antibot off\``);
+  return m.reply(`❌ Usa \`.antibot on\` o \`.antibot off\``);
 }
 
 function isBotMessage(m) {
