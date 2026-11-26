@@ -61,7 +61,7 @@ const pluginConfig = {
       const q = m.quoted
 
       if (!q) {
-          return reply('Reply status grup / status WhatsApp yang mau diambil ya kak~ 📥')
+          return reply('Responde al estado de grupo o estado de WhatsApp que quieres descargar 📥')
       }
 
       const msgObj = q.message || q.msg || q
@@ -72,8 +72,8 @@ const pluginConfig = {
 
       if (!isStatus && !isMedia) {
           return reply(
-              '❌ Pesan yang di-reply bukan status!\n\n' +
-              '> Pastikan kamu me-reply (swipe) pesan **Status / Status Grup** yang berisi media (Video/Gambar).'
+              '❌ ¡El mensaje al que respondes no es un estado!\n\n' +
+              '> Asegúrate de responder (deslizar) a un mensaje de **Estado / Estado de grupo** que tenga multimedia (vídeo/imagen).'
           )
       }
 
@@ -84,15 +84,15 @@ const pluginConfig = {
           } else if (typeof sock.downloadMediaMessage === 'function') {
               buffer = await sock.downloadMediaMessage(q)
           } else {
-              throw new Error('Fungsi download tidak ditemukan di framework.')
+              throw new Error('No se encontró la función de descarga en el framework.')
           }
       } catch (err) {
           console.error('[getsw] download error:', err.message)
-          return reply('❌ Gagal download media status.\n> Kemungkinan ini *Status Pribadi* (Story) yang dibatasi WhatsApp, bukan Status Grup. Coba reply Status Grup ya~')
+          return reply('❌ No se pudo descargar el estado.\n> Puede que sea un *estado personal* (historia) limitado por WhatsApp y no un estado de grupo. Prueba con un estado de grupo.')
       }
 
       if (!buffer || !buffer.length) {
-          return reply('❌ Media status kosong atau gagal diunduh.')
+          return reply('❌ El estado no tiene contenido o no se pudo descargar.')
       }
 
       const mimetype = detectMime(buffer)
@@ -102,13 +102,13 @@ const pluginConfig = {
               await sock.sendMessage(jid, {
                   video: buffer,
                   mimetype,
-                  caption: '📥 *Status berhasil diambil*'
+                  caption: '📥 *Estado descargado*'
               }, { quoted: m })
           } else if (mimetype.startsWith('image/')) {
               await sock.sendMessage(jid, {
                   image: buffer,
                   mimetype,
-                  caption: '📥 *Status berhasil diambil*'
+                  caption: '📥 *Estado descargado*'
               }, { quoted: m })
           } else if (mimetype.startsWith('audio/')) {
               await sock.sendMessage(jid, {
@@ -125,7 +125,7 @@ const pluginConfig = {
           }
       } catch (err) {
           console.error('[getsw] send error:', err.message)
-          await reply('❌ Gagal mengirim media status.')
+          await reply('❌ No se pudo enviar el estado.')
       }
   }
 

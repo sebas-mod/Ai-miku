@@ -38,7 +38,7 @@ const pluginConfig = {
       const img = pickImage(m)
 
       if (!img && !url) {
-          return reply(`*🍂 Butuh input gambar!*\n*Contoh: ${usedPrefix + command} (reply gambar atau kirim URL)*`)
+          return reply(`*🍂 ¡Falta una imagen!*\n*Ejemplo: ${usedPrefix + command} (responde a una imagen o envía una URL)*`)
       }
 
       await reactTo(sock, m, '⏳')
@@ -52,14 +52,14 @@ const pluginConfig = {
               sourceUrl = url
               try {
                   const r = await fetch(sourceUrl)
-                  if (!r.ok) return reply(`*🍂 Gagal ambil gambar!*\n*Status:* ${r.status} ${r.statusText}`)
+                  if (!r.ok) return reply(`*🍂 ¡No se pudo obtener la imagen!*\n*Estado:* ${r.status} ${r.statusText}`)
                   buffer = Buffer.from(await r.arrayBuffer())
               } catch {
                   buffer = null
               }
           }
 
-          if (!buffer?.length && !sourceUrl) return reply('*🍂 Format tidak valid!*\n*Gunakan: reply gambar atau URL gambar.*')
+          if (!buffer?.length && !sourceUrl) return reply('*🍂 ¡Formato no válido!*\n*Usa: responder a una imagen o una URL de imagen.*')
 
           const size = buffer ? buffer.length : 0
           let width
@@ -120,15 +120,15 @@ const pluginConfig = {
               const html = res.text || ''
               if (html.includes('Error:')) {
                   const cleanErr = html.split('Error:')[1].split('<')[0].trim()
-                  return reply(`*🍂 Gagal convert — gambar tidak dapat diproses!*\n*Alasan:* ${cleanErr}`)
+                  return reply(`*🍂 No se pudo convertir — la imagen no se puede procesar.*\n*Motivo:* ${cleanErr}`)
               }
-              return reply(`*🍂 Gagal convert — hasil kosong!*\n*Width:* ${width}\n*Status:* ${res.status}`)
+              return reply(`*🍂 No se pudo convertir — resultado vacío.*\n*Ancho:* ${width}\n*Estado:* ${res.status}`)
           }
 
           const $ = ch.load(res.text)
           const ascii = $('#tiresult').text().trim()
           const share = $('#sharebutton').parent().find('a').attr('href') ?? null
-          if (!ascii) return reply(`*🍂 Gagal convert — hasil kosong!*\n*Width:* ${width}`)
+          if (!ascii) return reply(`*🍂 No se pudo convertir — resultado vacío.*\n*Ancho:* ${width}`)
 
           let out = `*✨ Image To Ascii (Auto-Width) ✨*\n\n`
           out += `*🖼️ Width otomatis:* *${width}*\n\n`

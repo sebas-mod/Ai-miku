@@ -27,7 +27,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, text, reply }) {
-      if (!text) return reply('Masukkan kode JavaScript yang ingin di-obfuscate')
+      if (!text) return reply('Escribe el código JavaScript que quieres ofuscar')
 
       try {
           const code = await obfuscateJs(text)

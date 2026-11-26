@@ -25,11 +25,11 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, usedPrefix, command }) {
-      if (!text) return m.reply(`🚩 *BINARY TO TEXT*\n\nMasukkan kode biner yang ingin diubah!\n\n*ᴄᴏɴᴛᴏʜ:* \`${usedPrefix + command} 01001000 01100001 01101100 01101111\``);
+      if (!text) return m.reply(`🚩 *BINARIO A TEXTO*\n\n¡Escribe el código binario que quieres convertir!\n\n*ᴇᴊᴇᴍᴘʟᴏ:* \`${usedPrefix + command} 01001000 01100001 01101100 01101111\``);
 
       try {
           const binary = text.replace(/\s+/g, '');
-          if (binary.length % 8 !== 0) throw new Error("Format biner tidak valid (harus kelipatan 8 bit).");
+          if (binary.length % 8 !== 0) throw new Error("Formato binario no válido (debe ser múltiplo de 8 bits).");
 
           const result = binary.match(/.{1,8}/g).map(bin => {
               return String.fromCharCode(parseInt(bin, 2));

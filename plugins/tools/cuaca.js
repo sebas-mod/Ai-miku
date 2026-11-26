@@ -45,25 +45,25 @@ const pluginConfig = {
 
       const [kota, kec, kel] = raw.split('|').map(s => s.trim())
       const regs = bestMatches(await getAllRegencies(), kota)
-      if (!regs.length) throw new FriendlyError(`Kabupaten/kota *${kota}* tidak ditemukan.\n\nContoh: cuaca bandung, cuaca kota bogor|bogor barat`)
+      if (!regs.length) throw new FriendlyError(`No se encontró la ciudad de *${kota}*.\n\nEjemplo: cuaca bandung, cuaca kota bogor|bogor barat`)
       if (regs.length > 1) {
           throw new FriendlyError(`Ada beberapa wilayah bernama *${kota}*, tulis lebih spesifik:\n\n${regs.slice(0, 8).map(r => `- ${titleCase(r.name)}`).join('\n')}`)
       }
 
       const districts = await getDistricts(regs[0].code)
-      if (!districts.length) throw new FriendlyError('Data kecamatan belum tersedia untuk wilayah ini.')
+      if (!districts.length) throw new FriendlyError('Todavía no hay datos de distritos para esta zona.')
       let dist = districts[0]
       if (kec) {
           dist = bestMatches(districts, kec)[0]
-          if (!dist) throw new FriendlyError(`Kecamatan *${kec}* tidak ditemukan di ${titleCase(regs[0].name)}.`)
+          if (!dist) throw new FriendlyError(`No se encontró el distrito *${kec}* en ${titleCase(regs[0].name)}.`)
       }
 
       const villages = await getVillages(dist.code)
-      if (!villages.length) throw new FriendlyError('Data kelurahan/desa belum tersedia untuk kecamatan ini.')
+      if (!villages.length) throw new FriendlyError('Todavía no hay datos de barrios para este distrito.')
       let vil = villages[0]
       if (kel) {
           vil = bestMatches(villages, kel)[0]
-          if (!vil) throw new FriendlyError(`Kelurahan/desa *${kel}* tidak ditemukan di kecamatan ${titleCase(dist.name)}.`)
+          if (!vil) throw new FriendlyError(`No se encontró el barrio *${kel}* en el distrito ${titleCase(dist.name)}.`)
       }
 
       return { code: vil.code, guessed: !kec || !kel }
@@ -75,7 +75,7 @@ const pluginConfig = {
   }
 
   let handler = guard(async (m, { text, reply, example }) => {
-      if (!String(text || '').trim()) return example('bandung  (atau: kota bogor|bogor barat|menteng)')
+      if (!String(text || '').trim()) return example('bandung  (o: kota bogor|bogor barat|menteng)')
 
       const { code, guessed } = await resolve(text)
 
@@ -84,7 +84,7 @@ const pluginConfig = {
           json = await fetchJSON(`${BMKG}?adm4=${encodeURIComponent(code)}`)
       } catch (e) {
           if (e.status === 404 || e.status === 400) {
-              throw new FriendlyError('BMKG belum punya prakiraan untuk lokasi ini. Coba kelurahan atau kecamatan lain:\ncuaca kota|kecamatan|kelurahan')
+              throw new FriendlyError('BMKG aún no tiene pronóstico para este lugar. Prueba con otro barrio o distrito:\ncuaca ciudad|distrito|barrio')
           }
           throw e
       }
@@ -92,7 +92,7 @@ const pluginConfig = {
       const item = Array.isArray(json?.data) ? json.data[0] : json
       const lokasi = item?.lokasi || json?.lokasi || {}
       const entries = (Array.isArray(item?.cuaca) ? item.cuaca : []).flat(2).filter(e => e && typeof e === 'object')
-      if (!entries.length) throw new FriendlyError('Prakiraan cuaca untuk lokasi ini belum tersedia dari BMKG.')
+      if (!entries.length) throw new FriendlyError('BMKG todavía no tiene el pronóstico de este lugar.')
 
       const now = Date.now()
       let start = 0
@@ -108,17 +108,17 @@ const pluginConfig = {
       const lines = slice.map(e => {
           const dt = String(e.local_datetime || '')
           const jam = dt.length >= 16 ? `${dt.slice(8, 10)}/${dt.slice(5, 7)} ${dt.slice(11, 16)}` : '-'
-          return `${jam}  ${num(e.weather_desc)}, ${num(e.t)}°C, lembap ${num(e.hu)}%, angin ${num(e.ws)} km/j`
+          return `${jam}  ${num(e.weather_desc)}, ${num(e.t)}°C, humedad ${num(e.hu)}%, viento ${num(e.ws)} km/h`
       })
 
       return reply(
-          `🌤️ *CUACA*\n${place || code}\n\n` +
-          `*Sekarang (perkiraan)*\n` +
+          `🌤️ *TIEMPO*\n${place || code}\n\n` +
+          `*Ahora (aproximado)*\n` +
           `${num(first.weather_desc)}\n` +
-          `Suhu ${num(first.t)}°C | Lembap ${num(first.hu)}% | Angin ${num(first.ws)} km/jam${first.wd ? ` dari ${first.wd}` : ''}\n\n` +
-          `*Prakiraan (per 3 jam, waktu setempat)*\n${lines.join('\n')}` +
-          (guessed ? `\n\n_Lokasi dipilih otomatis. Untuk lebih tepat: cuaca kota|kecamatan|kelurahan_` : '') +
-          `\n\n_Sumber: BMKG_`
+          `Temperatura ${num(first.t)}°C | Humedad ${num(first.hu)}% | Viento ${num(first.ws)} km/h${first.wd ? ` desde ${first.wd}` : ''}\n\n` +
+          `*Pronóstico (cada 3 horas, hora local)*\n${lines.join('\n')}` +
+          (guessed ? `\n\n_La ubicación se eligió automáticamente. Para más precisión: cuaca ciudad|distrito|barrio_` : '') +
+          `\n\n_Fuente: BMKG_`
       )
   })
 

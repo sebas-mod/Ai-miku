@@ -47,7 +47,7 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, prefix, command }) {
       const url = (String(text || '') + ' ' + (m.quoted?.text || '')).match(/https?:\/\/drive\.google\.com\/[^\s]+/i)?.[0]
-      if (!url) return reply(`📁 *DRIVE INFO*\n\nPenggunaan: *${prefix + command} <link Google Drive>*\nContoh: ${prefix + command} https://drive.google.com/file/d/xxxx/view\n\n_Untuk mengunduh file gunakan .drivedl_`)
+      if (!url) return reply(`📁 *INFO DE DRIVE*\n\nUso: *${prefix + command} <enlace de Google Drive>*\nEjemplo: ${prefix + command} https://drive.google.com/file/d/xxxx/view\n\n_Para descargar el archivo usa .drivedl_`)
 
       try {
           const res = await fetch(API_URL, {
@@ -72,7 +72,7 @@ const pluginConfig = {
               (duration ? `• Durasi : ${duration}\n` : '') + (thumb ? `• Thumbnail : ${thumb}\n` : '') + `\n🔗 ${url}`
           )
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil info file'}`)
+          return reply(`❌ ${e.message || 'No se pudo obtener la información del archivo'}`)
       }
   }
 

@@ -49,7 +49,7 @@ const pluginConfig = {
       const keyword = text.trim()
 
       await sock.sendMessage(jid, {
-          text: `🔎 Mencari loker remote untuk *${keyword}*...`
+          text: `🔎 Buscando empleos remotos de *${keyword}*...`
       }, { quoted: m })
 
       try {
@@ -72,11 +72,11 @@ const pluginConfig = {
           if (!jobs.length) {
               return sock.sendMessage(jid, {
                   text:
-  `❌ Tidak ditemukan lowongan untuk:
+  `❌ No se encontraron ofertas para:
 
 🔎 ${keyword}
 
-Coba keyword lain:
+Prueba otra palabra clave:
 • programmer
 • javascript
 • frontend
@@ -89,10 +89,10 @@ Coba keyword lain:
           const hasil = jobs.slice(0, 10)
 
           let textOut =
-  `╭─「 CARI LOKER 」
+  `╭─「 BUSCAR EMPLEO 」
 │ 🔎 ${keyword}
-│ 🌐 Remote / Work From Home
-│ 📋 ${hasil.length} hasil
+│ 🌐 Remoto / Trabajo desde casa
+│ 📋 ${hasil.length} resultados
 ╰──────────────
 
 `

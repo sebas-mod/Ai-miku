@@ -33,15 +33,15 @@ const pluginConfig = {
   async function handler(m, { text, sender, reply, example }) {
       const input = String(text || '').trim()
       const rows = listReminders().filter(r => mine(r, sender)).sort((a, b) => a.due - b.due)
-      if (!rows.length) return reply('Kamu belum punya pengingat aktif.')
+      if (!rows.length) return reply('No tienes ningún recordatorio activo.')
       if (/^(all|semua)$/i.test(input)) {
           const n = delReminders(r => mine(r, sender))
-          return reply(`✅ ${n} pengingat dihapus.`)
+          return reply(`✅ ${n} recordatorios eliminados.`)
       }
       const no = parseInt(input)
-      if (!no || no < 1 || no > rows.length) return example('1  (nomor dari .listingat) atau all')
+      if (!no || no < 1 || no > rows.length) return example('1  (el número de .listingat) o all')
       delReminders(r => r.id === rows[no - 1].id)
-      return reply(`✅ Pengingat no. ${no} dihapus.`)
+      return reply(`✅ Recordatorio n.º ${no} eliminado.`)
   }
 
 export { pluginConfig as config, handler }

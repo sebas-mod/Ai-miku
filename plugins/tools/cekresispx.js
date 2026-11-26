@@ -98,7 +98,7 @@ const pluginConfig = {
       const tn = String(rawTn).trim().toUpperCase()
 
       const [fleet, order] = await Promise.all([fetchFleet(tn, timeoutMs), fetchOrderInfo(tn, timeoutMs)])
-      if (!fleet && !order) throw new Error(`Resi ${tn} tidak ditemukan di SPX Express.`)
+      if (!fleet && !order) throw new Error(`No se encontró el envío ${tn} en SPX Express.`)
 
       const sls = order?.sls_tracking_info || {}
       const records = sls.records || []
@@ -187,10 +187,10 @@ const pluginConfig = {
       const full = args.some((a) => /^full$/i.test(a))
       const tn = args.find((a) => !/^full$/i.test(a))
 
-      if (!tn) return example(`SPXID0xxxxxxxxxx  (tambah "full" untuk timeline lengkap)`)
-      if (!/^[A-Za-z0-9]{8,30}$/.test(tn)) return reply('Format nomor resi tidak valid. Contoh: *SPXID0xxxxxxxxxx*')
+      if (!tn) return example(`SPXID0xxxxxxxxxx  (añade "full" para ver el historial completo)`)
+      if (!/^[A-Za-z0-9]{8,30}$/.test(tn)) return reply('Formato de número de envío no válido. Ejemplo: *SPXID0xxxxxxxxxx*')
 
-      await reply('Melacak paket SPX, tunggu sebentar...')
+      await reply('Buscando el paquete de SPX, un momento...')
 
       let r
       try {
@@ -221,7 +221,7 @@ const pluginConfig = {
           r.trips.length ? `\n*Trip linehaul:* ${r.trips.join(', ')}` : null,
           r.tags.length ? `*Tag karung/TO:* ${r.tags.join(', ')}` : null,
           ``,
-          `*Timeline (${shown.length}${shown.length < r.timeline.length ? ` dari ${r.timeline.length}` : ''}):*`,
+          `*Historial (${shown.length}${shown.length < r.timeline.length ? ` de ${r.timeline.length}` : ''}):*`,
           lines.join('\n\n') || '-',
           !full && r.timeline.length > shown.length ? `\n_Timeline lengkap: ${p}${command || 'cekresispx'} ${r.tn} full_` : null
       ]

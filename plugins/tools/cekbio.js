@@ -47,11 +47,11 @@ const pluginConfig = {
     }).filter(num => num.length >= 10 && num.length <= 15);
 
     if (validNumbers.length === 0) {
-      return reply('❌ Tidak ada nomor yang valid untuk dicek.');
+      return reply('❌ No hay ningún número válido que comprobar.');
     }
 
     const statusMsg = await connection.sendMessage(m.chat, {
-      text: `⏳ Memulai pengecekan 0/${validNumbers.length} nomor...\n📁 Sumber: Input Teks`
+      text: `⏳ Comprobando 0/${validNumbers.length} números...\n📁 Origen: texto enviado`
     }, { quoted: m });
 
     const results = [];
@@ -139,13 +139,13 @@ const pluginConfig = {
       document: { url: filename },
       mimetype: 'text/plain',
       fileName: `hasil_cekbio_${Date.now()}.txt`,
-      caption: `📋 *HASIL CEK BIO WHATSAPP (OWNER ONLY)*\n\n` +
-               `📊 Total: ${validNumbers.length} nomor\n` +
-               `✅ Terdaftar: ${results.filter(r => r.registered).length}\n` +
-               `❌ Tidak terdaftar: ${results.filter(r => !r.registered).length}\n` +
-               `📝 Dengan bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
+      caption: `📋 *RESULTADO DEL CHEQUEO DE BIOS DE WHATSAPP (SOLO DUEÑO)*\n\n` +
+               `📊 Total: ${validNumbers.length} números\n` +
+               `✅ Registrados: ${results.filter(r => r.registered).length}\n` +
+               `❌ No registrados: ${results.filter(r => !r.registered).length}\n` +
+               `📝 Con bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
                `🏢 Meta Business: ${results.filter(r => r.metaBusiness).length}\n\n` +
-               `🕒 ${new Date().toLocaleString('id-ID')}`
+               `🕒 ${new Date().toLocaleString('es-ES')}`
     }, { quoted: m });
 
     setTimeout(() => {

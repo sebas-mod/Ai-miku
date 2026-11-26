@@ -49,16 +49,16 @@ const pluginConfig = {
       if (!input && m.quoted) input = String(m.quoted.text || '').trim()
 
       if (!input) {
-          return reply(`*▢ TRANSLATE*\n\n${prefix}english <teks>  → ke Inggris\n\nBisa juga reply pesan lalu ketik ${prefix}${command}`)
+          return reply(`*▢ TRADUCIR*\n\n${prefix}english <texto>  → al inglés\n\nTambién puedes responder a un mensaje y escribir ${prefix}${command}`)
       }
-      if (input.length > MAX_CHARS) return reply(`Teks terlalu panjang (${input.length} karakter, maks ${MAX_CHARS}).`)
+      if (input.length > MAX_CHARS) return reply(`El texto es demasiado largo (${input.length} caracteres, máx. ${MAX_CHARS}).`)
 
       try {
           const result = await translate(input, 'en')
-          return reply(`🌐 *Terjemahan* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
+          return reply(`🌐 *Traducción* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
       } catch (e) {
           console.error('[TRANSLATE]', e?.message || e)
-          return reply(`Gagal menerjemahkan: ${e?.response?.status ? `server menolak (HTTP ${e.response.status})` : e?.message || 'error'}.\nCoba lagi sebentar.`)
+          return reply(`No se pudo traducir: ${e?.response?.status ? `el servidor lo rechazó (HTTP ${e.response.status})` : e?.message || 'error'}.\nInténtalo de nuevo en un momento.`)
       }
   }
 

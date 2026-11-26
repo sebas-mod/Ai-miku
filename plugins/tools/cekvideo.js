@@ -47,9 +47,9 @@ const { promisify } = (await import('node:util'))
       const h = Math.floor(sec / 3600);
       const m = Math.floor((sec % 3600) / 60);
       const s = sec % 60;
-      if (h > 0) return `${h} jam ${m} mnt ${s} dtk`;
+      if (h > 0) return `${h} h ${m} min ${s} s`;
       if (m > 0) return `${m} mnt ${s} dtk`;
-      return `${s} detik`;
+      return `${s} segundos`;
   };
 
   async function handler(m, { usedPrefix, command, reply }) {
@@ -57,7 +57,7 @@ const { promisify } = (await import('node:util'))
       const mime = (q.msg || q).mimetype || q.mtype || '';
 
       if (!/video|gif/.test(mime)) {
-          return reply(`Kirim atau reply video/GIF dengan caption *${usedPrefix + command}*`);
+          return reply(`Envía o responde a un vídeo/GIF con el texto *${usedPrefix + command}*`);
       }
 
       reply(global.mess?.loading || '⏳ _Menganalisis metadata video..._');
@@ -88,7 +88,7 @@ const { promisify } = (await import('node:util'))
           const [fNom, fDenom] = fpsRaw.split('/').map(Number);
           const fps = fDenom && fNom ? Math.round(fNom / fDenom) : '-';
           const vCodec = (vStream.codec_name || '-').toUpperCase();
-          const aCodec = (aStream.codec_name || 'Tidak ada audio').toUpperCase();
+          const aCodec = (aStream.codec_name || 'Sin audio').toUpperCase();
           const bitRate = fmt.bit_rate ? `${Math.round(fmt.bit_rate / 1000)} kbps` : '-';
           const size = media.length ? formatBytes(media.length) : formatBytes(fmt.size || 0);
           const formatName = (fmt.format_long_name || fmt.format_name || 'MP4').split(',')[0];
@@ -107,7 +107,7 @@ const { promisify } = (await import('node:util'))
               `• 🔊 *Audio Codec:* ${aCodec}\n` +
               `• ⚡ *Bitrate:* ${bitRate}\n` +
               `• 💾 *Ukuran File:* ${size}\n\n` +
-              `_Identifikasi video berhasil!_`;
+              `_¡Vídeo identificado!_`;
 
           reply(teks);
       } catch (err) {

@@ -33,9 +33,9 @@ const pluginConfig = {
       const number = String(text || '').trim().split(/\s+/)[0]?.replace(/[^0-9]/g, '')
 
       if (!number) {
-          return reply(`❀ Masukkan nomor WhatsApp yang ingin dicek!\n\n乂 Contoh:\n  ${prefix}${command} 6283456789011`)
+          return reply(`❀ ¡Escribe el número de WhatsApp que quieres comprobar!\n\n乂 Ejemplo:\n  ${prefix}${command} 6283456789011`)
       }
-      if (number.length < 8 || number.length > 15) return reply('❌ Format nomor tidak valid!')
+      if (number.length < 8 || number.length > 15) return reply('❌ ¡Formato de número no válido!')
 
       try {
           await reactTo(sock, m, '🔎')
@@ -48,7 +48,7 @@ const pluginConfig = {
 
           if (!res?.status || !res?.data) {
               await reactTo(sock, m, '❌')
-              return reply('❌ Gagal mendapatkan data pengecekan nomor.')
+              return reply('❌ No se pudieron obtener los datos del número.')
           }
 
           const d = res.data
@@ -111,7 +111,7 @@ ${formatList(recommended)}
       } catch (e) {
           console.error('[CEKBAN WA]', e)
           await reactTo(sock, m, '❌')
-          return reply('❌ Gagal mengecek nomor WhatsApp.\nAPI mungkin sedang error atau timeout. Coba lagi nanti.')
+          return reply('❌ No se pudo comprobar el número de WhatsApp.\nPuede que la API esté caída o tardando. Inténtalo más tarde.')
       }
   }
 

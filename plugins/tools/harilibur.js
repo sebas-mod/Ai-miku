@@ -79,8 +79,8 @@ const pluginConfig = {
       return `${day}, ${d} ${BULAN[m - 1].slice(0, 3)} ${y}`
   }
 
-  const line = (h) => `${label(h)}\n   ${h.name}${h.cuti && !/cuti/i.test(h.name) ? ' (cuti bersama)' : ''}`
-  const FOOT = '\n\n_Sumber: data hari libur nasional & cuti bersama (SKB 3 Menteri)_'
+  const line = (h) => `${label(h)}\n   ${h.name}${h.cuti && !/cuti/i.test(h.name) ? ' (puente)' : ''}`
+  const FOOT = '\n\n_Fuente: datos oficiales de días festivos nacionales (decreto conjunto de 3 ministerios)_'
 
   let handler = guard(async (m, { text, reply }) => {
       const arg = String(text || '').trim()
@@ -89,25 +89,25 @@ const pluginConfig = {
 
       if (/^\d{4}$/.test(arg)) {
           const year = Number(arg)
-          if (year < 2015 || year > today.y + 2) return reply('Tahun di luar jangkauan data. Coba tahun yang lebih dekat.')
+          if (year < 2015 || year > today.y + 2) return reply('Año fuera del rango de datos. Prueba con uno más cercano.')
           const list = await holidaysOf(year)
-          if (!list.length) throw new FriendlyError(`Data hari libur tahun ${year} belum tersedia.`)
-          return reply(`📅 *HARI LIBUR ${year}* (${list.length})\n\n${list.map(line).join('\n')}${FOOT}`)
+          if (!list.length) throw new FriendlyError(`Todavía no hay datos de festivos de ${year}.`)
+          return reply(`📅 *FESTIVOS ${year}* (${list.length})\n\n${list.map(line).join('\n')}${FOOT}`)
       }
 
       if (/^\d{1,2}$/.test(arg)) {
           const month = Number(arg)
-          if (month < 1 || month > 12) return reply('Bulan harus 1-12.')
+          if (month < 1 || month > 12) return reply('El mes debe ser del 1 al 12.')
           const list = (await holidaysOf(today.y)).filter(h => Number(h.date.slice(5, 7)) === month)
-          if (!(await holidaysOf(today.y)).length) throw new FriendlyError(`Data hari libur tahun ${today.y} belum tersedia.`)
-          if (!list.length) return reply(`Tidak ada hari libur nasional di bulan ${BULAN[month - 1]} ${today.y}.`)
-          return reply(`📅 *HARI LIBUR ${BULAN[month - 1].toUpperCase()} ${today.y}*\n\n${list.map(line).join('\n')}${FOOT}`)
+          if (!(await holidaysOf(today.y)).length) throw new FriendlyError(`Todavía no hay datos de festivos de ${today.y}.`)
+          if (!list.length) return reply(`No hay festivos nacionales en ${BULAN[month - 1]} de ${today.y}.`)
+          return reply(`📅 *FESTIVOS DE ${BULAN[month - 1].toUpperCase()} ${today.y}*\n\n${list.map(line).join('\n')}${FOOT}`)
       }
 
-      if (arg) return reply('Format tidak dikenal.\n\nGunakan:\n- harilibur (libur terdekat)\n- harilibur 10 (per bulan)\n- harilibur 2026 (per tahun)')
+      if (arg) return reply('Formato no reconocido.\n\nUsa:\n- harilibur (próximos festivos)\n- harilibur 10 (por mes)\n- harilibur 2026 (por año)')
 
       const thisYear = await holidaysOf(today.y)
-      if (!thisYear.length) throw new FriendlyError(`Data hari libur tahun ${today.y} belum tersedia.`)
+      if (!thisYear.length) throw new FriendlyError(`Todavía no hay datos de festivos de ${today.y}.`)
       const nextYear = await holidaysOf(today.y + 1).catch(() => [])
 
       const all = [...thisYear, ...nextYear]
@@ -115,12 +115,12 @@ const pluginConfig = {
       const upcoming = all.filter(h => h.date > todayStr).slice(0, 5)
 
       const status = todayHit.length
-          ? `Hari ini *libur*: ${todayHit.map(h => h.name).join(', ')} 🎉`
-          : 'Hari ini bukan hari libur nasional.'
+          ? `Hoy es *festivo*: ${todayHit.map(h => h.name).join(', ')} 🎉`
+          : 'Hoy no es un festivo nacional.'
 
       return reply(
-          `📅 *HARI LIBUR TERDEKAT*\n\n${status}` +
-          (upcoming.length ? `\n\n*Selanjutnya*\n${upcoming.map(line).join('\n')}` : '\n\nBelum ada data libur berikutnya.') +
+          `📅 *PRÓXIMOS FESTIVOS*\n\n${status}` +
+          (upcoming.length ? `\n\n*A continuación*\n${upcoming.map(line).join('\n')}` : '\n\nTodavía no hay datos de los próximos festivos.') +
           FOOT
       )
   })

@@ -59,7 +59,7 @@ const pluginConfig = {
       const fail = results.filter(r => !r.buf)
 
       if (!ok.length) {
-          return reply(`❌ Tidak ada foto profil yang bisa diambil (kosong atau disembunyikan):\n${fail.map(f => '• @' + num(f.jid)).join('\n')}`)
+          return reply(`❌ No hay fotos de perfil que se puedan obtener (vacías u ocultas):\n${fail.map(f => '• @' + num(f.jid)).join('\n')}`)
       }
 
       const cap = (r) => `Foto profil @${num(r.jid)}`

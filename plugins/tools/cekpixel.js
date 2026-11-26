@@ -40,13 +40,13 @@ const pluginConfig = {
       const mime = (q.msg || q).mimetype || q.mtype || '';
 
       if (!/image/.test(mime)) {
-          return reply(`Kirim atau reply gambar dengan caption *${usedPrefix + command}*`);
+          return reply(`Envía o responde a una imagen con el texto *${usedPrefix + command}*`);
       }
 
       try {
           const media = await q.download();
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ ɢᴀɢᴀʟ mendownload media gambar.');
+              return reply('❌ No se pudo descargar la imagen.');
           }
 
           const metadata = await sharp(media).metadata();
@@ -65,15 +65,15 @@ const pluginConfig = {
               `• 📏 *Tinggi (Height):* ${height} px\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect} (${width}:${height})\n` +
-              `• 📦 *Format Gambar:* ${format}\n` +
+              `• 📦 *Formato de imagen:* ${format}\n` +
               `• 💾 *Ukuran File:* ${size}\n` +
               `• 🎨 *Color Space:* ${space} (${channels} Channels)\n\n` +
-              `_Identifikasi resolusi gambar berhasil!_`;
+              `_¡Resolución de la imagen identificada!_`;
 
           reply(teks);
       } catch (err) {
           console.error('[cekpixel error]:', err);
-          reply(`❌ ɢᴀɢᴀʟ membaca metadata pixel gambar: ${err.message || err}`);
+          reply(`❌ No se pudieron leer los píxeles de la imagen: ${err.message || err}`);
       }
   };
 

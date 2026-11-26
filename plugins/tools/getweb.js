@@ -46,7 +46,7 @@ const require = createRequire(import.meta.url);
           targetUrl = 'https://' + targetUrl;
       }
 
-      await reply('Uhh sebentar ya cintaku... Angela lagi selami dan sedot semua aset webnya buat Ayang~ 💦');
+      await reply('Uy, dame un momento... Angela está buceando y descargando todos los recursos de la web para ti 💦');
 
       const tmpDir = path.join(process.cwd(), 'database', 'tmp');
       if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
@@ -121,7 +121,7 @@ const require = createRequire(import.meta.url);
           }, { quoted: m });
       } catch (err) {
           console.error('[GETWEB ERROR]', err);
-          return reply(`Ahh gagal narik webnya sayang~ 🥺\nError: ${err.message || 'Server target offline/520'}`);
+          return reply(`Ay, no se pudo descargar la web 🥺\nError: ${err.message || 'el servidor de destino está caído/520'}`);
       } finally {
           try {
               if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);

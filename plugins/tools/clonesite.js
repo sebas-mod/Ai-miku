@@ -320,7 +320,7 @@ const pluginConfig = {
   async function fetchRes(url, deadline) {
       let lastErr
       for (let attempt = 0; attempt <= 1; attempt++) {
-          if (Date.now() > deadline) throw Object.assign(new Error('waktu habis'), { code: 'EDEADLINE' })
+          if (Date.now() > deadline) throw Object.assign(new Error('tiempo agotado'), { code: 'EDEADLINE' })
           try {
               return await safeFetch(url, { timeout: 20000, maxBytes: MAX_FILE, maxRedirects: 5, headers: { 'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.9,id;q=0.8' } })
           } catch (e) {
@@ -379,13 +379,13 @@ const pluginConfig = {
           if (!buf || buf.length === 0) { errors.push({ url, status, error: 'empty body' }); return }
 
           const wantsHtml = isRoot || (!ext && kind === 'page') || ['.html', '.htm'].includes(ext)
-          if (ctype === 'text/html' && !wantsHtml) { skipped.push({ url, status, reason: 'spa-fallback (bukan file asli)' }); return }
+          if (ctype === 'text/html' && !wantsHtml) { skipped.push({ url, status, reason: 'spa-fallback (no es un archivo original)' }); return }
 
           const isExternal = !sameHost
           const isHtml = ctype === 'text/html' || ['.html', '.htm'].includes(ext)
           const localPath = filePathFor(finalUrl, { isHtml, isExternal })
           if (store.has(localPath)) return
-          if (budget.total + buf.length > MAX_TOTAL) { truncated = true; skipped.push({ url, reason: 'melewati batas total ukuran' }); return }
+          if (budget.total + buf.length > MAX_TOTAL) { truncated = true; skipped.push({ url, reason: 'supera el tamaño total permitido' }); return }
           budget.total += buf.length
 
           const text = isTextType(ctype, ext, type) ? decodeText(buf, String(res.headers['content-type'] || '')) : null
@@ -452,13 +452,13 @@ const pluginConfig = {
       const input = String(text || m.quoted?.text || '').trim()
       if (!input) {
           return reply(
-              `*🌐 CLONE SOURCE WEBSITE*\n\n` +
-              `Ambil HTML, CSS, JS, source map (pulihkan file asli TS/TSX/JSX/Vue), gambar, font, dan JSON jadi ZIP.\n\n` +
-              `*Contoh:*\n${prefix}${command} https://contoh.com\n${prefix}${command} contoh.com --depth=2 --pages=30\n\n` +
-              `*Opsi:*\n• --depth=N  kedalaman halaman (default ${DEFAULTS.depth}, maks ${isOwner ? LIMIT_OWNER.depth : LIMIT_USER.depth})\n` +
-              `• --pages=N  jumlah halaman (default ${DEFAULTS.pages}, maks ${isOwner ? LIMIT_OWNER.pages : LIMIT_USER.pages})\n` +
-              `• --assets=N  jumlah file (default ${DEFAULTS.assets}, maks ${isOwner ? LIMIT_OWNER.assets : LIMIT_USER.assets})\n` +
-              `• --external=false  jangan ambil aset dari domain lain`
+              `*🌐 CLONAR EL CÓDIGO DE UNA WEB*\n\n` +
+              `Descarga HTML, CSS, JS, source maps (recupera los archivos originales TS/TSX/JSX/Vue), imágenes, fuentes y JSON en un ZIP.\n\n` +
+              `*Ejemplo:*\n${prefix}${command} https://ejemplo.com\n${prefix}${command} ejemplo.com --depth=2 --pages=30\n\n` +
+              `*Opciones:*\n• --depth=N  profundidad de páginas (por defecto ${DEFAULTS.depth}, máx. ${isOwner ? LIMIT_OWNER.depth : LIMIT_USER.depth})\n` +
+              `• --pages=N  número de páginas (por defecto ${DEFAULTS.pages}, máx. ${isOwner ? LIMIT_OWNER.pages : LIMIT_USER.pages})\n` +
+              `• --assets=N  número de archivos (por defecto ${DEFAULTS.assets}, máx. ${isOwner ? LIMIT_OWNER.assets : LIMIT_USER.assets})\n` +
+              `• --external=false  no descargar recursos de otros dominios`
           )
       }
 

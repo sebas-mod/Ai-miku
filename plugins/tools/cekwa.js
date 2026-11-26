@@ -77,7 +77,7 @@ const pluginConfig = {
       if (isReply) {
           const raw = m.quoted.sender || m.quoted.senderRaw
           targetNumber = isLidJid(raw) ? await resolvePhone(sock, raw) : jidNumber(raw)
-          if (!targetNumber) return reply('❌ Tidak bisa mengidentifikasi nomor dari pesan yang di-reply.')
+          if (!targetNumber) return reply('❌ No se pudo identificar el número del mensaje al que respondes.')
       } else {
           const mention = (m.mentionedJid || [])[0]
           if (mention) {
@@ -90,7 +90,7 @@ const pluginConfig = {
 
       targetNumber = String(targetNumber || '').replace(/\D/g, '')
       if (targetNumber.length < 8) {
-          return reply(`❌ Tag seseorang, reply pesannya, atau tulis nomornya.\n\nContoh: *${prefix || '.'}${command} @tag*`)
+          return reply(`❌ Menciona a alguien, responde a su mensaje o escribe su número.\n\nEjemplo: *${prefix || '.'}${command} @mención*`)
       }
       const targetJid = `${targetNumber}@s.whatsapp.net`
 
@@ -110,7 +110,7 @@ const pluginConfig = {
           const [result] = await withTimeout(sock.onWhatsApp(targetNumber))
           if (!result?.exists) {
               await reactTo(sock, m, '❌')
-              return reply(`❌ Nomor *+${targetNumber}* tidak terdaftar di WhatsApp.`)
+              return reply(`❌ El número *+${targetNumber}* no está registrado en WhatsApp.`)
           }
           const waJid = result.jid
           const nomor = jidNumber(waJid)
@@ -229,73 +229,73 @@ const pluginConfig = {
           }
 
           let c = ''
-          c += block('Nomor', `+${nomor}`)
-          if (quotedLid) c += block('ID peserta (original)', quotedLid)
-          if (resolvedJid) c += block('ID WA terkait', resolvedJid)
-          if (deviceIndex !== null) c += block('Device Index', `:${deviceIndex} ${deviceIndex === 0 ? '(Primary)' : '(Linked/Bot)'}`)
+          c += block('Número', `+${nomor}`)
+          if (quotedLid) c += block('ID del participante (original)', quotedLid)
+          if (resolvedJid) c += block('ID de WA asociado', resolvedJid)
+          if (deviceIndex !== null) c += block('Índice de dispositivo', `:${deviceIndex} ${deviceIndex === 0 ? '(Principal)' : '(Vinculado/Bot)'}`)
           if (targetLid) c += block('LID', targetLid)
-          if (pushName) c += block('Push Name', pushName)
-          c += block('Status WA', 'Terdaftar ✅')
+          if (pushName) c += block('Nombre visible', pushName)
+          c += block('Estado en WA', 'Registrado ✅')
 
-          c += block('Kehadiran',
-              isOnline ? '🟢 Sedang Online'
-                  : lastSeen ? `🕐 Terakhir online: ${formatTimestamp(lastSeen)}`
-                  : lastSeenPrivacy ? '🔒 Disembunyikan' : '❓ Tidak diketahui')
+          c += block('Presencia',
+              isOnline ? '🟢 En línea ahora'
+                  : lastSeen ? `🕐 Última conexión: ${formatTimestamp(lastSeen)}`
+                  : lastSeenPrivacy ? '🔒 Oculta' : '❓ Desconocida')
 
-          c += block('Tipe Akun', isBiz ? 'WhatsApp Business 🏢' : 'Personal 👤')
+          c += block('Tipo de cuenta', isBiz ? 'WhatsApp Business 🏢' : 'Personal 👤')
           if (isBiz && verifiedLevel) {
-              c += block('Verified Badge',
-                  verifiedLevel === 'high' ? '✅ Centang Biru (Verified)'
-                      : verifiedLevel === 'low' ? '☑️ Terverifikasi Sebagian' : `Level: ${verifiedLevel}`)
+              c += block('Verificación',
+                  verifiedLevel === 'high' ? '✅ Verificado (check azul)'
+                      : verifiedLevel === 'low' ? '☑️ Verificado parcialmente' : `Nivel: ${verifiedLevel}`)
           }
-          if (bizName) c += block('Nama Bisnis', bizName)
-          if (bizCat) c += block('Kategori', bizCat)
-          if (bizDesc) c += block('Deskripsi', bizDesc)
+          if (bizName) c += block('Nombre del negocio', bizName)
+          if (bizCat) c += block('Categoría', bizCat)
+          if (bizDesc) c += block('Descripción', bizDesc)
           if (bizEmail) c += block('Email', bizEmail)
           if (bizWebsite) c += block('Website', bizWebsite)
-          if (bizAddr) c += block('Alamat', bizAddr)
+          if (bizAddr) c += block('Dirección', bizAddr)
 
-          c += block('Bio', bio || (bioPrivacy ? '🔒 Disembunyikan' : 'Tidak ada bio'))
-          c += block('Foto Profil', pp ? '✅ Tersedia' : ppPrivacy ? '🔒 Disembunyikan' : '❌ Tidak ada foto')
+          c += block('Bio', bio || (bioPrivacy ? '🔒 Oculta' : 'Sin bio'))
+          c += block('Foto de perfil', pp ? '✅ Disponible' : ppPrivacy ? '🔒 Oculta' : '❌ Sin foto')
           if (platform) c += block('Platform', platform)
 
           if (commonGroups.length) {
-              let v = `${commonGroups.length} grup\n`
+              let v = `${commonGroups.length} grupos\n`
               for (const g of commonGroups.slice(0, 5)) v += `   ┗╼⪼ ${g.subject}\n`
-              if (commonGroups.length > 5) v += `   ┗╼⪼ +${commonGroups.length - 5} grup lainnya\n`
-              c += `┏━━⟬ Grup Bersama ⟭\n┗╼⪼ ${v}\n`
+              if (commonGroups.length > 5) v += `   ┗╼⪼ +${commonGroups.length - 5} grupos más\n`
+              c += `┏━━⟬ Grupos en común ⟭\n┗╼⪼ ${v}\n`
           } else {
-              c += block('Grup Bersama', 'Tidak ada grup bersama')
+              c += block('Grupos en común', 'Ningún grupo en común')
           }
 
           if (isReply) {
-              if (isForwarded) c += `┏━━⟬ Forward ⟭\n┗╼⪼ ✅ Pesan diteruskan\n   ┗╼⪼ Skor: ${forwardScore}x diteruskan\n\n`
-              c += block('Total Device', `${allDevices.length} device aktif`)
+              if (isForwarded) c += `┏━━⟬ Reenvío ⟭\n┗╼⪼ ✅ Mensaje reenviado\n   ┗╼⪼ Veces reenviado: ${forwardScore}\n\n`
+              c += block('Dispositivos totales', `${allDevices.length} dispositivos activos`)
               if (linkedDevices.length) {
-                  c += `┏━━⟬ Linked Device ⟭\n┗╼⪼ ${linkedDevices.length} device\n`
-                  for (const d of linkedDevices) c += `   ┗╼⪼ Device #${d.index}\n`
+                  c += `┏━━⟬ Dispositivos vinculados ⟭\n┗╼⪼ ${linkedDevices.length} dispositivos\n`
+                  for (const d of linkedDevices) c += `   ┗╼⪼ Dispositivo #${d.index}\n`
                   c += '\n'
               }
 
-              c += '┏━━⟬ Deteksi Bot ⟭\n'
+              c += '┏━━⟬ Detección de bot ⟭\n'
               if (byIndex !== null) {
                   c += '┣━━⟬ 1. Device Index ⟭\n'
                   c += byIndex === 'bot'
-                      ? `┃ ┗╼⪼ ⚠️ BOT (device index :${deviceIndex} = Linked/Bot)\n`
-                      : `┃ ┗╼⪼ ✅ HUMAN (device index :${deviceIndex} = Primary)\n`
+                      ? `┃ ┗╼⪼ ⚠️ BOT (índice :${deviceIndex} = Vinculado/Bot)\n`
+                      : `┃ ┗╼⪼ ✅ HUMANO (índice :${deviceIndex} = Principal)\n`
               }
               if (byUSync !== null) {
                   c += '┣━━⟬ 2. USyncDevices ⟭\n'
-                  c += byUSync === 'bot' ? `┃ ┗╼⪼ ⚠️ BOT (${linkedDevices.length} linked device terdeteksi)\n`
-                      : byUSync === 'human' ? '┃ ┗╼⪼ ✅ HUMAN (hanya primary phone)\n'
-                      : '┃ ┗╼⪼ ❓ Tidak dapat dipastikan\n'
+                  c += byUSync === 'bot' ? `┃ ┗╼⪼ ⚠️ BOT (${linkedDevices.length} dispositivos vinculados detectados)\n`
+                      : byUSync === 'human' ? '┃ ┗╼⪼ ✅ HUMANO (solo teléfono principal)\n'
+                      : '┃ ┗╼⪼ ❓ No se puede asegurar\n'
               }
-              c += '┗━━⟬ Kesimpulan ⟭\n'
+              c += '┗━━⟬ Conclusión ⟭\n'
               const final = byIndex === 'bot' || byUSync === 'bot' ? 'bot'
                   : byIndex === 'human' && byUSync === 'human' ? 'human' : 'unknown'
-              c += final === 'bot' ? '┗╼⪼ ⚠️ KEMUNGKINAN BESAR MENGGUNAKAN BOT\n'
-                  : final === 'human' ? '┗╼⪼ ✅ KEMUNGKINAN BESAR MANUSIA (Primary Phone)\n'
-                  : '┗╼⪼ ❓ TIDAK DAPAT DIPASTIKAN\n'
+              c += final === 'bot' ? '┗╼⪼ ⚠️ PROBABLEMENTE USA UN BOT\n'
+                  : final === 'human' ? '┗╼⪼ ✅ PROBABLEMENTE UNA PERSONA (teléfono principal)\n'
+                  : '┗╼⪼ ❓ NO SE PUEDE ASEGURAR\n'
           }
 
           await reactTo(sock, m, '✅')
