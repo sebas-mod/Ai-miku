@@ -63,7 +63,7 @@ async function handler(m, { sock, db }) {
         db.setGroup(m.chat, groupData)
 
         return m.reply(
-            `🛡️ *SENSITIVITAS ANTI SPAM DIPERBARUI*\n\n` +
+            `🛡️ *SENSIBILIDAD ANTISPAM ACTUALIZADA*\n\n` +
             `> Espera máxima: *${delayMs} ms* (${(delayMs/1000).toFixed(1)} segundos)\n\n` +
             `Ahora el sistema considerará spam cuando un miembro envíe varios mensajes con menos de *${(delayMs/1000).toFixed(1)} segundos* entre ellos`
         )
@@ -79,7 +79,7 @@ async function handler(m, { sock, db }) {
         db.setGroup(m.chat, groupData)
 
         await m.reply(
-            `🛡️ *ANTI SPAM DIPERBARUI*\n\n` +
+            `🛡️ *ANTISPAM ACTUALIZADO*\n\n` +
             `> Estado: *${isEnable ? "ACTIVO ✅" : "INACTIVO ❌"}*\n\n` +
             `El bot ahora ${isEnable ? "vigilará de cerca" : "dejará de vigilar"} cualquier spam o flood de mensajes de los miembros de este grupo`
         )
@@ -93,7 +93,7 @@ async function handler(m, { sock, db }) {
         if (action === "delete") textAction = "Borrar los mensajes de spam"
 
         await m.reply(
-            `🛡️ *AKSI ANTI SPAM DIPERBARUI*\n\n` +
+            `🛡️ *ACCIÓN ANTISPAM ACTUALIZADA*\n\n` +
             `> Metode Hukuman: *${action.toUpperCase()}*\n\n` +
             `El bot aplicará directamente *${textAction}* si detecta que un miembro está haciendo spam abusivo`
         )

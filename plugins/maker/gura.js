@@ -47,7 +47,7 @@ const te = MikuRuntime.te;
 
     if (!res.ok) throw new Error("Error de Catbox");
     const url = await res.text();
-    if (!url.startsWith("http")) throw new Error("Invalid response");
+    if (!url.startsWith("http")) throw new Error("Respuesta no válida");
     return url;
   }
 
@@ -82,7 +82,7 @@ const te = MikuRuntime.te;
 
       const buffer = Buffer.from(await res.arrayBuffer());
 
-      await sock.sendMessage(m.chat, { image: buffer, caption: "🦈 *RAWWRR! Gura is here!*" }, { quoted: m });
+      await sock.sendMessage(m.chat, { image: buffer, caption: "🦈 *¡RAWWRR! ¡Gura está aquí!*" }, { quoted: m });
       await m.react("✅");
 
     } catch (err) { await m.react("☢");

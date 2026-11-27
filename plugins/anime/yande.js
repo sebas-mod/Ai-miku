@@ -80,7 +80,7 @@ RYO YAMADA - MD`,
       }
 
       if (args[0] === 'id') {
-        if (!args[1]) return m.reply('Masukkan ID')
+        if (!args[1]) return m.reply('Escribe el ID')
         const img = await getById(args[1])
         return sendImage(conn, m, img)
       }

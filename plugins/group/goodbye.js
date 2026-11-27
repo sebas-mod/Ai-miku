@@ -86,7 +86,7 @@ async function buildGoodbyeMessage(
   const farewells = [
     `Sayonara`,
     `Hasta pronto`,
-    `Bye bye`,
+    `Adiós`,
     `Chao`,
     `Nos vemos`,
     `Cuídate`,
@@ -287,7 +287,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
         {
           caption: "https://goodbye.guys " + text,
           url: "https://goodbye.guys",
-          title: `Goodbye from ${groupName}`,
+          title: `Despedida de ${groupName}`,
           description: `👋 Sayonara @${userName}!`,
           image: ppUrl,
           previewType: 1,

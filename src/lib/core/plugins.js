@@ -667,7 +667,7 @@ async function hotReloadPlugin(filePath) {
   try {
     const plugin = await loadPlugin(filePath, true);
     if (!plugin) {
-      return { success: false, error: "Failed to load plugin" };
+      return { success: false, error: "Error al cargar el plugin" };
     }
 
     const names = normalizePluginNames(plugin.config.name);
@@ -709,7 +709,7 @@ function unloadPlugin(name) {
     }
 
     if (!plugin) {
-      return { success: false, error: "Plugin not found" };
+      return { success: false, error: "Plugin no encontrado" };
     }
 
     const names = normalizePluginNames(plugin.config.name);

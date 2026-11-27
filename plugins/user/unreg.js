@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
         `│\n` +
         `│ 📌 *Formato:* \`${p}unreg <SN>\`\n` +
         `│ ✨ *Ejemplo:* \`${p}unreg ${expectedSn || "MIKU-76B1-A2C3"}\`\n` +
-        `│ 🔎 ¿Olvidaste tu SN? Ketik *${p}ceksn*\n` +
+        `│ 🔎 ¿Olvidaste tu SN? Escribe *${p}ceksn*\n` +
         `╰──────────────────────────❖`
     );
   }

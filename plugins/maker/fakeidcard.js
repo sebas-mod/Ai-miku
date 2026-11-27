@@ -67,7 +67,7 @@ const config = MikuRuntime.config;
       const jabatan = parts[1] || 'CEO'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeIDCard(nama, jabatan)

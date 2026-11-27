@@ -37,7 +37,7 @@ const pluginConfig = {
           const md = normalize(await sock.newsletterCreate(name.trim(), desc || undefined))
           if (!md.id) throw new ChannelError('Se crea el canal, pero WhatsApp no devuelve los datos. Consulta la aplicación.')
           setCurrent({ id: md.id, name: md.name || name.trim(), role: md.role || 'OWNER' })
-          return reply(`✅ Saluran dibuat: *${md.name || name.trim()}*\n🆔 ${md.id}${md.invite ? `\n🔗 ${link(md.invite)}` : ''}\nSudah dijadikan saluran bawaan (${p}swch, ${p}playch).`)
+          return reply(`✅ Saluran dibuat: *${md.name || name.trim()}*\n🆔 ${md.id}${md.invite ? `\n🔗 ${link(md.invite)}` : ''}\nYa se configuró como canal predeterminado (${p}swch, ${p}playch).`)
       } catch (err) {
           console.log('[CH] chcreate:', err.message)
           return reply(`❌ ${explain(err)}`)

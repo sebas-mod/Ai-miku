@@ -198,7 +198,7 @@ import fetch from 'node-fetch';
 
         switch (subCommand) {
           case 'search':
-            if (!query) return m.reply('Masukkan query pencarian!');
+            if (!query) return m.reply('¡Escribe qué quieres buscar!');
             const searchResults = await search(query);
             if (!searchResults || searchResults.length === 0) {
               return m.reply('No se encontraron resultados.');
@@ -217,7 +217,7 @@ import fetch from 'node-fetch';
             break;
 
           case 'detail':
-            if (!query) return m.reply('Masukkan URL anime!');
+            if (!query) return m.reply('¡Escribe la URL del anime!');
             const detailResults = await detail(query);
             if (detailResults.error) {
               return m.reply('No se pudieron recoger los detalles del anime.');

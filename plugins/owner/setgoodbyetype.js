@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "setgoodbyetype",
   alias: ["goodbyetype", "goodbyevariant", "goodbyestyle"],
   category: "owner",
-  description: "Mengatur variant tampilan goodbye message",
+  description: "Configura la variante de visualización del mensaje de despedida",
   usage: ".setgoodbyetype",
   example: ".setgoodbyetype",
   isOwner: true,
@@ -80,13 +80,13 @@ async function handler(m, { sock, db }) {
     },
   ];
   const bodyText =
-    `👋🚪 *GOODBYE TYPE*\n\n` +
+    `👋🚪 *TIPO DE DESPEDIDA*\n\n` +
     `Configura el mensaje de despedida cuando un miembro sale del grupo 🚶💨\n` +
     `Tipo activo: *V${current} — ${VARIANTS[current].name}* 🎯\n\n` +
     `*PENJELASAN TIPE:*\n\n` +
     `- *V1 Canvas Image* 🎨 — El bot crea una imagen con la foto de perfil y el nombre del miembro que sale, y la envía como imagen\n\n` +
     `- *V2 Carousel Cards* 🃏 — Muestra tarjetas carrusel deslizables con botones de acción, ideal para una vista moderna\n\n` +
-    `- *V3 Text Only* 📝 — Mensaje de texto sin imágenes, ligero y minimalista\n\n` +
+    `- *V3 Solo texto* 📝 — Mensaje de texto sin imágenes, ligero y minimalista\n\n` +
     `- *V4 Group* 👥 — Usa contextInfo estilo reenvío de grupo, con etiqueta de newsletter\n\n` +
     `- *V5 Simple* ✨ — Texto sencillo con la foto de perfil del miembro que sale; discreto pero informativo\n\n` +
     `- *V6 Video* 🎥 — Envía un vídeo de despedida estético con texto automático para el miembro\n\n` +

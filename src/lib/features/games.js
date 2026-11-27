@@ -102,7 +102,7 @@ class mikuGames {
 
   createHandler(gameType) {
     const cfg = this.registry.get(gameType);
-    if (!cfg) throw new Error(`Game "${gameType}" not registered`);
+    if (!cfg) throw new Error(`Game "${gameType}" no está registrado`);
 
     const handler = async (m, { sock }) => {
       const chatId = m.chat;
@@ -332,7 +332,7 @@ class mikuGames {
 
   createPlugin(gameType, overrides = {}) {
     const cfg = this.registry.get(gameType);
-    if (!cfg) throw new Error(`Game "${gameType}" not registered`);
+    if (!cfg) throw new Error(`Game "${gameType}" no está registrado`);
 
     const { handler, answerHandler } = this.createHandler(gameType);
 

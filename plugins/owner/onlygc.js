@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
   if (!option) {
     const current = db.setting("onlyGc") || false;
     return m.reply(
-      `🏘️ *Only Group*\n\n` +
+      `🏘️ *Solo grupos*\n\n` +
         `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}onlygc on* — El bot solo puede usarse en grupos\n` +

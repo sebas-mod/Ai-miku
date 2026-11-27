@@ -10,7 +10,7 @@
 export default {
   messages: {
     wait: "ok, dame un momento que lo estoy procesando",
-    success: "successful",
+    success: "listo",
     error: "uy, qué error este",
 
     ownerOnly: "no puedes usar esta función, solo el dueño puede",

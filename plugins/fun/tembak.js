@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
     await m.react("💕");
     return m.reply(
       `💕 *CIE CIEE :3*\n\n` +
-        `@${m.sender.split("@")[0]} dan @${targetJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
+        `@${m.sender.split("@")[0]} y @${targetJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
         `Semoga langgeng yak! 💍`,
       { mentions: [m.sender, targetJid] },
     );
@@ -195,8 +195,8 @@ async function answerHandler(m, sock) {
 
     await m.react("💕");
     await m.reply(
-      `💕 *WIDIHHHH, CIE CIE DITERIMA* @${sessData.shooter.split("@")[0]}\n\n` +
-        `@${m.sender.split("@")[0]} dan @${sessData.shooter.split("@")[0]} ¡oficialmente son novios!\n\n` +
+      `💕 *WIDIHHHH, ¡FELICIDADES! ACEPTADA* @${sessData.shooter.split("@")[0]}\n\n` +
+        `@${m.sender.split("@")[0]} y @${sessData.shooter.split("@")[0]} ¡oficialmente son novios!\n\n` +
         `Que duren y sean muy felices 💍`,
       { mentions: [m.sender, sessData.shooter] },
     );

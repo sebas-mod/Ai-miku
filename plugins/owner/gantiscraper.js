@@ -262,7 +262,7 @@ async function handler(m, { sock }) {
       `│ Size: \`${code.length} bytes\`\n`;
 
     if (!isNewFile) {
-      replyText += `│ Old Size: \`${oldSize} bytes\`\n`;
+      replyText += `│ Tamaño anterior: \`${oldSize} bytes\`\n`;
     }
 
     replyText += `╰───────⬡\n\n`;
@@ -278,7 +278,7 @@ async function handler(m, { sock }) {
     replyText +=
       `🔄 *Hot Reload:*\n` +
       `- Scraper: ${scraperReload.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
-      `- Plugin Terdeteksi: ${pluginReloads.length}\n` +
+      `- Plugins detectados: ${pluginReloads.length}\n` +
       `- Plugins recargados: ${reloadSuccess.length}\n` +
       `- Plugins con error al recargar: ${reloadFailed.length}\n\n`;
 

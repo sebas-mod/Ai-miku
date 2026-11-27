@@ -78,7 +78,7 @@ async function handler(m, { conn, sock, usedPrefix, command, reply }) {
 
           try { unlinkSync(outputPath) } catch {}
         } catch {
-          (reply || m.reply)("Error processing audio file")
+          (reply || m.reply)("Error al procesar el archivo de audio")
         }
       })
     } catch (e) {

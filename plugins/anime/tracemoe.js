@@ -133,7 +133,7 @@ const pluginConfig = {
 
     } catch (error) {
       baseRes.status = false;
-      baseRes.error = pick(error.message, 'Unknown Error');
+      baseRes.error = pick(error.message, 'Error desconocido');
       return baseRes;
     }
   }

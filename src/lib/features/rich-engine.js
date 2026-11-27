@@ -314,7 +314,7 @@ function createRichRunner(libs = {}, featureFn) {
         resolvedCache[base] = mod.exports;
         return mod.exports;
       }
-      throw new Error(`Rich internal module not found: ${spec}`);
+      throw new Error(`No se encontró el módulo interno Rich: ${spec}`);
     };
 
     const mod = { exports: {} };

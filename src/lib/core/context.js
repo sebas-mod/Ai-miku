@@ -76,7 +76,7 @@ async function sendGamePreview(sock, jid, text, title, body, options) {
     {
       caption: text,
       title: title || "🎮 miku GAMES",
-      description: body || "Have fun playing!",
+      description: body || "¡Diviértete jugando!",
       jpegThumbnail: await getJpegThumb("allmenu"),
       previewType: 0,
     },

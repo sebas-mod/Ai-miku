@@ -66,7 +66,7 @@ const te = MikuRuntime.te;
 
       return await sock.sendMessage(m.chat, {
         image: imageBuffer,
-        caption: `🏸 *Certificate of Badminton* for *${inputName}*`
+        caption: `🏸 *Certificado de bádminton* para *${inputName}*`
       }, { quoted: m });
 
     } catch (error) {

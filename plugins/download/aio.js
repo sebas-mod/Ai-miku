@@ -17,7 +17,7 @@ const saluranCtx = MikuRuntime.saluranCtx;
     alias: [],
     category: "download",
     description:
-      "All in one downloader (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, dll)",
+      "Descargador todo en uno (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, etc.)",
     usage: ".aio <url>",
     example: ".aio https://instagram.com/p/xxx",
     isOwner: false,

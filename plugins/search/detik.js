@@ -13,9 +13,9 @@ const pluginConfig = {
     name: "detik",
     alias: [],
     category: "search",
-    description: "detik cari <palabra>",
-    usage: ".detik cari <palabra>",
-    example: ".detik cari <palabra>",
+    description: "detik buscar <palabra>",
+    usage: ".detik buscar <palabra>",
+    example: ".detik buscar <palabra>",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -72,7 +72,7 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, prefix, command }) {
       const input = String(text || '').trim() || m.quoted?.text?.match(/https?:\/\/\S*detik\.com\S*/i)?.[0] || ''
       const p = prefix + command
-      if (!input) return reply(`📰 *DETIK.COM*\n\n${p} cari <palabra>\n${p} terkini\n${p} populer\n${p} <enlace del artículo>`)
+      if (!input) return reply(`📰 *DETIK.COM*\n\n${p} buscar <palabra>\n${p} recientes\n${p} populares\n${p} <enlace del artículo>`)
 
       const [a, ...rest] = input.split(/\s+/)
       const al = a.toLowerCase()

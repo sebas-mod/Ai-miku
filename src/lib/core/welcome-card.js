@@ -167,7 +167,7 @@ async function createWideDiscordCard(
 
   ctx.fillStyle = "#00d2ff";
   ctx.font = "bold 18px Courier New";
-  ctx.fillText("● NEW USER", textX + 15, 144);
+  ctx.fillText("● USUARIO NUEVO", textX + 15, 144);
   ctx.font = "900 60px Arial";
   const nameMetric = ctx.measureText(username);
 

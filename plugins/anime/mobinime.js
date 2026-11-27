@@ -157,7 +157,7 @@ ${usedPrefix + command} buscar naruto`
       }
 
       if (sub === 'detail') {
-        if (!q || isNaN(q)) return m.reply('Masukkan ID anime')
+        if (!q || isNaN(q)) return m.reply('Escribe el ID del anime')
 
         const d = await mob.detail(q)
 

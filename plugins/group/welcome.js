@@ -265,7 +265,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
         {
           caption: "https://welcome.guys " + text,
           url: "https://welcome.guys",
-          title: `Welcome to ${groupName}`,
+          title: `Bienvenido a ${groupName}`,
           description: `👋 ¡Hola ${userName}!`,
           image: ppUrl,
           previewType: 0,

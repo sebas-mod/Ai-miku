@@ -86,7 +86,7 @@ async function handler(m, { sock, db }) {
     `*PENJELASAN TIPE:*\n\n` +
     `- *V1 Canvas Image* 🎨 — El bot crea una imagen con la foto de perfil y el nombre del nuevo miembro, y la envía como imagen\n\n` +
     `- *V2 Carousel Cards* 🃏 — Muestra tarjetas carrusel deslizables con botones de acción, ideal para grupos que quieren una vista moderna\n\n` +
-    `- *V3 Text Only* 📝 — Mensaje de texto sin imágenes, ligero y minimalista\n\n` +
+    `- *V3 Solo texto* 📝 — Mensaje de texto sin imágenes, ligero y minimalista\n\n` +
     `- *V4 Group* 👥 — Usa contextInfo estilo reenvío de grupo, con etiqueta de newsletter\n\n` +
     `- *V5 Simple* ✨ — Texto sencillo con la foto de perfil del nuevo miembro; discreto pero informativo\n\n` +
     `- *V6 Video* 🎥 — Envía un vídeo de bienvenida atractivo con texto de recibimiento para el miembro\n\n` +

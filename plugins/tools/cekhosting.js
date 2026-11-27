@@ -64,7 +64,7 @@ const pluginConfig = {
       const domain = cleanDomain(domainInput)
       if (!domain) throw new Error('Dominio no válido.')
 
-      const body = new URLSearchParams({ target: domain, submit: 'Find Host' })
+      const body = new URLSearchParams({ target: domain, submit: 'Buscar host' })
       const { data: html, status } = await axios.post(BASE_URL, body, {
           timeout: 30000,
           validateStatus: () => true,
@@ -81,7 +81,7 @@ const pluginConfig = {
       if (!$('.hcresults').length) throw new Error('Falló la búsqueda o no se encontró el dominio.')
 
       const { data, whoisUrl } = parseResult($)
-      const { asn, organization: asOrganization } = parseASN(data['AS (autonomous system) number and organization'])
+      const { asn, organization: asOrganization } = parseASN(data['Número y organización del AS (sistema autónomo)'])
 
       return {
           domain,
@@ -91,7 +91,7 @@ const pluginConfig = {
           asn,
           asOrganization,
           asName: data['AS name'] || null,
-          reverseDns: data['Reverse DNS of the IP'] || null,
+          reverseDns: data['DNS inverso de la IP'] || null,
           city: data['City'] || null,
           country: data['Country'] || null,
           whoisUrl

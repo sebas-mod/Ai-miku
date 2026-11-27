@@ -92,7 +92,7 @@ const pluginConfig = {
 
           await sock.sendMessage(m.chat, {
               image: { url: imageUrl },
-              caption: `✅ *Text In The Clouds*\n\n> Text: ${text}`
+              caption: `✅ *Texto en las nubes*\n\n> Texto: ${text}`
           }, { quoted: m })
 
           await m.react('✅')

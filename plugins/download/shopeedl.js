@@ -38,7 +38,7 @@ import fetch from 'node-fetch'
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    if (!data.success) throw new Error(data.error || "Extraction failed");
+    if (!data.success) throw new Error(data.error || "Error al extraer");
     return data;
   }
 

@@ -240,7 +240,7 @@ async function handler(m, { sock }) {
             return m.reply(
                 `❌ *FORMATO INCORRECTO*\n\n` +
                 `Usa el formato: *trigger|reply*\n\n` +
-                `*Text Only:*\n` +
+                `*Solo texto:*\n` +
                 `• ${m.prefix}ar add hola|¡Hola {name}! 👋\n\n` +
                 `*Con imagen:*\n` +
                 `1. Responde a una imagen + ${m.prefix}ar add trigger|caption\n` +

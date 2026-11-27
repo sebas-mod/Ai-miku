@@ -138,7 +138,7 @@ async function handleFacebook(url) {
 
 async function handlePinterest(url) {
   const result = await scrapePinterest(url);
-  if (!result?.media?.length) throw new Error("No media found");
+  if (!result?.media?.length) throw new Error("No se encontró contenido multimedia");
   return {
     platform: "pinterest",
     title: result.title || "Pinterest",

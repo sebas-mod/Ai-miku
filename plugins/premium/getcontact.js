@@ -91,7 +91,7 @@ function decrypt(b64, keyHex) {
 }
 
 function normalizePhone(raw) {
-  if (!raw || typeof raw !== 'string') throw new Error('Phone number is required')
+  if (!raw || typeof raw !== 'string') throw new Error('Se requiere un número de teléfono')
   const p = raw.trim().replace(/[^\d+]/g, '')
   if (p.startsWith('+')) return p
   if (p.startsWith('0')) return `+62${p.slice(1)}`
@@ -192,7 +192,7 @@ async function initAuth(phoneNumber) {
 
   const regJson = await res.json()
   if (res.status !== 201 || !regJson.result?.token || !regJson.result?.serverKey) {
-    throw new Error(regJson.meta?.errorMessage || `Registration failed: HTTP ${res.status}`)
+    throw new Error(regJson.meta?.errorMessage || `Error en el registro: HTTP ${res.status}`)
   }
 
   const token = regJson.result.token

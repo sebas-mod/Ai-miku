@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
     await m.react('💔')
     await m.reply(
         `💔 *PUTUS!*\n\n` +
-        `@${m.sender.split('@')[0]} dan @${exPartner.split('@')[0]} ¡oficialmente terminaron!\n\n` +
+        `@${m.sender.split('@')[0]} y @${exPartner.split('@')[0]} ¡oficialmente terminaron!\n\n` +
         `¡Ojalá encuentres algo mejor! 🙏`,
         { mentions: [m.sender, exPartner] }
     )

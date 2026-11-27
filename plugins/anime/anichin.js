@@ -170,7 +170,7 @@ ${usedPrefix + command} episode url`)
       }
 
       else if (type === 'detail') {
-        if (!args[1]) return m.reply('Masukkan URL!')
+        if (!args[1]) return m.reply('¡Escribe la URL!')
         const data = await api.detail(args[1])
         return conn.sendFile(m.chat, data.cover, 'cover.jpg',
           `🎬 *${data.title}*\n\n${data.synopsis}\n\nGenre: ${data.genres.join(', ')}`,
@@ -178,7 +178,7 @@ ${usedPrefix + command} episode url`)
       }
 
       else if (type === 'episode') {
-        if (!args[1]) return m.reply('Masukkan URL!')
+        if (!args[1]) return m.reply('¡Escribe la URL!')
         const data = await api.episode(args[1])
         msg = `🎬 ${data.title}\n\n`
         data.download.forEach(q => {

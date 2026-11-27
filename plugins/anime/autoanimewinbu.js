@@ -66,7 +66,7 @@ const isRunning = MikuRuntime.isRunning;
                       `> ⏱️ Intervalos: *${interval} minuto*\n` +
                       `> 🎞️ Filter: *Pixeldrain 720p+*\n` +
                       `> ⏰ Edad máxima: *24 horas*\n\n` +
-                      `Pengecekan pertama dimulai...\n\n` +
+                      `Iniciando la primera comprobación...\n\n` +
                       `▢ ${m.prefix}autoanimewinbu status — 📊 Status\n` +
                       `▢ ${m.prefix}autoanimewinbu stop — 🛑 Stop`
               }, { quoted: m })

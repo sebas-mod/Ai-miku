@@ -96,7 +96,7 @@ async function handler(m, { sock, store }) {
         output = output.slice(0, 3000) + '\n\n... (truncated)'
     }
 
-    const status = isError ? '❌ Error' : '✅ Success'
+    const status = isError ? '❌ Error' : '✅ Éxito'
     const type = isError ? result?.name || 'Error' : typeof result
 
     const codePreview = code.length > 100 ? code.slice(0, 100) + '...' : code

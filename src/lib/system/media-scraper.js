@@ -230,7 +230,7 @@ async function ytdl(url, format = "mp3") {
 class Youtube {
   constructor() {
     this.CREATED_BY = "Ditzzy";
-    this.NOTE = "Thank you for using this scrape";
+    this.NOTE = "Gracias por usar este scraping";
   }
 
   wrapResponse(data) {
@@ -544,7 +544,7 @@ async function handleFacebook(url) {
 
 async function handlePinterest(url) {
   const result = await scrapePinterest(url);
-  if (!result?.media?.length) throw new Error("No media found");
+  if (!result?.media?.length) throw new Error("No se encontró contenido multimedia");
   return {
     platform: "pinterest",
     title: result.title || "Pinterest",
@@ -742,7 +742,7 @@ const fbdown = _fbdown.fbdown
 const _likee = (() => {
 async function likee(url){
     try{
-        if(!/likee\.video|likee\.com|likee\.video/.test(url)) throw new Error('Invalid url')
+        if(!/likee\.video|likee\.com|likee\.video/.test(url)) throw new Error('URL no válida')
 
         const res = await axios.post(
             'https://likeedownloader.com/process',
@@ -760,7 +760,7 @@ async function likee(url){
         )
 
         const html = res.data && res.data.template ? res.data.template : null
-        if(!html) throw new Error('Fetch failed')
+        if(!html) throw new Error('Error al obtener datos')
 
         function pick(re){
             const m = html.match(re)
@@ -838,7 +838,7 @@ async function mediafire(url) {
   const images = $('meta[property="og:image"]').attr("content") || "";
   const description =
     $('meta[property="og:description"]').attr("content") ||
-    "not found description.";
+    "descripción no encontrada.";
   const link_download =
     $("#downloadButton").attr("href") ||
     $('a[aria-label="Download file"]').attr("href") ||
@@ -849,7 +849,7 @@ async function mediafire(url) {
   const mimetype = getMimeTypeFromUrl(link_download);
 
   if (!link_download) {
-    throw new Error("MediaFire download link not found");
+    throw new Error("No se encontró el enlace de descarga de MediaFire");
   }
 
   return {
@@ -938,7 +938,7 @@ async function TeraBoxDL(url) {
     )?.[1];
 
     if (!token) {
-      return { status: false, error: "CSRF Token not found" };
+      return { status: false, error: "Token CSRF no encontrado" };
     }
 
     const response = await axios.post(
@@ -998,7 +998,7 @@ async function ttdownFromYuuLabs(url) {
   });
 
   if (!data?.status || !data?.result) {
-    throw new Error(data?.message || "YuuLabs response invalid");
+    throw new Error(data?.message || "Respuesta de YuuLabs no válida");
   }
 
   const result = data.result;
@@ -1118,7 +1118,7 @@ async function ttdownFromMusicalDown(url) {
 
 async function ttdown(url) {
   try {
-    if (!url.includes("tiktok.com")) throw new Error("Invalid url.");
+    if (!url.includes("tiktok.com")) throw new Error("URL no válida.");
     try {
       return await ttdownFromYuuLabs(url);
     } catch {
@@ -1499,7 +1499,7 @@ const _tools = (() => {
         })
         const data = await res.json()
         reminiToken = data.settings.__identity__.token
-        if (!reminiToken) throw new Error('No token from Remini')
+        if (!reminiToken) throw new Error('No se obtuvo token de Remini')
         await nativeFetch(REMINI_API + '/users/@me', { headers: reminiAuthHeaders() })
     }
 
@@ -1527,7 +1527,7 @@ const _tools = (() => {
             })
         })
         const task = await taskRes.json()
-        if (!task.task_id || !task.upload_url || !task.upload_headers) throw new Error('Missing fields in Remini Task')
+        if (!task.task_id || !task.upload_url || !task.upload_headers) throw new Error('Faltan campos en la tarea de Remini')
 
         await nativeFetch(task.upload_url, {
             method: 'PUT',
@@ -1550,10 +1550,10 @@ const _tools = (() => {
                 if (outs && Array.isArray(outs) && outs[0] && outs[0].url) cdnUrl = outs[0].url
                 break
             }
-            if (poll.status === 'failed' || poll.status === 'error') throw new Error('Remini Task failed')
+            if (poll.status === 'failed' || poll.status === 'error') throw new Error('Error en la tarea de Remini')
         }
 
-        if (!cdnUrl) throw new Error('No output URL from Remini')
+        if (!cdnUrl) throw new Error('No se obtuvo URL de salida de Remini')
         const final = await axios.get(cdnUrl, { responseType: 'arraybuffer' })
         return Buffer.from(final.data)
     }
@@ -2120,7 +2120,7 @@ const _dataid = (() => {
                     : 'No se pudo conectar con el servidor de datos, inténtalo más tarde.'
             )
         }
-        if (!res.ok) throw new FriendlyError(`Server data mengembalikan HTTP ${res.status}.`, res.status)
+        if (!res.ok) throw new FriendlyError(`Los datos del servidor devolvieron HTTP ${res.status}.`, res.status)
         try {
             return await res.json()
         } catch {
@@ -2888,7 +2888,7 @@ export async function JHICog(mode, username, extraId) {
       }
     } else if (cleanMode === 'highlightstories') {
       const cleanExId = pick(extraId, '')
-      if (cleanExId === '') throw new Error('Highlight ID ga boleh kosong buat mode ini lek')
+      if (cleanExId === '') throw new Error('El ID de Highlight no puede estar vacío en este modo')
       const hsRes = checked(await apiCall('/api/highlightStories', { _ei: cleanExId, _u: cleanUser }), 'highlightStories')
       for (const s of (hsRes.hs ? hsRes.hs : [])) finalItems.push(fmtStory(s))
     } else {
@@ -2907,7 +2907,7 @@ export async function JHICog(mode, username, extraId) {
   } catch (error) {
     if (browser !== null) await browser.close().catch(() => {})
     baseRes.status = false
-    baseRes.error = pick(error.message, 'Unknown Error')
+    baseRes.error = pick(error.message, 'Error desconocido')
     baseRes.data = null
     return baseRes
   }
@@ -2963,7 +2963,7 @@ export const premku = {
     }
     const d = res.data
     if (!d || typeof d !== 'object') throw new Error(`Respuesta no válida de Premku (HTTP ${res.status})`)
-    if (!d.success) throw new Error(d.message || `Permintaan ditolak (HTTP ${res.status})`)
+    if (!d.success) throw new Error(d.message || `Solicitud rechazada (HTTP ${res.status})`)
     return d
   },
 

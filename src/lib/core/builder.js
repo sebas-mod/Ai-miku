@@ -270,7 +270,7 @@ class Toolkit {
     }
 
     static async toUrl(_client, path, mediaType = 'document') {
-        if (!path) throw new Error('Url or buffer needed');
+        if (!path) throw new Error('Se necesita una URL o un búfer');
 
         const media = await prepareWAMessageMedia(
             {
@@ -358,7 +358,7 @@ class Toolkit {
         try {
             if (!Buffer.isBuffer(buffer) || buffer.length < 8) {
                 if (silent) return 0;
-                throw new Error('Invalid buffer');
+                throw new Error('Búfer no válido');
             }
 
             let offset = 0;
@@ -368,7 +368,7 @@ class Toolkit {
 
                 if (size < 8 || offset + size > buffer.length) {
                     if (silent) return 0;
-                    throw new Error('Invalid atom size');
+                    throw new Error('Tamaño de átomo no válido');
                 }
 
                 const type = buffer.toString('ascii', offset + 4, offset + 8);
@@ -382,7 +382,7 @@ class Toolkit {
 
                         if (childSize < 8 || moovOffset + childSize > moovEnd) {
                             if (silent) return 0;
-                            throw new Error('Invalid child atom size');
+                            throw new Error('Tamaño de átomo hijo no válido');
                         }
 
                         const childType = buffer.toString('ascii', moovOffset + 4, moovOffset + 8);
@@ -396,7 +396,7 @@ class Toolkit {
 
                                 if (!timescale) {
                                     if (silent) return 0;
-                                    throw new Error('Invalid timescale');
+                                    throw new Error('Escala de tiempo no válida');
                                 }
 
                                 return duration / timescale;
@@ -408,7 +408,7 @@ class Toolkit {
 
                                 if (!timescale) {
                                     if (silent) return 0;
-                                    throw new Error('Invalid timescale');
+                                    throw new Error('Escala de tiempo no válida');
                                 }
 
                                 return duration / timescale;
@@ -424,7 +424,7 @@ class Toolkit {
 
             if (silent) return 0;
 
-            throw new Error('No mvhd found!');
+            throw new Error('¡No se encontró mvhd!');
         } catch (err) {
             if (silent) return 0;
             throw err;
@@ -499,7 +499,7 @@ class BaseBuilder {
 
     setTitle(title) {
         if (typeof title !== 'string') {
-            throw new TypeError('Title must be a string');
+            throw new TypeError('El título debe ser una cadena');
         }
         this._title = title;
         return this;
@@ -507,7 +507,7 @@ class BaseBuilder {
 
     setSubtitle(subtitle) {
         if (typeof subtitle !== 'string') {
-            throw new TypeError('Subtitle must be a string');
+            throw new TypeError('El subtítulo debe ser una cadena');
         }
         this._subtitle = subtitle;
         return this;
@@ -515,7 +515,7 @@ class BaseBuilder {
 
     setBody(body) {
         if (typeof body !== 'string') {
-            throw new TypeError('Body must be a string');
+            throw new TypeError('El cuerpo debe ser una cadena');
         }
         this._body = body;
         return this;
@@ -523,7 +523,7 @@ class BaseBuilder {
 
     setFooter(footer) {
         if (typeof footer !== 'string') {
-            throw new TypeError('Footer must be a string');
+            throw new TypeError('El pie debe ser una cadena');
         }
         this._footer = footer;
         return this;
@@ -531,7 +531,7 @@ class BaseBuilder {
 
     setContextInfo(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
-            throw new TypeError('ContextInfo must be a plain object');
+            throw new TypeError('ContextInfo debe ser un objeto simple');
         }
 
         this._contextInfo = obj;
@@ -540,7 +540,7 @@ class BaseBuilder {
 
     addPayload(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
-            throw new TypeError('Payload must be a plain object');
+            throw new TypeError('Payload debe ser un objeto simple');
         }
 
         Object.assign(this._extraPayload, obj);
@@ -555,7 +555,7 @@ class Button extends BaseBuilder {
     constructor(client) {
         super();
         if (!client) {
-            throw new Error('Socket is required');
+            throw new Error('Se requiere un socket');
         }
         this.#client = client;
 
@@ -567,26 +567,26 @@ class Button extends BaseBuilder {
     }
 
     setVideo(path, options = {}) {
-        if (!path) throw new Error('Url or buffer needed');
+        if (!path) throw new Error('Se necesita una URL o un búfer');
         Buffer.isBuffer(path) ? (this._data = { video: path, ...options }) : (this._data = { video: { url: path }, ...options });
         return this;
     }
 
     setImage(path, options = {}) {
-        if (!path) throw new Error('Url or buffer needed');
+        if (!path) throw new Error('Se necesita una URL o un búfer');
         Buffer.isBuffer(path) ? (this._data = { image: path, ...options }) : (this._data = { image: { url: path }, ...options });
         return this;
     }
 
     setDocument(path, options = {}) {
-        if (!path) throw new Error('Url or buffer needed');
+        if (!path) throw new Error('Se necesita una URL o un búfer');
         Buffer.isBuffer(path) ? (this._data = { document: path, ...options }) : (this._data = { document: { url: path }, ...options });
         return this;
     }
 
     setMedia(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
-            throw new TypeError('Media must be a plain object');
+            throw new TypeError('Media debe ser un objeto simple');
         }
 
         this._data = obj;
@@ -614,7 +614,7 @@ class Button extends BaseBuilder {
 
     makeRow(header = '', title = '', description = '', id = '') {
         if (this._currentSelectionIndex === -1 || this._currentSectionIndex === -1) {
-            throw new Error('You need to create a selection and a section first');
+            throw new Error('Primero debes crear una selección y una sección');
         }
         const buttonParams = JSON.parse(this._buttons[this._currentSelectionIndex].buttonParamsJson);
         buttonParams.sections[this._currentSectionIndex].rows.push({ header, title, description, id });
@@ -624,7 +624,7 @@ class Button extends BaseBuilder {
 
     makeSection(title = '', highlight_label = '') {
         if (this._currentSelectionIndex === -1) {
-            throw new Error('You need to create a selection first');
+            throw new Error('Primero debes crear una selección');
         }
         const buttonParams = JSON.parse(this._buttons[this._currentSelectionIndex].buttonParamsJson);
         buttonParams.sections.push({ title, highlight_label, rows: [] });
@@ -828,7 +828,7 @@ class ButtonV2 extends BaseBuilder {
     constructor(client) {
         super();
         if (!client) {
-            throw new Error('Socket is required');
+            throw new Error('Se requiere un socket');
         }
 
         this.#client = client;
@@ -848,7 +848,7 @@ class ButtonV2 extends BaseBuilder {
 
     addRawButton(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
-            throw new TypeError('Buttons must be a plain object');
+            throw new TypeError('Los botones deben ser un objeto simple');
         }
 
         this._buttons.push(obj);
@@ -856,14 +856,14 @@ class ButtonV2 extends BaseBuilder {
     }
 
     setThumbnail(path) {
-        if (!path) throw new Error('Url or buffer needed');
+        if (!path) throw new Error('Se necesita una URL o un búfer');
         this._image = path;
         return this;
     }
 
     setMedia(obj) {
         if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
-            throw new TypeError('Media must be a plain object');
+            throw new TypeError('Media debe ser un objeto simple');
         }
 
         this._data = obj;
@@ -902,7 +902,7 @@ class ButtonV2 extends BaseBuilder {
     }
 
     async send(jid, { ...options } = {}) {
-        if (this._buttons.length < 1) throw new Error('ButtonV2 requires at least one button');
+        if (this._buttons.length < 1) throw new Error('ButtonV2 requiere al menos un botón');
         const msg = await this.build(jid, options);
 
         await this.#client.relayMessage(msg.key.remoteJid, msg.message, {
@@ -932,7 +932,7 @@ class Carousel extends BaseBuilder {
     constructor(client) {
         super();
         if (!client) {
-            throw new Error('Socket is required');
+            throw new Error('Se requiere un socket');
         }
 
         this.#client = client;
@@ -945,7 +945,7 @@ class Carousel extends BaseBuilder {
 
         for (const [index, c] of cards.entries()) {
             if (!c?.header?.hasMediaAttachment) {
-                throw new Error(`Card [${baseIndex + index}] must include an image or video in header`);
+                throw new Error(`Tarjeta [${baseIndex + index}] debe incluir una imagen o un vídeo en la cabecera`);
             }
         }
 
@@ -1003,7 +1003,7 @@ class AIRich extends BaseBuilder {
 
     constructor(client) {
         if (!client) {
-            throw new Error('Socket is required');
+            throw new Error('Se requiere un socket');
         }
 
         super();
@@ -1019,7 +1019,7 @@ class AIRich extends BaseBuilder {
 
         for (const item of items) {
             if (typeof item !== 'object' || item === null || Array.isArray(item)) {
-                throw new TypeError('Submessage must be a plain object or array of plain objects');
+                throw new TypeError('Submessage debe ser un objeto simple o una lista de objetos simples');
             }
 
             this._submessages.push(item);
@@ -1033,7 +1033,7 @@ class AIRich extends BaseBuilder {
 
         for (const item of items) {
             if (typeof item !== 'object' || item === null || Array.isArray(item)) {
-                throw new TypeError('Section must be a plain object or array of plain objects');
+                throw new TypeError('Section debe ser un objeto simple o una lista de objetos simples');
             }
 
             this._sections.push(item);
@@ -1044,7 +1044,7 @@ class AIRich extends BaseBuilder {
 
     addText(text, { hyperlink = true, citation = true, latex = true } = {}) {
         if (typeof text != 'string') {
-            throw new TypeError('Text must be a string');
+            throw new TypeError('El texto debe ser una cadena');
         }
 
         const { text: extractedText, inline_entities } = extractIE(text, {
@@ -1073,7 +1073,7 @@ class AIRich extends BaseBuilder {
 
     addCode(language, code) {
         if (typeof language !== 'string' || typeof code !== 'string') {
-            throw new TypeError('Language and code must be a string');
+            throw new TypeError('El idioma y el código deben ser cadenas');
         }
 
         const meta = AIRich.tokenizer(code, language);
@@ -1099,7 +1099,7 @@ class AIRich extends BaseBuilder {
 
     addTable(table, { hyperlink = true, citation = true, latex = true } = {}) {
         if (!Array.isArray(table)) {
-            throw new TypeError('Table must be an array');
+            throw new TypeError('La tabla debe ser una lista');
         }
 
         const meta = AIRich.toTableMetadata(table, { hyperlink, citation, latex });
@@ -1124,7 +1124,7 @@ class AIRich extends BaseBuilder {
 
     addSource(sources = []) {
         if (!(Array.isArray(sources) && (sources.every((item) => typeof item === 'string') || sources.every((item) => Array.isArray(item) && item.every((v) => typeof v === 'string'))))) {
-            throw new TypeError('Sources must be a string array or an array of string arrays');
+            throw new TypeError('Sources debe ser una lista de cadenas o una lista de listas de cadenas');
         }
 
         if (sources.every((item) => typeof item === 'string')) {
@@ -1161,7 +1161,7 @@ class AIRich extends BaseBuilder {
                 (Array.isArray(reelsItems) && reelsItems.every((item) => item && typeof item === 'object' && !Array.isArray(item)))
             )
         ) {
-            throw new TypeError('Reels items must be an object or an array of objects');
+            throw new TypeError('Los elementos de Reels deben ser un objeto o una lista de objetos');
         }
 
         if (!Array.isArray(reelsItems)) {
@@ -1225,7 +1225,7 @@ class AIRich extends BaseBuilder {
 
     addImage(imageUrl, { resolveUrl = false } = {}) {
         if (!(typeof imageUrl === 'string' || Buffer.isBuffer(imageUrl) || (Array.isArray(imageUrl) && imageUrl.every((v) => typeof v === 'string' || Buffer.isBuffer(v))))) {
-            throw new TypeError('imageUrl must be string | buffer | array of string/buffer');
+            throw new TypeError('imageUrl debe ser cadena | búfer | lista de cadenas/búfer');
         }
 
         const list = Array.isArray(imageUrl)
@@ -1285,7 +1285,7 @@ class AIRich extends BaseBuilder {
             (Array.isArray(videoUrl) && videoUrl.every((v) => typeof v === 'string' || Buffer.isBuffer(v) || isObjectVideo(v)));
 
         if (!isValidPrimitive) {
-            throw new TypeError('videoUrl must be string | buffer | object | array');
+            throw new TypeError('videoUrl debe ser cadena | búfer | objeto | lista');
         }
 
         const items = Array.isArray(videoUrl) ? videoUrl : [videoUrl];
@@ -1357,7 +1357,7 @@ class AIRich extends BaseBuilder {
 
     addProduct(data = {}) {
         if (!((data && typeof data === 'object' && !Array.isArray(data)) || (Array.isArray(data) && data.every((item) => item && typeof item === 'object' && !Array.isArray(item))))) {
-            throw new TypeError('Product items must be an object or an array of objects');
+            throw new TypeError('Los productos deben ser un objeto o una lista de objetos');
         }
 
         this._submessages.push({
@@ -1391,7 +1391,7 @@ class AIRich extends BaseBuilder {
 
     addPost(data = {}) {
         if (!((data && typeof data === 'object' && !Array.isArray(data)) || (Array.isArray(data) && data.every((item) => item && typeof item === 'object' && !Array.isArray(item))))) {
-            throw new TypeError('Post items must be an object or an array of objects');
+            throw new TypeError('Las publicaciones deben ser un objeto o una lista de objetos');
         }
 
         const posts = Array.isArray(data) ? data : [data];
@@ -1446,7 +1446,7 @@ class AIRich extends BaseBuilder {
 
     addSuggest(suggestion, { scroll = true, layout } = {}) {
         if (!(typeof suggestion === 'string' || (Array.isArray(suggestion) && suggestion.every((v) => typeof v === 'string')))) {
-            throw new TypeError('Suggestion must be a string or array of strings');
+            throw new TypeError('Suggestion debe ser una cadena o una lista de cadenas');
         }
 
         const suggest = Array.isArray(suggestion)
@@ -2212,7 +2212,7 @@ class AIRich extends BaseBuilder {
 
     static toTableMetadata(arr, { hyperlink = true, citation = true, latex = true } = {}) {
         if (!Array.isArray(arr) || !arr.every((row) => Array.isArray(row) && row.every((cell) => typeof cell === 'string'))) {
-            throw new TypeError('Table must be a nested array of strings');
+            throw new TypeError('La tabla debe ser una lista anidada de cadenas');
         }
 
         const [header, ...rows] = arr;

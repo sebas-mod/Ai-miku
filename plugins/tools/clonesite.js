@@ -376,7 +376,7 @@ const pluginConfig = {
           const type = classifyType(ctype, ext)
 
           if (status < 200 || status >= 300) { errors.push({ url, status }); return }
-          if (!buf || buf.length === 0) { errors.push({ url, status, error: 'empty body' }); return }
+          if (!buf || buf.length === 0) { errors.push({ url, status, error: 'cuerpo vacío' }); return }
 
           const wantsHtml = isRoot || (!ext && kind === 'page') || ['.html', '.htm'].includes(ext)
           if (ctype === 'text/html' && !wantsHtml) { skipped.push({ url, status, reason: 'spa-fallback (no es un archivo original)' }); return }
@@ -511,11 +511,11 @@ const pluginConfig = {
               `🌐 *CLONE SOURCE WEBSITE*\n\n` +
               `• *Target:* ${parsed.href}\n` +
               `• *File:* ${files.length} (${fmtSize(totalBytes)})\n` +
-              `• *Halaman:* ${result.pagesCrawled}\n` +
+              `• *Página:* ${result.pagesCrawled}\n` +
               `• *Source map dipulihkan:* ${recovered.length} file asli\n` +
               `• *Fallidos/omitidos:* ${errors.length}/${skipped.length}\n` +
               `• *Tamaño del ZIP:* ${fmtSize(zip.length)}\n` +
-              `• *Tiempo:* ${((Date.now() - t0) / 1000).toFixed(1)} detik` +
+              `• *Tiempo:* ${((Date.now() - t0) / 1000).toFixed(1)} segundos` +
               (result.truncated ? `\n\n⚠️ Resultado parcial (límite de tiempo/tamaño/cantidad de archivos).` : '')
 
           await sock.sendMessage(m.chat, {

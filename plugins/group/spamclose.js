@@ -34,7 +34,7 @@ async function handler(m, { db }) {
             `╭─〔 🛡️ *SPAMCLOSE* 〕\n` +
             `│ Status : *${current ? 'ON 🟢' : 'OFF 🔴'}*\n` +
             `│ Disparador: *5 mensajes seguidos*\n` +
-            `│ Sticker : *ikut terdeteksi*\n` +
+            `│ Sticker : *detectado*\n` +
             `╰─╮\n` +
             `   ↳ Usa: *.spamclose on/off*`
         );

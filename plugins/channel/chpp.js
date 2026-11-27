@@ -38,7 +38,7 @@ const pluginConfig = {
           const buffer = await img.download()
           if (!Buffer.isBuffer(buffer)) return reply('No se pudo descargar la imagen. Intente reenviar.')
           await sock.newsletterUpdatePicture(t.id, buffer)
-          return reply(`✅ Foto del canal *${t.name}* diperbarui.`)
+          return reply(`✅ Foto del canal *${t.name}* actualizada.`)
       } catch (err) {
           console.log('[CH] chpp:', err.message)
           return reply(`❌ ${explain(err)}`)

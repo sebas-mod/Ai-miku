@@ -14,7 +14,7 @@ const pluginConfig = {
     category: 'owner',
     description: 'Modo AFK del bot: no responde comandos, solo avisa que está ausente',
     usage: '.botafk <alasan>',
-    example: '.botafk Lagi istirahat',
+    example: '.botafk Estoy descansando',
     isOwner: true,
     isPremium: false,
     isGroup: false,

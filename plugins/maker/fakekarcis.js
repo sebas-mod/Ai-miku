@@ -72,7 +72,7 @@ const config = MikuRuntime.config;
       const jam = parts[2] || '21:00'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeKarcis(nama, film, jam)

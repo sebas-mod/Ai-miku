@@ -174,7 +174,7 @@ async function handler(m, { sock }) {
       `│ Size: \`${code.length} bytes\`\n`;
 
     if (!isNewFile) {
-      replyText += `│ Old Size: \`${oldSize} bytes\`\n`;
+      replyText += `│ Tamaño anterior: \`${oldSize} bytes\`\n`;
     }
 
     replyText +=

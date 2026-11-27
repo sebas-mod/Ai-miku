@@ -237,7 +237,7 @@ async function handler(m, { sock }) {
     `│ 🔑 *Serial ID:* \`${sn}\`\n` +
     `│ 📅 *Terdaftar:* ${dateFmt}\n` +
     (isFirstReg
-      ? `├─── ❖ 『 🎁 *STARTER PACK DITERIMA* 』 ❖\n` +
+      ? `├─── ❖ 『 🎁 *PAQUETE INICIAL RECIBIDO* 』 ❖\n` +
         `│ 💰 *Monedas:* +Rp ${bonusKoin.toLocaleString("id-ID")}\n` +
         `│ ✨ *EXP:* +${bonusExp.toLocaleString("id-ID")} EXP\n` +
         `│ ⚡ *Energi:* +${bonusEnergi} Energi\n` +

@@ -150,7 +150,7 @@ import { createCanvas } from '@napi-rs/canvas';
       ctx.fillStyle = THEME.secondary
       ctx.font = '11px "Segoe UI"'
       if (wallpaper.isFallback) {
-          ctx.fillText('⚠️ Using fallback (API might be down)', w/2, 175)
+          ctx.fillText('⚠️ Usando alternativa (puede que la API esté caída)', w/2, 175)
       } else {
           ctx.fillText('✨ ¡Wallpaper listo para descargar, darling~! ✨', w/2, 175)
       }

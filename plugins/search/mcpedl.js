@@ -180,7 +180,7 @@ const pluginConfig = {
 
           return baseRes
       } catch (error) {
-          return { status: false, error: pick(error.message, 'Unknown Error') }
+          return { status: false, error: pick(error.message, 'Error desconocido') }
       }
   }
 

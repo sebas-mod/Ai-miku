@@ -38,7 +38,7 @@ const require = createRequire(import.meta.url);
       const client = conn || sock || mikuGlobal.mainSock;
 
       if (!args[0]) {
-          return reply(`Naughty little one~ Put the URL in, please! 💋\n\n*Ejemplo:* \n${usedPrefix + command} https://example.com`);
+          return reply(`Pícaro~ ¡Pon la URL, por favor! 💋\n\n*Ejemplo:* \n${usedPrefix + command} https://example.com`);
       }
 
       let targetUrl = args[0].trim();

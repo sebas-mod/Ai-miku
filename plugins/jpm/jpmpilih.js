@@ -70,7 +70,7 @@ const pluginConfig = {
           delete sessions()[sender]
           const media = await getMedia(m)
           const delay = jpmCfg().delayJpm
-          await reply(`*▢ JPM DIMULAI*\n• Objetivos: ${st.picked.length} grupo\n• Retardo: ${delay}ms`)
+          await reply(`*▢ JPM INICIADO*\n• Objetivos: ${st.picked.length} grupo\n• Retardo: ${delay}ms`)
 
           const { ok, fail } = await jpmLoop(st.picked, delay, g =>
               sock.sendMessage(g.id, media ? mediaContent(media, input) : { text: input }))

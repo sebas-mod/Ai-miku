@@ -55,7 +55,7 @@ const pluginConfig = {
       if (!items.length) return reply(`Sin resultados para "${q}".`)
 
       const shown = items.slice(0, MAX_LIST)
-      let out = `🌌 *NASA ${mediaType.toUpperCase()} SEARCH*\n\n🔎 Query: ${q}\n📄 Halaman: ${page}\n📊 Total: ${col.metadata?.total_hits || 0}\n📦 Ditampilkan: ${shown.length}\n\n━━━━━━━━━━━━━━━━━━━━`
+      let out = `🌌 *NASA ${mediaType.toUpperCase()} SEARCH*\n\n🔎 Query: ${q}\n📄 Página: ${page}\n📊 Total: ${col.metadata?.total_hits || 0}\n📦 Mostrados: ${shown.length}\n\n━━━━━━━━━━━━━━━━━━━━`
 
       shown.forEach((item, i) => {
           const info = item.data?.[0] || {}
@@ -63,7 +63,7 @@ const pluginConfig = {
           out += `\n\n${i + 1}. ${info.title || 'No Title'}\n🆔 ${info.nasa_id || '-'}\n🏛️ ${info.center || '-'}\n📅 ${info.date_created || '-'}\n🖼️ ${preview?.href || '-'}`
       })
 
-      if ((col.links || []).some(l => l.rel === 'next')) out += `\n\n━━━━━━━━━━━━━━━━━━━━\n➡️ Halaman berikutnya: .nasa ${q} | ${page + 1}`
+      if ((col.links || []).some(l => l.rel === 'next')) out += `\n\n━━━━━━━━━━━━━━━━━━━━\n➡️ Página siguiente: .nasa ${q} | ${page + 1}`
 
       const firstPreview = (shown[0]?.links || []).find(l => l.rel === 'preview')?.href
       if (mediaType === 'image' && firstPreview) {

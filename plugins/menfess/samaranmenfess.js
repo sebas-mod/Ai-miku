@@ -38,7 +38,7 @@ async function handler(m, { text, prefix }) {
   if (/^(hapus|reset|off)$/i.test(nama)) {
     delete user.menfessNama;
     getDatabase().markDirty("users");
-    return m.reply("Samaran dihapus, menfess-mu tampil sebagai *Seseorang*.");
+    return m.reply("Se eliminó el anonimato; tu menfess aparece como *Alguien*.");
   }
   if (nama.length > 20) return m.reply("Samaran maksimal 20 karakter.");
   if (/[*_~`\n]/.test(nama)) return m.reply("El seudónimo no puede usar caracteres de formato (* _ ~ `).");

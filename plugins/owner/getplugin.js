@@ -172,7 +172,7 @@ async function handler(m, { sock }) {
         mimetype: "application/javascript",
         fileName: pluginInfo.file,
         caption:
-          `📦 *GET PLUGIN*\n` +
+          `📦 *OBTENER PLUGIN*\n` +
           `• *File:* \`${pluginInfo.category}/${pluginInfo.file}\`\n` +
           `• *Tamaño:* ${(codeBuffer.length / 1024).toFixed(1)} KB`,
       },
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
   try {
     await new AIRich(sock)
       .addText(
-        `📦 *GET PLUGIN*\n- File : ${pluginInfo.file}\n- Category : ${pluginInfo.category}\n\n`,
+        `📦 *OBTENER PLUGIN*\n- File : ${pluginInfo.file}\n- Category : ${pluginInfo.category}\n\n`,
       )
       .addCode("javascript", codeText)
       .send(m.chat);

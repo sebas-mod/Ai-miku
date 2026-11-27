@@ -73,7 +73,7 @@ import { createCanvas, loadImage } from '@napi-rs/canvas';
       const alasan = parts[1] || 'Enfermedad'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeIjin(nama, alasan)

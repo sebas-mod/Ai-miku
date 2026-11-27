@@ -14,7 +14,7 @@ const pluginConfig = {
   category: "search",
   description: "Busca y envía videos de TikTok por palabra clave",
   usage: ".tiktoksearch <palabra clave>",
-  example: ".tiktoksearch stecu stecu 20 detik",
+  example: ".tiktoksearch stecu stecu 20 segundos",
   isOwner: false,
   isPremium: false,
   isGroup: false,

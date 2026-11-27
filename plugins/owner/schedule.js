@@ -611,7 +611,7 @@ function buildPresetListText() {
   text += "Ejemplo:\n";
   text += "`.schedule preset sekolah 06:30`\n";
   text +=
-    "`.schedule preset kerja 09:00 | standup matutino | entrar a la sala de reunión | here | repeat`";
+    "`.schedule preset trabajo 09:00 | standup matutino | entrar a la sala de reunión | here | repeat`";
   return text;
 }
 

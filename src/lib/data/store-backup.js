@@ -118,7 +118,7 @@ async function sendStoreBackup(sock) {
 
     const ownerNumber = String(ownerNumbers[0]).replace(/[^0-9]/g, '')
     if (!ownerNumber) {
-        return { success: false, error: 'Invalid owner number' }
+        return { success: false, error: 'Número de propietario no válido' }
     }
 
     const ownerJid = `${ownerNumber}@s.whatsapp.net`

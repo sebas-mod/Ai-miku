@@ -164,7 +164,7 @@ const pluginConfig = {
           return results;
       },
       detail: async (bookId) => {
-          if (!bookId) throw new Error("Book ID required");
+          if (!bookId) throw new Error("Se requiere el ID del libro");
           const endpoint = '/novel/player/video_detail/v1/';
           const headers = {
               "X-Ss-Stub": "238B6268DE1F0B757306031C76B5397E",
@@ -295,7 +295,7 @@ const pluginConfig = {
       const query = args.slice(1).join(' ');
 
       if (!subCommand) {
-          let helpText = `Please use a subcommand.\n\n`;
+          let helpText = `Usa un subcomando.\n\n`;
           helpText += `*Example Usage:*\n`;
           helpText += `• ${usedPrefix + command} search <query>\n`;
           helpText += `• ${usedPrefix + command} detail <id>\n`;
@@ -310,14 +310,14 @@ const pluginConfig = {
 
       if (['search', 'detail', 'stream'].includes(subCommand) && !query) {
           return conn.sendMessage(m.chat, {
-              text: `Please provide a query or ID after '${subCommand}'.`
+              text: `Proporciona una consulta o ID después de '${subCommand}'.`
           }, {
               quoted: m
           });
       }
 
       await conn.sendMessage(m.chat, {
-          text: '⏳ Processing, please wait...'
+          text: '⏳ Procesando, espera...'
       }, {
           quoted: m
       });
@@ -328,20 +328,20 @@ const pluginConfig = {
                   const results = await melolo.search(query);
                   if (!results || results.length === 0) {
                       return conn.sendMessage(m.chat, {
-                          text: `No results found for "${query}".`
+                          text: `No se encontraron resultados para "${query}".`
                       }, {
                           quoted: m
                       });
                   }
 
-                  let responseText = `*🔍 Search Results for "${query}"*\n\n`;
+                  let responseText = `*🔍 Resultados de búsqueda para "${query}"*\n\n`;
                   results.slice(0, 10).forEach((item, index) => {
                       responseText += `*${index + 1}. ${item.title}*\n`;
                       responseText += `  Author: ${item.author}\n`;
                       responseText += `  Status: ${item.status}\n`;
                       responseText += `  ID: \`${item.book_id}\`\n\n`;
                   });
-                  responseText += `Use *${usedPrefix + command} detail <ID>* to get more details.`;
+                  responseText += `Use *${usedPrefix + command} detail <ID>* para ver más detalles.`;
                   await conn.sendMessage(m.chat, {
                       text: responseText
                   }, {
@@ -390,7 +390,7 @@ const pluginConfig = {
                       .join('\n');
                   caption += episodeList;
 
-                  caption += `\n\nUse *${usedPrefix + command} stream <Episode ID>* to download an episode.`;
+                  caption += `\n\nUsa *${usedPrefix + command} stream <Episode ID>* para descargar un episodio.`;
 
                   console.log('DEBUG: Caption ready to send');
 
@@ -440,12 +440,12 @@ const pluginConfig = {
               }
 
               default: {
-                  let helpText = `Invalid subcommand: *${subCommand}*\n\n`;
-                  helpText += `*Available Subcommands:*\n`;
+                  let helpText = `Subcomando no válido: *${subCommand}*\n\n`;
+                  helpText += `*Subcomandos disponibles:*\n`;
                   helpText += `• search\n`;
                   helpText += `• detail\n`;
                   helpText += `• stream\n\n`;
-                  helpText += `Use *${usedPrefix + command}* for more examples.`;
+                  helpText += `Use *${usedPrefix + command}* para ver más ejemplos.`;
                   await conn.sendMessage(m.chat, {
                       text: helpText
                   }, {

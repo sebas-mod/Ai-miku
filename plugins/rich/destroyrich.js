@@ -295,7 +295,7 @@ module.exports = {
   desc: 'Destroy Any Website: destroza un sitio en pixel art dentro del chat (pistola, escopeta, granada) con botón al juego original',
   run: async ({ sock, m, pushname, reply }) => {
     const html = buildDestroyHtml({ playerName: pushname || String(m.sender).split('@')[0], url: URL_GAME })
-    const ok = await sendHtmlCard(sock, m, html, 'Destroy Any Website', '💥', { quoted: m })
+    const ok = await sendHtmlCard(sock, m, html, 'Destruye cualquier sitio web', '💥', { quoted: m })
     const btns = [
       { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '▶ Jugar al juego original', url: URL_GAME, merchant_url: URL_GAME }) },
       { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: 'Copiar enlace', id: 'copy_destroy', copy_code: URL_GAME }) },

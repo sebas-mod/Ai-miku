@@ -106,7 +106,7 @@ async function ytdl(url, format = "mp3") {
     if (!init?.convertURL) {
       return {
         status: false,
-        mess: "No se pudo inicializar el servidor (Init failed).",
+        mess: "No se pudo inicializar el servidor (falló la inicialización).",
       };
     }
 
@@ -165,7 +165,7 @@ async function ytdl(url, format = "mp3") {
 class Youtube {
   constructor() {
     this.CREATED_BY = "Ditzzy";
-    this.NOTE = "Thank you for using this scrape";
+    this.NOTE = "Gracias por usar este scraping";
   }
 
   wrapResponse(data) {

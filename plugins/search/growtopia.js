@@ -112,7 +112,7 @@ const pluginConfig = {
       return m.reply(
         `*GROWTOPIA INFO*\n\n` +
         `• ${p} estado: jugadores en línea y estado del servidor\n` +
-        `• ${p} wotd — World of the Day\n` +
+        `• ${p} wotd — Mundo del día\n` +
         `• ${p} mundo <nombre> — renderizar imagen del mundo\n` +
         `• ${p} leaderboard — Dungeons leaderboard\n` +
         `• ${p} artículo <nombre> — información del artículo y receta (wiki)`
@@ -131,7 +131,7 @@ const pluginConfig = {
         )
       } else if (sub === 'wotd') {
         const d = await getServerDetail()
-        const caption = `*World of the Day*\n\n❀ World : ${d.world_of_the_day.name || '-'}`
+        const caption = `*Mundo del día*\n\n❀ World : ${d.world_of_the_day.name || '-'}`
         if (d.world_of_the_day.image_url) {
           await conn.sendMessage(m.chat, { image: { url: d.world_of_the_day.image_url }, caption }, { quoted: m })
         } else {

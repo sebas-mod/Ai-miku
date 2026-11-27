@@ -36,9 +36,9 @@ const config = MikuRuntime.config;
   }
 
   const AWARDS = [
-      'Best Darling of The Year', 'Most Lovable Person', 'Outstanding Achievement',
-      'Best Wife/Husband Ever', 'Most Handsome/Beautiful', 'Kindest Heart Award',
-      'Best Smile Award', 'Most Loyal Friend', 'Cutest Couple Award'
+      'Mejor pareja del año', 'Most Lovable Person', 'Outstanding Achievement',
+      'Mejor esposa/marido de todos', 'Most Handsome/Beautiful', 'Kindest Heart Award',
+      'Premio a la mejor sonrisa', 'Most Loyal Friend', 'Cutest Couple Award'
   ]
 
   async function generateFakeSertifikat(nama, penghargaan) {
@@ -82,7 +82,7 @@ const config = MikuRuntime.config;
               `┃\n` +
               `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakesertifikat Ai Miku | Best Darling Award\n` +
+              `┃   ${m.prefix}fakesertifikat Ai Miku | Premio a la mejor pareja\n` +
               `┃\n` +
               `┃ 💗 *Ai Miku:* ¿Qué premio quieres, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`

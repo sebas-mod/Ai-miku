@@ -1,0 +1,492 @@
+[
+  {
+    "file": "plugins/convert/pdftools.js",
+    "line": 608,
+    "reason": "nombres de opciones usados como valores de comparacion"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 66,
+    "reason": "ejemplo de comando; el comando no se traduce"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 453,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 470,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 484,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 485,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 486,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/goodbye.js",
+    "line": 487,
+    "reason": "texto con nombre de comando"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 93,
+    "reason": "opciones open/close del comando"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 125,
+    "reason": "opciones open/close del comando"
+  },
+  {
+    "file": "plugins/owner/schedule.js",
+    "line": 152,
+    "reason": "valores de opciones repeat/daily/harian/once/sekali/off"
+  },
+  {
+    "file": "plugins/search/berita.js",
+    "line": 24,
+    "reason": "valores de categoria del comando"
+  },
+  {
+    "file": "plugins/search/berita.js",
+    "line": 31,
+    "reason": "Antara News es nombre propio"
+  },
+  {
+    "file": "plugins/sticker/bratgura.js",
+    "line": 22,
+    "reason": "ejemplo con nombre de comando"
+  },
+  {
+    "file": "plugins/sticker/bratvid2.js",
+    "line": 20,
+    "reason": "ejemplo generico hello world"
+  },
+  {
+    "file": "plugins/sticker/smeme.js",
+    "line": 24,
+    "reason": "nombres de opciones atas/bawah"
+  },
+  {
+    "file": "plugins/tools/cekhosting.js",
+    "line": 88,
+    "reason": "clave de respuesta de API externa"
+  },
+  {
+    "file": "plugins/owner/templateplugin.js",
+    "line": 29,
+    "reason": "plantilla de codigo, no texto visible"
+  },
+  {
+    "file": "src/lib/features/game-data.js",
+    "line": 149,
+    "reason": "palabras clave usadas como disparadores"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 778,
+    "reason": "valor centinela usado en la logica"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 779,
+    "reason": "comparacion con valor centinela"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 780,
+    "reason": "valor centinela usado en la logica"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 781,
+    "reason": "comparacion con valor centinela"
+  },
+  {
+    "file": "plugins/owner/swgc.js",
+    "line": 301,
+    "reason": "valor centinela usado como titulo por defecto"
+  },
+  {
+    "file": "plugins/owner/swgcv2.js",
+    "line": 274,
+    "reason": "valor centinela usado como titulo por defecto"
+  },
+  {
+    "file": "src/lib/data/database.js",
+    "line": 540,
+    "reason": "valor centinela persistido en base de datos"
+  },
+  {
+    "file": "plugins/anime/animewall.js",
+    "line": 20,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/convert/tts.js",
+    "line": 48,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/convert/tts2.js",
+    "line": 48,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/download/pindl.js",
+    "line": 40,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/download/spotifymp3.js",
+    "line": 242,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/download/ytmusic.js",
+    "line": 36,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/fun/tembak.js",
+    "line": 149,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 89,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 90,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 94,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 149,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/jadwalgroup.js",
+    "line": 150,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/setgoodbye.js",
+    "line": 43,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/setgoodbye.js",
+    "line": 48,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/setwelcome.js",
+    "line": 43,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/group/setwelcome.js",
+    "line": 49,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/jpm/jpmupdate.js",
+    "line": 32,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/main/ping2.js",
+    "line": 90,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/maker/fake-tweet.js",
+    "line": 67,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/maker/fakekarcis.js",
+    "line": 71,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/owner/addprem.js",
+    "line": 263,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/owner/autobackup.js",
+    "line": 50,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/owner/schedule.js",
+    "line": 173,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/owner/schedule.js",
+    "line": 196,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/owner/schedule.js",
+    "line": 614,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/search/detik.js",
+    "line": 16,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/search/detik.js",
+    "line": 35,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/search/detik.js",
+    "line": 52,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/search/detik.js",
+    "line": 75,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/search/detik.js",
+    "line": 81,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/search/pinterest.js",
+    "line": 132,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/search/pinterest2.js",
+    "line": 157,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/search/pinterest3.js",
+    "line": 131,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/sticker/sticker.js",
+    "line": 92,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/tools/calc.js",
+    "line": 42,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 41,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 46,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 47,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 48,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 49,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 50,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 51,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 64,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 68,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 72,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 73,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekplat.js",
+    "line": 75,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/cekresispx.js",
+    "line": 218,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "plugins/tools/checkban.js",
+    "line": 74,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/tools/kodepos.js",
+    "line": 227,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/tools/mytoken.js",
+    "line": 44,
+    "reason": "texto ambiguo o propio; revisado, se conserva"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 59,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 81,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 131,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 161,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 162,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 163,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 165,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 176,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/tools/samsat.js",
+    "line": 178,
+    "reason": "nombre geografico propio"
+  },
+  {
+    "file": "plugins/user/ceksn.js",
+    "line": 52,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/user/daftar.js",
+    "line": 20,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/user/daftar.js",
+    "line": 134,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/user/daftar.js",
+    "line": 135,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "plugins/user/unreg.js",
+    "line": 40,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 1878,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "src/handler.js",
+    "line": 1879,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "src/lib/core/builder.js",
+    "line": 38,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "src/lib/system/miku-engine.js",
+    "line": 348,
+    "reason": "codigo, dato tecnico o nombre propio"
+  },
+  {
+    "file": "src/lib/system/miku-engine.js",
+    "line": 1226,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "src/lib/system/miku-engine.js",
+    "line": 1227,
+    "reason": "ejemplo o palabra clave de comando; no se traduce"
+  },
+  {
+    "file": "src/lib/system/scheduler.js",
+    "line": 89,
+    "reason": "nombre de clave de configuracion"
+  }
+]

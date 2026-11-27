@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
       `╭┈┈⬡「 📋 *INFO* 」\n` +
       `┃ 📝 ${absen.keterangan}\n` +
       `┃ 📅 ${dateStr}\n` +
-      `┃ ⏰ Dimulai: ${timeStr}\n` +
+      `┃ ⏰ Inicio: ${timeStr}\n` +
       `┃ 👑 Creado: @${absen.createdBy.split("@")[0]}\n` +
       `├┈┈⬡「 👥 *PARTICIPANTES (${absen.peserta.length})* 」\n` +
       `${list}\n` +

@@ -49,7 +49,7 @@ import axios from 'axios'
     })
     if (status >= 400 || !html) throw new Error(`Detail error (HTTP ${status})`)
 
-    let publisher = 'Unknown Publisher', description = '', rating = '0', reviews = '0'
+    let publisher = 'Editor desconocido', description = '', rating = '0', reviews = '0'
     const ldRegex = /<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi
     let ld
     while ((ld = ldRegex.exec(html)) !== null) {
@@ -103,13 +103,13 @@ import axios from 'axios'
         const pp = arr[idx]
         if (!pp || typeof pp !== 'object') continue
         const price = typeof arr[pp.price] === 'number' ? arr[pp.price] : 0
-        if (price > 0) payments.push({ method: channels[arr[pp.paymentChannelId]] || 'Unknown Payment', price })
+        if (price > 0) payments.push({ method: channels[arr[pp.paymentChannelId]] || 'Pago desconocido', price })
       }
       if (payments.length) items.push({ name, payments: payments.sort((a, b) => a.price - b.price) })
     }
     if (!items.length) throw new Error('No se pudo extraer la lista de elementos')
 
-    return { title: title || 'Unknown Game', publisher, rating, reviews, description, cover, items }
+    return { title: title || 'Juego desconocido', publisher, rating, reviews, description, cover, items }
   }
 
   const pluginConfig = {
@@ -154,9 +154,9 @@ import axios from 'axios'
         const caption =
           `🎮 *${d.title}*\n` +
           `- Publisher: ${d.publisher}\n` +
-          `- Rating: ${d.rating} (${d.reviews} ulasan)\n\n` +
+          `- Calificación: ${d.rating} (${d.reviews} reseñas)\n\n` +
           `*Precio más bajo por artículo:*\n${lines.join('\n')}` +
-          (d.items.length > 25 ? `\n\n...dan ${d.items.length - 25} otros artículos` : '') +
+          (d.items.length > 25 ? `\n\n...y ${d.items.length - 25} artículos más` : '') +
           `\n\n💡 Los precios pueden variar según el método de pago.`
 
         if (d.cover) {

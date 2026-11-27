@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     txt += `╭┈┈⬡「 📊 *ESTADO* 」\n`;
     txt += `┃ 🔘 Estado: ${status.enabled ? "✅ *ON*" : "❌ *OFF*"}\n`;
     txt += `┃ ⏱️ Interval: ${status.interval}\n`;
-    txt += `┃ 📅 Last Backup: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
+    txt += `┃ 📅 Última copia: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
     txt += `┃ #️⃣ Total: ${status.backupCount} backup\n`;
     txt += `┃ 📤 Enviado a: ${ownerNum}\n`;
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
@@ -121,7 +121,7 @@ async function handler(m, { sock }) {
       txt += `┃ 🔘 Enabled: ${status.enabled ? "✅ Sí" : "❌ No"}\n`;
       txt += `┃ ⏱️ Interval: ${status.interval}\n`;
       txt += `┃ 🔄 Running: ${status.isRunning ? "✅ Sí" : "❌ No"}\n`;
-      txt += `┃ 📅 Last: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
+      txt += `┃ 📅 Último: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
       txt += `┃ #️⃣ Total: ${status.backupCount} backup\n`;
       txt += `┃ 📤 Target: ${ownerNum}\n`;
       txt += `╰┈┈┈┈┈┈┈┈⬡`;

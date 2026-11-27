@@ -25,7 +25,7 @@ const pluginConfig = {
   alias: ["livemenu", "arcademenu", "richgames"],
   category: "rich",
   description:
-    "Menu kategori seluruh fitur Ai Miku dalam tampilan HTML interaktif",
+    "Menú de categorías de todas las funciones de Ai Miku en una vista HTML interactiva",
   usage: ".richmenu",
   example: ".richmenu",
   isOwner: false,

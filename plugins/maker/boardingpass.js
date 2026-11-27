@@ -66,7 +66,7 @@ const te = MikuRuntime.te;
 
       return await sock.sendMessage(m.chat, {
         image: imageBuffer,
-        caption: `🚀 *NASA Boarding Pass* for *${inputName}*`
+        caption: `🚀 *NASA Pase de embarque* para *${inputName}*`
       }, { quoted: m });
 
     } catch (error) {

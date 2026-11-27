@@ -56,7 +56,7 @@ const pluginConfig = {
       const raw = await postJson(`${BASE}/api/tiktok/get-reposts`, { unique_id: username, count, cursor })
       let d
       try { d = JSON.parse(raw) } catch {
-          const hint = /cloudflare|just a moment|attention required/i.test(raw) ? ' (diblokir Cloudflare)' : ''
+          const hint = /cloudflare|just a moment|attention required/i.test(raw) ? '(bloqueado por Cloudflare)' : ''
           throw new Error(`Respuesta del servidor no válida${hint}${raw ? ': ' + raw.replace(/\s+/g, ' ').slice(0, 120) : ' (vacío)'}`)
       }
       if (d.code !== 0) throw new Error(d.msg || 'No se pudieron recuperar los datos de volver a publicar.')

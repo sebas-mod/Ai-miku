@@ -81,7 +81,7 @@ const libs = {
             })
 
             if (networkResponse.status !== 200) {
-              throw new Error(`Network core rejected stream with status: ${networkResponse.status}`)
+              throw new Error(`El núcleo de red rechazó la transmisión con estado: ${networkResponse.status}`)
             }
 
             const documentContext = cheerio.load(networkResponse.data, {
@@ -157,7 +157,7 @@ const pluginConfig = {
       const items = res.results.slice(0, 10)
       let caption = `🌐 *GOOGLE SEARCH RESULTS*\n\n`
       caption += `🔎 *Query:* ${text}\n`
-      caption += `📊 *Ditemukan:* ${res.results.length} resultados\n\n`
+      caption += `📊 *Encontrados:* ${res.results.length} resultados\n\n`
       caption += `──────────────────\n\n`
 
       items.forEach((item, idx) => {

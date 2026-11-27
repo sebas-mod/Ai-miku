@@ -80,7 +80,7 @@ const pluginConfig = {
               `*🔍 DETECCIÓN DE IMAGEN IA*\n\n` +
               `Estado: ${hasil}\n\n` +
               `AI Generated: ${persen(ai)}\n` +
-              `Not AI Generated: ${persen(human)}\n` +
+              `No generado por IA: ${persen(human)}\n` +
               `Deepfake: ${persen(deepfake)}\n\n` +
               `_Los resultados son estimaciones del modelo de detección, no certeza absoluta._`
           )

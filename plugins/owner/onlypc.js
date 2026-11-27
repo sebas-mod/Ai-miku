@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
   if (!option) {
     const current = db.setting("onlyPc") || false;
     return m.reply(
-      `💬 *Only Private*\n\n` +
+      `💬 *Solo privado*\n\n` +
         `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}onlypc on* — El bot solo puede usarse en chats privados\n` +

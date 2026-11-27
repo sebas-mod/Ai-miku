@@ -138,7 +138,7 @@ async function handler(m, ctx = {}) {
       const slice = presets.slice((page - 1) * perPage, page * perPage)
 
       let txt = `✨ *LISTA DE PRESETS ALIGHT MOTION* ✨\n`
-      txt += `Halaman *${page}/${pages}* • Total *${total}* Preset\n\n`
+      txt += `Página *${page}/${pages}* • Total *${total}* Preset\n\n`
 
       slice.forEach((p, i) => {
         const idx = (page - 1) * perPage + i + 1

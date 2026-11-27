@@ -83,7 +83,7 @@ const pluginConfig = {
 │ • Registro: ${registeredText}
 └──────────────
 
-┌─「 🔐 METODE LOGIN 」
+┌─「 🔐 MÉTODO DE INICIO DE SESIÓN 」
 │ • Métodos totales: ${detail.total_methods ?? 0}
 │ • Base de datos visible: ${detail.num_visible_dbs_methods ?? 0}
 │ • Longitud del código SMS: ${detail.sms_length ?? '-'}

@@ -207,7 +207,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
         const name = getOwnerName(number);
         txt += `${i + 1}. ${label} @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
       });
-      txt += `\nTotal: *${allOwners.length}* owner | ⭐ Main, 👑 Added`;
+      txt += `\nTotal: *${allOwners.length}* owner | ⭐ Main, 👑 Añadido`;
       return m.reply(txt, { mentions });
     }
   }

@@ -64,7 +64,7 @@ async function handler(m) {
       `├───〔 *RESULTADO* 〕\n` +
       `│ ${badge}\n` +
       `│ 💰 Apuesta : ${bet.toLocaleString("id-ID")} monedas\n` +
-      `│ 🎁 Premio  : *${win > 0 ? `+${win.toLocaleString("id-ID")}` : "0"} Koin*\n` +
+      `│ 🎁 Premio  : *${win > 0 ? `+${win.toLocaleString("id-ID")}` : "0"} Monedas*\n` +
       `╰─────────────────────❖`
   );
 }

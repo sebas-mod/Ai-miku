@@ -118,7 +118,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
                   }, { quoted: m })
               } catch {
                   cleanup();
-                  (reply || m.reply)('Error processing file')
+                  (reply || m.reply)('Error al procesar el archivo')
               }
           })
 

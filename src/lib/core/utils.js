@@ -177,7 +177,7 @@ async function fetchBuffer(url, options = {}) {
         });
         return Buffer.from(response.data);
     } catch (error) {
-        throw new Error(`Failed to fetch buffer: ${error.message}`);
+        throw new Error(`Error al obtener el búfer: ${error.message}`);
     }
 }
 
@@ -197,7 +197,7 @@ async function fetchJson(url, options = {}) {
         });
         return response.data;
     } catch (error) {
-        throw new Error(`Failed to fetch JSON: ${error.message}`);
+        throw new Error(`Error al obtener JSON: ${error.message}`);
     }
 }
 
@@ -215,7 +215,7 @@ async function fetchText(url, options = {}) {
         });
         return response.data;
     } catch (error) {
-        throw new Error(`Failed to fetch text: ${error.message}`);
+        throw new Error(`Error al obtener el texto: ${error.message}`);
     }
 }
 
@@ -237,7 +237,7 @@ async function downloadFile(url, filePath) {
         fs.writeFileSync(filePath, buffer);
         return filePath;
     } catch (error) {
-        throw new Error(`Failed to download file: ${error.message}`);
+        throw new Error(`Error al descargar el archivo: ${error.message}`);
     }
 }
 

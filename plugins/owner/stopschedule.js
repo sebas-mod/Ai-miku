@@ -31,14 +31,14 @@ async function handler(m, { sock, args }) {
         if (!target) {
             const helpText = `🛑 *DETENER PROGRAMADOR*
 
-*Usage:*
+*Uso:*
 \`.stopschedule <nombre>\`
 
-*Available schedulers:*
-• \`limitreset\` - Daily Limit Reset
-• \`groupschedule\` - Group Schedule
-• \`sewa\` - Sewa Checker
-• \`messages\` - Scheduled Messages
+*Programadores disponibles:*
+• \`limitreset\` - Reinicio de límite diario
+• \`groupschedule\` - Programación de grupos
+• \`sewa\` - Verificación de alquiler
+• \`messages\` - Mensajes programados
 • \`all\` - Todos los programadores
 
 *Example:*

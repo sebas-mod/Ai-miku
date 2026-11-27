@@ -41,7 +41,7 @@ const loveQuotes = [
   "El amor verdadero nunca conoce distancias 💕",
   "Dos corazones unidos no se pueden separar 💗",
   "Sois como un puzle perfecto 🧩",
-  "Match made in heaven! ✨",
+  "¡Combinación hecha en el cielo! ✨",
   "¡La química es muy fuerte! 🔥",
   "¡Sois la pareja ideal! 💑",
   "Destiny brought you together 🌟",

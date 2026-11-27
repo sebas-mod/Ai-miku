@@ -39,11 +39,11 @@ const ratings = [
     { score: '69/100', comment: 'Nice...' },
     { score: '420/10', comment: 'BLAZING!' },
     { score: '∞/10', comment: 'Gacor kang' },
-    { score: '7.5/10', comment: 'Solid! Good job!' },
+    { score: '7.5/10', comment: '¡Genial! ¡Buen trabajo!' },
     { score: '8.5/10', comment: 'Impressive!' },
     { score: '9.5/10', comment: 'Near perfection!' },
     { score: '-1/10', comment: 'No sé qué decir...' },
-    { score: '???/10', comment: 'Error 404: Rating not found.' }
+    { score: '???/10', comment: 'Error 404: calificación no encontrada.' }
 ];
 
 async function handler(m) {

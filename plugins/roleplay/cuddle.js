@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     label: "Cuddle",
     needTarget: true,
     affectionDelta: 9,
-    templateTarget: '{sender} bersandar manja di samping {target}! 🫶',
+    templateTarget: '{sender} se arrima mimoso junto a {target}! 🫶',
     templateSelf: '{sender} bergelung nyaman sendirian.',
   });
 }

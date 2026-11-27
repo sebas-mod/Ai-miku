@@ -30,7 +30,7 @@ const pluginConfig = {
           need(sock, 'newsletterUnmute')
           const t = await pickTarget(sock, text, prefix)
           await sock.newsletterUnmute(t.id)
-          return reply(`✅ Bisu saluran dibuka: *${t.name}*`)
+          return reply(`✅ Silencio del canal desactivado: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chunmute:', err.message)
           return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nEjemplo: ${prefix || '.'}chunmute <link saluran>`}`)

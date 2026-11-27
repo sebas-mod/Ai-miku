@@ -14,7 +14,7 @@ const pluginConfig = {
     name: "get",
     alias: ["fetch"],
     category: "tools",
-    description: "Fitur tools get",
+    description: "Función de obtención de herramientas",
     usage: ".get",
     example: ".get",
     isOwner: false,

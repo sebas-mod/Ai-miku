@@ -69,7 +69,7 @@ import axios from 'axios';
 
   async function run(m, { sock }) {
       m.react('💕')
-      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando fotos de waifu cariño~ espera un minuto, vale 🦋`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Buscando fotos de waifu cariño~ espera un minuto, vale 🦋`)
 
       try {
           const result = await getRandomWaifu()

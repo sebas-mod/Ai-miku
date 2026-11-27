@@ -110,9 +110,9 @@ const sendAlbum = MikuRuntime.sendAlbum;
 
 👤 *Autor*: ${info.author || "Unknown"}
 📝 *Texto de la publicación*: ${cleanText(info.title) || cleanText(info.description) || "Sin descripción."}
-📊 *Cantidad de archivos*: ${result.length} file
+📊 *Cantidad de archivos*: ${result.length} archivos
 
-*Semoga bermanfaat ya!* Jangan lupa mampir lagi kalau mau download yang lain. 🚀`;
+*¡Espero que te sirva!* No olvides volver cuando quieras descargar otra cosa. 🚀`;
 
       const mediaList = [];
       for (const item of result) {

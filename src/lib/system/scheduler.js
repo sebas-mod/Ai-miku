@@ -86,7 +86,7 @@ async function scheduleMessage(options, sock) {
   } = options;
 
   if (!id || !jid || !message || hour === undefined) {
-    throw new Error("Missing required options: id, jid, message, hour");
+    throw new Error("Faltan opciones requeridas: id, jid, message, hour");
   }
 
   if (scheduledTasks.has(id)) cancelScheduledMessage(id);

@@ -214,7 +214,7 @@ import * as cheerio from 'cheerio';
       }
 
       m.react('💕');
-      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando anime cariño~ espera un minuto, vale 🦋`);
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Buscando anime cariño~ espera un minuto, vale 🦋`);
 
       try {
           let result;
@@ -281,7 +281,7 @@ import * as cheerio from 'cheerio';
               await m.reply(txt);
 
           } else if (action === 'detail') {
-              if (!query) return m.reply(`❌ Masukkan URL detail anime darling~`);
+              if (!query) return m.reply(`❌ Escribe la URL del anime, cariño~`);
 
               result = await kusonime.detail(query);
 

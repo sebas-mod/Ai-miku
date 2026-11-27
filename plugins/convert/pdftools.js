@@ -461,7 +461,7 @@ const specs = {
       const spec = c.args.find((a) => !/^hd$/i.test(a))
       let pages = du.parseRange(spec || (total > 10 ? '1-10' : 'semua'), total)
       let note = ''
-      if (pages.length > 10) { pages = pages.slice(0, 10); note = ' (dibatasi 10 halaman)' }
+      if (pages.length > 10) { pages = pages.slice(0, 10); note = ' (limitado a 10 páginas)' }
       if (!du.which('pdftoppm')) {
         throw fail('Para convertir la página PDF en una imagen, se requiere la utilidad `pdftoppm` (poppler-utils) en el servidor.')
       }
@@ -477,7 +477,7 @@ const specs = {
         }
         return res
       })
-      return { images: out.map((o) => o.buffer), captions: out.map((o) => `📄 Halaman ${o.page}/${total}${note && o === out[0] ? note : ''}`) }
+      return { images: out.map((o) => o.buffer), captions: out.map((o) => `📄 Página ${o.page}/${total}${note && o === out[0] ? note : ''}`) }
     }
   },
   pdfsplit: {
@@ -513,7 +513,7 @@ const specs = {
     }
   },
   pdfrotate: {
-    desc: 'Putar halaman PDF (90, 180, 270)',
+    desc: 'Girar páginas del PDF (90, 180, 270)',
     usage: '[derajat] [página]',
     example: '90 1-2',
     needs: 'pdf',
@@ -541,7 +541,7 @@ const specs = {
         ([, w, h]) => (Math.abs(mm(info.width) - w) < 4 && Math.abs(mm(info.height) - h) < 4) || (Math.abs(mm(info.width) - h) < 4 && Math.abs(mm(info.height) - w) < 4)
       )
       return uitext.panel('INFORMACIÓN EN PDF', [
-        { head: '📄 *DOCUMENTO*', lines: [`Nombre: ${f.name}`, `Halaman : ${info.pageCount}`, `Tamaño del archivo: ${kit.fmtSize(f.buffer.length)}`, `Tamaño de papel: ${paper ? paper[0] : 'Kustom'} (${mm(info.width)}×${mm(info.height)} milímetros)`] },
+        { head: '📄 *DOCUMENTO*', lines: [`Nombre: ${f.name}`, `Página : ${info.pageCount}`, `Tamaño del archivo: ${kit.fmtSize(f.buffer.length)}`, `Tamaño de papel: ${paper ? paper[0] : 'Kustom'} (${mm(info.width)}×${mm(info.height)} milímetros)`] },
         { head: '🧬 *METADATA*', lines: [`Título: ${info.title}`, `Penulis : ${info.author}`, `Pembuat : ${info.creator}`, `Produser : ${info.producer}`, `Cifrado: ${info.encrypted ? 'Sí' : 'No'}`] }
       ])
     }

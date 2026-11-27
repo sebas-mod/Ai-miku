@@ -12,7 +12,7 @@ async function gemini(input = {}) {
   const { message, instruction = "", sessionId = null } = payload;
 
   try {
-    if (!message) throw new Error("Message is required.");
+    if (!message) throw new Error("Se requiere un mensaje.");
 
     let resumeArray = null;
     let cookie = null;

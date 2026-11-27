@@ -70,7 +70,7 @@ async function resolveInput(input) {
     if (/^https?:\/\//.test(input)) return await downloadBuffer(input);
     if (fs.existsSync(input)) return fs.readFileSync(input);
   }
-  throw new Error("Invalid input: expected Buffer, URL string, or file path");
+  throw new Error("Entrada no válida: se esperaba Buffer, cadena URL o ruta de archivo");
 }
 
 async function imageToWebp(buffer) {
@@ -85,7 +85,7 @@ async function imageToWebp(buffer) {
       .webp({ quality: 80 })
       .toBuffer();
   } catch (error) {
-    throw new Error("Failed to convert image to webp: " + error.message);
+    throw new Error("Error al convertir la imagen a webp: " + error.message);
   }
 }
 
@@ -95,7 +95,7 @@ function videoToWebp(buffer) {
     const inputPath = path.join(tmpDir, `input_${Date.now()}.mp4`);
     const outputPath = path.join(tmpDir, `output_${Date.now()}.webp`);
     if (!buffer || buffer.length < 1000)
-      return reject(new Error("Invalid video buffer"));
+      return reject(new Error("Búfer de vídeo no válido"));
     fs.writeFileSync(inputPath, buffer);
     const cleanup = () => {
       try {
@@ -320,7 +320,7 @@ async function extendSocket(sock) {
         .webp({ quality: 80 })
         .toBuffer();
     } catch (err) {
-      throw new Error("Failed to convert image: " + err.message);
+      throw new Error("Error al convertir la imagen: " + err.message);
     }
     try {
       webpBuffer = await addExifToWebp(webpBuffer, {
@@ -459,11 +459,11 @@ async function extendSocket(sock) {
     if (typeof packIdOrMessage === "string") {
       const cached = global.stickerPackCache.get(packIdOrMessage);
       if (!cached)
-        throw new Error(`Sticker pack "${packIdOrMessage}" not found`);
+        throw new Error(`No se encontró el paquete de stickers "${packIdOrMessage}" no encontrado`);
       messageContent = cached.message;
     } else if (packIdOrMessage?.stickerPackMessage)
       messageContent = packIdOrMessage;
-    else throw new Error("Invalid sticker pack message format");
+    else throw new Error("Formato de mensaje de paquete de stickers no válido");
     const message = generateWAMessageFromContent(jid, messageContent, {
       quoted: m,
       userJid: sock.user?.id,
@@ -489,8 +489,8 @@ async function extendSocket(sock) {
       } else if (fs.existsSync(input)) {
         buffer = fs.readFileSync(input);
         filename = options.filename || path.basename(input);
-      } else throw new Error("Invalid input");
-    } else throw new Error("Invalid input type");
+      } else throw new Error("Entrada no válida");
+    } else throw new Error("Tipo de entrada no válido");
     if (!mimetype) {
       const ext = path.extname(filename).toLowerCase();
       const mt = {
@@ -678,7 +678,7 @@ async function extendSocket(sock) {
   sock.downloadAndSaveMediaMessage = async (msg, savePath = null) => {
     const message = msg.message || msg;
     const type = getContentType(message);
-    if (!type) throw new Error("No media found in message");
+    if (!type) throw new Error("No se encontró contenido multimedia en el mensaje");
     const buffer = await downloadMediaMessage(
       { message },
       "buffer",

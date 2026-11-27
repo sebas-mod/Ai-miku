@@ -146,7 +146,7 @@ const pluginConfig = {
       const d = err?.response?.data
       let msg = ''
       if (typeof d === 'string' && d) {
-          msg = /<html|<!doctype/i.test(d) ? `Server API mengembalikan halaman error${status ? ` (HTTP ${status})` : ''}` : d.slice(0, 200)
+          msg = /<html|<!doctype/i.test(d) ? `La API del servidor devolvió una página de error${status ? ` (HTTP ${status})` : ''}` : d.slice(0, 200)
       } else if (d) {
           msg = toText(d)
       }

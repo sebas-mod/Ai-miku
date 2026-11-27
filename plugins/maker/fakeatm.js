@@ -73,7 +73,7 @@ const config = MikuRuntime.config;
       const bank = parts[1] || 'BCA'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeATM(nama, bank)

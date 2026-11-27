@@ -34,7 +34,7 @@ const pluginConfig = {
           if (!t.rest) return reply(`Complete la nueva descripción.\nEjemplo: ${p}chdesc Actualización de funciones bot`)
           if (t.rest.length > 500) return reply('Deskripsi maksimal 500 karakter.')
           await sock.newsletterUpdateDescription(t.id, t.rest)
-          return reply(`✅ Deskripsi saluran *${t.name}* diperbarui.`)
+          return reply(`✅ Descripción del canal *${t.name}* actualizada.`)
       } catch (err) {
           console.log('[CH] chdesc:', err.message)
           return reply(`❌ ${explain(err)}`)

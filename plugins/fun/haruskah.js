@@ -40,7 +40,7 @@ const answers = [
     'Hazlo cuando estés seguro.',
     '¡Sí, por tu futuro!',
     'No hace falta, tranquilo.',
-    'Go for it!',
+    '¡Hazlo!',
     'No te apresures, piénsalo otra vez.',
     '¡Claro que sí!',
     'Mira primero la situación.'

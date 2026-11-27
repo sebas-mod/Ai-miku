@@ -67,7 +67,7 @@ const config = MikuRuntime.config;
       const sekolah = parts[1] || 'SMA Negeri Zero'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeKartuPelajar(nama, sekolah)

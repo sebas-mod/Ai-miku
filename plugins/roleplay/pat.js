@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     label: "Elus Kepala",
     needTarget: true,
     affectionDelta: 6,
-    templateTarget: '{sender} mengelus lembut kepala {target}. Good job! 🥰',
+    templateTarget: '{sender} acaricia suavemente la cabeza de {target}. ¡Buen trabajo! 🥰',
     templateSelf: '{sender} menepuk kepalanya sendiri.',
   });
 }

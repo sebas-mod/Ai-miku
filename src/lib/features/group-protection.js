@@ -122,7 +122,7 @@ const JUDOL_PATTERNS = [
   { pattern: /\bdepo\b/i, score: 1, label: "depo" },
   { pattern: /\bwithdraw\b/i, score: 1, label: "withdraw" },
   { pattern: /\bwd\b/i, score: 1, label: "wd" },
-  { pattern: /bonus\s+new\s+member/i, score: 2, label: "bonus new member" },
+  { pattern: /bonus\s+new\s+member/i, score: 2, label: "bonificación por nuevo miembro" },
   {
     pattern: /bonus\s+(member|new\s*member)/i,
     score: 2,
@@ -151,7 +151,7 @@ const JUDOL_COMPACT_KEYWORDS = [
   { keyword: "spingratis", score: 2, label: "spin gratis" },
   { keyword: "polaslot", score: 2, label: "pola slot" },
   { keyword: "bonusmember", score: 2, label: "bonus member" },
-  { keyword: "bonusnewmember", score: 2, label: "bonus new member" },
+  { keyword: "bonusnewmember", score: 2, label: "bonificación por nuevo miembro" },
   { keyword: "linkalternatif", score: 2, label: "link alternatif" },
   { keyword: "bandarslot", score: 2, label: "bandar slot" },
   { keyword: "bandartogel", score: 2, label: "bandar togel" },
@@ -219,7 +219,7 @@ const PHISHING_COMPACT_KEYWORDS = [
   { keyword: "verifikasinomor", score: 3, label: "verifikasi nomor" },
   { keyword: "verifikasirekening", score: 3, label: "verifikasi rekening" },
   { keyword: "verifikasiwallet", score: 3, label: "verifikasi wallet" },
-  { keyword: "loginsekarang", score: 3, label: "login sekarang" },
+  { keyword: "loginsekarang", score: 3, label: "iniciar sesión ahora" },
   { keyword: "logindisini", score: 3, label: "login disini" },
   { keyword: "masukdisini", score: 2, label: "masuk disini" },
   { keyword: "kodeotp", score: 2, label: "kode otp" },
@@ -959,7 +959,7 @@ async function handleAntiRemove(messageUpdate, sock, db) {
           await sock.sendMessage(
             chatId,
             {
-              text: msgContent.extendedTextMessage?.text || "[deleted message]",
+              text: msgContent.extendedTextMessage?.text || "[mensaje eliminado]",
             },
             { quoted: headerMsg },
           );

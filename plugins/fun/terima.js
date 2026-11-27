@@ -29,12 +29,12 @@ const pluginConfig = {
 const celebrationQuotes = [
   "¡Que dure hasta el altar! 💍",
   "¡De amigos a amantes, qué bonito! 💕",
-  "Love is in the air! 💖",
+  "¡El amor está en el aire! 💖",
   "Couple goals detected! 💑",
   "¡No olvides invitarnos a la boda! 💒",
   "¡Felicidades por vuestra vida juntos! 🥰",
   "¡La química es muy fuerte! 🔥",
-  "Match made in heaven! ✨",
+  "¡Combinación hecha en el cielo! ✨",
 ];
 
 async function handler(m, { sock }) {
@@ -118,8 +118,8 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `💕 *WIDIHHHH, CIE CIE DITERIMA* @${shooterJid.split("@")[0]}\n\n` +
-      `@${m.sender.split("@")[0]} dan @${shooterJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
+    `💕 *WIDIHHHH, ¡FELICIDADES! ACEPTADA* @${shooterJid.split("@")[0]}\n\n` +
+      `@${m.sender.split("@")[0]} y @${shooterJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
       `Que duren y sean muy felices 💍`,
     { contextInfo: ctx },
   );

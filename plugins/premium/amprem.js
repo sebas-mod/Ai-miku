@@ -132,7 +132,7 @@ async function handler(m) {
     return m.reply(
       `╭─── ❖ 『 💎 *ALIGHT MOTION PREMIUM* 』 ❖\n` +
         `│ 📌 *Cómo usarlo:*\n` +
-        `│ 1. Ketik \`${p}amprem emailkamu@gmail.com\`\n` +
+        `│ 1. Escribe \`${p}amprem emailkamu@gmail.com\`\n` +
         `│ 2. Revisa la bandeja de entrada/spam y copia el enlace *"Sign in to Alight Creative"*\n` +
         `│ 3. Enviar el enlace a este chat (límite 5 minuto)\n` +
         `│ 4. Tipo \`${p}batalkan\` para cancelar la sesión\n` +

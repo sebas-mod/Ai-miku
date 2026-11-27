@@ -69,7 +69,7 @@ const config = MikuRuntime.config;
       const instansi = parts[1] || 'OSIS'
 
       m.react('💕')
-      await m.reply(`⏳ *Processing...*`)
+      await m.reply(`⏳ *Procesando...*`)
 
       try {
           const imageBuffer = await generateFakeSP(nama, instansi)

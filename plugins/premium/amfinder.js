@@ -201,7 +201,7 @@ async function handler(m, ctx = {}) {
     return m.reply('❌ *Preajuste no encontrado* en el vídeo TikTok.')
   }
 
-  let caption = `✨ *PRESET ALIGHT MOTION DITEMUKAN* ✨\n\n`
+  let caption = `✨ *PRESET ALIGHT MOTION ENCONTRADO* ✨\n\n`
   caption += `• *Título*: ${result.title}\n`
   if (result.author && result.author !== '-') caption += `• *Kreator* : ${result.author}\n`
   caption += `• *Sumber* : ${result.source}\n`

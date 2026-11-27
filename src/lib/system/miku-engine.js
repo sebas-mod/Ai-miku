@@ -286,7 +286,7 @@ const MikuEngine = (() => {
       },
       externalAdReply: {
         title: customTitle || (config.bot?.name || 'Ai Miku'),
-        body: `Created by ${config.owner?.name || 'Arthazy'}`,
+        body: `Creado por ${config.owner?.name || 'Arthazy'}`,
         thumbnailUrl: thumb,
         ...(_smallThumbBuf ? { thumbnail: _smallThumbBuf } : {}),
         sourceUrl: config.info?.website || 'https://arthazyspace.my.id',

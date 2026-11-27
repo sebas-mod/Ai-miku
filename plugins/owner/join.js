@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
   }
 
   let resultText =
-    `🔗 *Multi Join — ${inviteCodes.length} Link Terdeteksi*\n\n` +
+    `🔗 *Multi Join — ${inviteCodes.length} Enlaces detectados*\n\n` +
     `El bot se unirá a todos los grupos uno por uno.\n\n`;
 
   let successCount = 0;

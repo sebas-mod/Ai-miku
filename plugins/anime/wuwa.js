@@ -74,7 +74,7 @@ import axios from 'axios';
       }
 
       m.react('💕')
-      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando sábanas ${query} cariño ~ espera un momento, estás bien 🎮`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Buscando sábanas ${query} cariño ~ espera un momento, estás bien 🎮`)
 
       try {
           const charId = characters[query]

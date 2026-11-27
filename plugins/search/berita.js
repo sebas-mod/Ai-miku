@@ -28,7 +28,7 @@ const createMikuFeature = (module, exports, require) => {
             try {
               const { data } = await axios.get(`https://www.antaranews.com/rss/${FEED[k]}.xml`, { timeout: 15000, responseType: 'text', headers: { 'User-Agent': 'Mozilla/5.0' } })
               const items = parseRss(data); if (!items.length) return reply('No hay noticias leídas por el momento.')
-              return reply(`${B('NOTICIAS ' + k.toUpperCase())}\n━━━━━━━━━━━━━━━━━━━━\n` + items.map((x, i) => `${i + 1}. *${x.title}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + '\n\n_Sumber: Antara News_')
+              return reply(`${B('NOTICIAS ' + k.toUpperCase())}\n━━━━━━━━━━━━━━━━━━━━\n` + items.map((x, i) => `${i + 1}. *${x.title}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + '\n\n_Fuente: Antara News_')
             } catch (e) { console.log('[berita]', e.message); return reply('No se pudieron recuperar las noticias: ' + e.message) }
           },
         }

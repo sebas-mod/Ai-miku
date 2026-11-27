@@ -158,7 +158,7 @@ import axios from "axios";
       return await m.reply(
         `*¡Formato incorrecto!*\n\n` +
         `📌 *Cara Penggunaan:*\n` +
-        `Ketik \`${pfx}${command} <URL Series / Manga ID>\`\n\n` +
+        `Escribe \`${pfx}${command} <URL Series / Manga ID>\`\n\n` +
         `💡 *Ejemplo:*\n` +
         `\`${pfx}${command} https://g.shinigami.asia/series/fc727dec-d1f5-43e8-a77d-37382f636659\``
       );

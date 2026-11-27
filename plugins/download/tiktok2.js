@@ -148,7 +148,7 @@ const te = MikuRuntime.te;
           const result = await savett(url)
 
           const caption =
-              `✅ *Done kak*\n\n` +
+              `✅ *Listo, hermano*\n\n` +
               `👤 *${result.username || '-'}*\n` +
               `👁️ Views: ${result.views || '-'} | ❤️ Likes: ${result.likes || '-'}\n` +
               `� Comments: ${result.comments || '-'} | 🔗 Shares: ${result.shares || '-'}\n` +

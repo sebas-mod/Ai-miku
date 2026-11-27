@@ -611,9 +611,9 @@ async function handleSmartTriggers(m, sock, db) {
 
     if (isMentioned) {
       await m.reply(
-        `Ada yang manggil ${botName}?
+        `Alguien está llamando a ${botName}?
 
-Ada apa manggil aku @${m.sender.split("@")[0]}?`,
+¿Qué quieres de mí @${m.sender.split("@")[0]}?`,
         { mentions: [m.sender] },
       );
       return true;
@@ -707,7 +707,7 @@ async function messageHandler(msg, sock, options = {}) {
       try {
         const packMsg = m.message.stickerPackMessage;
         const packId = packMsg.stickerPackId || m.id;
-        const packName = packMsg.name || "Unknown Pack";
+        const packName = packMsg.name || "Paquete desconocido";
         sock.saveStickerPack(packId, { stickerPackMessage: packMsg }, packName);
       } catch (e) { }
     }
@@ -1613,7 +1613,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` para pagar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1671,7 +1671,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` para pagar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {

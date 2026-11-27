@@ -12,7 +12,7 @@ const pluginConfig = {
     category: 'fun',
     description: 'Pregúntale al bot cómo es algo',
     usage: '.bagaimana <pregunta>',
-    example: '.bagaimana cara jadi sukses?',
+    example: '.bagaimana cómo tener éxito?',
     isOwner: false,
     isPremium: false,
     isGroup: false,

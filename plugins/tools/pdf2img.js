@@ -127,7 +127,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
           if (fs.existsSync(tempPdfPath)) fs.unlinkSync(tempPdfPath);
 
           let caption = `🖼️ *${toSmallCaps('Resultado: extracción de PDF al álbum')}*\n\n` +
-              `• 📑 *${toSmallCaps('Total Halaman:')}* ${totalPages} Halaman\n\n` +
+              `• 📑 *${toSmallCaps('Total Página:')}* ${totalPages} Página\n\n` +
               `꒰ © ${global.namebot} ꒱`;
 
           if (pageBuffers.length > 1) {

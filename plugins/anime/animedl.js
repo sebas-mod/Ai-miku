@@ -209,7 +209,7 @@ import * as cheerio from 'cheerio';
       const isBatch = episode === 'batch'
 
       m.react('💕')
-      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando anime ${query} cariño ~ espera un momento, está bien 🦋`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Buscando anime ${query} cariño ~ espera un momento, está bien 🦋`)
 
       try {
           const searchResults = await searchAnime(query)

@@ -353,7 +353,7 @@ export async function handleActiveGameInput(m, sock) {
     if (s.wrong >= 6) {
       clearActiveGame(m.chat);
       await m.reply(
-        `💀 *GAME OVER!*\n` +
+        `💀 *¡FIN DEL JUEGO!*\n` +
           `${HANGMAN_STAGES[6]}\n` +
           `> La palabra correcta era: *${s.word.toUpperCase()}*`
       );

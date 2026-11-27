@@ -55,7 +55,7 @@ async function fetchViuAccount(deviceId) {
     });
   } catch (err) {
     if (err.name === "AbortError") {
-      throw new Error(`Request timeout setelah ${TIMEOUT_MS}ms`);
+      throw new Error(`Tiempo de espera agotado después de ${TIMEOUT_MS}ms`);
     }
     throw new Error(`La conexión falló: ${err.message}`);
   } finally {

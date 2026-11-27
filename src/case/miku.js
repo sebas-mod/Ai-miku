@@ -113,7 +113,7 @@ async function handleCommand(m, sock) {
           const processTime = (performance.now() - start).toFixed(2);
 
           let pingStatus = "🟢 Excellent";
-          if (latency > 100 && latency <= 300) pingStatus = "🟡 Good";
+          if (latency > 100 && latency <= 300) pingStatus = "🟡 Bien";
           else if (latency > 300) pingStatus = "🔴 Poor";
 
           const text =

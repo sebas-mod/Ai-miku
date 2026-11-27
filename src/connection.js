@@ -483,24 +483,24 @@ async function startConnection(options = {}) {
       const sc = d?.error?.output?.statusCode;
 
       const STATUS_MESSAGES = {
-        400: "⚠️ Bad Request — Mensaje/solicitud inválida, reinicia",
-        401: "🔐 Unauthorized — Session expired, perlu login ulang",
+        400: "⚠️ Solicitud incorrecta — Mensaje/solicitud inválida, reinicia",
+        401: "🔐 No autorizado — sesión caducada, inicia sesión de nuevo",
         403: "🚫 Forbidden — Acceso denegado por WhatsApp, revisa el número",
-        404: "❓ Not Found — Recurso no encontrado",
-        405: "🚧 Method Not Allowed — Operación no permitida",
+        404: "❓ No encontrado — Recurso no disponible",
+        405: "🚧 Método no permitido — Operación no permitida",
         408: "⏱️ Timeout — Koneksi timeout, cek internet",
         410: "📛 Gone — Sesión eliminada del servidor, reinicia",
-        428: "🔄 Connection Required — Perlu reconnect",
+        428: "🔄 Conexión requerida — Es necesario reconectar",
         440: "⚡ Session Conflict — Login di perangkat lain",
         500: "💥 Internal Server Error — Server WhatsApp error",
         501: "📦 Not Implemented — Función aún no soportada por el servidor",
         502: "🌐 Bad Gateway — El servidor de WhatsApp no responde",
         503: "🔧 Service Unavailable — WhatsApp en mantenimiento",
         504: "🕐 Gateway Timeout — Server WhatsApp terlalu lama merespons",
-        515: "🔁 Restart Required — WhatsApp minta restart koneksi",
+        515: "🔁 Reinicio requerido — WhatsApp pide reiniciar la conexión",
       };
 
-      const statusMsg = STATUS_MESSAGES[sc] || `❔ Unknown (kode: ${sc})`;
+      const statusMsg = STATUS_MESSAGES[sc] || `❔ Desconocido (código: ${sc})`;
       colors.logger.warn("whatsapp", `terputus — ${statusMsg}`);
       if (sc === DisconnectReason.loggedOut || sc === 401) {
         colors.logger.error(

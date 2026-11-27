@@ -40,7 +40,7 @@ async function handler(m, { text, prefix }) {
   return m.reply(
     baru
       ? `🚫 Remitente menfess #${t.id} obstruido. No pudo enviarte más menfess (no le dijeron).\nEscribe el mismo comando para desbloquearlo.`
-      : `✅ Bloquear remitente menfess #${t.id} dibuka.`,
+      : `✅ Bloquear remitente menfess #${t.id} desactivado.`,
   );
 }
 

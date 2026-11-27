@@ -104,7 +104,7 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 
       const data = await getEhentai({ url: input, max_images: n })
       const r = root(data)
-      if (BLOCKED.test(JSON.stringify(r?.tags ?? r?.title ?? ''))) return m.reply('❌ Galeri diblokir.')
+      if (BLOCKED.test(JSON.stringify(r?.tags ?? r?.title ?? ''))) return m.reply('❌ Galería bloqueada.')
 
       const title = first(r, 'title', 'name', 'title_jpn') || '-'
       const tags = toArr(r?.tags).map(t => (typeof t === 'string' ? t : first(t, 'name', 'tag'))).filter(Boolean)

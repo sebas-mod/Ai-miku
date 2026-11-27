@@ -781,7 +781,7 @@ const pluginConfig = {
 
     } catch (error) {
       baseRes.status = false;
-      baseRes.error = pick(error.message, 'Unknown Error');
+      baseRes.error = pick(error.message, 'Error desconocido');
       baseRes.data = null;
       return JSON.stringify(baseRes, null, 2);
     }
@@ -847,7 +847,7 @@ const pluginConfig = {
         })
         return reply(
           `*RESULTADOS: ${query}*\n` +
-          `Halaman ${res.data.page}/${res.data.pages}, total ${res.data.total}\n\n` +
+          `Página ${res.data.page}/${res.data.pages}, total ${res.data.total}\n\n` +
           lines.join('\n\n') +
           `\n\nDetail: ${p}anibatch detail <slug>\nDownload: ${p}anibatch dl <slug> <eps>`
         )

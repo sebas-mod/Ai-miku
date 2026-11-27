@@ -501,7 +501,7 @@ const specs = {
       }
       const kind = ['image', 'pdf', 'video', 'audio'].includes(f.sniff.kind) ? f.sniff.kind : 'other'
       const n = pool.add(c.sender, { buffer: f.buffer, name: f.name, kind, mime: f.mime })
-      return `✅ Ditambahkan ke-#${n}: ${ICON[kind]} *${f.name}*\nTotal di keranjang: *${n} file*.`
+      return `✅ Añadido al #${n}: ${ICON[kind]} *${f.name}*\nTotal en la cesta: *${n} file*.`
     }
   },
   pdfbuat: {
@@ -518,7 +518,7 @@ const specs = {
         jpegPages.push({ jpg, width: meta.width || 800, height: meta.height || 1000 })
       }
       const out = await buildPdfFromJpegsPure(jpegPages)
-      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF completado: ${jpegPages.length} halaman • ${kit.fmtSize(out.length)}` }] }
+      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF completado: ${jpegPages.length} páginas • ${kit.fmtSize(out.length)}` }] }
     }
   },
   kolase: {

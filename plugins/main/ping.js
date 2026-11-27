@@ -318,7 +318,7 @@ async function handler(m, { sock }) {
 
     const data = {
         ping: execTime,
-        cpuModel: cpus[0]?.model || "Unknown CPU",
+        cpuModel: cpus[0]?.model || "CPU desconocida",
         cpuSpeed: cpus[0]?.speed || 0,
         cpuCores: cpus.length,
         load: [loadAvg[0].toFixed(2), loadAvg[1].toFixed(2), loadAvg[2].toFixed(2)],

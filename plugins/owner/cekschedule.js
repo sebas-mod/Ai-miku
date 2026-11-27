@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
             text += `   └ ${sched.description}\n`;
 
             if (sched.lastRun && sched.lastRun !== '-' && sched.lastRun !== 'Never') {
-                text += `   └ Last: ${sched.lastRun}\n`;
+                text += `   └ Último: ${sched.lastRun}\n`;
             }
 
             if (sched.stats) {
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
                     text += `   └ Total Resets: ${sched.stats.totalResets}\n`;
                 }
                 if (sched.stats.activeMessages !== undefined) {
-                    text += `   └ Active: ${sched.stats.activeMessages} | Sent: ${sched.stats.totalSent}\n`;
+                    text += `   └ Activos: ${sched.stats.activeMessages} | Enviados: ${sched.stats.totalSent}\n`;
                 }
             }
             text += `\n`;

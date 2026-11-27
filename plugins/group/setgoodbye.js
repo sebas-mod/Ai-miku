@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "setgoodbye",
   alias: ["customgoodbye"],
   category: "group",
-  description: "Set custom goodbye message",
+  description: "Configura un mensaje de despedida personalizado",
   usage: ".setgoodbye <mensaje>",
   example: ".setgoodbye Adiós {user}, ¡hasta la próxima!",
   isOwner: false,
