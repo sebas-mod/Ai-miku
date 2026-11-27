@@ -67,13 +67,13 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ Los nombres de los clanes solo pueden ser letras, números y espacios.`)
       }
 
-      if (!db.db.data.clans) db.db.data.clans = {}
+
 
       if (user.clanId) {
           return m.reply(`❌ Ya tienes un clan\nSalir primero: *.clanleave*`)
       }
 
-      const existingClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
+      const existingClan = Object.values(db.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
       if (existingClan) {
           return m.reply(`❌ Nombre *${clanName}*ya usado`)
       }
@@ -87,7 +87,7 @@ const getDatabase = MikuRuntime.getDatabase;
       }
 
       const emblem = CLAN_EMBLEMS[Math.floor(Math.random() * CLAN_EMBLEMS.length)]
-      const clanId = generateShortId(clanName, db.db.data.clans)
+      const clanId = generateShortId(clanName, db.clans)
       const clan = {
           id: clanId,
           name: clanName,
@@ -103,7 +103,7 @@ const getDatabase = MikuRuntime.getDatabase;
           isOpen: true
       }
 
-      db.db.data.clans[clanId] = clan
+      db.clans[clanId] = clan
       db.updateKoin(m.sender, -CLAN_CREATE_COST)
       db.setUser(m.sender, { clanId })
       await db.save()

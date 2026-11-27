@@ -47,11 +47,11 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ Ya tienes un clan\nSalir primero: *.clanleave*`)
       }
 
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const clan = db.db.data.clans[clanId]
-          || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
-          || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
+
+      const clan = db.clans[clanId]
+          || Object.values(db.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
+          || Object.values(db.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
       if (!clan) return m.reply(`❌ Clan no encontrado`)
       if (!clan.isOpen) return m.reply(`❌ *${clan.name}* actualmente está cerrado`)
       if (clan.members.length >= MAX_MEMBERS) return m.reply(`❌ *${clan.name}* está lleno (${MAX_MEMBERS}/${MAX_MEMBERS})`)

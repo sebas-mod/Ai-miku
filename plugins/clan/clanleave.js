@@ -32,9 +32,9 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const clan = db.db.data.clans[user.clanId]
+
+      const clan = db.clans[user.clanId]
       if (!clan) {
           db.setUser(m.sender, { clanId: null })
           db.save()
@@ -49,7 +49,7 @@ const getDatabase = MikuRuntime.getDatabase;
                   `O expulsar a todos los miembros primero`
               )
           }
-          delete db.db.data.clans[user.clanId]
+          delete db.clans[user.clanId]
           db.setUser(m.sender, { clanId: null })
           db.save()
 

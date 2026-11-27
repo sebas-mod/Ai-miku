@@ -39,7 +39,7 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
@@ -63,7 +63,7 @@ const getDatabase = MikuRuntime.getDatabase;
           .sort((a, b) => b[1] - a[1])
           .slice(0, 3)
 
-      const warHistory = db.db.data.warHistory?.filter(war =>
+      const warHistory = db.warHistory?.filter(war =>
           war.attacker === clan.id || war.defender === clan.id
       ) || []
 

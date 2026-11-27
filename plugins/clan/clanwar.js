@@ -93,12 +93,12 @@ const getDatabase = MikuRuntime.getDatabase;
           )
       }
 
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const myClan = db.db.data.clans[user.clanId]
-      const enemyClan = db.db.data.clans[targetClanId]
-          || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === targetClanId.toLowerCase())
-          || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === targetClanId.toLowerCase())
+
+      const myClan = db.clans[user.clanId]
+      const enemyClan = db.clans[targetClanId]
+          || Object.values(db.clans).find(c => c.name.toLowerCase() === targetClanId.toLowerCase())
+          || Object.values(db.clans).find(c => c.id.toLowerCase() === targetClanId.toLowerCase())
 
       if (!myClan) return m.reply(`❌ Tu clan no fue encontrado`)
       if (!enemyClan) return m.reply(`❌ Clan oponente no encontrado`)

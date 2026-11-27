@@ -56,11 +56,11 @@ const getDatabase = MikuRuntime.getDatabase;
           )
       }
 
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const clan = db.db.data.clans[clanId]
-          || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
-          || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
+
+      const clan = db.clans[clanId]
+          || Object.values(db.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
+          || Object.values(db.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
       if (!clan) return m.reply(`❌ Clan no encontrado`)
 
       const totalGames = (clan.wins || 0) + (clan.losses || 0)

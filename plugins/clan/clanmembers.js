@@ -32,9 +32,9 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const clan = db.db.data.clans[user.clanId]
+
+      const clan = db.clans[user.clanId]
       if (!clan) return m.reply(`❌ Clan no encontrado`)
 
       const emblem = clan.emblem || '🏰'

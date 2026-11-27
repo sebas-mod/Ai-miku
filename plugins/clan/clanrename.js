@@ -51,7 +51,7 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
@@ -60,7 +60,7 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ ¡Solo el *líder* del clan puede cambiar el nombre del clan!`)
       }
 
-      const existingClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === newName.toLowerCase())
+      const existingClan = Object.values(db.clans).find(c => c.name.toLowerCase() === newName.toLowerCase())
       if (existingClan && existingClan.id !== clan.id) {
           return m.reply(`❌ Nombre del clan *${newName}*¡ya usado!`)
       }

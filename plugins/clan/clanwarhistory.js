@@ -35,14 +35,14 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
-      if (!db.db.data.warHistory) db.db.data.warHistory = []
 
-      const warHistory = db.db.data.warHistory
+
+      const warHistory = db.warHistory
           .filter(war => war.attacker === clan.id || war.defender === clan.id)
           .slice(-10)
           .reverse()
@@ -57,7 +57,7 @@ const getDatabase = MikuRuntime.getDatabase;
           const war = warHistory[i]
           const isAttacker = war.attacker === clan.id
           const opponentId = isAttacker ? war.defender : war.attacker
-          const opponent = db.db.data.clans[opponentId]
+          const opponent = db.clans[opponentId]
           const opponentName = opponent?.name || 'Unknown Clan'
 
           const isWin = (isAttacker && war.attackerScore > war.defenderScore) ||

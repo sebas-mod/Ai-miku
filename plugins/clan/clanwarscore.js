@@ -35,15 +35,15 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
-      if (!db.db.data.activeWars) db.db.data.activeWars = {}
+
 
       let activeWar = null
-      for (const war of Object.values(db.db.data.activeWars)) {
+      for (const war of Object.values(db.activeWars)) {
           if (war.attacker === clan.id || war.defender === clan.id) {
               activeWar = war
               break
@@ -54,8 +54,8 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ ¡Tu clan no está en guerra!`)
       }
 
-      const attackerClan = db.db.data.clans[activeWar.attacker]
-      const defenderClan = db.db.data.clans[activeWar.defender]
+      const attackerClan = db.clans[activeWar.attacker]
+      const defenderClan = db.clans[activeWar.defender]
       const timeLeft = Math.max(0, activeWar.endTime - Date.now())
       const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60))
       const minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))

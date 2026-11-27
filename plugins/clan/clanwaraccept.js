@@ -35,7 +35,7 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
@@ -44,12 +44,12 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ ¡Solo *Líder* o *Co-Líder* pueden aceptar la guerra!`)
       }
 
-      if (!db.db.data.pendingWars) db.db.data.pendingWars = {}
+
 
       let pendingWar = null
       let pendingId = null
 
-      for (const [id, war] of Object.entries(db.db.data.pendingWars)) {
+      for (const [id, war] of Object.entries(db.pendingWars)) {
           if (war.targetClanId === clan.id && war.status === 'pending') {
               pendingWar = war
               pendingId = id
@@ -61,9 +61,9 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌ ¡No hay desafíos de guerra entrantes para tu clan!`)
       }
 
-      const attackerClan = db.db.data.clans[pendingWar.attackerClanId]
+      const attackerClan = db.clans[pendingWar.attackerClanId]
       if (!attackerClan) {
-          delete db.db.data.pendingWars[pendingId]
+          delete db.pendingWars[pendingId]
           await db.save()
           return m.reply(`❌ ¡El clan emisor ya no existe!`)
       }
@@ -73,10 +73,10 @@ const getDatabase = MikuRuntime.getDatabase;
       pendingWar.warStart = Date.now()
       pendingWar.warEnd = Date.now() + (24 * 60 * 60 * 1000)
 
-      if (!db.db.data.activeWars) db.db.data.activeWars = {}
+
       const warId = `war_${Date.now()}`
 
-      db.db.data.activeWars[warId] = {
+      db.activeWars[warId] = {
           id: warId,
           attacker: pendingWar.attackerClanId,
           defender: pendingWar.targetClanId,
@@ -89,7 +89,7 @@ const getDatabase = MikuRuntime.getDatabase;
           status: 'active'
       }
 
-      delete db.db.data.pendingWars[pendingId]
+      delete db.pendingWars[pendingId]
       await db.save()
 
       let txt = `⚔️ *ᴄʟᴀɴ ᴡᴀʀ ᴀᴄᴄᴇᴘᴛᴇᴅ!*\n\n`

@@ -35,7 +35,7 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan || !clan.raid || !clan.raid.active) {
           return m.reply(`❌ ¡No hay redadas activas!\n> El líder puede iniciar la incursión con *.clanraid*`)
       }

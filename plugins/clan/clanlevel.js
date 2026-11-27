@@ -56,13 +56,13 @@ const getDatabase = MikuRuntime.getDatabase;
 
       if (args[0]) {
           const clanName = args.join(' ')
-          targetClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
+          targetClan = Object.values(db.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
           if (targetClan) targetId = targetClan.id
       }
 
       if (!targetId && user.clanId) {
           targetId = user.clanId
-          targetClan = db.db.data.clans[targetId]
+          targetClan = db.clans[targetId]
       }
 
       if (!targetClan) {

@@ -39,12 +39,12 @@ const getDatabase = MikuRuntime.getDatabase;
           return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
-      const clan = db.db.data.clans[user.clanId]
+      const clan = db.clans[user.clanId]
       if (!clan) {
           return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
-      const allClans = Object.values(db.db.data.clans)
+      const allClans = Object.values(db.clans)
           .sort((a, b) => {
               if (b.level !== a.level) return (b.level || 1) - (a.level || 1)
               if (b.exp !== a.exp) return (b.exp || 0) - (a.exp || 0)

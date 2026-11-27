@@ -39,9 +39,9 @@ const getDatabase = MikuRuntime.getDatabase;
   async function handler(m) {
       const db = getDatabase()
 
-      if (!db.db.data.clans) db.db.data.clans = {}
 
-      const clans = Object.values(db.db.data.clans)
+
+      const clans = Object.values(db.clans)
       if (clans.length === 0) {
           return m.reply(`🏰 Aún no hay clanes registrados\n\nCrear: *.clancreate <nombre>*`)
       }
