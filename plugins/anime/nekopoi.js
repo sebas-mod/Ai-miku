@@ -194,7 +194,7 @@ import { promisify } from 'node:util'
 
       const segs = text.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'))
           .map(l => new URL(l, m3u8Url).href)
-      if (!segs.length) throw new Error('playlist kosong')
+      if (!segs.length) throw new Error('lista vacía')
 
       const tsPath = outputPath.replace(/\.mp4$/, '.ts')
       const ws = fs.createWriteStream(tsPath)

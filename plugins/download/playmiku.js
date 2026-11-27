@@ -98,7 +98,7 @@ const pluginConfig = {
       try {
           const r = await ytdl(url, 'mp3')
           if (r?.status && r?.dl) yield { name: 'ytdl', dl: r.dl }
-          else console.error('[PLAYAi Miku] ytdl:', r?.mess || 'tidak ada link')
+          else console.error('[PLAYAi Miku] ytdl:', r?.mess || 'no hay enlace')
       } catch (e) {
           console.error('[PLAYAi Miku] ytdl:', e.message)
       }

@@ -491,7 +491,7 @@ const specs = {
         if (!items.length) return '📦 El carrito aún está vacío. Responda el archivo/medio con `.kumpul` para agregar.'
         return uitext.panel('CESTA DE MEDIOS', [
           { head: `📦 *${items.length} BERKAS TERSIMPAN*`, lines: items.map((i, n) => `${n + 1}. ${ICON[i.kind]} ${i.name} (${kit.fmtSize(i.buffer.length)})`) },
-          { head: '🛠️ *PERINTAH OLAH*', lines: ['.pdfbuat • .kolase • .slideshow • .zipkan', '.gabungvideo • .gabungaudio • .mixav', '.kumpul eliminar <no> •.kumpul restablecer'] }
+          { head: '🛠️ *COMANDOS DE PROCESAMIENTO*', lines: ['.pdfbuat • .kolase • .slideshow • .zipkan', '.gabungvideo • .gabungaudio • .mixav', '.kumpul eliminar <no> •.kumpul restablecer'] }
         ])
       }
       const f = await du.getFile(c.sock, c.msg).catch(() => null)

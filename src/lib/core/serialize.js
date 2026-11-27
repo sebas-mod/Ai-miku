@@ -855,7 +855,7 @@ async function serialize(sock, msg, store = {}) {
     const formatUptime = (uptime) => {
       const hours = Math.floor((uptime % 86400) / 3600);
       const minutes = Math.floor((uptime % 3600) / 60);
-      return `${hours} JAM ${minutes} MENIT`;
+      return `${hours} HORAS ${minutes} MINUTOS`;
     };
 
     const db = getDatabase();

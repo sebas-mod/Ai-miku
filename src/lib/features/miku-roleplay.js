@@ -107,7 +107,7 @@ export async function executeRpAction(
 
   if (needTarget && !target) {
     return m.reply(
-      `${emoji} Tag atau reply seseorang untuk melakukan *${label}*!\n> Contoh: \`${m.prefix}${action} @user\``
+      `${emoji} ¡Etiqueta o responde a alguien para hacer *${label}*!\n> Ejemplo: \`${m.prefix}${action} @user\``
     );
   }
 

@@ -128,7 +128,7 @@ const getMedia = async (m) => downloadFromMsg(m)
               if (!out.ok) throw new Error(`No se pudieron recuperar los resultados (${out.status}).`)
               return (await out.text()).trim()
           }
-          if (st.json?.status === 'failed' || st.json?.errorMessage) throw new Error(`OCR falló: ${st.json.errorMessage || 'tidak diketahui'}`)
+          if (st.json?.status === 'failed' || st.json?.errorMessage) throw new Error(`OCR falló: ${st.json.errorMessage || 'desconocido'}`)
           await sleep(POLL_INTERVAL)
       }
       throw new Error('Tiempo de espera, el proceso OCR no se ha completado.')

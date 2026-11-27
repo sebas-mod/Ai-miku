@@ -195,7 +195,7 @@ import * as cheerio from 'cheerio';
           return m.reply(
               `💕 *ᴋᴜꜱᴏɴɪᴍᴇ* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usarlo*\n` +
               `┃\n` +
               `┃   ${m.prefix}kusonime latest\n` +
               `┃   ${m.prefix}kusonime search <título>\n` +

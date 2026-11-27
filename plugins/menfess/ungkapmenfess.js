@@ -26,7 +26,7 @@ const pluginConfig = {
 };
 
 async function handler(m, { sock, text, prefix }) {
-  if (m.isGroup) return m.reply("Pakai di chat pribadi bot ya.");
+  if (m.isGroup) return m.reply("Úsalo en el chat privado del bot.");
   const k = store();
   const [a, b] = String(text || "").trim().split(/\s+/);
   const id = /^[A-Za-z0-9]{5}$/.test(a || "") ? a.toUpperCase() : "";

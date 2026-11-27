@@ -35,7 +35,7 @@ const romanticQuotes = [
   "Si fueras una estrella, yo querría ser el cielo que siempre te acompaña ✨",
   "No necesito GPS, porque mi corazón ya apunta hacia ti 💘",
   "¿Sabes la diferencia entre tú y el café? El café despierta, tú no me dejas dormir pensando en ti ☕",
-  "Boleh pinjam hatimu? Janji bakal dijaga selamanya 💖",
+  "¿Me prestas tu corazón? Prometo cuidarlo siempre 💖",
   "Si el amor fuera una canción, tú serías su melodía más bonita 🎵",
   "Necesito 3 cosas: el sol, la luna y tú. El sol para el día, la luna para la noche, tú para siempre 🌙",
   "Eres la última pieza del puzle que necesito para completar mi vida 🧩",

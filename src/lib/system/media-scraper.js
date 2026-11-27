@@ -66,7 +66,7 @@ async function fallbackToMp3Buffer(url) {
 
     const buffer = Buffer.from(data);
     if (!buffer.length) {
-      throw new Error("Audio fallback kosong");
+      throw new Error("Audio alternativo vacío");
     }
 
     fs.writeFileSync(inputPath, buffer);
@@ -1007,7 +1007,7 @@ async function ttdownFromYuuLabs(url) {
   if (result.videoUrl) {
     downloads.push({
       type: "nowatermark",
-      label: "Video tanpa watermark",
+      label: "Video sin marca de agua",
       url: result.videoUrl,
     });
   }
@@ -1562,7 +1562,7 @@ const _tools = (() => {
         try {
             return await iloveUpscale(buffer, scale)
         } catch (e) {
-            console.log('[iLoveIMG Error] Fallback ke Remini...', e.message)
+            console.log('[iLoveIMG Error] Usando Remini como alternativa...', e.message)
             return reminiEnhance(buffer)
         }
     }
@@ -1678,7 +1678,7 @@ const _tools = (() => {
 
         const contentType = res.headers.get('content-type')?.split(';')[0].trim() || 'application/octet-stream'
         const contentLength = Number(res.headers.get('content-length')) || 0
-        if (contentLength > 500 * 1024 * 1024) throw new Error('File terlalu besar (Max 500 MB)')
+        if (contentLength > 500 * 1024 * 1024) throw new Error('Archivo demasiado grande (máx. 500 MB)')
 
         const disposition = res.headers.get('content-disposition')
         let filename = 'file'
@@ -1792,7 +1792,7 @@ const _tools = (() => {
                 if (!body) return null
                 return typeof it === 'object' ? `*${i + 1}.* ${body.replace(/\n/g, '\n    ')}` : body
             }).filter(Boolean)
-            const more = v.length > 10 ? `\n\n_…dan ${v.length - 10} hasil lainnya_` : ''
+            const more = v.length > 10 ? `\n\n_…y ${v.length - 10} resultados más_` : ''
             return items.join('\n\n') + more
         }
         return formatObject(v)
@@ -1880,7 +1880,7 @@ const _tools = (() => {
             const f = spec.fields[i]
             let v = parts[i] || ''
             if (!v) {
-                if (f.req) return { error: `Bagian *${f.label}* wajib diisi.` }
+                if (f.req) return { error: `Bagian *${f.label}* es obligatorio.` }
                 v = f.def ? f.def() : ''
             }
             if (f.oneOf && v && !f.oneOf.includes(v.toLowerCase())) {
@@ -2026,7 +2026,7 @@ const _tools = (() => {
         let text = spec.plain
             ? (pickText(out.json) || (out.json ? null : String(out.raw || '').trim()))
             : (out.json ? formatAny(out.json) : String(out.raw || '').trim())
-        if (!text || /^<!doctype html|^<html/i.test(text)) throw new Error('Respons API kosong')
+        if (!text || /^<!doctype html|^<html/i.test(text)) throw new Error('Respuesta de la API vacía')
         return { text: `*${spec.title}*\n\n${toWhatsApp(text)}` }
     }
 
@@ -2400,7 +2400,7 @@ export const netguard = (() => {
     if (typeof opts === 'function') { cb = opts; opts = {} }
     dns.lookup(host, { all: true, verbatim: true }, (err, addrs) => {
       if (err) return cb(err)
-      if (!_allowPrivate && addrs.some(a => isPrivateIp(a.address))) return cb(Object.assign(new Error('alamat tujuan privat/internal diblokir'), { code: 'EBLOCKED' }))
+      if (!_allowPrivate && addrs.some(a => isPrivateIp(a.address))) return cb(Object.assign(new Error('dirección de destino privada/interna bloqueada'), { code: 'EBLOCKED' }))
       if (opts && opts.all) return cb(null, addrs)
       cb(null, addrs[0].address, addrs[0].family)
     })
@@ -2425,11 +2425,11 @@ export const netguard = (() => {
         const out = { status: res.statusCode, headers: res.headers, chunks: [], bytes: 0, truncated: false }
         if (method === 'HEAD' || (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)) { res.resume(); return resolve({ ...out, buffer: Buffer.alloc(0) }) }
         const declared = Number(res.headers['content-length'] || 0)
-        if (!truncate && declared > maxBytes) { res.destroy(); return reject(Object.assign(new Error('file terlalu besar'), { code: 'ETOOBIG', size: declared })) }
+        if (!truncate && declared > maxBytes) { res.destroy(); return reject(Object.assign(new Error('archivo demasiado grande'), { code: 'ETOOBIG', size: declared })) }
         res.on('data', (c) => {
           out.bytes += c.length
           if (out.bytes > maxBytes) {
-            if (!truncate) { res.destroy(); return reject(Object.assign(new Error('file terlalu besar'), { code: 'ETOOBIG', size: out.bytes })) }
+            if (!truncate) { res.destroy(); return reject(Object.assign(new Error('archivo demasiado grande'), { code: 'ETOOBIG', size: out.bytes })) }
             out.chunks.push(c.subarray(0, c.length - (out.bytes - maxBytes))); out.bytes = maxBytes; out.truncated = true; res.destroy(); return resolve({ ...out, buffer: Buffer.concat(out.chunks) })
           }
           out.chunks.push(c)
@@ -2458,7 +2458,7 @@ export const netguard = (() => {
       }
       return { ...r, url: url.href, chain, ms: Date.now() - t0 }
     }
-    throw new Error('terlalu banyak redirect')
+    throw new Error('demasiadas redirecciones')
   }
 
   const fileNameOf = (res) => {
@@ -2854,7 +2854,7 @@ export async function JHICog(mode, username, extraId) {
     if (pErrStr !== '') throw new Error(`Profile error: ${pErrStr}`)
 
     const uData = profileRes.u ? profileRes.u : null
-    if (uData === null) throw new Error('Profile error: User data kosong')
+    if (uData === null) throw new Error('Profile error: datos de usuario vacíos')
     if (uData.ip) throw new Error('Profile error: Akun Private lek')
 
     const uId = pick(uData.id, '')
@@ -3029,10 +3029,10 @@ export const premku = {
     if (o.ref_id) body += `\n🔖 Ref : ${o.ref_id}`
     if (o.product) body += `\n📦 Produk : ${o.product}`
     if (o.qty != null) body += `\n🔢 Qty : ${o.qty}`
-    if (o.price != null) body += `\n💵 Harga : ${rp(o.price)}`
+    if (o.price != null) body += `\n💵 Precio : ${rp(o.price)}`
     if (o.total != null) body += `\n🧮 Total : ${rp(o.total)}`
     if (o.status) body += `\n📌 Status : *${o.status}*`
-    if (o.balance_after != null) body += `\n💳 Sisa saldo : ${rp(o.balance_after)}`
+    if (o.balance_after != null) body += `\n💳 Saldo restante : ${rp(o.balance_after)}`
     if (message) body += `\n💬 ${message}`
 
     const lines = accounts.map((a) => `${a.username} | ${a.password}`)
@@ -3357,7 +3357,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
     for (const gid of groupIds) {
         try {
             const msgPayload = coverBuffer
-                ? { image: coverBuffer, caption, footer: 'Klik tombol di bawah untuk download video 👇' }
+                ? { image: coverBuffer, caption, footer: 'Haz clic en el botón de abajo para descargar el video 👇' }
                 : { text: caption, footer: 'Pulsa el botón de abajo para descargar el vídeo 👇' }
 
             await sock.sendMessage(gid, {

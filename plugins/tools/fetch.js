@@ -103,7 +103,7 @@ const pluginConfig = {
       if (isText) {
           let out = buffer.toString('utf8')
           if (/json/.test(mime) || /\.json$/i.test(filename)) { try { out = JSON.stringify(JSON.parse(out), null, 2) } catch {} }
-          await m.reply(out.slice(0, 65536) || '(kosong)')
+          await m.reply(out.slice(0, 65536) || '(vacío)')
           return sock.sendMessage(jid, {
               document: Buffer.from(out, 'utf8'),
               fileName: filename,

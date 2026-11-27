@@ -168,9 +168,9 @@ function parseInterval(str) {
 
 function formatInterval(ms) {
   if (ms >= 24 * 60 * 60 * 1000)
-    return `${Math.floor(ms / (24 * 60 * 60 * 1000))} hari`;
+    return `${Math.floor(ms / (24 * 60 * 60 * 1000))} días`;
   if (ms >= 60 * 60 * 1000) return `${Math.floor(ms / (60 * 60 * 1000))} jam`;
-  return `${Math.floor(ms / (60 * 1000))} menit`;
+  return `${Math.floor(ms / (60 * 1000))} minutos`;
 }
 
 function intervalToCron(ms) {
@@ -243,7 +243,7 @@ async function createBackup() {
 
 async function sendBackupToOwner(backupInfo) {
   if (!sockInstance) {
-    logger.error("AutoBackup", "Socket not initialized");
+    logger.error("AutoBackup", "Socket no inicializado");
     return false;
   }
 
@@ -268,7 +268,7 @@ async function sendBackupToOwner(backupInfo) {
     const caption =
       `🗂️ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ*\n\n` +
       `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-      `┃ 📅 Waktu: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} WIB\n` +
+      `┃ 📅 Hora: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} WIB\n` +
       `┃ 📦 Size: ${sizeInMB} MB\n` +
       `┃ 📁 Files: ${backupInfo.fileCount}\n` +
       `┃ ⏱️ Interval: ${formatInterval(state.intervalMs)}\n` +

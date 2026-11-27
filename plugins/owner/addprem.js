@@ -27,7 +27,7 @@ const pluginConfig = {
   category: "owner",
   description: "Kelola premium users dengan durasi fleksibel (day / m / jam)",
   usage:
-    ".addprem <nomor/@tag> [waktu: 30day / 15m / 2day 30m]\n.delprem <nomor/@tag>\n.listprem",
+    ".addprem <número/@tag> [tiempo: 30day / 15m / 2day 30m]\n.delprem <nomor/@tag>\n.listprem",
   example: ".addprem 6281234567890 30day",
   isOwner: true,
   isPremium: false,

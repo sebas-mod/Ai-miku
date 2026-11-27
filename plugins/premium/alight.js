@@ -137,7 +137,7 @@ async function handler(m, ctx = {}) {
       const pages = Math.ceil(total / perPage)
       const slice = presets.slice((page - 1) * perPage, page * perPage)
 
-      let txt = `✨ *DAFTAR PRESET ALIGHT MOTION* ✨\n`
+      let txt = `✨ *LISTA DE PRESETS ALIGHT MOTION* ✨\n`
       txt += `Halaman *${page}/${pages}* • Total *${total}* Preset\n\n`
 
       slice.forEach((p, i) => {
@@ -273,7 +273,7 @@ async function handler(m, ctx = {}) {
       const safeTitle = (data.title || 'preset_am').replace(/[^a-zA-Z0-9_-]/g, '_')
       const fileName = `${safeTitle}.xml`
 
-      let caption = `✅ *KONVERSI ALIGHT LINK BERHASIL*\n\n`
+      let caption = `✅ *ENLACE DE ALIGHT CONVERTIDO*\n\n`
       caption += `• *Título*: ${data.title || '-'}\n`
       if (data.info) {
         if (data.info.amVersion) caption += `• *Versi AM* : ${data.info.amVersion}\n`

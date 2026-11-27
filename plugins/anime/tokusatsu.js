@@ -122,10 +122,10 @@ import * as cheerio from 'cheerio';
 
       const detail = await scrapeDetail(target);
       if (detail.type === 'episode') {
-        return m.reply(`🎬 *${detail.title || 'Tokusatsu Episode'}*\n\n${detail.info || 'Tidak ada deskripsi.'}\n\n🔗 Jugadores: ${detail.stream || 'Tidak ditemukan'}\n🌐 Fuente: ${detail.targetUrl}`);
+        return m.reply(`🎬 *${detail.title || 'Episodio de Tokusatsu'}*\n\n${detail.info || 'Sin descripción.'}\n\n🔗 Jugadores: ${detail.stream || 'No encontrado'}\n🌐 Fuente: ${detail.targetUrl}`);
       }
 
-      let caption = `📺 *${detail.title || 'Tokusatsu'}*\n\n${detail.synopsis || 'Sinopsis tidak ditemukan.'}\n\n`;
+      let caption = `📺 *${detail.title || 'Tokusatsu'}*\n\n${detail.synopsis || 'Sinopsis no encontrada.'}\n\n`;
       caption += detail.episodes.length
         ? detail.episodes.map((ep, i) => `${i + 1}. ${ep.title}\n${ep.url}`).join('\n\n')
         : '❌ Episodio no encontrado.';

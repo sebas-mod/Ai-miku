@@ -542,7 +542,7 @@ const specs = {
       )
       return uitext.panel('INFORMACIÓN EN PDF', [
         { head: '📄 *DOCUMENTO*', lines: [`Nombre: ${f.name}`, `Halaman : ${info.pageCount}`, `Tamaño del archivo: ${kit.fmtSize(f.buffer.length)}`, `Tamaño de papel: ${paper ? paper[0] : 'Kustom'} (${mm(info.width)}×${mm(info.height)} milímetros)`] },
-        { head: '🧬 *METADATA*', lines: [`Título: ${info.title}`, `Penulis : ${info.author}`, `Pembuat : ${info.creator}`, `Produser : ${info.producer}`, `Cifrado: ${info.encrypted ? 'Ya' : 'Tidak'}`] }
+        { head: '🧬 *METADATA*', lines: [`Título: ${info.title}`, `Penulis : ${info.author}`, `Pembuat : ${info.creator}`, `Produser : ${info.producer}`, `Cifrado: ${info.encrypted ? 'Sí' : 'No'}`] }
       ])
     }
   },

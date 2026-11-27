@@ -220,7 +220,7 @@ import { createCanvas } from '@napi-rs/canvas';
           caption += `\n*+ ${schedules.length - maxShow} otro anime...*\n`
       }
 
-      caption += `\n💕 *Ai Miku:* ${['Selamat nonton darling~', 'Jangan lupa update episode ya!', 'Ayo tonton anime baru~'][Math.floor(Math.random() * 3)]} 🦋`
+      caption += `\n💕 *Ai Miku:* ${['Que lo disfrutes, darling~', '¡No olvides actualizar los episodios!', '¡Vamos a ver el anime nuevo!'][Math.floor(Math.random() * 3)]} 🦋`
 
       return caption
   }

@@ -178,7 +178,7 @@ const pluginConfig = {
       if (args[0].toLowerCase() === 'status') {
           try {
               const up = await checkStatus()
-              return reply(`📡 *Estado de votación API*\n\n• Servidores: ${BASE_URL}\n• Estado: ${up ? 'Online ✅' : 'Tidak merespon ❌'}\n• Tiempo: ${Date.now() - started}EM`)
+              return reply(`📡 *Estado de votación API*\n\n• Servidores: ${BASE_URL}\n• Estado: ${up ? 'Online ✅' : 'Sin respuesta ❌'}\n• Tiempo: ${Date.now() - started}ms`)
           } catch (e) {
               return reply(`❌ No se pudo verificar el estado: ${errMessage(e)}`)
           }
@@ -200,8 +200,8 @@ const pluginConfig = {
               `• Total   : ${r.total ?? '-'}\n` +
               `• Tener éxito: ${r.success ?? '-'}\n` +
               `• Fallar: ${r.failed ?? '-'}\n` +
-              `• Tiempo: ${Date.now() - started}EM\n\n` +
-              `${r.message || 'Vote berhasil dikirim'}\n\n` +
+              `• Tiempo: ${Date.now() - started}ms\n\n` +
+              `${r.message || 'Voto enviado con éxito'}\n\n` +
               `_Creator: ${CREATOR} • ${SALURAN}_`
           )
       } catch (e) {

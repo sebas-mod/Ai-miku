@@ -183,7 +183,7 @@ import * as cheerio from 'cheerio';
           return m.reply(
               `💕 *ᴀɴɪᴍᴇ ᴅᴏᴡɴʟᴏᴀᴅ* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usarlo*\n` +
               `┃\n` +
               `┃   ${m.prefix}animedl <título> | <eps/lote>\n` +
               `┃\n` +

@@ -459,7 +459,7 @@ class Toolkit {
                         let output = Buffer.concat(chunks);
 
                         if (!output.length) {
-                            return fail(new Error('Output kosong — cek format atau timestamp video'));
+                            return fail(new Error('Salida vacía — revisa el formato o la marca de tiempo del video'));
                         }
 
                         if (resize) {

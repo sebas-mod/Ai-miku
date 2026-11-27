@@ -107,7 +107,7 @@ async function createDatabaseBackup() {
 async function sendStoreBackup(sock) {
     if (!sock) {
         console.error('[StoreBackup] Socket not provided')
-        return { success: false, error: 'Socket not initialized' }
+        return { success: false, error: 'Socket no inicializado' }
     }
 
     const ownerNumbers = config.owner?.number || []
@@ -135,12 +135,12 @@ async function sendStoreBackup(sock) {
         const caption =
             `🗃️ *ꜱᴛᴏʀᴇ ʙᴀᴄᴋᴜᴘ*\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-            `┃ 📅 Waktu: ${timeHelper.formatDateTime('DD MMMM YYYY HH:mm:ss')} WIB\n` +
+            `┃ 📅 Hora: ${timeHelper.formatDateTime('DD MMMM YYYY HH:mm:ss')} WIB\n` +
             `┃ 📦 Size: ${sizeDisplay}\n` +
             `┃ 📁 Files: ${backupInfo.fileCount}\n` +
             `┃ 🔖 Schema: v${SCHEMA_VERSION}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> Type-safe backup. Kompatibel dengan versi mendatang.\n` +
+            `> Copia segura y compatible con versiones futuras.\n` +
             `> ${config.bot?.name || 'Ai Miku'} Store Backup System`
 
         await sock.sendMessage(ownerJid, {

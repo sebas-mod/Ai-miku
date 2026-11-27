@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
     text += `┃ 📅 ${day} ${months[month - 1]}\n`
 
     if (isToday) {
-        text += `┃ 🎉 *HARI INI ULTAH!*\n`
+        text += `┃ 🎉 *¡HOY ES SU CUMPLEAÑOS!*\n`
     } else {
         text += `┃ 🕕 ${diffDays} otro el\n`
     }

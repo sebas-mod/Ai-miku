@@ -49,7 +49,7 @@ const pluginConfig = {
         return {
           success: false,
           code: 400,
-          result: { error: 'Inputnya kagak boleh kosong bree 🗿' }
+          result: { error: '¡La entrada no puede estar vacía, colega! 🗿' }
         }
       }
 
@@ -208,7 +208,7 @@ const pluginConfig = {
         return {
           success: false,
           code: 400,
-          result: { error: 'Inputnya kagak boleh kosong bree 🗿' }
+          result: { error: '¡La entrada no puede estar vacía, colega! 🗿' }
         }
       }
 
@@ -241,7 +241,7 @@ const pluginConfig = {
         return {
           success: false,
           code: 400,
-          result: { error: 'Inputnya kagak boleh kosong bree 🗿' }
+          result: { error: '¡La entrada no puede estar vacía, colega! 🗿' }
         }
       }
 
@@ -300,13 +300,13 @@ const pluginConfig = {
         text += `Nombre: ${set.title}\n`
         text += `ID : ${set.id}\n`
         text += `Nombre del conjunto: ${set.name}\n`
-        text += `Descripción: ${set.description || 'Tidak ada deskripsi'}\n`
-        text += `Etiquetas: ${set.tags?.join(', ') || 'Tidak ada tags'}\n`
+        text += `Descripción: ${set.description || 'Sin descripción'}\n`
+        text += `Etiquetas: ${set.tags?.join(', ') || 'Sin etiquetas'}\n`
         text += `Jenis : ${set.kind}\n`
         text += `Tipe : ${set.type}\n`
-        text += `Público: ${set.public ? 'Ya' : 'Tidak'}\n`
-        text += `Seguro: ${set.safe ? 'Ya' : 'Tidak'}\n`
-        text += `Verificado: ${set.verified ? 'Ya' : 'Tidak'}\n`
+        text += `Público: ${set.public ? 'Sí' : 'No'}\n`
+        text += `Seguro: ${set.safe ? 'Sí' : 'No'}\n`
+        text += `Verificado: ${set.verified ? 'Sí' : 'No'}\n`
         text += `Cantidad Sticker: ${set.stickerCount}\n`
         text += `Link : https://t.me/addstickers/${set.name}\n\n`
 

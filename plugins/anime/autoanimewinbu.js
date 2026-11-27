@@ -85,7 +85,7 @@ const isRunning = MikuRuntime.isRunning;
 
               let txt = `📊 *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ sᴛᴀᴛᴜs*\n\n`
               txt += `> 🔄 Status: *${running ? '🟢 ON' : '🔴 OFF'}*\n`
-              txt += `> 💾 Inicio automático: *${state.enabled ? 'Ya' : 'Tidak'}*\n`
+              txt += `> 💾 Inicio automático: *${state.enabled ? 'Sí' : 'No'}*\n`
               txt += `> 📋 Ya enviado: *${sent.size}* episodios\n`
               txt += `> ⏱️ Intervalos: *${state.interval || 5} minuto*\n`
               txt += `> 📲 Grupo objetivo: *${groups.length}*\n`

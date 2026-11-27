@@ -55,7 +55,7 @@ import axios from 'axios';
           return m.reply(
               `💕 *ᴡᴜᴛʜᴇʀɪɴɢ ᴡᴀᴠᴇꜱ* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usarlo*\n` +
               `┃\n` +
               `┃   ${m.prefix}wuwa <nombre del personaje>\n` +
               `┃\n` +

@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
             `💭 *sᴛᴀᴛᴜs ʜᴜʙᴜɴɢᴀɴ*\n\n` +
             `*${nama}* está coqueteando con @${partnerJid.split('@')[0]}\n` +
             `Status: *Digantung* 😅\n\n` +
-            `Menunggu jawaban...`,
+            `Esperando respuesta...`,
             { mentions: [targetJid, partnerJid] }
         )
     }

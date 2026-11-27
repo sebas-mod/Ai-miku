@@ -109,7 +109,7 @@ export function startDatabaseCacheCleaner() {
   if (!initial.missing && initial.deleted > 0) {
     logger.info(
       "cache",
-      `auto clear database/cache: ${initial.deleted} file (${initial.formattedFreed}) dihapus`,
+      `limpieza automática de base/caché: ${initial.deleted} archivos (${initial.formattedFreed}) eliminados`,
     );
   }
 
@@ -118,12 +118,12 @@ export function startDatabaseCacheCleaner() {
     if (!r.missing && r.deleted > 0) {
       logger.info(
         "cache",
-        `auto clear database/cache: ${r.deleted} file (${r.formattedFreed}) dihapus`,
+        `limpieza automática de base/caché: ${r.deleted} archivos (${r.formattedFreed}) eliminados`,
       );
     }
   }, minutes * 60 * 1000);
   timer.unref?.();
 
-  logger.info("cache", `auto clear database/cache aktif tiap ${minutes} menit`);
+  logger.info("cache", `limpieza automática de base/caché activa cada ${minutes} minutos`);
   return true;
 }

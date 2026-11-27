@@ -131,7 +131,7 @@ async function handler(m) {
   if (!emailFound) {
     return m.reply(
       `╭─── ❖ 『 💎 *ALIGHT MOTION PREMIUM* 』 ❖\n` +
-        `│ 📌 *Cara Pakai:*\n` +
+        `│ 📌 *Cómo usarlo:*\n` +
         `│ 1. Ketik \`${p}amprem emailkamu@gmail.com\`\n` +
         `│ 2. Cek inbox/spam email & salin link *"Sign in to Alight Creative"*\n` +
         `│ 3. Enviar el enlace a este chat (límite 5 minuto)\n` +
@@ -165,7 +165,7 @@ async function handler(m) {
     clearAmSession(userId);
     await m.react("❌").catch(() => {});
     return m.reply(
-      `❌ *No se pudo enviar el enlace de verificación:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Server sedang sibuk."}`
+      `❌ *No se pudo enviar el enlace de verificación:* ${err.response?.data?.error || err.response?.data?.message || err.message || "El servidor está ocupado."}`
     );
   }
 

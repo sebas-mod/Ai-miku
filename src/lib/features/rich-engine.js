@@ -234,7 +234,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     } catch {}
     return true;
   } catch (err) {
-    console.error(`[MIKU-RICH:${title}] gagal kirim:`, err.message);
+    console.error(`[MIKU-RICH:${title}] error al enviar:`, err.message);
     await sock.sendMessage(
       m.chat,
       {

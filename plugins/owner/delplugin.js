@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
         `╭─〔 *DETAIL* 〕───⬣\n` +
         `│ File: \`${found.file}\`\n` +
         `│ Folder: \`${found.folder}\`\n` +
-        `│ Unload: ${unloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+        `│ Unload: ${unloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
         `¡El plugin se eliminó y ya no está activo!`,
     );

@@ -131,7 +131,7 @@ const config = MikuRuntime.config;
               file.on('finish', () => {
                   file.close(() => {
                       if (!fs.existsSync(dest) || fs.statSync(dest).size <= 0) {
-                          return reject(new Error(`Asset gagal disimpan: ${dest}`))
+                          return reject(new Error(`No se pudo guardar el recurso: ${dest}`))
                       }
                       resolve()
                   })

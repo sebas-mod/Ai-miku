@@ -234,7 +234,7 @@ export async function sendButtons(sock, jid, o = {}, extra = {}) {
   // Quick reply buttons (tetap utuh tanpa kotak hitam locationMessage)
   const quickButtons = buttonsIn.map((b, i) => ({
     buttonId: String(b.id || b.command || `btn_${i + 1}`),
-    buttonText: { displayText: String(b.text || b.title || b.display_text || `Pilihan ${i + 1}`) },
+    buttonText: { displayText: String(b.text || b.title || b.display_text || `Opción ${i + 1}`) },
     type: 1,
   }));
 

@@ -118,7 +118,7 @@ async function handler(m, ctx = {}) {
     return m.reply(
       `🔎 *PENCARI PRESET KOMENTAR TIKTOK*\n\n` +
       `Escanee descripciones y comentarios de videos TikTok para encontrar enlaces preestablecidos de Alight Motion / Google Drive.\n\n` +
-      `📌 *Cara Pakai:*\n` +
+      `📌 *Cómo usarlo:*\n` +
       `\`${usedPrefix + command} <url TikTok>\``
     )
   }

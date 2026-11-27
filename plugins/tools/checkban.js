@@ -58,7 +58,7 @@ const pluginConfig = {
           const registered = detail.registered
 
           const statusText = banned === true ? '🔴 BANNED'
-              : banned === false ? '🟢 TIDAK BANNED'
+              : banned === false ? '🟢 NO BANEADO'
               : String(d.status || 'Unknown').toUpperCase()
           const registeredText = registered === true ? '✅ Terdaftar' : registered === false ? '❌ No registrado' : '❔ Desconocido'
           const existsText = exists === true ? '✅ Ya' : exists === false ? '❌No' : '❔ Desconocido'

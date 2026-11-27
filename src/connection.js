@@ -79,15 +79,15 @@ function getIncomingMessagePreview(message) {
     stickerMessage: "STIKER",
     documentMessage: "DOKUMEN",
     contactMessage: "KONTAK",
-    contactsArrayMessage: "DAFTAR KONTAK",
+    contactsArrayMessage: "LISTA DE CONTACTOS",
     locationMessage: "LOKASI",
     liveLocationMessage: "LOKASI LANGSUNG",
     buttonsResponseMessage: "RESPONS TOMBOL",
-    listResponseMessage: "RESPONS DAFTAR",
+    listResponseMessage: "RESPUESTA DE LISTA",
     reactionMessage: "REAKSI",
     pollUpdateMessage: "JAWABAN POLLING",
   };
-  return `[${labels[type] || (type ? type.replace(/Message$/, "").toUpperCase() : "PESAN NON-TEKS")}]`;
+  return `[${labels[type] || (type ? type.replace(/Message$/, "").toUpperCase() : "MENSAJE NO TEXTO")}]`;
 }
 
 function logIncomingMessages(messages, type) {
@@ -107,17 +107,17 @@ function logIncomingMessages(messages, type) {
 
     // Log chat masuk berwarna-warni di console (ANSI langsung agar selalu berwarna di panel)
     const badge = isGroup
-      ? "\x1b[1;45;97m 👥 GRUP \x1b[0m"
+      ? "\x1b[1;45;97m 👥 GRUPO \x1b[0m"
       : isChannel
       ? "\x1b[1;43;30m 📢 SALURAN \x1b[0m"
       : "\x1b[1;46;30m 👤 PRIBADI \x1b[0m";
     const bdr = isGroup ? colors.c.magenta : isChannel ? colors.c.yellow : colors.c.cyan;
     const timeNow = new Date().toLocaleTimeString("id-ID", { timeZone: "Asia/Jakarta" });
     process.stdout.write(
-      `\n${bdr("╭━━━〔")} \x1b[1;97m💬 PESAN MASUK\x1b[0m ${badge} ${bdr("〕━━━╮")}\n` +
+      `\n${bdr("╭━━━〔")} \x1b[1;97m💬 MENSAJE ENTRANTE\x1b[0m ${badge} ${bdr("〕━━━╮")}\n` +
       `${bdr("┃")} ${colors.c.cyan.bold("📍 Chat     :")} ${colors.c.white(chat)}\n` +
       `${bdr("┃")} ${colors.c.green.bold("👤 Pengirim :")} ${colors.c.yellow.bold(displayName)}\n` +
-      `${bdr("┃")} ${colors.c.magenta.bold("🕒 Waktu    :")} ${colors.c.white(timeNow + " WIB")}\n` +
+      `${bdr("┃")} ${colors.c.magenta.bold("🕒 Hora     :")} ${colors.c.white(timeNow + " WIB")}\n` +
       `${bdr("┃")} ${colors.c.yellow.bold("💌 Isi      :")} ${colors.c.white.bold(preview)}\n` +
       `${bdr("╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯")}\n`,
     );
@@ -139,7 +139,7 @@ function startWatchdog(reconnectFn, options) {
     if (silentMs > WATCHDOG_TIMEOUT && connectionState.isReady) {
       colors.logger.warn(
         "watchdog",
-        `Pesan tidak terdeteksi, maka sistem akan me restart, supaya fresh`,
+        `Mensaje no detectado: el sistema se reiniciará para refrescar`,
       );
       connectionState.isReady = false;
       connectionState.isConnected = false;
@@ -153,7 +153,7 @@ function startWatchdog(reconnectFn, options) {
   if (!hasConnectedOnce) {
     colors.logger.success(
       "watchdog",
-      `aktif, batas waktu ${WATCHDOG_TIMEOUT / 60000} menit`,
+      `activo, límite ${WATCHDOG_TIMEOUT / 60000} minutos`,
     );
   }
 }
@@ -322,7 +322,7 @@ async function startConnection(options = {}) {
   if (connectionState.sock) {
     try {
       connectionState.sock.end();
-      if (!hasConnectedOnce) colors.logger.debug("whatsapp", "koneksi sebelumnya ditutup");
+      if (!hasConnectedOnce) colors.logger.debug("whatsapp", "la conexión anterior se cerró");
     } catch (e) { }
     connectionState.sock = null;
   }
@@ -404,7 +404,7 @@ async function startConnection(options = {}) {
 
     if (!phoneNumber) {
       console.log("");
-      colors.logger.warn("pairing", "nomor pairing belum diatur di config");
+      colors.logger.warn("pairing", "el número de emparejamiento no está configurado en config");
       console.log("");
       phoneNumber = await askQuestion(
         colors.chalk.cyan(
@@ -415,7 +415,7 @@ async function startConnection(options = {}) {
 
     phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
 
-    colors.logger.info("pairing", `meminta kode untuk ${phoneNumber}`);
+    colors.logger.info("pairing", `solicitando código para ${phoneNumber}`);
 
     try {
       // Jangan memakai custom code statis seperti "MIKUCOM".
@@ -427,7 +427,7 @@ async function startConnection(options = {}) {
       const code = String(rawCode || "").replace(/[^A-Za-z0-9]/g, "");
 
       if (code.length !== 8) {
-        throw new Error(`Pairing code tidak valid (${code.length} karakter)`);
+        throw new Error(`Código de emparejamiento inválido (${code.length} caracteres)`);
       }
 
       const formattedCode = code.match(/.{1,4}/g)?.join("-") || code;
@@ -438,7 +438,7 @@ async function startConnection(options = {}) {
           colors.c.magenta.bold("✨ AI MIKU — WHATSAPP PAIRING CODE ✨"),
           "",
           `   🔑 KODE PAIRING : \x1b[1;38;2;0;0;0;48;2;255;255;255m  ${formattedCode}  \x1b[0m`,
-          `   📱 NOMOR TARGET : ${colors.c.cyan.bold("+" + phoneNumber)}`,
+          `   📱 NÚMERO OBJETIVO : ${colors.c.cyan.bold("+" + phoneNumber)}`,
           "",
           colors.c.yellow("1. Abre WhatsApp > Dispositivos vinculados > Vincular dispositivo"),
           colors.c.yellow("2. Elige 'Vincular con número de teléfono'"),
@@ -457,7 +457,7 @@ async function startConnection(options = {}) {
     const { connection: c, lastDisconnect: d, qr: q } = u;
 
     if (q && !usePairingCode) {
-      colors.logger.info("qr", "Kode QR siap, silakan scan");
+      colors.logger.info("qr", "Código QR listo, escanéalo");
       const { default: qrcode } = await import("qrcode");
       qrcode.toString(q, { type: "terminal", small: true }, (err, qrText) => {
         if (!err) console.log(qrText);
@@ -483,19 +483,19 @@ async function startConnection(options = {}) {
       const sc = d?.error?.output?.statusCode;
 
       const STATUS_MESSAGES = {
-        400: "⚠️ Bad Request — Pesan/request tidak valid, coba restart",
+        400: "⚠️ Bad Request — Mensaje/solicitud inválida, reinicia",
         401: "🔐 Unauthorized — Session expired, perlu login ulang",
-        403: "🚫 Forbidden — Akses ditolak oleh WhatsApp, cek nomor",
-        404: "❓ Not Found — Resource tidak ditemukan",
-        405: "🚧 Method Not Allowed — Operasi tidak diizinkan",
+        403: "🚫 Forbidden — Acceso denegado por WhatsApp, revisa el número",
+        404: "❓ Not Found — Recurso no encontrado",
+        405: "🚧 Method Not Allowed — Operación no permitida",
         408: "⏱️ Timeout — Koneksi timeout, cek internet",
-        410: "📛 Gone — Session dihapus dari server, restart",
+        410: "📛 Gone — Sesión eliminada del servidor, reinicia",
         428: "🔄 Connection Required — Perlu reconnect",
         440: "⚡ Session Conflict — Login di perangkat lain",
         500: "💥 Internal Server Error — Server WhatsApp error",
-        501: "📦 Not Implemented — Fitur belum didukung server",
-        502: "🌐 Bad Gateway — Server WhatsApp tidak merespons",
-        503: "🔧 Service Unavailable — WhatsApp sedang maintenance",
+        501: "📦 Not Implemented — Función aún no soportada por el servidor",
+        502: "🌐 Bad Gateway — El servidor de WhatsApp no responde",
+        503: "🔧 Service Unavailable — WhatsApp en mantenimiento",
         504: "🕐 Gateway Timeout — Server WhatsApp terlalu lama merespons",
         515: "🔁 Restart Required — WhatsApp minta restart koneksi",
       };
@@ -505,7 +505,7 @@ async function startConnection(options = {}) {
       if (sc === DisconnectReason.loggedOut || sc === 401) {
         colors.logger.error(
           "whatsapp",
-          "sesi habis — hapus folder storage lalu restart",
+          "sesión agotada — borra la carpeta storage y reinicia",
         );
         connectionState.reconnectAttempts = 0;
         return;
@@ -516,13 +516,13 @@ async function startConnection(options = {}) {
         if (connectionState.reconnectAttempts <= 3) {
           colors.logger.info(
             "whatsapp",
-            `percobaan sambung ulang ${connectionState.reconnectAttempts}/3 dalam 10 detik`,
+            `reintento de conexión ${connectionState.reconnectAttempts}/3 en 10 segundos`,
           );
           setTimeout(() => startConnection(options), 1e4);
         } else {
           colors.logger.error(
             "whatsapp",
-            "konflik sesi — perangkat lain terdeteksi, matikan bot yang lain",
+            "conflicto de sesión — otro dispositivo detectado, apaga el otro bot",
           );
           connectionState.reconnectAttempts = 0;
         }
@@ -535,7 +535,7 @@ async function startConnection(options = {}) {
         if (connectionState.reconnectAttempts <= m) {
           colors.logger.info(
             "whatsapp",
-            `percobaan sambung ulang ${connectionState.reconnectAttempts}/${m}`,
+            `reintento de conexión ${connectionState.reconnectAttempts}/${m}`,
           );
           setTimeout(
             () => startConnection(options),
@@ -544,7 +544,7 @@ async function startConnection(options = {}) {
         } else {
           colors.logger.error(
             "whatsapp",
-            `gagal sambung ulang setelah ${m} percobaan`,
+            `no se pudo reconectar tras ${m} intentos`,
           );
         }
       } else {
@@ -560,9 +560,9 @@ async function startConnection(options = {}) {
 
       try {
         await sock.uploadPreKeys();
-        if (!hasConnectedOnce) colors.logger.success("session", "pre-keys berhasil di-upload ke server");
+        if (!hasConnectedOnce) colors.logger.success("session", "pre-keys subidas al servidor");
       } catch (e) {
-        if (!hasConnectedOnce) colors.logger.warn("session", `gagal upload pre-keys: ${e.message}`);
+        if (!hasConnectedOnce) colors.logger.warn("session", `error al subir pre-keys: ${e.message}`);
       }
 
       const n = sock.user?.id?.split(":")[0] || sock.user?.id?.split("@")[0];
@@ -609,12 +609,12 @@ async function startConnection(options = {}) {
             await new Promise((r) => setTimeout(r, 1200));
           }
         } else {
-          if (!hasConnectedOnce) colors.logger.warn("whatsapp", "fitur follow saluran tidak tersedia pada koneksi ini");
+          if (!hasConnectedOnce) colors.logger.warn("whatsapp", "la función de seguir canal no está disponible en esta conexión");
         }
       } catch (e) {
         if (!hasConnectedOnce) colors.logger.warn("whatsapp", `pengaturan saluran dilewati: ${e.message}`);
       }
-      if (!hasConnectedOnce) colors.logger.success("whatsapp", "siap menerima pesan");
+      if (!hasConnectedOnce) colors.logger.success("whatsapp", "listo para recibir mensajes");
       if (!hasConnectedOnce) {
       try {
         initAutoBackup(sock);
@@ -852,7 +852,7 @@ async function startConnection(options = {}) {
     lastMessageReceived = Date.now();
     logIncomingMessages(messages, type);
     if (config.dev?.debugLog) {
-      colors.logger.debug("pesan", `${messages.length} pesan, tipe=${type}`);
+      colors.logger.debug("pesan", `${messages.length} mensajes, tipo=${type}`);
     }
     if (type !== "notify" && type !== "append") return;
 
@@ -1150,11 +1150,11 @@ async function startConnection(options = {}) {
       // Do not print messages sent by the bot itself, statuses, or protocol updates.
       if (!msg.key?.fromMe && jid !== "status@broadcast" && config.features?.logMessage) {
         const { text, type: terminalMessageType } = extractTerminalContent(msg.message);
-        const fallbackText = text || `[${terminalMessageType.replace(/Message$/i, "").replace(/([a-z])([A-Z])/g, "$1 $2") || "Pesan"}]`;
+        const fallbackText = text || `[${terminalMessageType.replace(/Message$/i, "").replace(/([a-z])([A-Z])/g, "$1 $2") || "Mensaje"}]`;
         const cachedGroup = isGroup ? (groupCache.get(jid) || store.chats.get(jid) || {}) : {};
         colors.logMessage({
           chatType: isGroup ? "group" : (jid?.endsWith("@newsletter") ? "newsletter" : "private"),
-          groupName: cachedGroup.subject || cachedGroup.name || "Grup WhatsApp",
+          groupName: cachedGroup.subject || cachedGroup.name || "Grupo de WhatsApp",
           pushName: msg.pushName || "",
           sender: senderJid || jid,
           message: fallbackText,
@@ -1208,7 +1208,7 @@ async function startConnection(options = {}) {
       sock.ev.on("call", async (calls) => {
         for (const call of calls) {
           if (call.status === "offer") {
-            colors.logger.warn("Call", `Menolak panggilan dari ${call.from}`);
+            colors.logger.warn("Call", `Rechazando llamada de ${call.from}`);
             await sock.rejectCall(call.id, call.from);
 
             await sock.sendMessage(call.from, {
@@ -1228,13 +1228,13 @@ async function startConnection(options = {}) {
                     targetJid = pn;
                     colors.logger.info(
                       "Call",
-                      `Berhasil resolve @lid ke PN: ${targetJid}`,
+                      `Resuelto @lid a PN: ${targetJid}`,
                     );
                   }
                 } catch (e) {
                   colors.logger.warn(
                     "Call",
-                    `Gagal resolve LID ke PN: ${e.message}`,
+                    `Error al resolver LID a PN: ${e.message}`,
                   );
                 }
               }
@@ -1251,24 +1251,24 @@ async function startConnection(options = {}) {
                     );
                     colors.logger.info(
                       "Call",
-                      `Berhasil memblokir penelpon di WA & Bot: ${sanitizedJid}`,
+                      `Llamante bloqueado en WA y Bot: ${sanitizedJid}`,
                     );
                   } catch (waErr) {
                     colors.logger.warn(
                       "Call",
-                      `Diblokir di DB Bot, tapi gagal di WA Server (${sanitizedJid}): ${waErr.message}`,
+                      `Bloqueado en la BD del Bot, pero falló en el servidor WA (${sanitizedJid}): ${waErr.message}`,
                     );
                   }
                 } catch (e) {
                   colors.logger.error(
                     "Call",
-                    `Gagal memblokir di DB: ${e.message}`,
+                    `Error al bloquear en la BD: ${e.message}`,
                   );
                 }
               } else {
                 colors.logger.warn(
                   "Call",
-                  `Melewati blokir karena gagal mendapatkan nomor asli dari @lid: ${targetJid}`,
+                  `Bloqueo omitido: no se obtuvo el número real de @lid: ${targetJid}`,
                 );
               }
             }
@@ -1362,10 +1362,10 @@ async function logout() {
     connectionState.sock = null;
     connectionState.connectedAt = null;
 
-    colors.logger.success("koneksi", "Keluar dan sesi dihapus");
+    colors.logger.success("koneksi", "Sesión cerrada y eliminada");
     return true;
   } catch (error) {
-    colors.logger.error("koneksi", "Gagal logout:", error.message);
+    colors.logger.error("koneksi", "Error al cerrar sesión:", error.message);
     return false;
   }
 }

@@ -966,7 +966,7 @@ async function handleAntiRemove(messageUpdate, sock, db) {
         } else {
           await sock.sendMessage(
             chatId,
-            { text: "[AntiDelete] Pesan dihapus (tipe: " + msgType + ")" },
+            { text: "[AntiDelete] Mensaje eliminado (tipo: " + msgType + ")" },
             { quoted: headerMsg },
           );
         }

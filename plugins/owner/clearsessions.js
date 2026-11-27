@@ -41,7 +41,7 @@ async function handler(m) {
         await m.reply(
             `╭┈┈⬡「 🗑️ *LIMPIAR SESIÓN* 」\n` +
             `┃ 🧹 Sesiones y claves de grupo eliminadas: *${r.files}*\n` +
-            `┃ 💾 Ruang kosong: *${fmt(r.bytes)}*\n` +
+            `┃ 💾 Espacio libre: *${fmt(r.bytes)}*\n` +
             (r.failed ? `┃ ⚠️ No se pudieron borrar: *${r.failed}* archivos\n` : '') +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
             `> creds.json sigue a salvo y el bot no cierra sesión. Las sesiones de chat se recrean automáticamente; ` +

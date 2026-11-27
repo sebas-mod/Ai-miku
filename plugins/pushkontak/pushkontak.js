@@ -66,7 +66,7 @@ const pluginConfig = {
           await sendVcf(sock, m.sender, saved, {
               fileName: `Contacto_${nama}_${saved.length}`,
               caption: `*▢ AUTOGUARDADO DE CONTACTOS*\n• Total : ${saved.length} contactos\n• Grupo : ${meta.subject || '-'}\n\nImporta este archivo en tu móvil para guardar todos los contactos.`
-          }).catch(e => console.error('[PUSHKONTAK] gagal kirim VCF:', e?.message || e))
+          }).catch(e => console.error('[PUSHKONTAK] error al enviar el VCF:', e?.message || e))
       }
 
       return reply(`*▢ ENVÍO DE CONTACTOS TERMINADO*\n• Correctos : ${result.ok} miembros\n• Fallidos : ${result.fail} miembros\n• Guardados : ${saved.length} contactos (VCF)`)

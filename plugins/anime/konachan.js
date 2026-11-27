@@ -31,7 +31,7 @@ const searchKonachan = MikuRuntime.searchKonachan;
     if (!args[0]) {
       let txt = `🌸 *KONACHAN SEARCH* 🌸\n\n`;
       txt += `¡Hola hermana! ¿Buscas referencias interesantes de imágenes de anime? ¡Aquí lo obtuve de Konachan!\n\n`;
-      txt += `*Cara Pakai:*\n`;
+      txt += `*Cómo usarlo:*\n`;
       txt += `👉 \`${m.prefix}konachan <tag1> <tag2>\`\n\n`;
       txt += `*Ejemplo:*\n`;
       txt += `\`${m.prefix}konachan long_hair\`\n`;

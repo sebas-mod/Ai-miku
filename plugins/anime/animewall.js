@@ -206,7 +206,7 @@ import { createCanvas } from '@napi-rs/canvas';
           caption += `⚠️ *Nota:* API está ocupado, este es un fondo de pantalla de respaldo.\n`
       }
 
-      caption += `💕 *Ai Miku:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
+      caption += `💕 *Ai Miku:* ${query ? `Nih wallpaper ${query} darling~` : 'Wallpaper aleatorio para ti, darling~'} 🦋`
 
       return caption
   }

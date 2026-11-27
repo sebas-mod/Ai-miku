@@ -49,7 +49,7 @@ export function backupSessionNow(src = getSessionPath()) {
     }
     return target;
   } catch (e) {
-    logger.warn("session", `gagal backup session: ${e.message}`);
+    logger.warn("session", `error al respaldar la sesión: ${e.message}`);
     return null;
   }
 }

@@ -75,7 +75,7 @@ class Database {
 
     logger.info(
       "database",
-      `migrasi ${oldFiles.length} file dari src/database ke ${path.relative(process.cwd(), this.dbPath)}/`,
+      `migrando ${oldFiles.length} archivos de src/database a ${path.relative(process.cwd(), this.dbPath)}/`,
     );
     this.ensureDir();
 
@@ -85,10 +85,10 @@ class Database {
       try {
         fs.copyFileSync(src, dest);
       } catch (e) {
-        logger.error("database", `gagal migrasi ${file}: ${e.message}`);
+        logger.error("database", `error al migrar ${file}: ${e.message}`);
       }
     }
-    logger.success("database", "migrasi path selesai");
+    logger.success("database", "migración de rutas completada");
   }
 
   async init() {
@@ -180,11 +180,11 @@ class Database {
       this.ready = true;
       logger.success(
         "database",
-        "Multi-file database siap (debounced write setiap 5s)",
+        "Base de datos multiarchivo lista (escritura diferida cada 5s)",
       );
       return this;
     } catch (error) {
-      logger.error("database", `gagal inisialisasi: ${error.message}`);
+      logger.error("database", `error de inicialización: ${error.message}`);
       this.db = {
         data: {
           users: {},
@@ -294,7 +294,7 @@ class Database {
           );
           logger.warn(
             "database",
-            `${fileName} rusak, backup disimpan: ${backup}`,
+            `${fileName} dañado, copia guardada: ${backup}`,
           );
         }
       }
@@ -334,10 +334,10 @@ class Database {
       fs.renameSync(oldFile, backupPath);
       logger.success(
         "database",
-        `migrasi dari energis.json selesai, backup: ${path.basename(backupPath)}`,
+        `migración desde energis.json completada, copia: ${path.basename(backupPath)}`,
       );
     } catch (e) {
-      logger.error("database", `gagal migrasi energis.json: ${e.message}`);
+      logger.error("database", `error al migrar energis.json: ${e.message}`);
     }
   }
 
@@ -346,7 +346,7 @@ class Database {
       this.flushAll();
       return true;
     } catch (error) {
-      logger.error("database", `gagal menyimpan: ${error.message}`);
+      logger.error("database", `error al guardar: ${error.message}`);
       return false;
     }
   }

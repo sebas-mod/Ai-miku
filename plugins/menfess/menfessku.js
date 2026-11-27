@@ -62,7 +62,7 @@ async function handler(m, { command, prefix }) {
       `💬 La respuesta de hoy: ${l.nb || 0}/${c.maxBalasPerHari}\n` +
       `📥 Menerima menfess : ${k.menfessBlock[me] ? "ditolak ⛔" : "terbuka ✅"}\n` +
       `🚫 Remitente bloqueado: ${diblok}\n` +
-      `🗂 Iniciar sesión ${masuk.length} · Terkirim ${keluar.length}` +
+      `🗂 Recibidos ${masuk.length} · Enviados ${keluar.length}` +
       (k.menfessBan[me] ? "\n⛔ Actualmente tienes prohibido usar menfess" : "") +
       `\n\n*Orden*\n` +
       `• ${prefix}menfess número|mensaje\n` +

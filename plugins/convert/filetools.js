@@ -527,7 +527,7 @@ const specs = {
     run: async (c, f) => {
       if (f.sniff.kind !== 'zip' && f.sniff.kind !== 'office') throw fail('El archivo no es un archivo ZIP.')
       const entries = extractZipPure(f.buffer)
-      if (!entries.length) throw fail('Arsip ZIP kosong.')
+      if (!entries.length) throw fail('Archivo ZIP vacío.')
       const total = entries.reduce((s, e) => s + (e.uncompressedSize || e.buffer.length), 0)
       const list = entries.map((e, i) => `${i + 1}. ${e.name}`).join('\n')
       if (entries.length > 15 || total > 30 * 1024 * 1024) {

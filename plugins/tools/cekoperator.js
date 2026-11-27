@@ -89,7 +89,7 @@ async function handler(m, { text, reply, example }) {
         `Formato: +62${number.slice(1)}\n` +
         `Prefix   : ${prefix}\n` +
         `Operator : *${operator}*\n` +
-        `Kartu    : ${kartu}\n\n` +
+        `Tarjeta  : ${kartu}\n\n` +
         `_Basado en el prefijo inicial. Los números que cambiaron de operador (portabilidad) pueden no coincidir con este resultado._`
     )
 }

@@ -129,7 +129,7 @@ async function handler(m, { sock }) {
         `│ File: \`${fileName}.js\`\n` +
         `│ Folder: \`${folderName}\`\n` +
         `│ Size: \`${code.length} bytes\`\n` +
-        `│ Hot Reload: ${reloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+        `│ Hot Reload: ${reloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
         `¡El plugin ya está activo y listo para usar!`,
     );

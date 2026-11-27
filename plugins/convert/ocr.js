@@ -74,7 +74,7 @@ async function ocrScanRead(buffer) {
   const j = await r.json().catch(() => null)
   const text = j?.text || j?.result || j?.data?.text
   if (text && String(text).trim()) return String(text).trim()
-  throw new Error('ScanRead kosong')
+  throw new Error('ScanRead vacío')
 }
 
 async function ocrUrlApi(buffer, mime) {

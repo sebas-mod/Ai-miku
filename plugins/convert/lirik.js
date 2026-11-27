@@ -50,7 +50,7 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
       return m.reply(`❌ Las letras de texto aún no están disponibles para las canciones *${best.trackName || query}*.`)
     }
 
-    let out = `🎶 *${best.trackName || 'Judul Tidak Diketahui'}*\n`
+    let out = `🎶 *${best.trackName || 'Título desconocido'}*\n`
     out += `👤 *Artis* : ${best.artistName || '-'}\n`
     if (best.albumName) out += `💿 *Album* : ${best.albumName}\n`
     out += `\n${lyrics}\n\n_Ai Miku_`

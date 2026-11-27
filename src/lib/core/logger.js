@@ -194,16 +194,16 @@ function logMessage(info) {
       .slice(0, max);
 
   const senderId = String(sender).split(":")[0];
-  const num = senderId.replace(/@.+$/, "").replace(/[^0-9]/g, "") || "Tidak tersedia";
+  const num = senderId.replace(/@.+$/, "").replace(/[^0-9]/g, "") || "No disponible";
   const senderName = clean(pushName, 60) || num;
   const typeTag = getTypeTag(messageType, isNewsletter || chatType === "newsletter");
   const isGroup = chatType === "group";
   const chatBadge = isNewsletter || chatType === "newsletter"
     ? cYellow.bold("📢 SALURAN")
     : isGroup
-    ? cPink.bold(`👥 GRUP (${clean(groupName || "Grup WhatsApp", 40)})`)
+    ? cPink.bold(`👥 GRUP (${clean(groupName || "Grupo de WhatsApp", 40)})`)
     : cCyan.bold("👤 CHAT PRIBADI");
-  const text = clean(message, 500) || `[${typeTag} tanpa teks]`;
+  const text = clean(message, 500) || `[${typeTag} sin texto]`;
   const time = timeHelper.formatTime("HH:mm:ss");
   const date = timeHelper.formatTime("DD/MM/YYYY");
 
@@ -211,7 +211,7 @@ function logMessage(info) {
   console.log("");
   console.log(` ${edge("╭━━━〔")} ${cWhite.bold("✨ AI MIKU")} ${cGray("•")} ${chatBadge} ${edge("〕━━━╮")}`);
   console.log(` ${edge("┃")} ${cCyan.bold("👤 Pengirim :")} ${cWhite.bold(senderName)} ${cGray(`(+${num})`)}`);
-  console.log(` ${edge("┃")} ${cPurple.bold("🕒 Waktu    :")} ${cYellow(`${date} ${time} WIB`)}`);
+  console.log(` ${edge("┃")} ${cPurple.bold("🕒 Hora     :")} ${cYellow(`${date} ${time} WIB`)}`);
   console.log(` ${edge("┃")} ${cGreen.bold("🏷️ Tipe     :")} ${cGreen(typeTag)}`);
   console.log(` ${edge("┃")} ${cPink.bold("💬 Pesan    :")} ${cWhite(text)}`);
   console.log(` ${edge("╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯")}`);

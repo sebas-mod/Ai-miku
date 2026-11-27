@@ -239,7 +239,7 @@ async function handleSpamClose(m, sock, db) {
 
     const offenderJid = resolveParticipant(trigger.sender) || trigger.sender;
     const offenderTag = `@${String(offenderJid).split("@")[0]}`;
-    const ownerTag = ownerJid ? `@${String(ownerJid).split("@")[0]}` : "Owner grup";
+    const ownerTag = ownerJid ? `@${String(ownerJid).split("@")[0]}` : "Dueño del grupo";
     const mentions = [offenderJid, ...(ownerJid ? [ownerJid] : [])].filter(Boolean);
 
     const report =
@@ -255,7 +255,7 @@ async function handleSpamClose(m, sock, db) {
 ` +
       `╰─┬──────────────
 ` +
-      `  ╰─ 👑 ${ownerTag}, hallo king, ada yang spam perlu di keluarin nih sama lu king 😎`;
+      `  ╰─ 👑 ${ownerTag}, hola jefe, hay spam que sacar de aquí 😎`;
 
     await sock.sendMessage(m.chat, { text: report, mentions });
     return true;
@@ -622,7 +622,7 @@ Ada apa manggil aku @${m.sender.split("@")[0]}?`,
 
     if (text?.toLowerCase() === "p") {
       await m.reply(
-        `Hai @${m.sender.split("@")[0]}, utamakan salam dulu yahh`,
+        `Hai @${m.sender.split("@")[0]}, saluda primero, ¿vale?`,
         { mentions: [m.sender] },
       );
       return true;
@@ -643,7 +643,7 @@ Ada apa manggil aku @${m.sender.split("@")[0]}?`,
     }
 
     if (text?.toLowerCase()?.includes("hallo")) {
-      await m.reply(`Halo juga kak @${m.sender.split("@")[0]}`, {
+      await m.reply(`Hola también, @${m.sender.split("@")[0]}`, {
         mentions: [m.sender],
       });
       return true;
@@ -1267,7 +1267,7 @@ async function messageHandler(msg, sock, options = {}) {
               if (stderr) out += (out ? "\n" : "") + stderr;
               if (err && !stderr) out += (out ? "\n" : "") + err.message;
               out = String(out || "").trim();
-              if (!out) out = "✅ Selesai tanpa output.";
+              if (!out) out = "✅ Terminado sin salida.";
               if (out.length > 4000) out = out.slice(0, 4000) + "\n... (truncated)";
               await m.reply(out).catch(() => {});
             },
@@ -1363,7 +1363,7 @@ async function messageHandler(msg, sock, options = {}) {
           const { buildLsOutput } = await import("../plugins/owner/ls.js");
           await m.reply(buildLsOutput(target));
         } catch (e) {
-          await m.reply(`❌ Gagal membaca direktori: ${e.message}`);
+          await m.reply(`❌ Error al leer el directorio: ${e.message}`);
         }
         return;
       }
@@ -1623,7 +1623,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Ketik \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1640,7 +1640,7 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar el almacén de imágenes:", e.message);
           }
         }
 
@@ -1681,7 +1681,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Ketik \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1698,7 +1698,7 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar el almacén de imágenes:", e.message);
           }
         }
 
@@ -1883,7 +1883,7 @@ async function messageHandler(msg, sock, options = {}) {
       const regMsg =
         `╭─── ❖ 『 🔒 *ACCESO SOLO PARA AVENTUREROS* 』 ❖\n` +
         `│ ✦ ¡Hola *@${m.sender.split("@")[0]}*!\n` +
-        `│ ✦ Fitur *${p}${m.command}* (Categoría: *${pCatLower.toUpperCase()}*) solo puede usarla un miembro registrado.\n` +
+        `│ ✦ La función *${p}${m.command}* (Categoría: *${pCatLower.toUpperCase()}*) solo puede usarla un miembro registrado.\n` +
         `├─── ❖ 『 📝 *CÓMO REGISTRARTE RÁPIDO* 』 ❖\n` +
         `│ 📌 *Escribe:* \`${p}daftar Nombre.Edad\`\n` +
         `│ ✨ *Ejemplo:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
@@ -1969,7 +1969,7 @@ async function messageHandler(msg, sock, options = {}) {
         db.updateEnergi(m.sender, -pluginEnergiCost);
 
         if (db.setting("notiflimit")) {
-          let limitMsg = config.messages?.limitDeducted || "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}";
+          let limitMsg = config.messages?.limitDeducted || "🔋 Tu límite bajó en {amount}. Límite restante: {sisa}";
           limitMsg = limitMsg.replace("{amount}", pluginEnergiCost.toString()).replace("{sisa}", (currentEnergi - pluginEnergiCost).toString());
           await m.reply(limitMsg);
         }

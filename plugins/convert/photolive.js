@@ -75,7 +75,7 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
     return m.reply(
       `📸 *LIVE PHOTO CONVERTER*\n\n` +
       `Cambie el vídeo corto a *Live Photo* WhatsApp (foto tomada automáticamente desde el primer fotograma).\n\n` +
-      `📌 *Cara Pakai:*\n` +
+      `📌 *Cómo usarlo:*\n` +
       `Envía o responde al vídeo con el título \`${p}\``
     )
   }

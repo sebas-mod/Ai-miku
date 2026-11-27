@@ -94,7 +94,7 @@ const pluginConfig = {
       'Kuning, tulisan hitam: angkutan umum',
       'Merah, tulisan putih: kendaraan dinas pemerintah',
       'Hijau, tulisan hitam: kawasan perdagangan bebas',
-      'Dasar hitam, tulisan putih: kendaraan sementara / uji coba (dahulu pribadi)'
+      'Fondo negro, letras blancas: vehículo temporal / de prueba (antes particular)'
   ]
 
   async function handler(m, { text, reply, example }) {

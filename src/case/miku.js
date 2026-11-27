@@ -189,7 +189,7 @@ async function handleCommand(m, sock) {
           }
 
           text += `*━━━━━━━━━━━━━━━*\n`;
-          text += `💡 *ᴛɪᴘ:* Gunakan \`.listallplugin\` untuk melihat plugin`;
+          text += `💡 *ᴛɪᴘ:* Gunakan \`.listallplugin\` para ver los plugins`;
 
           await sock.sendMessage(
             m.chat,
@@ -272,7 +272,7 @@ async function handleCommand(m, sock) {
           }
 
           text += `*━━━━━━━━━━━━━━━*\n`;
-          text += `💡 *ᴛɪᴘ:* Gunakan \`.listallcase\` untuk melihat case`;
+          text += `💡 *ᴛɪᴘ:* Gunakan \`.listallcase\` para ver los casos`;
 
           await sock.sendMessage(
             m.chat,

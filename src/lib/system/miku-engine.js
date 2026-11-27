@@ -407,7 +407,7 @@ const MikuEngine = (() => {
     const r = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: fd })
     const t = (await r.text()).trim()
     if (t.startsWith('http')) return t
-    throw new Error('Gagal upload ke Catbox')
+    throw new Error('Error al subir a Catbox')
   }
 
   async function uploadToTmpFilesOrg(buf, filename = 'image.jpg') {
@@ -609,7 +609,7 @@ const MikuEngine = (() => {
   const delOwn = () => true
   const mask = (v) => {
     const s = String(v || '')
-    return !s ? '(kosong)' : s.length <= 8 ? s.slice(0, 2) + '••••' : `${s.slice(0, 4)}••••${s.slice(-3)}`
+    return !s ? '(vacío)' : s.length <= 8 ? s.slice(0, 2) + '••••' : `${s.slice(0, 4)}••••${s.slice(-3)}`
   }
 
   // Unified Database Accessor

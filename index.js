@@ -279,9 +279,9 @@ function printMikuWelcome() {
     config.session?.usePairingCode === false
       ? "SCAN QR CODE"
       : maskedNumber
-        ? `${maskedNumber} (dari config.js)`
-        : "KETIK NOMOR DI TERMINAL";
-  console.log(`\x1b[1;32mNOMOR: \x1b[1;37m${nomorText}\x1b[0m`);
+        ? `${maskedNumber} (desde config.js)`
+        : "ESCRIBE EL NÚMERO EN LA TERMINAL";
+  console.log(`\x1b[1;32mNÚMERO: \x1b[1;37m${nomorText}\x1b[0m`);
 }
 
 async function main() {
@@ -434,7 +434,7 @@ async function main() {
             }
           }
         } catch (e) {
-          logger.error("JADIBOT", `Gagal memulihkan: ${e.message}`);
+          logger.error("JADIBOT", `Error al restaurar: ${e.message}`);
         }
 
         const devLabel = config.dev?.enabled ? ` ${c.yellow("• dev")}` : "";

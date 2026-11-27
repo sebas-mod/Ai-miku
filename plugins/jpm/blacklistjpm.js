@@ -51,7 +51,7 @@ const pluginConfig = {
           const rows = []
           for (const [i, id] of list.entries()) {
               const meta = await sock.groupMetadata(id).catch(() => null)
-              rows.push(`${i + 1}. ${meta?.subject || 'Grup tidak dikenal'}\n   ${id}`)
+              rows.push(`${i + 1}. ${meta?.subject || 'Grupo desconocido'}\n   ${id}`)
           }
           return reply(`*▢ BLACKLIST JPM*\n• Totales: ${list.length} grupo\n\n${rows.join('\n')}`)
       }

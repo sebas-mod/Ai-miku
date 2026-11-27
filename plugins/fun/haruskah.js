@@ -35,7 +35,7 @@ const answers = [
     'No, mejor espera.',
     'Sí, pero con cuidado.',
     'No hace falta, pero puedes.',
-    'Wajib!',
+    '¡Obligatorio!',
     'Hmm, mejor déjalo pasar.',
     'Hazlo cuando estés seguro.',
     '¡Sí, por tu futuro!',

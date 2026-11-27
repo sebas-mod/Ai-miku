@@ -113,7 +113,7 @@ import { join, dirname } from 'node:path'
       }
       if (Object.keys(ASSETS.fonts).every(w => FAMILY[w])) return
       try { GlobalFonts.registerFromPath(await cached(ASSETS.fontFallback, 'fonts/Inter-Regular.ttf'), 'InterRegular') }
-      catch (e) { warn('font gagal diambil, pakai font sistem: ' + e.message) }
+      catch (e) { warn('no se pudo cargar la fuente, usando la del sistema: ' + e.message) }
   }
 
   function loadFonts() {
@@ -127,7 +127,7 @@ import { join, dirname } from 'node:path'
   async function loadEmojiMap() {
       if (emojiMap) return emojiMap
       try { emojiMap = JSON.parse(await readFile(await cached(ASSETS.emoji, 'emoji-apple.json'), 'utf-8')) }
-      catch (e) { warn('emoji json gagal diambil, emoji pakai font sistem: ' + e.message); return {} }
+      catch (e) { warn('no se pudo cargar el JSON de emojis, usando la fuente del sistema: ' + e.message); return {} }
       return emojiMap
   }
 
@@ -243,7 +243,7 @@ import { join, dirname } from 'node:path'
   async function loadBackground() {
       if (bgImg) return bgImg
       try { bgImg = await loadImage(await cached(ASSETS.background, 'mentahan.png')); return bgImg }
-      catch (e) { warn('background gagal dibaca, pakai background default: ' + e.message) }
+      catch (e) { warn('no se pudo leer el fondo, usando el fondo por defecto: ' + e.message) }
       return makeDefaultBackground()
   }
 
@@ -468,7 +468,7 @@ import { join, dirname } from 'node:path'
       const bg = await loadBackground()
       let img = null
       if (imageBuffer) {
-          try { img = await loadImage(imageBuffer) } catch (e) { warn('gambar gagal dibaca, pakai teks saja: ' + e.message) }
+          try { img = await loadImage(imageBuffer) } catch (e) { warn('no se pudo leer la imagen, usando solo texto: ' + e.message) }
       }
       const canvas = createCanvas(CONFIG.W, CONFIG.H)
       const ctx = canvas.getContext('2d')

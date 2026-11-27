@@ -513,10 +513,10 @@ const pluginConfig = {
               `• *File:* ${files.length} (${fmtSize(totalBytes)})\n` +
               `• *Halaman:* ${result.pagesCrawled}\n` +
               `• *Source map dipulihkan:* ${recovered.length} file asli\n` +
-              `• *Gagal/dilewati:* ${errors.length}/${skipped.length}\n` +
+              `• *Fallidos/omitidos:* ${errors.length}/${skipped.length}\n` +
               `• *Ukuran ZIP:* ${fmtSize(zip.length)}\n` +
-              `• *Waktu:* ${((Date.now() - t0) / 1000).toFixed(1)} detik` +
-              (result.truncated ? `\n\n⚠️ Hasil sebagian (kena batas waktu/ukuran/jumlah file).` : '')
+              `• *Tiempo:* ${((Date.now() - t0) / 1000).toFixed(1)} detik` +
+              (result.truncated ? `\n\n⚠️ Resultado parcial (límite de tiempo/tamaño/cantidad de archivos).` : '')
 
           await sock.sendMessage(m.chat, {
               document: zip,

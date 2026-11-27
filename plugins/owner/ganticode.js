@@ -178,7 +178,7 @@ async function handler(m, { sock }) {
     }
 
     replyText +=
-      ` │ 🔄 Hot Reload: ${reloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+      ` │ 🔄 Hot Reload: ${reloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
       `╰───────⬣\n\n`;
 
     if (backupPath) {

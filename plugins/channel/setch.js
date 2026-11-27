@@ -110,7 +110,7 @@ async function handler(m, { sock, text, prefix, reply }) {
     if (!arg) {
         return reply(
             `📌 *SALURAN TUJUAN*\n\n` +
-            (cur ? `Nombre: ${cur.name}\nID: ${cur.id}\nRol bot: ${cur.role ? cur.role.toLowerCase() : 'tidak diketahui'}` : 'Aún no configurado') +
+            (cur ? `Nombre: ${cur.name}\nID: ${cur.id}\nRol bot: ${cur.role ? cur.role.toLowerCase() : 'desconocido'}` : 'Aún no configurado') +
             `\n\n📖 *CARA PAKAI*\n${p}setch <enlace de canal>\n${p}setch off  (eliminar)\nDespués: ${p}swch, ${p}playch, ${p}chname, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
         )
     }

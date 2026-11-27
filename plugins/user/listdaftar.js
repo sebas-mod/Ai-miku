@@ -116,7 +116,7 @@ const pluginConfig = {
   alias: ["listuser", "registeredusers", "daftarlist"],
   category: "user",
   description:
-    "Lihat daftar user yang sudah terdaftar dengan filter dan pagination",
+    "Ver la lista de usuarios registrados con filtros y paginación",
   usage: ".listdaftar [page <nomor>] [search <nama>] [sort terbaru]",
   example: ".listdaftar search zann sort terbaru page 2",
   isOwner: true,

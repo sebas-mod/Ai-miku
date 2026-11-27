@@ -637,7 +637,7 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
             `> 🟢 Status: *Online*\n` +
             `> ⏱️ Mulai: *${new Date().toLocaleTimeString("id-ID")}*\n\n` +
             `¡Tu bot está activo y listo para recibir comandos!\n\n` +
-            `> ℹ️ Ketik \`${m.prefix || "."}stopjadibot\` untuk menghentikan`,
+            `> ℹ️ Ketik \`${m.prefix || "."}stopjadibot\` para detenerlo`,
           mentions: [normalizedJid],
         });
       }

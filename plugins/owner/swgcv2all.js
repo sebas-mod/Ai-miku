@@ -181,7 +181,7 @@ async function handler(m, { sock }) {
       `✅ *SWGCV2 ALL TERMINADO*\n\n` +
       `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
       `┃ 🌐 Total de grupos: *${groupIds.length}*\n` +
-      `┃ ✅ Sukses: *${successCount}*\n` +
+      `┃ ✅ Éxito: *${successCount}*\n` +
       `┃ ❌ Fallidos: *${failCount}*\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
       `> ¡El estado de grupo V2 (Ring Pink) se envió a todos los grupos!`

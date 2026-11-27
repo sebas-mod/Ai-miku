@@ -85,11 +85,11 @@ export function startSessionCleaner() {
   timer = setInterval(() => {
     const r = clearSessionFiles();
     if (!r.missing && r.deleted > 0) {
-      logger.info("session", `auto clear: ${r.deleted} dihapus, ${r.skipped} dipertahankan`);
+      logger.info("session", `limpieza automática: ${r.deleted} eliminados, ${r.skipped} conservados`);
     }
   }, minutes * 60 * 1000);
   timer.unref?.();
 
-  logger.info("session", `auto clear session aktif tiap ${minutes} menit`);
+  logger.info("session", `limpieza automática de sesiones activa cada ${minutes} minutos`);
   return true;
 }

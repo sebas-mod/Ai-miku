@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
         `│ 🔑 *Serial ID:* \`${sn}\`\n` +
         `│ 📅 *Terdaftar:* ${regDate}\n` +
         `├─── ❖ 『 💡 *INFO* 』 ❖\n` +
-        `│ ◦ Cek kartu ID: *${p}ceksn*\n` +
+        `│ ◦ Ver tarjeta de ID: *${p}ceksn*\n` +
         `│ ◦ Cek profil: *${p}profile*\n` +
         `│ ◦ Eliminar lista: *${p}unreg ${sn}*\n` +
         `╰──────────────────────────❖`
@@ -227,7 +227,7 @@ async function handler(m, { sock }) {
 
   const cleanTag = targetJid.split("@")[0].split(":")[0];
   const cardText =
-    `╭─── ❖ 『 🌟 *KARTU IDENTITAS PETUALANG* 』 ❖\n` +
+    `╭─── ❖ 『 🌟 *TARJETA DE IDENTIDAD DEL AVENTURERO* 』 ❖\n` +
     `│ ✦ ¡Bienvenido al mundo de *Ai Miku*!\n` +
     `├─── ❖ 『 🪪 *BIODATA RESMI* 』 ❖\n` +
     `│ 👤 *Nombre:* ${name}\n` +
@@ -245,7 +245,7 @@ async function handler(m, { sock }) {
       : "") +
     `├─── ❖ 『 🚀 *LANGKAH SELANJUTNYA* 』 ❖\n` +
     `│ ◦ \`${p}profile\` — Ver tu perfil completo\n` +
-    `│ ◦ \`${p}ceksn\` — Cek kartu & Serial Number\n` +
+    `│ ◦ \`${p}ceksn\` — Ver tarjeta y número de serie\n` +
     `│ ◦ \`${p}unreg ${sn}\` — Eliminar registro\n` +
     `╰──────────────────────────❖\n` +
     `_✦ Ai Miku • by Arthazy_`;

@@ -374,7 +374,7 @@ const { create, Pen, hex } = pdfdoc
     const items = []
     for (const raw of str.split(/\s*;\s*|\n|,\s+/).map((s) => s.trim()).filter(Boolean)) {
       const m = raw.match(/^(.+?)\s*(?:x\s*(\d+(?:[.,]\d+)?))?\s*@\s*([\d.,]+\s*[a-zA-Z]*)$/i)
-      if (!m) throw bad(`Elementos"${raw}"desconocido.\nEscribe: nombre x número @harga, ejemplo: Diseño de logotipo x1 @500rb`)
+      if (!m) throw bad(`Elementos"${raw}"desconocido.\nEscribe: nombre x cantidad @harga, ejemplo: Diseño de logotipo x1 @500rb`)
       const price = parseMoney(m[3])
       if (price == null) throw bad(`Precio "${m[3]}" inválido.`)
       items.push({ name: m[1].trim(), qty: m[2] ? Number(m[2].replace(',', '.')) : 1, price })
@@ -395,7 +395,7 @@ const { create, Pen, hex } = pdfdoc
     p.y = p.H - 150
     const half = W / 2
     const y0 = p.y
-    p.text('DITAGIHKAN KEPADA', { size: 8.5, color: '#888888', width: half, lh: 1.2 })
+    p.text('FACTURADO A', { size: 8.5, color: '#888888', width: half, lh: 1.2 })
     p.text(klien, { size: 14, font: 'b', width: half, after: 4 })
     const y1 = p.y
     p.y = y0
@@ -434,7 +434,7 @@ const { create, Pen, hex } = pdfdoc
     const p = new Pen(ctx, { top: 70, left: 72, right: 72 })
     p.text(`${kota || '...........'}, ${tgl()}`, { align: 'right', after: 18 })
     p.text('Perihal : Permohonan Izin', { font: 'b', after: 14 })
-    p.text(`Kepada Yth.\n${tujuan}\ndi tempat`, { after: 18 })
+    p.text(`A la atención de:\n${tujuan}\nen el lugar`, { after: 18 })
     p.text('Atentamente,', { after: 8 })
     p.text('Yo, el abajo firmante:', { after: 6 })
     kv(p, [['Nama', nama], ['Kelas / Jabatan', kelas]], 100)
@@ -449,7 +449,7 @@ const { create, Pen, hex } = pdfdoc
     const p = new Pen(ctx, { top: 64, left: 72, right: 72 })
     p.text(`${kota || '...........'}, ${tgl()}`, { align: 'right', after: 14 })
     p.text('Perihal : Lamaran Pekerjaan', { font: 'b', after: 14 })
-    p.text(`Kepada Yth.\nHRD ${perusahaan}\ndi tempat`, { after: 14 })
+    p.text(`A la atención de:\nRR. HH. ${perusahaan}\nen el lugar`, { after: 14 })
     p.text('Atentamente,', { after: 8 })
     p.text(`Según la información de la vacante que conozco, tengo la intención de postularme para ocupar el puesto. ${posisi} en ${perusahaan}. En cuanto a mis datos personales:`, { lh: 1.55, after: 8 })
     kv(p, [['Nama', nama], ['Pendidikan', pendidikan], ['Keahlian', skill]], 90)

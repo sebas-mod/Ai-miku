@@ -129,7 +129,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
           })
       } catch (e) {
           console.error(e);
-          (reply || m.reply)('❌ Terjadi kesalahan saat memotong audio.')
+          (reply || m.reply)('❌ Ocurrió un error al cortar el audio.')
       }
   }
 

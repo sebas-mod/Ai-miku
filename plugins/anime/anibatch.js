@@ -868,7 +868,7 @@ const pluginConfig = {
           `Rating  : ${d.rating || '-'}\n` +
           `Episode : ${d.episode_count || (d.episodes ? d.episodes.length : '-')}\n` +
           `Genre   : ${(d.genres || []).join(', ') || '-'}\n\n` +
-          `${clip(d.sinopsis, 600) || 'Sinopsis tidak tersedia.'}\n\n` +
+          `${clip(d.sinopsis, 600) || 'Sinopsis no disponible.'}\n\n` +
           `Link: ${d.url}`
         if (d.poster) {
           return sock.sendMessage(m.chat, { image: { url: d.poster }, caption }, { quoted: m }).catch(() => reply(caption))
@@ -919,7 +919,7 @@ const pluginConfig = {
             const r = it.resolved
             const link = r ? (r.direct_url || r.final_url || (r.links && r.links[0]) || '') : ''
             if (link) return `Eps ${it.episode}${it.quality ? ` (${it.quality})` : ''}:\n${link}`
-            return `Eps ${it.episode}: ${it.status || (r && r.note) || 'link tidak ditemukan'}`
+            return `Eps ${it.episode}: ${it.status || (r && r.note) || 'enlace no encontrado'}`
           })
           return reply(`*DOWNLOAD ${d.slug}*\n\n${lines.join('\n\n')}${items.length > 15 ? `\n\n...dan ${items.length - 15} episode lain, persempit rentangnya.` : ''}`)
         }

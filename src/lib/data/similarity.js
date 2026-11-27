@@ -350,9 +350,9 @@ Mungkin kakaknya sedikit typo atau salah ketik? 😅👇`
     // msg += `╰┈┈⬡\n\n`
 
     // msg += `╭┈┈⬡「 ℹ️ *ᴛɪᴘs* 」\n`
-    // msg += `┃ • Pilih command dari daftar di atas\n`
-    // msg += `┃ • Ketik \`${prefix}menu\` untuk daftar lengkap\n`
-    // msg += `┃ • Ketik \`${prefix}help <cmd>\` untuk bantuan\n`
+    // msg += `┃ • Elige un comando de la lista de arriba\n`
+    // msg += `┃ • Ketik \`${prefix}menu\` para la lista completa\n`
+    // msg += `┃ • Ketik \`${prefix}help <cmd>\` para ayuda\n`
     // msg += `╰┈┈⬡`
 
     // return msg

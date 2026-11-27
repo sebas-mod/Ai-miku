@@ -64,7 +64,7 @@ import axios from 'axios'
     }
 
     search = async (query, { page = '0', count = '25' } = {}) => {
-      if (!query) throw 'Query kosong'
+      if (!query) throw 'Consulta vacía'
 
       const { data } = await this.inst.post('/anime/search', {
         perpage: count,
@@ -86,7 +86,7 @@ import axios from 'axios'
     }
 
     stream = async (id, epsid, { quality = 'HD' } = {}) => {
-      if (!id || !epsid) throw 'ID anime & episode wajib'
+      if (!id || !epsid) throw 'ID de anime y episodio obligatorios'
 
       const { data: srv } = await this.inst.post('/anime/get-server-list', {
         id: epsid.toString(),

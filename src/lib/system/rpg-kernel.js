@@ -283,7 +283,7 @@ const MikuRpgKernel = (() => {
   }
   function applyPurchase(u, item) {
     switch (item) {
-      case 'scrollclass': u.class = null; return 'Class direset. Pilih class baru dengan *.class*.'
+      case 'scrollclass': u.class = null; return 'Clase reiniciada. Elige una clase nueva con *.class*.'
       case 'stonebless': u.buff = 'atk+10%'; return '¡Buff *ATK +10%* activo!'
       case 'essencexp': return { exp: 500, text: '+500 EXP!' }
       case 'spiritcore': u.spirit = 'phoenix'; return '¡El espíritu *Phoenix* te acompaña!'

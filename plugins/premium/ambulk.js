@@ -161,7 +161,7 @@ async function handler(m) {
     ];
 
     results.forEach((r, idx) => {
-      lines.push(`├─── *#${idx + 1}* ${r.status ? "✅ BERHASIL" : "❌ GAGAL"}`);
+      lines.push(`├─── *#${idx + 1}* ${r.status ? "✅ ÉXITO" : "❌ FALLÓ"}`);
       if (r.email) lines.push(`│ 📧 *Email:* \`${r.email}\``);
       if (r.status) {
         if (r.tier) lines.push(`│ 🏷️ *Tier:* ${r.tier}`);
@@ -169,7 +169,7 @@ async function handler(m) {
         if (r.uid) lines.push(`│ 🆔 *UID:* ${r.uid}`);
         if (r.orderId) lines.push(`│ 🧾 *Order:* ${r.orderId}`);
       } else {
-        lines.push(`│ ⚠️ *Error:* ${r.error || "Tidak diketahui"}`);
+        lines.push(`│ ⚠️ *Error:* ${r.error || "Desconocido"}`);
       }
       if (r.inbox) lines.push(`│ 📥 *Inbox:* ${r.inbox}`);
     });

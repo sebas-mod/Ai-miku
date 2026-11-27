@@ -179,7 +179,7 @@ async function handler(m, ctx = {}) {
     return m.reply(
       `🔍 *ALIGHT MOTION PRESET FINDER*\n\n` +
       `Busque el enlace preestablecido de Alight Motion (5 MB / XML / Drive) desde el enlace de vídeo TikTok.\n\n` +
-      `📌 *Cara Pakai:*\n` +
+      `📌 *Cómo usarlo:*\n` +
       `\`${usedPrefix + command} <URL del vídeo TikTok>\`\n\n` +
       `_Powered by Ai Miku_`
     )

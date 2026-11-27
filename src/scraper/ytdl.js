@@ -38,7 +38,7 @@ async function fallbackToMp3Buffer(url) {
 
     const buffer = Buffer.from(data);
     if (!buffer.length) {
-      throw new Error("Audio fallback kosong");
+      throw new Error("Audio alternativo vacío");
     }
 
     fs.writeFileSync(inputPath, buffer);
@@ -136,7 +136,7 @@ async function ytdl(url, format = "mp3") {
       if ((data?.error || 0) > 0) {
         return {
           status: false,
-          mess: `Error dari server: ${data.error}`,
+          mess: `Error del servidor: ${data.error}`,
         };
       }
 

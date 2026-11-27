@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
   if (!input || !input.includes("|")) {
     let txt = `💌 *LAYANAN MENFESS ANONIM* 💌\n\n`;
     txt += `¿Quieres enviar un mensaje secreto a tu crush o a un amigo sin que te descubran? ¡Claro que sí!\n\n`;
-    txt += `*Cara Pakai:*\n`;
+    txt += `*Cómo usarlo:*\n`;
     txt += `👉 \`${m.prefix}confess número|mensaje\`\n\n`;
     txt += `*Ejemplo:*\n`;
     txt += `> \`${m.prefix}confess 6281234567890|Hola, ¡me encanta ver tu sonrisa!\`\n\n`;

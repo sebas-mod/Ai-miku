@@ -88,7 +88,7 @@ const pluginConfig = {
           `Nombre: ${info.name}\n` +
           `Pengikut: ${info.followers || '-'}\n` +
           `Tipe: ${info.type || 'Channel'}\n` +
-          `Estado: ${info.verified ? '✅ Terverifikasi' : 'Belum terverifikasi'}\n` +
+          `Estado: ${info.verified ? '✅ Verificado' : 'Sin verificar'}\n` +
           `Link: ${url}` +
           (info.desc ? `\n\nDeskripsi: ${info.desc.slice(0, 600)}` : '')
 

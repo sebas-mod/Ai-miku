@@ -116,7 +116,7 @@ async function handler(m, { sock }) {
   if (args[0]?.toLowerCase() === "list") {
     const scrapers = listScrapers();
     if (!scrapers.length) {
-      return m.reply(`📂 Folder src/scraper kosong`);
+      return m.reply(`📂 Carpeta src/scraper vacía`);
     }
 
     let text = `📂 *LISTA DE SCRAPERS*\n\n` + `╭─〔 *src/scraper* 〕───⬣\n`;
@@ -277,7 +277,7 @@ async function handler(m, { sock }) {
 
     replyText +=
       `🔄 *Hot Reload:*\n` +
-      `- Scraper: ${scraperReload.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+      `- Scraper: ${scraperReload.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
       `- Plugin Terdeteksi: ${pluginReloads.length}\n` +
       `- Plugins recargados: ${reloadSuccess.length}\n` +
       `- Plugins con error al recargar: ${reloadFailed.length}\n\n`;

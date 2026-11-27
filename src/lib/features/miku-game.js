@@ -102,7 +102,7 @@ export function renderHangman(s) {
     `│ ❤️ Nyawa    : ${hearts}\n` +
     `│ 📝 Huruf    : ${used}\n` +
     `╰─────────────────────❖\n` +
-    `_Ketik 1 huruf (a-z) atau tebak langsung katanya! Ketik \`.stopgame\` untuk berhenti._`
+    `_¡Escribe 1 letra (a-z) o adivina la palabra directamente! Escribe \`.stopgame\` para detener._`
   );
 }
 
@@ -232,7 +232,7 @@ export async function handleActiveGameInput(m, sock) {
         m.chat,
         {
           text:
-            `╭─❖「 ❌⭕ *TIC-TAC-TOE SELESAI* 」\n` +
+            `╭─❖「 ❌⭕ *TIC-TAC-TOE TERMINADO* 」\n` +
             `${renderTTTBoard(s.board)}\n` +
             `╰─────────────────────❖\n` +
             `${resultText}`,

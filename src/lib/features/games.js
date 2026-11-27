@@ -40,10 +40,10 @@ try {
 
 const WIN_MESSAGES = [
   "🌟 *GG WP! Otakmu encer!*",
-  "✨ *KEREN ABIS! Lu emang pinter!*",
+  "✨ *¡INCREÍBLE! ¡Eres muy listo!*",
   "🎉 *MANTAPPPP! Jawaban sempurna!*",
-  "💫 *EPIC! Gak ada lawan lu!*",
-  "🏆 *NGERI! Otak lu kayak Google!*",
+  "💫 *¡ÉPICO! ¡No tienes rival!*",
+  "🏆 *¡BRUTAL! ¡Tu cerebro es como Google!*",
   "🔥 *LEGEND! Jawab kek gak ada beban!*",
 ];
 
@@ -69,8 +69,8 @@ function formatGameCooldown(ms) {
   const totalSeconds = Math.ceil(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  if (minutes <= 0) return `${seconds} detik`;
-  return `${minutes} menit ${seconds} detik`;
+  if (minutes <= 0) return `${seconds} segundos`;
+  return `${minutes} minutos ${seconds} segundos`;
 }
 
 class mikuGames {

@@ -38,7 +38,7 @@ async function handler(m) {
         `╭─❖「 🌐 *DOMINIO AÑADIDO* 」\n` +
         `│ 📦 Proyek : *${proj}*\n` +
         `│ 🔗 Domain : *${res?.name || newDomain}*\n` +
-        `│ ✅ Status : ${res?.verified ? "Terverifikasi" : "Menunggu konfigurasi DNS"}\n` +
+        `│ ✅ Status : ${res?.verified ? "Verificado" : "Esperando configuración DNS"}\n` +
         `╰─────────────────────❖`
       );
     }

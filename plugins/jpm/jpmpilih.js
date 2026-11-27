@@ -63,7 +63,7 @@ const pluginConfig = {
 
           sessions()[sender] = { ...st, step: 'pesan', picked, at: Date.now() }
           const names = picked.map((g, i) => `*${i + 1}.* ${g.name}`).join('\n')
-          return reply(`*▢ GRUP DIPILIH*\n• Totales: ${picked.length} grupo\n\n${names}\n\n📝 Ahora envía el mensaje que deseas difundir (texto o foto/video con subtítulo):`)
+          return reply(`*▢ GRUP DIPILIH*\n• Totales: ${picked.length} grupo(s)\n\n${names}\n\n📝 Ahora envía el mensaje que deseas difundir (texto o foto/video con subtítulo):`)
       }
 
       if (st.step === 'pesan') {

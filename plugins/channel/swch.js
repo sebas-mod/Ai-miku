@@ -37,7 +37,7 @@ const pluginConfig = {
           if (pm && ['imageMessage', 'videoMessage', 'audioMessage'].includes(pm.mtype)) {
               try {
                   const buffer = await pm.download()
-                  if (!Buffer.isBuffer(buffer)) throw new Error('buffer kosong')
+                  if (!Buffer.isBuffer(buffer)) throw new Error('búfer vacío')
                   media = { ...pm, buffer }
               } catch (err) {
                   console.log('[CH] cambiar medios de descarga:', err.message)

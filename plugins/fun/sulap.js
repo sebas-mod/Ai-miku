@@ -31,7 +31,7 @@ const successLines = [
     '💨 *¡POOF!* Y... ¡desapareció!',
     '🌟 ¡Magia lograda! Hasta la próxima~',
     '✨ ¡Me ausento, nos vemos luego!',
-    '🎪 Pertunjukan selesai! 👏'
+    '🎪 ¡Espectáculo terminado! 👏'
 ]
 
 function sleep(ms) {
@@ -125,7 +125,7 @@ async function replyHandler(m, sock) {
             text: `${line}\n\n` +
                 `🎯 ¡@${targetNumber} ha desaparecido!\n` +
                 `🎩 Pesulap: @${senderNumber}\n\n` +
-                `> _Pertunjukan selesai~_ ✨`,
+                `> _Espectáculo terminado~_ ✨`,
             mentions: [targetJid, m.sender]
         })
 
