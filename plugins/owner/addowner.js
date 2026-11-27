@@ -21,7 +21,7 @@ import {
   resolveAnyLidToJid,
   isLidConverted,
 } from "../../src/lib/core/lid.js";
-import { getGroupMode } from "../group/botmode.js";
+import { getGroupMode } from "../../src/lib/data/group-mode.js";
 const pluginConfig = {
   name: "addowner",
   alias: ["addown", "setowner", "delowner", "dedown", "ownerlist", "listowner"],
