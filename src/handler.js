@@ -1491,11 +1491,11 @@ async function messageHandler(msg, sock, options = {}) {
         if (geminiHandled) return;
       }
 
-      // AudioSticker2 (.saudio2): tangkap audio/VN langsung saat sesi 60 detik aktif
+      // AudioSticker (.saudio): captura el audio/nota de voz directamente cuando la sesión de 60 segundos está activa
       if (!m.fromMe && globalThis.__audioStickerSessions?.has(`${m.chat}:${m.sender}`)) {
-        const as2Mod = await import("../plugins/tools/audiosticker2.js").catch(() => null);
-        if (as2Mod?.handleAudioSticker2Before) {
-          const handled = await as2Mod.handleAudioSticker2Before(m, sock);
+        const asMod = await import("../plugins/convert/audiosticker.js").catch(() => null);
+        if (asMod?.handleAudioStickerBefore) {
+          const handled = await asMod.handleAudioStickerBefore(m, sock);
           if (handled) return;
         }
       }
