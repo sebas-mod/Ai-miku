@@ -208,7 +208,7 @@ function adaptLegacyPlugin(legacy, filePath) {
     alias: commands.slice(1),
     category: tags[0] || "main",
     description:
-      legacy.description || legacy.desc || (help.length ? help.map(withDot).join(" | ") : `Perintah ${commands[0]}`),
+      legacy.description || legacy.desc || (help.length ? help.map(withDot).join(" | ") : `Comando ${commands[0]}`),
     usage: help.length ? withDot(help[0]) : "." + commands[0],
     example: help.length ? withDot(help[0]) : "." + commands[0],
     isOwner: Boolean(legacy.owner || legacy.rowner),

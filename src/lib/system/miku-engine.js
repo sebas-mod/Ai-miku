@@ -80,7 +80,7 @@ const MikuEngine = (() => {
   global.idSaluran = config.saluran?.id || ''
   global.nameSaluran = config.saluran?.name || global.namebot
   global.APIs ||= { faa: 'https://api-faa.my.id', deline: 'https://api.deline.web.id' }
-  global.wait ||= config.messages?.wait || '⏳ Tunggu sebentar ya, sedang diproses...'
+  global.wait ||= config.messages?.wait || '⏳ Espera un momento, lo estoy procesando...'
   global.fstatus = undefined
   global.multiplier ||= 38
   global.rpg ||= {
@@ -157,19 +157,19 @@ const MikuEngine = (() => {
   const durasi = (ms) => {
     const s = Math.max(0, Math.ceil(Number(ms || 0) / 1000))
     const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), d = s % 60
-    return [h && `${h} jam`, m && `${m} menit`, (!h && d) && `${d} detik`].filter(Boolean).join(' ') || '0 detik'
+    return [h && `${h} hora(s)`, m && `${m} minuto(s)`, (!h && d) && `${d} segundo(s)`].filter(Boolean).join(' ') || '0 segundos'
   }
   const clockString = (ms) => {
     const n = Number(ms)
-    if (!Number.isFinite(n) || n <= 0) return '0 detik'
+    if (!Number.isFinite(n) || n <= 0) return '0 segundos'
     const s = Math.ceil(n / 1000)
     const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60
-    return [d && `${d} hari`, h && `${h} jam`, m && `${m} menit`, sec && `${sec} detik`].filter(Boolean).join(' ')
+    return [d && `${d} día(s)`, h && `${h} hora(s)`, m && `${m} minuto(s)`, sec && `${sec} segundo(s)`].filter(Boolean).join(' ')
   }
   const formatRemaining = (until) => {
-    if (until == null) return 'permanen'
+    if (until == null) return 'permanente'
     const diff = until - Date.now()
-    if (diff <= 0) return 'habis'
+    if (diff <= 0) return 'agotado'
     return clockString(diff)
   }
   const fiturFmt = (n) => Number(n || 0).toLocaleString('id-ID')
@@ -297,7 +297,7 @@ const MikuEngine = (() => {
   }
 
   function te(prefix = '.', command = 'cmd', pushName = 'Kak') {
-    return `⚠️ Maaf ${pushName}, perintah *${prefix}${command}* sedang mengalami kendala. Coba lagi sebentar ya.`
+    return `⚠️ Perdón ${pushName}, el comando *${prefix}${command}* tuvo un problema. Inténtalo de nuevo en un momento.`
   }
 
   async function f(url, type = 'json', method = 'GET', headers = {}, body = null) {
@@ -1025,7 +1025,7 @@ const MikuEngine = (() => {
       participants: groupMetadata.participants || [],
       reply: (t, o) => m.reply(t, o),
       react: (e) => reactTo(sock, m, e),
-      example: (usage) => m.reply(`📌 *Contoh Penggunaan:*\n\`${prefix}${ctx.command || em.command} ${usage}\``)
+      example: (usage) => m.reply(`📌 *Ejemplo de uso:*\n\`${prefix}${ctx.command || em.command} ${usage}\``)
     }
     return fn(em, fullCtx)
   }
@@ -1203,7 +1203,7 @@ const MikuEngine = (() => {
       participants: ctx.participants || m?.groupMembers || groupMetadata.participants || [],
       reply,
       react: (e) => (typeof m?.react === 'function' ? m.react(e) : reactTo(sock, m, e)),
-      example: (usage) => reply(`╭─── ❖ 『 💡 *PANDUAN FITUR* 』 ❖\n│ ✦ *Perintah:* ${prefix}${command}\n│ ✦ *Contoh:* ${prefix}${command} ${usage}\n╰──────────────────❖\n_✦ Ai Miku • by Arthazy_`),
+      example: (usage) => reply(`╭─── ❖ 『 💡 *GUÍA DE LA FUNCIÓN* 』 ❖\n│ ✦ *Comando:* ${prefix}${command}\n│ ✦ *Ejemplo:* ${prefix}${command} ${usage}\n╰──────────────────❖\n_✦ Ai Miku • by Arthazy_`),
     };
   }
 
@@ -1220,13 +1220,13 @@ const MikuEngine = (() => {
         if (!mainUser?.isRegistered) {
           const p = rctx.prefix || '.';
           return await rctx.reply(
-            `╭─── ❖ 『 🔒 *AKSES KHUSUS PETUALANG* 』 ❖\n` +
-            `│ ✦ Kamu belum terdaftar di sistem *Ai Miku*!\n` +
-            `│ ✦ Fitur *${p}${rctx.command || pluginConfig?.name}* membutuhkan Kartu Petualang.\n` +
-            `├─── ❖ 『 📝 *CARA DAFTAR* 』 ❖\n` +
-            `│ 📌 *Ketik:* \`${p}daftar Nama.Umur\`\n` +
-            `│ ✨ *Contoh:* \`${p}daftar ${rctx.m.pushName || 'Arthazy'}.19\`\n` +
-            `│ 🎁 *Bonus:* +25.000 Koin, +15.000 EXP, & +15 Energi!\n` +
+            `╭─── ❖ 『 🔒 *ACCESO SOLO PARA AVENTUREROS* 』 ❖\n` +
+            `│ ✦ ¡Todavía no estás registrado en *Ai Miku*!\n` +
+            `│ ✦ La función *${p}${rctx.command || pluginConfig?.name}* necesita tu Tarjeta de Aventurero.\n` +
+            `├─── ❖ 『 📝 *CÓMO REGISTRARTE* 』 ❖\n` +
+            `│ 📌 *Escribe:* \`${p}daftar Nombre.Edad\`\n` +
+            `│ ✨ *Ejemplo:* \`${p}daftar ${rctx.m.pushName || 'Arthazy'}.19\`\n` +
+            `│ 🎁 *Bono:* +25.000 monedas, +15.000 EXP y +15 energía!\n` +
             `╰──────────────────────────❖`
           );
         }

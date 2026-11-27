@@ -748,7 +748,7 @@ async function initDatabase(dbPath) {
 function getDatabase() {
   if (!dbInstance) {
     throw new Error(
-      "Database belum diinisialisasi. Panggil initDatabase terlebih dahulu.",
+      "La base de datos no está inicializada. Llama primero a initDatabase.",
     );
   }
   return dbInstance;

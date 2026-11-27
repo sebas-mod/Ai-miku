@@ -45,7 +45,7 @@ async function scrapePinterest(pinUrl) {
     );
 
     if (!data.api || data.api.status !== "OK") {
-      throw new Error("Gagal mengambil data atau URL tidak valid.");
+      throw new Error("No se pudieron obtener los datos o la URL no es válida.");
     }
 
     const api = data.api;

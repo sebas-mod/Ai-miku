@@ -78,7 +78,7 @@ async function fallbackToMp3Buffer(url) {
 
     const mp3Buffer = fs.readFileSync(outputPath);
     if (!mp3Buffer.length) {
-      throw new Error("Konversi fallback ke MP3 gagal");
+      throw new Error("Falló la conversión de respaldo a MP3");
     }
 
     return mp3Buffer;
@@ -97,7 +97,7 @@ async function ytdl(url, format = "mp3") {
   if (!videoId) {
     return {
       status: false,
-      mess: "Format URL tidak dikenali atau bukan link YouTube yang valid.",
+      mess: "Formato de URL no reconocido o no es un enlace válido de YouTube.",
     };
   }
 
@@ -223,7 +223,7 @@ async function ytdl(url, format = "mp3") {
 
   return {
     status: false,
-    mess: `Semua server YouTube sedang sibuk (${errors.slice(0, 2).join(" | ")})`,
+    mess: `Todos los servidores de YouTube están ocupados (${errors.slice(0, 2).join(" | ")})`,
   };
 }
 
@@ -250,7 +250,7 @@ class Youtube {
     const result = await ytdl(url, outputFormat);
 
     if (!result?.status || !result?.dl) {
-      throw new Error(result?.mess || "Gagal mengunduh konten YouTube");
+      throw new Error(result?.mess || "No se pudo descargar el contenido de YouTube");
     }
 
     return this.wrapResponse({
@@ -281,7 +281,7 @@ async function instagramDownloader(url) {
 
   const data = response.data;
   if (!data || !data.status || !Array.isArray(data.links) || data.links.length === 0) {
-    throw new Error("Gagal mengambil media dari API Instagram");
+    throw new Error("No se pudo obtener el contenido de la API de Instagram");
   }
 
   const media = data.links.map((item) => {
@@ -353,7 +353,7 @@ async function scrapePinterest(pinUrl) {
     );
 
     if (!data.api || data.api.status !== "OK") {
-      throw new Error("Gagal mengambil data atau URL tidak valid.");
+      throw new Error("No se pudieron obtener los datos o la URL no es válida.");
     }
 
     const api = data.api;
@@ -646,10 +646,10 @@ const PLATFORM_HANDLERS = {
 
 async function aiodl(url) {
   const platform = detectPlatform(url);
-  if (!platform) throw new Error("Platform tidak dikenali");
+  if (!platform) throw new Error("Plataforma no reconocida");
 
   const handler = PLATFORM_HANDLERS[platform];
-  if (!handler) throw new Error(`Handler untuk ${platform} tidak tersedia`);
+  if (!handler) throw new Error(`No hay manejador disponible para ${platform}`);
 
   try {
     return await handler(url);
@@ -698,7 +698,7 @@ async function DailymotionDL(url) {
   if (!data.medias || data.medias.length === 0) {
     return {
       status: false,
-      error: "Tidak ada media yang tersedia",
+      error: "No hay contenido disponible",
     };
   }
 
@@ -729,7 +729,7 @@ async function fbdown(url) {
     if (res.data && res.data.status) {
       return res.data;
     }
-    return { status: false, message: "Gagal mengambil data dari API" };
+    return { status: false, message: "No se pudieron obtener los datos de la API" };
   } catch (err) {
     return { status: false, message: err.message };
   }
@@ -899,7 +899,7 @@ async function RedNoteDL(xhsUrl) {
   if (!resData.success) {
     return {
       status: false,
-      error: resData.error || "Gagal mengambil data",
+      error: resData.error || "No se pudieron obtener los datos",
     };
   }
 
@@ -974,7 +974,7 @@ async function TeraBoxDL(url) {
       };
     }
 
-    return { status: false, error: "Tidak ada data ditemukan" };
+    return { status: false, error: "No se encontraron datos" };
   } catch (e) {
     return { status: false, error: e.message };
   }
@@ -1029,7 +1029,7 @@ async function ttdownFromYuuLabs(url) {
   }
 
   if (downloads.length === 0) {
-    throw new Error("YuuLabs tidak mengembalikan link download");
+    throw new Error("YuuLabs no devolvió un enlace de descarga");
   }
 
   return {
@@ -1102,7 +1102,7 @@ async function ttdownFromMusicalDown(url) {
   });
 
   if (downloads.length === 0) {
-    throw new Error("MusicalDown tidak mengembalikan link download");
+    throw new Error("MusicalDown no devolvió un enlace de descarga");
   }
 
   return {
@@ -1332,7 +1332,7 @@ async function sfileDownload(url, buffer = true) {
     $('#download').attr('data-dw-url') ||
     $('a#download').attr('href')
 
-  if (!dl) throw new Error('Download URL tidak ditemukan')
+  if (!dl) throw new Error('No se encontró la URL de descarga')
 
   const cdn = await fetch(dl, {
     headers: sfileHeaders,
@@ -1341,7 +1341,7 @@ async function sfileDownload(url, buffer = true) {
 
   const finalUrl = cdn.url
 
-  if (!finalUrl) throw new Error('Redirect CDN gagal')
+  if (!finalUrl) throw new Error('Falló la redirección del CDN')
 
   if (!buffer) {
     return { metadata, download: finalUrl }
@@ -1376,7 +1376,7 @@ const _tools = (() => {
         form.append('files[]', buffer, filename)
         const res = await axios.post('https://uguu.se/upload.php', form, { headers: form.getHeaders() })
         const url = res.data?.files?.[0]?.url
-        if (!url) throw new Error('Upload gambar gagal')
+        if (!url) throw new Error('Falló la subida de la imagen')
         return url
     }
 
@@ -1397,7 +1397,7 @@ const _tools = (() => {
             validateStatus: () => true
         })
         const url = res.data?.files?.[0]?.url?.replaceAll('\\/', '/')
-        if (!res.data?.success || !url) throw new Error('Upload gambar gagal')
+        if (!res.data?.success || !url) throw new Error('Falló la subida de la imagen')
         return url
     }
 
@@ -1583,7 +1583,7 @@ const _tools = (() => {
         } catch (e) {
             throw friendly(e.message)
         }
-        if (res.data.status !== 'success') throw friendly('Gagal bikin email temp nya bree..')
+        if (res.data.status !== 'success') throw friendly('No se pudo crear el correo temporal..')
 
         const { email, email_token: token, deleted_in: deletedIn } = res.data.data
         tempail.deletedAt = new Date(deletedIn).getTime()
@@ -1593,7 +1593,7 @@ const _tools = (() => {
 
     async function tempMailInbox(email) {
         const token = activeMails.get(email)
-        if (!token) throw friendly('❌ Email tidak ditemukan di database bot (mungkin bot baru direstart atau email sudah kadaluarsa). Silakan buat baru dengan tempmail')
+        if (!token) throw friendly('❌ El correo no está en la base del bot (quizá el bot se reinició o el correo venció). Crea uno nuevo con tempmail')
         if (tempailExpired()) throw friendly('Email Tempnya udah expired bree..')
 
         let res
@@ -1602,7 +1602,7 @@ const _tools = (() => {
         } catch (e) {
             throw friendly(e.message)
         }
-        if (res.data.status !== 'success') throw friendly('Gagal ambil list pesan bree..')
+        if (res.data.status !== 'success') throw friendly('No se pudo obtener la lista de mensajes..')
         const { mailbox, messages } = res.data.data
         return { mailbox, messages }
     }
@@ -1616,7 +1616,7 @@ const _tools = (() => {
         } catch (e) {
             throw friendly(e.message)
         }
-        if (res.data.status !== 'success') throw friendly('Gagal ambil isi pesan bree..')
+        if (res.data.status !== 'success') throw friendly('No se pudo obtener el contenido del mensaje..')
 
         const [msg] = res.data.data
         return {
@@ -1655,7 +1655,7 @@ const _tools = (() => {
         }, { headers: SNAP_HEADERS, timeout: 120000 })
 
         const out = pickResultUrl(data)
-        if (!out) throw friendly(`Gagal ambil hasil screenshot.\n\n${JSON.stringify(data, null, 2).slice(0, 1000)}`)
+        if (!out) throw friendly(`No se pudo generar la captura.\n\n${JSON.stringify(data, null, 2).slice(0, 1000)}`)
         return out
     }
 
@@ -1665,7 +1665,7 @@ const _tools = (() => {
         }, { headers: SNAP_HEADERS, timeout: 120000 })
 
         const out = pickResultUrl(data)
-        if (!out) throw friendly(`Gagal ambil hasil video.\n\n${JSON.stringify(data, null, 2).slice(0, 1000)}`)
+        if (!out) throw friendly(`No se pudo generar el video.\n\n${JSON.stringify(data, null, 2).slice(0, 1000)}`)
         return out
     }
 
@@ -1884,7 +1884,7 @@ const _tools = (() => {
                 v = f.def ? f.def() : ''
             }
             if (f.oneOf && v && !f.oneOf.includes(v.toLowerCase())) {
-                return { error: `Bagian *${f.label}* harus salah satu dari: ${f.oneOf.join(', ')}.` }
+                return { error: `El campo *${f.label}* debe ser uno de: ${f.oneOf.join(', ')}.` }
             }
             params[f.key] = f.oneOf ? v.toLowerCase() : v
         }
@@ -1936,7 +1936,7 @@ const _tools = (() => {
 
     async function downloadResult(url) {
         const res = await nativeFetch(url, { signal: AbortSignal.timeout(60000) })
-        if (!res.ok) throw new Error(`Gagal unduh hasil (${res.status})`)
+        if (!res.ok) throw new Error(`No se pudo descargar el resultado (${res.status})`)
         return Buffer.from(await res.arrayBuffer())
     }
 
@@ -1970,12 +1970,12 @@ const _tools = (() => {
         }
 
         const text = formatAny(out.json)
-        if (!text) throw new Error('Respons API tidak berisi media')
+        if (!text) throw new Error('La API no devolvió contenido')
         return null
     }
 
     async function runApiTool(spec, { rawArgs = '', quotedText = '', hasImage = false, getImage, prefix = '.', onStart } = {}) {
-        if (!spec || typeof spec !== 'object') throw new Error('Spec fitur API tidak valid')
+        if (!spec || typeof spec !== 'object') throw new Error('Especificación de la función no válida')
         const name = spec.name
 
         let args = rawArgs
@@ -1988,7 +1988,7 @@ const _tools = (() => {
         }
 
         if (spec.image && !hasImage) {
-            return { usage: wrongCommand(name, spec, prefix, 'Foto belum dikirim — reply atau kirim foto dulu.') }
+            return { usage: wrongCommand(name, spec, prefix, 'Todavía no enviaste una foto — responde o manda una foto primero.') }
         }
 
         await onStart?.()
@@ -1997,7 +1997,7 @@ const _tools = (() => {
         if (spec.image) {
             const buffer = await getImage()
             if (!buffer) {
-                return { usage: wrongCommand(name, spec, prefix, 'Foto tidak terbaca, coba kirim ulang.'), failed: true }
+                return { usage: wrongCommand(name, spec, prefix, 'No se pudo leer la foto, vuelve a enviarla.'), failed: true }
             }
             const url = await uploadPone(buffer, `upload-${Date.now()}.jpg`)
             for (const key of spec.image) params[key] = url
@@ -2010,7 +2010,7 @@ const _tools = (() => {
             let buf = out.buf
             if (!buf) {
                 const link = pickUrl(out.json)
-                if (!link) throw new Error('Respons API tidak berisi gambar')
+                if (!link) throw new Error('La API no devolvió ninguna imagen')
                 buf = await downloadResult(link)
             }
             return { items: [{ type: 'image', buffer: buf, caption: `${spec.title}\n${footer}` }] }
@@ -2022,7 +2022,7 @@ const _tools = (() => {
             return { text: `*${spec.title}*\n\n${toWhatsApp(formatAny(out.json))}` }
         }
 
-        if (out.buf) throw new Error('Respons API berupa file, bukan teks')
+        if (out.buf) throw new Error('La API devolvió un archivo, no texto')
         let text = spec.plain
             ? (pickText(out.json) || (out.json ? null : String(out.raw || '').trim()))
             : (out.json ? formatAny(out.json) : String(out.raw || '').trim())
@@ -2042,7 +2042,7 @@ const _tools = (() => {
                 await sock.sendMessage(jid, content, { quoted })
             } catch (e) {
                 if (!item.fallbackText) throw e
-                console.error('[API-TOOL] kirim dokumen gagal, kirim link:', e?.message || e)
+                console.error('[API-TOOL] falló el envío del documento, se envía el enlace:', e?.message || e)
                 await sock.sendMessage(jid, { text: item.fallbackText }, { quoted })
             }
             if (i < items.length - 1) await wait(1500)
@@ -2116,15 +2116,15 @@ const _dataid = (() => {
         } catch (e) {
             throw new FriendlyError(
                 e?.name === 'TimeoutError' || e?.name === 'AbortError'
-                    ? 'Server data terlalu lama merespons, coba lagi nanti.'
-                    : 'Tidak bisa terhubung ke server data, coba lagi nanti.'
+                    ? 'El servidor de datos tardó demasiado en responder, inténtalo más tarde.'
+                    : 'No se pudo conectar con el servidor de datos, inténtalo más tarde.'
             )
         }
         if (!res.ok) throw new FriendlyError(`Server data mengembalikan HTTP ${res.status}.`, res.status)
         try {
             return await res.json()
         } catch {
-            throw new FriendlyError('Respons server data tidak valid, coba lagi nanti.')
+            throw new FriendlyError('Respuesta no válida del servidor de datos, inténtalo más tarde.')
         }
     }
 
@@ -2219,7 +2219,7 @@ const _dataid = (() => {
                 }
             }
             if (lastError?.status === 404) return []
-            throw new FriendlyError('Data wilayah belum bisa diambil, coba lagi nanti.')
+            throw new FriendlyError('Todavía no se pudieron obtener los datos de la región, inténtalo más tarde.')
         })
     }
 
@@ -2233,7 +2233,7 @@ const _dataid = (() => {
             const provs = await getProvinces()
             const lists = await Promise.all(provs.map(p => getRegencies(p.code).catch(() => [])))
             const all = lists.flat()
-            if (!all.length) throw new FriendlyError('Data wilayah belum bisa diambil, coba lagi nanti.')
+            if (!all.length) throw new FriendlyError('Todavía no se pudieron obtener los datos de la región, inténtalo más tarde.')
             return all
         })
     }
@@ -2372,7 +2372,7 @@ rbDefineLib('helperbails', async () => {
     constructor() {}
     setBody() { return this } setFooter() { return this } setTitle() { return this } setDocument() { return this }
     addCopy() { return this } addUrl() { return this } addCard() { return this }
-    async send() { throw new Error('tombol khusus tidak tersedia') }
+    async send() { throw new Error('los botones especiales no están disponibles') }
   }
   return { ...baileys, Button, ButtonV2: Button, Carousel: Button, AIRich: undefined, default: (sock) => sock }
 })
@@ -2438,7 +2438,7 @@ export const netguard = (() => {
         res.on('error', (e) => { if (out.truncated) return; reject(e) })
         res.on('close', () => { if (out.truncated) resolve({ ...out, buffer: Buffer.concat(out.chunks) }) })
       })
-      req.on('timeout', () => req.destroy(Object.assign(new Error('waktu habis'), { code: 'ETIMEDOUT' })))
+      req.on('timeout', () => req.destroy(Object.assign(new Error('tiempo agotado'), { code: 'ETIMEDOUT' })))
       req.on('error', reject)
       req.end()
     })
@@ -2446,14 +2446,14 @@ export const netguard = (() => {
 
   async function safeFetch(input, o = {}) {
     const opt = { method: o.method || 'GET', headers: o.headers || {}, timeout: o.timeout || 20000, maxBytes: o.maxBytes || 5 * 1024 * 1024, truncate: !!o.truncate }
-    let url = parseUrl(input); if (!url) throw Object.assign(new Error('URL tidak valid atau mengarah ke alamat internal'), { code: 'EBADURL' })
+    let url = parseUrl(input); if (!url) throw Object.assign(new Error('URL no válida o apunta a una dirección interna'), { code: 'EBADURL' })
     const chain = [], t0 = Date.now(), max = o.maxRedirects == null ? 5 : o.maxRedirects
     for (let i = 0; i <= max; i++) {
       const r = await once(url, opt)
       chain.push({ url: url.href, status: r.status })
       if (r.status >= 300 && r.status < 400 && r.headers.location) {
-        let next; try { next = new URL(r.headers.location, url) } catch { throw new Error('redirect tidak valid') }
-        const ok = parseUrl(next.href); if (!ok) throw Object.assign(new Error('redirect ke alamat tidak diizinkan'), { code: 'EBADURL' })
+        let next; try { next = new URL(r.headers.location, url) } catch { throw new Error('redirección no válida') }
+        const ok = parseUrl(next.href); if (!ok) throw Object.assign(new Error('redirección a una dirección no permitida'), { code: 'EBADURL' })
         url = ok; continue
       }
       return { ...r, url: url.href, chain, ms: Date.now() - t0 }
@@ -2571,14 +2571,14 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
 
   const resolveCaptcha = async () => {
     const { data: createTask } = await axios.post('https://cap.jhx.my.id/api/createTask', { url: BASE + '/', type: 'turnstile-min', sitekey })
-    if (!createTask.success) throw new Error('Gagal membuat task captcha')
+    if (!createTask.success) throw new Error('No se pudo crear la tarea de captcha')
     for (let i = 0; i < 30; i++) {
       await new Promise(r => setTimeout(r, 2000))
       const { data: checkTask } = await axios.post('https://cap.jhx.my.id/api/getResult', { jobId: createTask.jobId })
       if (checkTask.status === 'ready' && checkTask.solution?.token) return checkTask.solution.token
-      if (checkTask.status === 'failed') throw new Error('Solver gagal menyelesaikan captcha')
+      if (checkTask.status === 'failed') throw new Error('El solver no pudo resolver el captcha')
     }
-    throw new Error('Timeout menunggu hasil captcha')
+    throw new Error('Se agotó el tiempo esperando el captcha')
   }
 
   const getSignatureFunction = async () => {
@@ -2601,7 +2601,7 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
     _igjhCreateContext(contextObj); _igjhRunInContext(chunkCode, contextObj)
 
     const webpackEngine = contextObj.webpackChunk?.[0]?.[1]
-    if (!webpackEngine) throw new Error('Gagal memuat modul Webpack')
+    if (!webpackEngine) throw new Error('No se pudo cargar el módulo de Webpack')
 
     const moduleCache = {}
     const requireModule = (id) => {
@@ -2618,7 +2618,7 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
 
   return async function download(rawInput) {
     const targetUrl = resolveIgTarget(rawInput)
-    if (!targetUrl || !targetUrl.includes('instagram.com')) throw new Error('URL Instagram tidak valid')
+    if (!targetUrl || !targetUrl.includes('instagram.com')) throw new Error('URL de Instagram no válida')
 
     const isStory = targetUrl.includes('/stories/')
     const apiEndpoint = isStory ? `${API}/api/v1/instagram/story` : `${API}/api/convert`
@@ -2629,7 +2629,7 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
     let captchaToken = await resolveCaptcha()
     const exchangeToken = async (token) => {
       const { data } = await axios.post(`${API}/api/cf`, `cfToken=${encodeURIComponent(token)}`, { headers: { ...jantung, 'Content-Type': 'application/x-www-form-urlencoded' } })
-      if (!data.result) throw new Error('Gagal menukar token captcha')
+      if (!data.result) throw new Error('No se pudo intercambiar el token del captcha')
       return data.result
     }
 
@@ -2644,7 +2644,7 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
     }
 
     const responseData = isStory ? apiResponse.data?.result : apiResponse.data
-    if (!Array.isArray(responseData) || responseData.length === 0) throw new Error(apiResponse.data?.message || 'Server menolak permintaan atau data media tidak ditemukan')
+    if (!Array.isArray(responseData) || responseData.length === 0) throw new Error(apiResponse.data?.message || 'El servidor rechazó la solicitud o no se encontró el contenido')
 
     const metadata = {
       author: isStory ? (responseData[0].user?.username || 'unknown') : (responseData[0].meta?.username || 'unknown'),
@@ -2667,7 +2667,7 @@ function makeSignatureDownloader({ host, sitekey, defaultChunk }) {
       }
     })
 
-    if (!mediaList.length) throw new Error('Media tidak ditemukan')
+    if (!mediaList.length) throw new Error('Contenido no encontrado')
     return { author: metadata.author, caption: metadata.caption, media: mediaList }
   }
 }
@@ -2678,7 +2678,7 @@ export const JHSssIG = makeSignatureDownloader({ host: 'sssinstagram.com', sitek
 export async function JHIgExport(rawInput) {
   const BASE = 'https://igexport.com'
   const found = resolveIgTarget(rawInput).match(/https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|reels|tv)\/[a-zA-Z0-9_\-.]+/i)
-  if (!found) throw new Error('igexport hanya mendukung link post / reel')
+  if (!found) throw new Error('igexport solo admite enlaces de publicaciones / reels')
   const url = found[0]
   const isReel = /\/(?:reel|reels|tv)\//i.test(url)
 
@@ -2686,12 +2686,12 @@ export async function JHIgExport(rawInput) {
     headers: { 'User-Agent': IGJH_UA, 'Accept': 'application/json', 'Referer': `${BASE}/id/video-download/` },
     timeout: 30000
   })
-  if (!data?.ok) throw new Error('Media Instagram tidak ditemukan atau akun bersifat privat')
+  if (!data?.ok) throw new Error('Contenido de Instagram no encontrado o la cuenta es privada')
 
   const media = isReel
     ? (data.media?.videoUrl ? [{ type: 'Video', url: data.media.videoUrl }] : [])
     : (data.media?.items || []).filter(i => i?.url).map(i => ({ type: i.type === 'video' ? 'Video' : 'Image', url: i.url }))
-  if (!media.length) throw new Error('Media tidak ditemukan')
+  if (!media.length) throw new Error('Contenido no encontrado')
   return { author: 'unknown', caption: '', media }
 }
 
@@ -2701,7 +2701,7 @@ export async function igDownloadAuto(rawInput, first = 'fastdl') {
   for (const fn of order) {
     try { return await fn(rawInput) } catch (e) { if (fn === JHIgExport) igxErr = e; else lastErr = e }
   }
-  throw lastErr || igxErr || new Error('Semua server gagal')
+  throw lastErr || igxErr || new Error('Todos los servidores fallaron')
 }
 
 export async function JHICog(mode, username, extraId) {
@@ -2756,8 +2756,8 @@ export async function JHICog(mode, username, extraId) {
     const cleanMode = String(pick(mode, '')).toLowerCase()
     const cleanUser = String(pick(username, '')).replace(/^@/, '')
 
-    if (cleanMode === '') throw new Error('Mode tidak boleh kosong (profile, posts, reels, stories, highlights, highlightstories)')
-    if (cleanUser === '') throw new Error('Username tidak boleh kosong')
+    if (cleanMode === '') throw new Error('El modo no puede estar vacío (profile, posts, reels, stories, highlights, highlightstories)')
+    if (cleanUser === '') throw new Error('El usuario no puede estar vacío')
 
     browser = await puppeteer.launch({
       headless: 'new',
@@ -2803,7 +2803,7 @@ export async function JHICog(mode, username, extraId) {
       cfAttempts++
     }
 
-    if (!cfPassed) throw new Error('Gagal ngelewatin Cloudflare lek')
+    if (!cfPassed) throw new Error('No se pudo saltar Cloudflare')
 
     try {
       await page.waitForFunction(() => typeof fetchAsync === 'function', { timeout: 30000 })
@@ -2892,7 +2892,7 @@ export async function JHICog(mode, username, extraId) {
       const hsRes = checked(await apiCall('/api/highlightStories', { _ei: cleanExId, _u: cleanUser }), 'highlightStories')
       for (const s of (hsRes.hs ? hsRes.hs : [])) finalItems.push(fmtStory(s))
     } else {
-      throw new Error('Mode tidak dikenali lek (profile, posts, reels, stories, highlights, highlightstories)')
+      throw new Error('Modo no reconocido (profile, posts, reels, stories, highlights, highlightstories)')
     }
 
     baseRes.data.mode = cleanMode
@@ -2949,7 +2949,7 @@ export const premku = {
 
   async api(endpoint, body = {}) {
     const key = _pkKey()
-    if (!key) throw new Error('API key Premku belum diisi. Owner: isi global.token.premku di config.js lalu restart bot.')
+    if (!key) throw new Error('La API key de Premku no está configurada. Dueño: completa global.token.premku en config.js y reinicia el bot.')
     const base = 'https://premku.com/api/'
     let res
     try {
@@ -2959,10 +2959,10 @@ export const premku = {
         headers: { 'Content-Type': 'application/json' }
       })
     } catch (e) {
-      throw new Error(`Gagal terhubung ke Premku (${e.code || e.message})`)
+      throw new Error(`No se pudo conectar con Premku (${e.code || e.message})`)
     }
     const d = res.data
-    if (!d || typeof d !== 'object') throw new Error(`Respons Premku tidak valid (HTTP ${res.status})`)
+    if (!d || typeof d !== 'object') throw new Error(`Respuesta no válida de Premku (HTTP ${res.status})`)
     if (!d.success) throw new Error(d.message || `Permintaan ditolak (HTTP ${res.status})`)
     return d
   },
@@ -3000,22 +3000,22 @@ export const premku = {
     const { rp, cut, isAvailable } = premku
     const PER_PAGE = 10
     const list = await premku.products(true)
-    if (!list.length) return ui.send(`Belum ada produk yang tersedia.\n\n${ui.menuText}`)
+    if (!list.length) return ui.send(`Todavía no hay productos disponibles.\n\n${ui.menuText}`)
 
     const pages = Math.max(1, Math.ceil(list.length / PER_PAGE))
     page = Math.min(Math.max(parseInt(page) || 1, 1), pages)
     const slice = list.slice((page - 1) * PER_PAGE, page * PER_PAGE)
     const target = mode === 'stok' ? 'pkstok' : 'pkdetail'
 
-    let body = `*🛍️ DAFTAR PRODUK*${mode === 'stok' ? ' _(cek stok)_' : ''}\nHalaman ${page}/${pages} • ${list.length} produk\n`
+    let body = `*🛍️ LISTA DE PRODUCTOS*${mode === 'stok' ? ' _(ver stock)_' : ''}\nPágina ${page}/${pages} • ${list.length} productos\n`
     slice.forEach((x) => {
       body += `\n${isAvailable(x) ? '🟢' : '🔴'} *${x.name}*\n    ${rp(x.price)} • stok ${x.stock ?? 0} • ID ${x.id}`
     })
 
     const suffix = mode === 'stok' ? ' stok' : ''
-    body += `\n\nKetik perintah di bawah untuk memilih produk:\n` +
+    body += `\n\nEscribe el comando de abajo para elegir un producto:\n` +
       slice.map((x) => `▢ ${p}${target} ${x.id} — ${cut(x.name, 24)}`).join('\n')
-    if (page > 1) body += `\n▢ ${p}pkproduk ${page - 1}${suffix} — ⬅️ Sebelumnya`
+    if (page > 1) body += `\n▢ ${p}pkproduk ${page - 1}${suffix} — ⬅️ Anterior`
     if (page < pages) body += `\n▢ ${p}pkproduk ${page + 1}${suffix} — ➡️ Berikutnya`
     body += `\n${ui.menuText}`
     return ui.send(body)
@@ -3039,7 +3039,7 @@ export const premku = {
     if (lines.length && lines.length <= _PK_MAX_INLINE) {
       body += `\n\n*🔐 AKUN*\n` + accounts.map((a, i) => `${i + 1}. ${a.username}\n    🔑 ${a.password}`).join('\n')
     } else if (lines.length) {
-      body += `\n\n*🔐 ${lines.length} akun* dikirim sebagai file .txt`
+      body += `\n\n*🔐 ${lines.length} cuentas* enviadas como archivo .txt`
       try {
         await conn.sendMessage(m.chat, { document: Buffer.from(lines.join('\n')), mimetype: 'text/plain', fileName: `${o.invoice || 'akun'}.txt` }, { quoted: m })
       } catch {}
@@ -3344,7 +3344,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
             })
             coverBuffer = Buffer.from(res.data)
         } catch (e) {
-            console.log(`[AutoAnime-Winbu] ⚠️ Cover gagal: ${e.message}`)
+            console.log(`[AutoAnime-Winbu] ⚠️ Falló la portada: ${e.message}`)
         }
     }
 
@@ -3404,7 +3404,7 @@ async function runCheck() {
     }
 
     if (animeList.length === 0) {
-        console.log('[AutoAnime-Winbu] Tidak ada anime')
+        console.log('[AutoAnime-Winbu] No hay animes')
         return
     }
 

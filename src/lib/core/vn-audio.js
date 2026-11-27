@@ -14,13 +14,13 @@ import { createHash } from "crypto";
 /** Convert a local audio asset to Opus so WhatsApp sends it as a Voice Note. */
 export async function convertToVoiceNote(audioPath) {
   if (typeof audioPath !== "string" || !audioPath.trim()) {
-    throw new Error("Path audio VN tidak valid");
+    throw new Error("Ruta de audio VN no válida");
   }
 
   const isUrl = /^https?:\/\//i.test(audioPath.trim());
   const inputPath = isUrl ? audioPath.trim() : path.resolve(audioPath);
   if (!isUrl && (!fs.existsSync(inputPath) || !fs.statSync(inputPath).isFile())) {
-    throw new Error(`File audio tidak ditemukan: ${inputPath}`);
+    throw new Error(`No se encontró el archivo de audio: ${inputPath}`);
   }
 
   // Hash the source so a changed sound automatically gets a fresh VN cache.
@@ -54,14 +54,14 @@ export async function convertToVoiceNote(audioPath) {
     let errorText = "";
     ffmpeg.stderr.on("data", (chunk) => { errorText += chunk.toString(); });
     ffmpeg.once("error", (error) => {
-      reject(new Error(`Gagal menjalankan FFmpeg: ${error.message}`));
+      reject(new Error(`No se pudo ejecutar FFmpeg: ${error.message}`));
     });
     ffmpeg.once("close", (code) => {
       if (code === 0 && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 0) {
         resolve(outputPath);
       } else {
         try { if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath); } catch {}
-        reject(new Error(`Konversi VN gagal${errorText ? `: ${errorText.trim()}` : ""}`));
+        reject(new Error(`Falló la conversión de VN${errorText ? `: ${errorText.trim()}` : ""}`));
       }
     });
   });

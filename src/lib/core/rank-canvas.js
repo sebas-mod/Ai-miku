@@ -523,7 +523,7 @@ export async function renderTop10({
       ctx.fill();
       ctx.restore();
       text(ctx, String(i + 1), 105, y + 65, { size: 34, weight: "800", color: "rgba(255,255,255,0.35)", align: "center" });
-      text(ctx, "Belum ada", 268, y + 64, { size: 30, weight: "bold", color: "rgba(255,255,255,0.3)" });
+      text(ctx, "Nadie aún", 268, y + 64, { size: 30, weight: "bold", color: "rgba(255,255,255,0.3)" });
       continue;
     }
 
@@ -549,7 +549,7 @@ export async function renderTop10({
 
     drawAvatar(ctx, images[i], 205, y + 53, 40, i < 3 ? col : "rgba(255,255,255,0.35)", 4);
 
-    text(ctx, cleanText(r.name, "Petualang") + (r.isMe ? "  (Kamu)" : ""), 268, y + 48, { size: 36, weight: "bold", maxW: 425 });
+    text(ctx, cleanText(r.name, "Petualang") + (r.isMe ? "  (Tú)" : ""), 268, y + 48, { size: 36, weight: "bold", maxW: 425 });
     if (r.sub) text(ctx, cleanText(r.sub, ""), 268, y + 84, { size: 24, weight: "bold", color: "rgba(255,255,255,0.62)", maxW: 425 });
 
     text(ctx, r.main, 1005, y + 56, { size: 40, weight: "800", color: accent, align: "right", maxW: 300 });
@@ -583,7 +583,7 @@ export async function renderRankList({
   const { canvas, ctx, w, h } = await baseCanvas("ranklist");
 
   drawAvatar(ctx, await toImage(avatar), 115, 112, 52, CYAN, 5);
-  text(ctx, "KATALOG PANGKAT ASTRAL", 195, 108, { size: 52, weight: "800", color: CYAN, maxW: 960, shadow: true });
+  text(ctx, "CATÁLOGO DE RANGOS ASTRALES", 195, 108, { size: 52, weight: "800", color: CYAN, maxW: 960, shadow: true });
 
   let curIdx = -1;
   ranks.forEach((r, i) => {
@@ -642,7 +642,7 @@ export async function renderRankList({
 
     if (current) {
       panel(ctx, x + cw - 98, y + 16, 82, 32, 16, GOLD);
-      text(ctx, "KAMU", x + cw - 57, y + 39, { size: 18, weight: "800", color: "#2a1d00", align: "center" });
+      text(ctx, "TÚ", x + cw - 57, y + 39, { size: 18, weight: "800", color: "#2a1d00", align: "center" });
     } else if (unlocked) {
       checkIcon(ctx, x + cw - 34, y + 34, 16, CYAN);
     } else {

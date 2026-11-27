@@ -17,17 +17,17 @@ const notifCronJobs = new Map()
 let refreshJob = null
 
 const MAKAN_MESSAGES = [
-    '🍽️ *Waktunya makan {label}!*\n\n⏰ *{jam} WIB*\n\nJangan skip makan ya, tubuh butuh asupan energi biar tetap produktif 💪\n{menu}\n\n📌 _Diatur oleh @{sender}_',
-    '🥗 *Heyy @{sender}, udah jam {jam} nih!*\n\nSaatnya isi perut dulu 🍛\nMakan yang bergizi biar badan tetap fit!\n{menu}',
-    '🍜 *Reminder makan {label}*\n\n⏰ *{jam} WIB*\n\nPerut kosong bikin mood jelek lho 😤\nYuk makan dulu sebelum lanjut aktivitas\n{menu}\n\n📌 _Diatur oleh @{sender}_',
-    '🍜 *MAKAN DULU WOYY @{sender}*\n\nPakai ? {menu}',
+    '🍽️ *¡Hora de comer {label}!*\n\n⏰ *{jam} WIB*\n\nNo te saltes la comida, tu cuerpo necesita energía para seguir rindiendo 💪\n{menu}\n\n📌 _Configurado por @{sender}_',
+    '🥗 *¡Ey @{sender}, ya son las {jam}!*\n\nEs hora de llenar el estómago 🍛\n¡Come algo nutritivo para mantenerte en forma!\n{menu}',
+    '🍜 *Recordatorio de comida {label}*\n\n⏰ *{jam} WIB*\n\nEl estómago vacío te pone de mal humor 😤\nCome algo antes de seguir con tus cosas\n{menu}\n\n📌 _Configurado por @{sender}_',
+    '🍜 *¡A COMER, @{sender}!*\n\n¿Qué tal? {menu}',
 ]
 
 const TIDUR_MESSAGES = [
-    '🌙 *Waktunya istirahat!*\n\n⏰ *{jam} WIB*\n\nTaruh HP-nya, pejamkan mata 😴\nTidur cukup bikin otak fresh buat besok!\n_Selamat malam_ 🌟\n\n📌 _Diatur oleh @{sender}_',
-    '💤 *Udah jam {jam} nih @{sender}!*\n\nYuk istirahat, jangan begadang terus 🛏️\nKesehatan itu investasi paling berharga\n_Mimpi indah ya_ ✨',
-    '😴 *Reminder tidur malam*\n\n⏰ *{jam} WIB*\n\nLayar HP itu musuh tidur nyenyak 📵\nMatikan notifikasi dan rebahan sekarang!\n_Good night_ 🌜\n\n📌 _Diatur oleh @{sender}_',
-    '*TURU WOYY @{sender}*\n\n⏰ Udah jam *{jam}*',
+    '🌙 *¡Hora de descansar!*\n\n⏰ *{jam} WIB*\n\nSuelta el celu y cierra los ojos 😴\n¡Dormir bien deja la cabeza fresca para mañana!\n_Buenas noches_ 🌟\n\n📌 _Configurado por @{sender}_',
+    '💤 *¡Ya son las {jam}, @{sender}!*\n\nDescansa, no te quedes trasnochando 🛏️\nLa salud es la mejor inversión\n_Dulces sueños_ ✨',
+    '😴 *Recordatorio de sueño*\n\n⏰ *{jam} WIB*\n\nLa pantalla es enemiga del buen descanso 📵\n¡Silencia las notificaciones y a la cama!\n_Buenas noches_ 🌜\n\n📌 _Configurado por @{sender}_',
+    '*¡A DORMIR, @{sender}!*\n\n⏰ Ya son las *{jam}*',
 ]
 
 function getRandomMessage(templates, jam, menu, label, senderJid) {

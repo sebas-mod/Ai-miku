@@ -216,8 +216,8 @@ const ERROR_MESSAGES = {
     fatal: false,
   },
   515: {
-    reason: "Stream error (restart diperlukan)",
-    action: "Menyambungkan ulang otomatis",
+    reason: "Error de conexión (requiere reinicio)",
+    action: "Reconectando automáticamente",
     fatal: false,
   },
 };
@@ -225,26 +225,26 @@ const ERROR_MESSAGES = {
 const CONNECTION_CLOSED_REASONS = [
   {
     match: /logged out/i,
-    reason: "Akun di-logout",
-    action: "Akun di-logout dari perangkat tertaut",
+    reason: "Cuenta desvinculada",
+    action: "Cuenta cerrada desde el dispositivo vinculado",
     fatal: true,
   },
   {
     match: /replaced/i,
-    reason: "Session digantikan",
-    action: "Login di perangkat lain",
+    reason: "Sesión reemplazada",
+    action: "Inició sesión en otro dispositivo",
     fatal: true,
   },
   {
     match: /Multidevice mismatch/i,
-    reason: "Session tidak valid",
-    action: "Perlu pairing ulang",
+    reason: "Sesión inválida",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   {
     match: /bad session/i,
-    reason: "Session rusak",
-    action: "Perlu pairing ulang",
+    reason: "Sesión dañada",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   {
@@ -287,8 +287,8 @@ function parseDisconnectError(lastDisconnect) {
 
   return {
     code: statusCode || "N/A",
-    reason: errorMessage || "Gagal terhubung",
-    action: "Mencoba sambung ulang",
+    reason: errorMessage || "No se pudo conectar",
+    action: "Reintentando conectar",
     fatal: false,
     message: errorMessage,
   };
@@ -318,7 +318,7 @@ async function safeSend(sock, jid, content, options = {}) {
 async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = false) {
   const id = normalizePhoneId(userJid, sock);
   if (!id || id.length < 10 || id.length > 15) {
-    throw new Error("Nomor WhatsApp tidak valid untuk Jadibot.");
+    throw new Error("Número de WhatsApp inválido para Jadibot.");
   }
 
   const normalizedJid = `${id}@s.whatsapp.net`;
@@ -326,7 +326,7 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
 
   if (!isReconnect) {
     if (jadibotSessions.has(id) || pendingSessions.has(id)) {
-      throw new Error("Jadibot sudah aktif atau sedang proses pairing untuk nomor ini!");
+      throw new Error("¡Jadibot ya está activo o en proceso de vinculación para este número!");
     }
 
     if (usePairing) {
@@ -334,7 +334,7 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       const waitMs = 30000 - (Date.now() - lastAttempt);
       if (waitMs > 0) {
         const secs = Math.ceil(waitMs / 1000);
-        throw new Error(`Tunggu ${secs} detik sebelum mencoba pairing lagi.`);
+        throw new Error(`Espera ${secs} segundos antes de intentar vincular de nuevo.`);
       }
       rateLimit.set(id, Date.now());
     }
@@ -478,11 +478,11 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       await safeSend(sock, m?.chat, {
         text:
           `${statusEmoji} *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ / ᴛᴇʀᴘᴜᴛᴜꜱ*\n\n` +
-          `> 📱 Nomor: *@${id}*\n` +
-          `> 🔢 Kode: \`${errorInfo.code}\`\n` +
-          `> 📋 Alasan: *${errorInfo.reason}*\n` +
-          `> 🗑️ Session jadibot otomatis dihapus.\n\n` +
-          `Ketik \`${prefix}jadibot\` untuk memulai ulang.`,
+          `> 📱 Número: *@${id}*\n` +
+          `> 🔢 Código: \`${errorInfo.code}\`\n` +
+          `> 📋 Motivo: *${errorInfo.reason}*\n` +
+          `> 🗑️ La sesión de jadibot se eliminó automáticamente.\n\n` +
+          `Escribe \`${prefix}jadibot\` para empezar de nuevo.`,
         mentions: [normalizedJid],
       });
       return;
@@ -497,10 +497,10 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       await safeSend(sock, m?.chat, {
         text:
           `🔄 *ᴊᴀᴅɪʙᴏᴛ ʙᴇʟᴜᴍ ᴛᴇʀʜᴜʙᴜɴɢ*\n\n` +
-          `> 📱 Nomor: *@${id}*\n` +
-          `> 📋 Alasan: *${errorInfo.reason}*\n` +
-          `> 🔁 Percobaan: *${attempt}/${MAX_RECONNECT_ATTEMPTS}*\n\n` +
-          `> ⏳ Mencoba menyambungkan ulang dalam ${RECONNECT_INTERVAL / 1000} detik...`,
+          `> 📱 Número: *@${id}*\n` +
+          `> 📋 Motivo: *${errorInfo.reason}*\n` +
+          `> 🔁 Intento: *${attempt}/${MAX_RECONNECT_ATTEMPTS}*\n\n` +
+          `> ⏳ Reintentando conexión en ${RECONNECT_INTERVAL / 1000} segundos...`,
         mentions: [normalizedJid],
       });
 
@@ -519,8 +519,8 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
             await safeSend(sock, m?.chat, {
               text:
                 `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ (${attempt}/${MAX_RECONNECT_ATTEMPTS})*\n\n` +
-                `> 📱 Nomor: *@${id}*\n` +
-                `> 📋 Alasan: *${e.message || "Gagal menyambungkan"}*`,
+                `> 📱 Número: *@${id}*\n` +
+                `> 📋 Motivo: *${e.message || "No se pudo conectar"}*`,
               mentions: [normalizedJid],
             });
           }
@@ -543,10 +543,10 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       await safeSend(sock, m?.chat, {
         text:
           `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ ᴛᴇʀʜᴜʙᴜɴɢ (${MAX_RECONNECT_ATTEMPTS}/${MAX_RECONNECT_ATTEMPTS})*\n\n` +
-          `> 📱 Nomor: *@${id}*\n` +
-          `> 📋 Alasan: *${errorInfo.reason}*\n` +
-          `> 🗑️ Session jadibot otomatis dihapus karena gagal terhubung setelah ${MAX_RECONNECT_ATTEMPTS} percobaan.\n\n` +
-          `Ketik \`${prefix}jadibot\` untuk mencoba lagi.`,
+          `> 📱 Número: *@${id}*\n` +
+          `> 📋 Motivo: *${errorInfo.reason}*\n` +
+          `> 🗑️ La sesión de jadibot se eliminó automáticamente tras fallar la conexión después de ${MAX_RECONNECT_ATTEMPTS} intentos.\n\n` +
+          `Escribe \`${prefix}jadibot\` para intentar de nuevo.`,
         mentions: [normalizedJid],
       });
     }
@@ -563,8 +563,8 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       if (qrCount > 3) {
         await handleFailure({
           code: "QR_EXPIRED",
-          reason: "QR Code kadaluarsa (3/3)",
-          action: "Scan QR terlalu lama",
+          reason: "Código QR vencido (3/3)",
+          action: "Escaneo del QR demasiado lento",
           fatal: true,
         });
         return;
@@ -589,8 +589,8 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
             image: qrBuffer,
             caption:
               `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴄᴏᴅᴇ*\n\n` +
-              `Scan kode QR ini untuk menjadi bot.\n\n` +
-              `> ⏱️ Expired dalam 20 detik\n` +
+              `Escanea este código QR para convertirte en bot.\n\n` +
+              `> ⏱️ Vence en 20 segundos\n` +
               `> 📊 QR Count: ${qrCount}/3`,
           },
           { quoted: m }
@@ -633,10 +633,10 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
         await safeSend(sock, m.chat, {
           text:
             `✅ *ᴊᴀᴅɪʙᴏᴛ ᴛᴇʀʜᴜʙᴜɴɢ*\n\n` +
-            `> 📱 Nomor: *@${id}*\n` +
+            `> 📱 Número: *@${id}*\n` +
             `> 🟢 Status: *Online*\n` +
             `> ⏱️ Mulai: *${new Date().toLocaleTimeString("id-ID")}*\n\n` +
-            `Bot kamu aktif dan siap menerima perintah!\n\n` +
+            `¡Tu bot está activo y listo para recibir comandos!\n\n` +
             `> ℹ️ Ketik \`${m.prefix || "."}stopjadibot\` untuk menghentikan`,
           mentions: [normalizedJid],
         });
@@ -749,8 +749,8 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
     if (!isConnected && !handledClose && !pendingEntry.cancelled) {
       handleFailure({
         code: "TIMEOUT",
-        reason: "Tidak terhubung (waktu pairing habis / timeout)",
-        action: "Pastikan kode pairing dimasukkan di WhatsApp",
+        reason: "Sin conexión (se agotó el tiempo de vinculación)",
+        action: "Asegúrate de ingresar el código en WhatsApp",
         fatal: false,
       });
     }
@@ -766,7 +766,7 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
       const rawCode = await childSock.requestPairingCode(id);
       const cleanCode = String(rawCode || "").replace(/[^A-Za-z0-9]/g, "");
       if (!cleanCode) {
-        throw new Error("Pairing code kosong dari server WhatsApp");
+        throw new Error("El servidor de WhatsApp devolvió un código vacío");
       }
       pairingCode = cleanCode.match(/.{1,4}/g)?.join("-") || cleanCode;
 
@@ -774,16 +774,16 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
         const attemptNow = reconnectAttempts.get(id) || 0;
         const attemptLabel =
           attemptNow > 0
-            ? `\n> 🔁 Percobaan: *${attemptNow}/${MAX_RECONNECT_ATTEMPTS}*`
+            ? `\n> 🔁 Intento: *${attemptNow}/${MAX_RECONNECT_ATTEMPTS}*`
             : "";
 
         const pairingText =
-          `🔗 *ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ ᴊᴀᴅɪʙᴏᴛ*\n\n` +
-          `Masukkan kode berikut di WhatsApp kamu:\n` +
-          `> 📱 *Perangkat Tertaut → Tautkan Perangkat → Tautkan dengan nomor telepon*\n\n` +
+          `🔗 *ᴄóᴅɪɢᴏ ᴅᴇ ᴠɪɴᴄᴜʟᴀᴄɪóɴ ᴊᴀᴅɪʙᴏᴛ*\n\n` +
+          `Ingresa este código en tu WhatsApp:\n` +
+          `> 📱 *Dispositivos vinculados → Vincular dispositivo → Vincular con número de teléfono*\n\n` +
           `\`\`\`${pairingCode}\`\`\`\n\n` +
-          `> ⏱️ Berlaku *60 detik* sebelum percobaan ulang${attemptLabel}\n` +
-          `> ⚠️ Jangan bagikan kode ini ke siapapun`;
+          `> ⏱️ Válido *60 segundos* antes de reintentar${attemptLabel}\n` +
+          `> ⚠️ No compartas este código con nadie`;
 
         try {
           await sock.sendMessage(
@@ -795,7 +795,7 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
                 {
                   name: "cta_copy",
                   buttonParamsJson: JSON.stringify({
-                    display_text: "📋 Copy Pairing Code",
+                    display_text: "📋 Copiar código",
                     copy_code: cleanCode,
                   }),
                 },
@@ -813,34 +813,34 @@ async function startJadibot(sock, m, userJid, usePairing = true, isReconnect = f
     } catch (e) {
       logger.error("Jadibot", "Failed to get pairing code: " + e.message);
 
-      let reason = "Gagal mendapatkan pairing code";
+      let reason = "No se pudo obtener el código de vinculación";
       let fatal = false;
       if (
         e.message?.includes("rate") ||
         e.message?.includes("limit") ||
         e.message?.includes("428")
       ) {
-        reason = "Rate limited oleh WhatsApp (tunggu beberapa menit)";
+        reason = "WhatsApp limitó los intentos (espera unos minutos)";
         fatal = true;
       } else if (
         e.message?.includes("banned") ||
         e.message?.includes("blocked") ||
         e.message?.includes("403")
       ) {
-        reason = "Nomor mungkin dibanned WhatsApp";
+        reason = "Es posible que WhatsApp haya bloqueado el número";
         fatal = true;
       } else if (
         e.message?.includes("Connection Closed") ||
         e.message?.includes("closed")
       ) {
-        reason = "Koneksi terputus saat meminta pairing code";
+        reason = "La conexión se cortó al pedir el código";
         fatal = false;
       }
 
       await handleFailure({
         code: "PAIRING_ERR",
         reason,
-        action: e.message || "Coba lagi",
+        action: e.message || "Inténtalo de nuevo",
         fatal,
       });
 

@@ -123,10 +123,10 @@ async function enforceDailyFeatureLimit(m, db) {
   if (dailyLimitBypass(m, status, db) || status.remaining > 0) return true;
 
   await m.reply(
-    `🚫 *LIMIT HARIAN HABIS*\n\n` +
-      `Kamu sudah menggunakan *${DAILY_FEATURE_LIMIT}/${DAILY_FEATURE_LIMIT}* fitur hari ini.\n` +
-      `Fitur bisa digunakan lagi besok mulai pukul *00.00 WIB*.\n\n` +
-      `> Cek pemakaian dengan: \`${m.prefix}limit\``,
+    `🚫 *LÍMITE DIARIO AGOTADO*\n\n` +
+      `Ya usaste *${DAILY_FEATURE_LIMIT}/${DAILY_FEATURE_LIMIT}* funciones hoy.\n` +
+      `Podrás volver a usarlas mañana a partir de las *00.00 WIB*.\n\n` +
+      `> Consulta tu uso con: \`${m.prefix}limit\``,
   );
   return false;
 }
@@ -245,13 +245,13 @@ async function handleSpamClose(m, sock, db) {
     const report =
       `╭─〔 🚨 *SPAMCLOSE* 〕
 ` +
-      `│ ⚠️ Spam 5× terdeteksi
+      `│ ⚠️ Spam 5× detectado
 ` +
-      `│ 👤 Pelaku: ${offenderTag}
+      `│ 👤 Autor: ${offenderTag}
 ` +
-      `│ 🔒 Grup: *ditutup otomatis*
+      `│ 🔒 Grupo: *cerrado automáticamente*
 ` +
-      `│ 🗑️ Pesan spam: *5 terhapus*
+      `│ 🗑️ Mensajes de spam: *5 eliminados*
 ` +
       `╰─┬──────────────
 ` +
@@ -629,7 +629,7 @@ Ada apa manggil aku @${m.sender.split("@")[0]}?`,
     }
 
     if (text?.toLowerCase() === "bot") {
-      await m.reply(`Hai @${m.sender.split("@")[0]}, ${botName} Aktif ✅`, {
+      await m.reply(`Hola @${m.sender.split("@")[0]}, ${botName} activo ✅`, {
         mentions: [m.sender],
       });
       return true;
@@ -748,7 +748,7 @@ async function messageHandler(msg, sock, options = {}) {
               groupData.autoSambut.pesanList = [groupData.autoSambut.pesan];
             }
 
-            const pList = groupData.autoSambut.pesanList || ["Halo {user}! Selamat datang kembali 🙇‍♂️"];
+            const pList = groupData.autoSambut.pesanList || ["¡Hola {user}! Bienvenido de nuevo 🙇‍♂️"];
             const randomMsg = pList[Math.floor(Math.random() * pList.length)];
 
             let sambutan = randomMsg
@@ -931,7 +931,7 @@ async function messageHandler(msg, sock, options = {}) {
         await m
           .reply(
             config.messages?.banned ||
-            "🚫 *Kamu dibanned dari menggunakan bot ini.*",
+            "🚫 *Estás baneado y no puedes usar este bot.*",
           )
           .catch(() => { });
       }
@@ -1759,10 +1759,10 @@ async function messageHandler(msg, sock, options = {}) {
           jadibotBlockedCommands.includes(m.command.toLowerCase())
         ) {
           return m.reply(
-            `⚠️ *ᴀᴋsᴇs ᴛᴇʀʙᴀᴛᴀs*\n\n` +
-            `Fitur ini hanya tersedia di bot utama.\n` +
-            `Jadibot tidak dapat mengakses fitur ini.\n\n` +
-            `> Hubungi owner bot utama untuk informasi lebih lanjut.`,
+            `⚠️ *ᴀᴄᴄᴇsᴏ ʀᴇsᴛʀɪɴɢɪᴅᴏ*\n\n` +
+            `Esta función solo está disponible en el bot principal.\n` +
+            `Jadibot no puede acceder a esta función.\n\n` +
+            `> Contacta al dueño del bot principal para más información.`,
           );
         }
       }
@@ -1830,9 +1830,9 @@ async function messageHandler(msg, sock, options = {}) {
 
           await m.reply(
             `🔒 *ᴄᴏᴍᴍᴀɴᴅ ᴛɪᴅᴀᴋ ᴛᴇʀsᴇᴅɪᴀ*\n\n` +
-            `> Bot sedang dalam mode *${currentConfig.name}*\n` +
-            `> Command \`${m.prefix}${m.command}\` tersedia di mode *${suggestedModeName}*\n\n` +
-            `💡 Hubungi admin grup untuk mengganti mode:\n` +
+            `> El bot está en modo *${currentConfig.name}*\n` +
+            `> El comando \`${m.prefix}${m.command}\` está disponible en el modo *${suggestedModeName}*\n\n` +
+            `💡 Contacta a un administrador del grupo para cambiar el modo:\n` +
             `\`${m.prefix}botmode ${suggestedMode}\``,
           );
           return;
@@ -1845,7 +1845,7 @@ async function messageHandler(msg, sock, options = {}) {
 
         if (pluginCat === "game" && grpData.game === false && m.command !== "xozo") {
           await m.reply(
-            `🎮 *FITUR GAME NONAKTIF*\n\nFitur game sedang dinonaktifkan di grup ini oleh admin.\nMinta admin untuk mengaktifkannya kembali dengan perintah *${m.prefix}game on*`
+            `🎮 *JUEGOS DESACTIVADOS*\n\nUn administrador desactivó los juegos en este grupo.\nPídele que los active de nuevo con el comando *${m.prefix}game on*`
           );
           return;
         }
@@ -1881,17 +1881,17 @@ async function messageHandler(msg, sock, options = {}) {
       const p = m.prefix || config.command?.prefix || ".";
       const thumbReg = "https://cdn.zass.in/P3Q2YXg8u3.jpeg"; // Thumbnail langsung untuk peringatan belum daftar
       const regMsg =
-        `╭─── ❖ 『 🔒 *AKSES KHUSUS PETUALANG* 』 ❖\n` +
-        `│ ✦ Halo *@${m.sender.split("@")[0]}*!\n` +
-        `│ ✦ Fitur *${p}${m.command}* (Kategori: *${pCatLower.toUpperCase()}*) hanya dapat digunakan oleh member yang sudah terdaftar.\n` +
-        `├─── ❖ 『 📝 *CARA DAFTAR CEPAT* 』 ❖\n` +
-        `│ 📌 *Ketik:* \`${p}daftar Nama.Umur\`\n` +
-        `│ ✨ *Contoh:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
-        `├─── ❖ 『 🎁 *HADIAH PENDAFTARAN* 』 ❖\n` +
-        `│ 💰 *+Rp 25.000* Koin & *+15.000* EXP\n` +
-        `│ ⚡ *+15* Energi & *+5* Health Potion\n` +
+        `╭─── ❖ 『 🔒 *ACCESO SOLO PARA AVENTUREROS* 』 ❖\n` +
+        `│ ✦ ¡Hola *@${m.sender.split("@")[0]}*!\n` +
+        `│ ✦ Fitur *${p}${m.command}* (Categoría: *${pCatLower.toUpperCase()}*) solo puede usarla un miembro registrado.\n` +
+        `├─── ❖ 『 📝 *CÓMO REGISTRARTE RÁPIDO* 』 ❖\n` +
+        `│ 📌 *Escribe:* \`${p}daftar Nombre.Edad\`\n` +
+        `│ ✨ *Ejemplo:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
+        `├─── ❖ 『 🎁 *REGALO DE REGISTRO* 』 ❖\n` +
+        `│ 💰 *+Rp 25.000* monedas y *+15.000* EXP\n` +
+        `│ ⚡ *+15* energía y *+5* pociones de vida\n` +
         `╰──────────────────────────❖\n` +
-        `_✦ Daftar gratis sekarang dan mulai petualanganmu!_`;
+        `_✦ ¡Regístrate gratis ahora y empieza tu aventura!_`;
       try {
         await sock.sendMessage(
           m.chat,
@@ -1900,8 +1900,8 @@ async function messageHandler(msg, sock, options = {}) {
             contextInfo: {
               mentionedJid: [m.sender],
               externalAdReply: {
-                title: "🔒 WAJIB DAFTAR TERLEBIH DAHULU",
-                body: `Ketik ${p}daftar Nama.Umur untuk membuka fitur ini!`,
+                title: "🔒 REGISTRO OBLIGATORIO",
+                body: `¡Escribe ${p}daftar Nombre.Edad para abrir esta función!`,
                 thumbnailUrl: thumbReg,
                 mediaType: 1,
                 renderLargerThumbnail: false,
@@ -2063,7 +2063,7 @@ async function messageHandler(msg, sock, options = {}) {
     try {
       const m = await serialize(sock, msg);
       if (m) {
-        await m.reply(`Sepertinya ada kendala, coba hubungi owner`);
+        await m.reply(`Parece que hubo un problema, contacta al dueño`);
       }
     } catch {
       logger.error("Failed to send error message");
@@ -2197,14 +2197,14 @@ async function groupHandler(update, sock) {
           emoji: "🎉",
           label: "PROMOTE",
           text: (p, a) =>
-            `🌿 @${p} sekarang menjadi admin baru 💕\nPromoted by: @${a}`,
+            `🌿 @${p} ahora es administrador nuevo 💕\nPromovido por: @${a}`,
         },
         demote: {
           notifKey: "notifDemote",
           emoji: "📉",
           label: "DEMOTE",
           text: (p, a) =>
-            `🌿 @${p} sudah tidak menjadi admin lagi.\nDemoted by: @${a}`,
+            `🌿 @${p} ya no es administrador.\nDegradado por: @${a}`,
         },
       };
 
@@ -2322,7 +2322,7 @@ async function groupSettingsHandler(update, sock) {
         if (update.announce === true && groupData.notifCloseGroup === true) {
           await sock.sendText(
             groupId,
-            `🥗 Grup *${groupName}* di tutup oleh admin`,
+            `🥗 El grupo *${groupName}* fue cerrado por un administrador`,
             null,
             zannContext,
           );
@@ -2331,7 +2331,7 @@ async function groupSettingsHandler(update, sock) {
         if (update.announce === false && groupData.notifOpenGroup === true) {
           await sock.sendText(
             groupId,
-            `🎃 Grup *${groupName}* telah di buka kembali oleh admin`,
+            `🎃 El grupo *${groupName}* fue reabierto por un administrador`,
             null,
             zannContext,
           );
@@ -2350,14 +2350,14 @@ async function groupSettingsHandler(update, sock) {
         if (update.restrict === true) {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbatas !\nHanya admin yang dapat mengedit grup`,
+            `🥗 ¡Información del grupo *${groupName}* restringida!\nSolo los administradores pueden editar el grupo`,
             null,
             zannContext,
           );
         } else {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbuka !\nSemua member dapat mengedit grup`,
+            `🥗 ¡Información del grupo *${groupName}* abierta!\nTodos los miembros pueden editar el grupo`,
             null,
             zannContext,
           );

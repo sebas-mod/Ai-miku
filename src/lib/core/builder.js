@@ -442,7 +442,7 @@ class Toolkit {
 
             try {
                 if (!Buffer.isBuffer(videoBuffer) || !videoBuffer.length) {
-                    return fail(new Error('videoBuffer tidak valid atau kosong'));
+                    return fail(new Error('videoBuffer no válido o vacío'));
                 }
 
                 const inputStream = new Readable({ read() { } });

@@ -471,14 +471,14 @@ async function startGroupScheduleChecker(sock) {
                 "not_announcement",
               );
 
-              let groupName = "Grup";
+              let groupName = "Grupo";
               try {
                 const meta = await groupScheduleSock.groupMetadata(groupId);
                 groupName = meta?.subject || groupName;
               } catch {}
 
               const openTemplate = group.scheduleOpenMsg ||
-                `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grup dibuka otomatis sesuai jadwal.\n> Waktu: {time} WIB`;
+                `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grupo abierto automáticamente según el horario.\n> Hora: {time} WIB`;
               const openText = String(openTemplate)
                 .replace(/\{group\}/gi, groupName)
                 .replace(/\{time\}/gi, currentTime)
@@ -526,14 +526,14 @@ async function startGroupScheduleChecker(sock) {
                 "announcement",
               );
 
-              let groupName = "Grup";
+              let groupName = "Grupo";
               try {
                 const meta = await groupScheduleSock.groupMetadata(groupId);
                 groupName = meta?.subject || groupName;
               } catch {}
 
               const closeTemplate = group.scheduleCloseMsg ||
-                `🔒 *ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Grup ditutup otomatis sesuai jadwal.\n> Waktu: {time} WIB`;
+                `🔒 *ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Grupo cerrado automáticamente según el horario.\n> Hora: {time} WIB`;
               const closeText = String(closeTemplate)
                 .replace(/\{group\}/gi, groupName)
                 .replace(/\{time\}/gi, currentTime)
@@ -630,7 +630,7 @@ async function startSewaChecker(sock) {
           try {
             await sewaSock.sendText(
               groupId,
-              `⏰ *SEWA BERAKHIR*\n\nMasa sewa bot di grup ini sudah habis.\nBot akan meninggalkan grup.\n\nHubungi owner untuk perpanjang sewa.`,
+              `⏰ *ALQUILER FINALIZADO*\n\nEl alquiler del bot en este grupo terminó.\nEl bot va a salir del grupo.\n\nContacta al dueño para renovar el alquiler.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -659,7 +659,7 @@ async function startSewaChecker(sock) {
             const minutes = Math.floor(remaining / 60000);
             await sewaSock.sendText(
               groupId,
-              `⚠️ *PERINGATAN SEWA*\n\nSisa waktu sewa tinggal *${minutes} menit*!\nSegera hubungi owner untuk perpanjang.\n\nJika tidak diperpanjang, bot akan otomatis keluar.`,
+              `⚠️ *AVISO DE ALQUILER*\n\n¡Quedan solo *${minutes} minutos* de alquiler!\nContacta al dueño para renovar cuanto antes.\n\nSi no se renueva, el bot saldrá automáticamente.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -679,7 +679,7 @@ async function startSewaChecker(sock) {
             const hours = Math.floor((remaining % 86400000) / 3600000);
             await sewaSock.sendText(
               groupId,
-              `⚠️ *PERINGATAN SEWA*\n\nSisa sewa tinggal *${days}d ${hours}h*\nSegera hubungi owner untuk perpanjang.\n\nJika tidak diperpanjang, bot akan otomatis keluar.`,
+              `⚠️ *AVISO DE ALQUILER*\n\nQuedan *${days}d ${hours}h* de alquiler\nContacta al dueño para renovar cuanto antes.\n\nSi no se renueva, el bot saldrá automáticamente.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -735,7 +735,7 @@ function startAutoBioChecker(sock) {
       const status = db.setting("autobio_status");
       if (!status) return;
 
-      const template = db.setting("autobio_text") || "Bot aktif | 🕒 {clock} | ⏳ {runtime}";
+      const template = db.setting("autobio_text") || "Bot activo | 🕒 {clock} | ⏳ {runtime}";
 
       const clock = moment().tz(TZ).format("HH:mm");
       const runtime = formatUptime(process.uptime());

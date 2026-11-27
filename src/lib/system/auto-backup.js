@@ -341,7 +341,7 @@ function enableAutoBackup(intervalStr, sock) {
   if (!parsed) {
     return {
       success: false,
-      error: "Format interval tidak valid. Contoh: 5m, 1h, 2d",
+      error: "Formato de intervalo no válido. Ejemplo: 5m, 1h, 2d",
     };
   }
 

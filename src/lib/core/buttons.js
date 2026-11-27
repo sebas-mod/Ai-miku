@@ -99,7 +99,7 @@ function quotedContext(quoted) {
 /** Susun isi pesan interaktif (tanpa mengirim). Fungsi murni supaya mudah dites. */
 export function buildInteractiveContent({ text = "", footer, buttons, header, params, contextInfo, quoted } = {}) {
   const nativeButtons = normalizeButtons(buttons);
-  if (!nativeButtons.length) throw new Error("buttons kosong / tidak valid");
+  if (!nativeButtons.length) throw new Error("botones vacíos / no válidos");
   return {
     interactiveMessage: {
       header: header || { title: "", subtitle: "", hasMediaAttachment: false },

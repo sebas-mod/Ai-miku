@@ -271,7 +271,7 @@ async function extendSocket(sock) {
           quoted: options?.quoted,
         });
       } catch (err) {
-        console.warn("[Button] gagal kirim native flow, pakai cara bawaan:", err.message);
+        console.warn("[Button] falló el envío nativo, se usa el método alternativo:", err.message);
       }
     }
     try {
@@ -562,7 +562,7 @@ async function extendSocket(sock) {
     } else if (isUrlObject(source)) data = { url: source.url };
     else
       throw new Error(
-        "Source harus berupa Buffer, URL string, path file, object { url }, atau payload media",
+        "El origen debe ser un Buffer, una URL, una ruta de archivo, un objeto { url } o un payload de contenido",
       );
     const mediaType = options.type || options.mediaType;
     const captionField = caption != null ? { caption } : {};
@@ -623,7 +623,7 @@ async function extendSocket(sock) {
         quoted,
       });
     } catch (err) {
-      console.warn("[Button] sendButton native flow gagal, pakai cara bawaan:", err.message);
+      console.warn("[Button] falló sendButton nativo, se usa el método alternativo:", err.message);
       const msg = {};
       if (options.contextInfo) msg.contextInfo = options.contextInfo;
       if (text !== null) msg[media ? "caption" : "text"] = text;

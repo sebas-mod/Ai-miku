@@ -240,10 +240,10 @@ const PLATFORM_HANDLERS = {
 
 async function aiodl(url) {
   const platform = detectPlatform(url);
-  if (!platform) throw new Error("Platform tidak dikenali");
+  if (!platform) throw new Error("Plataforma no reconocida");
 
   const handler = PLATFORM_HANDLERS[platform];
-  if (!handler) throw new Error(`Handler untuk ${platform} tidak tersedia`);
+  if (!handler) throw new Error(`No hay manejador disponible para ${platform}`);
 
   try {
     return await handler(url);

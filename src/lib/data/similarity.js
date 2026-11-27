@@ -301,7 +301,7 @@ function formatSuggestionMessage(inputCommand, suggestions, prefix = '.', m) {
     const getConfidenceLevel = (percent) => {
         if (percent >= 85) return { text: 'Sangat Tinggi', emoji: '🟢' }
         if (percent >= 70) return { text: 'Tinggi', emoji: '🟡' }
-        if (percent >= 50) return { text: 'Sedang', emoji: '🟠' }
+        if (percent >= 50) return { text: 'Medio', emoji: '🟠' }
         return { text: 'Rendah', emoji: '🔴' }
     }
 
@@ -319,7 +319,7 @@ Mungkin kakaknya sedikit typo atau salah ketik? 😅👇`
             return {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: `Coba: ${prefix}${s.command}`,
+                    display_text: `Prueba: ${prefix}${s.command}`,
                     id: `${prefix}${s.command}`
                 })
             }
@@ -368,7 +368,7 @@ function formatSuggestionButtons(inputCommand, suggestions, prefix = '.') {
         return {
             header: `${medal} ${prefix}${s.command}`,
             title: `${s.emoji} ${s.reason} • ${matchPercent}% cocok`,
-            description: `Klik command untuk mencoba`,
+            description: `Pulsa un comando para probarlo`,
             id: `${prefix}${s.command}`
         }
     })

@@ -23,7 +23,7 @@ export async function uploadTo0x0(buffer, { filename = "file.bin", contentType =
     timeout: 60000,
   });
   const url = String(res.data || "").trim();
-  if (!/^https?:\/\//i.test(url)) throw new Error("Upload 0x0.st gagal");
+  if (!/^https?:\/\//i.test(url)) throw new Error("Falló la subida a 0x0.st");
   return { url, directUrl: url, directLink: url };
 }
 

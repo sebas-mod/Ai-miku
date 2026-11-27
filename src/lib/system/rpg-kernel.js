@@ -284,9 +284,9 @@ const MikuRpgKernel = (() => {
   function applyPurchase(u, item) {
     switch (item) {
       case 'scrollclass': u.class = null; return 'Class direset. Pilih class baru dengan *.class*.'
-      case 'stonebless': u.buff = 'atk+10%'; return 'Buff *ATK +10%* aktif!'
+      case 'stonebless': u.buff = 'atk+10%'; return '¡Buff *ATK +10%* activo!'
       case 'essencexp': return { exp: 500, text: '+500 EXP!' }
-      case 'spiritcore': u.spirit = 'phoenix'; return 'Spirit *Phoenix* aktif mendampingimu!'
+      case 'spiritcore': u.spirit = 'phoenix'; return '¡El espíritu *Phoenix* te acompaña!'
       case 'elixirlife': u.death = false; return 'Status kematian dipulihkan!'
       default: u.inv.push(item); return ''
     }
@@ -295,7 +295,7 @@ const MikuRpgKernel = (() => {
   const sellPrice = (item) => {
     const k = String(item).toLowerCase()
     if (SELL_PRICE[k] !== undefined) return SELL_PRICE[k]
-    if (k.startsWith('masakan:')) return 150
+    if (k.startsWith('cocina:')) return 150
     const s = priceOf(k)
     return s !== undefined ? Math.max(10, Math.floor(s * 0.4)) : 100
   }

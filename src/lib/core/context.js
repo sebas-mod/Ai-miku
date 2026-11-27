@@ -28,16 +28,16 @@ for (const [key, setter] of keys) {
 }
 
 const FAST_ANSWER_PRAISES = [
-  "⚡ Kilat banget! Kamu jenius!",
-  "🚀 Super cepat! Otak encer!",
-  "🔥 Wuih monster! Jawab secepat kilat!",
-  "💫 Luar biasa! Kamu the flash!",
-  "🎯 Precision tinggi! Langsung tepat!",
-  "⭐ Bintang! Refleks dewa!",
-  "🏆 Legend! Kecepatan maximal!",
-  "💎 Premium player! Gak ada lawan!",
-  "🦅 Tajam seperti elang!",
-  "🧠 Big brain! IQ tinggi detected!",
+  "⚡ ¡Rapidísimo! ¡Eres un genio!",
+  "🚀 ¡Superrápido! ¡Mente brillante!",
+  "🔥 ¡Un monstruo! ¡Respondiste en un rayo!",
+  "💫 ¡Increíble! ¡Eres Flash!",
+  "🎯 ¡Precisión total! ¡Directo al blanco!",
+  "⭐ ¡Estrella! ¡Reflejos de otro nivel!",
+  "🏆 ¡Leyenda! ¡Velocidad máxima!",
+  "💎 ¡Jugador premium! ¡Sin rival!",
+  "🦅 ¡Vista de halcón!",
+  "🧠 ¡Cerebro enorme! ¡IQ altísimo!",
 ];
 
 const FAST_ANSWER_THRESHOLD = 4000;

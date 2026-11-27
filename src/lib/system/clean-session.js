@@ -12,11 +12,11 @@ import { cleanSessionFiles } from "./session-backup.js";
 const { found, files, failed, mode } = cleanSessionFiles();
 
 if (!found) {
-  console.log("Folder session tidak ditemukan.");
+  console.log("No se encontró la carpeta de sesión.");
 } else {
   console.log(
-    `Selesai: ${files} sesi/kunci dihapus${failed ? ` (${failed} gagal dihapus)` : ""} [mode ${mode}]. creds.json dan kunci lain tetap utuh.`,
+    `Listo: ${files} sesiones/claves eliminadas${failed ? ` (${failed} no se pudieron borrar)` : ""} [modo ${mode}]. creds.json y el resto de claves quedan intactos.`,
   );
-  console.log("Jalankan bot lagi. Sesi dibuat ulang otomatis saat ada pesan masuk (beberapa pesan pertama bisa tertunda).");
+  console.log("Vuelve a iniciar el bot. La sesión se recrea sola cuando llega un mensaje (los primeros mensajes pueden demorar).");
 }
 process.exit(0);

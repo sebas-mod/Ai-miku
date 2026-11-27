@@ -408,7 +408,7 @@ async function startConnection(options = {}) {
       console.log("");
       phoneNumber = await askQuestion(
         colors.chalk.cyan(
-          "📱 Masukkan nomor WhatsApp (contoh: 6281234567890): ",
+          "📱 Ingresa tu número de WhatsApp (ejemplo: 6281234567890): ",
         ),
       );
     }
@@ -440,9 +440,9 @@ async function startConnection(options = {}) {
           `   🔑 KODE PAIRING : \x1b[1;38;2;0;0;0;48;2;255;255;255m  ${formattedCode}  \x1b[0m`,
           `   📱 NOMOR TARGET : ${colors.c.cyan.bold("+" + phoneNumber)}`,
           "",
-          colors.c.yellow("1. Buka WhatsApp > Perangkat Tertaut > Tautkan Perangkat"),
-          colors.c.yellow("2. Pilih 'Tautkan dengan nomor telepon saja'"),
-          colors.c.white.bold("3. Masukkan 8 digit kode berlatar putih di atas!"),
+          colors.c.yellow("1. Abre WhatsApp > Dispositivos vinculados > Vincular dispositivo"),
+          colors.c.yellow("2. Elige 'Vincular con número de teléfono'"),
+          colors.c.white.bold("3. ¡Ingresa el código de 8 dígitos que aparece arriba!"),
         ],
         "pink",
       );
@@ -743,9 +743,9 @@ async function startConnection(options = {}) {
               await sock.sendMessage(event.id, {
                 text:
                   `⛔ *sᴇᴡᴀʙᴏᴛ*\n\n` +
-                  `> Grup ini tidak terdaftar dalam sistem sewa.\n` +
-                  `> Bot akan meninggalkan grup ini.\n\n` +
-                  `_Hubungi ${ownerContact} untuk sewa bot._`,
+                  `> Este grupo no está registrado en el sistema de alquiler.\n` +
+                  `> El bot va a salir de este grupo.\n\n` +
+                  `_Contacta a ${ownerContact} para alquilar el bot._`,
               });
               await new Promise((r) => setTimeout(r, 2000));
               await sock.groupLeave(event.id);
@@ -760,13 +760,13 @@ async function startConnection(options = {}) {
           const inviter = event.author || "";
           const inviterMention = inviter
             ? `@${inviter.split("@")[0]}`
-            : "seseorang";
+            : "alguien";
           const prefix = config.command?.prefix || ".";
 
-          let groupName = "grup ini";
+          let groupName = "este grupo";
           try {
             const meta = await sock.groupMetadata(event.id);
-            groupName = meta.subject || "grup ini";
+            groupName = meta.subject || "este grupo";
           } catch { }
 
           const saluranId =
@@ -777,15 +777,15 @@ async function startConnection(options = {}) {
           const welcomeText =
             `👋 *ʜᴀɪ, sᴀʟᴀᴍ ᴋᴇɴᴀʟ!*\n\n` +
             `Aku *${config.bot?.name || "Ai Miku"}* 🤖\n\n` +
-            `Terima kasih sudah mengundang aku ke *${groupName}*!\n` +
-            `Aku diundang oleh ${inviterMention} ✨\n\n` +
+            `¡Gracias por invitarme a *${groupName}*!\n` +
+            `Me invitó ${inviterMention} ✨\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ 🔧 Developer: *${config.bot?.developer || "Lucky Archz"}*\n` +
             `┃ 📢 Prefix: \`${prefix}\`\n` +
             `┃ 📩 Support: ${config.bot?.support || "-"}\n` +
             `╰┈┈⬡\n\n` +
-            `> Ketik \`${prefix}menu\` untuk melihat daftar fitur\n` +
-            `> Ketik \`${prefix}help\` untuk bantuan`;
+            `> Escribe \`${prefix}menu\` para ver la lista de funciones\n` +
+            `> Escribe \`${prefix}help\` para ver la ayuda`;
 
           await sock.sendMessage(event.id, {
             text: welcomeText,

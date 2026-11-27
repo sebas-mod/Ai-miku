@@ -250,10 +250,10 @@ export async function handleActiveGameInput(m, sock) {
         text:
           `╭─❖「 ❌⭕ *TIC-TAC-TOE* 」\n` +
           `${renderTTTBoard(s.board)}\n` +
-          `├───〔 *GILIRAN* 〕\n` +
-          `│ 🎯 Giliran: @${nextJid.split("@")[0]} (${s.turn === "X" ? "❌" : "⭕"})\n` +
+          `├───〔 *TURNO* 〕\n` +
+          `│ 🎯 Turno de: @${nextJid.split("@")[0]} (${s.turn === "X" ? "❌" : "⭕"})\n` +
           `╰─────────────────────❖\n` +
-          `_Balas angka *1-9* untuk melangkah!_`,
+          `_¡Responde con un número del *1-9* para jugar!_`,
         mentions: [nextJid],
       },
       { quoted: m }
@@ -288,11 +288,11 @@ export async function handleActiveGameInput(m, sock) {
     const diff = Math.abs(guess - s.secret);
     const heat =
       diff <= 3
-        ? "🔥 Sangat panas!"
+        ? "🔥 ¡Muy caliente!"
         : diff <= 10
-          ? "🌡️ Lumayan dekat!"
-          : "❄️ Masih jauh!";
-    const dir = guess < s.secret ? "⬆️ *Terlalu kecil!*" : "⬇️ *Terlalu besar!*";
+          ? "🌡️ ¡Bastante cerca!"
+          : "❄️ ¡Todavía lejos!";
+    const dir = guess < s.secret ? "⬆️ *¡Demasiado bajo!*" : "⬇️ *¡Demasiado alto!*";
 
     if (s.attempts >= s.maxAttempts) {
       clearActiveGame(m.chat);
@@ -342,9 +342,9 @@ export async function handleActiveGameInput(m, sock) {
       db.updateKoin(m.sender, 2200);
       db.updateExp(m.sender, 350);
       await m.reply(
-        `🎉 *SELAMAT! HANGMAN BERHASIL DISELESAIKAN!*\n` +
-          `> Kata: *${s.word.toUpperCase()}*\n` +
-          `> Hadiah: *+2.200 Koin* & *+350 EXP* untuk @${m.sender.split("@")[0]}`,
+        `🎉 *¡FELICIDADES! ¡AHORCADO COMPLETADO!*\n` +
+          `> Palabra: *${s.word.toUpperCase()}*\n` +
+          `> Premio: *+2.200 monedas* y *+350 EXP* para @${m.sender.split("@")[0]}`,
         { mentions: [m.sender] }
       );
       return true;
@@ -355,7 +355,7 @@ export async function handleActiveGameInput(m, sock) {
       await m.reply(
         `💀 *GAME OVER!*\n` +
           `${HANGMAN_STAGES[6]}\n` +
-          `> Kata yang benar adalah: *${s.word.toUpperCase()}*`
+          `> La palabra correcta era: *${s.word.toUpperCase()}*`
       );
       return true;
     }

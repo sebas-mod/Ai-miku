@@ -15,30 +15,30 @@ const CACHE_MAX_SIZE = 5000;
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antilink: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antilinkGc: "⚠ *Antilink WA* — @%user% mengirim link WA.\nPesan dihapus.",
+    antilink: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+    antilinkGc: "⚠ *Antilink WA* — @%user% envió un enlace de WhatsApp.\nMensaje eliminado.",
     antilinkGcKick:
-      "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
-    antilinkAll: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkAllKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antitagsw: "⚠ *AntiTagSW* — Tag status dari @%user% dihapus.",
-    antiswgc: "⚠ *AntiSWGC* — SW group type *%type%* dari @%user% dihapus.",
+      "⚠ *Antilink WA* — @%user% fue expulsado por enviar un enlace de WhatsApp.",
+    antilinkAll: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkAllKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+    antitagsw: "⚠ *AntiTagSW* — Etiqueta de estado de @%user% eliminada.",
+    antiswgc: "⚠ *AntiSWGC* — Estado de grupo tipo *%type%* de @%user% eliminado.",
     antijudol:
-      "⚠ *AntiJudol* — @%user% terdeteksi kirim konten judol.\nPesan dihapus.",
-    antijudolKick: "⚠ *AntiJudol* — @%user% di-kick karena kirim konten judol.",
+      "⚠ *AntiApuestas* — se detectó que @%user% envió contenido de apuestas.\nMensaje eliminado.",
+    antijudolKick: "⚠ *AntiApuestas* — @%user% fue expulsado por enviar contenido de apuestas.",
     antiphising:
-      "⚠ *AntiPhising* — @%user% terdeteksi kirim konten phising.\nPesan dihapus.",
+      "⚠ *AntiPhishing* — se detectó que @%user% envió contenido de phishing.\nMensaje eliminado.",
     antiphisingKick:
-      "⚠ *AntiPhising* — @%user% di-kick karena kirim konten phising.",
+      "⚠ *AntiPhishing* — @%user% fue expulsado por enviar contenido de phishing.",
     anticustom:
-      "⚠ *AntiCustom* — @%user% melanggar rule custom *%rule%*.\nPesan dihapus.",
+      "⚠ *AntiCustom* — @%user% violó la regla personalizada *%rule%*.\nMensaje eliminado.",
     anticustomKick:
-      "⚠ *AntiCustom* — @%user% di-kick karena melanggar rule custom *%rule%*.",
-    antiviewonce: "👁️ *ViewOnce* — Dari @%user%",
-    antiremove: "🗑️ *AntiDelete* — @%user% menghapus pesan:",
-    antihidetag: "⚠ *AntiHidetag* — Hidetag dari @%user% dihapus.",
-    notAdmin: "⚠ Bot bukan admin, tidak bisa menghapus pesan.",
+      "⚠ *AntiCustom* — @%user% fue expulsado por violar la regla personalizada *%rule%*.",
+    antiviewonce: "👁️ *VerUnaVez* — De @%user%",
+    antiremove: "🗑️ *AntiBorrado* — @%user% eliminó el mensaje:",
+    antihidetag: "⚠ *AntiHidetag* — Hidetag de @%user% eliminado.",
+    notAdmin: "⚠ El bot no es administrador, no puede eliminar mensajes.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {

@@ -66,13 +66,13 @@ export function sanitizeProjectName(name) {
 
 export function missingTokenReply(prefix = ".") {
   return (
-    `╭─❖「 ▲ *TOKEN VERCEL BELUM DISET* 」\n` +
-    `│ Kamu belum menyimpan Vercel API Token.\n` +
-    `├───〔 *CARA SET TOKEN* 〕\n` +
-    `│ 1. Buka https://vercel.com/account/tokens\n` +
-    `│ 2. Buat token baru (Full Account / Project scope)\n` +
-    `│ 3. Ketik \`${prefix}setvercel <token_kamu>\`\n` +
+    `╭─❖「 ▲ *TOKEN DE VERCEL SIN CONFIGURAR* 」\n` +
+    `│ Todavía no guardaste tu token de API de Vercel.\n` +
+    `├───〔 *CÓMO CONFIGURAR EL TOKEN* 〕\n` +
+    `│ 1. Abre https://vercel.com/account/tokens\n` +
+    `│ 2. Crea un token nuevo (Full Account / Project scope)\n` +
+    `│ 3. Escribe \`${prefix}setvercel <tu_token>\`\n` +
     `╰─────────────────────❖\n` +
-    `_Token tersimpan pribadi di akunmu (cek via \`${prefix}mytoken\`)._`
+    `_El token se guarda en tu cuenta (revísalo con \`${prefix}mytoken\`)._`
   );
 }

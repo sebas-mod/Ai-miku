@@ -45,7 +45,7 @@ async function fallbackToMp3Buffer(url) {
 
     const ffmpegPath = ffmpegInstaller?.path;
     if (!ffmpegPath) {
-      throw new Error("FFmpeg tidak tersedia. Pastikan dependensi @ffmpeg-installer/ffmpeg berhasil dipasang.");
+      throw new Error("FFmpeg no está disponible. Verifica que la dependencia @ffmpeg-installer/ffmpeg se haya instalado bien.");
     }
     await runFile(
       ffmpegPath,
@@ -58,7 +58,7 @@ async function fallbackToMp3Buffer(url) {
 
     const mp3Buffer = fs.readFileSync(outputPath);
     if (!mp3Buffer.length) {
-      throw new Error("Konversi fallback ke MP3 gagal");
+      throw new Error("Falló la conversión de respaldo a MP3");
     }
 
     return mp3Buffer;
@@ -79,7 +79,7 @@ async function ytdl(url, format = "mp3") {
     if (!videoId) {
       return {
         status: false,
-        mess: "Format URL tidak dikenali atau bukan link YouTube yang valid.",
+        mess: "Formato de URL no reconocido o no es un enlace válido de YouTube.",
       };
     }
 
@@ -106,7 +106,7 @@ async function ytdl(url, format = "mp3") {
     if (!init?.convertURL) {
       return {
         status: false,
-        mess: "Gagal menginisialisasi server (Init failed).",
+        mess: "No se pudo inicializar el servidor (Init failed).",
       };
     }
 
@@ -121,7 +121,7 @@ async function ytdl(url, format = "mp3") {
     if (!convert?.progressURL || !convert?.downloadURL) {
       return {
         status: false,
-        mess: "Gagal mendapatkan data konversi.",
+        mess: "No se pudieron obtener los datos de conversión.",
       };
     }
 
@@ -152,7 +152,7 @@ async function ytdl(url, format = "mp3") {
     if (attempts >= maxAttempts && progress < 3) {
       return {
         status: false,
-        mess: "Request timeout (proses terlalu lama).",
+        mess: "Se agotó el tiempo de espera (el proceso tardó demasiado).",
       };
     }
 
@@ -185,7 +185,7 @@ class Youtube {
     const result = await ytdl(url, outputFormat);
 
     if (!result?.status || !result?.dl) {
-      throw new Error(result?.mess || "Gagal mengunduh konten YouTube");
+      throw new Error(result?.mess || "No se pudo descargar el contenido de YouTube");
     }
 
     return this.wrapResponse({

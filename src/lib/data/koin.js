@@ -16,7 +16,7 @@ export function formatKoin(value) {
   if (!Number.isFinite(num)) return "∞";
   return num.toLocaleString("id-ID");
 }
-export function getKoinDisplay() { return "Dinonaktifkan"; }
+export function getKoinDisplay() { return "Desactivado"; }
 export function isFreeCommand() { return true; }
 const CASE_COMMANDS = new Set([
   "cping", "cspeed", "clatency", "lcase", "caselist", "allcase",

@@ -129,7 +129,7 @@ class mikuGames {
           if (cfg.questionField && session.question[cfg.questionField]) {
             text += `\`\`\`${session.question[cfg.questionField]}\`\`\`\n\n`;
           }
-          text += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
+          text += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
           text += `⏱️ Queda: *${formatRemainingTime(remaining)}*\n\n`;
           text += `_Responde directamente o escribe "nyerah"\nCada fallo añade una pista_`;
           await sock.sendPreview(
@@ -162,7 +162,7 @@ class mikuGames {
         try {
           imageBuffer = await fetchBuffer(question[cfg.imageField]);
         } catch {
-          await m.reply("❌ *ɢᴀɢᴀʟ ᴍᴇᴍᴜᴀᴛ ɢᴀᴍʙᴀʀ*\n\n> Coba lagi nanti!");
+          await m.reply("❌ *ɴᴏ sᴇ ᴘᴜᴅᴏ ᴄᴀʀɢᴀʀ ʟᴀ ɪᴍᴀɢᴇɴ*\n\n> ¡Inténtalo de nuevo más tarde!");
           return;
         }
 
@@ -170,10 +170,10 @@ class mikuGames {
         if (cfg.questionField && question[cfg.questionField]) {
           caption += `> ${question[cfg.questionField]}\n`;
         }
-        caption += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-        caption += `⏱️ Waktu: *${cfg.timeout / 1000} detik*\n`;
-        caption += `🎁 Hadiah: *Limit dan EXP (random)*\n\n`;
-        caption += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+        caption += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
+        caption += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
+        caption += `🎁 Premio: *límite y EXP (aleatorio)*\n\n`;
+        caption += `_Responde directamente o escribe "rendirse"\nCada fallo añade una pista_`;
 
         sentMsg = await sock.sendMessage(
           chatId,
@@ -189,17 +189,17 @@ class mikuGames {
         if (cfg.questionField && question[cfg.questionField]) {
           text += `\`\`\`${question[cfg.questionField]}\`\`\`\n\n`;
         }
-        text += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-        text += `⏱️ Waktu: *${cfg.timeout / 1000} detik*\n`;
-        text += `🎁 Hadiah: *Limit dan EXP (random)*\n\n`;
-        text += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+        text += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
+        text += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
+        text += `🎁 Premio: *límite y EXP (aleatorio)*\n\n`;
+        text += `_Responde directamente o escribe "rendirse"\nCada fallo añade una pista_`;
 
         sentMsg = await sendGamePreview(
           sock,
           chatId,
           text,
           `${cfg.emoji} ${cfg.title}`,
-          "Jawab pertanyaan!",
+          "¡Responde la pregunta!",
           { quoted: m },
         );
       }
@@ -310,7 +310,7 @@ class mikuGames {
         const percent = Math.round(result.similarity * 100);
         await m.react("🔥");
         await m.reply(
-          `🔥 *Hampir!* Jawabanmu *${percent}%* mirip!\n_Sisa waktu: *${formatRemainingTime(remaining)}*_`,
+          `🔥 *¡Casi!* ¡Tu respuesta se parece un *${percent}%*\n_Tiempo restante: *${formatRemainingTime(remaining)}*_`,
         );
         return false;
       }
@@ -320,7 +320,7 @@ class mikuGames {
         await m.react("❌");
         const hint = getProgressiveHint(answer, session.attempts);
         await m.reply(
-          `❌ Belum bener! Hint: *${hint}*\n_Sisa: *${formatRemainingTime(remaining)}*_`,
+          `❌ ¡No es correcto! Pista: *${hint}*\n_Restante: *${formatRemainingTime(remaining)}*_`,
         );
       }
 
