@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,12 +33,12 @@ function handler(m, { sock }) {
     if (!option) {
         const status = group.autoforward ? '✅ ON' : '❌ OFF'
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-            `┃ ◦ Status: *${status}*\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
+            `╭┈┈⬡「 📋 *INFO* 」\n` +
+            `┃ ◦ Estado: *${status}*\n` +
             `╰┈┈⬡\n\n` +
-            `> Gunakan: \`${m.prefix}autoforward on/off\`\n\n` +
-            `_Fitur ini akan meneruskan semua pesan ke grup ini_`
+            `> Usa: \`${m.prefix}autoforward on/off\`\n\n` +
+            `_Esta función reenviará todos los mensajes a este grupo_`
         )
     }
 
@@ -46,11 +46,11 @@ function handler(m, { sock }) {
         db.setGroup(groupId, { ...group, autoforward: true })
         m.react('✅')
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ✅ *ᴀᴋᴛɪꜰ* 」\n` +
-            `┃ ◦ Status: *ON*\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
+            `╭┈┈⬡「 ✅ *ACTIVO* 」\n` +
+            `┃ ◦ Estado: *ON*\n` +
             `╰┈┈⬡\n\n` +
-            `> _Semua pesan akan di-forward_`
+            `> _Todos los mensajes serán reenviados_`
         )
     }
 
@@ -58,14 +58,14 @@ function handler(m, { sock }) {
         db.setGroup(groupId, { ...group, autoforward: false })
         m.react('❌')
         return m.reply(
-            `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ❌ *ɴᴏɴᴀᴋᴛɪꜰ* 」\n` +
-            `┃ ◦ Status: *OFF*\n` +
+            `🔄 *REENVÍO AUTOMÁTICO*\n\n` +
+            `╭┈┈⬡「 ❌ *INACTIVO* 」\n` +
+            `┃ ◦ Estado: *OFF*\n` +
             `╰┈┈⬡`
         )
     }
 
-    return m.reply(`❌ Gunakan: on atau off`)
+    return m.reply(`❌ Usa: on u off`)
 }
 
 export { pluginConfig as config, handler }

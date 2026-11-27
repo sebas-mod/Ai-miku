@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -156,63 +156,63 @@ function createJadibotStore() {
 
 const ERROR_MESSAGES = {
   401: {
-    reason: "Logout / Nomor tidak terautentikasi",
-    action: "Perlu pairing ulang",
+    reason: "Sesión cerrada / número no autenticado",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   403: {
-    reason: "Akses ditolak / dibanned",
-    action: "Nomor ini mungkin terkena banned WhatsApp",
+    reason: "Acceso denegado / baneado",
+    action: "Es posible que este número esté baneado en WhatsApp",
     fatal: true,
   },
   405: {
-    reason: "Metode koneksi ditolak server",
-    action: "Akan mencoba ulang koneksi",
+    reason: "El servidor rechazó el método de conexión",
+    action: "Se reintentará la conexión",
     fatal: false,
   },
   406: {
-    reason: "Nomor dibatasi",
-    action: "Nomor ini dibatasi oleh WhatsApp, tunggu beberapa jam",
+    reason: "Número restringido",
+    action: "WhatsApp limitó este número, espera unas horas",
     fatal: true,
   },
   408: {
-    reason: "Request timeout",
-    action: "Koneksi lambat, mencoba sambung ulang",
+    reason: "Tiempo de espera agotado",
+    action: "Conexión lenta, reintentando conectar",
     fatal: false,
   },
   409: {
-    reason: "Konflik session",
-    action: "Session sedang digunakan di perangkat lain",
+    reason: "Conflicto de sesión",
+    action: "La sesión se está usando en otro dispositivo",
     fatal: true,
   },
   411: {
-    reason: "Autentikasi gagal",
-    action: "Perlu pairing ulang",
+    reason: "Autenticación fallida",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   428: {
-    reason: "Koneksi terputus / rate limit",
-    action: "Mencoba sambung ulang",
+    reason: "Conexión cortada / límite de peticiones",
+    action: "Reintentando conectar",
     fatal: false,
   },
   440: {
-    reason: "Session expired / login required",
-    action: "Perlu pairing ulang",
+    reason: "Sesión caducada / hay que iniciar sesión",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   500: {
-    reason: "Server error WhatsApp",
-    action: "Server WhatsApp bermasalah",
+    reason: "Error del servidor de WhatsApp",
+    action: "El servidor de WhatsApp está fallando",
     fatal: false,
   },
   501: {
-    reason: "Fitur tidak didukung",
-    action: "Perlu pairing ulang",
+    reason: "Función no compatible",
+    action: "Hay que volver a emparejar",
     fatal: true,
   },
   503: {
-    reason: "Layanan tidak tersedia",
-    action: "WhatsApp sedang maintenance",
+    reason: "Servicio no disponible",
+    action: "WhatsApp está en mantenimiento",
     fatal: false,
   },
   515: {
@@ -249,21 +249,21 @@ const CONNECTION_CLOSED_REASONS = [
   },
   {
     match: /restart required/i,
-    reason: "Restart diperlukan",
-    action: "Menyambungkan ulang otomatis",
+    reason: "Hace falta reiniciar",
+    action: "Reconectando automáticamente",
     fatal: false,
   },
   {
     match: /Connection Closed|write EOF|ECONNRESET|ETIMEDOUT|timeout/i,
-    reason: "Koneksi terputus / timeout",
-    action: "Mencoba sambung ulang",
+    reason: "Conexión cortada / tiempo agotado",
+    action: "Reintentando conectar",
     fatal: false,
   },
 ];
 
 function parseDisconnectError(lastDisconnect) {
   const statusCode = lastDisconnect?.error?.output?.statusCode;
-  const errorMessage = lastDisconnect?.error?.message || "Koneksi terputus";
+      const errorMessage = lastDisconnect?.error?.message || "Conexión cortada";
 
   if (statusCode && ERROR_MESSAGES[statusCode]) {
     return {

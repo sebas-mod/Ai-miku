@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "fakeff",
@@ -40,12 +40,12 @@ const te = ElysiaRuntime.te;
     await loadFont();
     const input = m.text?.trim();
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Fauzan|2\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Fauzan|2\``);
     }
 
     const [text, bgNum] = input.split("|");
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!`);
+      return m.reply(`⚠️ ¡Escribe el texto!`);
     }
 
     await m.react("🕕");

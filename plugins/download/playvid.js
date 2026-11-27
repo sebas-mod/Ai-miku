@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import yts from 'yt-search'
 import fetch from 'node-fetch'
 
-const safeJson = ElysiaRuntime.safeJson;
+const safeJson = MikuRuntime.safeJson;
 
 const pluginConfig = {
     name: "playvid",
@@ -29,7 +29,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, text }) {
-     if (!text) throw `Contoh:\n.playvid dj remix|360\n.ytmp4 dj remix|720`
+     if (!text) throw `Ejemplo:\n.playvid dj remix|360\n.ytmp4 dj remix|720`
 
      await m.reply(global.wait)
 
@@ -41,7 +41,7 @@ const pluginConfig = {
      if (!/^https?:\/\//.test(query)) {
         let search = await yts(query)
         let vid = search.videos[0]
-        if (!vid) throw 'Video tidak ditemukan'
+        if (!vid) throw 'Video no encontrado'
         url = vid.url
      }
 
@@ -50,14 +50,14 @@ const pluginConfig = {
      let res = await fetch(api)
      let json = await safeJson(res, { status: false })
 
-     if (!json.status) throw 'Gagal mengambil video'
+     if (!json.status) throw 'No se pudo obtener el video'
 
      let data = json.result
 
      let caption = `*${data.title}*
-Durasi: ${data.duration}s
-Resolusi: ${data.resolusi}p
-🍹 Nih videonya wok~`
+Duración: ${data.duration}s
+Resolución: ${data.resolusi}p
+🍹 Aquí tienes el video~`
 
      await conn.sendMessage(m.chat, {
         video: { url: data.url },

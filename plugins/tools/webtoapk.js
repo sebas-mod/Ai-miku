@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "webtoapk",
@@ -62,9 +62,9 @@ const pluginConfig = {
         })
         if (head.ok) return { projectId: id, status: 'completed', downloadUrl: `${BASE_URL}/download/${id}.apk` }
       } catch {  }
-      throw new Error(`Build "${id}" tidak ditemukan (HTTP 404)`)
+      throw new Error(`No se encontró el build "${id}" (HTTP 404)`)
     }
-    if (!res.ok) throw new Error(`Gagal cek status build: HTTP ${res.status}`)
+    if (!res.ok) throw new Error(`No se pudo comprobar el estado del build: HTTP ${res.status}`)
 
     const data = await res.json()
     if (data.status === 'completed') data.downloadUrl = `${BASE_URL}/download/${id}.apk`
@@ -91,8 +91,8 @@ const pluginConfig = {
 
     const raw = await res.text()
     let data
-    try { data = JSON.parse(raw) } catch { throw new Error(`Server membalas non-JSON: ${raw.slice(0, 120)}`) }
-    if (!res.ok) throw new Error(`Build ditolak: ${data.error || raw.slice(0, 120)}`)
+    try { data = JSON.parse(raw) } catch { throw new Error(`El servidor respondió algo que no es JSON: ${raw.slice(0, 120)}`) }
+    if (!res.ok) throw new Error(`Build rechazado: ${data.error || raw.slice(0, 120)}`)
 
     if (!data.projectId && data.downloadUrl) {
       const m = data.downloadUrl.match(/\/download\/([a-zA-Z0-9\-_]+)\.apk/)
@@ -107,16 +107,16 @@ const pluginConfig = {
 
   async function waitForBuild(first) {
     if (first.downloadUrl || first.status === 'completed') return first
-    if (!first.projectId) throw new Error('Server tidak mengembalikan projectId / link download')
+    if (!first.projectId) throw new Error('El servidor no devolvió projectId ni enlace de descarga')
 
     const t0 = Date.now()
     while (Date.now() - t0 < POLL_TIMEOUT_MS) {
       const st = await getBuildStatus(first.projectId)
       if (st.status === 'completed' || st.downloadUrl) return st
-      if (st.status === 'failed' || st.error) throw new Error(`Kompilasi APK gagal: ${st.error || 'unknown'}`)
+      if (st.status === 'failed' || st.error) throw new Error(`Falló la compilación del APK: ${st.error || 'desconocido'}`)
       await sleep(POLL_INTERVAL_MS)
     }
-    throw new Error(`Build kelamaan (>${Math.round(POLL_TIMEOUT_MS / 1000)} detik)`)
+    throw new Error(`El build tardó demasiado (>${Math.round(POLL_TIMEOUT_MS / 1000)} segundos)`)
   }
 
   async function downloadApk(url) {
@@ -124,11 +124,11 @@ const pluginConfig = {
       headers: { 'User-Agent': UA, Referer: `${BASE_URL}/` },
       signal: AbortSignal.timeout(180_000),
     })
-    if (!res.ok) throw new Error(`Gagal unduh APK: HTTP ${res.status}`)
+    if (!res.ok) throw new Error(`No se pudo descargar el APK: HTTP ${res.status}`)
     const len = Number(res.headers.get('content-length') || 0)
-    if (len > MAX_APK_BYTES) throw new Error('APK terlalu besar untuk dikirim (>100MB)')
+    if (len > MAX_APK_BYTES) throw new Error('El APK es demasiado grande para enviarlo (>100 MB)')
     const buf = Buffer.from(await res.arrayBuffer())
-    if (buf.length < 1000) throw new Error('File APK kosong / rusak')
+    if (buf.length < 1000) throw new Error('El archivo APK está vacío o dañado')
     return buf
   }
 
@@ -158,17 +158,17 @@ const pluginConfig = {
 
     if (!input || !input.url || !input.name) {
       return reply(
-        '📱 *WEBSITE KE APK*\n\n' +
-        'Ubah website jadi aplikasi Android (WebView).\n\n' +
-        '*Cara pakai:*\n' +
-        `> ${p}${cmd} <url> <nama aplikasi>\n` +
-        `> ${p}${cmd} <url> <nama aplikasi> | <package>\n\n` +
-        '*Contoh:*\n' +
-        `> ${p}${cmd} https://example.com Toko Saya\n` +
-        `> ${p}${cmd} https://example.com Toko Saya | com.toko.saya\n\n` +
+        '📱 *WEB A APK*\n\n' +
+        'Convierte una web en una app de Android (WebView).\n\n' +
+        '*Cómo usarlo:*\n' +
+        `> ${p}${cmd} <url> <nombre de la app>\n` +
+        `> ${p}${cmd} <url> <nombre de la app> | <package>\n\n` +
+        '*Ejemplo:*\n' +
+        `> ${p}${cmd} https://example.com Mi Tienda\n` +
+        `> ${p}${cmd} https://example.com Mi Tienda | com.tienda.mia\n\n` +
         '*Info:*\n' +
-        '> Reply / kirim gambar bareng command buat ikon aplikasi (opsional)\n' +
-        '> Proses build ±1–5 menit'
+        '> Responde / envía una imagen junto al comando para el icono de la app (opcional)\n' +
+        '> El build tarda ±1–5 minutos'
       )
     }
 
@@ -176,16 +176,16 @@ const pluginConfig = {
     try {
       websiteUrl = new URL(normalizeUrl(input.url)).toString()
     } catch {
-      return reply('❌ URL website tidak valid.')
+      return reply('❌ La URL de la web no es válida.')
     }
 
     const appName = input.name.slice(0, 40)
     let packageName = input.pkg || undefined
     if (packageName && !/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/i.test(packageName)) {
-      return reply('❌ Nama package tidak valid.\n\n> Contoh: com.toko.saya')
+      return reply('❌ El nombre del package no es válido.\n\n> Ejemplo: com.tienda.mia')
     }
 
-    if (activeChats.has(m.chat)) return reply('⏳ Masih ada proses build di chat ini, tunggu selesai dulu ya.')
+    if (activeChats.has(m.chat)) return reply('⏳ Todavía hay un build en marcha en este chat, espera a que termine.')
     activeChats.add(m.chat)
     await reactTo(sock, m, '⏳')
 
@@ -203,12 +203,12 @@ const pluginConfig = {
       }
 
       await reply(
-        `🔨 *Build dimulai*\n\n` +
-        `> Nama   : ${appName}\n` +
-        `> Website: ${websiteUrl}\n` +
-        `> Package: ${packageName || 'otomatis'}\n` +
-        `> Ikon   : ${imgSrc && icon !== DEFAULT_ICON ? 'custom' : 'default'}\n\n` +
-        'Lagi dikompilasi di server cloud, tunggu 1–5 menit ya...'
+        `🔨 *Build iniciado*\n\n` +
+        `> Nombre   : ${appName}\n` +
+        `> Web      : ${websiteUrl}\n` +
+        `> Package  : ${packageName || 'automático'}\n` +
+        `> Icono    : ${imgSrc && icon !== DEFAULT_ICON ? 'personalizado' : 'por defecto'}\n\n` +
+        'Compilando en el servidor cloud, espera 1–5 minutos...'
       )
 
       const first = await buildApk({
@@ -229,10 +229,10 @@ const pluginConfig = {
         mimetype: 'application/vnd.android.package-archive',
         fileName: `${safeName}.apk`,
         caption:
-          `✅ *APK berhasil dibuat*\n\n` +
-          `> Nama   : ${appName}\n` +
-          `> Package: ${first.packageName}\n` +
-          `> Ukuran : ${(apk.length / 1024 / 1024).toFixed(2)} MB`,
+          `✅ *APK creado*\n\n` +
+          `> Nombre  : ${appName}\n` +
+          `> Package : ${first.packageName}\n` +
+          `> Tamaño  : ${(apk.length / 1024 / 1024).toFixed(2)} MB`,
       }, { quoted: m })
 
       await reactTo(sock, m, '✅')
@@ -240,9 +240,9 @@ const pluginConfig = {
       console.error('[WEBTOAPK ERROR]', err)
       await reactTo(sock, m, '❌')
       const msg = err?.name === 'TimeoutError' || /aborted|timeout/i.test(String(err?.message))
-        ? 'Server build kelamaan merespons (timeout). Coba lagi nanti.'
-        : (err?.message || 'Gagal membuat APK.')
-      return reply(`❌ *Gagal membuat APK*\n\n> ${msg}`)
+        ? 'El servidor de compilación tarda demasiado en responder (tiempo de espera). Vuelve a intentarlo más tarde.'
+        : (err?.message || 'No se pudo crear APK.')
+      return reply(`❌ *No se pudo crear el APK*\n\n> ${msg}`)
     } finally {
       activeChats.delete(m.chat)
     }

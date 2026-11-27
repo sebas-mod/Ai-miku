@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import crypto from 'crypto'
 import https from 'https'
 
-const pickImage = ElysiaRuntime.pickImage;
+const pickImage = MikuRuntime.pickImage;
 
 const pluginConfig = {
     name: "tracemoe",
@@ -57,7 +57,7 @@ const pluginConfig = {
     const baseRes = { status: true, author_skrep: 'JH a.k.a Dhika', kesayangan: 'Fiony Alveria♡', data: null };
 
     try {
-      if (!Buffer.isBuffer(imgBuffer) || !imgBuffer.length) throw new Error('Gambar tidak valid');
+      if (!Buffer.isBuffer(imgBuffer) || !imgBuffer.length) throw new Error('Imagen no válida');
 
       const boundRandom = crypto.randomBytes(8).toString('hex');
       const boundary = '----WebKitFormBoundary' + boundRandom;
@@ -138,7 +138,7 @@ const pluginConfig = {
     }
   }
 
-  const titleOf = (r) => r.title_romaji || r.title_english || r.title_native || 'Tidak diketahui'
+  const titleOf = (r) => r.title_romaji || r.title_english || r.title_native || 'Desconocido'
 
   async function handler(m, { sock, text, reply, prefix }) {
     const p = prefix || '.'
@@ -152,16 +152,16 @@ const pluginConfig = {
         buffer = await image.download()
         mime = image.mime || mime
       } catch (e) {
-        return reply('Gagal mengunduh gambar, coba kirim ulang.')
+        return reply('No se pudo descargar la imagen, intente reenviarla.')
       }
     } else {
       const url = String(text || m.quoted?.text || '').match(/https?:\/\/[^\s]+/i)?.[0]
       if (!url) {
         return reply(
           `*TRACE.MOE*\n\n` +
-          `Cari judul anime dari screenshot adegan.\n\n` +
-          `Kirim atau reply gambar dengan caption ${p}tracemoe\n` +
-          `atau ${p}tracemoe <link gambar>`
+          `Busque títulos de anime a partir de capturas de pantalla de escenas.\n\n` +
+          `Enviar o responder imágenes con subtítulos ${p}tracemoe\n` +
+          `o ${p}tracemoe <enlace de imagen>`
         )
       }
       try {
@@ -172,24 +172,24 @@ const pluginConfig = {
           validateStatus: () => true,
           timeout: 30000
         })
-        if (dl.status >= 400 || !dl.data) return reply(`Gagal mengambil gambar, HTTP ${dl.status}`)
+        if (dl.status >= 400 || !dl.data) return reply(`No se pudo tomar la foto, HTTP ${dl.status}`)
         buffer = Buffer.from(dl.data)
         mime = String(dl.headers['content-type'] || mime).split(';')[0]
       } catch (e) {
-        return reply(`Gagal mengambil gambar: ${e.message}`)
+        return reply(`No se pudo tomar la foto: ${e.message}`)
       }
     }
 
-    if (!buffer || !buffer.length) return reply('Gambar kosong, coba kirim ulang.')
+    if (!buffer || !buffer.length) return reply('La imagen está en blanco, intenta reenviarla.')
 
-    await reply('Mencari anime, tunggu sebentar...')
+    await reply('Buscando anime, espera un minuto...')
 
     const res = await JHTraceMoe(buffer, mime)
-    if (!res.status) return reply(`Gagal: ${res.error}`)
+    if (!res.status) return reply(`Fallar: ${res.error}`)
 
     const d = res.data
     const best = d.best_match
-    if (!best) return reply('Anime tidak ditemukan dari gambar itu.')
+    if (!best) return reply('Anime no encontrado en esa imagen.')
 
     const others = d.results.slice(1, 3).map((r, i) =>
       `${i + 2}. ${titleOf(r)}${r.episode ? ` (eps ${r.episode})` : ''} - ${r.similarity_percent}`
@@ -199,16 +199,16 @@ const pluginConfig = {
       `*${titleOf(best)}*\n` +
       (best.title_native && best.title_native !== titleOf(best) ? `${best.title_native}\n` : '') +
       `\nEpisode   : ${best.episode ?? '-'}\n` +
-      `Waktu     : ${best.timestamp}\n` +
+      `Tiempo: ${best.timestamp}\n` +
       `Kemiripan : ${best.similarity_percent}\n` +
       (best.anilist_url ? `AniList   : ${best.anilist_url}\n` : '') +
       (best.mal_id ? `MyAnimeList: https://myanimelist.net/anime/${best.mal_id}\n` : '')
 
-    if (best.similarity < 0.9) caption += `\nKemiripan di bawah 90%, hasilnya mungkin kurang akurat.\n`
+    if (best.similarity < 0.9) caption += `\nSi la similitud es inferior al 90%, los resultados pueden ser menos precisos.\n`
     if (others.length) caption += `\nKemungkinan lain:\n${others.join('\n')}\n`
     caption += `\nSisa kuota: ${d.quota_remaining}`
 
-    if (best.is_adult) return reply(`${caption}\n\nPreview tidak dikirim karena konten dewasa.`)
+    if (best.is_adult) return reply(`${caption}\n\nVista previa no publicada debido a contenido para adultos.`)
 
     if (best.preview_video) {
       try {

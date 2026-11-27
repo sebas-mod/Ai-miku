@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -47,9 +47,9 @@ async function handler(m, { sock, text }) {
 
         if (!targetText) {
             return m.reply(
-                `🩷 *FITUR FAKE QUOTE iOS*\n\n` +
-                `Ketik: ${m.prefix}iqc teks kamu\n` +
-                `Atau reply pesan lalu ketik ${m.prefix}iqc`
+                `🩷 *FUNCIÓN DE IOS DE CITA FALSA*\n\n` +
+                `Tipo: ${m.prefix}iqc tu texto\n` +
+                `O responda al mensaje y luego escriba ${m.prefix}CIQ`
             );
         }
 
@@ -64,7 +64,7 @@ async function handler(m, { sock, text }) {
         });
 
         if (!result?.success || !result.image) {
-            throw new Error('Generator IQC tidak menghasilkan gambar.');
+            throw new Error('El generador IQC no produce una imagen.');
         }
 
         await sock.sendMessage(
@@ -78,8 +78,8 @@ async function handler(m, { sock, text }) {
         console.error('[iqc error]:', error);
         await m.react('❌');
         await m.reply(
-            `❌ *GAGAL MEMPROSES QUOTE*\n\n` +
-            `Terjadi kesalahan saat membuat IQC. Coba jalankan npm install lalu restart bot.`
+            `❌ *NO SE PUDO PROCESAR LA CITA*\n\n` +
+            `Se produjo un error al crear IQC. Intente ejecutar la instalación npm y luego reinicie bot.`
         );
     }
 }

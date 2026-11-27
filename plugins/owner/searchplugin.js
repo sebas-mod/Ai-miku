@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -93,9 +93,9 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `🔍 *sᴇᴀʀᴄʜ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Cari dan tampilkan info plugin\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+      `🔍 *BUSCAR PLUGIN*\n\n` +
+        `> Busca y muestra info del plugin\n\n` +
+        `*EJEMPLO:*\n` +
         `> \`${m.prefix}splugin sticker\`\n` +
         `> \`${m.prefix}splugin menu\``,
     );
@@ -114,14 +114,14 @@ async function handler(m, { sock }) {
     if (!info) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Plugin \`${name}\` tidak ditemukan`,
+        `❌ *NO ENCONTRADO*\n\n> Plugin \`${name}\` no encontrado`,
       );
     }
 
     if (info.error) {
       await m.react("⚠️");
       return m.reply(
-        `⚠️ *ᴘʟᴜɢɪɴ ᴇʀʀᴏʀ*\n\n` +
+        `⚠️ *ERROR DE PLUGIN*\n\n` +
           `> File: \`${info.file}\`\n` +
           `> Folder: \`${info.folder}\`\n` +
           `> Error: \`${info.error}\``,
@@ -131,31 +131,31 @@ async function handler(m, { sock }) {
     const aliases = Array.isArray(info.alias)
       ? info.alias.join(", ")
       : info.alias || "-";
-    const isEnabled = info.isEnabled !== false ? "✅ Ya" : "❌ Tidak";
-    const isOwner = info.isOwner ? "✅ Ya" : "❌ Tidak";
-    const isPremium = info.isPremium ? "✅ Ya" : "❌ Tidak";
-    const isGroup = info.isGroup ? "✅ Ya" : "❌ Tidak";
-    const isAdmin = info.isAdmin ? "✅ Ya" : "❌ Tidak";
+    const isEnabled = info.isEnabled !== false ? "✅ Sí" : "❌ No";
+    const isOwner = info.isOwner ? "✅ Sí" : "❌ No";
+    const isPremium = info.isPremium ? "✅ Sí" : "❌ No";
+    const isGroup = info.isGroup ? "✅ Sí" : "❌ No";
+    const isAdmin = info.isAdmin ? "✅ Sí" : "❌ No";
 
     await m.react("✅");
     return m.reply(
-      `📋 *ɪɴꜰᴏ ᴘʟᴜɢɪɴ*\n\n` +
-        `╭┈┈⬡「 📝 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📛 ɴᴀᴍᴀ: \`${info.name || "-"}\`\n` +
-        `┃ 🏷️ ᴀʟɪᴀs: \`${aliases}\`\n` +
-        `┃ 📁 ᴄᴀᴛᴇɢᴏʀʏ: \`${info.category || "-"}\`\n` +
-        `┃ 📄 ᴅᴇsᴄ: ${info.description || "-"}\n` +
-        `┃ 📝 ᴜsᴀɢᴇ: \`${info.usage || "-"}\`\n` +
-        `┃ 📌 ᴇxᴀᴍᴘʟᴇ: \`${info.example || "-"}\`\n` +
+      `📋 *INFO DEL PLUGIN*\n\n` +
+        `╭┈┈⬡「 📝 *DETALLE* 」\n` +
+        `┃ 📛 NOMBRE: \`${info.name || "-"}\`\n` +
+        `┃ 🏷️ ALIAS: \`${aliases}\`\n` +
+        `┃ 📁 CATEGORÍA: \`${info.category || "-"}\`\n` +
+        `┃ 📄 DESC: ${info.description || "-"}\n` +
+        `┃ 📝 USO: \`${info.usage || "-"}\`\n` +
+        `┃ 📌 EJEMPLO: \`${info.example || "-"}\`\n` +
         `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *sᴇᴛᴛɪɴɢs* 」\n` +
-        `┃ 🔓 ᴇɴᴀʙʟᴇᴅ: ${isEnabled}\n` +
-        `┃ 👑 ᴏᴡɴᴇʀ ᴏɴʟʏ: ${isOwner}\n` +
-        `┃ 💎 ᴘʀᴇᴍɪᴜᴍ: ${isPremium}\n` +
-        `┃ 👥 ɢʀᴏᴜᴘ ᴏɴʟʏ: ${isGroup}\n` +
-        `┃ 🛡️ ᴀᴅᴍɪɴ ᴏɴʟʏ: ${isAdmin}\n` +
-        `┃ ⏱️ ᴄᴏᴏʟᴅᴏᴡɴ: \`${info.cooldown || 0}s\`\n` +
-        `┃ 🎫 ʟɪᴍɪᴛ: \`${info.limit || 0}\`\n` +
+        `╭┈┈⬡「 ⚙️ *AJUSTES* 」\n` +
+        `┃ 🔓 HABILITADO: ${isEnabled}\n` +
+        `┃ 👑 PROPIETARIO SOLO: ${isOwner}\n` +
+        `┃ 💎 PREMIUM: ${isPremium}\n` +
+        `┃ 👥 GRUPO SOLO: ${isGroup}\n` +
+        `┃ 🛡️ ADMIN SOLO: ${isAdmin}\n` +
+        `┃ ⏱️ ESPERA: \`${info.cooldown || 0}s\`\n` +
+        `┃ 🎫 LÍMITE: \`${info.limit || 0}\`\n` +
         `╰┈┈⬡`,
     );
   } catch (error) {

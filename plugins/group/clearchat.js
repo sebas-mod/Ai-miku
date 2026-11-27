@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
             }]
         }, m.chat)
 
-        await m.reply(`✅ *ᴄʜᴀᴛ ᴅɪʙᴇʀsɪʜᴋᴀɴ*\n\n> Chat grup telah dibersihkan oleh @${m.sender.split('@')[0]}`, { mentions: [m.sender] })
+        await m.reply(`✅ *CHAT LIMPIADO*\n\n> El chat del grupo ha sido limpiado por @${m.sender.split('@')[0]}`, { mentions: [m.sender] })
 
     } catch (error) {
         try {
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
                 }
             }, m.chat)
 
-            await m.reply(`✅ *ᴄʜᴀᴛ ᴅɪʙᴇʀsɪʜᴋᴀɴ*\n\nChat grup di wa bot telah dibersihkan oleh @${m.sender.split('@')[0]}\nSilahkan lihat sendiri di wa bot kamu`, { mentions: [m.sender] })
+            await m.reply(`✅ *CHAT LIMPIADO*\n\nEl chat del grupo en el WhatsApp del bot ha sido limpiado por @${m.sender.split('@')[0]}\nMíralo tú mismo en tu WhatsApp del bot`, { mentions: [m.sender] })
         } catch (e) {
             m.react('☢')
             m.reply(te(m.prefix, m.command, m.pushName))

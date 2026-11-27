@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import dns from 'dns/promises'
 import net from 'net'
 
@@ -49,10 +49,10 @@ const pluginConfig = {
   }
 
   async function assertPublic(url) {
-      if (!/^https?:$/.test(url.protocol)) throw new Error('Hanya URL http / https yang didukung.')
+      if (!/^https?:$/.test(url.protocol)) throw new Error('Solo se admiten URL http / https.')
       const host = url.hostname.replace(/^\[|\]$/g, '')
       const ips = net.isIP(host) ? [host] : (await dns.lookup(host, { all: true })).map(r => r.address)
-      if (!ips.length || ips.some(privateIp)) throw new Error('Alamat itu tidak diizinkan (jaringan internal).')
+      if (!ips.length || ips.some(privateIp)) throw new Error('Esa dirección no está permitida (red interna).')
   }
 
   async function fetchSafe(start) {
@@ -76,12 +76,12 @@ const pluginConfig = {
 
   async function readBody(res) {
       const declared = Number(res.headers.get('content-length') || 0)
-      if (declared > MAX_BYTES) throw new Error('Ukuran file melebihi 20 MB.')
+      if (declared > MAX_BYTES) throw new Error('El archivo supera los 20 MB.')
       const chunks = []
       let size = 0
       for await (const c of res.body) {
           size += c.length
-          if (size > MAX_BYTES) throw new Error('Ukuran file melebihi 20 MB.')
+          if (size > MAX_BYTES) throw new Error('El archivo supera los 20 MB.')
           chunks.push(c)
       }
       return Buffer.concat(chunks)
@@ -134,15 +134,15 @@ const pluginConfig = {
 
       if (file) {
           const declared = Number(String(file.fileLength?.toString?.() ?? file.fileLength ?? 0))
-          if (declared > MAX_BYTES) return m.reply('Ukuran file melebihi 20 MB.')
+          if (declared > MAX_BYTES) return m.reply('El archivo supera los 20 MB.')
 
           let buffer
           try {
               buffer = await file.download()
           } catch (e) {
-              return m.reply(`Gagal mengunduh file: ${e?.message || e}`)
+              return m.reply(`No se pudo descargar el archivo: ${e?.message || e}`)
           }
-          if (buffer.length > MAX_BYTES) return m.reply('Ukuran file melebihi 20 MB.')
+          if (buffer.length > MAX_BYTES) return m.reply('El archivo supera los 20 MB.')
 
           const mime = String(file.mimetype || 'application/octet-stream').split(';')[0].trim().toLowerCase()
           const filename = file.fileName || `file.${EXT_OF[mime] || 'bin'}`
@@ -151,17 +151,17 @@ const pluginConfig = {
 
       const input = urlInText || (m.quoted?.text || '').match(/https?:\/\/\S+/i)?.[0]
       if (!input) {
-          return m.reply(`Contoh:\n${prefix || '.'}${command} https://example.com/file.pdf\n\nAtau reply / kirim file (pdf, js, zip, dll) dengan caption *${prefix || '.'}${command}*`)
+          return m.reply(`Ejemplo:\n${prefix || '.'}${command} https://example.com/file.pdf\n\nO responde / envía un archivo (pdf, js, zip, etc.) con el texto *${prefix || '.'}${command}*`)
       }
 
       let target
-      try { target = new URL(input) } catch { return m.reply('URL tidak valid.') }
+      try { target = new URL(input) } catch { return m.reply('URL no válida.') }
 
       let res, url
       try {
           ({ res, url } = await fetchSafe(target))
       } catch (e) {
-          return m.reply(`Gagal mengambil URL: ${e?.message || e}`)
+          return m.reply(`No se pudo recuperar URL: ${e?.message || e}`)
       }
 
       const mime = (res.headers.get('content-type') || 'application/octet-stream').split(';')[0].trim().toLowerCase()
@@ -169,7 +169,7 @@ const pluginConfig = {
       try {
           buffer = await readBody(res)
       } catch (e) {
-          return m.reply(`Gagal membaca isi URL: ${e?.message || e}`)
+          return m.reply(`No se pudo leer el contenido de URL: ${e?.message || e}`)
       }
 
       const isText = /^text\/|json|xml|javascript|yaml|csv/.test(mime)

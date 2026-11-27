@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -143,7 +143,7 @@ async function runLoader(text = "memuat") {
 }
 
 async function playBootSequence(info = {}) {
-  const { name = "Elysia Assistant", version = "1.0.0", developer = "Arthazy", mode = "public" } = info;
+  const { name = "Ai Miku", version = "1.0.0", developer = "Arthazy", mode = "public" } = info;
   const line = gradient()("━".repeat(52));
   console.log("");
   console.log(`  ${line}`);
@@ -209,7 +209,7 @@ function logMessage(info) {
 
   const edge = isGroup ? cPink : isNewsletter ? cYellow : cCyan;
   console.log("");
-  console.log(` ${edge("╭━━━〔")} ${cWhite.bold("✨ ELYSIA ASSISTANT")} ${cGray("•")} ${chatBadge} ${edge("〕━━━╮")}`);
+  console.log(` ${edge("╭━━━〔")} ${cWhite.bold("✨ AI MIKU")} ${cGray("•")} ${chatBadge} ${edge("〕━━━╮")}`);
   console.log(` ${edge("┃")} ${cCyan.bold("👤 Pengirim :")} ${cWhite.bold(senderName)} ${cGray(`(+${num})`)}`);
   console.log(` ${edge("┃")} ${cPurple.bold("🕒 Waktu    :")} ${cYellow(`${date} ${time} WIB`)}`);
   console.log(` ${edge("┃")} ${cGreen.bold("🏷️ Tipe     :")} ${cGreen(typeTag)}`);

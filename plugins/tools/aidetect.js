@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
-const pickMedia = ElysiaRuntime.pickMedia;
-const reactTo = ElysiaRuntime.reactTo;
+const pickMedia = MikuRuntime.pickMedia;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "aidetect",
@@ -38,19 +38,19 @@ const pluginConfig = {
       'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36'
   }
 
-  const persen = (n) => typeof n === 'number' ? (n * 100).toFixed(2) + '%' : 'Tidak tersedia'
+  const persen = (n) => typeof n === 'number' ? (n * 100).toFixed(2) + '%' : 'No disponible'
 
   async function handler(m, { sock, prefix, command, reply }) {
       try {
           const media = pickMedia(m)
           const mime = media?.mime || ''
           if (!/^image\/(jpeg|jpg|png|webp)$/i.test(mime)) {
-              return reply(`Reply atau kirim gambar dengan caption *${prefix}${command}*`)
+              return reply(`Responde o envía una imagen con el texto *${prefix}${command}*`)
           }
 
           await reactTo(sock, m, '⏳')
           const buffer = await media.download()
-          if (!buffer?.length) throw new Error('Gagal mengunduh gambar.')
+          if (!buffer?.length) throw new Error('No se pudo descargar la imagen.')
 
           const form = new FormData()
           form.append('media', buffer, { filename: `image.${mime.split('/')[1]}`, contentType: mime })
@@ -62,33 +62,33 @@ const pluginConfig = {
           })
 
           const key = upload.data?.data?.short_key
-          if (!key) throw new Error('Gagal mengunggah gambar.')
+          if (!key) throw new Error('No se pudo subir la imagen.')
 
           const { data } = await axios.get(`${baseURL}/json/${key}.json`, { headers, timeout: 60000 })
           const classes = data?.visual?.status?.[0]?.response?.output?.[0]?.classes
-          if (!Array.isArray(classes)) throw new Error('Hasil deteksi belum tersedia, coba lagi sebentar lagi.')
+          if (!Array.isArray(classes)) throw new Error('El resultado de la detección aún no está listo, inténtalo en un momento.')
 
           const ai = classes.find(v => v.class === 'ai_generated')?.score
           const human = classes.find(v => v.class === 'not_ai_generated')?.score
           const deepfake = classes.find(v => v.class === 'deepfake')?.score
 
           const hasil = typeof ai === 'number' && typeof human === 'number'
-              ? (ai > human ? 'Kemungkinan gambar dibuat oleh AI.' : 'Kemungkinan gambar bukan hasil AI.')
-              : 'Hasil belum dapat disimpulkan.'
+              ? (ai > human ? 'Es probable que la imagen haya sido creada por IA.' : 'Es probable que la imagen no sea obra de una IA.')
+              : 'Todavía no se puede concluir el resultado.'
 
           await reply(
-              `*🔍 DETEKSI GAMBAR AI*\n\n` +
-              `Status: ${hasil}\n\n` +
+              `*🔍 DETECCIÓN DE IMAGEN IA*\n\n` +
+              `Estado: ${hasil}\n\n` +
               `AI Generated: ${persen(ai)}\n` +
               `Not AI Generated: ${persen(human)}\n` +
               `Deepfake: ${persen(deepfake)}\n\n` +
-              `_Hasil berupa estimasi model deteksi, bukan kepastian mutlak._`
+              `_Los resultados son estimaciones del modelo de detección, no certeza absoluta._`
           )
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')
           const detail = typeof e.response?.data === 'string' ? e.response.data.slice(0, 200) : e.message
-          reply(`❌ Gagal memeriksa gambar.\n${detail}`)
+          reply(`❌ No se pudo analizar la imagen.\n${detail}`)
       }
   }
 

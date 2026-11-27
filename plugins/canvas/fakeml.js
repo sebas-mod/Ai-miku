@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🎮 *ꜰᴀᴋᴇ ᴍʟ ᴘʀᴏꜰɪʟᴇ*\n\n` +
-        `> Masukkan nama untuk profile\n\n` +
+        `> Introduzca un nombre para el perfil\n\n` +
         `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-        `> 1. Kirim foto + caption \`${m.prefix}fakeml <nama>\`\n` +
-        `> 2. Reply foto dengan \`${m.prefix}fakeml <nama>\``,
+        `> 1. Enviar foto + pie de foto \`${m.prefix}fakeml <nombre>\`\n` +
+        `> 2. Foto estafa del respondedor \`${m.prefix}fakeml <nombre>\``,
     );
   }
   let buffer = null;
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
     }
   }
   if (!buffer) {
-    return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+    return m.reply(`❌ ¡Envía/responde una foto para crear un avatar!`);
   }
   m.react("🕕");
   try {
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`Coba lagi`);
+    m.reply(`Intentar otra vez`);
   }
 }
 export { pluginConfig as config, handler };

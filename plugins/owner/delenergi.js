@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,21 +49,21 @@ async function handler(m, { sock }) {
 
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⚡ *ᴅᴇʟ ᴇɴᴇʀɢɪ*\n\n` +
-            `> \`.delenergi <jumlah>\` - dari diri sendiri\n` +
-            `> \`.delenergi <jumlah> @user\` - dari user\n\n` +
-            `\`Contoh: ${m.prefix}delenergi 50\``
+            `⚡ *QUITAR ENERGÍA*\n\n` +
+            `> \`.delenergi <cantidad>\` - de ti mismo\n` +
+            `> \`.delenergi <cantidad> @user\` - del usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}delenergi 50\``
         )
     }
 
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah harus lebih dari 0`)
+        return m.reply(`❌ *ERROR*\n\n> La cantidad debe ser mayor que 0`)
     }
 
     const user = db.getUser(targetJid)
 
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di database`)
+        return m.reply(`❌ *ERROR*\n\n> Usuario no encontrado en la base de datos`)
     }
 
     if (user.energi === -1) {
@@ -75,11 +75,11 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     await m.reply(
-        `✅ *ᴇɴᴇʀɢɪ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
-        `┃ ⚡ sɪsᴀ: *${formatNumber(newEnergi)}*\n` +
+        `✅ *ENERGÍA REDUCIDA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+        `┃ 👤 USUARIO: @${targetJid.split('@')[0]}\n` +
+        `┃ ➖ RESTADO: *-${formatNumber(amount)}*\n` +
+        `┃ ⚡ RESTANTE: *${formatNumber(newEnergi)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

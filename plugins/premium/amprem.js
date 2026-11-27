@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -46,7 +46,7 @@ function registerAmSession(m, email) {
   const timer = setTimeout(() => {
     if (global.ampremState[userId]?.timer !== timer) return;
     delete global.ampremState[userId];
-    m.reply("⌛ Sesi klaim Alight Motion Premium dibatalkan otomatis (timeout 5 menit).").catch(() => {});
+    m.reply("⌛ La sesión de reclamo de Alight Motion Premium se cancela automáticamente (tiempo de espera de 5 minutos).").catch(() => {});
   }, SESSION_TIMEOUT);
   timer.unref?.();
   global.ampremState[userId] = { email, timer, createdAt: Date.now() };
@@ -54,7 +54,7 @@ function registerAmSession(m, email) {
 
 async function processAmClaim(m, email, link) {
   await m.react("⏳").catch(() => {});
-  await m.reply("⏳ *Memverifikasi tautan & mengaktifkan Alight Motion Premium...*");
+  await m.reply("⏳ *Verificando enlace y habilitando Alight Motion Premium...*");
   try {
     const { data = {} } = await axios.post(
       ENDPOINT_CLAIM,
@@ -67,22 +67,22 @@ async function processAmClaim(m, email, link) {
     if (data.status === "premium" || data.success === true) {
       await m.react("✅").catch(() => {});
       return m.reply(
-        `╭─── ❖ 『 🎉 *ALIGHT MOTION PREMIUM AKTIF* 』 ❖\n` +
+        `╭─── ❖ 『 🎉 *ALIGHT MOTION PREMIUM ACTIVO* 』 ❖\n` +
           `│ 📧 *Email:* \`${email}\`\n` +
-          `│ 💎 *Status:* PREMIUM AKTIF\n` +
-          `│ 📱 Silakan buka kembali aplikasi Alight Motion kamu!\n` +
+          `│ 💎 *ESTADO:* PREMIUM ACTIVO\n` +
+          `│ 📱 ¡Vuelva a abrir su aplicación Alight Motion!\n` +
           `╰──────────────────────────❖\n` +
-          `_✦ Elysia Assistant • Premium Service_`
+          `_✦ Ai Miku • Premium Service_`
       );
     }
     await m.react("❌").catch(() => {});
     return m.reply(
-      `⚠️ *Klaim belum berhasil.*\n> ${data.error || data.message || "Coba lagi beberapa saat."}`
+      `⚠️ *El reclamo no ha tenido éxito.*\n> ${data.error || data.message || "Inténtalo de nuevo en unos minutos."}`
     );
   } catch (err) {
     await m.react("❌").catch(() => {});
     return m.reply(
-      `❌ *Gagal klaim:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Coba lagi nanti."}`
+      `❌ *No se pudo reclamar:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Inténtalo más tarde."}`
     );
   }
 }
@@ -109,12 +109,12 @@ async function handler(m) {
 
   if (cmd === "batalkan") {
     if (!global.ampremState[userId]) {
-      return m.reply("ℹ️ Tidak ada sesi aktivasi Alight Motion yang sedang berjalan.");
+      return m.reply("ℹ️ Actualmente no hay sesiones de activación de Alight Motion en ejecución.");
     }
     clearAmSession(userId);
     await m.react("🛑").catch(() => {});
     return m.reply(
-      `✅ Sesi aktivasi dibatalkan.\n> Ketik \`${p}amprem email@kamu.com\` kapan saja untuk memulai ulang.`
+      `✅Sesión de activación cancelada.\n> Escribe \`${p}amprem email@kamu.com\` en cualquier momento para reiniciar.`
     );
   }
 
@@ -134,8 +134,8 @@ async function handler(m) {
         `│ 📌 *Cara Pakai:*\n` +
         `│ 1. Ketik \`${p}amprem emailkamu@gmail.com\`\n` +
         `│ 2. Cek inbox/spam email & salin link *"Sign in to Alight Creative"*\n` +
-        `│ 3. Kirim link tersebut ke chat ini (batas 5 menit)\n` +
-        `│ 4. Ketik \`${p}batalkan\` untuk membatalkan sesi\n` +
+        `│ 3. Enviar el enlace a este chat (límite 5 minuto)\n` +
+        `│ 4. Tipo \`${p}cancelar\` para cancelar la sesión\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -159,13 +159,13 @@ async function handler(m) {
     if (data?.status === "premium") {
       clearAmSession(userId);
       await m.react("✅").catch(() => {});
-      return m.reply(`🎉 *Akun \`${emailFound}\` sudah berstatus PREMIUM!*`);
+      return m.reply(`🎉 *Cuenta \`${emailFound}¡\` tiene el estado PREMIUM!*`);
     }
   } catch (err) {
     clearAmSession(userId);
     await m.react("❌").catch(() => {});
     return m.reply(
-      `❌ *Gagal mengirim tautan verifikasi:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Server sedang sibuk."}`
+      `❌ *No se pudo enviar el enlace de verificación:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Server sedang sibuk."}`
     );
   }
 
@@ -174,8 +174,8 @@ async function handler(m) {
   return m.reply(
     `╭─── ❖ 『 📩 *MAGIC LINK TERKIRIM* 』 ❖\n` +
       `│ 📧 *Email:* \`${emailFound}\`\n` +
-      `│ ✦ Cek kotak masuk/spam lalu salin link *"Sign in to Alight Creative"* dan kirim langsung ke chat ini.\n` +
-      `│ ⏱️ Batas waktu: *5 menit*\n` +
+      `│ ✦ Revisa tu bandeja de entrada/spam, luego copia el enlace *"Iniciar sesión en Alight Creative"* y envíalo directamente a este chat.\n` +
+      `│ ⏱️ Límite de tiempo: *5 minutos*\n` +
       `│ 🛑 Batalkan: \`${p}batalkan\`\n` +
       `╰──────────────────────────❖`
   );

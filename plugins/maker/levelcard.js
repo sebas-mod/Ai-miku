@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 
-const rpgStore = ElysiaRuntime.rpgStore;
-const xpRange = ElysiaRuntime.xpRange;
-const canvasGetAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
-const canvasRoundedRectPath = ElysiaRuntime.canvasRoundedRectPath;
-const canvasDrawAvatar = ElysiaRuntime.canvasDrawAvatar;
-const fmt = ElysiaRuntime.fiturFmt;
+const rpgStore = MikuRuntime.rpgStore;
+const xpRange = MikuRuntime.xpRange;
+const canvasGetAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
+const canvasRoundedRectPath = MikuRuntime.canvasRoundedRectPath;
+const canvasDrawAvatar = MikuRuntime.canvasDrawAvatar;
+const fmt = MikuRuntime.fiturFmt;
 
 const pluginConfig = {
     name: "levelcard",
@@ -182,10 +182,10 @@ const pluginConfig = {
       ctx.textAlign = 'left'
 
       const stats = [
-          ['PERINGKAT', `#${fmt(rank)}`, `dari ${fmt(total)}`, '#ff8fb8'],
+          ['PUESTO', `#${fmt(rank)}`, `de ${fmt(total)}`, '#ff8fb8'],
           ['MONEY', fmt(money), '', '#ffb36b'],
           ['LIMIT', limit, '', '#b69cff'],
-          ['STREAK', `${fmt(streak)}`, 'hari', '#ff7aa8']
+          ['STREAK', `${fmt(streak)}`, 'días', '#ff7aa8']
       ]
       const cw = (W - tx - 80 - 3 * 14) / 4
       stats.forEach(([label, val, sub, color], i) => {
@@ -219,7 +219,7 @@ const pluginConfig = {
       const who = m.mentionedJid?.[0] || m.quoted?.sender || m.sender
       const users = rpgStore().users
       const user = users[who]
-      if (!user) return m.reply('User itu belum ada di database. Suruh dia pakai bot dulu ya~')
+      if (!user) return m.reply('Ese usuario aún no está en la base de datos. Dile que use el bot primero~')
 
       const level = Math.max(0, Math.floor(angka(user.level)))
       const { min, xp } = xpRange(level, global.multiplier)
@@ -239,7 +239,7 @@ const pluginConfig = {
 
       await conn.sendMessage(m.chat, {
           image: buf,
-          caption: `*Kartu Level ${nama}*\n Level ${level} • Peringkat #${rank}\n Kurang ${fmt(Math.max(0, xp - (angka(user.exp) - min)))} EXP lagi ke level berikutnya`
+          caption: `*Tarjeta de nivel ${nama}*\n Nivel ${level} • Puesto #${rank}\n Faltan ${fmt(Math.max(0, xp - (angka(user.exp) - min)))} EXP para el siguiente nivel`
       }, { quoted: m })
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,13 +33,13 @@ async function handler(m, { sock }) {
   if (!mode || (mode !== "on" && mode !== "off")) {
     return m.reply(
       `🎛️ *KONTROL SISTEM ENERGI*\n\n` +
-      `Fitur kendali utama untuk menghidupkan atau mematikan seluruh sistem potongan energi bot secara global.\n\n` +
-      `*STATUS SAAT INI:*\n` +
-      `- Mode: *${currentStatus ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
-      `*PENGGUNAAN:*\n` +
+      `Función principal para activar o desactivar globalmente todo el sistema de consumo de energía del bot.\n\n` +
+      `*ESTADO ACTUAL:*\n` +
+      `- Modo: *${currentStatus ? "ACTIVO 🔋" : "INACTIVO (ILIMITADO) ♾️"}*\n\n` +
+      `*USO:*\n` +
       `- *${m.prefix}sistemenergi on* — Menghidupkan potongan energi\n` +
-      `- *${m.prefix}sistemenergi off* — Mematikan potongan energi (Unlimited mode)\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `- *${m.prefix}sistemenergi off* — Desactiva el consumo de energía (modo ilimitado)\n\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}sistemenergi on*`
     );
   }
@@ -53,11 +53,11 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ *STATUS SISTEM ENERGI BERHASIL DIUBAH*\n\n` +
-    `Sistem Energi kini telah berhasil di-*${isEnabled ? "HIDUPKAN" : "MATIKAN"}*.\n\n` +
+    `✅ *ESTADO DEL SISTEMA DE ENERGÍA ACTUALIZADO*\n\n` +
+    `El sistema de energía se ha *${isEnabled ? "ACTIVADO" : "DESACTIVADO"}*.\n\n` +
     `*Status Terkini:*\n` +
-    `- Mode: *${isEnabled ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
-    `_Semua perubahan sudah tersimpan dan akan segera diterapkan pada sistem bot._`
+    `- Modo: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (ILIMITADO) ♾️"}*\n\n` +
+    `_Todos los cambios se guardaron y se aplicarán en breve al sistema del bot._`
   );
 }
 

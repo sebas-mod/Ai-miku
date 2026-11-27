@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -23,7 +23,7 @@ async function handler(m) {
   const parts = String(m.text || "").trim().replace(/[()|]/g, " ").split(/\s+/).filter(Boolean);
   const [userId, zoneId] = parts;
   if (!userId || !zoneId) {
-    return m.reply(`⚔️ Masukkan User ID & Zone ID Mobile Legends!\n> Contoh: \`${m.prefix}mlstalk 12345678 1234\``);
+    return m.reply(`⚔️ ¡Escribe el ID de usuario y el ID de zona de Mobile Legends!\n> Ejemplo: \`${m.prefix}mlstalk 12345678 1234\``);
   }
 
   await m.react("🔎");
@@ -53,7 +53,7 @@ async function handler(m) {
   }
 
   await m.react("❌");
-  await m.reply(`❌ Akun Mobile Legends \`${userId} (${zoneId})\` tidak ditemukan.`);
+  await m.reply(`❌ No se encontró la cuenta de Mobile Legends \`${userId} (${zoneId})\`.`);
 }
 
 export { pluginConfig as config, handler };

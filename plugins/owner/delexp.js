@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -51,21 +51,21 @@ async function handler(m, { sock }) {
 
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⭐ *ᴅᴇʟ ᴇxᴘ*\n\n` +
-            `> \`.delexp <jumlah>\` - dari diri sendiri\n` +
-            `> \`.delexp <jumlah> @user\` - dari user\n\n` +
-            `\`Contoh: ${m.prefix}delexp 5000\``
+            `⭐ *QUITAR EXP*\n\n` +
+            `> \`.delexp <cantidad>\` - de ti mismo\n` +
+            `> \`.delexp <cantidad> @user\` - del usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}delexp 5000\``
         )
     }
 
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah harus lebih dari 0`)
+        return m.reply(`❌ *ERROR*\n\n> La cantidad debe ser mayor que 0`)
     }
 
     const user = db.getUser(targetJid)
 
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di database`)
+        return m.reply(`❌ *ERROR*\n\n> Usuario no encontrado en la base de datos`)
     }
 
     const newExp = db.updateExp(targetJid, -amount)
@@ -73,11 +73,11 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     await m.reply(
-        `✅ *ᴇxᴘ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
-        `┃ ⭐ sɪsᴀ: *${formatNumber(newExp)}*\n` +
+        `✅ *EXP REDUCIDA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+        `┃ 👤 USUARIO: @${targetJid.split('@')[0]}\n` +
+        `┃ ➖ RESTADO: *-${formatNumber(amount)}*\n` +
+        `┃ ⭐ RESTANTE: *${formatNumber(newExp)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

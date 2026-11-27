@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cekid",
@@ -29,9 +29,9 @@ const pluginConfig = {
 
   async function sendWithCopy(sock, m, jid, reply, text, label, code) {
       try {
-          return await sock.sendMessage(jid, { text: `${text}\n\n📋 ${label}: ${String(code)}\n\n_${global.namebot || 'Elysia Assistant MD'}_` }, { quoted: m })
+          return await sock.sendMessage(jid, { text: `${text}\n\n📋 ${label}: ${String(code)}\n\n_${global.namebot || 'Ai Miku MD'}_` }, { quoted: m })
       } catch (e) {
-          console.error('[cekid] tombol gagal:', e?.message || e)
+          console.error('El botón [cekid] falló:', e?.message || e)
           return reply(text)
       }
   }
@@ -39,19 +39,19 @@ const pluginConfig = {
   async function groupInfo(sock, m, jid, reply, code) {
       try {
           const info = await sock.groupGetInviteInfo(code)
-          const created = info.creation ? new Date(info.creation * 1000).toLocaleString('id-ID') : '-'
+          const created = info.creation ? new Date(info.creation * 1000).toLocaleString('es-ES') : '-'
           const text = `
-— INFO GRUP —
+— INFO DEL GRUPO —
 
-❀ Nama: ${info.subject}
-❀ ID Grup: ${info.id}
-❀ Member: ${info.size || 0}
-❀ Dibuat: ${created}
+❀ Nombre: ${info.subject}
+❀ ID del grupo: ${info.id}
+❀ Miembros: ${info.size || 0}
+❀ Creado: ${created}
 `.trim()
-          return sendWithCopy(sock, m, jid, reply, text, 'Salin ID Grup', info.id)
+          return sendWithCopy(sock, m, jid, reply, text, 'Copiar ID del grupo', info.id)
       } catch (e) {
           console.error(e)
-          return reply('Gagal mengambil info grup. Pastikan link invite masih valid.')
+          return reply('No se pudo obtener la información del grupo. Comprueba que el enlace de invitación siga siendo válido.')
       }
   }
 
@@ -59,20 +59,20 @@ const pluginConfig = {
       try {
           const result = await sock.newsletterMetadata('invite', code)
           const meta = result.thread_metadata || {}
-          const created = meta.creation_time ? new Date(Number(meta.creation_time) * 1000).toLocaleString('id-ID') : '-'
+          const created = meta.creation_time ? new Date(Number(meta.creation_time) * 1000).toLocaleString('es-ES') : '-'
           const text =
-              `╭─▣「 *INFORMASI CHANNEL* 」▣─╮\n` +
-              `┃ ✦ Nama       : ${meta.name?.text || '-'}\n` +
-              `┃ ✦ ID Channel : ${result.id}\n` +
-              `┃ ✦ Subscriber : ${Number(meta.subscribers_count || 0).toLocaleString('id-ID')}\n` +
-              `┃ ✦ Verifikasi : ${meta.verification || '-'}\n` +
-              `┃ ✦ Status     : ${result.state?.type || '-'}\n` +
-              `┃ ✦ Dibuat     : ${created}\n` +
+              `╭─▣「 *INFORMACIÓN DEL CANAL* 」▣─╮\n` +
+              `┃ ✦ Nombre      : ${meta.name?.text || '-'}\n` +
+              `┃ ✦ ID del canal : ${result.id}\n` +
+              `┃ ✦ Suscriptores : ${Number(meta.subscribers_count || 0).toLocaleString('es-ES')}\n` +
+              `┃ ✦ Verificación : ${meta.verification || '-'}\n` +
+              `┃ ✦ Estado       : ${result.state?.type || '-'}\n` +
+              `┃ ✦ Creado       : ${created}\n` +
               `╰─────────────➤`
-          return sendWithCopy(sock, m, jid, reply, text, 'Salin ID Channel', result.id)
+          return sendWithCopy(sock, m, jid, reply, text, 'Copiar ID del canal', result.id)
       } catch (e) {
           console.error(e)
-          return reply('Gagal mengambil data channel.')
+          return reply('No se pudieron obtener los datos del canal.')
       }
   }
 
@@ -81,8 +81,8 @@ const pluginConfig = {
       const chat = jid || m.chat
       if (!input) {
           return reply(
-              `Masukkan link grup atau channel WhatsApp.\n\n` +
-              `Contoh:\n${prefix}cekid https://chat.whatsapp.com/xxxx\n${prefix}cekid https://whatsapp.com/channel/xxxx`
+              `Escribe el enlace de un grupo o canal de WhatsApp.\n\n` +
+              `Ejemplo:\n${prefix}cekid https://chat.whatsapp.com/xxxx\n${prefix}cekid https://whatsapp.com/channel/xxxx`
           )
       }
 
@@ -92,7 +92,7 @@ const pluginConfig = {
       const gc = input.match(GROUP_RE)
       if (gc) return groupInfo(sock, m, chat, reply, gc[1])
 
-      return reply('Link tidak valid. Gunakan link grup (chat.whatsapp.com) atau channel (whatsapp.com/channel).')
+      return reply('Enlace no válido. Usa un enlace de grupo (chat.whatsapp.com) o de canal (whatsapp.com/channel).')
   }
 
 export { pluginConfig as config, handler }

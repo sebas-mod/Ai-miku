@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const getAssetBuffer = ElysiaRuntime.getAssetBuffer;
-const isIosId = ElysiaRuntime.isIosId;
-const chatIsIos = ElysiaRuntime.chatIsIos;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const getAssetBuffer = MikuRuntime.getAssetBuffer;
+const isIosId = MikuRuntime.isIosId;
+const chatIsIos = MikuRuntime.chatIsIos;
 
   const pluginConfig = {
       name: 'qc',
@@ -104,8 +104,8 @@ const chatIsIos = ElysiaRuntime.chatIsIos;
   function qcMenuText(m, text) {
       const list = COLOR_SECTIONS.map(sec => `*${sec.title}*\n${sec.names.join(', ')}`).join('\n\n')
       return (
-          `💬 *Quote Sticker*\n\nTeks kamu: _${text}_\n\n` +
-          `Pilih warna dengan mengetik:\n*${m.prefix}qc <warna> ${text}*\n\n${list}`
+          `💬 *Cita Sticker*\n\nTu texto: _${text}_\n\n` +
+          `Seleccione un color escribiendo:\n*${m.prefix}control de calidad <color> ${text}*\n\n${list}`
       )
   }
 
@@ -132,13 +132,13 @@ const chatIsIos = ElysiaRuntime.chatIsIos;
 
           return await sock.sendButtons(m.chat, {
               ...(logo ? { image: logo } : {}),
-              text: `💬 *Mau warna apa untuk quote-nya?*\n\nTeks kamu: _${text}_\n\nPilih warna lewat tombol di bawah 👇`,
+              text: `💬 *¿Qué color quieres para la cotización?*\n\nTu texto: _${text}_\n\nElija un color a través del botón de abajo 👇`,
               footer,
                   thumbKey: 'qc',
               mentions: [m.sender],
               buttons: [{
                   type: 'list',
-                  text: 'Pilih Warna',
+                  text: 'Seleccionar color',
                   sections: COLOR_SECTIONS.map(sec => ({
                       title: sec.title,
                       rows: sec.names.map(name => ({
@@ -150,7 +150,7 @@ const chatIsIos = ElysiaRuntime.chatIsIos;
               }]
           }, { quoted: m })
       } catch (err) {
-          console.error('[qc] tombol gagal, kirim teks biasa:', err.stack || err)
+          console.error('El botón [qc] falló, envíe texto sin formato:', err.stack || err)
           const caption = qcMenuText(m, text)
           if (logo) return sock.sendMessage(m.chat, { image: logo, caption, mentions: [m.sender] }, { quoted: m })
           return m.reply(caption)
@@ -169,16 +169,16 @@ const chatIsIos = ElysiaRuntime.chatIsIos;
           return m.reply(
               `💬 *ǫᴜᴏᴛᴇ sᴛɪᴄᴋᴇʀ*\n\n` +
               `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-              `┃ ◦ \`${m.prefix}qc <teks>\` lalu pilih warna lewat tombol\n` +
-              `┃ ◦ Reply pesan + \`${m.prefix}qc\`\n` +
-              `┃ ◦ Langsung: \`${m.prefix}qc <warna> <teks>\`\n` +
+              `┃ ◦ \`${m.prefix}qc <texto>\` luego seleccione el color mediante el botón\n` +
+              `┃ ◦ Responder mensaje + \`${m.prefix}qc\`\n` +
+              `┃ ◦ Langsung: \`${m.prefix}qc <color> <texto>\`\n` +
               `╰┈┈⬡\n\n` +
-              `> Contoh: \`${m.prefix}qc Hai semuanya!\``
+              `> Ejemplo: \`${m.prefix}qc ¡Hola a todos!\``
           )
       }
 
       if (message.length > 80) {
-          return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Maksimal 80 karakter! (Saat ini: ${message.length})`)
+          return m.reply(`❌ *ERROR*\n\n> ¡Máximo 80 caracteres! (En este momento: ${message.length})`)
       }
 
       if (!hasColor) return sendColorMenu(m, sock, message)

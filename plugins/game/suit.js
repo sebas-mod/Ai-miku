@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "suit",
   alias: ["rps", "janken"],
   category: "game",
-  description: "Main Batu-Gunting-Kertas melawan Elysia (bisa taruhan koin)",
+  description: "Main Batu-Gunting-Kertas melawan Miku (bisa taruhan koin)",
   usage: ".suit <batu|gunting|kertas> [taruhan]",
   example: ".suit batu 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -27,9 +27,9 @@ async function handler(m) {
   const pick = args[0];
   if (!CHOICES.includes(pick)) {
     return m.reply(
-      `✊✌️🖐️ *SUIT — ELYSIA*\n` +
-      `> Pilih: \`batu\`, \`gunting\`, atau \`kertas\`\n` +
-      `> Contoh: \`${m.prefix}suit batu\` atau \`${m.prefix}suit gunting 1000\``
+      `✊✌️🖐️ *SUIT — MIKU*\n` +
+      `> Elige: \`batu\` (piedra), \`gunting\` (tijera) o \`kertas\` (papel)\n` +
+      `> Ejemplo: \`${m.prefix}suit batu\` o \`${m.prefix}suit gunting 1000\``
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m) {
   const user = db.getUser(m.sender) || db.setUser(m.sender);
   const bet = Math.max(0, Math.min(50000, parseInt(args[1], 10) || 0));
   if (bet > 0 && (user?.koin || 0) < bet) {
-    return m.reply(`❌ Koin kamu tidak cukup! Saldo: *${(user?.koin || 0).toLocaleString("id-ID")} Koin*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Balance: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   const botPick = CHOICES[Math.floor(Math.random() * CHOICES.length)];
@@ -49,23 +49,23 @@ async function handler(m) {
 
   let resultLine = "";
   if (draw) {
-    resultLine = "🤝 *SERI!* Tidak ada koin yang berkurang.";
+    resultLine = "🤝 *¡EMPATE!* No se pierde ninguna moneda.";
   } else if (win) {
     const reward = bet > 0 ? bet : 500;
     db.updateKoin(m.sender, reward);
     db.updateExp(m.sender, 150);
-    resultLine = `🏆 *KAMU MENANG!* Hadiah: *+${reward.toLocaleString("id-ID")} Koin* & *+150 EXP*`;
+    resultLine = `🏆 *¡HAS GANADO!* Premio: *+${reward.toLocaleString("id-ID")} monedas* y *+150 EXP*`;
   } else {
     if (bet > 0) db.updateKoin(m.sender, -bet);
     resultLine = bet > 0
-      ? `😈 *ELYSIA MENANG!* Kamu kehilangan *${bet.toLocaleString("id-ID")} Koin*.`
-      : `😈 *ELYSIA MENANG!* Coba lagi ya!`;
+      ? `😈 *¡MIKU GANA!* Has perdido *${bet.toLocaleString("id-ID")} monedas*.`
+      : `😈 *¡MIKU GANA!* ¡Inténtalo otra vez!`;
   }
 
   await m.reply(
-    `╭─❖「 ✊✌️🖐️ *SUIT — ELYSIA* 」\n` +
-      `│ 👤 Kamu   : *${ICON[pick]}*\n` +
-      `│ 🌸 Elysia : *${ICON[botPick]}*\n` +
+    `╭─❖「 ✊✌️🖐️ *SUIT — MIKU* 」\n` +
+      `│ 👤 Tú     : *${ICON[pick]}*\n` +
+      `│ 🌸 Miku : *${ICON[botPick]}*\n` +
       `╰─────────────────────❖\n` +
       `${resultLine}`
   );

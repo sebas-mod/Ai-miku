@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "mvp",
@@ -32,11 +32,11 @@ const te = ElysiaRuntime.te;
     const text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan nama!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     if (text.length > 20) {
-      return m.reply("⚠️ Nama terlalu panjang! Maksimal 20 karakter.");
+      return m.reply("⚠️ ¡El nombre es demasiado largo! Máximo 20 caracteres.");
     }
 
     await m.react("🕕");
@@ -63,7 +63,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "🎉 Ini dia sertifikat MVP kamu!"
+        caption: "🎉 ¡Aquí tienes tu certificado de MVP!"
       }, { quoted: m });
 
       await m.react("✅");

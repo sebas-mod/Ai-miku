@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { cocofun } from 'btch-downloader'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'cocofundl',
@@ -32,15 +32,15 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}cocofundl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}cocofundl https://www.cocofun.com/share/post/xxx\``
           )
       }
 
       if (!url.match(/cocofun\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link CocoFun.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de CocoFun.`)
       }
 
       await m.react('🕕')
@@ -49,14 +49,14 @@ const te = ElysiaRuntime.te;
           const data = await cocofun(url)
 
           if (!data?.status || !data?.result) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const result = data.result
           const videoUrl = result.no_watermark || result.watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video tidak ditemukan.`)
+              return m.reply(`❌ Vídeo no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Game 2048 — Elysia Assistant</title>
+<title>Juego 2048 — Ai Miku</title>
 <style>
 ${buildGameBaseCss("amber")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -50,13 +50,13 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
   <div class="top">
     <div class="logo">✨</div>
     <div class="meta">
-      <div class="title">Game 2048</div>
-      <div class="sub">Geser atau tekan arah gabung angka</div>
+      <div class="title">Juego 2048</div>
+      <div class="sub">Desliza o pulsa una dirección para unir los números</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
   </div>
   <div class="grid" id="grid"></div>
   <div class="dpad">

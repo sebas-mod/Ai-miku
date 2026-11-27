@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -9,7 +9,7 @@
 // Pembersih folder database/cache otomatis (sama seperti session-cleaner.js).
 // Interval diatur di config.js -> database.autoClearCache.intervalMinutes (satuan menit).
 //
-// Yang TIDAK pernah dihapus: database/main/*, database/lid-cache.json, database/elysia_rpg_store.json.
+// Yang TIDAK pernah dihapus: database/main/*, database/lid-cache.json, database/miku_rpg_store.json.
 // Yang dibersihkan hanya seluruh file sementara di dalam database/cache.
 import fs from "fs";
 import path from "path";

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
@@ -58,19 +58,19 @@ const pluginConfig = {
 
     if (!message) {
       return reply(
-        `🪟 *IQC WINDOWS (Media Player)*\n\n` +
-        `Meme jendela Windows Media Player XP.\n\n` +
-        `• ${p}iqcwin <teks>\n` +
-        `• kirim/reply foto + ${p}iqcwin <teks> → foto ganti tokoh 3D\n` +
-        `• reply pesan + ${p}iqcwin → teks dari pesan itu\n\n` +
-        `Contoh: ${p}iqcwin padahal cuma std kirian`
+        `🪟 *IQC WINDOWS (Reproductor multimedia)*\n\n` +
+        `Meme de la ventana de Windows Media Player XP.\n\n` +
+        `• ${p}iqcwin <texto>\n` +
+        `• envía/responde a una foto + ${p}iqcwin <texto> → la foto sustituye al personaje 3D\n` +
+        `• responde a un mensaje + ${p}iqcwin → usa el texto de ese mensaje\n\n` +
+        `Ejemplo: ${p}iqcwin padahal cuma std kirian`
       )
     }
-    if (message.length > 120) return reply('❌ Teks terlalu panjang (maksimal 120 huruf).')
+    if (message.length > 120) return reply('❌ Texto demasiado largo (máximo 120 caracteres).')
 
     let canvasLib
     try { canvasLib = await import('@napi-rs/canvas') } catch {
-      return reply('❌ Fitur ini butuh @napi-rs/canvas, belum terpasang di server.')
+      return reply('❌ Esta función necesita @napi-rs/canvas, que no está instalado en el servidor.')
     }
     const { createCanvas, loadImage, GlobalFonts } = canvasLib.default ?? canvasLib
 
@@ -115,8 +115,8 @@ const pluginConfig = {
       ctx.fillStyle = '#e8fff0'; ctx.beginPath(); ctx.moveTo(ic.x - 3, ic.y - 6); ctx.lineTo(ic.x + 7, ic.y); ctx.lineTo(ic.x - 3, ic.y + 6); ctx.closePath(); ctx.fill()
 
       ctx.font = `700 46px ${TITLE}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'
-      ctx.fillStyle = 'rgba(0,20,100,0.65)'; ctx.fillText('Windows Media Player', 80 + 3, 62 + 3)
-      ctx.fillStyle = '#ffffff'; ctx.fillText('Windows Media Player', 80, 62)
+      ctx.fillStyle = 'rgba(0,20,100,0.65)'; ctx.fillText('Reproductor de Windows Media', 80 + 3, 62 + 3)
+      ctx.fillStyle = '#ffffff'; ctx.fillText('Reproductor de Windows Media', 80, 62)
 
       const winBtn = (x, kind) => {
         const y = 26, w = 72, h = 68
@@ -263,10 +263,10 @@ const pluginConfig = {
       const octx = out.getContext('2d')
       octx.save(); rr(octx, 0, 0, W, H, 26); octx.clip(); octx.drawImage(canvas, 0, 0); octx.restore()
 
-      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Nih hasilnya' }, { quoted: m })
+      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Aquí tienes el resultado' }, { quoted: m })
     } catch (e) {
       console.error('[iqcwin]', e?.stack || e)
-      return reply('❌ Gagal membuat gambar. Coba lagi beberapa saat.')
+      return reply('❌ No se pudo crear la imagen. Inténtalo de nuevo en un momento.')
     }
   }
 

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "stopjpmbasic",
@@ -25,7 +25,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { reply }) {
-      if (!global.__jpmBasicRunning) return reply('❌ Tidak ada JPM Basic yang sedang berjalan.')
+      if (!global.__jpmBasicRunning) return reply('❌ No se está ejecutando JPM Basic.')
       global.__jpmBasicStop = true
       return reply('*▢ STOP JPM BASIC*\n• Status : Menghentikan JPM Basic...')
   }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -238,12 +238,12 @@ async function handler(m, { sock }) {
 
         if (!targetImgBuffer) {
             return m.reply(
-                `📸 *FITUR IG STORY IMAGE*\n\n` +
-                `Fitur ini memungkinkan kamu untuk menyulap foto biasamu menjadi tampilan ala Instagram Story yang estetik dan kekinian.\n\n` +
+                `📸 *FUNCIÓN DE IMAGEN DE HISTORIA IG*\n\n` +
+                `Esta característica le permite transformar sus fotografías comunes en una presentación estética y contemporánea al estilo Instagram Story.\n\n` +
                 `*CARA PENGGUNAAN:*\n` +
-                `- Kirimkan gambar langsung dengan caption \`${m.prefix}igstoryimg\`\n` +
-                `- Atau balas (*reply*) pesan gambar yang sudah ada dengan perintah \`${m.prefix}igstoryimg\`\n\n` +
-                `_Bot akan otomatis memasang foto profil dan namamu di dalam gambarnya!_`
+                `- Enviar la imagen directamente con el título \`${m.prefix}igstoryimg\`\n` +
+                `- O responder (*responder*) a un mensaje con imagen existente con el comando \`${m.prefix}igstoryimg\`\n\n` +
+                `_Bot ¡pondrá automáticamente una foto de perfil y tu número en la imagen!_`
             );
         }
 
@@ -282,7 +282,7 @@ async function handler(m, { sock }) {
         bgImgBuffer = null;
         fontsLoaded = false;
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar IG Story. Pastikan gambar yang dikirim valid dan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo sentimos, se produjo un error al intentar crear una imagen de Historia IG. Asegúrate de que la imagen enviada sea válida y vuelve a intentarlo en unos momentos.`);
     }
 }
 

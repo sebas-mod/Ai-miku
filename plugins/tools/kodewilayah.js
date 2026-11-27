@@ -1,21 +1,21 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const FriendlyError = ElysiaRuntime.FriendlyError;
-const guard = ElysiaRuntime.guard;
-const titleCase = ElysiaRuntime.titleCase;
-const bestMatches = ElysiaRuntime.bestMatches;
-const getProvinces = ElysiaRuntime.getProvinces;
-const getAllRegencies = ElysiaRuntime.getAllRegencies;
-const getDistricts = ElysiaRuntime.getDistricts;
-const getVillages = ElysiaRuntime.getVillages;
+const FriendlyError = MikuRuntime.FriendlyError;
+const guard = MikuRuntime.guard;
+const titleCase = MikuRuntime.titleCase;
+const bestMatches = MikuRuntime.bestMatches;
+const getProvinces = MikuRuntime.getProvinces;
+const getAllRegencies = MikuRuntime.getAllRegencies;
+const getDistricts = MikuRuntime.getDistricts;
+const getVillages = MikuRuntime.getVillages;
 
 const pluginConfig = {
     name: "kodewilayah",
@@ -38,38 +38,38 @@ const pluginConfig = {
   const fmt = (x) => `${x.code}  ${titleCase(x.name)}`
 
   function more(total) {
-      return total > MAX_LIST ? `\n...dan ${total - MAX_LIST} lainnya` : ''
+      return total > MAX_LIST ? `\n...y ${total - MAX_LIST} más` : ''
   }
 
   let handler = guard(async (m, { text, reply, example }) => {
       const input = String(text || '').trim()
-      if (!input) return example('bogor  (atau: kota bogor|bogor barat)')
+      if (!input) return example('Bogor (o: ciudad de Bogor|Bogor occidental)')
 
       const parts = input.split('|').map(s => s.trim()).filter(Boolean)
       const regencies = await getAllRegencies()
 
       if (parts.length >= 2) {
           const regs = bestMatches(regencies, parts[0])
-          if (!regs.length) return reply(`Kabupaten/kota *${parts[0]}* tidak ditemukan.`)
+          if (!regs.length) return reply(`No se encontró la ciudad de *${parts[0]}*.`)
           if (regs.length > 1) {
-              return reply(`Ada beberapa kabupaten/kota bernama *${parts[0]}*, tulis lebih spesifik:\n\n${regs.slice(0, 10).map(fmt).join('\n')}`)
+              return reply(`Hay varias ciudades llamadas *${parts[0]}*, escribe algo más concreto:\n\n${regs.slice(0, 10).map(fmt).join('\n')}`)
           }
 
           const reg = regs[0]
           const districts = await getDistricts(reg.code)
           const dis = bestMatches(districts, parts[1])
-          if (!dis.length) return reply(`Kecamatan *${parts[1]}* tidak ditemukan di ${titleCase(reg.name)}.`)
+          if (!dis.length) return reply(`No se encontró el distrito *${parts[1]}* en ${titleCase(reg.name)}.`)
 
           const dist = dis[0]
           const villages = await getVillages(dist.code)
-          if (!villages.length) throw new FriendlyError('Data kelurahan/desa untuk kecamatan ini belum tersedia.')
+          if (!villages.length) throw new FriendlyError('Todavía no hay datos de barrios para este distrito.')
 
           return reply(
-              `📍 *KELURAHAN / DESA*\n` +
+              `📍 *BARRIOS / PUEBLOS*\n` +
               `${titleCase(dist.name)}, ${titleCase(reg.name)}\n` +
-              `Kode kecamatan: ${dist.code}\n\n` +
+              `Código del distrito: ${dist.code}\n\n` +
               villages.slice(0, MAX_LIST).map(fmt).join('\n') + more(villages.length) +
-              `\n\n_Sumber: data wilayah Kemendagri_`
+              `\n\n_Fuente: datos territoriales del Ministerio del Interior_`
           )
       }
 
@@ -78,24 +78,24 @@ const pluginConfig = {
       const regHit = bestMatches(regencies, input)
 
       if (!provHit.length && !regHit.length) {
-          return reply(`Wilayah *${input}* tidak ditemukan.\n\nContoh: kodewilayah jawa barat, kodewilayah kota bandung`)
+          return reply(`No se encontró la zona *${input}*.\n\nEjemplo: código de región de Java Occidental, código de región de ciudad de Bandung`)
       }
 
       const out = []
-      if (provHit.length) out.push(`*Provinsi*\n${provHit.map(fmt).join('\n')}`)
+      if (provHit.length) out.push(`*Provincias*\n${provHit.map(fmt).join('\n')}`)
       if (regHit.length) {
-          out.push(`*Kabupaten / Kota*\n${regHit.slice(0, MAX_LIST).map(fmt).join('\n')}${more(regHit.length)}`)
+          out.push(`*Ciudades*\n${regHit.slice(0, MAX_LIST).map(fmt).join('\n')}${more(regHit.length)}`)
       }
 
       if (regHit.length === 1) {
           const districts = await getDistricts(regHit[0].code).catch(() => [])
           if (districts.length) {
-              out.push(`*Kecamatan di ${titleCase(regHit[0].name)}*\n${districts.slice(0, MAX_LIST).map(fmt).join('\n')}${more(districts.length)}`)
-              out.push(`_Untuk daftar kelurahan: kodewilayah ${input}|nama kecamatan_`)
+              out.push(`*Distritos de ${titleCase(regHit[0].name)}*\n${districts.slice(0, MAX_LIST).map(fmt).join('\n')}${more(districts.length)}`)
+              out.push(`_Para ver los barrios: kodewilayah ${input}|nombre del distrito_`)
           }
       }
 
-      return reply(`📍 *KODE WILAYAH*\n\n${out.join('\n\n')}\n\n_Sumber: data wilayah Kemendagri_`)
+      return reply(`📍 *CÓDIGOS TERRITORIALES*\n\n${out.join('\n\n')}\n\n_Fuente: datos territoriales del Ministerio del Interior_`)
   })
 
 export { pluginConfig as config, handler }

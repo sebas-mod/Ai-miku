@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const KODE_BAHASA = ElysiaRuntime.KODE_BAHASA;
-const sleep = ElysiaRuntime.sleep;
+const KODE_BAHASA = MikuRuntime.KODE_BAHASA;
+const sleep = MikuRuntime.sleep;
 
 const pluginConfig = {
     name: "kodebahasa",
@@ -30,7 +30,7 @@ const pluginConfig = {
   async function handler(m, { reply }) {
       await reply(KODE_BAHASA)
       await sleep(2500)
-      await reply('Kode bahasa ini dipakai untuk menentukan terjemahan dari bahasa apa ke bahasa apa. Contoh: id|en berarti dari Indonesia ke Inggris.')
+      await reply('Este código de idioma sirve para indicar de qué idioma a qué idioma se traduce. Ejemplo: id|en significa de indonesio a inglés.')
   }
 
 export { pluginConfig as config, handler }

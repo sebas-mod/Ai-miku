@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-  const FEATURE_CREDIT = "Fitur By: Elysia Assistant MD";
+  const FEATURE_CREDIT = "Función de: Ai Miku MD";
 
   async function UhdpaperSearch(query) {
     try {
@@ -60,14 +60,14 @@ import * as cheerio from 'cheerio'
   async function handler(m, { sock, text, prefix, command }) {
       const conn = sock;
       const usedPrefix = prefix || m.prefix || ".";
-    if (!text) throw `Contoh:\n${usedPrefix + command} naruto`
+    if (!text) throw `Ejemplo:\n${usedPrefix + command} naruto`
 
     let results = await UhdpaperSearch(text)
-    if (results.length === 0) throw 'Wallpaper tidak ditemukan!'
+    if (results.length === 0) throw '¡No se encontró el fondo de pantalla!'
 
     let list = results.map((v, i) => `*${i + 1}. ${v.title}*\n📏 *Resolusi:* ${v.resolution}\n🔗 ${v.link}`).join`\n\n`
 
-    await conn.sendMessage(m.chat, { text: `*Hasil Pencarian UHDPaper: ${text}*\n\n${list}` }, { quoted: m })
+    await conn.sendMessage(m.chat, { text: `*Resultados de UHDPaper: ${text}*\n\n${list}` }, { quoted: m })
   }
 
 export { pluginConfig as config, handler }

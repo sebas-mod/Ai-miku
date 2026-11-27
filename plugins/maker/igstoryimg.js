@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
 import { writeFile, mkdir } from 'fs/promises'
 import { existsSync, unlinkSync } from 'fs'
 import { join } from 'path'
 
-const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
+const drawAvatar = MikuRuntime.canvasDrawAvatar;
 
   const IGIMG_BG_URL = 'https://raw.githubusercontent.com/Ditzzx-vibecoder/Assets/main/Image/igimg.png'
   const FONT_SEMIBOLD_URL = 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2'
@@ -241,12 +241,12 @@ const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
 
           if (!targetImgBuffer) {
               return m.reply(
-                  `📸 *FITUR IG STORY IMAGE*\n\n` +
-                  `Fitur ini memungkinkan kamu untuk menyulap foto biasamu menjadi tampilan ala Instagram Story yang estetik dan kekinian.\n\n` +
-                  `*CARA PENGGUNAAN:*\n` +
-                  `- Kirimkan gambar langsung dengan caption \`${m.prefix}igstoryimg\`\n` +
-                  `- Atau balas (*reply*) pesan gambar yang sudah ada dengan perintah \`${m.prefix}igstoryimg\`\n\n` +
-                  `_Bot akan otomatis memasang foto profil dan namamu di dalam gambarnya!_`
+                  `📸 *FUNCIÓN DE IMAGEN DE HISTORIA IG*\n\n` +
+                  `Esta función convierte una foto normal en una historia estética de Instagram.\n\n` +
+                  `*CÓMO USAR:*\n` +
+                  `- Envía una imagen con el texto \`${m.prefix}igstoryimg\`\n` +
+                  `- O responde a una imagen existente con el comando \`${m.prefix}igstoryimg\`\n\n` +
+                  `_¡El bot colocará automáticamente tu foto de perfil y tu nombre en la imagen!_`
               );
           }
 
@@ -284,7 +284,7 @@ const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
           bgImgBuffer = null;
           fontsLoaded = false;
           await m.react('❌');
-          m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar IG Story. Pastikan gambar yang dikirim valid dan coba lagi beberapa saat.`);
+          m.reply(`❌ *ERROR AL PROCESAR LA IMAGEN*\n\nLo siento, hubo un error al crear la imagen de la historia de IG. Comprueba que la imagen sea válida e inténtalo de nuevo en un momento.`);
       }
   }
 

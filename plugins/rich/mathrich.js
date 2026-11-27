@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Hitung Cepat — Elysia Assistant</title>
+<title>Cálculo Rápido — Ai Miku</title>
 <style>
 ${buildGameBaseCss("teal")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -50,18 +50,18 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
   <div class="top">
     <div class="logo">🧮</div>
     <div class="meta">
-      <div class="title">Hitung Cepat</div>
+      <div class="title">Cálculo Rápido</div>
       <div class="sub">Jawab hitungan secepat mungkin</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="tm">60</b><span>Detik</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="tm">60</b><span>Segundos</span></div>
     <div class="stat"><b id="cb">x1</b><span>Combo</span></div>
   </div>
-  <div class="qbox" id="q">Tekan Mulai!</div>
+  <div class="qbox" id="q">¡Pulsa Empezar!</div>
   <div class="opts" id="opts"></div>
-  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Mulai 60 Detik</button></div>
+  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Empezar (60 s)</button></div>
 </div></div>
 <script>
 let sc=0,tm=60,cb=0,ans=0,tmr=null,on=false;
@@ -87,15 +87,15 @@ function start(){
   if(on)return;
   clearInterval(tmr);
   on=true;sc=0;tm=60;cb=0;
-  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Sedang Bermain...';
+  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Jugando...';
   document.getElementById('sc').textContent=0;document.getElementById('tm').textContent=60;document.getElementById('cb').textContent='x1';
   gen();
   tmr=setInterval(()=>{
     tm--;document.getElementById('tm').textContent=tm;
     if(tm<=0){
       on=false;clearInterval(tmr);setOpts(false);
-      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Main Lagi';
-      document.getElementById('q').textContent='Selesai! Skor: '+sc;
+      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Jugar otra vez';
+      document.getElementById('q').textContent='¡Fin! Puntos: '+sc;
     }
   },1000);
 }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,23 +30,23 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📝 *sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀ* 」\n` +
-        `┃ ◦ \`{user}\` - Nama member\n` +
-        `┃ ◦ \`{number}\` - Nomor member\n` +
-        `┃ ◦ \`{group}\` - Nama grup\n` +
-        `┃ ◦ \`{desc}\` - Deskripsi grup\n` +
-        `┃ ◦ \`{count}\` - Jumlah member\n` +
-        `┃ ◦ \`{owner}\` - Nama owner grup\n` +
+      `📝 *ESTABLECER BIENVENIDA*\n\n` +
+        `╭┈┈⬡「 📋 *MARCADORES* 」\n` +
+        `┃ ◦ \`{user}\` - Nombre del miembro\n` +
+        `┃ ◦ \`{number}\` - Número del miembro\n` +
+        `┃ ◦ \`{group}\` - Nombre del grupo\n` +
+        `┃ ◦ \`{desc}\` - Descripción del grupo\n` +
+        `┃ ◦ \`{count}\` - Número de miembros\n` +
+        `┃ ◦ \`{owner}\` - Nombre del propietario del grupo\n` +
         `┃ ◦ \`{date}\` - Tanggal (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Waktu (HH:mm WIB)\n` +
-        `┃ ◦ \`{day}\` - Hari (Senin, Selasa, dll)\n` +
-        `┃ ◦ \`{bot}\` - Nama bot\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{day}\` - Día (lunes, martes, etc.)\n` +
+        `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefix bot\n` +
         `╰┈┈⬡\n\n` +
-        `\`Contoh:\`\n` +
-        `\`${m.prefix}setwelcome Halo {user}! 👋\`\n` +
-        `\`Selamat datang di {group} pada {day}, {date}\``,
+        `\`Ejemplo:\`\n` +
+        `\`${m.prefix}setwelcome ¡Hola {user}! 👋\`\n` +
+        `\`Bienvenido a {group} el {day}, {date}\``,
     );
   }
 
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
   m.react("✅");
 
   await m.reply(
-    `✅ Welcome berhasil di set menjadi *${text}*\nMau reset? ketik ${m.prefix}resetwelcome`,
+    `✅ Mensaje de bienvenida actualizado a *${text}*\n¿Quieres restablecerlo? Escribe ${m.prefix}resetwelcome`,
   );
 }
 

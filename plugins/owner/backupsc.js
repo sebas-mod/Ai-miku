@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -105,13 +105,13 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `📦 *ʙᴀᴄᴋᴜᴘ sᴄʀɪᴘᴛ*\n\n> Memproses backup...\n> Mohon tunggu sebentar...`,
+    `📦 *COPIA DEL SCRIPT*\n\n> Procesando la copia...\n> Espera un momento...`,
   );
   try {
     const projectRoot = process.cwd();
     const timestamp = moment().tz("Asia/Jakarta").format("YYYY-MM-DD_HH-mm-ss");
     const botName =
-      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "elysiaBot";
+      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "mikuBot";
     const zipFileName = `${botName}_backup_${timestamp}.zip`;
     const backupDir = getBackupOutputDir(projectRoot);
     const zipFilePath = path.join(backupDir, zipFileName);
@@ -142,12 +142,12 @@ async function handler(m, { sock }) {
       output.on("close", () => {
         try {
           if (!fs.existsSync(zipFilePath)) {
-            fail(new Error("File backup tidak ditemukan setelah proses zip"));
+            fail(new Error("No se encontró el archivo de copia tras el proceso zip"));
             return;
           }
           const stats = fs.statSync(zipFilePath);
           if (stats.size <= 0) {
-            fail(new Error("File backup kosong atau 0KB"));
+            fail(new Error("El archivo de copia está vacío o pesa 0 KB"));
             return;
           }
           succeed();
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
 
       addDirectory(projectRoot);
       if (fileCount === 0) {
-        fail(new Error("Tidak ada file yang masuk ke backup script"));
+        fail(new Error("Ningún archivo entró en la copia del script"));
         return;
       }
       archive.finalize();
@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
     const stats = fs.statSync(zipFilePath);
     const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2);
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
 
     await sock.sendMessage(
       m.chat,
@@ -201,12 +201,12 @@ async function handler(m, { sock }) {
         fileName: zipFileName,
         mimetype: "application/zip",
         caption:
-          `✅ *ʙᴀᴄᴋᴜᴘ sᴇʟᴇsᴀɪ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-          `┃ 📝 ɴᴀᴍᴀ: \`${zipFileName}\`\n` +
-          `┃ 📊 sɪᴢᴇ: \`${fileSizeMB} MB\`\n` +
-          `┃ 📁 ꜰɪʟᴇ: \`${fileCount}\`\n` +
-          `┃ 📅 ᴛᴀɴɢɢᴀʟ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
+          `✅ *COPIA COMPLETADA*\n\n` +
+          `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+          `┃ 📝 NOMBRE: \`${zipFileName}\`\n` +
+          `┃ 📊 TAMAÑO: \`${fileSizeMB} MB\`\n` +
+          `┃ 📁 ARCHIVO: \`${fileCount}\`\n` +
+          `┃ 📅 FECHA: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
           `╰┈┈⬡`,
         contextInfo: {
           forwardingScore: 9999,

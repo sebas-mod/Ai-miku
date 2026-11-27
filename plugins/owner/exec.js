@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,7 +31,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, store }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
 
     let code = null
@@ -46,13 +46,13 @@ async function handler(m, { sock, store }) {
 
     if (!code) {
         return m.reply(
-            `⚙️ *ᴇxᴇᴄ*\n\n` +
-            `> Reply pesan berisi kode JavaScript!\n\n` +
-            `*Atau:*\n` +
+            `⚙️ *EXEC*\n\n` +
+            `> ¡Responde a un mensaje con código JavaScript!\n\n` +
+            `*O:*\n` +
             `> .> <code>\n\n` +
-            `*Contoh:*\n` +
-            `> Reply pesan: \`return m.chat\`\n` +
-            `> Lalu ketik: .>`
+            `*Ejemplo:*\n` +
+            `> Responde al mensaje: \`return m.chat\`\n` +
+            `> Luego escribe: .>`
         )
     }
 
@@ -102,10 +102,10 @@ async function handler(m, { sock, store }) {
     const codePreview = code.length > 100 ? code.slice(0, 100) + '...' : code
 
     await m.reply(
-        `⚙️ *ᴇxᴇᴄ ʀᴇsᴜʟᴛ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴏᴅᴇ* 」\n` +
+        `⚙️ *RESULTADO DE EXEC*\n\n` +
+        `╭┈┈⬡「 📋 *CÓDIGO* 」\n` +
         `┃ \`${codePreview}\`\n` +
-        `├┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
+        `├┈┈⬡「 📊 *RESULTADO* 」\n` +
         `┃ ${status}\n` +
         `┃ Type: ${type}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +

@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 import { createRequire } from 'node:module'
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'bratgura',
@@ -60,7 +60,7 @@ const config = ElysiaRuntime.config;
   async function handler(m, { sock }) {
       const text = m.args.join(' ')
       if (!text) {
-          return m.reply(`*ʙʀᴀᴛᴀɴɪᴍᴇ4 sᴛɪᴄᴋᴇʀ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratanime4 Besok cenin\``)
+          return m.reply(`*BRATANIME4 sTICKER*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratanime4 Mañana lunes\``)
       }
 
       m.react('🕕')
@@ -82,11 +82,11 @@ const config = ElysiaRuntime.config;
                   bgImage = await loadImage(Buffer.from(response.data))
                   break
               } catch (e) {
-                  console.warn(`Bratanime4: Gagal load dari ${url}, mencoba link berikutnya...`)
+                  console.warn(`Bratanime4: Error al cargar desde ${url}, prueba el siguiente enlace...`)
               }
           }
 
-          if (!bgImage) throw new Error('Semua link gambar gagal dimuat')
+          if (!bgImage) throw new Error('No se pudieron cargar todos los enlaces de imágenes')
 
           const canvas = createCanvas(bgImage.width, bgImage.height)
           const ctx = canvas.getContext('2d')
@@ -141,7 +141,7 @@ const config = ElysiaRuntime.config;
       } catch (err) {
           console.error('Bratanime4 error:', err)
           m.react('❌')
-          m.reply('❌ Gagal membuat sticker bratanime4, coba lagi nanti.\n> ' + err.message)
+          m.reply('❌ No se pudo crear sticker bratanime4, inténtalo de nuevo más tarde.\n> ' + err.message)
       }
   }
 

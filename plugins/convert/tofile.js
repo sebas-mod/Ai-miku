@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -62,18 +62,18 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
       fileName = args[0]
       content = (text || '').replace(new RegExp(`^\\s*${args[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*`), '')
     } else {
-      fileName = `catatan_${Date.now()}.txt`
+      fileName = `notas_${Date.now()}.txt`
       content = text || ''
     }
   } else if (!fileName) {
-    fileName = `kode_${Date.now()}.txt`
+    fileName = `código_${Date.now()}.txt`
   }
 
   if (!content || !content.trim()) {
     return m.reply(
-      `📄 *UBAH TEKS KE FILE DOKUMEN*\n\n` +
-      `• Reply pesan teks dengan \`${usedPrefix + command} namafile.js\`\n` +
-      `• Atau ketik \`${usedPrefix + command} namafile.txt <isi teks>\``
+      `📄 *CONVERTIR TEXTO EN DOCUMENTO*\n\n` +
+      `• Responder mensajes de texto con \`${usedPrefix + command} nombre de archivo.js\`\n` +
+      `• O escriba \`${usedPrefix + command} nombre de archivo.txt <texto del contenido>\``
     )
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -39,16 +39,16 @@ function handler(m) {
     const groupData = db.getGroup(m.chat) || {}
     const customList = groupData.antilinkList || []
 
-    let txt = `🔗 *ᴅᴀꜰᴛᴀʀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
+    let txt = `🔗 *LISTA DE ANTIENLACES*\n\n`
 
-    txt += `╭┈┈⬡「 📌 *ᴅᴇꜰᴀᴜʟᴛ* 」\n`
+    txt += `╭┈┈⬡「 📌 *PREDETERMINADO* 」\n`
     DEFAULT_BLOCKED_LINKS.forEach((l, i) => {
         txt += `┃ ${i + 1}. \`${l}\`\n`
     })
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
     if (customList.length > 0) {
-        txt += `╭┈┈⬡「 ➕ *ᴄᴜsᴛᴏᴍ* 」\n`
+        txt += `╭┈┈⬡「 ➕ *PERSONALIZADO* 」\n`
         customList.forEach((l, i) => {
             txt += `┃ ${i + 1}. \`${l}\`\n`
         })
@@ -57,8 +57,8 @@ function handler(m) {
 
     txt += `> Default: *${DEFAULT_BLOCKED_LINKS.length}* link\n`
     txt += `> Custom: *${customList.length}* link\n\n`
-    txt += `\`${m.prefix}addantilink <link>\` untuk tambah\n`
-    txt += `\`${m.prefix}delantilink <link>\` untuk hapus`
+    txt += `\`${m.prefix}addantilink <link>\` para añadir\n`
+    txt += `\`${m.prefix}delantilink <link>\` para eliminar`
 
     m.reply(txt)
 }

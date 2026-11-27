@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -69,7 +69,7 @@ async function searchEngineXrina(url) {
     headers: { 'User-Agent': UA }
   })
   const d = res.data
-  if (!d || (!d.result && !d.data)) throw new Error('Engine 1 tidak menemukan data.')
+  if (!d || (!d.result && !d.data)) throw new Error('El motor 1 no encontró datos.')
   const r = d.result || d.data
   const links = []
   if (Array.isArray(r.presets)) links.push(...r.presets)
@@ -79,7 +79,7 @@ async function searchEngineXrina(url) {
   for (const l of extractAlightMotionLinks(JSON.stringify(r))) {
     if (!links.includes(l)) links.push(l)
   }
-  if (!links.length) throw new Error('Preset tidak ditemukan di Engine 1.')
+  if (!links.length) throw new Error('Preajuste no encontrado en el motor 1.')
   return {
     source: 'Xrina Engine',
     title: r.title || r.desc || 'Preset Alight Motion',
@@ -110,7 +110,7 @@ async function searchEngineIzzcs(url) {
   for (const l of extractAlightMotionLinks(JSON.stringify(d || {}))) {
     if (!links.includes(l)) links.push(l)
   }
-  if (!links.length) throw new Error('Preset tidak ditemukan di Engine 2.')
+  if (!links.length) throw new Error('Preajuste no encontrado en el motor 2.')
   return {
     source: 'Izzcs Engine',
     title: d?.title || 'Preset Alight Motion',
@@ -123,7 +123,7 @@ async function searchEngineIzzcs(url) {
 async function searchEngineComments(url) {
   const fullUrl = await resolveTikTokUrl(url)
   const videoId = extractVideoId(fullUrl)
-  if (!videoId) throw new Error('ID Video TikTok tidak dapat dikenali.')
+  if (!videoId) throw new Error('ID El vídeo TikTok no se puede reconocer.')
 
   const foundLinks = new Set()
   let title = 'TikTok Preset'
@@ -156,7 +156,7 @@ async function searchEngineComments(url) {
     }
   }
 
-  if (!foundLinks.size) throw new Error('Tidak ditemukan tautan preset pada deskripsi maupun komentar video ini.')
+  if (!foundLinks.size) throw new Error('No se encontraron enlaces preestablecidos en la descripción o comentarios de este video.')
   return {
     source: 'TikTok Comment Scanner',
     title,
@@ -178,10 +178,10 @@ async function handler(m, ctx = {}) {
   if (!inputUrl || !/tiktok\.com/i.test(inputUrl)) {
     return m.reply(
       `🔍 *ALIGHT MOTION PRESET FINDER*\n\n` +
-      `Cari tautan preset Alight Motion (5MB / XML / Drive) dari link video TikTok.\n\n` +
+      `Busque el enlace preestablecido de Alight Motion (5 MB / XML / Drive) desde el enlace de vídeo TikTok.\n\n` +
       `📌 *Cara Pakai:*\n` +
-      `\`${usedPrefix + command} <url video TikTok>\`\n\n` +
-      `_Powered by Elysia Assistant_`
+      `\`${usedPrefix + command} <URL del vídeo TikTok>\`\n\n` +
+      `_Powered by Ai Miku_`
     )
   }
 
@@ -198,19 +198,19 @@ async function handler(m, ctx = {}) {
 
   if (!result || !result.links?.length) {
     await m.react('❌')
-    return m.reply('❌ *Preset tidak ditemukan* pada video TikTok tersebut.')
+    return m.reply('❌ *Preajuste no encontrado* en el vídeo TikTok.')
   }
 
   let caption = `✨ *PRESET ALIGHT MOTION DITEMUKAN* ✨\n\n`
-  caption += `• *Judul* : ${result.title}\n`
+  caption += `• *Título*: ${result.title}\n`
   if (result.author && result.author !== '-') caption += `• *Kreator* : ${result.author}\n`
   caption += `• *Sumber* : ${result.source}\n`
   caption += `• *Total Link* : ${result.links.length}\n\n`
-  caption += `🔗 *Daftar Link Preset:*\n`
+  caption += `🔗 *Lista de enlaces preestablecidos:*\n`
   result.links.slice(0, 15).forEach((lnk, i) => {
     caption += `${i + 1}. ${lnk}\n`
   })
-  caption += `\n_Elysia Assistant by Arthazy_`
+  caption += `\n_Ai Miku by Arthazy_`
 
   if (result.thumbnail) {
     try {

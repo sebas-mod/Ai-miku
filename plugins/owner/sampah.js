@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,7 +29,7 @@ async function handler(m) {
     const tempPath = path.join(process.cwd(), 'temp')
 
     if (!fs.existsSync(tempPath)) {
-        return m.reply('❌ Folder temp tidak ditemukan!')
+        return m.reply('❌ ¡No se encontró la carpeta temporal!')
     }
 
     await m.react('🗑️')
@@ -38,7 +38,7 @@ async function handler(m) {
         const files = fs.readdirSync(tempPath)
 
         if (!files.length) {
-            return m.reply('📁 Folder temp sudah kosong!')
+            return m.reply('📁 ¡La carpeta temporal ya está vacía!')
         }
 
         let deleted = 0
@@ -53,7 +53,7 @@ async function handler(m) {
         await m.react('✅')
         await m.reply(
             `🗑️ *TEMP CLEANED!*\n\n` +
-            `> Total file/folder dihapus: *${deleted}*`
+            `> Total de archivos/carpetas eliminados: *${deleted}*`
         )
 
     } catch (error) {

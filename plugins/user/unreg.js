@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
   category: "user",
   description: "Hapus status pendaftaran akun kamu menggunakan Serial Number (SN)",
   usage: ".unreg <SN>",
-  example: ".unreg ELYSIA-76B1-A2C3",
+  example: ".unreg MIKU-76B1-A2C3",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -35,9 +35,9 @@ async function handler(m, { sock }) {
 
   if (!user?.isRegistered) {
     return m.reply(
-      `╭─── ❖ 『 ⚠️ *BELUM TERDAFTAR* 』 ❖\n` +
-        `│ ✦ Akun kamu memang belum terdaftar di sistem.\n` +
-        `│ ✦ Ketik *${p}daftar Nama.Umur* untuk mendaftar.\n` +
+      `╭─── ❖ 『 ⚠️ *NO REGISTRADO* 』 ❖\n` +
+        `│ ✦ Tu cuenta aún no está registrada en el sistema.\n` +
+        `│ ✦ Tipo *${p}Regístrese Nombre.Edad* para registrarse.\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -47,11 +47,11 @@ async function handler(m, { sock }) {
 
   if (!inputSn) {
     return m.reply(
-      `╭─── ❖ 『 🔐 *VERIFIKASI UNREGISTER* 』 ❖\n` +
-        `│ ✦ Untuk menghapus pendaftaran, masukkan *Serial Number (SN)* kamu!\n` +
+      `╭─── ❖ 『 🔐 *VERIFICACIÓN DE BAJA* 』 ❖\n` +
+        `│ ✦ ¡Para eliminar el registro, ingrese su *Número de serie (SN)*!\n` +
         `│\n` +
-        `│ 📌 *Format:* \`${p}unreg <SN>\`\n` +
-        `│ ✨ *Contoh:* \`${p}unreg ${expectedSn || "ELYSIA-76B1-A2C3"}\`\n` +
+        `│ 📌 *Formato:* \`${p}unreg <SN>\`\n` +
+        `│ ✨ *Ejemplo:* \`${p}desregistrar ${expectedSn || "MIKU-76B1-A2C3"}\`\n` +
         `│ 🔎 Lupa SN? Ketik *${p}ceksn*\n` +
         `╰──────────────────────────❖`
     );
@@ -59,9 +59,9 @@ async function handler(m, { sock }) {
 
   if (!expectedSn || inputSn.toUpperCase() !== expectedSn.toUpperCase()) {
     return m.reply(
-      `╭─── ❖ 『 ❌ *SERIAL NUMBER SALAH* 』 ❖\n` +
-        `│ ✦ SN yang kamu masukkan tidak cocok dengan akunmu.\n` +
-        `│ 🔎 Ketik *${p}ceksn* untuk melihat Serial Number kamu yang benar.\n` +
+      `╭─── ❖ 『 ❌ *NÚMERO DE SERIE INCORRECTO* 』 ❖\n` +
+        `│ ✦ SN que ingresaste no coincide con tu cuenta.\n` +
+        `│ 🔎 Escribe *${p}marque* para ver su número de serie correcto.\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -100,11 +100,11 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `╭─── ❖ 『 🗑️ *UNREGISTER BERHASIL* 』 ❖\n` +
-      `│ ✦ Data pendaftaran *${oldName}* telah dihapus.\n` +
+    `╭─── ❖ 『 🗑️ *DESREGISTRO COMPLETADO* 』 ❖\n` +
+      `│ ✦ Datos de registro *${oldName}* ha sido eliminado.\n` +
       `│ 🔑 *SN Terverifikasi:* \`${expectedSn}\`\n` +
-      `│ ✦ Progres level & koin kamu tetap aman tersimpan.\n` +
-      `│ ✦ Ketik *${p}daftar Nama.Umur* kapan saja untuk daftar ulang!\n` +
+      `│ ✦ Tu progreso de nivel y tus monedas se mantienen seguros.\n` +
+      `│ ✦ Tipo *${p}¡Regístrese Nombre.Edad* en cualquier momento para volver a registrarse!\n` +
       `╰──────────────────────────❖`
   );
 }

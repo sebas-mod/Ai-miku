@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Bisa banget! Percaya diri aja!',
+    '¡Claro que sí! ¡Ten confianza!',
     'Hmm, kayaknya susah deh.',
-    'Tentu bisa! Semangat!',
-    'Nggak bisa, maaf.',
-    'Mungkin bisa, kalau usaha keras.',
-    'Pasti bisa! Jangan menyerah!',
-    'Agak susah sih, tapi bisa dicoba.',
-    'Bisa kok! Yakin deh!',
-    'Kayaknya nggak deh.',
-    'Bisa! Ayo buktikan!',
-    'Hmm... aku ragu.',
-    'Bisa banget! Gas terus!',
-    'Nggak bisa, coba yang lain.',
-    'Bisa! Percaya sama diri sendiri!',
-    'Susah, tapi bukan berarti nggak mungkin.',
-    'Absolutely! Kamu pasti bisa!',
-    'Kayaknya perlu usaha ekstra nih.',
-    'Bisa! Jangan ragukan dirimu!',
-    'Hmm, coba lagi nanti deh.',
-    'Bisa! Aku percaya kamu!'
+    '¡Claro que puedes! ¡Ánimo!',
+    'No puedes, lo siento.',
+    'Puede que sí, si te esfuerzas mucho.',
+    '¡Seguro que puedes! ¡No te rindas!',
+    'Es algo difícil, pero puedes intentarlo.',
+    '¡Claro que sí! ¡Confía!',
+    'Creo que no, la verdad.',
+    '¡Sí! ¡Vamos a demostrarlo!',
+    'Hmm... lo dudo.',
+    '¡Claro que sí! ¡A por todas!',
+    'No puedes, prueba otra cosa.',
+    '¡Sí! ¡Cree en ti mismo!',
+    'Es difícil, pero no imposible.',
+    '¡Absolutamente! ¡Seguro que puedes!',
+    'Creo que necesitas un esfuerzo extra.',
+    '¡Sí! ¡No dudes de ti!',
+    'Hmm, inténtalo más tarde.',
+    '¡Sí! ¡Yo confío en ti!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`💪 *ʙɪsᴀᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .bisakah aku lulus ujian?`);
+        return m.reply(`💪 *¿PODRÁS?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .bisakah ¿aprobaré el examen?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

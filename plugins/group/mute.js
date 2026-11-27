@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,10 +30,10 @@ function handler(m, { sock }) {
     const group = db.getGroup(m.chat) || {}
     const groupName = m.groupMetadata.subject
 
-    if (group.mute) return m.reply('❌ Grup sudah dalam keadaan mute.')
+    if (group.mute) return m.reply('❌ El grupo ya está silenciado.')
 
     db.setGroup(m.chat, { ...group, mute: true })
-    m.reply(`✅ Grup *${groupName}* berhasil di-mute oleh @${m.sender.split('@')[0]}\n\nHanya admin yang bisa mengirim pesan.\nKetik *${m.prefix}unmute* untuk membuka kembali.`, { mentions: [m.sender] })
+    m.reply(`✅ El grupo *${groupName}* ha sido silenciado por @${m.sender.split('@')[0]}\n\nSolo los administradores pueden enviar mensajes.\nEscribe *${m.prefix}unmute* para volver a abrirlo.`, { mentions: [m.sender] })
 }
 
 function isMuted(groupJid, db) {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,26 +33,26 @@ async function handler(m, { sock }) {
         const currentDefault = db.setting('defaultLimit') || config.limits?.default || 25
 
         return m.reply(
-            `📊 *sᴇᴛ ᴅᴇғᴀᴜʟᴛ ʟɪᴍɪᴛ*\n\n` +
-            `> Limit default saat ini: \`${currentDefault}\`\n\n` +
-            `*Cara pakai:*\n` +
-            `> \`${m.prefix}setlimitdefault <jumlah>\`\n\n` +
-            `*Contoh:*\n` +
+            `📊 *LÍMITE POR DEFECTO*\n\n` +
+            `> Límite por defecto actual: \`${currentDefault}\`\n\n` +
+            `*Cómo usar:*\n` +
+            `> \`${m.prefix}setlimitdefault <cantidad>\`\n\n` +
+            `*Ejemplo:*\n` +
             `> \`${m.prefix}setlimitdefault 50\``
         )
     }
 
     if (newLimit < 1 || newLimit > 1000) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Limit harus antara 1 - 1000`)
+        return m.reply(`❌ *ERROR*\n\n> El límite debe estar entre 1 y 1000`)
     }
 
     const db = getDatabase()
     db.setting('defaultLimit', newLimit)
 
     await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n` +
-        `> Default limit diubah menjadi: \`${newLimit}\`\n` +
-        `> User baru akan mendapat limit ini`
+        `✅ *LISTO*\n\n` +
+        `> Límite predeterminado cambiado a: \`${newLimit}\`\n` +
+        `> Los usuarios nuevos recibirán este límite`
     )
 }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -328,18 +328,18 @@ const du = {
   },
   sniff(buf, fileName = '', declaredMime = '') {
     if (!Buffer.isBuffer(buf) || !buf.length) return { kind: 'other', ext: 'bin', mime: 'application/octet-stream', label: 'Binary' }
-    if (buf.slice(0, 4).toString() === '%PDF') return { kind: 'pdf', ext: 'pdf', mime: 'application/pdf', label: 'Dokumen PDF' }
-    if (buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) return { kind: 'image', ext: 'jpg', mime: 'image/jpeg', label: 'Gambar JPEG' }
-    if (buf.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]))) return { kind: 'image', ext: 'png', mime: 'image/png', label: 'Gambar PNG' }
-    if (buf.slice(0, 4).toString() === 'RIFF' && buf.slice(8, 12).toString() === 'WEBP') return { kind: 'image', ext: 'webp', mime: 'image/webp', label: 'Gambar WebP' }
+    if (buf.slice(0, 4).toString() === '%PDF') return { kind: 'pdf', ext: 'pdf', mime: 'application/pdf', label: 'Documento PDF' }
+    if (buf[0] === 0xFF && buf[1] === 0xD8 && buf[2] === 0xFF) return { kind: 'image', ext: 'jpg', mime: 'image/jpeg', label: 'Imagen JPEG' }
+    if (buf.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]))) return { kind: 'image', ext: 'png', mime: 'image/png', label: 'Imagen PNG' }
+    if (buf.slice(0, 4).toString() === 'RIFF' && buf.slice(8, 12).toString() === 'WEBP') return { kind: 'image', ext: 'webp', mime: 'image/webp', label: 'Imagen WebP' }
     if (buf.slice(0, 4).equals(Buffer.from([0x50, 0x4B, 0x03, 0x04]))) {
       const ext = path.extname(fileName).slice(1).toLowerCase()
-      if (['docx', 'xlsx', 'pptx', 'odt'].includes(ext)) return { kind: 'office', ext, mime: declaredMime || 'application/octet-stream', label: `Dokumen Office (${ext.toUpperCase()})` }
+      if (['docx', 'xlsx', 'pptx', 'odt'].includes(ext)) return { kind: 'office', ext, mime: declaredMime || 'application/octet-stream', label: `Documentos de oficina (${ext.toUpperCase()})` }
       return { kind: 'zip', ext: 'zip', mime: 'application/zip', label: 'Arsip ZIP' }
     }
-    if (buf.slice(0, 3).toString() === 'ID3' || (buf[0] === 0xFF && (buf[1] & 0xE0) === 0xE0)) return { kind: 'audio', ext: 'mp3', mime: 'audio/mpeg', label: 'Audio MP3' }
+    if (buf.slice(0, 3).toString() === 'ID3' || (buf[0] === 0xFF && (buf[1] & 0xE0) === 0xE0)) return { kind: 'audio', ext: 'mp3', mime: 'audio/mpeg', label: 'audio MP3' }
     if (buf.slice(0, 4).toString() === 'OggS') return { kind: 'audio', ext: 'ogg', mime: 'audio/ogg', label: 'Audio OGG/Opus' }
-    if (buf.slice(4, 8).toString() === 'ftyp') return { kind: 'video', ext: 'mp4', mime: 'video/mp4', label: 'Video MP4' }
+    if (buf.slice(4, 8).toString() === 'ftyp') return { kind: 'video', ext: 'mp4', mime: 'video/mp4', label: 'vídeos MP4' }
     // Check if printable UTF-8 text
     let nonPrint = 0
     const sample = buf.slice(0, Math.min(buf.length, 512))
@@ -349,17 +349,17 @@ const du = {
     }
     if (nonPrint / Math.max(1, sample.length) < 0.05) {
       const ext = path.extname(fileName).slice(1).toLowerCase() || 'txt'
-      return { kind: 'text', ext, mime: declaredMime || 'text/plain', label: `Teks (${ext.toUpperCase()})` }
+      return { kind: 'text', ext, mime: declaredMime || 'text/plain', label: `Texto (${ext.toUpperCase()})` }
     }
     const ext = path.extname(fileName).slice(1).toLowerCase() || 'bin'
-    return { kind: 'other', ext, mime: declaredMime || 'application/octet-stream', label: `Berkas .${ext}` }
+    return { kind: 'other', ext, mime: declaredMime || 'application/octet-stream', label: `Archivo.${ext}` }
   },
   which(bin) {
     const r = spawnSync('which', [bin], { encoding: 'utf8' })
     return r.status === 0 && r.stdout.trim() ? r.stdout.trim() : null
   },
   async withTmp(fn) {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-ft-'))
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-ft-'))
     try { return await fn(dir) } finally { fs.rmSync(dir, { recursive: true, force: true }) }
   },
   exec(bin, args = [], opts = {}) {
@@ -386,7 +386,7 @@ const du = {
     if (!buf || !buf.length) return null
     const rawName = q.msg?.fileName || q.fileName || q.message?.documentMessage?.fileName || ''
     const sniff = du.sniff(buf, rawName, mime)
-    const name = rawName || `berkas.${sniff.ext}`
+    const name = rawName || `archivo.${sniff.ext}`
     return { buffer: buf, name, mime: mime || sniff.mime, sniff }
   }
 }
@@ -397,7 +397,7 @@ function extractZipPure(buffer) {
   for (let i = buffer.length - 22; i >= Math.max(0, buffer.length - 65557); i--) {
     if (buffer.readUInt32LE(i) === 0x06054b50) { eocdOffset = i; break }
   }
-  if (eocdOffset === -1) throw new Error('Struktur ZIP tidak valid atau rusak.')
+  if (eocdOffset === -1) throw new Error('La estructura ZIP no es válida o está dañada.')
   const totalEntries = buffer.readUInt16LE(eocdOffset + 10)
   const cdOffset = buffer.readUInt32LE(eocdOffset + 16)
   const entries = []
@@ -422,7 +422,7 @@ function extractZipPure(buffer) {
     let fileBuf
     if (method === 0) fileBuf = compData
     else if (method === 8) fileBuf = zlib.inflateRawSync(compData)
-    else throw new Error(`Metode kompresi ZIP (${method}) tidak didukung.`)
+    else throw new Error(`Método de compresión ZIP (${method}) no es compatible.`)
     entries.push({ name, uncompressedSize: uncompSize, buffer: fileBuf })
   }
   return entries
@@ -496,36 +496,36 @@ const csvCell = (v) => {
 
 const specs = {
   cekfile: {
-    desc: 'Cek jenis asli file, ukuran, dan checksum (MD5/SHA-1/SHA-256)',
+    desc: 'Verifique el tipo, el tamaño y la suma de verificación del archivo original (MD5/SHA-1/SHA-256)',
     needs: 'file',
     run: async (c, f) => {
       const h = (a) => crypto.createHash(a).update(f.buffer).digest('hex')
       return uitext.panel('ANALISIS FILE', [
-        { head: '📄 *INFORMASI BERKAS*', lines: [`Nama : ${f.name}`, `Ukuran : ${kit.fmtSize(f.buffer.length)} (${f.buffer.length.toLocaleString('id-ID')} byte)`] },
-        { head: '🔍 *DETEKSI FORMAT*', lines: [`Terdeteksi : ${f.sniff.label}`, `Ekstensi Asli : .${f.sniff.ext}`, `MIME : ${f.mime}`, path.extname(f.name).slice(1).toLowerCase() && path.extname(f.name).slice(1).toLowerCase() !== f.sniff.ext ? `⚠️ Ekstensi nama (.${path.extname(f.name).slice(1)}) berbeda dengan isi file` : ''].filter(Boolean) },
+        { head: '📄 *INFORMASI BERKAS*', lines: [`Nombre: ${f.name}`, `Tamaño: ${kit.fmtSize(f.buffer.length)} (${f.buffer.length.toLocaleString('id-ID')} bytes)`] },
+        { head: '🔍 *DETECTAR FORMATO*', lines: [`Detectado: ${f.sniff.label}`, `Extensión original:.${f.sniff.ext}`, `MIME : ${f.mime}`, path.extname(f.name).slice(1).toLowerCase() && path.extname(f.name).slice(1).toLowerCase() !== f.sniff.ext ? `⚠️ Extensión de nombre (.${path.extname(f.name).slice(1)}) es diferente del contenido del archivo` : ''].filter(Boolean) },
         { head: '🔐 *HASH CHECKSUM*', lines: [`MD5 : ${h('md5')}`, `SHA-1 : ${h('sha1')}`, `SHA-256 : ${h('sha256')}`] }
       ])
     }
   },
   rename: {
-    desc: 'Kirim ulang file dengan nama baru (ekstensi dipertahankan bila tidak ditulis)',
+    desc: 'Reenviar el archivo con un nuevo nombre (la extensión se conserva si no se escribe)',
     usage: '<nama baru>',
     example: 'laporan-final',
     needs: 'file',
     args: true,
     run: async (c, f) => {
       let n = du.safeName(kit.rest(c.body).trim(), '')
-      if (!n) throw fail('Tulis nama barunya.')
+      if (!n) throw fail('Escribe el nuevo nombre.')
       if (!/\.[a-z0-9]{1,6}$/i.test(n)) n += path.extname(f.name) || `.${f.sniff.ext}`
-      return { documents: [{ buffer: f.buffer, name: n, mime: f.mime, caption: `✅ Nama file diubah menjadi: *${n}*` }] }
+      return { documents: [{ buffer: f.buffer, name: n, mime: f.mime, caption: `✅ Nombre del archivo cambiado a: *${n}*` }] }
     }
   },
   unzip: {
-    desc: 'Ekstrak file ZIP dan kirim isinya (maks 15 file, 30 MB)',
+    desc: 'Extraer archivos ZIP y enviar su contenido (máximo 15 archivos, 30 MB)',
     needs: 'file',
     heavy: true,
     run: async (c, f) => {
-      if (f.sniff.kind !== 'zip' && f.sniff.kind !== 'office') throw fail('File tersebut bukan arsip ZIP.')
+      if (f.sniff.kind !== 'zip' && f.sniff.kind !== 'office') throw fail('El archivo no es un archivo ZIP.')
       const entries = extractZipPure(f.buffer)
       if (!entries.length) throw fail('Arsip ZIP kosong.')
       const total = entries.reduce((s, e) => s + (e.uncompressedSize || e.buffer.length), 0)
@@ -537,54 +537,54 @@ const specs = {
         const sn = du.sniff(e.buffer, e.name)
         return { buffer: e.buffer, name: du.safeName(path.basename(e.name)), mime: sn.mime }
       })
-      documents[0].caption = `📦 ${documents.length} file berhasil diekstrak dari *${f.name}*`
+      documents[0].caption = `📦 ${documents.length} archivos extraídos exitosamente de *${f.name}*`
       return { documents }
     }
   },
   csv2json: {
-    desc: 'Ubah file CSV jadi JSON (baris pertama = nama kolom)',
+    desc: 'Cambie el archivo CSV a JSON (primera fila = nombre de la columna)',
     needs: 'file',
     run: async (c, f) => {
-      if (f.sniff.kind !== 'text') throw fail('Kirim atau reply file CSV (teks).')
+      if (f.sniff.kind !== 'text') throw fail('Enviar o responder al archivo CSV (texto).')
       const rows = parseCsv(asText(f))
       if (rows.length < 2) throw fail('CSV minimal memiliki baris header dan 1 baris data.')
       const head = rows[0].map((h, i) => h.trim() || `kolom${i + 1}`)
       const data = rows.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ''])))
-      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} baris • ${head.length} kolom` }] }
+      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} filas • ${head.length} kolom` }] }
     }
   },
   json2csv: {
-    desc: 'Ubah file JSON (array of object) jadi CSV',
+    desc: 'Cambie el archivo JSON (matriz de objetos) a CSV',
     needs: 'file',
     run: async (c, f) => {
       let data
-      try { data = JSON.parse(asText(f)) } catch { throw fail('Format JSON tidak valid.') }
+      try { data = JSON.parse(asText(f)) } catch { throw fail('El formato JSON no es válido.') }
       if (!Array.isArray(data) && data && typeof data === 'object') data = Object.values(data).find(Array.isArray) || [data]
-      if (!Array.isArray(data) || !data.length) throw fail('JSON harus berupa array objek, mis. [{"a":1},{"a":2}].')
+      if (!Array.isArray(data) || !data.length) throw fail('JSON debe ser una matriz de objetos, p.e. [{"a":1},{"a":2}].')
       const head = [...new Set(data.flatMap((o) => (o && typeof o === 'object' ? Object.keys(o) : [])))]
-      if (!head.length) throw fail('Isi JSON harus berupa objek.')
+      if (!head.length) throw fail('El contenido de JSON debe ser un objeto.')
       const csv = [head.map(csvCell).join(','), ...data.map((o) => head.map((h) => csvCell(o?.[h])).join(','))].join('\r\n')
-      return { documents: [{ buffer: Buffer.from('\uFEFF' + csv), name: `${base(f.name)}.csv`, mime: 'text/csv', caption: `✅ ${data.length} baris • ${head.length} kolom (UTF-8 BOM)` }] }
+      return { documents: [{ buffer: Buffer.from('\uFEFF' + csv), name: `${base(f.name)}.csv`, mime: 'text/csv', caption: `✅ ${data.length} filas • ${head.length} columna (UTF-8 BOM)` }] }
     }
   },
   todoc: {
-    desc: 'Ubah teks/HTML/MD/RTF/ODT jadi dokumen Word (DOCX)',
+    desc: 'Convertir texto/HTML/MD/RTF/ODT a documento de Word (DOCX)',
     needs: 'file',
     heavy: true,
     run: async (c, f) => {
       const ext = f.sniff.ext === 'txt' ? 'txt' : f.sniff.ext === 'html' ? 'html' : path.extname(f.name).slice(1).toLowerCase()
       if (!['txt', 'html', 'htm', 'rtf', 'odt', 'md'].includes(ext)) {
-        throw fail('Format didukung: TXT, MD, HTML, RTF, ODT.')
+        throw fail('Formatos soportados: TXT, MD, HTML, RTF, ODT.')
       }
       const bin = ['soffice', 'libreoffice'].find((b) => du.which(b))
       let out
       if (bin) {
         out = await du.withTmp(async (dir) => {
-          const inp = path.join(dir, `dokumen.${ext === 'md' ? 'txt' : ext}`)
+          const inp = path.join(dir, `documento.${ext === 'md' ? 'txt' : ext}`)
           fs.writeFileSync(inp, f.buffer)
           await du.exec(bin, [`-env:UserInstallation=file://${dir}/profile`, '--headless', '--convert-to', 'docx', '--outdir', dir, inp], { timeout: 180000, env: { HOME: dir } })
           const o = path.join(dir, 'dokumen.docx')
-          if (!fs.existsSync(o)) throw fail('Konversi gagal.')
+          if (!fs.existsSync(o)) throw fail('La conversión falló.')
           return fs.readFileSync(o)
         })
       } else {
@@ -593,7 +593,7 @@ const specs = {
           : asText(f)
         out = await buildSimpleDocxFromText(plainText)
       }
-      return { documents: [{ buffer: out, name: `${base(f.name)}.docx`, mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', caption: '✅ Dokumen Word (.docx) berhasil dibuat' }] }
+      return { documents: [{ buffer: out, name: `${base(f.name)}.docx`, mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', caption: '✅ Documento de Word (.docx) creado exitosamente' }] }
     }
   }
 }
@@ -607,10 +607,10 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
   const rawBody = `${usedPrefix + cmd} ${text || (args || []).join(' ')}`.trim()
   const file = spec.needs === 'file' ? await du.getFile(client, m) : null
   if (spec.needs === 'file' && !file) {
-    return m.reply(`📎 Kirim atau reply berkas/dokumen dengan perintah *${usedPrefix + cmd}${spec.usage ? ' ' + spec.usage : ''}*\n_${spec.desc}_`)
+    return m.reply(`📎 Enviar o responder archivos/documentos con el comando *${usedPrefix + cmd}${spec.usage ? ' ' + spec.usage : ''}*\n_${spec.desc}_`)
   }
   if (spec.args && !(text || (args && args.length))) {
-    return m.reply(`❓ Gunakan format: \`${usedPrefix + cmd} ${spec.usage}\`\nContoh: \`${usedPrefix + cmd} ${spec.example}\``)
+    return m.reply(`❓ Usar formato: \`${usedPrefix + cmd} ${spec.usage}\`\nEjemplo: \`${usedPrefix + cmd} ${spec.example}\``)
   }
 
   await m.react('⏳')

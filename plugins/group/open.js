@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,9 +30,9 @@ async function handler(m, { sock }) {
 
         if (!groupMeta.announce) {
             await m.reply(
-                `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Grup sudah dalam keadaan \`terbuka\`.\n` +
-                `> Semua member sudah bisa mengirim pesan.`
+                `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+                `> El grupo ya está \`abierto\`.\n` +
+                `> Todos los miembros ya pueden enviar mensajes.`
             );
             return;
         }
@@ -41,14 +41,14 @@ async function handler(m, { sock }) {
 
         const senderNum = m.sender.split('@')[0];
 
-        const successMsg = `✅ @${senderNum} telah membuka grup ini\n_Sekarang kalian bisa mengirim pesan_`;
+        const successMsg = `✅ @${senderNum} ha abierto este grupo\n_Ahora podéis enviar mensajes_`;
 
         await m.reply(successMsg, { mentions: [m.sender] });
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal membuka grup.\n` +
+            `❌ *ERROR*\n\n` +
+            `> No se pudo abrir el grupo.\n` +
             `> _${error.message}_`
         );
     }

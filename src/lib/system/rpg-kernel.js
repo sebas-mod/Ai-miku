@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
 /**
- * ✦ Elysia Assistant — RPG & Clan Kernel (src/lib/system/rpg-kernel.js)
+ * ✦ Ai Miku — RPG & Clan Kernel (src/lib/system/rpg-kernel.js)
  * ✦ Architect: Arthazy
  */
-import _elysiaConfig from '../../../config.js'
+import _mikuConfig from '../../../config.js'
 import _eFs, { promises as _eFsPromises, mkdirSync as _eMkdirSync } from 'fs'
 import _ePath, { join as _ePathJoin } from 'path'
 import _eOs from 'os'
@@ -29,13 +29,13 @@ import _ngHttps from 'https'
 import _ngNet from 'net'
 import { createContext as _igjhCreateContext, runInContext as _igjhRunInContext } from 'node:vm'
 
-import { ElysiaEngine } from './elysia-engine.js'
+import { MikuEngine } from './miku-engine.js'
 
-const ElysiaRpgKernel = (() => {
+const MikuRpgKernel = (() => {
   const {
     config, getDatabase, rpgStore, ensureUser, saveDB, jidNumber, saluranCtx,
-    addExpWithLevelCheck, elysiaWrapPlugin, getThumbFromConfig
-  } = ElysiaEngine
+    addExpWithLevelCheck, mikuWrapPlugin, getThumbFromConfig
+  } = MikuEngine
 
   global.db.rpgData.game ||= {
     rpg: {}, guild: {}, market: [], bankCentral: 0, partyList: {}, mailbox: {}, crypto: { portfolio: {}, watchlist: {}, alert: {} }
@@ -67,7 +67,7 @@ const ElysiaRpgKernel = (() => {
         class: u.class || 'Warrior',
         element: u.element || 'Netral',
         skill: u.skill || 'Slash',
-        location: u.location || 'Kota Awal Elysia',
+        location: u.location || 'Kota Awal Miku',
         quest: { dailyDone: false }
       }
     }
@@ -124,7 +124,7 @@ const ElysiaRpgKernel = (() => {
   }
 
   const fmt = (n) => Number(n || 0).toLocaleString('id-ID')
-  const hms = (ms) => ElysiaEngine.clockString(ms)
+  const hms = (ms) => MikuEngine.clockString(ms)
   const msToTime = hms
   const pickRandom = (a) => a[Math.floor(Math.random() * a.length)]
   const randomNumber = (min, max = null) => {
@@ -145,10 +145,10 @@ const ElysiaRpgKernel = (() => {
   function styleRpgText(rawText) {
     const t = String(rawText ?? '').trim()
     if (!t || t.startsWith('╭') || t.startsWith('╔')) return t
-    return `╭───〔 ⚔️ *ELYSIA FANTASY RPG* ⚔️ 〕───╮\n${t}\n╰──────────────────────────────────╯`
+    return `╭───〔 ⚔️ *MIKU FANTASY RPG* ⚔️ 〕───╮\n${t}\n╰──────────────────────────────────╯`
   }
 
-  async function sendRpgPreview(sock, jid, text, title = '⚔️ ELYSIA FANTASY RPG', body = '', opts = {}) {
+  async function sendRpgPreview(sock, jid, text, title = '⚔️ MIKU FANTASY RPG', body = '', opts = {}) {
     const styled = styleRpgText(text)
     const mentions = [...new Set([
       ...(opts.mentions || []),
@@ -159,14 +159,14 @@ const ElysiaRpgKernel = (() => {
       {
         text: styled,
         mentions,
-        contextInfo: saluranCtx('rpg', title || '⚔️ ELYSIA FANTASY RPG')
+        contextInfo: saluranCtx('rpg', title || '⚔️ MIKU FANTASY RPG')
       },
       opts.quoted ? { quoted: opts.quoted } : {}
     )
   }
 
   function rpgPlugin(pluginCfg, fn, opts = {}) {
-    return elysiaWrapPlugin(pluginCfg, async (m, ctx) => {
+    return mikuWrapPlugin(pluginCfg, async (m, ctx) => {
       const db = getDatabase()
       const user = db.getUser(m.sender)
       return fn(m, { ...ctx, db, user, config })
@@ -183,7 +183,7 @@ const ElysiaRpgKernel = (() => {
       const prefix = ctx.prefix || ctx.usedPrefix || m.prefix || '.'
       const args = ctx.args || m.args || []
       const text = ctx.text || m.text || ''
-      const reply = (msg, extra = {}) => sendRpgPreview(sock, m.chat, msg, '⚔️ ELYSIA FANTASY RPG', '', { quoted: m, ...extra })
+      const reply = (msg, extra = {}) => sendRpgPreview(sock, m.chat, msg, '⚔️ MIKU FANTASY RPG', '', { quoted: m, ...extra })
       const A = {
         Bot: sock,
         m,
@@ -197,9 +197,9 @@ const ElysiaRpgKernel = (() => {
         isOwner: Boolean(ctx.isOwner || m.isOwner),
         isAdmins: Boolean(ctx.isAdmin || m.isAdmin),
         botname: global.namebot,
-        elysiaCmd: `${prefix}${ctx.command || cmds[0]}`,
-        XRO: () => reply('⚠️ Fitur ini khusus Owner.'),
-        XRG: () => reply('⚠️ Fitur ini khusus di dalam Grup.'),
+        mikuCmd: `${prefix}${ctx.command || cmds[0]}`,
+        XRO: () => reply('⚠️ Esta función es exclusiva del dueño.'),
+        XRG: () => reply('⚠️ Esta función solo funciona dentro de un grupo.'),
         XReaction: () => m.react('✅'),
         botUser: () => ensureUser(m),
         botStore: rpgStore,
@@ -233,37 +233,37 @@ const ElysiaRpgKernel = (() => {
     const rawCoin = String(args[0] || '').toLowerCase()
     const coinId = COIN_MAP[rawCoin] || rawCoin
     if (mode === 'price') {
-      if (!coinId) return reply(`📈 Contoh: \`${prefix}crypto-price btc\``)
-      const r = await ElysiaEngine.f(`https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(coinId)}&vs_currencies=usd,idr`)
+      if (!coinId) return reply(`📈 Ejemplo: \`${prefix}crypto-price btc\``)
+      const r = await MikuEngine.f(`https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(coinId)}&vs_currencies=usd,idr`)
       const d = r?.[coinId]
-      if (!d) return reply('❌ Koin tidak ditemukan di CoinGecko.')
-      return reply(`💹 *HARGA CRYPTO: ${coinId.toUpperCase()}*\n• USD : $${fNum(d.usd)}\n• IDR : Rp${fNum(d.idr)}`)
+      if (!d) return reply('❌ Moneda no encontrada en CoinGecko.')
+      return reply(`💹 *PRECIO CRYPTO: ${coinId.toUpperCase()}*\n• USD : $${fNum(d.usd)}\n• IDR : Rp${fNum(d.idr)}`)
     }
     if (mode === 'portfolio') {
       const p = store.portfolio[sender] || {}
       const keys = Object.keys(p)
-      if (!keys.length) return reply('📭 Portofolio crypto kamu masih kosong.')
-      return reply(`💼 *PORTOFOLIO CRYPTO*\n\n` + keys.map((k) => `• *${k.toUpperCase()}* : ${Number(p[k]).toFixed(6)}`).join('\n'))
+      if (!keys.length) return reply('📭 Tu cartera de criptomonedas está vacía.')
+      return reply(`💼 *CARTERA DE CRIPTOMONEDAS*\n\n` + keys.map((k) => `• *${k.toUpperCase()}* : ${Number(p[k]).toFixed(6)}`).join('\n'))
     }
     if (mode === 'watchlist') {
       const w = store.watchlist[sender] || []
-      if (!w.length) return reply('📋 Watchlist kosong.')
-      return reply(`👀 *WATCHLIST CRYPTO*\n\n` + w.map((k, i) => `${i + 1}. ${k.toUpperCase()}`).join('\n'))
+      if (!w.length) return reply('📋 La lista de seguimiento está vacía.')
+      return reply(`👀 *SEGUIMIENTO DE CRIPTO*\n\n` + w.map((k, i) => `${i + 1}. ${k.toUpperCase()}`).join('\n'))
     }
     if (mode === 'watchadd') {
-      if (!coinId) return reply(`Contoh: \`${prefix}crypto-watchadd btc\``)
+      if (!coinId) return reply(`Ejemplo: \`${prefix}crypto-watchadd btc\``)
       const w = (store.watchlist[sender] ||= [])
       if (!w.includes(coinId)) w.push(coinId)
       saveDB()
-      return reply(`✅ *${coinId.toUpperCase()}* ditambahkan ke watchlist.`)
+      return reply(`✅ *${coinId.toUpperCase()}* añadido a la lista de seguimiento.`)
     }
     if (mode === 'watchdel') {
       const w = (store.watchlist[sender] ||= [])
       store.watchlist[sender] = w.filter((x) => x !== coinId)
       saveDB()
-      return reply(`🗑️ *${coinId.toUpperCase()}* dihapus dari watchlist.`)
+      return reply(`🗑️ *${coinId.toUpperCase()}* eliminado de la lista de seguimiento.`)
     }
-    return reply(`💹 Gunakan perintah: \`${prefix}crypto-price btc\`, \`${prefix}crypto-portfolio\`, \`${prefix}crypto-watchlist\``)
+    return reply(`💹 Usa los comandos: \`${prefix}crypto-price btc\`, \`${prefix}crypto-portfolio\`, \`${prefix}crypto-watchlist\``)
   }
 
   // Database Shop & Recipes
@@ -317,14 +317,14 @@ const ElysiaRpgKernel = (() => {
     if (q.day !== today) { q.day = today; q.dailyDone = false }
     const misi = QUEST_POOL[today % QUEST_POOL.length]
     const count = (u.inv || []).filter((i) => i === misi.item).length
-    if (q.dailyDone) return reply('📜 Kamu sudah menuntaskan Quest Harian hari ini! Kembali lagi besok.')
+    if (q.dailyDone) return reply('📜 ¡Ya completaste la misión diaria de hoy! Vuelve mañana.')
     if (count < misi.jumlah) {
       return reply(
-        `📜 * PAPAN QUEST HARIAN ELYSIA*\n\n` +
-        `🎯 *Target*   : Kumpulkan *${misi.jumlah}x ${misi.item}*\n` +
-        `📊 *Progress* : *${count}/${misi.jumlah}*\n` +
-        `🎁 *Hadiah*   : 💰 ${misi.coin} Coin & ✨ ${misi.exp} EXP\n\n` +
-        `💡 Cari bahan lewat *.hunt*, lalu klaim dengan *.claimquest*!`
+        `📜 * TABLÓN DE MISIONES DIARIAS DE MIKU*\n\n` +
+        `🎯 *Objetivo*  : Reúne *${misi.jumlah}x ${misi.item}*\n` +
+        `📊 *Progreso*  : *${count}/${misi.jumlah}*\n` +
+        `🎁 *Premio*    : 💰 ${misi.coin} monedas y ✨ ${misi.exp} EXP\n\n` +
+        `💡 Consigue los materiales con *.hunt* y reclama con *.claimquest*.`
       )
     }
     let sisa = misi.jumlah
@@ -336,7 +336,7 @@ const ElysiaRpgKernel = (() => {
     q.dailyDone = true
     sv()
     await giveExp(misi.exp)
-    return reply(`🎉 *QUEST HARIAN TUNTAS!*\n• 💰 +${misi.coin} Coin\n• ✨ +${misi.exp} EXP`)
+    return reply(`🎉 *¡MISIÓN DIARIA COMPLETADA!*\n• 💰 +${misi.coin} monedas\n• ✨ +${misi.exp} EXP`)
   }
   const invCount = (u, name) => (u.inv || []).filter((i) => String(i).toLowerCase() === String(name).toLowerCase()).length
   function invTake(u, name, n = 1) {
@@ -363,7 +363,7 @@ const ElysiaRpgKernel = (() => {
   }
 })()
 
-export { ElysiaRpgKernel };
-export default ElysiaRpgKernel;
+export { MikuRpgKernel };
+export default MikuRpgKernel;
 
-global.__elysiaRpgKernelRef = ElysiaRpgKernel;
+global.__mikuRpgKernelRef = MikuRpgKernel;

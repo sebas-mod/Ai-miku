@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'fakekartupelajar',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake kartu pelajar (buat konten/gaguan doang)',
       usage: '.fakekartupelajar <nama> | <sekolah>',
-      example: '.fakekartupelajar Elysia Assistant | SMA Negeri 02',
+      example: '.fakekartupelajar Ai Miku | SMA Negeri 02',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -60,7 +60,7 @@ const config = ElysiaRuntime.config;
 
   async function handler(m, { sock }) {
       const text = m.args.join(' ') || m.text?.trim() || ''
-      if (!text) return m.reply(`*Cara pakai:*\n${m.prefix}fakekartupelajar <nama> | <sekolah>\nContoh: .fakekartupelajar Elysia Assistant | SMA 02`)
+      if (!text) return m.reply(`*Cómo usar:*\n${m.prefix}fakekartupelajar <nombre> | <colegio>\nEjemplo: .fakekartupelajar Ai Miku | SMA 02`)
 
       const parts = text.split('|').map(p => p.trim())
       const nama = parts[0] || 'Darling'
@@ -71,7 +71,7 @@ const config = ElysiaRuntime.config;
 
       try {
           const imageBuffer = await generateFakeKartuPelajar(nama, sekolah)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *FAKE KARTU PELAJAR* 💕\n\n✅ Nama: ${nama}\n🏫 Sekolah: ${sekolah}\n\n💗 *Elysia Assistant:* Ini kartu pelajarnya darling~` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *CARNET DE ESTUDIANTE FALSO* 💕\n\n✅ Nombre: ${nama}\n🏫 Colegio: ${sekolah}\n\n💗 *Ai Miku:* Aquí tienes tu carnet, darling~` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

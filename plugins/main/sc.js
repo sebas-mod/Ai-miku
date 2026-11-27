@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -17,7 +17,7 @@ const pluginConfig = {
   name: "sc",
   alias: ["script"],
   category: "main",
-  description: "Link script bot Elysia Assistant",
+  description: "Enlace del script del bot Ai Miku",
   usage: ".sc",
   example: ".sc",
   isPremium: false,
@@ -31,14 +31,14 @@ const pluginConfig = {
 };
 
 async function handler(m, { sock }) {
-  await runMenuLoading(sock, m.chat, "script Elysia Assistant");
+  await runMenuLoading(sock, m.chat, "script de Ai Miku");
 
   const caption =
-    `🔥 *SC Elysia Assistant* 🔥\n\n` +
-    `Ada di sini! Pencet tombol di bawah ini untuk melihat script / channel Elysia Assistant.\n\n` +
-    `╭─〔 *Elysia Assistant* 〕\n` +
-    `│ 👤 User : @${String(m.sender || "").split("@")[0]}\n` +
-    `│ ⚡ Status : Online\n` +
+    `🔥 *SC Ai Miku* 🔥\n\n` +
+    `¡Aquí está! Pulsa el botón de abajo para ver el script / canal de Ai Miku.\n\n` +
+    `╭─〔 *Ai Miku* 〕\n` +
+    `│ 👤 Usuario : @${String(m.sender || "").split("@")[0]}\n` +
+    `│ ⚡ Estado  : En línea\n` +
     `╰───────────────`;
 
   const scThumb = await axios
@@ -48,11 +48,11 @@ async function handler(m, { sock }) {
 
   const btn = new Button(sock)
     .setBody(caption)
-    .setFooter("script - elysia assistant")
+    .setFooter("script - Ai Miku")
     .setContextInfo({
       mentionedJid: m.sender ? [m.sender] : [],
     })
-    .addUrl("get script", WEB_URL, false, {
+    .addUrl("obtener script", WEB_URL, false, {
       merchant_url: WEB_URL,
     });
 

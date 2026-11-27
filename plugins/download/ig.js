@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const pluginConfig = {
     name: "igexport",
@@ -43,8 +43,8 @@ const pluginConfig = {
   			`📸 *INSTAGRAM DOWNLOADER (IGEXPORT)*\n\n` +
   			`Format:\n` +
   			`• \`${usedPrefix + command} <URL Postingan / Reel Instagram>\`\n` +
-  			`• Atau balas pesan yang berisi tautan dengan \`${usedPrefix + command}\`\n\n` +
-  			`*Contoh:*\n` +
+  			`• O responde a un mensaje que contenga un enlace con \`${usedPrefix + command}\`\n\n` +
+  			`*Ejemplo:*\n` +
   			`• \`${usedPrefix + command} https://www.instagram.com/reel/C8xyz123/\``
   		)
   	}
@@ -67,13 +67,13 @@ const pluginConfig = {
   		})
 
   		if (!data?.ok) {
-  			throw new Error('Media Instagram tidak ditemukan atau akun bersifat privat.')
+  			throw new Error('Contenido de Instagram no encontrado o cuenta privada.')
   		}
 
   		if (isReel) {
   			const videoUrl = data.media?.videoUrl
   			if (!videoUrl) {
-  				throw new Error('Video Reel tidak ditemukan pada respon server.')
+  				throw new Error('Video Reel no encontrado en la respuesta del servidor.')
   			}
 
   			const caption = [
@@ -97,14 +97,14 @@ const pluginConfig = {
 
   		const items = (data.media?.items || []).filter(item => item?.url)
   		if (!items.length) {
-  			throw new Error('Tidak ada media yang dapat diunduh.')
+  			throw new Error('No hay contenido para descargar.')
   		}
 
   		if (items.length > 1) {
   			await sendAlbum(sock, m.chat, items.map((it, i) => ({
   				type: it.type === 'video' ? 'video' : 'image',
   				url: it.url,
-  				caption: i === 0 ? `📸 *Instagram Media* (${items.length} item)\n\n© ${botName}` : ''
+  				caption: i === 0 ? `📸 *Instagram Medios* (${items.length} item)\n\n© ${botName}` : ''
   			})), { quoted: m })
   			await sock.sendMessage(m.chat, { react: { text: '✨', key: m.key } }).catch(() => null)
   			return
@@ -141,7 +141,7 @@ const pluginConfig = {
   	} catch (e) {
   		console.error('[IGEXPORT ERROR]:', e.response?.data || e.message || e)
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null)
-  		return reply(`❌ Gagal mengunduh media Instagram: ${e.message || e}`)
+  		return reply(`❌ Error al descargar el contenido de Instagram: ${e.message || e}`)
   	}
   }
 

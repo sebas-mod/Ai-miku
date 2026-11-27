@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,16 +54,16 @@ async function handler(m, { sock }) {
 
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⭐ *ᴀᴅᴅ ᴇxᴘ*\n\n` +
-            `> \`.addexp <jumlah>\` - ke diri sendiri\n` +
-            `> \`.addexp <jumlah> @user\` - ke user\n` +
+            `⭐ *AÑADIR EXP*\n\n` +
+            `> \`.addexp <cantidad>\` - para ti mismo\n` +
+            `> \`.addexp <cantidad> @user\` - a un usuario\n` +
             `> Max: 9.000.000.000 (9B)\n\n` +
-            `\`Contoh: ${m.prefix}addexp 10000\``
+            `\`Ejemplo: ${m.prefix}addexp 10000\``
         )
     }
 
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah exp harus lebih dari 0`)
+        return m.reply(`❌ *ERROR*\n\n> La cantidad de exp debe ser mayor que 0`)
     }
 
     if (amount > MAX_EXP) {
@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     await m.reply(
-        `✅ Berhasil menambahkan exp *${formatNumber(amount)}* ke *@${targetJid.split('@')[0]}*`,
+        `✅ Se añadieron *${formatNumber(amount)}* ke *@${targetJid.split('@')[0]}*`,
         { mentions: [targetJid] }
     )
 }

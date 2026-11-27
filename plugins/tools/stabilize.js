@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { execFile } from 'node:child_process'
 
 const pluginConfig = {
@@ -47,9 +47,9 @@ const { promisify } = (await import('node:util'))
       const h = Math.floor(sec / 3600);
       const m = Math.floor((sec % 3600) / 60);
       const s = sec % 60;
-      if (h > 0) return `${h} jam ${m} mnt ${s} dtk`;
+      if (h > 0) return `${h} h ${m} min ${s} s`;
       if (m > 0) return `${m} mnt ${s} dtk`;
-      return `${s} detik`;
+      return `${s} segundos`;
   };
 
   async function handler(m, { sock, conn, args, text, usedPrefix, command, reply }) {
@@ -59,16 +59,16 @@ const { promisify } = (await import('node:util'))
 
       if (!/video|gif/.test(mime)) {
           return reply(
-              `🎬 *VIDEO STABILIZER (NATURAL GIMBAL)*\n\n` +
-              `Balas atau kirim video/GIF dengan caption:\n` +
+              `🎬 *ESTABILIZADOR DE VÍDEO (GIMBAL NATURAL)*\n\n` +
+              `Responde o envía un vídeo/GIF con el texto:\n` +
               `• \`${usedPrefix + command}\`\n\n` +
-              `⚙️ *Pilihan Mode:*\n` +
-              `• \`${usedPrefix + command} low\` (Halus/ringan, pertahankan gerak alami)\n` +
-              `• \`${usedPrefix + command} normal\` (Sedang / default gimbal natural)\n` +
-              `• \`${usedPrefix + command} high\` (Kuat, untuk video lari/goyang kencang)\n` +
-              `• \`${usedPrefix + command} tripod\` (Mode kamera diam / static view)\n` +
-              `• \`${usedPrefix + command} <angka>\` (Custom smoothing 3–30, contoh: \`${usedPrefix + command} 12\`)\n\n` +
-              `_Menggunakan gaussian smoothing natural tanpa distorsi agar video tidak aneh/mabuk._ 🌿`
+              `⚙️ *Modos:*\n` +
+              `• \`${usedPrefix + command} low\` (suave/ligero, mantiene el movimiento natural)\n` +
+              `• \`${usedPrefix + command} normal\` (medio / gimbal natural por defecto)\n` +
+              `• \`${usedPrefix + command} high\` (fuerte, para vídeos corriendo o con mucho temblor)\n` +
+              `• \`${usedPrefix + command} tripod\` (modo cámara fija / vista estática)\n` +
+              `• \`${usedPrefix + command} <número>\` (suavizado personalizado 3–30, ejemplo: \`${usedPrefix + command} 12\`)\n\n` +
+              `_Usa un suavizado gaussiano natural sin distorsión para que el vídeo no quede raro ni maree._ 🌿`
           );
       }
 
@@ -109,7 +109,7 @@ const { promisify } = (await import('node:util'))
           zoom = Math.min(6, Math.max(1, Math.round(smoothing / 4)));
       }
 
-      reply(global.mess?.wait || '⏳ _Sedang mengunduh dan menstabilkan video secara natural... Mohon tunggu._ 🪄');
+      reply(global.mess?.wait || '⏳ _Descargando y estabilizando el vídeo de forma natural... Espera un momento._ 🪄');
 
       const id = `${Date.now()}_${crypto.randomBytes(4).toString('hex')}`;
       const tmpDir = os.tmpdir();
@@ -126,11 +126,11 @@ const { promisify } = (await import('node:util'))
           }
 
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ Gagal mendownload media video. Pastikan video dapat diputar.');
+              return reply('❌ No se pudo descargar el vídeo. Comprueba que se pueda reproducir.');
           }
 
           if (media.length > 50 * 1024 * 1024) {
-              return reply('❌ Ukuran video terlalu besar! Maksimal ukuran adalah 50 MB.');
+              return reply('❌ ¡El vídeo es demasiado grande! El máximo es 50 MB.');
           }
 
           await fs.promises.writeFile(tmpIn, media);
@@ -152,7 +152,7 @@ const { promisify } = (await import('node:util'))
               );
 
               if (duration > 120) {
-                  return reply(`❌ Durasi video terlalu panjang (${formatDuration(duration)})!\nMaksimal durasi yang diizinkan adalah 120 detik (2 menit).`);
+                  return reply(`❌ La duración del vídeo es demasiado larga (${formatDuration(duration)})!\nLa duración máxima permitida es de 120 segundos (2 minutos).`);
               }
           } catch (e) {
               console.warn('[STABILIZE PROBE WARN]', e?.message || e);
@@ -168,7 +168,7 @@ const { promisify } = (await import('node:util'))
           ], { maxBuffer: 10 * 1024 * 1024 });
 
           if (!fs.existsSync(trfFile)) {
-              throw new Error('Gagal menganalisis guncangan video (Pass 1).');
+              throw new Error('No se pudo analizar la vibración del vídeo (Pase 1).');
           }
 
           const transformFilter = isTripod
@@ -190,7 +190,7 @@ const { promisify } = (await import('node:util'))
           ], { maxBuffer: 10 * 1024 * 1024 });
 
           if (!fs.existsSync(tmpOut) || fs.statSync(tmpOut).size === 0) {
-              throw new Error('Hasil video stabilisasi kosong atau tidak terbentuk.');
+              throw new Error('El vídeo estabilizado salió vacío o no se generó.');
           }
 
           const outBuffer = await fs.promises.readFile(tmpOut);
@@ -198,14 +198,14 @@ const { promisify } = (await import('node:util'))
           const sizeAfter = formatBytes(outBuffer.length);
           const durText = duration > 0 ? ` (${duration.toFixed(1)}s)` : '';
 
-          const caption = `🎬 *VIDEO STABILIZER SUCCESS*\n\n` +
-              `• ⚙️ *Mode:* \`${presetName}\`\n` +
+          const caption = `🎬 *ÉXITO DEL ESTABILIZADOR DE VIDEO*\n\n` +
+              `• ⚙️ *Modo:* \`${presetName}\`\n` +
               `• 🔄 *Smoothing:* \`${isTripod ? 'Tripod' : smoothing}\`\n` +
               `• 📐 *Zoom Pangkas:* \`${zoom}%\`\n` +
               `• ⏱️ *Durasi:* \`${formatDuration(duration)}${durText}\`\n` +
-              `• 📦 *Ukuran:* \`${sizeBefore} ➔ ${sizeAfter}\`\n` +
+              `• 📦 *Tamaño:* \`${sizeBefore} ➔ ${sizeAfter}\`\n` +
               `• 🛠️ *Metode:* \`Natural Gaussian (No Distortion)\`\n\n` +
-              `_Video lebih stabil dan bebas dari efek goyang mabuk/zoom aneh!_ 🌿`;
+              `_¡El vídeo es más estable y está libre de extraños efectos de vibración/zoom!_ 🌿`;
 
           await client.sendMessage(
               m.chat,
@@ -218,7 +218,7 @@ const { promisify } = (await import('node:util'))
           );
       } catch (err) {
           console.error('[STABILIZE ERROR]', err);
-          reply(`❌ Gagal menstabilkan video: ${err?.message || err}`);
+          reply(`❌ No se pudo estabilizar el vídeo: ${err?.message || err}`);
       } finally {
           const cleanup = async (filePath) => {
               if (filePath && fs.existsSync(filePath)) {

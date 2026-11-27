@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Ping Pong AI — Elysia Assistant</title>
+<title>Ping Pong AI — Ai Miku</title>
 <style>
 ${buildGameBaseCss("arcade")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -58,12 +58,12 @@ canvas{display:block;width:100%;border-radius:13px;background:#070f1d;border:1px
     <div class="logo">🏓</div>
     <div class="meta">
       <div class="title">Ping Pong AI</div>
-      <div class="sub">Tekan tombol ◀ ▶ atau geser layar, pertama 7 menang</div>
+      <div class="sub">Pulsa ◀ ▶ o desliza la pantalla; el primero en llegar a 7 gana</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="p1">0</b><span>Kamu</span></div>
-    <div class="stat"><b id="p2">0</b><span>Elysia AI</span></div>
+    <div class="stat"><b id="p1">0</b><span>Tú</span></div>
+    <div class="stat"><b id="p2">0</b><span>Miku AI</span></div>
   </div>
   <canvas id="cv" width="320" height="340"></canvas>
   <div class="ctrl">
@@ -127,9 +127,9 @@ function tick(){
   if(over){
     ctx.fillStyle='rgba(7,15,29,.82)';ctx.fillRect(0,0,W,H);
     ctx.fillStyle='#fff';ctx.font='bold 20px sans-serif';ctx.textAlign='center';
-    ctx.fillText(s1>=7?'KAMU MENANG! 🎉':'ELYSIA AI MENANG!',W/2,H/2-6);
+    ctx.fillText(s1>=7?'¡GANASTE! 🎉':'¡GANÓ LA IA MIKU!',W/2,H/2-6);
     ctx.fillStyle='#38bdf8';ctx.font='13px sans-serif';
-    ctx.fillText('Tap tombol ↻ untuk main lagi',W/2,H/2+20);
+    ctx.fillText('Pulsa ↻ para jugar otra vez',W/2,H/2+20);
   }
   requestAnimationFrame(tick);
 }

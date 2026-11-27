@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -27,8 +27,8 @@ const pluginConfig = {
 }
 
 const VARIANTS = {
-    1: { name: 'Current Design', desc: 'Tampilan default saat ini' },
-    2: { name: 'Multiple Contact', desc: 'Kirim contact card semua owner' }
+    1: { name: 'Current Design', desc: 'Diseño actual por defecto' },
+    2: { name: 'Multiple Contact', desc: 'Envía la tarjeta de contacto de todos los owners' }
 }
 
 async function handler(m, { sock, db }) {
@@ -42,7 +42,7 @@ async function handler(m, { sock, db }) {
         await db.save()
 
         await m.reply(
-            `✅ Owner type diubah ke *V${id}*\n\n` +
+            `✅ Tipo de owner cambiado a *V${id}*\n\n` +
             `> *${VARIANTS[id].name}*\n` +
             `> _${VARIANTS[id].desc}_`
         )
@@ -62,8 +62,8 @@ async function handler(m, { sock, db }) {
     }
 
     await sock.sendMessage(m.chat, {
-        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Type saat ini: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Pilih variant owner:`,
-        footer: config.bot?.name || 'Elysia Assistant',
+        text: `🎨 *TIPO DE OWNER*\n\n > Tipo actual: *V${current}*\n> _${VARIANTS[current].name}_\n\n > Elige la variante de owner:`,
+        footer: config.bot?.name || 'Ai Miku',
         contextInfo: {
             mentionedJid: [m.sender],
             isForwarded: true,

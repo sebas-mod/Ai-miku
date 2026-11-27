@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -74,20 +74,20 @@ function normalizeAction(action, fallback = "remove") {
 }
 
 function formatAction(action) {
-  return action === "kick" ? "kick member" : "hapus pesan";
+  return action === "kick" ? "expulsar al miembro" : "borrar el mensaje";
 }
 
 function parsePatternAnswer(text) {
   const raw = String(text || "").trim();
-  if (!raw) return { error: "Jawabannya masih kosong." };
+  if (!raw) return { error: "La respuesta está vacía." };
 
   if (/^regex\s*:/i.test(raw)) {
     const pattern = raw.replace(/^regex\s*:/i, "").trim();
-    if (!pattern) return { error: "Regex kosong. Isi setelah `regex:` ya." };
+    if (!pattern) return { error: "Regex vacío. Escribe algo después de `regex:`." };
     try {
       new RegExp(pattern, "i");
     } catch {
-      return { error: "Regex tidak valid. Coba cek lagi polanya." };
+      return { error: "Regex no válido. Revisa el patrón." };
     }
     return {
       type: "regex",
@@ -106,7 +106,7 @@ function parsePatternAnswer(text) {
   ];
 
   if (patterns.length === 0) {
-    return { error: "Aku belum dapat kata yang ingin dideteksi." };
+    return { error: "Todavía no he recibido ninguna palabra que detectar." };
   }
 
   return {
@@ -117,7 +117,7 @@ function parsePatternAnswer(text) {
 
 function buildSummary(session) {
   return (
-    `> Judul: *${session.title}*\n` +
+    `> Título: *${session.title}*\n` +
     `> Tipe deteksi: *${session.type}*\n` +
     `> Pattern: ${session.patterns.map((item) => `\`${item}\``).join(", ")}\n` +
     `> Action: *${formatAction(session.action)}*`
@@ -135,9 +135,9 @@ async function startWizard(m, sock, mode, isFirstSetup = false) {
 
   if (existing) {
     await m.reply(
-      `⚠️ Kamu masih punya sesi AntiCustom yang belum selesai.\n\n` +
-        `> Balas pertanyaan terakhir bot untuk lanjut\n` +
-        `> Atau batalkan dengan \`${m.prefix}anticustom cancel\``,
+      `⚠️ Tienes una sesión de AntiCustom sin terminar.\n\n` +
+        `> Responde a la última pregunta del bot para continuar\n` +
+        `> O cancélala con \`${m.prefix}anticustom cancel\``,
     );
     return;
   }
@@ -159,41 +159,41 @@ async function startWizard(m, sock, mode, isFirstSetup = false) {
   refreshSessionTimeout(sessionKey);
 
   const intro = isFirstSetup
-    ? `🛡️ *Selamat datang di setup AntiCustom*\n\n` +
-      `Aku akan bantu bikin AntiCustom per sesi, langkah demi langkah.\n\n` +
-      `*Alurnya:*\n` +
-      `1. Tentukan judul rule\n` +
-      `2. Isi kata atau pattern yang ingin dideteksi\n` +
-      `3. Pilih action saat terdeteksi\n` +
-      `4. Konfirmasi detail akhir\n\n`
-    : `🛡️ *Yuk tambah rule AntiCustom baru*\n\n`;
+    ? `🛡️ *Bienvenido a la configuración de AntiCustom*\n\n` +
+      `Te ayudaré a crear un AntiCustom paso a paso en cada sesión.\n\n` +
+      `*El proceso:*\n` +
+      `1. Ponle un título a la regla\n` +
+      `2. Escribe las palabras o el patrón que quieres detectar\n` +
+      `3. Elige la acción al detectarlo\n` +
+      `4. Confirma los datos finales\n\n`
+    : `🛡️ *Vamos a añadir una nueva regla AntiCustom*\n\n`;
 
   session.promptId = await sendPrompt(
     sock,
     m,
     intro +
-      `*Pertanyaan 1/4*\n` +
-      `Judulnya apa?\n\n` +
-      `> Reply pesan ini dengan judul rule yang kamu mau\n` +
-      `> Contoh: \`Anti Kata Kotor\``,
+      `*Pregunta 1/4*\n` +
+      `¿Qué título quieres?\n\n` +
+      `> Responde a este mensaje con el título de la regla\n` +
+      `> Ejemplo: \`Anti Palabrotas\``,
   );
 }
 
 function buildGuideMessage(m, status, mode, rules) {
   return (
-    `🛡️ *ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n` +
-    `> Status: *${status.toUpperCase()}*\n` +
-    `> Mode default: *${normalizeAction(mode).toUpperCase()}*\n` +
-    `> Total rule: *${rules.length}*\n\n` +
-    `Kalau mau nambah AntiCustom lagi:\n` +
+    `🛡️ *ANTICUSTOM*\n\n` +
+    `> Estado: *${status.toUpperCase()}*\n` +
+    `> Modo predeterminado: *${normalizeAction(mode).toUpperCase()}*\n` +
+    `> Total de reglas: *${rules.length}*\n\n` +
+    `Si quieres añadir otro AntiCustom:\n` +
     `> \`${m.prefix}anticustom add\`\n\n` +
-    `Kalau mau atur status:\n` +
+    `Si quieres cambiar el estado:\n` +
     `> \`${m.prefix}anticustom on\`\n` +
     `> \`${m.prefix}anticustom off\`\n\n` +
-    `Kalau mau lihat atau hapus rule:\n` +
+    `Si quieres ver o borrar reglas:\n` +
     `> \`${m.prefix}anticustom list\`\n` +
-    `> \`${m.prefix}anticustom del <judul>\`\n\n` +
-    `Kalau mau ubah mode default:\n` +
+    `> \`${m.prefix}anticustom del <título>\`\n\n` +
+    `Si quieres cambiar el modo por defecto:\n` +
     `> \`${m.prefix}anticustom metode kick\`\n` +
     `> \`${m.prefix}anticustom metode remove\``
   );
@@ -226,17 +226,17 @@ async function handler(m, { sock }) {
 
   if (sub === "cancel" || sub === "batal") {
     if (!global.anticustomSessions.has(sessionKey)) {
-      await m.reply("⚠️ Tidak ada sesi AntiCustom yang sedang berjalan.");
+      await m.reply("⚠️ No hay ninguna sesión de AntiCustom en marcha.");
       return;
     }
     clearSession(sessionKey);
-    await m.reply("✅ Sesi AntiCustom dibatalkan.");
+    await m.reply("✅ Sesión de AntiCustom cancelada.");
     return;
   }
 
   if (sub === "on") {
     db.setGroup(m.chat, { anticustom: "on" });
-    await m.reply("✅ *AntiCustom diaktifkan*");
+    await m.reply("✅ *AntiCustom activado*");
     return;
   }
 
@@ -250,24 +250,24 @@ async function handler(m, { sock }) {
     const action = normalizeAction(args[1], "");
     if (!action) {
       await m.reply(
-        "❌ Gunakan: `.anticustom metode kick` atau `.anticustom metode remove`",
+        "❌ Usa: `.anticustom metode kick` o `.anticustom metode remove`",
       );
       return;
     }
     db.setGroup(m.chat, { anticustom: "on", anticustomMode: action });
     await m.reply(
-      `✅ *Mode default AntiCustom sekarang ${action.toUpperCase()}*`,
+      `✅ *El modo predeterminado de AntiCustom ahora es ${action.toUpperCase()}*`,
     );
     return;
   }
 
   if (sub === "list") {
     if (rules.length === 0) {
-      await m.reply("📋 Belum ada rule AntiCustom di grup ini.");
+      await m.reply("📋 Todavía no hay reglas AntiCustom en este grupo.");
       return;
     }
     await m.reply(
-      `📋 *ʟɪsᴛ ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n${rules.map(formatRule).join("\n\n")}`,
+      `📋 *LISTA ANTICUSTOM*\n\n${rules.map(formatRule).join("\n\n")}`,
     );
     return;
   }
@@ -275,7 +275,7 @@ async function handler(m, { sock }) {
   if (sub === "del" || sub === "delete" || sub === "remove") {
     const name = args.slice(1).join(" ").trim().toLowerCase();
     if (!name) {
-      await m.reply("❌ Format: `.anticustom del <judul>`");
+      await m.reply("❌ Formato: `.anticustom del <título>`");
       return;
     }
 
@@ -290,17 +290,17 @@ async function handler(m, { sock }) {
     });
 
     if (nextRules.length === rules.length) {
-      await m.reply(`❌ Rule dengan judul \`${name}\` tidak ditemukan.`);
+      await m.reply(`❌ No se encontró ninguna regla con el título \`${name}\`.`);
       return;
     }
 
     db.setGroup(m.chat, { anticustomRules: nextRules });
-    await m.reply(`✅ Rule dengan judul \`${name}\` berhasil dihapus.`);
+    await m.reply(`✅ La regla con el título \`${name}\` se ha borrado.`);
     return;
   }
 
   await m.reply(
-    "❌ Subcommand tidak valid. Gunakan: on, off, list, add, del, metode, cancel",
+    "❌ Subcomando no válido. Usa: on, off, list, add, del, metode, cancel",
   );
 }
 
@@ -323,7 +323,7 @@ async function replyHandler(m, { sock }) {
 
   if (session.step === "title") {
     if (text.length < 2 || text.length > 40) {
-      await m.reply("❌ Judul harus 2-40 karakter ya.");
+      await m.reply("❌ El título debe tener entre 2 y 40 caracteres.");
       return true;
     }
 
@@ -332,17 +332,17 @@ async function replyHandler(m, { sock }) {
     session.promptId = await sendPrompt(
       sock,
       m,
-      `🛡️ *Pertanyaan 2/4*\n\n` +
-        `Oke, judulnya *${session.title}*.\n\n` +
-        `Sekarang, berikan kata-kata yang ingin dideteksi oleh aku.\n\n` +
-        `Kamu bisa pilih salah satu format:\n` +
-        `> *Contains*: kirim kata dipisah koma atau baris baru\n` +
-        `> *Regex*: awali jawaban dengan \`regex:\`\n\n` +
-        `Contoh contains:\n` +
-        `> \`anjing, goblok, tolol\`\n\n` +
-        `Contoh regex:\n` +
-        `> \`regex: (anj|anjing|a+n+j+)\`\n\n` +
-        `*Reply pesan ini dengan jawabanmu*`,
+      `🛡️ *Pregunta 2/4*\n\n` +
+        `Vale, el título es *${session.title}*.\n\n` +
+        `Ahora dime qué palabras quieres que detecte.\n\n` +
+        `Puedes elegir uno de estos formatos:\n` +
+        `> *Contains*: envía las palabras separadas por comas o saltos de línea\n` +
+        `> *Regex*: empieza la respuesta con \`regex:\`\n\n` +
+        `Ejemplo de contains:\n` +
+        `> \`tonto, idiota, estupido\`\n\n` +
+        `Ejemplo de regex:\n` +
+        `> \`regex: (ton|tonto|t+o+n+)\`\n\n` +
+        `*Responde a este mensaje con tu respuesta*`,
     );
     return true;
   }
@@ -360,12 +360,12 @@ async function replyHandler(m, { sock }) {
     session.promptId = await sendPrompt(
       sock,
       m,
-      `🛡️ *Pertanyaan 3/4*\n\n` +
-        `Berarti kamu mau ini ya:\n` +
+      `🛡️ *Pregunta 3/4*\n\n` +
+        `Entonces quieres esto:\n` +
         `${session.patterns.map((item, index) => `${index + 1}. \`${item}\``).join("\n")}\n\n` +
-        `> Tipe deteksi: *${session.type}*\n\n` +
-        `Oke siap, kalau pesan member mengandung kata-kata itu, kamu ingin aku *hapus pesan* atau langsung *kick*?\n\n` +
-        `*Reply pesan ini dengan:* \`hapus\` atau \`kick\``,
+        `> Tipo de detección: *${session.type}*\n\n` +
+        `Perfecto: si el mensaje de un miembro contiene esas palabras, ¿quieres que *borre el mensaje* o que lo *expulse* directamente?\n\n` +
+        `*Responde a este mensaje con:* \`hapus\` o \`kick\``,
     );
     return true;
   }
@@ -373,7 +373,7 @@ async function replyHandler(m, { sock }) {
   if (session.step === "action") {
     const action = normalizeAction(text, "");
     if (!action) {
-      await m.reply("❌ Balas dengan `hapus` atau `kick` ya.");
+      await m.reply("❌ Responde con `delete` o `kick`.");
       return true;
     }
 
@@ -382,11 +382,11 @@ async function replyHandler(m, { sock }) {
     session.promptId = await sendPrompt(
       sock,
       m,
-      `🛡️ *Pertanyaan 4/4*\n\n` +
-        `Oke siap, berikut detail yang kamu mau:\n\n` +
+      `🛡️ *Pregunta 4/4*\n\n` +
+        `Perfecto, estos son los datos que quieres:\n\n` +
         `${buildSummary(session)}\n\n` +
-        `Apakah sudah sesuai?\n\n` +
-        `*Reply pesan ini dengan:* \`ya\` untuk simpan atau \`batal\` untuk membatalkan`,
+        `¿Está todo bien?\n\n` +
+        `*Responde a este mensaje con:* \`ya\` para guardar o \`batal\` para cancelar`,
     );
     return true;
   }
@@ -395,14 +395,14 @@ async function replyHandler(m, { sock }) {
     if (/^(batal|cancel|tidak|nggak|ga|gak|no)$/i.test(text)) {
       clearSession(sessionKey);
       await m.reply(
-        "✅ Oke, sesi AntiCustom dibatalkan. Kalau mau mulai lagi, ketik `.anticustom add`.",
+        "✅ Vale, sesión de AntiCustom cancelada. Si quieres empezar otra vez, escribe `.anticustom add`.",
       );
       return true;
     }
 
     if (!/^(ya|iya|y|yes|oke|ok|setuju|gas|lanjut|sip|siap)$/i.test(text)) {
       await m.reply(
-        "❌ Balas dengan `ya` untuk simpan atau `batal` untuk membatalkan.",
+        "❌ Responde con `ya` para guardar o `batal` para cancelar.",
       );
       return true;
     }
@@ -447,11 +447,11 @@ async function replyHandler(m, { sock }) {
       m.chat,
       {
         text:
-          `✅ *AntiCustom berhasil dibuat*\n\n` +
+          `✅ *AntiCustom creado correctamente*\n\n` +
           `${buildSummary(session)}\n\n` +
-          `> Status otomatis: *ON*\n` +
-          `> Total rule baru: *${generatedRules.length}*\n\n` +
-          `Kalau mau lihat panduan lagi, ketik \`${m.prefix}anticustom\``,
+          `> Estado automático: *ON*\n` +
+          `> Reglas nuevas: *${generatedRules.length}*\n\n` +
+          `Si quieres volver a ver la guía, escribe \`${m.prefix}anticustom\``,
       },
       { quoted: m },
     );

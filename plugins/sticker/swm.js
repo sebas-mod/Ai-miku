@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const addExifToWebp = ElysiaRuntime.addExifToWebp;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const addExifToWebp = MikuRuntime.addExifToWebp;
 
   const pluginConfig = {
       name: 'swm',
@@ -34,9 +34,9 @@ const addExifToWebp = ElysiaRuntime.addExifToWebp;
       if (!quoted) {
           return m.reply(
               `🖼️ *sᴛɪᴄᴋᴇʀ ᴡᴀᴛᴇʀᴍᴀʀᴋ*\n\n` +
-              `> Reply sticker dengan caption:\n` +
+              `> Responda sticker con el título:\n` +
               `> \`${m.prefix}swm packname\`\n\n` +
-              `*ᴄᴏɴᴛᴏʜ:*\n` +
+              `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +
               `> \`${m.prefix}swm NamaPack|NamaAuthor\` _(packname + author)_`
           )
@@ -44,15 +44,15 @@ const addExifToWebp = ElysiaRuntime.addExifToWebp;
 
       const isSticker = quoted.type === 'stickerMessage' || quoted.isSticker
       if (!isSticker) {
-          return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply pesan sticker, bukan ${quoted.type?.replace('Message', '') || 'media lain'}`)
+          return m.reply(`❌ *FALLÓ*\n\n> Responder mensaje sticker, no ${quoted.type?.replace('Message', '') || 'media lain'}`)
       }
 
       const input = m.text?.trim()
       if (!input) {
           return m.reply(
-              `❌ *ɢᴀɢᴀʟ*\n\n` +
+              `❌ *ERROR*\n\n` +
               `> Masukkan packname\n\n` +
-              `*ᴄᴏɴᴛᴏʜ:*\n` +
+              `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +
               `> \`${m.prefix}swm NamaPack|NamaAuthor\` _(+ author)_`
           )
@@ -76,7 +76,7 @@ const addExifToWebp = ElysiaRuntime.addExifToWebp;
 
           if (!buffer || buffer.length === 0) {
               m.react('❌')
-              return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mendownload sticker`)
+              return m.reply(`❌ *FALLÓ*\n\n> No se pudo descargar sticker`)
           }
 
           const exifOpts = { packname, author, emojis: ['🤖'] }

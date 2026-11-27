@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const aiodl = ElysiaRuntime.aiodl;
-const te = ElysiaRuntime.te;
-const saluranCtx = ElysiaRuntime.saluranCtx;
+const aiodl = MikuRuntime.aiodl;
+const te = MikuRuntime.te;
+const saluranCtx = MikuRuntime.saluranCtx;
 
   const pluginConfig = {
     name: "aio",
@@ -34,9 +34,9 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
 
     if (!url) {
       return m.reply(
-        `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-          `> Download dari berbagai platform!\n\n` +
-          `╭┈┈⬡「 🌐 *ᴘʟᴀᴛꜰᴏʀᴍ* 」\n` +
+        `📥 *DESCARGADOR TODO EN UNO*\n\n` +
+          `> ¡Descargas de varias plataformas!\n\n` +
+          `╭┈┈⬡「 🌐 *PLATAFORMA* 」\n` +
           `┃ • Instagram\n` +
           `┃ • TikTok\n` +
           `┃ • Facebook\n` +
@@ -46,12 +46,12 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
           `┃ • CapCut\n` +
           `┃ • Threads / Reddit\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> *Contoh:* ${m.prefix}aio https://instagram.com/p/xxx`,
+          `> *Ejemplo:* ${m.prefix}aio https://instagram.com/p/xxx`,
       );
     }
 
     if (!url.startsWith("http")) {
-      return m.reply(`❌ URL tidak valid! Harus dimulai dengan http/https`);
+      return m.reply(`❌ ¡URL no válida! Debe empezar por http/https`);
     }
 
     await m.react("🕕");
@@ -61,7 +61,7 @@ const saluranCtx = ElysiaRuntime.saluranCtx;
 
       if (!result?.media?.length) {
         await m.react("❌");
-        return m.reply(`❌ Gagal mengambil media. Pastikan URL valid.`);
+        return m.reply(`❌ No se pudo obtener el contenido. Comprueba que la URL sea válida.`);
       }
 
       const ctxInfo = saluranCtx();

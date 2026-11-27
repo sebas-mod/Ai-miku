@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,33 +30,33 @@ async function handler(m, { sock }) {
         try {
             buffer = await m.quoted.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ No se pudo obtener la imagen.`)
             return
         }
     } else if (m.isImage) {
         try {
             buffer = await m.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ No se pudo obtener la imagen.`)
             return
         }
     }
     if (!buffer) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Reply gambar + \`${m.prefix}setppgc\`\n` +
-            `> Kirim gambar + caption \`${m.prefix}setppgc\``
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> Responde a una imagen + \`${m.prefix}setppgc\`\n` +
+            `> Envía una imagen + caption \`${m.prefix}setppgc\``
         )
         return
     }
     try {
         await sock.updateProfilePicture(m.chat, buffer)
         await m.reply(
-            `✅ Foto profil grup berhasil diperbarui!`
+            `✅ ¡La foto del Grupo se ha actualizado!`
         )
     } catch (error) {
         await m.reply(
-            `❌ Gagal mengubah foto grup.\n` +
+            `❌ No se pudo cambiar la foto del grupo.\n` +
             `> _${error.message}_`
         )
     }

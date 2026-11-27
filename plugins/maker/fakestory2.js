@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import * as _canvas from '@napi-rs/canvas'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
-const roundedRectPath = ElysiaRuntime.canvasRoundedRectPath;
-const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
-const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
+const te = MikuRuntime.te;
+const roundedRectPath = MikuRuntime.canvasRoundedRectPath;
+const drawAvatar = MikuRuntime.canvasDrawAvatar;
+const getAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
 
   const pluginConfig = {
     name: "fakestory2",
@@ -140,10 +140,10 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       if (!isImage) {
         m.react("❌");
         return m.reply(
-          `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 2*\n\n` +
-            `> Reply gambar!\n\n` +
-            `> Format: \`${m.prefix}fakestory2 <nama>\`\n` +
-            `> Contoh: \`${m.prefix}fakestory2 Misaki\``,
+          `📷 *HISTORIA FALSA 2*\n\n` +
+            `> ¡Responde a una imagen!\n\n` +
+            `> Formato: \`${m.prefix}fakestory2 <nombre>\`\n` +
+            `> Ejemplo: \`${m.prefix}fakestory2 Misaki\``,
         );
       }
       let imageBuffer;
@@ -154,7 +154,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       }
       if (!imageBuffer) {
         m.react("❌");
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+        return m.reply(`❌ *ERROR*\n\n> No se pudo descargar la imagen`);
       }
       const resultBuffer = await createFakeStory(
         username,

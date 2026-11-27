@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
 import AdmZip from "adm-zip";
-import { getVercelToken, vercelRequest, sanitizeProjectName, missingTokenReply } from "../../src/lib/features/elysia-vercel.js";
+import { getVercelToken, vercelRequest, sanitizeProjectName, missingTokenReply } from "../../src/lib/features/miku-vercel.js";
 
 const pluginConfig = {
   name: "vdeploy",
@@ -30,9 +30,9 @@ async function handler(m) {
 
   if (!projectName || !isDoc) {
     return m.reply(
-      `╭─❖「 ▲ *VERCEL DEPLOY — ELYSIA* 」\n` +
-      `│ Reply file *.html* atau *.zip* lalu ketik:\n` +
-      `│ \`${m.prefix}vdeploy nama-web-kamu\`\n` +
+      `╭─❖「 ▲ *VERCEL DEPLOY — MIKU* 」\n` +
+      `│ Responde con un archivo *.html* o *.zip* y luego escribe:\n` +
+      `│ \`${m.prefix}vdeploy nombre-de-tu-web\`\n` +
       `╰─────────────────────❖`
     );
   }
@@ -40,7 +40,7 @@ async function handler(m) {
   await m.react("🕕");
   try {
     const buf = await quoted.download?.();
-    if (!buf || !buf.length) throw new Error("Gagal mengunduh file lampiran.");
+    if (!buf || !buf.length) throw new Error("No se pudo descargar el archivo adjunto.");
 
     const fileName = String(quoted?.msg?.fileName || quoted?.fileName || "index.html");
     const files = [];
@@ -57,7 +57,7 @@ async function handler(m) {
           encoding: "base64",
         });
       }
-      if (!files.length) throw new Error("File ZIP kosong atau tidak valid.");
+      if (!files.length) throw new Error("El archivo ZIP está vacío o no es válido.");
     } else {
       const targetName = /\.html?$/i.test(fileName) ? "index.html" : fileName;
       files.push({
@@ -77,7 +77,7 @@ async function handler(m) {
     const url = res?.url ? `https://${res.url}` : `https://${projectName}.vercel.app`;
     await m.react("✅");
     await m.reply(
-      `╭─❖「 ▲ *DEPLOY VERCEL BERHASIL!* 」\n` +
+      `╭─❖「 ▲ *¡DEPLOY EN VERCEL COMPLETADO!* 」\n` +
       `│ 📦 Proyek : *${projectName}*\n` +
       `│ 📄 Files  : *${files.length} file*\n` +
       `│ 🚦 Status : \`${res?.readyState || "BUILDING"}\`\n` +
@@ -86,7 +86,7 @@ async function handler(m) {
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal deploy ke Vercel: *${err.message}*`);
+    await m.reply(`❌ No se pudo desplegar en Vercel: *${err.message}*`);
   }
 }
 

@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const createElysiaFeature = (module, exports, require) => {
+const createMikuFeature = (module, exports, require) => {
         const axios = require('axios'), { B } = require('style')
         const FEED = { terkini: 'terkini', politik: 'politik', ekonomi: 'ekonomi', hukum: 'hukum', olahraga: 'olahraga', teknologi: 'tekno', tekno: 'tekno', dunia: 'dunia', hiburan: 'hiburan', lifestyle: 'lifestyle', otomotif: 'otomotif', bola: 'bola' }
         const dec = (s) => String(s).replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/<[^>]+>/g, '').trim()
@@ -18,18 +18,18 @@ const createElysiaFeature = (module, exports, require) => {
             return { title: g('title'), link: g('link'), date: g('pubDate') }
           }).filter(x => x.title && x.link)
         }
-        const ago = (d) => { const t = Date.parse(d); if (!t) return ''; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'baru saja' : m < 60 ? `${m} menit lalu` : m < 1440 ? `${Math.round(m / 60)} jam lalu` : `${Math.round(m / 1440)} hari lalu` }
+        const ago = (d) => { const t = Date.parse(d); if (!t) return ''; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'hace un momento' : m < 60 ? `${m} hace minutos` : m < 1440 ? `${Math.round(m / 60)} hace horas` : `${Math.round(m / 1440)} día último` }
         module.exports = {
           name: 'berita', alias: ['news', 'beritaterkini', 'headline'], category: 'search', cmds: ['berita'], noLimit: false,
           desc: 'Berita terbaru Antara: .berita [politik|ekonomi|hukum|olahraga|teknologi|dunia|hiburan|otomotif]',
           run: async ({ text, prefix, reply }) => {
             const k = String(text || 'terkini').trim().toLowerCase()
-            if (!FEED[k]) return reply(`Kategori tidak dikenal.\nPilih: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nContoh: ${prefix}berita ekonomi`)
+            if (!FEED[k]) return reply(`Categoría desconocida.\nElegir: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nEjemplo: ${prefix}noticias económicas`)
             try {
               const { data } = await axios.get(`https://www.antaranews.com/rss/${FEED[k]}.xml`, { timeout: 15000, responseType: 'text', headers: { 'User-Agent': 'Mozilla/5.0' } })
-              const items = parseRss(data); if (!items.length) return reply('Tidak ada berita yang terbaca saat ini.')
+              const items = parseRss(data); if (!items.length) return reply('No hay noticias leídas por el momento.')
               return reply(`${B('BERITA ' + k.toUpperCase())}\n━━━━━━━━━━━━━━━━━━━━\n` + items.map((x, i) => `${i + 1}. *${x.title}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + '\n\n_Sumber: Antara News_')
-            } catch (e) { console.log('[berita]', e.message); return reply('Gagal mengambil berita: ' + e.message) }
+            } catch (e) { console.log('[berita]', e.message); return reply('No se pudieron recuperar las noticias: ' + e.message) }
           },
         }
         module.exports._t = { parseRss }
@@ -63,6 +63,6 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const handler = ElysiaRuntime.createWorldHandler(createElysiaFeature, typeof libs !== 'undefined' ? libs : {})
+const handler = MikuRuntime.createWorldHandler(createMikuFeature, typeof libs !== 'undefined' ? libs : {})
 
 export { pluginConfig as config, handler }

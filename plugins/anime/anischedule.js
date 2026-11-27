@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import { createCanvas } from '@napi-rs/canvas';
 
@@ -187,7 +187,7 @@ import { createCanvas } from '@napi-rs/canvas';
       if (schedules.length > maxShow) {
           ctx.fillStyle = THEME.textSecondary
           ctx.font = '10px "Segoe UI"'
-          ctx.fillText(`+ ${schedules.length - maxShow} anime lainnya...`, W/2, y + 10)
+          ctx.fillText(`+ ${schedules.length - maxShow} otros animes...`, W/2, y + 10)
       }
 
       ctx.fillStyle = `${THEME.textSecondary}80`
@@ -198,9 +198,9 @@ import { createCanvas } from '@napi-rs/canvas';
   }
 
   function formatCaption(schedules, season, filterDay = null, source = 'api') {
-      let caption = `🦋 *Elysia Assistant ANIME SCHEDULE* 🦋\n\n`
+      let caption = `🦋 *Ai Miku ANIME SCHEDULE* 🦋\n\n`
       caption += `📅 *Musim:* ${season.toUpperCase()}\n`
-      if (filterDay) caption += `📆 *Hari:* ${hariIndonesia[filterDay] || filterDay}\n`
+      if (filterDay) caption += `📆 *Día:* ${hariIndonesia[filterDay] || filterDay}\n`
       caption += `📡 *Source:* ${source}\n`
       caption += `━━━━━━━━━━━━━━━━━━━━\n\n`
 
@@ -210,17 +210,17 @@ import { createCanvas } from '@napi-rs/canvas';
           caption += `*${i+1}. ${anime.title}*\n`
           caption += `📀 Studio: ${anime.studio || 'Unknown'}\n`
           if (anime.time && anime.time !== 'TBA') caption += `🕐 Rilis: ${anime.time}\n`
-          if (anime.day && hariIndonesia[anime.day]) caption += `📆 Hari: ${hariIndonesia[anime.day]}\n`
+          if (anime.day && hariIndonesia[anime.day]) caption += `📆 Día: ${hariIndonesia[anime.day]}\n`
           if (anime.episodes) caption += `📺 Episode: ${anime.episodes}\n`
           if (anime.score && anime.score !== 'N/A') caption += `⭐ Score: ${anime.score}\n`
           caption += `━━━━━━━━━━━━━━━━━━━━\n`
       }
 
       if (schedules.length > maxShow) {
-          caption += `\n*+ ${schedules.length - maxShow} anime lainnya...*\n`
+          caption += `\n*+ ${schedules.length - maxShow} otro anime...*\n`
       }
 
-      caption += `\n💕 *Elysia Assistant:* ${['Selamat nonton darling~', 'Jangan lupa update episode ya!', 'Ayo tonton anime baru~'][Math.floor(Math.random() * 3)]} 🦋`
+      caption += `\n💕 *Ai Miku:* ${['Selamat nonton darling~', 'Jangan lupa update episode ya!', 'Ayo tonton anime baru~'][Math.floor(Math.random() * 3)]} 🦋`
 
       return caption
   }
@@ -245,13 +245,13 @@ import { createCanvas } from '@napi-rs/canvas';
       await m.react('⏳')
 
       try {
-          await m.reply('🦋 *Elysia Assistant:* Sedang mengambil jadwal anime terbaru, darling~ tunggu sebentar ya! 💕')
+          await m.reply('🦋 *Ai Miku:* Actualmente estoy viendo el último calendario de anime, cariño ~ espera un minuto, ¡vale! 💕')
 
           const result = await fetchScheduleFromAPI(seasonQuery)
 
           if (!result.success || !result.data || result.data.length === 0) {
               await m.react('❌')
-              return m.reply(`❌ Gagal mengambil jadwal anime!\n\nCoba lagi nanti ya darling~ 🦋`)
+              return m.reply(`❌ ¡No pude retomar el calendario del anime!\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
           }
 
           let schedules = result.data
@@ -260,7 +260,7 @@ import { createCanvas } from '@napi-rs/canvas';
           if (dayFilter) {
               filteredSchedules = filterByDay(schedules, dayFilter)
               if (filteredSchedules.length === 0) {
-                  return m.reply(`📆 *Jadwal Anime Hari ${hariIndonesia[dayFilter]}*\n\nTidak ada anime yang rilis hari ${hariIndonesia[dayFilter]} di musim ${result.season.toUpperCase()}, darling~\n\n🦋 Coba cek musim lain atau hari lain ya~ 💕`)
+                  return m.reply(`📆 *Horario de anime diurno ${hariIndonesia[dayFilter]}*\n\nNo hay estrenos de anime hoy. ${hariIndonesia[dayFilter]} en estación ${result.season.toUpperCase()}, cariño ~\n\n🦋 Intente consultar otra temporada u otro día, está bien ~ 💕`)
               }
           }
 
@@ -285,10 +285,10 @@ import { createCanvas } from '@napi-rs/canvas';
       } catch (err) {
           console.error('[AniSchedule] Error:', err)
           await m.react('❌')
-          await m.reply(`❌ *Error:* ${err.message}\n\nCoba lagi nanti ya darling~ 🦋`)
+          await m.reply(`❌ *Error:* ${err.message}\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
   const open = ascending.filter((r) => myLevel >= r.min).length;
   const caption =
     `🏆 *KATALOG PANGKAT ASTRAL* 🏆\n\n` +
-    `> Level kamu: *Lv.${myLevel}* • ${getRankInfo(myLevel).title}\n` +
+    `> Tu nivel: *Lv.${myLevel}* • ${getRankInfo(myLevel).title}\n` +
     `> Pangkat terbuka: *${open}/${ascending.length}*\n\n` +
-    `_✦ Naikkan levelmu dengan bermain fitur RPG & klaim hadiah di *${m.prefix || "."}claimlevel*_`;
+    `_✦ Sube tu nivel jugando RPG funciones y reclama recompensas en *${m.prefix || "."}nivel de reclamo*_`;
 
   try {
     const image = await renderRankList({
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
       avatar: await getUserAvatar(sock, m.sender),
       myLevel,
       ranks: ascending,
-      botName: config.bot?.name || "Elysia Assistant",
+      botName: config.bot?.name || "Ai Miku",
     });
     return await sock.sendMessage(m.chat, { image, caption }, { quoted: m });
   } catch {

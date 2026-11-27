@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,15 +29,15 @@ async function handler(m, { sock }) {
   if (m.args.length < 2) {
     return m.reply(
       `⚙️ *SISTEM CAP ENERGI*\n\n` +
-      `Sistem untuk mengubah secara dinamis jumlah energi yang dipotong untuk banyak fitur sekaligus.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}capenergi <nama_fitur1> <nama_fitur2> ... <jumlah>*\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
-      `- *${m.prefix}capenergi hd jpm 5* (Fitur HD & JPM memotong 5 energi)\n` +
-      `- *${m.prefix}capenergi hd 0* (Fitur HD menjadi gratis energi)\n\n` +
+      `Sistema para cambiar dinámicamente cuánta energía consumen varias funciones a la vez.\n\n` +
+      `*USO:*\n` +
+      `- *${m.prefix}capenergi <función1> <función2> ... <cantidad>*\n\n` +
+      `*EJEMPLO DE USO:*\n` +
+      `- *${m.prefix}capenergi hd jpm 5* (las funciones HD y JPM consumen 5 de energía)\n` +
+      `- *${m.prefix}capenergi hd 0* (la función HD pasa a ser gratis en energía)\n\n` +
       `*PENJELASAN:*\n` +
-      `1. Masukkan satu atau banyak nama fitur yang ingin diubah.\n` +
-      `2. Di akhiran (kata terakhir) harus berupa ANGKA (jumlah potongan energi).`
+      `1. Indica uno o varios nombres de funciones que quieres cambiar.\n` +
+      `2. Al final (última palabra) debe ir un NÚMERO (la energía a descontar).`
     );
   }
 
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
   const cost = parseInt(rawCost);
 
   if (isNaN(cost) || cost < 0) {
-    return m.reply(`❌ *GAGAL*\n\nJumlah energi (di argumen paling akhir) harus berupa angka 0 atau lebih.`);
+    return m.reply(`❌ *ERROR*\n\nLa energía (en el último argumento) debe ser un número igual o mayor que 0.`);
   }
 
   const commands = m.args.slice(0, -1);
@@ -74,15 +74,15 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let msg = `✅ *POTONGAN ENERGI BERHASIL DIUBAH*\n\n`;
+  let msg = `✅ *COSTO DE ENERGÍA ACTUALIZADO*\n\n`;
   if (successList.length > 0) {
-    msg += `*Berhasil diubah jadi ${cost} Energi:*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Cambiadas a ${cost} de energía:*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   if (failedList.length > 0) {
-    msg += `*Gagal (Tidak ditemukan):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Con error (no encontradas):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
 
-  msg += `_Pengaturan tersimpan ke dalam database dan langsung berlaku._`;
+  msg += `_Los ajustes se guardaron en la base de datos y ya están activos._`;
   return m.reply(msg.trim());
 }
 

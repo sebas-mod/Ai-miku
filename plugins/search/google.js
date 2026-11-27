@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
 
 const libs = {
-    "google": async ({ elysiaLib }) => {
+    "google": async ({ mikuLib }) => {
       const cheerio = (await import('cheerio'))
       const axios = (__m => __m.default ?? __m)((await import('axios')))
 
@@ -65,7 +65,7 @@ const libs = {
 
         async executeQueryPipeline(searchToken) {
           if (!searchToken || searchToken.trim().length === 0) {
-            return { status: false, error: 'Query tidak boleh kosong' }
+            return { status: false, error: 'La consulta no puede estar vacía.' }
           }
 
           const queryHex = encodeURIComponent(searchToken)
@@ -135,11 +135,11 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const { GoogleSearch } = (await elysiaLib('google'))
+  const { GoogleSearch } = (await mikuLib('google'))
 
   async function handler(m, { text, reply, usedPrefix, command }) {
     if (!text) {
-      return reply(`🔍 *GOOGLE SEARCH*\n\nPencarian informasi & berita Google.\n\nContoh:\n${usedPrefix}${command} Berita teknologi terbaru\n${usedPrefix}${command} AI Gemini`)
+      return reply(`🔍 *GOOGLE SEARCH*\n\nBúsqueda de información y noticias en Google.\n\nEjemplo:\n${usedPrefix}${command} Berita teknologi terbaru\n${usedPrefix}${command} AI Gemini`)
     }
 
     await m.react('⏳')
@@ -149,7 +149,7 @@ const pluginConfig = {
 
       if (!res.status || !res.results || res.results.length === 0) {
         await m.react('✖️')
-        return reply(`❌ Tidak ditemukan hasil untuk *"${text}"*.`)
+        return reply(`❌ No se encontraron resultados para *"${text}"*.`)
       }
 
       await m.react('✅')
@@ -157,20 +157,20 @@ const pluginConfig = {
       const items = res.results.slice(0, 10)
       let caption = `🌐 *GOOGLE SEARCH RESULTS*\n\n`
       caption += `🔎 *Query:* ${text}\n`
-      caption += `📊 *Ditemukan:* ${res.results.length} hasil\n\n`
+      caption += `📊 *Ditemukan:* ${res.results.length} resultados\n\n`
       caption += `──────────────────\n\n`
 
       items.forEach((item, idx) => {
         caption += `*${idx + 1}. ${item.resource_title}*\n`
         if (item.origin_node) caption += `   🏢 Sumber: *${item.origin_node}*\n`
-        if (item.temporal_stamp) caption += `   🕒 Waktu: ${item.temporal_stamp}\n`
+        if (item.temporal_stamp) caption += `   🕒 Hora: ${item.temporal_stamp}\n`
         caption += `   🔗 Link: ${item.resolved_endpoint}\n\n`
       })
 
       return reply(caption.trim())
     } catch (e) {
       await m.react('❌')
-      return reply(`❌ Terjadi kesalahan: ${e.message || String(e)}`)
+      return reply(`❌ Se produjo un error: ${e.message || String(e)}`)
     }
   }
 

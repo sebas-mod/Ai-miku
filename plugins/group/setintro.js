@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,18 +30,18 @@ async function handler(m) {
 
     if (!introText) {
         return m.reply(
-            `📝 *sᴇᴛ ɪɴᴛʀᴏ*\n\n` +
-            `> Masukkan pesan intro!\n\n` +
-            `*Placeholder yang tersedia:*\n` +
-            `> @user - Nama pengguna\n` +
-            `> @group - Nama grup\n` +
-            `> @count - Jumlah member\n` +
-            `> @date - Tanggal hari ini\n` +
-            `> @time - Waktu sekarang\n` +
-            `> @desc - Deskripsi grup\n` +
-            `> @botname - Nama bot\n\n` +
-            `*Contoh:*\n` +
-            `> .setintro Selamat datang @user di grup @group! 👋`
+            `📝 *ESTABLECER INTRO*\n\n` +
+            `> ¡Envía el mensaje de presentación!\n\n` +
+            `*Marcadores disponibles:*\n` +
+            `> @user - Nombre del usuario\n` +
+            `> @group - Nombre del grupo\n` +
+            `> @count - Número de miembros\n` +
+            `> @date - Fecha de hoy\n` +
+            `> @time - Hora actual\n` +
+            `> @desc - Descripción del grupo\n` +
+            `> @botname - Nombre del bot\n\n` +
+            `*Ejemplo:*\n` +
+            `> .setintro ¡Bienvenido @user al grupo @group! 👋`
         )
     }
 
@@ -51,9 +51,9 @@ async function handler(m) {
     db.save()
 
     await m.reply(
-        `✅ *ɪɴᴛʀᴏ ᴅɪsᴀᴠᴇ!*\n` +
-        `Pesan intro grup berhasil diubah.\n` +
-        `Ketik *${m.prefix}intro* untuk melihat hasilnya.`
+        `✅ *¡INTRO DESACTIVADA!*\n` +
+        `El mensaje de presentación del grupo se ha actualizado.\n` +
+        `Escribe *${m.prefix}intro* para ver el resultado.`
     )
 }
 

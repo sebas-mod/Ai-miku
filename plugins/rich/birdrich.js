@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -106,7 +106,7 @@ let cache = null, cacheAt = 0
 async function loadHtml() {
   if (cache && Date.now() - cacheAt < TTL_MS) return cache
   const res = await fetch(SOURCE_URL, { signal: AbortSignal.timeout(20000) })
-  if (!res.ok) throw new Error(`Gagal ambil kartu (status ${res.status})`)
+  if (!res.ok) throw new Error(`No se pudo obtener la tarjeta (estado ${res.status})`)
   const html = await res.text()
   cache = html
   cacheAt = Date.now()
@@ -123,7 +123,7 @@ module.exports = {
       const html = await loadHtml()
       await sendHtmlCard(sock, m, html, 'Flappy Bird Live', '🐦')
     } catch (e) {
-      reply(`❌ Gagal memuat kartu: ${e.message}`)
+      reply(`❌ No se pudo cargar la tarjeta: ${e.message}`)
     }
   },
 }

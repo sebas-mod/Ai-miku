@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getActiveGame, setActiveGame, renderBombBoard } from "../../src/lib/features/elysia-game.js";
+import { getActiveGame, setActiveGame, renderBombBoard } from "../../src/lib/features/miku-game.js";
 
 const pluginConfig = {
   name: "bomb",
@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const active = getActiveGame(m.chat);
-  if (active) return m.reply(`⏳ Masih ada game *${active.type}* yang aktif di chat ini! Ketik \`${m.prefix}stopgame\` untuk berhenti.`);
+  if (active) return m.reply(`⏳ ¡Todavía hay un juego *${active.type}* activo en este chat! Escribe \`${m.prefix}stopgame\` para pararlo.`);
 
   const session = {
     type: "bomb",
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
   };
 
   setActiveGame(m.chat, session, 120000, async () => {
-    await sock.sendMessage(m.chat, { text: "⏰ Sesi *Tebak Bom* berakhir karena waktu habis." });
+    await sock.sendMessage(m.chat, { text: "⏰ La sesión de *Adivina la Bomba* terminó por tiempo." });
   });
 
   await m.reply(renderBombBoard(session));

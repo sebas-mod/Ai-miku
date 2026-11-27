@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -16,7 +16,7 @@ function progressBar(percent, size = 10) {
 export async function runMenuLoading(sock, chat, title = 'menu') {
   const steps = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
   const first = await sock.sendMessage(chat, {
-    text: `◉ *Menyiapkan ${title}...*\n\n${progressBar(0)} 0%`,
+    text: `◉ *Preparando ${title}...*\n\n${progressBar(0)} 0%`,
   });
   const key = first?.key;
   if (!key) return;
@@ -24,7 +24,7 @@ export async function runMenuLoading(sock, chat, title = 'menu') {
   for (const percent of steps.slice(1)) {
     await delay(320);
     await sock.sendMessage(chat, {
-      text: `◉ *Menyiapkan ${title}...*\n\n${progressBar(percent)} ${percent}%`,
+      text: `◉ *Preparando ${title}...*\n\n${progressBar(percent)} ${percent}%`,
       edit: key,
     });
   }
@@ -33,6 +33,6 @@ export async function runMenuLoading(sock, chat, title = 'menu') {
   try {
     await sock.sendMessage(chat, { delete: key });
   } catch (e) {
-    // Jika delete gagal di versi Baileys tertentu, biarkan pesan terakhir tetap ada.
+    // Si el borrado falla en ciertas versiones de Baileys, deja el último mensaje tal cual.
   }
 }

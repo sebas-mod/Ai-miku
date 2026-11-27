@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'githubdl',
@@ -45,16 +45,16 @@ const te = ElysiaRuntime.te;
 
       if (!username) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}githubdl <user> <repo> <branch>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}githubdl niceplugin NiceBot main\`\n` +
               `> \`${m.prefix}githubdl https://github.com/user/repo\``
           )
       }
 
       if (!repo) {
-          return m.reply(`❌ *ʀᴇᴘᴏ ᴅɪʙᴜᴛᴜʜᴋᴀɴ*\n\n> Masukkan nama repository`)
+          return m.reply(`❌ *REPO REQUERIDO*\n\n> Envía el nombre del repositorio`)
       }
 
       await m.react('🕕')
@@ -64,7 +64,7 @@ const te = ElysiaRuntime.te;
 
           if (!repoInfo.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʀᴇᴘᴏ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> \`${username}/${repo}\` tidak ada`)
+              return m.reply(`❌ *REPO NO ENCONTRADO*\n\n> \`${username}/${repo}\` no existe`)
           }
 
           const repoData = await repoInfo.json()
@@ -76,7 +76,7 @@ const te = ElysiaRuntime.te;
           const checkRes = await fetch(zipUrl, { method: 'HEAD' })
           if (!checkRes.ok) {
               await m.react('❌')
-              return m.reply(`❌ *ʙʀᴀɴᴄʜ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n> Branch \`${branch}\` tidak ditemukan\n> Default: \`${defaultBranch}\``)
+              return m.reply(`❌ *RAMA NO EXISTE*\n\n> Branch \`${branch}\` no encontrado\n> Default: \`${defaultBranch}\``)
           }
 
           await sock.sendMedia(m.chat, zipUrl, null, m, {

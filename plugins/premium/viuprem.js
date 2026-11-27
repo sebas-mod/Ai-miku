@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -57,7 +57,7 @@ async function fetchViuAccount(deviceId) {
     if (err.name === "AbortError") {
       throw new Error(`Request timeout setelah ${TIMEOUT_MS}ms`);
     }
-    throw new Error(`Koneksi gagal: ${err.message}`);
+    throw new Error(`La conexión falló: ${err.message}`);
   } finally {
     clearTimeout(timer);
   }
@@ -68,11 +68,11 @@ async function fetchViuAccount(deviceId) {
   try {
     data = await res.json();
   } catch {
-    throw new Error("Respon server bukan JSON valid.");
+    throw new Error("La respuesta del servidor no es JSON válida.");
   }
 
   if (!data.success) {
-    throw new Error(data.message || "Gagal mengambil akun VIU.");
+    throw new Error(data.message || "No se pudo recuperar la cuenta VIU.");
   }
 
   return {
@@ -92,8 +92,8 @@ async function handler(m) {
   if (/^(help|\?|-h|--help)$/i.test(raw)) {
     return m.reply(
       `╭─── ❖ 『 🎬 *VIU PREMIUM ACCOUNT* 』 ❖\n` +
-        `│ ✧ \`${p}viuprem\` — Generate akun baru (Device ID acak)\n` +
-        `│ ✧ \`${p}viuprem <device_id>\` — Login ulang pakai Device ID tersimpan\n` +
+        `│ ✧ \`${p}viuprem\` — Generar nueva cuenta (dispositivo aleatorio ID)\n` +
+        `│ ✧ \`${p}viuprem <device_id>\` — Vuelva a iniciar sesión usando la ID del dispositivo guardada\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -114,7 +114,7 @@ async function handler(m) {
   await m.react("⏳").catch(() => {});
   try {
     const acc = await fetchViuAccount(deviceId);
-    const status = acc.is_new ? "🆕 Akun Baru" : "♻️ Akun Existing";
+    const status = acc.is_new ? "🆕 Nueva cuenta" : "♻️ Cuenta existente";
     const timeFmt = new Date(acc.fetched_at).toLocaleString("id-ID", {
       timeZone: "Asia/Jakarta",
     });
@@ -126,13 +126,13 @@ async function handler(m) {
         `│ 🔑 *Password:* \`${acc.password}\`\n` +
         `│ 🆔 *Device ID:* \`${acc.device_id}\`\n` +
         `│ 🏷️ *Status:* ${status}\n` +
-        `│ 🕒 *Waktu:* ${timeFmt}\n` +
+        `│ 🕒 *Hora:* ${timeFmt}\n` +
         `╰──────────────────────────❖\n` +
-        `_✦ Simpan Device ID kamu untuk mengambil ulang akun yang sama di viu.com (jangan ubah password)._`
+        `_✦ Guarde su dispositivo ID para recuperar la misma cuenta en viu.com (no cambie la contraseña)._`
     );
   } catch (err) {
     await m.react("❌").catch(() => {});
-    return m.reply(`❌ *Gagal mengambil akun VIU:* ${err.message}`);
+    return m.reply(`❌ *No se pudo recuperar la cuenta VIU:* ${err.message}`);
   }
 }
 

@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const drawBrat = ElysiaRuntime.drawBrat;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const drawBrat = MikuRuntime.drawBrat;
 
   const pluginConfig = {
     name: "bratgreen",
@@ -31,7 +31,7 @@ const drawBrat = ElysiaRuntime.drawBrat;
   async function handler(m, { sock }) {
     const text = m.args.join(" ").trim();
     if (!text) {
-      return m.reply(`🖼️ *BRAT GREEN*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratgreen Hai semua\``);
+      return m.reply(`🖼️ *BRAT GREEN*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratgreen Hola a todos\``);
     }
 
     m.react("🕕");

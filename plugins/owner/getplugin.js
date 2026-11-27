@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -105,19 +105,19 @@ function getSimilarPlugins(name, pluginsDir) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Owner Only!*");
+    return m.reply("❌ *¡Solo el owner!*");
   }
 
   const pluginName = m.args?.[0]?.trim();
 
   if (!pluginName) {
     return m.reply(
-      `📦 *ɢᴇᴛ ᴘʟᴜɢɪɴ*\n\n` +
+      `📦 *OBTENER PLUGIN*\n\n` +
         `> Dapatkan source code plugin\n\n` +
-        `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n` +
-        `┃ .getplugin <nama>\n` +
+        `╭┈┈⬡「 📋 *FORMATO* 」\n` +
+        `┃  .getplugin <nombre>\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `*Contoh:*\n` +
+        `*Ejemplo:*\n` +
         `> .getplugin menu\n` +
         `> .getplugin audiosticker\n` +
         `> .getplugin convert/audiosticker`,
@@ -148,11 +148,11 @@ async function handler(m, { sock }) {
 
   if (!pluginInfo) {
     const similar = getSimilarPlugins(pluginName, pluginsDir);
-    let text = `❌ *ᴘʟᴜɢɪɴ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n`;
-    text += `> Plugin \`${pluginName}\` tidak ditemukan\n\n`;
+    let text = `❌ *PLUGIN NO ENCONTRADO*\n\n`;
+    text += `> El plugin \`${pluginName}\` no existe\n\n`;
 
     if (similar.length > 0) {
-      text += `*Mungkin maksud kamu:*\n`;
+      text += `*Quizá querías decir:*\n`;
       similar.forEach((s) => {
         text += `> - \`${s}\`\n`;
       });
@@ -174,7 +174,7 @@ async function handler(m, { sock }) {
         caption:
           `📦 *GET PLUGIN*\n` +
           `• *File:* \`${pluginInfo.category}/${pluginInfo.file}\`\n` +
-          `• *Ukuran:* ${(codeBuffer.length / 1024).toFixed(1)} KB`,
+          `• *Tamaño:* ${(codeBuffer.length / 1024).toFixed(1)} KB`,
       },
       { quoted: m },
     );

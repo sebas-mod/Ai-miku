@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { need, pickTarget, assertCanPost, explain } from './setch.js'
 
-const pickImage = ElysiaRuntime.pickImage;
+const pickImage = MikuRuntime.pickImage;
 
 const pluginConfig = {
     name: "chpp",
@@ -34,11 +34,11 @@ const pluginConfig = {
           assertCanPost(t)
           need(sock, 'newsletterUpdatePicture')
           const img = pickImage(m)
-          if (!img) return reply(`Kirim atau reply sebuah gambar dengan ${p}chpp.`)
+          if (!img) return reply(`Enviar o responder a una imagen con ${p}chpp.`)
           const buffer = await img.download()
-          if (!Buffer.isBuffer(buffer)) return reply('Gagal mengunduh gambar. Coba kirim ulang.')
+          if (!Buffer.isBuffer(buffer)) return reply('No se pudo descargar la imagen. Intente reenviar.')
           await sock.newsletterUpdatePicture(t.id, buffer)
-          return reply(`✅ Foto saluran *${t.name}* diperbarui.`)
+          return reply(`✅ Foto del canal *${t.name}* diperbarui.`)
       } catch (err) {
           console.log('[CH] chpp:', err.message)
           return reply(`❌ ${explain(err)}`)

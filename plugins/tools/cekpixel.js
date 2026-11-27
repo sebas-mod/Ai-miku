@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cekpixel",
@@ -40,13 +40,13 @@ const pluginConfig = {
       const mime = (q.msg || q).mimetype || q.mtype || '';
 
       if (!/image/.test(mime)) {
-          return reply(`Kirim atau reply gambar dengan caption *${usedPrefix + command}*`);
+          return reply(`Envía o responde a una imagen con el texto *${usedPrefix + command}*`);
       }
 
       try {
           const media = await q.download();
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ ɢᴀɢᴀʟ mendownload media gambar.');
+              return reply('❌ No se pudo descargar la imagen.');
           }
 
           const metadata = await sharp(media).metadata();
@@ -62,18 +62,18 @@ const pluginConfig = {
 
           const teks = `🖼️ *IMAGE PIXEL IDENTIFIER*\n\n` +
               `• 📐 *Lebar (Width):* ${width} px\n` +
-              `• 📏 *Tinggi (Height):* ${height} px\n` +
+              `• 📏 *Altura:* ${height} píxeles\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect} (${width}:${height})\n` +
-              `• 📦 *Format Gambar:* ${format}\n` +
-              `• 💾 *Ukuran File:* ${size}\n` +
+              `• 📦 *Formato de imagen:* ${format}\n` +
+              `• 💾 *Tamaño del archivo:* ${size}\n` +
               `• 🎨 *Color Space:* ${space} (${channels} Channels)\n\n` +
-              `_Identifikasi resolusi gambar berhasil!_`;
+              `_¡Resolución de la imagen identificada!_`;
 
           reply(teks);
       } catch (err) {
           console.error('[cekpixel error]:', err);
-          reply(`❌ ɢᴀɢᴀʟ membaca metadata pixel gambar: ${err.message || err}`);
+          reply(`❌ No se pudieron leer los píxeles de la imagen: ${err.message || err}`);
       }
   };
 

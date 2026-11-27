@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -57,7 +57,7 @@ function registerFonts() {
                 const family = fontPath.toLowerCase().includes('roboto') ? 'Roboto' : 'Inter';
                 GlobalFonts.registerFromPath(fontPath, family);
             } catch (e) {
-                console.warn('[iqcmerah] gagal register font:', fontPath, e?.message || e);
+                console.warn('Error en el registro de fuente [iqcred]:', fontPath, e?.message || e);
             }
         }
     }
@@ -124,7 +124,7 @@ async function loadEmojiMap() {
             });
             emojiMap = JSON.parse(Buffer.from(response.data).toString('utf8'));
         } catch (error) {
-            console.warn('[iqcmerah] WEmoji map gagal dimuat:', error?.message || error);
+            console.warn('[iqcred] El mapa WEmoji no se pudo cargar:', error?.message || error);
             emojiMap = null;
         }
         return emojiMap;
@@ -315,7 +315,7 @@ async function renderIQCMerah(text, timeStr, outputPath) {
 
     const cleanText = String(text || '').trim();
     if (cleanText.length > 1500) {
-        throw new Error('Teks terlalu panjang. Maksimal 1500 karakter.');
+        throw new Error('El texto es demasiado largo. Máximo 1500 caracteres.');
     }
 
     const fontSize = 29;
@@ -416,18 +416,18 @@ async function renderIQCMerah(text, timeStr, outputPath) {
 
 async function handler(m, { sock, text }) {
     if (!existsSync(TEMPLATE_PATH)) {
-        return m.reply('⚠️ Template belum ada.\n\nLetakkan gambar template di:\n`assets/image/iqcmerah-template.png`')
+        return m.reply('⚠️ Aún no hay plantillas.\n\nColoque la imagen de la plantilla en:\n`activos/imagen/iqcred-template.png`')
     }
     try {
         const targetText = String(text || (m.quoted && m.quoted.text ? m.quoted.text : '')).trim();
 
         if (!targetText) {
             return m.reply(
-                `🔴 *FITUR FAKE QUOTE iOS MERAH*\n\n` +
-                `Ketik: ${m.prefix}iqcmerah kata kata kamu\n` +
-                `Atau reply pesan lalu ketik ${m.prefix}iqcmerah\n\n` +
-                `✅ Teks panjang otomatis turun ke baris baru\n` +
-                `✅ Ukuran font tetap jelas\n` +
+                `🔴 *FUNCIÓN DE COTIZACIÓN FALSA ROJA DE IOS*\n\n` +
+                `Tipo: ${m.prefix}Creí tus palabras\n` +
+                `O responda al mensaje y luego escriba ${m.prefix}iqcred\n\n` +
+                `✅ El texto largo cae automáticamente a una nueva línea\n` +
+                `✅ El tamaño de fuente permanece claro\n` +
                 `✅ Support WEmoji / emoji WhatsApp`
             );
         }
@@ -460,8 +460,8 @@ async function handler(m, { sock, text }) {
         console.error('[iqcmerah error]:', error);
         await m.react('❌');
         await m.reply(
-            `❌ *GAGAL MEMPROSES QUOTE*\n\n` +
-            `${error?.message === 'Teks terlalu panjang. Maksimal 1500 karakter.'
+            `❌ *NO SE PUDO PROCESAR LA CITA*\n\n` +
+            `${error?.message === 'El texto es demasiado largo. Máximo 1500 caracteres.'
                 ? error.message
                 : 'Terjadi kesalahan saat membuat IQC merah. Coba lagi.'}`
         );

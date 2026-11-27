@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 
 const pluginConfig = {
@@ -51,7 +51,7 @@ const pluginConfig = {
   	const isMedia = /image|sticker/.test(mime || '');
 
   	if (!isMedia) {
-  		return reply(`❌ *Cara Penggunaan:*\nKirim atau reply gambar/stiker dengan *${usedPrefix + command}*`);
+  		return reply(`❌ *Cómo usar:*\nEnvía o responde con una imagen/sticker con *${usedPrefix + command}*`);
   	}
 
   	await sock.sendMessage(m.chat, { react: { text: '🕒', key: m.key } }).catch(() => null);
@@ -63,7 +63,7 @@ const pluginConfig = {
 
   	if (!mediaBuffer) {
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null);
-  		return reply('❌ Gagal mengunduh gambar/stiker.');
+  		return reply('❌ No se pudo descargar la imagen/sticker.');
   	}
 
   	let transparentBuffer;
@@ -80,7 +80,7 @@ const pluginConfig = {
   		bgImg = await loadImage(BACKGROUND_URL);
   	} catch (e) {
   		await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null);
-  		return reply('❌ Gagal memuat gambar/background.');
+  		return reply('❌ No se pudo cargar la imagen/fondo.');
   	}
 
   	const canvasWidth = bgImg.width;

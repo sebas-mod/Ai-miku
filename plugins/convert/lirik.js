@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -27,7 +27,7 @@ const pluginConfig = {
 async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
   const query = (text || (args || []).join(' ') || m.quoted?.text || '').trim()
   if (!query) {
-    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nKetik judul lagu atau penyanyi:\nContoh: \`${usedPrefix + command} Hindia Evaluasi\``)
+    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nEscribe el título de la canción o el cantante:\nEjemplo: \`${usedPrefix + command} Coldplay Amarillo\``)
   }
 
   await m.react('⏳')
@@ -35,31 +35,31 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
     const { data } = await axios.get('https://lrclib.net/api/search', {
       params: { q: query },
       timeout: 15000,
-      headers: { 'User-Agent': 'ElysiaAssistant/2.0 (https://github.com/arthazy)' }
+      headers: { 'User-Agent': 'AiMiku/2.0 (https://github.com/arthazy)' }
     })
 
     if (!Array.isArray(data) || !data.length) {
       await m.react('❌')
-      return m.reply(`❌ Lirik untuk *"${query}"* tidak ditemukan.`)
+      return m.reply(`❌ Letra de *"${query}"* extraviado.`)
     }
 
     const best = data.find((item) => item.plainLyrics) || data[0]
     const lyrics = (best.plainLyrics || best.syncedLyrics || '').trim()
     if (!lyrics) {
       await m.react('❌')
-      return m.reply(`❌ Lirik teks belum tersedia untuk lagu *${best.trackName || query}*.`)
+      return m.reply(`❌ Las letras de texto aún no están disponibles para las canciones *${best.trackName || query}*.`)
     }
 
     let out = `🎶 *${best.trackName || 'Judul Tidak Diketahui'}*\n`
     out += `👤 *Artis* : ${best.artistName || '-'}\n`
     if (best.albumName) out += `💿 *Album* : ${best.albumName}\n`
-    out += `\n${lyrics}\n\n_Elysia Assistant_`
+    out += `\n${lyrics}\n\n_Ai Miku_`
 
     await m.react('✅')
     return m.reply(out)
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mencari lirik:* ${e.message}`)
+    return m.reply(`❌ *No se pudo buscar la letra:* ${e.message}`)
   }
 }
 

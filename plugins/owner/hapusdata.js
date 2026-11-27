@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const pending = pendingReset.get(m.sender)
         if (!pending || Date.now() - pending > 60000) {
             pendingReset.delete(m.sender)
-            return m.reply(`❌ Tidak ada permintaan reset yang aktif.\n\n> Ketik \`${m.prefix}hapusdata\` terlebih dahulu`)
+            return m.reply(`❌ > No hay ninguna solicitud de reinicio activa.\n\n> Escribe \`${m.prefix}hapusdata\` primero`)
         }
 
         pendingReset.delete(m.sender)
@@ -45,11 +45,11 @@ async function handler(m, { sock }) {
 
         await sock.sendMessage(m.chat, {
             text:
-                `🗑️ *ᴅᴀᴛᴀ ᴅɪʀᴇsᴇᴛ*\n\n` +
+                `🗑️ *DATOS RESTABLECIDOS*\n\n` +
                 `> 📁 File direset: *${result.resetCount}/${result.total}*\n` +
                 `> 💾 Backup: \`${result.backupFolder}/\`\n\n` +
-                `Semua data telah dikembalikan ke default.\n\n` +
-                `> ⚠️ Restart bot untuk memastikan data tersinkronisasi`
+                `Todos los datos se han restablecido a los valores por defecto.\n\n` +
+                `> ⚠️ Reinicia el bot para asegurar que los datos estén sincronizados`
         }, { quoted: m })
         return
     }
@@ -80,21 +80,21 @@ async function handler(m, { sock }) {
     }
 
     if (existing.length === 0) {
-        return m.reply(`❌ Tidak ada data database yang ditemukan`)
+        return m.reply(`❌ No se encontraron datos en la base de datos`)
     }
 
     pendingReset.set(m.sender, Date.now())
 
-    let txt = `⚠️ *ᴘᴇʀɪɴɢᴀᴛᴀɴ — ʜᴀᴘᴜs ᴅᴀᴛᴀ*\n\n`
-    txt += `Aksi ini akan menghapus *SEMUA* data berikut:\n\n`
+    let txt = `⚠️ *ADVERTENCIA — ELIMINAR DATOS*\n\n`
+    txt += `Esta acción eliminará *TODOS* estos datos:\n\n`
 
     for (const { label, entries, size } of existing) {
         txt += `> ${label}: *${entries}* data (${size})\n`
     }
 
     txt += `\n> 📦 Total: *${(totalSize / 1024).toFixed(1)} KB*\n`
-    txt += `> 💾 Backup otomatis dibuat sebelum reset\n\n`
-    txt += `Ketik \`${m.prefix}hapusdata ya\` dalam 60 detik untuk melanjutkan.`
+    txt += `> 💾 Se crea una copia automática antes del reinicio\n\n`
+    txt += `Escribe \`${m.prefix}hapusdata sí\` en 60 segundos para continuar.`
 
     await sock.sendMessage(m.chat, {
         text: txt,
@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '✅ Ya, Hapus Semua',
+                    display_text: '✅ Sí, eliminar todo',
                     id: `${m.prefix}hapusdata ya`
                 })
             },

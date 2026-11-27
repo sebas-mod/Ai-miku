@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -40,18 +40,18 @@ async function handler(m, { sock }) {
         const sessions = getAllJadibotSessions()
 
         if (sessions.length === 0) {
-            return m.reply(`❌ Tidak ada session jadibot tersimpan`)
+            return m.reply(`❌ No hay sesiones de jadibot guardadas`)
         }
 
-        let txt = `🗑️ *sᴛᴏᴘ & ᴅᴇʟᴇᴛᴇ ᴊᴀᴅɪʙᴏᴛ*\n\n`
-        txt += `Pilih target dengan mention atau reply:\n\n`
+        let txt = `🗑️ *DETENER Y ELIMINAR JADIBOT*\n\n`
+        txt += `Elige el objetivo mencionándolo o respondiendo:\n\n`
 
         sessions.forEach((s, i) => {
             const status = s.isActive ? '🟢' : '⚫'
             txt += `${status} *${i + 1}.* @${s.id}\n`
         })
 
-        txt += `\n> Contoh: \`${m.prefix}stopdandeletejadibot @628xxx\``
+        txt += `\n> Ejemplo: \`${m.prefix}stopdandeletejadibot @628xxx\``
 
         return sock.sendMessage(m.chat, {
             text: txt,
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
     const session = sessions.find(s => s.id === id)
 
     if (!session) {
-        return m.reply(`❌ Session jadibot untuk *@${id}* tidak ditemukan`, { mentions: [target] })
+        return m.reply(`❌ No se encontró la sesión de jadibot para *@${id}*`, { mentions: [target] })
     }
 
     await m.react('🕕')
@@ -75,11 +75,11 @@ async function handler(m, { sock }) {
         await m.react('✅')
 
         await sock.sendMessage(m.chat, {
-            text: `🗑️ *ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴀᴘᴜs*\n\n` +
-                `> 📱 Nomor: *@${id}*\n` +
-                `> 🗑️ Status: *Deleted*\n\n` +
-                `Session telah dihapus secara permanen.\n` +
-                `User perlu \`.jadibot\` ulang untuk membuat session baru.`,
+            text: `🗑️ *JADIBOT ELIMINADO*\n\n` +
+                `> 📱 Número: *@${id}*\n` +
+                `> 🗑️ Estado: *Deleted*\n\n` +
+                `La sesión se ha eliminado de forma permanente.\n` +
+                `El usuario necesita \`.jadibot\` de nuevo para crear una sesión nueva.`,
             mentions: [target]
         }, { quoted: m })
     } catch (error) {

@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'faketiket',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake tiket pesawat (buat konten/gaguan doang)',
       usage: '.faketiket <dari> | <tujuan> | <nama>',
-      example: '.faketiket Jakarta | Tokyo | Elysia Assistant',
+      example: '.faketiket Jakarta | Tokyo | Ai Miku',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -74,17 +74,17 @@ const config = ElysiaRuntime.config;
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ᴛɪᴋᴇᴛ ᴘᴇꜱᴀᴡᴀᴛ* 💕\n\n` +
+              `💕 *BILLETE DE AVIÓN FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}faketiket <dari> | <tujuan> | <nama>\n` +
+              `┃   ${m.prefix}faketiket <origen> | <destino> | <nombre>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}faketiket Jakarta | Tokyo | Elysia Assistant\n` +
+              `┃   ${m.prefix}faketiket Jakarta | Tokyo | Ai Miku\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau kemana darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿A dónde quieres ir, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -95,20 +95,20 @@ const config = ElysiaRuntime.config;
       const nama = parts[2] || 'Darling'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin tiket pesawat darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Creando el billete de avión, darling~`)
 
       try {
           const imageBuffer = await generateFakeTiket(dari, tujuan, nama)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ᴛɪᴋᴇᴛ* 💕\n\n` +
+              caption: `💕 *ENTRADA FALSA* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ ✈️ *ʀᴜᴛᴇ*: ${dari} → ${tujuan}\n` +
-                      `┃ 👤 *ɴᴀᴍᴀ*: ${nama}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ ✈️ *RUTA*: ${dari} → ${tujuan}\n` +
+                      `┃ 👤 *NOMBRE*: ${nama}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Ini tiketnya darling~ selamat jalan-jalan! 🗿\n` +
+                      `┃ 💗 *Ai Miku:* Aquí tienes tu billete, darling~ ¡buen viaje! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -117,7 +117,7 @@ const config = ElysiaRuntime.config;
       } catch (err) {
           console.error('[FakeTiket] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

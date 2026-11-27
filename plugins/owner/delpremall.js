@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
 
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ERROR*\n\n> No hay miembros en este grupo`)
         }
 
         await m.react('🕕')
@@ -69,14 +69,14 @@ async function handler(m, { sock }) {
         await m.react('🗑️')
 
         await m.reply(
-            `🗑️ *ᴅᴇʟ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
-            `╭┈┈⬡「 📋 *ʜᴀsɪʟ* 」\n` +
-            `┃ 👥 ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀ: \`${participants.length}\`\n` +
-            `┃ ✅ ᴅɪʜᴀᴘᴜs: \`${removedCount}\`\n` +
-            `┃ ⏭️ ʙᴜᴋᴀɴ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +
-            `┃ 💎 sɪsᴀ ᴘʀᴇᴍɪᴜᴍ: \`${db.data.premium.length}\`\n` +
+            `🗑️ *QUITAR PREMIUM A TODOS*\n\n` +
+            `╭┈┈⬡「 📋 *RESULTADO* 」\n` +
+            `┃ 👥 TOTAL DE MIEMBROS: \`${participants.length}\`\n` +
+            `┃ ✅ ELIMINADO: \`${removedCount}\`\n` +
+            `┃ ⏭️ NO ES PREMIUM: \`${notPremCount}\`\n` +
+            `┃ 💎 RESTANTE PREMIUM: \`${db.data.premium.length}\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Grup: ${groupMeta.subject}`
+            `> Grupo: ${groupMeta.subject}`
         )
 
     } catch (error) {

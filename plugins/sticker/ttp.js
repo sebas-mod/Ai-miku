@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
     name: "ttp",
@@ -31,7 +31,7 @@ const config = ElysiaRuntime.config;
     const text = m.args.join(" ") || m.text?.trim();
 
     if (!text) {
-      return m.reply("❌ *Waduh, teksnya mana nih?*\n\nKamu harus memasukkan teks yang ingin dijadikan stiker.\n\nContoh: `.ttp Hai Cantik`");
+      return m.reply("❌ *Vaya, ¿dónde está el texto?*\n\nDebes ingresar el texto que deseas convertir en una pegatina.\n\nEjemplo: `.ttp Hola hermosa`");
     }
 
     await m.react("🕕");
@@ -55,7 +55,7 @@ const config = ElysiaRuntime.config;
     } catch (err) {
       console.error("[TTP Maker]", err.message);
       await m.react("☢");
-      m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat stiker. Silakan coba beberapa saat lagi ya.");
+      m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo contactar con el servidor del creador de pegatinas. Inténtelo de nuevo en unos momentos.");
     }
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,8 +30,8 @@ async function handler(m) {
 
     if (!global.absensi[chatId]) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-            `> Tidak ada sesi absen di grup ini!`
+            `❌ *NO HAY NINGUNA ASISTENCIA*\n\n` +
+            `> ¡No hay ninguna sesión de asistencia en este grupo!`
         )
     }
 
@@ -41,11 +41,11 @@ async function handler(m) {
     delete global.absensi[chatId]
 
     await m.reply(
-        `✅ *ABSEN DITUTUP!*\n\n` +
+        `✅ *¡ASISTENCIA CERRADA!*\n\n` +
         `Penyebab?\n` +
         `📝 ${absen.keterangan}\n` +
-        `👥 Total hadir: ${totalPeserta}\n\n` +
-        `Sesi absen telah dihapus.`
+        `👥 Total de presentes: ${totalPeserta}\n\n` +
+        `La sesión de asistencia se ha eliminado.`
     )
 }
 

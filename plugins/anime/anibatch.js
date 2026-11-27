@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -254,7 +254,7 @@ const pluginConfig = {
       if (kStat !== '') detail.status = kStat;
       const kEp = pick(info['Episode'], '');
       if (kEp !== '' ? /^\d+$/.test(kEp) : false) detail.episode_count = parseInt(kEp);
-      const kY = pick(info['Tahun rilis'], '');
+      const kY = pick(info['Año de lanzamiento'], '');
       if (kY !== '') detail.year = kY;
       const kR = pick(info['Rating'], '');
       if (kR !== '') {
@@ -431,7 +431,7 @@ const pluginConfig = {
         if (variants.length > 0) info.variants = variants;
       } else if (r.status === 502 ? /belum tersedia/i.test(body) : false) {
         info.type = 'not_ready';
-        info.note = 'File belum tersedia di server.';
+        info.note = 'El archivo aún no está disponible en el servidor.';
       } else {
         info.type = 'other';
         info.body_preview = body.substring(0, 300);
@@ -516,7 +516,7 @@ const pluginConfig = {
         out.chain = last.chain;
       }
 
-      if (/File belum tersedia/i.test(bodyF)) out.note = 'File belum tersedia setelah 4x retry';
+      if (/File belum tersedia/i.test(bodyF)) out.note = 'El archivo aún no está disponible después de 4 reintentos.';
 
       const lMat = bodyF.match(/https?:\/\/[^"'\s<>\\]+/gi);
       if (lMat !== null) {
@@ -654,12 +654,12 @@ const pluginConfig = {
           const ref = BASE + '/?q=' + encT + '&sort=' + sortS + (pg > 1 ? '&page=' + pg : '');
           const rx = await reqFollow('GET', aPath, cookies, ref, 5, { accept: '*/*' });
           if (rx.status !== 200) throw new Error('HTTP ' + rx.status + ' on catalog');
-          try { return parseCatalog(rx.data); } catch(e) { throw new Error('Respons catalog bukan JSON valid'); }
+          try { return parseCatalog(rx.data); } catch(e) { throw new Error('La respuesta del catálogo no es válida JSON'); }
         };
 
         const cat = await fetchPage(pageN);
         if (cat.page !== undefined ? (cat.page !== pageN ? true : false) : false) {
-          cat.warning = `Minta page ${pageN} server kasih page ${cat.page}`;
+          cat.warning = `Solicitar página ${pageN} El servidor da la página. ${cat.page}`;
         }
 
         if (isAll ? (cat.warning === undefined ? true : false) : false) {
@@ -673,7 +673,7 @@ const pluginConfig = {
             await new Promise(re => setTimeout(re, 300));
             const cx = await fetchPage(pg);
             if (cx.page !== undefined ? (cx.page !== pg ? true : false) : false) {
-              cat.warning = `Halaman ${pg} tidak sesuai, berhenti`;
+              cat.warning = `Página ${pg} no es adecuado, deténgase`;
               break;
             }
             for (let i = 0; i < cx.items.length; i++) {
@@ -714,7 +714,7 @@ const pluginConfig = {
         if (rStr.status !== 200) throw new Error('HTTP ' + rStr.status + ' on stream page');
 
         let servers = parseServers(rStr.data, epS);
-        if (servers.length === 0) throw new Error('Server tidak ditemukan di halaman');
+        if (servers.length === 0) throw new Error('Servidor no encontrado en la página');
 
         const isRes = pOpts.resolve === true ? true : false;
         if (isRes) {
@@ -760,21 +760,21 @@ const pluginConfig = {
             for (let i = 0; i < options.length; i++) {
               if (options[i].quality === qFlag) { chosen = options[i]; break; }
             }
-            if (chosen === null) throw new Error('Kualitas ' + qFlag + ' tidak tersedia');
+            if (chosen === null) throw new Error('Kualitas ' + qFlag + ' No disponible');
           }
 
           if (chosen === null) {
             const hm = pReq.data.match(/\/api\/download\/[^"'\s\\]+/);
             chosen = hm !== null ? { path: hm[0] } : (options.length > 0 ? options[0] : null);
           }
-          if (chosen === null) throw new Error('Download hash tidak ditemukan');
+          if (chosen === null) throw new Error('Descargar hash no encontrado');
 
           const rd = await resolveDownload(chosen.path, BASE + epPath, pReq.cookies);
           baseRes.data = { mode: 'download', slug: cleanTarget, episode: cleanExtra !== '' ? cleanExtra : null, download_path: chosen.path, full_url: BASE + chosen.path, available: options, resolved: rd };
         }
 
       } else {
-        throw new Error('Mode tidak dikenali: ' + cleanMode);
+        throw new Error('Modo no reconocido: ' + cleanMode);
       }
 
       return JSON.stringify(baseRes, null, 2);
@@ -809,13 +809,13 @@ const pluginConfig = {
     if (!input) {
       return reply(
         `*ANIBATCH*\n\n` +
-        `Cari anime : ${p}anibatch <judul>\n` +
+        `Buscar anime: ${p}anibatch <título>\n` +
         `Detail     : ${p}anibatch detail <slug/link>\n` +
         `Episode    : ${p}anibatch eps <slug/link>\n` +
         `Streaming  : ${p}anibatch stream <slug> <eps>\n` +
         `Download   : ${p}anibatch dl <slug> <eps> [480p]\n` +
-        `Beberapa eps: ${p}anibatch dl <slug> 1-5 [480p]\n\n` +
-        `Contoh:\n${p}anibatch black clover\n${p}anibatch dl black-clover-sub-indo 6 480p`
+        `Algunos pasos: ${p}anibatch dl <babosa> 1-5 [480p]\n\n` +
+        `Ejemplo:\n${p}trébol negro anibatch\n${p}anibatch dl trébol-negro-sub-indo 6 480p`
       )
     }
 
@@ -825,20 +825,20 @@ const pluginConfig = {
     if (!mode) mode = 'search'
 
     try {
-      await reply('Memproses, tunggu sebentar...')
+      await reply('Procesando, espera un momento...')
 
       if (mode === 'search') {
         const raw = rest.join(' ')
         const pm = raw.match(/\s-p\s*(\d+)\s*$/i)
         const page = pm ? Math.max(parseInt(pm[1]), 1) : 1
         const query = (pm ? raw.slice(0, pm.index) : raw).trim()
-        if (!query) return reply(`Tulis judulnya. Contoh: ${p}anibatch black clover`)
+        if (!query) return reply(`Escribe el título. Ejemplo: ${p}trébol negro anibatch`)
 
         const res = JSON.parse(await JHAniBatch('search', query, '', { page, sort: 'popular', all: false }))
-        if (!res.status) return reply(`Gagal: ${res.error}`)
+        if (!res.status) return reply(`Fallar: ${res.error}`)
 
         const items = res.data.items || []
-        if (!items.length) return reply(`Anime "${query}" tidak ditemukan.`)
+        if (!items.length) return reply(`animado"${query}" extraviado.`)
 
         const lines = items.slice(0, 10).map((a, i) => {
           const meta = [a.format, a.status, a.year, a.episodes ? `${a.episodes} eps` : '', a.score ? `skor ${a.score}` : '']
@@ -846,7 +846,7 @@ const pluginConfig = {
           return `${i + 1}. *${a.title}*\n   ${meta}\n   slug: ${a.slug}`
         })
         return reply(
-          `*HASIL: ${query}*\n` +
+          `*RESULTADOS: ${query}*\n` +
           `Halaman ${res.data.page}/${res.data.pages}, total ${res.data.total}\n\n` +
           lines.join('\n\n') +
           `\n\nDetail: ${p}anibatch detail <slug>\nDownload: ${p}anibatch dl <slug> <eps>`
@@ -854,17 +854,17 @@ const pluginConfig = {
       }
 
       const target = rest[0]
-      if (!target) return reply(`Tulis slug atau link anime-nya. Contoh: ${p}anibatch ${mode === 'download' ? 'dl' : mode} black-clover-sub-indo`)
+      if (!target) return reply(`Escribe el enlace de slug o anime. Ejemplo: ${p}anibabatch ${mode === 'download' ? 'dl' : mode} trébol-negro-sub-indo`)
 
       if (mode === 'detail') {
         const res = JSON.parse(await JHAniBatch('detail', target, '', {}))
-        if (!res.status) return reply(`Gagal: ${res.error}`)
+        if (!res.status) return reply(`Fallar: ${res.error}`)
         const d = res.data
         const caption =
           `*${d.title || d.slug}*\n\n` +
           `Tipe    : ${d.type || '-'}\n` +
           `Status  : ${d.status || '-'}\n` +
-          `Tahun   : ${d.year || '-'}\n` +
+          `Año: ${d.year || '-'}\n` +
           `Rating  : ${d.rating || '-'}\n` +
           `Episode : ${d.episode_count || (d.episodes ? d.episodes.length : '-')}\n` +
           `Genre   : ${(d.genres || []).join(', ') || '-'}\n\n` +
@@ -878,9 +878,9 @@ const pluginConfig = {
 
       if (mode === 'episodes') {
         const res = JSON.parse(await JHAniBatch('episodes', target, '', {}))
-        if (!res.status) return reply(`Gagal: ${res.error}`)
+        if (!res.status) return reply(`Fallar: ${res.error}`)
         const eps = res.data.episodes || []
-        if (!eps.length) return reply('Episode tidak ditemukan.')
+        if (!eps.length) return reply('Episodio no encontrado.')
         return reply(
           `*EPISODE ${res.data.slug}*\nTotal ${res.data.total}\n\n` +
           eps.map(e => e.episode).join(', ') +
@@ -891,7 +891,7 @@ const pluginConfig = {
       if (mode === 'stream') {
         const eps = rest[1] && /^\d+$/.test(rest[1]) ? rest[1] : ''
         const res = JSON.parse(await JHAniBatch('stream', target, eps, { resolve: false }))
-        if (!res.status) return reply(`Gagal: ${res.error}`)
+        if (!res.status) return reply(`Fallar: ${res.error}`)
         const servers = res.data.servers || []
         const lines = servers.slice(0, 8).map((s, i) =>
           `${i + 1}. ${s.name || s.provider || 'Server'} ${s.quality ? `(${s.quality})` : ''}${s.recommended ? ' [rekomendasi]' : ''}\n   ${s.embed_url}`
@@ -906,15 +906,15 @@ const pluginConfig = {
       if (mode === 'download') {
         const quality = (rest.slice(1).find(t => QUALITY_RE.test(t)) || '').toLowerCase()
         const eps = rest.slice(1).find(t => !QUALITY_RE.test(t)) || ''
-        if (!eps) return reply(`Tulis nomor episodenya. Contoh: ${p}anibatch dl ${target} 1 480p`)
+        if (!eps) return reply(`Escribe el número del episodio. Ejemplo: ${p}anibatch, etc. ${target} 1 480p`)
 
         const res = JSON.parse(await JHAniBatch('download', target, eps, quality ? { q: quality } : {}))
-        if (!res.status) return reply(`Gagal: ${res.error}`)
+        if (!res.status) return reply(`Fallar: ${res.error}`)
         const d = res.data
 
         if (d.batch) {
           const items = d.items || []
-          if (!items.length) return reply('Episode tidak ditemukan pada rentang itu.')
+          if (!items.length) return reply('No se encontraron episodios en ese rango.')
           const lines = items.slice(0, 15).map(it => {
             const r = it.resolved
             const link = r ? (r.direct_url || r.final_url || (r.links && r.links[0]) || '') : ''
@@ -928,15 +928,15 @@ const pluginConfig = {
         const avail = (d.available || []).map(o => o.quality).filter(Boolean)
         const link = r.direct_url || r.final_url || (r.links && r.links[0]) || ''
         if (!link) {
-          return reply(`Link download belum tersedia.${r.note ? `\n${r.note}` : ''}${avail.length ? `\nKualitas tersedia: ${avail.join(', ')}` : ''}`)
+          return reply(`El enlace de descarga aún no está disponible.${r.note ? `\n${r.note}` : ''}${avail.length ? `\nCalidades disponibles: ${avail.join(', ')}` : ''}`)
         }
 
         const info =
           `*DOWNLOAD ${d.slug}*\n` +
           `Episode : ${d.episode || '-'}\n` +
           (r.filename ? `File    : ${r.filename}\n` : '') +
-          (r.size_mb ? `Ukuran  : ${r.size_mb} MB\n` : '') +
-          (avail.length ? `Kualitas tersedia: ${avail.join(', ')}\n` : '') +
+          (r.size_mb ? `Tamaño: ${r.size_mb} MB\n` : '') +
+          (avail.length ? `Calidades disponibles: ${avail.join(', ')}\n` : '') +
           `\n${link}`
 
         if (r.is_file && r.size_mb && r.size_mb <= 80) {
@@ -950,7 +950,7 @@ const pluginConfig = {
         return reply(info)
       }
     } catch (e) {
-      return reply(`Gagal: ${e.message || e}`)
+      return reply(`Fallar: ${e.message || e}`)
     }
   }
 

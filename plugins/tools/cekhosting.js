@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -62,7 +62,7 @@ const pluginConfig = {
 
   async function checkHosting(domainInput) {
       const domain = cleanDomain(domainInput)
-      if (!domain) throw new Error('Domain tidak valid.')
+      if (!domain) throw new Error('Dominio no válido.')
 
       const body = new URLSearchParams({ target: domain, submit: 'Find Host' })
       const { data: html, status } = await axios.post(BASE_URL, body, {
@@ -75,10 +75,10 @@ const pluginConfig = {
               Referer: BASE_URL
           }
       })
-      if (status !== 200) throw new Error(`HTTP ${status} dari hostingchecker.com`)
+      if (status !== 200) throw new Error(`HTTP ${status} de hostingchecker.com`)
 
     const $ = cheerio.load(html)
-      if (!$('.hcresults').length) throw new Error('Lookup gagal atau domain tidak ditemukan.')
+      if (!$('.hcresults').length) throw new Error('Falló la búsqueda o no se encontró el dominio.')
 
       const { data, whoisUrl } = parseResult($)
       const { asn, organization: asOrganization } = parseASN(data['AS (autonomous system) number and organization'])
@@ -113,7 +113,7 @@ const pluginConfig = {
               `🏷️ AS Org : ${v(r.asOrganization)}\n` +
               `🧾 AS Name : ${v(r.asName)}\n` +
               `🔁 Reverse DNS : ${v(r.reverseDns)}\n` +
-              `🏙️ Kota : ${v(r.city)}\n` +
+              `🏙️ Ciudad: ${v(r.city)}\n` +
               `🌍 Negara : ${v(r.country)}` +
               (r.whoisUrl ? `\n📄 WHOIS : ${r.whoisUrl}` : '')
           )

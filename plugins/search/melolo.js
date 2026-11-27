@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "melolo",
@@ -191,7 +191,7 @@ const pluginConfig = {
                   tags = parsed.map(cat => cat.name);
               }
           } catch (e) {
-              console.warn("Gagal parse category_schema");
+              console.warn("No se pudo analizar el esquema_categoría");
           }
           const videoList = data.video_list || [];
           const episodes = videoList.map(v => ({
@@ -214,7 +214,7 @@ const pluginConfig = {
           };
       },
       stream: async (videoId) => {
-          if (!videoId) throw new Error("Video ID required");
+          if (!videoId) throw new Error("Se requiere identificación de video");
           const endpoint = '/novel/player/video_model/v1/';
           const headers = {
               "X-Ss-Stub": "B7FB786F2CAA8B9EFB7C67A524B73AFB",
@@ -262,7 +262,7 @@ const pluginConfig = {
                               try {
                                   videoUrl = Buffer.from(videoUrl, 'base64').toString('utf-8');
                               } catch (err) {
-                                  console.warn("Gagal decode URL untuk kualitas:", item.definition);
+                                  console.warn("No se pudo decodificar URL para la calidad:", item.definition);
                               }
                           }
                           result.downloads.push({
@@ -276,9 +276,9 @@ const pluginConfig = {
                   }
               }
           } catch (error) {
-              console.error("Error parsing video_model:", error.message);
+              console.error("Error al analizar video_model:", error.message);
               result.status = false;
-              result.error = "Failed to parse detailed video model";
+              result.error = "No se pudo analizar el modelo de video detallado";
           }
           return result;
       }
@@ -420,13 +420,13 @@ const pluginConfig = {
                   const bestQuality = streamData.downloads[0];
                   if (!bestQuality || !bestQuality.url) {
                       return conn.sendMessage(m.chat, {
-                          text: 'Failed to extract video URL.'
+                          text: 'No se pudo extraer la URL del video.'
                       }, {
                           quoted: m
                       });
                   }
 
-                  const caption = `*🎥 Video Download*\n\n*Quality:* ${bestQuality.quality}\n*Size:* ${(bestQuality.size / (1024 * 1024)).toFixed(2)} MB`;
+                  const caption = `*🎥 Descarga de vídeo*\n\n*Quality:* ${bestQuality.quality}\n*Size:* ${(bestQuality.size / (1024 * 1024)).toFixed(2)} MB`;
 
                   await conn.sendMessage(m.chat, {
                       video: {

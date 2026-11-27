@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -34,12 +34,12 @@ const pluginConfig = {
   const MAX_ROWS = 40
 
   const PORSI_MAP = {
-      small: 'Porsi Kecil (TK/PAUD & SD kelas 1–3)',
-      large: 'Porsi Besar (SD kelas 4–6, SMP, SMA/SMK, guru & tenaga pendidik)',
-      balita: 'Balita (usia 6–59 bulan)',
+      small: 'Porciones pequeñas (TK/PAUD y SD clases 1–3)',
+      large: 'Porción grande (SD clases 4–6, SMP, SMA/SMK, profesores y personal educativo)',
+      balita: 'Niños pequeños (entre 6 y 59 meses)',
       pregnant: 'Ibu Hamil',
       nursing: 'Ibu Menyusui',
-      sample: 'Sample Makanan'
+      sample: 'Muestras de alimentos'
   }
 
   async function launchBrowser() {
@@ -115,7 +115,7 @@ const pluginConfig = {
           }, url)
           if (r?.ok) return r.data
           try { fs.unlinkSync(SESSION_FILE) } catch {}
-          throw new Error('Portal BGN menolak permintaan (mungkin verifikasi Cloudflare). Coba lagi nanti.')
+          throw new Error('El portal BGN rechazó la solicitud (posiblemente verificación de Cloudflare). Vuelve a intentarlo más tarde.')
       } finally {
           await browser.close().catch(() => {})
       }
@@ -123,7 +123,7 @@ const pluginConfig = {
 
   const list = (title, rows, fmt) => {
       const shown = rows.slice(0, MAX_ROWS).map(fmt).join('\n')
-      return `${title}\n\n${shown}${rows.length > MAX_ROWS ? `\n… dan ${rows.length - MAX_ROWS} lainnya` : ''}`
+      return `${title}\n\n${shown}${rows.length > MAX_ROWS ? `\n… y ${rows.length - MAX_ROWS} más` : ''}`
   }
 
   const ACTIONS = {
@@ -131,61 +131,61 @@ const pluginConfig = {
           alias: ['prov', 'provinsi'],
           run: async () => {
               const rows = (await api('/api/region/v1/provinsi?page_size=50'))?.data || []
-              if (!rows.length) return 'Data provinsi kosong.'
-              return list(`🗺️ *PROVINSI* (${rows.length})`, rows, p => `• *${p.kode_prov_dagri}* — ${p.provinsi}`) + `\n\nLanjut: .radarmbg kabko <kode>`
+              if (!rows.length) return 'No hay datos de provincias.'
+              return list(`🗺️ *PROVINCIAS* (${rows.length})`, rows, p => `• *${p.kode_prov_dagri}* — ${p.provinsi}`) + `\n\nContinuar: .radarmbg kabko <código>`
           }
       },
       kabko: {
-          alias: ['kabko', 'kabupaten', 'kota'], need: 'kode provinsi, contoh: 31',
+          alias: ['kabko', 'kabupaten', 'kota'], need: 'código de provincia, ejemplo: 31',
           run: async (k) => {
               const rows = (await api(`/api/region/v1/kabupaten-kota/dagri/${encodeURIComponent(k)}`))?.data || []
-              if (!rows.length) return `Tidak ada kabupaten/kota untuk kode ${k}.`
-              return list(`🏙️ *KABUPATEN/KOTA* (${rows.length})`, rows, x => `• *${x.kode_kabko_dagri}* — ${x.kabupaten_kota}`) + `\n\nLanjut: .radarmbg kec <kode>`
+              if (!rows.length) return `No hay ciudades para el código ${k}.`
+              return list(`🏙️ *CIUDADES* (${rows.length})`, rows, x => `• *${x.kode_kabko_dagri}* — ${x.kabupaten_kota}`) + `\n\nContinuar: .radarmbg kec <código>`
           }
       },
       kec: {
-          alias: ['kec', 'kecamatan'], need: 'kode kabupaten/kota, contoh: 31.71',
+          alias: ['kec', 'kecamatan'], need: 'código de ciudad, ejemplo: 31.71',
           run: async (k) => {
               const rows = (await api(`/api/region/v1/kecamatan/dagri/${encodeURIComponent(k)}`))?.data || []
-              if (!rows.length) return `Tidak ada kecamatan untuk kode ${k}.`
-              return list(`🏘️ *KECAMATAN* (${rows.length})`, rows, x => `• *${x.kode_kec_dagri}* — ${x.kecamatan}`) + `\n\nLanjut: .radarmbg kel <kode>`
+              if (!rows.length) return `No hay distritos para el código ${k}.`
+              return list(`🏘️ *DISTRITOS* (${rows.length})`, rows, x => `• *${x.kode_kec_dagri}* — ${x.kecamatan}`) + `\n\nContinuar: .radarmbg kel <código>`
           }
       },
       kel: {
-          alias: ['kel', 'kelurahan'], need: 'kode kecamatan, contoh: 31.71.01',
+          alias: ['kel', 'kelurahan'], need: 'código de distrito, ejemplo: 31.71.01',
           run: async (k) => {
               const rows = (await api(`/api/region/v1/kelurahan/dagri/${encodeURIComponent(k)}`))?.data || []
-              if (!rows.length) return `Tidak ada kelurahan untuk kode ${k}.`
-              return list(`🏡 *KELURAHAN* (${rows.length})`, rows, x => `• *${x.kode_kel_dagri}* — ${x.kelurahan}`) + `\n\nLanjut: .radarmbg sekolah <kode>`
+              if (!rows.length) return `No hay barrios para el código ${k}.`
+              return list(`🏡 *BARRIOS* (${rows.length})`, rows, x => `• *${x.kode_kel_dagri}* — ${x.kelurahan}`) + `\n\nContinuar:.radarmbg colegio <código>`
           }
       },
       sekolah: {
-          alias: ['sekolah', 'instansi'], need: 'kode kelurahan, contoh: 31.71.01.1001',
+          alias: ['sekolah', 'instansi'], need: 'código de barrio, ejemplo: 31.71.01.1001',
           run: async (k) => {
               const rows = (await api(`/api/public-portal/public/v1/institutions?kode_kel_dagri=${encodeURIComponent(k)}&per_page=100`))?.data || []
-              if (!rows.length) return `Tidak ada sekolah/instansi untuk kode ${k}.`
-              return list(`🏫 *SEKOLAH / INSTANSI* (${rows.length})`, rows, x => `• *${x.id}* — ${x.nama}${x.jenjang || x.tingkat ? ` (${x.jenjang || x.tingkat})` : ''}${x.sppg?.nama ? `\n   SPPG: ${x.sppg.nama}` : ''}`) + `\n\nCek menu: .radarmbg menu <id>`
+              if (!rows.length) return `No hay colegios/centros para el código ${k}.`
+              return list(`🏫 *COLEGIOS / CENTROS* (${rows.length})`, rows, x => `• *${x.id}* — ${x.nama}${x.jenjang || x.tingkat ? ` (${x.jenjang || x.tingkat})` : ''}${x.sppg?.nama ? `\n   SPPG: ${x.sppg.nama}` : ''}`) + `\n\nVer menú: .radarmbg menu <id>`
           }
       },
       menu: {
-          alias: ['menu'], need: 'ID sekolah, contoh: SD-10023',
+          alias: ['menu'], need: 'ID del colegio, ejemplo: SD-10023',
           run: async (id) => {
               const json = await api(`/api/public-portal/public/v1/institutions/${encodeURIComponent(id)}/menus`)
               const d = json?.data || json
-              if (!d || (typeof d === 'object' && !Object.keys(d).length)) return 'Menu belum dirilis atau instansi tidak ditemukan.'
+              if (!d || (typeof d === 'object' && !Object.keys(d).length)) return 'El menú aún no se ha publicado o no se encontró el centro.'
               const g = d.kandungan_gizi || d.gizi || {}
               const v = (x, u) => (x ? `${x} ${u}` : '-')
               const porsiRaw = d.porsi || d.target_porsi || []
               const porsi = Array.isArray(porsiRaw) && porsiRaw.length ? porsiRaw.map(p => PORSI_MAP[String(p).toLowerCase()] || p) : []
               return (
-                  `🍱 *MENU MBG HARI INI*\n\n` +
+                  `🍱 *MENÚ MBG DE HOY*\n\n` +
                   `🏫 ${d.instansi?.nama || d.nama_sekolah || id}\n` +
                   `📅 ${d.tanggal || new Date().toISOString().split('T')[0]}\n` +
-                  `🍽️ ${d.nama_menu || d.menu || 'Menu Makan Bergizi Gratis'}\n` +
+                  `🍽️ ${d.nama_menu || d.menu || 'Menú de comida nutritiva gratuita'}\n` +
                   (d.deskripsi ? `📝 ${d.deskripsi}\n` : '') +
-                  `\n*Kandungan gizi*\n` +
-                  `• Energi : ${v(g.energi ?? g.kalori, 'kkal')}\n• Protein : ${v(g.protein, 'g')}\n• Lemak : ${v(g.lemak, 'g')}\n• Karbohidrat : ${v(g.karbohidrat, 'g')}\n• Serat : ${v(g.serat, 'g')}\n` +
-                  (porsi.length ? `\n*Sasaran*\n${porsi.map(p => `• ${p}`).join('\n')}\n` : '') +
+                  `\n*Valores nutricionales*\n` +
+                  `• Energía : ${v(g.energi ?? g.kalori, 'kcal')}\n• Proteínas : ${v(g.protein, 'g')}\n• Grasas : ${v(g.lemak, 'g')}\n• Carbohidratos : ${v(g.karbohidrat, 'g')}\n• Fibra : ${v(g.serat, 'g')}\n` +
+                  (porsi.length ? `\n*Destinatarios*\n${porsi.map(p => `• ${p}`).join('\n')}\n` : '') +
                   `\n👨‍🍳 SPPG: ${d.sppg?.nama || d.nama_sppg || '-'}`
               )
           }
@@ -204,19 +204,19 @@ const pluginConfig = {
               `${prefix + command} kabko <kodeProv>  (31)\n` +
               `${prefix + command} kec <kodeKabko>  (31.71)\n` +
               `${prefix + command} kel <kodeKec>  (31.71.01)\n` +
-              `${prefix + command} sekolah <kodeKel>  (31.71.01.1001)\n` +
+              `${prefix + command} escuela <Excode> (31.71.01.1001)\n` +
               `${prefix + command} menu <idSekolah>  (SD-10023)\n\n` +
-              `_Telusuri dari provinsi sampai sekolah, lalu cek menu & gizi hari ini._`
+              `_Navega de la provincia al colegio y consulta el menú y los valores nutricionales de hoy._`
           )
       }
       const a = ACTIONS[key]
-      if (a.need && !arg) return reply(`Isi ${a.need}\nContoh: ${prefix + command} ${key} ${a.need.split('contoh: ')[1]}`)
+      if (a.need && !arg) return reply(`Indica ${a.need}\nEjemplo: ${prefix + command} ${key} ${a.need.split('ejemplo: ')[1]}`)
 
-      await reply('⏳ Mengambil data dari portal BGN…')
+      await reply('⏳ Obteniendo datos del portal del BGN…')
       try {
           return reply(await a.run(arg))
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil data'}`)
+          return reply(`❌ ${e.message || 'No se pudieron obtener los datos'}`)
       }
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -36,11 +36,11 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (active.length === 0) {
-        return m.reply(`❌ Tidak ada jadibot yang aktif saat ini`)
+        return m.reply(`❌ No hay ningún jadibot activo ahora`)
     }
 
-    let txt = `🟢 *ᴊᴀᴅɪʙᴏᴛ ᴀᴋᴛɪꜰ*\n\n`
-    txt += `> 📊 Total: *${active.length}* bot aktif\n\n`
+    let txt = `🟢 *JADIBOT ACTIVO*\n\n`
+    txt += `> 📊 Total: *${active.length}* bots activos\n\n`
 
     active.forEach((s, i) => {
         const uptime = formatUptime(Date.now() - s.startedAt)
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         txt += `   ⏱️ *${uptime}* — 👤 @${owner}\n\n`
     })
 
-    txt += `> \`${m.prefix}stopalljadibot\` — Hentikan semua`
+    txt += `> \`${m.prefix}stopalljadibot\` — Detén todas`
 
     const mentions = active.flatMap(s => [s.jid, s.ownerJid].filter(Boolean))
 
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🛑 Stop Semua',
+                    display_text: '🛑 Detener todo',
                     id: `${m.prefix}stopalljadibot`
                 })
             }

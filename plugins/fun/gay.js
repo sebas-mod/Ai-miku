@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
   cacheParticipantLids(participants);
 
   if (participants.length === 0) {
-    return m.reply(`❌ Tidak ada member di grup!`);
+    return m.reply(`❌ ¡No hay miembros en el grupo!`);
   }
 
   const resolveJid = async (p) => {

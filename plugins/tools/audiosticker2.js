@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -27,7 +27,7 @@ const pluginConfig = {
   alias: ["stikeraudio2", "stickeraudio2", "saudio2"],
   category: "tools",
   description:
-    "Membuat stiker gambar/GIF bersuara (Audio Sticker) maks 25 detik dengan sistem sesi",
+    "Crea stickers con sonido (Audio Sticker) de imagen/GIF, máx. 25 segundos, con sistema de sesión",
   usage: ".audiosticker2 [pack|author]",
   example: ".saudio2",
   isOwner: false,
@@ -302,7 +302,7 @@ async function downloadBuffer(node, info, client) {
 
 function buildExifPayload(packname, author) {
   const json = {
-    "sticker-pack-id": "com.elysia.assistant.audiosticker2",
+    "sticker-pack-id": "com.aimiku.assistant.audiosticker2",
     "sticker-pack-name": String(packname ?? ""),
     "sticker-pack-publisher": String(author ?? ""),
     emojis: ["🔊"],
@@ -468,7 +468,7 @@ async function imageBufferToWebp(buffer) {
       await execFileAsync("ffmpeg", [
         "-y",
         "-i", inPath,
-        "-vf", "scale=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1",
+        "-vf", "escala=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1",
         "-c:v", "libwebp",
         "-lossless", "0",
         "-q:v", "80",
@@ -539,7 +539,7 @@ async function convertToOggOpus(buffer, ext = "mp3") {
     ]);
     const oggBuffer = await fs.readFile(outPath);
     if (!oggBuffer || oggBuffer.length < 200) {
-      throw new Error("Jalur audio kosong atau terlalu pendek.");
+      throw new Error("La pista de audio está vacía o es demasiado corta.");
     }
     const realSeconds = parseFfmpegDuration(stderr);
     return { oggBuffer, realSeconds };
@@ -558,7 +558,7 @@ async function buildAudioMessageFromBuffer(
   const { oggBuffer, realSeconds } = await convertToOggOpus(buffer, ext);
 
   const { audioMessage } = await prepareWAMessageMedia(
-    { audio: oggBuffer, mimetype: "audio/ogg; codecs=opus", ptt: true },
+    { audio: oggBuffer, mimetype: "audio/ogg; códecs=opus", ptt: true },
     { upload: client.waUploadToServer }
   );
 
@@ -568,7 +568,7 @@ async function buildAudioMessageFromBuffer(
 
   audioMessage.seconds = finalSeconds;
   audioMessage.ptt = true;
-  audioMessage.mimetype = "audio/ogg; codecs=opus";
+  audioMessage.mimetype = "audio/ogg; códecs=opus";
   if (!audioMessage.waveform || !audioMessage.waveform.length) {
     audioMessage.waveform = generateWaveform(oggBuffer);
   }
@@ -624,7 +624,7 @@ function startStickerSession({
           .sendMessage(
             m.chat,
             {
-              text: `⏰ *SESI AUDIO STICKER BERAKHIR*\n> _Waktu tunggu ${SESSION_SECONDS} detik telah habis. Silakan kirim ulang foto jika ingin membuat Audio Sticker._`,
+              text: `⏰ *SESIÓN DE AUDIO STICKER FINALIZADA*\n> _Se agotaron los ${SESSION_SECONDS} segundos de espera. Vuelve a enviar la foto si quieres crear un Audio Sticker._`,
             },
             { quoted: m }
           )
@@ -645,19 +645,19 @@ function startStickerSession({
   });
 
   return send(
-    `✦ *SESI AUDIO STICKER AKTIF* ✦\n` +
-      `> _Media stiker berhasil disimpan ke dalam sesi sementara._\n\n` +
-      `╭─「 *DETAIL SESI* 」\n` +
+    `✦ *SESIÓN DE AUDIO STICKER ACTIVA* ✦\n` +
+      `> _El sticker se guardó en una sesión temporal._\n\n` +
+      `╭─「 *DETALLES DE LA SESIÓN* 」\n` +
       `│ ◦ *Pack* : *${packname}*\n` +
-      `│ ◦ *Author* : *${author}*\n` +
-      `│ ◦ *Tipe* : \`${isAnimated ? "Animated GIF" : "Static Image"}\`\n` +
-      `│ ◦ *Durasi Audio Maks* : \`${MAX_DURATION} Detik\`\n` +
-      `│ ◦ *Estimasi Waktu* : \`${SESSION_SECONDS} Detik\`\n` +
+      `│ ◦ *Autor* : *${author}*\n` +
+      `│ ◦ *Tipo* : \`${isAnimated ? "GIF animado" : "Imagen estática"}\`\n` +
+      `│ ◦ *Duración máx. del audio*: \`${MAX_DURATION} segundos\`\n` +
+      `│ ◦ *Tiempo estimado* : \`${SESSION_SECONDS} segundos\`\n` +
       `╰───────────────\n\n` +
-      `╭─「 *LANGKAH SELANJUTNYA* 」\n` +
-      `│ 1. Kirim *Audio MP3 / Voice Note / Video* langsung ke chat ini\n` +
-      `│ 2. Atau *Reply Audio / Voice Note / Video* dengan \`${usedPrefix}${command}\`\n` +
-      `│ 3. Ketik \`${usedPrefix}${command} batal\` untuk membatalkan\n` +
+      `╭─「 *SIGUIENTES PASOS* 」\n` +
+      `│ 1. Envía *Audio MP3 / Nota de voz / Video* directamente a este chat\n` +
+      `│ 2. O *responde a un Audio / Nota de voz / Vídeo* con \`${usedPrefix}${command}\`\n` +
+      `│ 3. Escribe \`${usedPrefix}${command} batal\` para cancelar\n` +
       `╰───────────────`
   );
 }
@@ -678,7 +678,7 @@ async function consumeSessionWithAudio(
   try {
     const audioBuf = await downloadBuffer(audioNode, audioInfo, client);
     if (!audioBuf || !audioBuf.length)
-      throw new Error("Gagal mengunduh file audio/video.");
+      throw new Error("No se pudo descargar el archivo de audio/vídeo.");
 
     const ext =
       audioInfo.kind === "video"
@@ -711,7 +711,7 @@ async function consumeSessionWithAudio(
     console.error("[AUDIOSTICKER2 SESSION ERROR]", err);
     await react("❌");
     await send(
-      `❌ Gagal menggabungkan suara ke stiker: ${err?.message || String(err)}`
+      `❌ No se pudo combinar el sonido con la pegatina: ${err?.message || String(err)}`
     );
   }
 }
@@ -736,10 +736,10 @@ async function handler(m, extra = {}) {
 
   if (/^(batal|cancel|stop)$/i.test(rawText)) {
     if (!activeSession)
-      return send("⚠️ Tidak ada sesi Audio Sticker yang sedang aktif.");
+      return send("⚠️ No hi ninguna jasaón de Audio Sticker activa.");
     clearUserSession(key);
     await react("✅");
-    return send("✅ Sesi Audio Sticker berhasil dibatalkan.");
+    return send("✅ Sesión de audio Sticker cancelada.");
   }
 
   const ownInfo = detectMediaInfo(m);
@@ -788,24 +788,24 @@ async function handler(m, extra = {}) {
         Math.ceil((activeSession.expiresAt - Date.now()) / 1000)
       );
       return send(
-        `⏳ *SESI MASIH AKTIF (${remSec} DETIK)*\n\n` +
-          `Silakan kirim *Audio MP3 / Voice Note* atau reply sebuah audio dengan \`${usedPrefix}${command}\`.\n` +
-          `Ketik \`${usedPrefix}${command} batal\` untuk membatalkan sesi.`
+        `⏳ *SESIÓN TODAVÍA ACTIVA (${remSec} SEGUNDOS)*\n\n` +
+          `Envía un *Audio MP3 / Nota de voz* o responde a un audio con \`${usedPrefix}${command}\`.\n` +
+          `Escribe \`${usedPrefix}${command} batal\` para cancelar la sesión.`
       );
     }
 
     return send(
-      `✦ *AUDIO STICKER GENERATOR* ✦\n` +
-        `> _Buat stiker gambar atau GIF bergerak yang mengeluarkan suara saat diketuk._\n\n` +
-        `╭─「 *CARA PAKAI (VERSI FOTO)* 」\n` +
-        `│ 1. Kirim/Reply *Foto* dengan \`${usedPrefix}${command}\`\n` +
-        `│ 2. Bot akan membuka sesi selama *${SESSION_SECONDS} detik*\n` +
-        `│ 3. Kirim/Reply *Audio MP3 / Voice Note* (maks ${MAX_DURATION}d)!\n` +
+      `✦ *GENERADOR DE AUDIO STICKER* ✦\n` +
+        `> _Crea stickers de imagen o GIF en movimiento que suenan al tocarlos._\n\n` +
+        `╭─「 *CÓMO UTILIZAR (VERSIÓN FOTOGRÁFICA)* 」\n` +
+        `│ 1. Envía o responde a una *Foto* con \`${usedPrefix}${command}\`\n` +
+        `│ 2. El bot abrirá una sesión de *${SESSION_SECONDS} segundos*\n` +
+        `│ 3. ¡Envía o responde a un *Audio MP3 / Nota de voz* (máx. ${MAX_DURATION}s)!\n` +
         `╰───────────────\n\n` +
-        `╭─「 *CARA PAKAI (VERSI VIDEO)* 」\n` +
-        `│ ◦ Kirim/Reply *Video (maks ${MAX_DURATION} detik)* dengan \`${usedPrefix}${command}\`\n` +
-        `│   _(Otomatis jadi stiker GIF bergerak + suara video)_\n` +
-        `│ ◦ Custom Pack: \`${usedPrefix}${command} PackName|Author\`\n` +
+        `╭─「 *CÓMO USARLO (VERSIÓN VÍDEO)* 」\n` +
+        `│ ◦ Envía o responde a un *Vídeo (máx. ${MAX_DURATION} segundos)* con \`${usedPrefix}${command}\`\n` +
+        `│ _(Se convierte solo en sticker GIF animado + audio del vídeo)_\n` +
+        `│ ◦ Pack personalizado: \`${usedPrefix}${command} NombrePack|Autor\`\n` +
         `╰───────────────`
     );
   }
@@ -816,8 +816,8 @@ async function handler(m, extra = {}) {
     (hasOwnAudio || hasQuotedAudio)
   ) {
     return send(
-      `⚠️ *FOTO / STIKER BELUM DIPILIH*\n\n` +
-        `Silakan kirim atau reply *Foto / Stiker* terlebih dahulu dengan perintah \`${usedPrefix}${command}\`, lalu bot akan memberikan waktu *${SESSION_SECONDS} detik* untuk membalas audio ini.`
+      `⚠️ *FALTA ELEGIR FOTO / STICKER*\n\n` +
+        `Envía o responde primero a una *Foto / Sticker* con el comando \`${usedPrefix}${command}\`, y el bot te dará *${SESSION_SECONDS} segundos* para responder a este audio.`
     );
   }
 
@@ -831,7 +831,7 @@ async function handler(m, extra = {}) {
       : [rawText, ""];
 
     const packname =
-      customPack || config.sticker?.packname || "Elysia Assistant";
+      customPack || config.sticker?.packname || "Ai Miku";
     const author = customAuth || config.sticker?.author || "Arthazy";
 
     const visualNode = hasOwnVisual ? m : quoted;
@@ -842,13 +842,13 @@ async function handler(m, extra = {}) {
     if (isVideo && videoSeconds > MAX_DURATION) {
       await react("❌");
       return send(
-        `⚠️ Durasi video maksimal *${MAX_DURATION} detik* untuk dijadikan Audio Sticker.`
+        `⚠️ La duración máxima del vídeo para Audio Sticker es *${MAX_DURATION} segundos*.`
       );
     }
 
     const visualData = await downloadBuffer(visualNode, visualInfo, client);
     if (!visualData || !visualData.length) {
-      throw new Error("Gagal mengunduh media foto/video.");
+      throw new Error("No se pudo descargar la imagen o el vídeo.");
     }
 
     const stickerBuffer = await buildStickerWithExif(
@@ -862,7 +862,7 @@ async function handler(m, extra = {}) {
     if (hasOwnVisual && hasQuotedAudio) {
       const audioBuf = await downloadBuffer(quoted, quotedInfo, client);
       if (!audioBuf || !audioBuf.length)
-        throw new Error("Gagal mengunduh audio yang di-reply.");
+        throw new Error("No se pudo descargar el audio al que responde.");
       const ext = /ogg|opus/i.test(quotedInfo.mime)
         ? "ogg"
         : /mp4|m4a|aac/i.test(quotedInfo.mime)
@@ -934,7 +934,7 @@ async function handler(m, extra = {}) {
   } catch (e) {
     console.error("[AUDIOSTICKER2 ERROR]", e);
     await react("❌");
-    await send(`❌ Gagal memproses media: ${e?.message || String(e)}`);
+    await send(`❌ No se pudo procesar el medio: ${e?.message || String(e)}`);
   }
 }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -27,13 +27,13 @@ const pluginConfig = {
 };
 
 const celebrationQuotes = [
-  "Semoga langgeng sampai ke pelaminan! 💍",
-  "Dari teman jadi cinta, indahnya! 💕",
+  "¡Que dure hasta el altar! 💍",
+  "¡De amigos a amantes, qué bonito! 💕",
   "Love is in the air! 💖",
   "Couple goals detected! 💑",
-  "Jangan lupa undang pas nikah ya! 💒",
-  "Selamat menempuh hidup berduaan! 🥰",
-  "Chemistry-nya kuat banget! 🔥",
+  "¡No olvides invitarnos a la boda! 💒",
+  "¡Felicidades por vuestra vida juntos! 🥰",
+  "¡La química es muy fuerte! 🔥",
   "Match made in heaven! ✨",
 ];
 
@@ -62,17 +62,17 @@ async function handler(m, { sock }) {
   if (!shooterJid) {
     return m.reply(
       `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> Reply pesan tembakan + \`${m.prefix}terima\`\n` +
-        `> Atau \`${m.prefix}terima @tag\``,
+        `> Responde al mensaje de la declaración + \`${m.prefix}terima\`\n` +
+        `> O \`${m.prefix}terima @tag\``,
     );
   }
 
   if (shooterJid === m.sender) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa menerima diri sendiri!`);
+    return m.reply(`❌ *FALLIDO*\n\n> ¡No puedes aceptarte a ti mismo!`);
   }
 
   if (shooterJid.split("@")[0] === String(m.botNumber).replace(/@.*/, "")) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak bisa pacaran!`);
+    return m.reply(`❌ *FALLIDO*\n\n> ¡El bot no puede tener pareja!`);
   }
 
   let shooterData = db.getUser(shooterJid) || {};
@@ -86,8 +86,8 @@ async function handler(m, { sock }) {
     shooterData.fun.tembakTarget !== m.sender
   ) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴍᴇɴᴇᴍʙᴀᴋ*\n\n` +
-        `> @${shooterJid.split("@")[0]} tidak sedang menembakmu`,
+      `❌ *NO TE HA DECLARADO AMOR*\n\n` +
+        `> @${shooterJid.split("@")[0]} no te está declarando su amor`,
       { mentions: [shooterJid] },
     );
   }

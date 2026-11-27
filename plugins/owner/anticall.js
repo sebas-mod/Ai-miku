@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -34,11 +34,11 @@ async function handler(m, { sock }) {
     const current = db.setting("antiCall") ?? config.features?.antiCall ?? true;
     return m.reply(
       `📞 *Anti Call*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticall on* — Aktifkan\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}anticall on* — Activar\n` +
         `> *${m.prefix}anticall off* — Nonaktifkan\n\n` +
-        `_Bot akan otomatis menolak panggilan masuk_`
+        `_El bot rechazará automáticamente las llamadas entrantes_`
     );
   }
 
@@ -46,8 +46,8 @@ async function handler(m, { sock }) {
     db.setting("antiCall", true);
     const ctx = saluranCtx();
     return m.reply(
-      `📞 *Anti Call Aktif*\n\n` +
-        `> Bot akan otomatis menolak panggilan masuk`,
+      `📞 *Anti llamadas activo*\n\n` +
+        `> El bot rechazará automáticamente las llamadas entrantes`,
       { contextInfo: ctx }
     );
   }
@@ -55,13 +55,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("antiCall", false);
     return m.reply(
-      `📞 *Anti Call Nonaktif*\n\n` +
-        `> Bot tidak akan menolak panggilan masuk`
+      `📞 *Anti llamadas inactivo*\n\n` +
+        `> El bot no rechazará las llamadas entrantes`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}anticall on* atau *${m.prefix}anticall off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}anticall on* o *${m.prefix}anticall off*`
   );
 }
 

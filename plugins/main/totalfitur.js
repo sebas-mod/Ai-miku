@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
     name: 'totalfitur',
     alias: ['totalfeature', 'totalcmd', 'countplugin', 'distribusi'],
     category: 'main',
-    description: 'Lihat total fitur/command bot',
+    description: 'Ver el total de funciones/comandos del bot',
     usage: '.totalfitur',
     example: '.totalfitur',
     isOwner: false,
@@ -31,8 +31,8 @@ const ICONS = {
     ai: '🤖', media: '📷', game: '🎮', maker: '🖼️', fun: '🎭',
     group: '👥', owner: '👑', premium: '💎', info: '📊', search: '🔍',
     canvas: '🎨', anime: '🌸', nsfw: '🔞', utility: '🛠️', economy: '💰',
-    stalker: '🔎', random: '🎲', religi: '🕌', islamic: '☪️', cek: '✅',
-    store: '🛒', panel: '🖥️', convert: '🔄', primbon: '🔮', tts: '🗣️',
+    stalker: '🔎', random: '🎲',
+    store: '🛒', panel: '🖥️', convert: '🔄', tts: '🗣️',
     otp: '🔑', vps: '☁️', pushkontak: '📱', jpm: '🎰', ephoto: '📸',
     other: '📦'
 }
@@ -59,13 +59,13 @@ async function handler(m, { sock }) {
 
         const sorted = Object.entries(cats).sort((a, b) => b[1].total - a[1].total)
 
-        let text = `📊 *DISTRIBUSI FITUR*\n\n`
-        text += `╭┈┈⬡「 📈 *RINGKASAN* 」\n`
-        text += `┃ • Total Fitur : *${total}*\n`
-        text += `┃ • Fitur Aktif : *${enabled}*\n`
-        text += `┃ • Kategori    : *${sorted.length}*\n`
+        let text = `📊 *DISTRIBUCIÓN DE FUNCIONES*\n\n`
+        text += `╭┈┈⬡「 📈 *RESUMEN* 」\n`
+        text += `┃ • Total funciones : *${total}*\n`
+        text += `┃ • Funciones activas : *${enabled}*\n`
+        text += `┃ • Categorías      : *${sorted.length}*\n`
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `╭┈┈⬡「 📂 *DETAIL KATEGORI* 」\n`
+        text += `╭┈┈⬡「 📂 *DETALLE POR CATEGORÍA* 」\n`
 
         for (const [cat, data] of sorted) {
             const pct = total > 0 ? ((data.total / total) * 100).toFixed(1) : '0.0'
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
         }
 
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `> _${config.bot?.name || 'Elysia Assistant'}_`
+        text += `> _${config.bot?.name || 'Ai Miku'}_`
 
         await m.reply(text)
 

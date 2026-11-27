@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "samsat",
@@ -37,29 +37,29 @@ const pluginConfig = {
 
   const SUMEDANG = { daerah: 'Kab. Sumedang', samsat: 'Samsat Sumedang', alamat: 'Jl. Prabu Gajah Agung No. 19, Kab. Sumedang' }
   const GARUT = { daerah: 'Kab. Garut', samsat: 'Samsat Garut', alamat: 'Jl. Suherman No. 64, Tarogong Kidul, Kab. Garut' }
-  const KOTA_TASIK = { daerah: 'Kota Tasikmalaya', samsat: 'Samsat Kota Tasikmalaya', alamat: 'Jl. Ir. H. Juanda (By Pass) Kota Tasikmalaya' }
+  const KOTA_TASIK = { daerah: 'Ciudad de Tasikmalaya', samsat: 'Ciudad de Tasikmalaya Samsat', alamat: 'jl. Ir. H. Juanda (Desvío) Ciudad de Tasikmalaya' }
   const KAB_TASIK = { daerah: 'Kab. Tasikmalaya', samsat: 'Samsat Kabupaten Tasikmalaya', alamat: 'Jl. Raya Singaparna, Cintaraja, Kab. Tasikmalaya' }
   const CIAMIS = { daerah: 'Kab. Ciamis', samsat: 'Samsat Ciamis', alamat: 'Jl. Jenderal Sudirman No. 201, Kab. Ciamis' }
-  const BANJAR = { daerah: 'Kota Banjar', samsat: 'Samsat Kota Banjar', alamat: 'Jl. Brigjen M. Isa SH, Purwaharja, Kota Banjar' }
+  const BANJAR = { daerah: 'Ciudad de Banjar', samsat: 'Ciudad de Banjar Samsat', alamat: 'jl. General de brigada M. Isa SH, Purwaharja, ciudad de Banjar' }
 
   const SAMSAT_DATABASE = {
       A: {
           provinsi: 'Provinsi Banten',
-          default: { daerah: 'Kota Serang / Kab. Serang', samsat: 'Samsat Kota Serang', alamat: 'Jl. Jenderal Sudirman No. 1, Kota Serang' },
+          default: { daerah: 'Ciudad / distrito de Serang. Ataque', samsat: 'Ciudad de Serang Samsat', alamat: 'jl. General Sudirman No. 1, ciudad de Serang' },
           sub: {
-              A: { daerah: 'Kota Serang', samsat: 'Samsat Kota Serang', alamat: 'Jl. Jenderal Sudirman No. 1, Kota Serang' },
+              A: { daerah: 'Ciudad de Serang', samsat: 'Ciudad de Serang Samsat', alamat: 'jl. General Sudirman No. 1, ciudad de Serang' },
               E: { daerah: 'Kab. Serang', samsat: 'Samsat Cikande', alamat: 'Jl. Raya Serang - Jakarta KM 27, Cikande' },
               J: { daerah: 'Kab. Pandeglang', samsat: 'Samsat Pandeglang', alamat: 'Jl. Raya Labuan KM 2, Kab. Pandeglang' },
               N: { daerah: 'Kab. Lebak', samsat: 'Samsat Rangkasbitung', alamat: 'Jl. Jenderal Sudirman KM 3, Rangkasbitung' },
-              O: { daerah: 'Kota Cilegon', samsat: 'Samsat Kota Cilegon', alamat: 'Jl. Raya Merak, Kota Cilegon' },
-              V: { daerah: 'Kota Tangerang / Kab. Tangerang', samsat: 'Samsat Balaraja / Cikokol', alamat: 'Jl. Perintis Kemerdekaan, Kota Tangerang' }
+              O: { daerah: 'Ciudad de Cilegón', samsat: 'Ciudad de Cilegón Samsat', alamat: 'jl. Raya Merak, Ciudad de Cilegon' },
+              V: { daerah: 'Ciudad / distrito de Tangerang. Tangerang', samsat: 'Samsat Balaraja / Cikokol', alamat: 'jl. Pioneros de la Independencia, ciudad de Tangerang' }
           }
       },
       AA: {
           provinsi: 'Provinsi Jawa Tengah',
-          default: { daerah: 'Kota Magelang / Kedu', samsat: 'Samsat Kota Magelang', alamat: 'Jl. Jenderal Sudirman No. 45, Kota Magelang' },
+          default: { daerah: 'Magelang / Ciudad de Kedu', samsat: 'Ciudad de Magelang Samsat', alamat: 'jl. General Sudirman No. 45, ciudad de Magelang' },
           sub: {
-              A: { daerah: 'Kota Magelang', samsat: 'Samsat Kota Magelang', alamat: 'Jl. Jenderal Sudirman No. 45, Kota Magelang' },
+              A: { daerah: 'Ciudad de Magelang', samsat: 'Ciudad de Magelang Samsat', alamat: 'jl. General Sudirman No. 45, ciudad de Magelang' },
               B: { daerah: 'Kab. Magelang', samsat: 'Samsat Mungkid', alamat: 'Jl. Mayor Kusen, Mungkid, Kab. Magelang' },
               C: { daerah: 'Kab. Purworejo', samsat: 'Samsat Purworejo', alamat: 'Jl. Mayjen Sutoyo No. 27, Purworejo' },
               D: { daerah: 'Kab. Kebumen', samsat: 'Samsat Kebumen', alamat: 'Jl. Tentara Pelajar No. 39, Kebumen' },
@@ -69,18 +69,18 @@ const pluginConfig = {
       },
       AB: {
           provinsi: 'Provinsi DI Yogyakarta',
-          default: { daerah: 'Kota Yogyakarta', samsat: 'Samsat Kota Yogyakarta', alamat: 'Jl. Tentara Pelajar No. 15, Kota Yogyakarta' },
+          default: { daerah: 'Ciudad de Yogyakarta', samsat: 'Samsat de la ciudad de Yogyakarta', alamat: 'jl. Ejército Estudiantil No. 15, ciudad de Yogyakarta' },
           sub: {
-              A: { daerah: 'Kota Yogyakarta', samsat: 'Samsat Kota Yogyakarta', alamat: 'Jl. Tentara Pelajar No. 15, Kota Yogyakarta' },
+              A: { daerah: 'Ciudad de Yogyakarta', samsat: 'Samsat de la ciudad de Yogyakarta', alamat: 'jl. Ejército Estudiantil No. 15, ciudad de Yogyakarta' },
               B: { daerah: 'Kab. Bantul', samsat: 'Samsat Bantul', alamat: 'Jl. Urip Sumoharjo No. 8, Bantul' },
               C: { daerah: 'Kab. Kulon Progo', samsat: 'Samsat Kulon Progo', alamat: 'Jl. KH. Ahmad Dahlan, Wates' },
               D: { daerah: 'Kab. Gunungkidul', samsat: 'Samsat Gunungkidul', alamat: 'Jl. Brigjen Katamso No. 10, Wonosari' },
               E: { daerah: 'Kab. Sleman', samsat: 'Samsat Sleman', alamat: 'Jl. Magelang KM 12.5, Sleman' }
           }
       },
-      AD: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Kota Surakarta (Solo)', samsat: 'Samsat Kota Surakarta', alamat: 'Jl. Prof. DR. Soeharso No. 17, Kota Surakarta' } },
-      AE: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kota Madiun', samsat: 'Samsat Kota Madiun', alamat: 'Jl. Pahlawan No. 40, Kota Madiun' } },
-      AG: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kota Kediri', samsat: 'Samsat Kota Kediri', alamat: 'Jl. Supersemar No. 82, Kota Kediri' } },
+      AD: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Ciudad de Surakarta (Solo)', samsat: 'Ciudad de Surakarta Samsat', alamat: 'jl. Profesor DR. Soeharso No. 17, ciudad de Surakarta' } },
+      AE: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Ciudad de Madiun', samsat: 'Ciudad de Madiun Samsat', alamat: 'jl. Héroe No. 40, Ciudad Madiun' } },
+      AG: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Ciudad de Kediri', samsat: 'Ciudad de Kediri Samsat', alamat: 'jl. Supersemar No. 82, ciudad de Kediri' } },
       B: {
           provinsi: 'Provinsi DKI Jakarta / Jabar / Banten',
           default: { daerah: 'DKI Jakarta (Jadetabek)', samsat: 'Samsat Polda Metro Jaya', alamat: 'Jl. Jenderal Sudirman Kav. 55, Jakarta Selatan' },
@@ -90,91 +90,91 @@ const pluginConfig = {
               S: { daerah: 'Jakarta Selatan', samsat: 'Samsat Jakarta Selatan', alamat: 'Jl. Jenderal Sudirman Kav. 55, Jakarta Selatan' },
               T: { daerah: 'Jakarta Timur', samsat: 'Samsat Jakarta Timur', alamat: 'Jl. D.I. Panjaitan Kav. 55, Jakarta Timur' },
               U: { daerah: 'Jakarta Utara', samsat: 'Samsat Jakarta Utara', alamat: 'Jl. Gunung Sahari No. 13, Pademangan, Jakarta Utara' },
-              E: { daerah: 'Kota Depok', samsat: 'Samsat Depok', alamat: 'Jl. Merdeka No. 2, Sukmajaya, Kota Depok' },
-              K: { daerah: 'Kota Bekasi', samsat: 'Samsat Kota Bekasi', alamat: 'Jl. Ir. H. Juanda No. 302, Kota Bekasi' },
+              E: { daerah: 'Ciudad de Depok', samsat: 'Samsat Depok', alamat: 'jl. Merdeka No. 2, Sukmajaya, ciudad de Depok' },
+              K: { daerah: 'Ciudad de Bekasi', samsat: 'Ciudad de Bekasi Samsat', alamat: 'jl. Ir. H. Juanda No. 302, ciudad de Bekasi' },
               F: { daerah: 'Kab. Bekasi', samsat: 'Samsat Kab. Bekasi (Cikarang)', alamat: 'Jl. Industri Pasir Gombong, Cikarang Utara' },
-              C: { daerah: 'Kota Tangerang', samsat: 'Samsat Cikokol Tangerang', alamat: 'Jl. Perintis Kemerdekaan II, Kota Tangerang' },
-              W: { daerah: 'Kota Tangerang Selatan', samsat: 'Samsat Ciputat / BSD', alamat: 'Jl. R.E. Martadinata, Ciputat, Tangerang Selatan' }
+              C: { daerah: 'ciudad de tangerang', samsat: 'Samsat Cikokol Tangerang', alamat: 'jl. Pioneros de la Independencia II, ciudad de Tangerang' },
+              W: { daerah: 'Ciudad de Tangerang del Sur', samsat: 'Samsat Ciputat / BSD', alamat: 'Jl. R.E. Martadinata, Ciputat, Tangerang Selatan' }
           }
       },
-      BA: { provinsi: 'Provinsi Sumatera Barat', default: { daerah: 'Kota Padang', samsat: 'Samsat Kota Padang', alamat: 'Jl. Khatib Sulaiman No. 43, Kota Padang' } },
-      BB: { provinsi: 'Provinsi Sumatera Utara', default: { daerah: 'Tapanuli / Kota Sibolga', samsat: 'Samsat Sibolga', alamat: 'Jl. Dr. F.L. Tobing, Kota Sibolga' } },
-      BD: { provinsi: 'Provinsi Bengkulu', default: { daerah: 'Kota Bengkulu', samsat: 'Samsat Kota Bengkulu', alamat: 'Jl. Kapten P. Tendean, Kota Bengkulu' } },
-      BE: { provinsi: 'Provinsi Lampung', default: { daerah: 'Kota Bandar Lampung', samsat: 'Samsat Rajabasa Bandar Lampung', alamat: 'Jl. Pramuka No. 88, Rajabasa, Bandar Lampung' } },
-      BG: { provinsi: 'Provinsi Sumatera Selatan', default: { daerah: 'Kota Palembang', samsat: 'Samsat Kota Palembang', alamat: 'Jl. Kapten A. Rivai, Kota Palembang' } },
-      BH: { provinsi: 'Provinsi Jambi', default: { daerah: 'Kota Jambi', samsat: 'Samsat Kota Jambi', alamat: 'Jl. Jenderal Basuki Rahmat, Kota Jambi' } },
-      BK: { provinsi: 'Provinsi Sumatera Utara', default: { daerah: 'Kota Medan', samsat: 'Samsat Medan Utara / Selatan', alamat: 'Jl. Putri Hijau No. 14, Kota Medan' } },
-      BL: { provinsi: 'Provinsi Aceh', default: { daerah: 'Kota Banda Aceh', samsat: 'Samsat Kota Banda Aceh', alamat: 'Jl. T. Nyak Arief, Kota Banda Aceh' } },
-      BM: { provinsi: 'Provinsi Riau', default: { daerah: 'Kota Pekanbaru', samsat: 'Samsat Kota Pekanbaru', alamat: 'Jl. Gajah Mada No. 200, Kota Pekanbaru' } },
-      BN: { provinsi: 'Provinsi Kepulauan Bangka Belitung', default: { daerah: 'Kota Pangkalpinang', samsat: 'Samsat Pangkalpinang', alamat: 'Jl. Pulau Bangka, Komplek Perkantoran Gubernur, Pangkalpinang' } },
-      BP: { provinsi: 'Provinsi Kepulauan Riau', default: { daerah: 'Kota Batam / Tanjungpinang', samsat: 'Samsat Batam Centre', alamat: 'Jl. Engku Putri, Batam Centre, Kota Batam' } },
+      BA: { provinsi: 'Provinsi Sumatera Barat', default: { daerah: 'ciudad de padang', samsat: 'Ciudad de Padang Samsat', alamat: 'jl. Khatib Sulaiman No. 43, ciudad de Padang' } },
+      BB: { provinsi: 'Provinsi Sumatera Utara', default: { daerah: 'Tapanuli / Ciudad de Sibolga', samsat: 'Samsat Sibolga', alamat: 'jl. Dr. FL Tobing, ciudad de Sibolga' } },
+      BD: { provinsi: 'Provinsi Bengkulu', default: { daerah: 'Ciudad de Bengkulu', samsat: 'Samsat de la ciudad de Bengkulu', alamat: 'jl. Capitán P. Tendean, ciudad de Bengkulu' } },
+      BE: { provinsi: 'Provinsi Lampung', default: { daerah: 'Ciudad de Bandar Lampung', samsat: 'Samsat Rajabasa Bandar Lampung', alamat: 'Jl. Pramuka No. 88, Rajabasa, Bandar Lampung' } },
+      BG: { provinsi: 'Provinsi Sumatera Selatan', default: { daerah: 'ciudad de palembang', samsat: 'Ciudad de Palembang Samsat', alamat: 'jl. Capitán A. Rivai, ciudad de Palembang' } },
+      BH: { provinsi: 'Provinsi Jambi', default: { daerah: 'Ciudad de Jambi', samsat: 'Ciudad de Jambi Samsat', alamat: 'jl. General Basuki Rahmat, ciudad de Jambi' } },
+      BK: { provinsi: 'Provinsi Sumatera Utara', default: { daerah: 'ciudad de medan', samsat: 'Samsat Medan Utara / Selatan', alamat: 'jl. Princesa Verde No. 14, Ciudad de Medan' } },
+      BL: { provinsi: 'Provinsi Aceh', default: { daerah: 'Ciudad de Banda Aceh', samsat: 'Banda Aceh Ciudad Samsat', alamat: 'jl. T. Nyak Arief, ciudad de Banda Aceh' } },
+      BM: { provinsi: 'Provinsi Riau', default: { daerah: 'Ciudad de Pekanbaru', samsat: 'Ciudad de Pekanbaru Samsat', alamat: 'jl. Gajah Mada No. 200, ciudad de Pekanbaru' } },
+      BN: { provinsi: 'Provinsi Kepulauan Bangka Belitung', default: { daerah: 'Ciudad de Pangkal Pinang', samsat: 'Samsat Pangkalpinang', alamat: 'Jl. Pulau Bangka, Komplek Perkantoran Gubernur, Pangkalpinang' } },
+      BP: { provinsi: 'Provinsi Kepulauan Riau', default: { daerah: 'Batam/Ciudad de Tanjungpinang', samsat: 'Samsat Batam Centre', alamat: 'jl. Engku Putri, centro de Batam, ciudad de Batam' } },
       D: {
           provinsi: 'Provinsi Jawa Barat',
-          default: { daerah: 'Kota Bandung', samsat: 'Samsat Kota Bandung (Soekarno-Hatta)', alamat: 'Jl. Soekarno-Hatta No. 528, Kota Bandung' },
+          default: { daerah: 'Bandung', samsat: 'Ciudad de Bandung Samsat (Soekarno-Hatta)', alamat: 'jl. Soekarno-Hatta No. 528, ciudad de Bandung' },
           sub: {
-              A: { daerah: 'Kota Bandung', samsat: 'Samsat Kota Bandung', alamat: 'Jl. Soekarno-Hatta No. 528, Kota Bandung' },
-              S: { daerah: 'Kota Cimahi', samsat: 'Samsat Kota Cimahi', alamat: 'Jl. Jend. H. Amir Machmud, Kota Cimahi' },
+              A: { daerah: 'Bandung', samsat: 'Ciudad de Bandung Samsat', alamat: 'jl. Soekarno-Hatta No. 528, ciudad de Bandung' },
+              S: { daerah: 'Ciudad de Cimahi', samsat: 'Ciudad de Cimahi Samsat', alamat: 'jl. General H. Amir Machmud, ciudad de Cimahi' },
               U: { daerah: 'Kab. Bandung Barat', samsat: 'Samsat Padalarang', alamat: 'Jl. Raya Padalarang, Kab. Bandung Barat' },
               V: { daerah: 'Kab. Bandung', samsat: 'Samsat Soreang / Rancaekek', alamat: 'Jl. Raya Gading Tutuka, Soreang, Kab. Bandung' }
           }
       },
-      DA: { provinsi: 'Provinsi Kalimantan Selatan', default: { daerah: 'Kota Banjarmasin', samsat: 'Samsat Banjarmasin', alamat: 'Jl. Jenderal Ahmad Yani KM 6, Banjarmasin' } },
-      DB: { provinsi: 'Provinsi Sulawesi Utara', default: { daerah: 'Kota Manado', samsat: 'Samsat Kota Manado', alamat: 'Jl. 17 Agustus, Kota Manado' } },
+      DA: { provinsi: 'Provinsi Kalimantan Selatan', default: { daerah: 'Ciudad de Banjarmasin', samsat: 'Samsat Banjarmasin', alamat: 'Jl. Jenderal Ahmad Yani KM 6, Banjarmasin' } },
+      DB: { provinsi: 'Provinsi Sulawesi Utara', default: { daerah: 'ciudad de manado', samsat: 'Samsat de la ciudad de Manado', alamat: 'jl. 17 agosto, ciudad de Manado' } },
       DC: { provinsi: 'Provinsi Sulawesi Barat', default: { daerah: 'Kab. Mamuju', samsat: 'Samsat Mamuju', alamat: 'Jl. Jenderal Sudirman, Mamuju' } },
-      DD: { provinsi: 'Provinsi Sulawesi Selatan', default: { daerah: 'Kota Makassar', samsat: 'Samsat Kota Makassar', alamat: 'Jl. Andi Mappanyuki No. 79, Kota Makassar' } },
-      DE: { provinsi: 'Provinsi Maluku', default: { daerah: 'Kota Ambon', samsat: 'Samsat Kota Ambon', alamat: 'Jl. Rijali, Kota Ambon' } },
-      DG: { provinsi: 'Provinsi Maluku Utara', default: { daerah: 'Kota Ternate', samsat: 'Samsat Kota Ternate', alamat: 'Jl. Sultan M. Djabir Sjah, Kota Ternate' } },
-      DH: { provinsi: 'Provinsi Nusa Tenggara Timur', default: { daerah: 'Kota Kupang', samsat: 'Samsat Kota Kupang', alamat: 'Jl. Polisi Militer No. 9, Kota Kupang' } },
-      DK: { provinsi: 'Provinsi Bali', default: { daerah: 'Kota Denpasar', samsat: 'Samsat Kota Denpasar', alamat: 'Jl. Cok Agung Tresna, Renon, Kota Denpasar' } },
+      DD: { provinsi: 'Provinsi Sulawesi Selatan', default: { daerah: 'Ciudad de Macasar', samsat: 'Samsat de la ciudad de Makassar', alamat: 'jl. Andi Mappanyuki No. 79, ciudad de Makassar' } },
+      DE: { provinsi: 'Provinsi Maluku', default: { daerah: 'ciudad de ambón', samsat: 'Samsat de la ciudad de Ambon', alamat: 'jl. Rijali, ciudad de Ambón' } },
+      DG: { provinsi: 'Provinsi Maluku Utara', default: { daerah: 'ciudad de ternate', samsat: 'Ciudad de Ternate Samsat', alamat: 'jl. Sultán M. Djabir Sjah, ciudad de Ternate' } },
+      DH: { provinsi: 'Provinsi Nusa Tenggara Timur', default: { daerah: 'ciudad de kupang', samsat: 'Ciudad de Kupang Samsat', alamat: 'jl. Policía Militar No. 9, ciudad de Kupang' } },
+      DK: { provinsi: 'Provinsi Bali', default: { daerah: 'Ciudad de Denpasar', samsat: 'Ciudad de Denpasar Samsat', alamat: 'jl. Cok Agung Tresna, Renon, Denpasar' } },
       DL: { provinsi: 'Provinsi Sulawesi Utara', default: { daerah: 'Kepulauan Sangihe / Talaud', samsat: 'Samsat Tahuna', alamat: 'Jl. Tatehe, Tahuna, Kep. Sangihe' } },
-      DM: { provinsi: 'Provinsi Gorontalo', default: { daerah: 'Kota Gorontalo', samsat: 'Samsat Kota Gorontalo', alamat: 'Jl. Jenderal Sudirman, Kota Gorontalo' } },
-      DN: { provinsi: 'Provinsi Sulawesi Tengah', default: { daerah: 'Kota Palu', samsat: 'Samsat Kota Palu', alamat: 'Jl. RA. Kartini No. 102, Kota Palu' } },
-      DP: { provinsi: 'Provinsi Sulawesi Selatan', default: { daerah: 'Kota Parepare / Luwu / Palopo', samsat: 'Samsat Kota Parepare', alamat: 'Jl. Jenderal Sudirman, Kota Parepare' } },
-      DR: { provinsi: 'Provinsi Nusa Tenggara Barat', default: { daerah: 'Kota Mataram (Pulau Lombok)', samsat: 'Samsat Kota Mataram', alamat: 'Jl. Langko No. 32, Kota Mataram' } },
-      DT: { provinsi: 'Provinsi Sulawesi Tenggara', default: { daerah: 'Kota Kendari', samsat: 'Samsat Kota Kendari', alamat: 'Jl. Haluoleo, Kota Kendari' } },
+      DM: { provinsi: 'Provinsi Gorontalo', default: { daerah: 'Ciudad de Goróntalo', samsat: 'Ciudad de Gorontalo Samsat', alamat: 'jl. General Sudirman, ciudad de Gorontalo' } },
+      DN: { provinsi: 'Provinsi Sulawesi Tengah', default: { daerah: 'ciudad de palú', samsat: 'Samsat de la ciudad de Palu', alamat: 'jl. RA. Kartini No. 102, ciudad de Palu' } },
+      DP: { provinsi: 'Provinsi Sulawesi Selatan', default: { daerah: 'Parepare / Luwu / Ciudad Palopó', samsat: 'Ciudad de Parepare Samsat', alamat: 'jl. General Sudirman, ciudad de Parepare' } },
+      DR: { provinsi: 'Provinsi Nusa Tenggara Barat', default: { daerah: 'Ciudad de Mataram (isla de Lombok)', samsat: 'Ciudad de Mataram Samsat', alamat: 'jl. Sello nº 32, ciudad de Mataram' } },
+      DT: { provinsi: 'Provinsi Sulawesi Tenggara', default: { daerah: 'Ciudad de Kendari', samsat: 'Ciudad de Kendari Samsat', alamat: 'jl. Haluoleo, ciudad de Kendari' } },
       DW: { provinsi: 'Provinsi Sulawesi Selatan', default: { daerah: 'Kab. Bone / Wajo / Soppeng', samsat: 'Samsat Watampone', alamat: 'Jl. Jenderal Ahmad Yani, Watampone' } },
       E: {
           provinsi: 'Provinsi Jawa Barat',
-          default: { daerah: 'Kota Cirebon', samsat: 'Samsat Kota Cirebon', alamat: 'Jl. Pemuda No. 44, Kota Cirebon' },
+          default: { daerah: 'Ciudad de Cirebón', samsat: 'Samsat de la ciudad de Cirebon', alamat: 'jl. Joven No. 44, Ciudad de Cirebon' },
           sub: {
-              A: { daerah: 'Kota Cirebon', samsat: 'Samsat Kota Cirebon', alamat: 'Jl. Pemuda No. 44, Kota Cirebon' },
+              A: { daerah: 'Ciudad de Cirebón', samsat: 'Samsat de la ciudad de Cirebon', alamat: 'jl. Joven No. 44, Ciudad de Cirebon' },
               H: { daerah: 'Kab. Cirebon', samsat: 'Samsat Sumber', alamat: 'Jl. Sunan Drajat No. 17, Sumber, Kab. Cirebon' },
               P: { daerah: 'Kab. Indramayu', samsat: 'Samsat Indramayu', alamat: 'Jl. Gatot Subroto, Kab. Indramayu' },
               U: { daerah: 'Kab. Majalengka', samsat: 'Samsat Majalengka', alamat: 'Jl. KH. Abdul Halim, Kab. Majalengka' },
               Y: { daerah: 'Kab. Kuningan', samsat: 'Samsat Kuningan', alamat: 'Jl. RE. Martadinata, Kab. Kuningan' }
           }
       },
-      EA: { provinsi: 'Provinsi Nusa Tenggara Barat', default: { daerah: 'Pulau Sumbawa / Kota Bima', samsat: 'Samsat Sumbawa Besar', alamat: 'Jl. Garuda No. 105, Sumbawa Besar' } },
+      EA: { provinsi: 'Provinsi Nusa Tenggara Barat', default: { daerah: 'Isla Sumbawa / Ciudad de Bima', samsat: 'Sumbawa Besar Samsat', alamat: 'jl. Garuda No. 105, Sumbawa Besar' } },
       EB: { provinsi: 'Provinsi Nusa Tenggara Timur', default: { daerah: 'Pulau Flores / Ende / Maumere', samsat: 'Samsat Ende', alamat: 'Jl. Eltari, Ende' } },
       ED: { provinsi: 'Provinsi Nusa Tenggara Timur', default: { daerah: 'Pulau Sumba / Waingapu', samsat: 'Samsat Sumba Timur', alamat: 'Jl. Jenderal Soeharto, Waingapu' } },
       F: {
           provinsi: 'Provinsi Jawa Barat',
-          default: { daerah: 'Kota Bogor', samsat: 'Samsat Kota Bogor', alamat: 'Jl. Ir. H. Juanda No. 4, Kota Bogor' },
+          default: { daerah: 'ciudad de bogor', samsat: 'Samsat de la ciudad de Bogor', alamat: 'jl. Ir. H. Juanda No. 4, ciudad de Bogor' },
           sub: {
-              A: { daerah: 'Kota Bogor', samsat: 'Samsat Kota Bogor', alamat: 'Jl. Ir. H. Juanda No. 4, Kota Bogor' },
+              A: { daerah: 'ciudad de bogor', samsat: 'Samsat de la ciudad de Bogor', alamat: 'jl. Ir. H. Juanda No. 4, ciudad de Bogor' },
               F: { daerah: 'Kab. Bogor', samsat: 'Samsat Cibinong', alamat: 'Jl. Raya Jakarta - Bogor KM 50, Cibinong' },
-              Q: { daerah: 'Kota Sukabumi', samsat: 'Samsat Kota Sukabumi', alamat: 'Jl. Jenderal Sudirman, Kota Sukabumi' },
+              Q: { daerah: 'ciudad de sukabumi', samsat: 'Ciudad de Sukabumi Samsat', alamat: 'jl. General Sudirman, ciudad de Sukabumi' },
               U: { daerah: 'Kab. Sukabumi', samsat: 'Samsat Cibadak / Pelabuhan Ratu', alamat: 'Jl. Raya Karangtengah, Cibadak, Kab. Sukabumi' },
               W: { daerah: 'Kab. Cianjur', samsat: 'Samsat Cianjur', alamat: 'Jl. Dr. Muwardi (By Pass), Kab. Cianjur' }
           }
       },
-      G: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Kota Pekalongan', samsat: 'Samsat Kota Pekalongan', alamat: 'Jl. Gajah Mada Barat No. 11A, Kota Pekalongan' } },
-      H: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Kota Semarang', samsat: 'Samsat Kota Semarang', alamat: 'Jl. Brigjen Sudiarto No. 500, Kota Semarang' } },
+      G: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Ciudad de Pekalongan', samsat: 'Samsat de la ciudad de Pekalongan', alamat: 'jl. West Gajah Mada No. 11A, ciudad de Pekalongan' } },
+      H: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'ciudad de semarang', samsat: 'Ciudad de Semarang Samsat', alamat: 'jl. General de Brigada Sudiarto No. 500, ciudad de Semarang' } },
       K: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Kab. Pati / Kudus / Jepara', samsat: 'Samsat Pati', alamat: 'Jl. P. Sudirman No. 65, Pati' } },
-      KB: { provinsi: 'Provinsi Kalimantan Barat', default: { daerah: 'Kota Pontianak', samsat: 'Samsat Kota Pontianak', alamat: 'Jl. Adisucipto KM 5.5, Kota Pontianak' } },
-      KH: { provinsi: 'Provinsi Kalimantan Tengah', default: { daerah: 'Kota Palangka Raya', samsat: 'Samsat Palangka Raya', alamat: 'Jl. Tjilik Riwut KM 4.5, Palangka Raya' } },
-      KT: { provinsi: 'Provinsi Kalimantan Timur', default: { daerah: 'Kota Samarinda / Balikpapan', samsat: 'Samsat Kota Samarinda', alamat: 'Jl. M. Yamin, Kota Samarinda' } },
-      KU: { provinsi: 'Provinsi Kalimantan Utara', default: { daerah: 'Kota Tarakan / Tanjung Selor', samsat: 'Samsat Tarakan', alamat: 'Jl. Mulawarman, Kota Tarakan' } },
-      L: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kota Surabaya', samsat: 'Samsat Surabaya Manyar', alamat: 'Jl. Manyar Kertoarjo No. 1, Kota Surabaya' } },
+      KB: { provinsi: 'Provinsi Kalimantan Barat', default: { daerah: 'Ciudad de Pontianak', samsat: 'Ciudad de Pontianak Samsat', alamat: 'jl. Adisucipto KM 5.5, ciudad de Pontianak' } },
+      KH: { provinsi: 'Provinsi Kalimantan Tengah', default: { daerah: 'Ciudad de Palangka Raya', samsat: 'Samsat Palangka Raya', alamat: 'Jl. Tjilik Riwut KM 4.5, Palangka Raya' } },
+      KT: { provinsi: 'Provinsi Kalimantan Timur', default: { daerah: 'Ciudad de Samarinda / Balikpapan', samsat: 'Ciudad de Samarinda Samsat', alamat: 'jl. M. Yamin, ciudad de Samarinda' } },
+      KU: { provinsi: 'Provinsi Kalimantan Utara', default: { daerah: 'Ciudad de Tarakan / Tanjung Selor', samsat: 'Samsat Tarakan', alamat: 'jl. Mulawarman, ciudad de Tarakan' } },
+      L: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'ciudad de surabaya', samsat: 'Samsat Surabaya Manyar', alamat: 'jl. Manyar Kertoarjo No. 1, ciudad de Surabaya' } },
       M: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Pulau Madura', samsat: 'Samsat Pamekasan', alamat: 'Jl. Raya Pamekasan - Sumenep, Pamekasan' } },
-      N: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kota Malang', samsat: 'Samsat Kota Malang', alamat: 'Jl. S. Supriadi No. 80, Kota Malang' } },
+      N: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Ciudad de Malang', samsat: 'Ciudad de Malang Samsat', alamat: 'jl. S. Supriadi No. 80, ciudad de Malang' } },
       P: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kab. Jember / Banyuwangi', samsat: 'Samsat Jember', alamat: 'Jl. Gajah Mada No. 244, Jember' } },
-      PA: { provinsi: 'Provinsi Papua', default: { daerah: 'Kota Jayapura', samsat: 'Samsat Kota Jayapura', alamat: 'Jl. Raya Abepura, Kota Jayapura' } },
+      PA: { provinsi: 'Provinsi Papua', default: { daerah: 'Ciudad de Jayapura', samsat: 'Ciudad de Jayapura Samsat', alamat: 'jl. Raya Abepura, ciudad de Jayapura' } },
       PB: { provinsi: 'Provinsi Papua Barat', default: { daerah: 'Kab. Manokwari', samsat: 'Samsat Manokwari', alamat: 'Jl. Drs. Esau Sesa, Manokwari' } },
       PG: { provinsi: 'Provinsi Papua Pegunungan', default: { daerah: 'Kab. Jayawijaya (Wamena)', samsat: 'Samsat Wamena', alamat: 'Jl. Yos Sudarso, Wamena' } },
       PS: { provinsi: 'Provinsi Papua Selatan', default: { daerah: 'Kab. Merauke', samsat: 'Samsat Merauke', alamat: 'Jl. Raya Mandala, Merauke' } },
       PT: { provinsi: 'Provinsi Papua Tengah', default: { daerah: 'Kab. Nabire / Mimika', samsat: 'Samsat Nabire', alamat: 'Jl. Pepera, Nabire' } },
-      PY: { provinsi: 'Provinsi Papua Barat Daya', default: { daerah: 'Kota Sorong', samsat: 'Samsat Kota Sorong', alamat: 'Jl. Jenderal Sudirman, Kota Sorong' } },
+      PY: { provinsi: 'Provinsi Papua Barat Daya', default: { daerah: 'Ciudad de Sorong', samsat: 'Ciudad de Sorong Samsat', alamat: 'jl. General Sudirman, ciudad de Sorong' } },
       R: { provinsi: 'Provinsi Jawa Tengah', default: { daerah: 'Kab. Banyumas (Purwokerto)', samsat: 'Samsat Purwokerto', alamat: 'Jl. Gerilya Timur, Purwokerto' } },
       S: { provinsi: 'Provinsi Jawa Timur', default: { daerah: 'Kab. Bojonegoro / Mojokerto / Tuban', samsat: 'Samsat Bojonegoro', alamat: 'Jl. Teuku Umar No. 1, Bojonegoro' } },
       T: { provinsi: 'Provinsi Jawa Barat', default: { daerah: 'Kab. Karawang / Purwakarta / Subang', samsat: 'Samsat Karawang', alamat: 'Jl. Jenderal Ahmad Yani (By Pass), Karawang' } },
@@ -218,7 +218,7 @@ const pluginConfig = {
       const { depan, angka: noAngka, belakang: seriBelakang } = parsePlateInput(depanOrFull, angka, belakang)
 
       if (!SAMSAT_DATABASE[depan]) {
-          throw new Error(`Kode depan "${depan}" tidak ditemukan dalam database wilayah!`)
+          throw new Error(`¡El código inicial "${depan}" ¡No está en la base de datos de zonas!`)
     }
 
       const controller = new AbortController()
@@ -226,7 +226,7 @@ const pluginConfig = {
       let firestoreData = null
 
       try {
-          const targetUrl = `${FIRESTORE_REST_URL}/plat_${depan.toLowerCase()}_${noAngka}`
+          const targetUrl = `${FIRESTORE_REST_URL}/lámina_${depan.toLowerCase()}_${noAngka}`
         const res = await fetch(targetUrl, {
               method: 'GET',
               headers: DEFAULT_HEADERS,
@@ -282,7 +282,7 @@ const pluginConfig = {
 
   async function handler(m, { text, prefix, command, reply }) {
       const input = String(text || m.quoted?.text || '').trim()
-      if (!input) return reply(`*Contoh:*\n${prefix || '.'}${command} B 1234 XYZ\n${prefix || '.'}${command} D 5678 AB`)
+      if (!input) return reply(`*Ejemplo:*\n${prefix || '.'}${command} B 1234 XYZ\n${prefix || '.'}${command} D 5678 AB`)
 
       try {
           await m.react?.('⏳')
@@ -291,14 +291,14 @@ const pluginConfig = {
 
           const extra = flattenFirestore(r.firestore_data)
           return reply(
-              `🚘 *INFO PLAT & SAMSAT*\n\n` +
-              `• Plat     : ${r.plat_nomor}\n` +
-              `• Provinsi : ${r.provinsi}\n` +
-              `• Daerah   : ${r.daerah}\n` +
-              `• Samsat   : ${r.samsat}\n` +
-              `• Alamat   : ${r.alamat}` +
-              (extra.length ? `\n\n*Data tambahan*\n${extra.join('\n')}` : '') +
-              `\n\n_Info wilayah berdasarkan kode plat, bukan lokasi pemilik saat ini._`
+              `🚘 *INFO DE MATRÍCULA Y SAMSAT*\n\n` +
+              `• Matrícula: ${r.plat_nomor}\n` +
+              `• Provincia : ${r.provinsi}\n` +
+              `• Zona      : ${r.daerah}\n` +
+              `• Samsat    : ${r.samsat}\n` +
+              `• Dirección : ${r.alamat}` +
+              (extra.length ? `\n\n*Datos adicionales*\n${extra.join('\n')}` : '') +
+              `\n\n_La zona se deduce del código de la matrícula, no de dónde está el dueño ahora._`
           )
       } catch (e) {
           console.error('[SAMSAT]', e)

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "ephoto",
@@ -63,10 +63,10 @@ const pluginConfig = {
       const list = EFFECTS.map(e => `• \`${prefix}${e}\``).join('\n')
 
       return reply(
-          `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
-          `> Buat efek text keren!\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴇꜰᴇᴋ* 」\n${list}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> *Contoh:* ${prefix}glitchtext Elysia Assistant`
+          `🎨 *EFECTOS EPHOTO*\n\n` +
+          ` > ¡Crea efectos de texto geniales!\n\n` +
+          `╭┈┈⬡「 📋 *LISTA DE EFECTOS* 」\n${list}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `> *Ejemplo:* ${prefix}glitchtext Ai Miku`
       )
   }
 

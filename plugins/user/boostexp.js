@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,11 +31,11 @@ const pluginConfig = {
 const COOLDOWN_MS = 30 * 60 * 1000;
 
 const SCENARIOS = [
-  "Bermeditasi di bawah kristal Astral Elysia dan menyerap energi kosmik",
+  "Medita bajo el cristal Astral de Miku y absorbe energía cósmica.",
   "Berlatih kombo pedang bayangan bersama instruktur Guild",
   "Memecahkan gulungan rune kuno di Perpustakaan Bintang",
-  "Menyalurkan mana murni ke dalam inti jiwa petualang",
-  "Menyelesaikan simulasi pertarungan tingkat tinggi di Menara Elysia",
+  "Canaliza maná puro hacia el núcleo del alma del aventurero.",
+  "Has completado una simulación de batalla de alto nivel en la Torre Miku.",
 ];
 
 async function handler(m, { sock }) {
@@ -47,9 +47,9 @@ async function handler(m, { sock }) {
   if (now - last < COOLDOWN_MS) {
     const rem = Math.ceil((COOLDOWN_MS - (now - last)) / 60000);
     return m.reply(
-      `╭─── ❖ 『 ⏳ *ISTIRAHAT LATIHAN* 』 ❖\n` +
-      `│ ✦ Energi spiritualmu masih dalam pemulihan.\n` +
-      `│ ⏱️ *Tunggu:* *${rem} menit* lagi untuk latihan berikutnya!\n` +
+      `╭─── ❖ 『 ⏳ *DESCANSO DE ENTRENAMIENTO* 』 ❖\n` +
+      `│ ✦ Tu energía espiritual aún se está recuperando.\n` +
+      `│ ⏱️ *Espera:* *${rem} ¡Quedan minutos* para el siguiente ejercicio!\n` +
       `╰──────────────────────────❖`
     );
   }
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     `│ 📈 *EXP Diperoleh:* *+${finalExp.toLocaleString("id-ID")} EXP*\n` +
     `│ 🏆 *Total EXP:* ${(user.exp || 0).toLocaleString("id-ID")} XP\n` +
     `│ 🎖️ *Level & Rank:* *Lv.${newLv}* (${rank.title})\n` +
-    (res.leveledUp ? `│ 🎊 *LEVEL UP!* Kamu naik ke *Lv.${res.newLevel}*!\n` : "") +
+    (res.leveledUp ? `│ 🎊 *LEVEL UP!* Subiste a *Lv.${res.newLevel}*!\n` : "") +
     `╰──────────────────────────❖`;
 
   try {
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
       expNeeded: EXP_PER_LEVEL,
       leveledUp: Boolean(res.leveledUp),
       newLevel: res.newLevel || newLv,
-      botName: config.bot?.name || "Elysia Assistant",
+      botName: config.bot?.name || "Ai Miku",
     });
     return await sock.sendMessage(m.chat, { image, caption }, { quoted: m });
   } catch {

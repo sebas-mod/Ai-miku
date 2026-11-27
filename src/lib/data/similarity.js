@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -165,18 +165,18 @@ function getAdvancedSimilarity(str1, str2) {
 }
 
 function getMatchType(inputLower, cmdLower) {
-    if (cmdLower === inputLower) return { type: 'exact', score: 1.0, emoji: '✅', label: 'Sama persis' }
+    if (cmdLower === inputLower) return { type: 'exact', score: 1.0, emoji: '✅', label: 'Exacto' }
     const isShortCmd = cmdLower.length < 3
     const isLongInput = inputLower.length > 3
-    if (cmdLower.startsWith(inputLower)) return { type: 'prefix', score: 0.95, emoji: '🎯', label: 'Awalan cocok' }
+    if (cmdLower.startsWith(inputLower)) return { type: 'prefix', score: 0.95, emoji: '🎯', label: 'Coincide el inicio' }
     if (inputLower.startsWith(cmdLower)) {
         if (isShortCmd && isLongInput) return null
-        return { type: 'contains', score: 0.9, emoji: '📌', label: 'Command lebih pendek' }
+        return { type: 'contains', score: 0.9, emoji: '📌', label: 'El comando es más corto' }
     }
-    if (cmdLower.includes(inputLower)) return { type: 'substring', score: 0.85, emoji: '🔗', label: 'Bagian dari command' }
+    if (cmdLower.includes(inputLower)) return { type: 'substring', score: 0.85, emoji: '🔗', label: 'Parte del comando' }
     if (inputLower.includes(cmdLower)) {
         if (isShortCmd && isLongInput) return null
-        return { type: 'reverse-substring', score: 0.8, emoji: '📎', label: 'Command ada di input' }
+        return { type: 'reverse-substring', score: 0.8, emoji: '📎', label: 'El comando está en lo escrito' }
     }
     return null
 }
@@ -228,7 +228,7 @@ function findSimilarCommands(input, commands, options = {}) {
         const finalSimilarity = Math.min(1, similarity + bonus)
 
         if (distance <= maxDistance || finalSimilarity >= minSimilarity) {
-            let reason = 'Mirip'
+            let reason = 'Parecido'
             let emoji = '🔍'
 
             if (distance === 1) {
@@ -236,26 +236,26 @@ function findSimilarCommands(input, commands, options = {}) {
                     levenshteinDistance(inputLower, cmdLower) === 2 &&
                     damerauLevenshteinDistance(inputLower, cmdLower) === 1
                 if (transposed) {
-                    reason = 'Huruf tertukar'
+                    reason = 'Letras cambiadas de sitio'
                     emoji = '🔄'
                 } else {
-                    reason = 'Salah ketik 1 huruf'
+                    reason = 'Falta 1 letra'
                     emoji = '✏️'
                 }
             } else if (distance === 2) {
-                reason = 'Salah ketik 2 huruf'
+                reason = 'Faltan 2 letras'
                 emoji = '📝'
             } else if (finalSimilarity >= 0.85) {
-                reason = 'Sangat mirip'
+                reason = 'Muy parecido'
                 emoji = '⭐'
             } else if (finalSimilarity >= 0.7) {
-                reason = 'Cukup mirip'
+                reason = 'Bastante parecido'
                 emoji = '💫'
             } else if (finalSimilarity >= 0.5) {
-                reason = 'Agak mirip'
+                reason = 'Algo parecido'
                 emoji = '🌟'
             } else if (finalSimilarity >= 0.3) {
-                reason = 'Sedikit mirip'
+                reason = 'Poco parecido'
                 emoji = '✨'
             }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -16,7 +16,7 @@ const pluginConfig = {
     name: 'tqto',
     alias: ['thanksto', 'thanks', 'credits', 'kredit'],
     category: 'main',
-    description: 'Menampilkan daftar kontributor & kreator Elysia Assistant',
+    description: 'Muestra la lista de colaboradores y creadores de Ai Miku',
     usage: '.tqto',
     example: '.tqto',
     isOwner: false,
@@ -30,30 +30,30 @@ const pluginConfig = {
 
 async function handler(m, { sock, prefix }) {
     const p = prefix || m.prefix || '.'
-    const botName = config.bot?.name || 'Elysia Assistant'
+    const botName = config.bot?.name || 'Ai Miku'
     const ownerName = config.owner?.name || 'Arthazy'
     const version = config.bot?.version || '2.0'
 
     const credits = [
-        { name: ownerName, role: 'Owner & Architect', icon: '👑' },
+        { name: ownerName, role: 'Dueño y arquitecto', icon: '👑' },
         { name: '@rexxhayanasi/elaina-baileys', role: 'WhatsApp Baileys', icon: '⚙️' },
-        { name: 'YannRzy', role: 'Creator / Dev KaguyaMD', icon: '👾' },
-        { name: 'Zanspiw', role: 'Script Reviewer & YouTuber', icon: '👾' },
-        { name: 'All Users & Supporters', role: 'Community', icon: '💖' },
+        { name: 'YannRzy', role: 'Creador / Dev de KaguyaMD', icon: '👾' },
+        { name: 'Zanspiw', role: 'Revisor del script y YouTuber', icon: '👾' },
+        { name: 'Todos los usuarios y seguidores', role: 'Comunidad', icon: '💖' },
     ]
 
     const contentText = [
-        `—–·「 💐 *SPECIAL THANKS TO* 」·–—`,
-        `   ✧ Bot Name  : *${botName}*`,
-        `   ✧ Architect : *${ownerName}*`,
-        `   ✧ Version   : v${version}`,
+        `—–·「 💐 *AGRADECIMIENTOS ESPECIALES* 」·–—`,
+        `   ✧ Nombre-Bot : *${botName}*`,
+        `   ✧ Arquitecto  : *${ownerName}*`,
+        `   ✧ Versión     : v${version}`,
     ].join('\n')
 
     const footerText = [
-        `—–·「 🌟 *KONTRIBUTOR* 」·–—`,
+        `—–·「 🌟 *COLABORADORES* 」·–—`,
         ...credits.map((c) => `   ✧ ${c.icon} *${c.name}* — _${c.role}_`),
         ``,
-        ` Enjoy the bot's features`,
+        ` Disfruta de las funciones del bot`,
     ].join('\n')
 
     const tqtoThumb = await axios
@@ -78,11 +78,11 @@ async function handler(m, { sock, prefix }) {
             .setBody(contentText)
             .setFooter(footerText)
             .setContextInfo(contextInfo)
-            .addSelection('✨ Pilih Menu')
-            .makeSection('list menu')
-            .makeRow('', '📋 All Menu', 'Lihat semua daftar fitur bot', `${p}allmenu`)
-            .makeRow('', '👤 Profile', 'Lihat kartu profil kamu', `${p}profile`)
-            .makeRow('', '👑 Owner', 'Hubungi pemilik bot', `${p}owner`)
+            .addSelection('✨ Elegir menú')
+            .makeSection('lista de menús')
+            .makeRow('', '📋 All Menu', 'Ver la lista completa de funciones del bot', `${p}allmenu`)
+            .makeRow('', '👤 Perfil', 'Ver tu tarjeta de perfil', `${p}profile`)
+            .makeRow('', '👑 Dueño', 'Contactar al dueño del bot', `${p}owner`)
 
         await btn.send(m.chat, { quoted: m.raw || m })
     } catch {

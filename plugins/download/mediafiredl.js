@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const te = ElysiaRuntime.te;
-const mediafire = ElysiaRuntime.mediafire;
+const te = MikuRuntime.te;
+const mediafire = MikuRuntime.mediafire;
 
   const pluginConfig = {
     name: "mediafiredl",
@@ -43,15 +43,15 @@ const mediafire = ElysiaRuntime.mediafire;
 
     if (!url) {
       return m.reply(
-        `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+        `⚠️ *CÓMO USAR*\n\n` +
           `> \`${m.prefix}mediafiredl <url>\`\n\n` +
-          `> Contoh:\n` +
+          `> Ejemplo:\n` +
           `> \`${m.prefix}mediafiredl https://www.mediafire.com/file/xxx\``,
       );
     }
 
     if (!url.match(/mediafire\.com/i)) {
-      return m.reply(`❌ *URL tidak valid. Gunakan link MediaFire.*`);
+      return m.reply(`❌ *URL no válida. Usa un enlace de MediaFire.*`);
     }
     await m.react("🕕");
 

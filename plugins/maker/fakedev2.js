@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "fakedev2",
@@ -72,7 +72,7 @@ const te = ElysiaRuntime.te;
     await loadFont();
     const text = m.text?.trim();
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Hola\``);
     }
 
     let media = null;
@@ -80,14 +80,14 @@ const te = ElysiaRuntime.te;
     const type = getContentType(msgObj.message);
 
     if (!type || type !== "imageMessage") {
-      return m.reply(`⚠️ Harap kirim atau reply foto dengan perintah \`${m.prefix}${m.command} <teks>\``);
+      return m.reply(`⚠️ Envía o responde a una foto con el comando \`${m.prefix}${m.command} <texto>\``);
     }
 
     await m.react("🕕");
 
     try {
       media = await downloadMediaMessage(msgObj, "buffer", {});
-      if (!media) throw new Error("Gagal membaca media");
+      if (!media) throw new Error("No se pudo leer el multimedia");
 
       const bgUrl = "https://raw.githubusercontent.com/kayzzaoshi-code/Uploader/main/file_1772229788017.jpeg";
       const bgBuffer = await axios.get(bgUrl, { responseType: "arraybuffer" }).then(r => r.data);

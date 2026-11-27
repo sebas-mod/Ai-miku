@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -24,7 +24,7 @@ const pluginConfig = {
 }
 function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
     const template = `
 const pluginConfig = {
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
         await m.reply('This is an example plugin!')
     } catch (error) {
         console.error('Example Plugin Error:', error)
-        await m.reply('❌ *GAGAL*\\n\\n> ' + error.message)
+        await m.reply('❌ *ERROR*\\n\\n> ' + error.message)
     }
 }
 export { pluginConfig as config, handler }

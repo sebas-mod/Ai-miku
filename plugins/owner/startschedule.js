@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,17 +29,17 @@ async function handler(m, { sock, args }) {
         const target = args[0]?.toLowerCase();
 
         if (!target) {
-            const helpText = `▶️ *sᴛᴀʀᴛ sᴄʜᴇᴅᴜʟᴇʀ*
+            const helpText = `▶️ *INICIAR PROGRAMADOR*
 
 *Usage:*
-\`.startschedule <nama>\`
+\`.startschedule <nombre>\`
 
 *Available schedulers:*
 • \`limitreset\` - Daily Limit Reset
 • \`groupschedule\` - Group Schedule
 • \`sewa\` - Sewa Checker
 • \`messages\` - Scheduled Messages
-• \`all\` - Semua scheduler
+• \`all\` - Todos los programadores
 
 *Example:*
 \`.startschedule limitreset\`
@@ -52,16 +52,16 @@ async function handler(m, { sock, args }) {
         const result = startSchedulerByName(target, sock);
 
         if (result.started) {
-            await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
+            await m.reply(`▶️ *PROGRAMADOR INICIADO*
 
 > Scheduler: *${result.name}*
-> Status: ✅ Aktif
+> Estado: ✅ Activo
 
-_Scheduler telah dimulai kembali_`);
+_El programador se ha reiniciado_`);
         } else {
-            await m.reply(`❌ Scheduler tidak ditemukan atau sudah aktif
+            await m.reply(`❌ Programador no encontrado o ya activo
 
-Gunakan \`.startschedule\` untuk melihat daftar scheduler`);
+Usa \`.startschedule\` para ver la lista de programadores`);
         }
     } catch (error) {
         console.error('[StartSchedule Error]', error);

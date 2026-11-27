@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-// Bagian config: thumbnail
+// Sección de config: thumbnail
 export default {
   thumbUrl: {
-    // Thumbnail kecil per fungsi pesan (terpisah)
+    // Miniatura pequeña por tipo de mensaje (por separado)
     small: "https://c.termai.cc/i149/k04E.jpg",
     quoted: "https://cdn.zass.in/18A4SvJByc.jpeg",
     location: "https://cdn.zass.in/SBvmXjmkpm.jpeg",
@@ -18,19 +18,19 @@ export default {
     sewa: "https://cdn.zass.in/EpCuKc2M6T.jpeg",
     ppKosong: "https://cdn.zass.in/Mek743AGot.jpeg",
 
-    // Gambar menu (masing-masing terpisah, allmenu tidak memakai small)
+    // Imagen del menú (cada una por separado, allmenu no usa small)
     menu: "https://c.termai.cc/i126/Orm.jpg",
     allmenu: "https://c.termai.cc/i180/C21.jpg",
 
-    // Gambar sambutan grup
+    // Imagen de bienvenida al grupo
     welcome: "https://cdn.zass.in/P0bAQ7HRMv.jpg",
     goodbye: "https://cdn.zass.in/17Ly3jWUph.jpeg",
 
-    // Gambar pendaftaran
+    // Imagen de registro
     daftar: "https://cdn.zass.in/P3Q2YXg8u3.jpeg",
   },
 
-  // Latar canvas = file jpg lokal (tanpa URL). Ganti saja file jpg-nya dengan nama & ukuran yang sama.
+  // Fondo del canvas = archivo jpg local (sin URL). Solo reemplaza el jpg por uno con el mismo nombre y tamaño.
   thumbFile: {
     levelup: "src/assets/thumbs/levelup.jpg",
     boostexp: "src/assets/thumbs/boostexp.jpg",
@@ -39,13 +39,13 @@ export default {
     ranklist: "src/assets/thumbs/ranklist.jpg",
   },
 
-  // Ukuran (px) latar canvas. Gambar jpg apa pun otomatis di-crop "cover" ke ukuran ini,
-  // tapi paling bagus kalau file jpg-nya dibuat dengan ukuran persis seperti di bawah.
+  // Tamaño (px) del fondo del canvas. Cualquier jpg se recorta automáticamente en modo "cover" a este tamaño,
+  // pero lo mejor es crear el jpg con exactamente el tamaño indicado abajo.
   thumbSize: {
-    levelup: { width: 1200, height: 630 }, // kartu landscape: avatar + angka level
-    boostexp: { width: 1200, height: 630 }, // kartu landscape: avatar + EXP didapat
-    leaderboard: { width: 1080, height: 1560 }, // portrait: header + 10 baris peringkat uang
-    toplevel: { width: 1080, height: 1560 }, // portrait: header + 10 baris peringkat level
-    ranklist: { width: 1200, height: 1500 }, // portrait: header + grid 3 x 7 pangkat
+    levelup: { width: 1200, height: 630 }, // tarjeta horizontal: avatar + número de nivel
+    boostexp: { width: 1200, height: 630 }, // tarjeta horizontal: avatar + EXP obtenido
+    leaderboard: { width: 1080, height: 1560 }, // vertical: cabecera + 10 filas de ranking de dinero
+    toplevel: { width: 1080, height: 1560 }, // vertical: cabecera + 10 filas de ranking de nivel
+    ranklist: { width: 1200, height: 1500 }, // vertical: cabecera + cuadrícula 3 x 7 de rangos
   },
 };

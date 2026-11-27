@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "sekolah",
@@ -58,7 +58,7 @@ const pluginConfig = {
 
       if (json.status_code && json.status_code !== 200) {
           throw new Error(
-              json.message || 'Gagal mengambil data sekolah.'
+              json.message || 'No se pudieron recuperar los datos de la escuela.'
           )
       }
 
@@ -114,39 +114,39 @@ const pluginConfig = {
   function formatSekolah(data, keyword) {
       if (!data.sekolah.length) {
           return [
-              `╭─「 PENCARIAN SEKOLAH 」`,
+              `╭─「 BÚSQUEDA DE COLEGIOS 」`,
               `│`,
-              `│ Keyword : ${keyword}`,
+              `│ Búsqueda : ${keyword}`,
               `│`,
-              `│ Data sekolah tidak ditemukan.`,
+              `│ No se encontraron colegios.`,
               `│`,
               `╰──────────────`
           ].join('\n')
       }
 
       const hasil = [
-          `╭─「 DATA SEKOLAH 」`,
+          `╭─「 DATOS DE COLEGIOS 」`,
           `│`,
-          `│ Keyword : ${keyword}`,
+          `│ Búsqueda : ${keyword}`,
           `│ Total   : ${data.total}`,
-          `│ Ditampilkan: ${data.count}`,
+          `│ Mostrados: ${data.count}`,
           `│`
       ]
 
       data.sekolah.forEach((s, i) => {
           hasil.push(
               `├─「 ${i + 1} 」`,
-              `│ Nama       : ${s.nama || '-'}`,
+              `│ Número: ${s.nama || '-'}`,
               `│ NPSN       : ${s.npsn || '-'}`,
-              `│ Bentuk     : ${s.bentuk_pendidikan || '-'}`,
-              `│ Status     : ${s.status_sekolah || '-'}`,
-              `│ Akreditasi : ${s.akreditasi || '-'}`,
-              `│ Alamat     : ${s.alamat || '-'}`,
-              `│ Dusun      : ${s.dusun || '-'}`,
-              `│ Kecamatan  : ${s.kecamatan || '-'}`,
-              `│ Kabupaten  : ${s.kabupaten || '-'}`,
-              `│ Provinsi   : ${s.provinsi || '-'}`,
-              `│ Kode Pos   : ${s.kode_pos || '-'}`,
+              `│ Tipo       : ${s.bentuk_pendidikan || '-'}`,
+              `│ Estado: ${s.status_sekolah || '-'}`,
+              `│ Acreditación : ${s.akreditasi || '-'}`,
+              `│ Dirección  : ${s.alamat || '-'}`,
+              `│ Aldea      : ${s.dusun || '-'}`,
+              `│ Distrito   : ${s.kecamatan || '-'}`,
+              `│ Ciudad      : ${s.kabupaten || '-'}`,
+              `│ Provincia  : ${s.provinsi || '-'}`,
+              `│ Código postal : ${s.kode_pos || '-'}`,
               `│`
           )
       })
@@ -160,25 +160,25 @@ const pluginConfig = {
       if (!text) {
           return reply(
               [
-                  `╭─「 PENCARIAN SEKOLAH 」`,
+                  `╭─「 BÚSQUEDA DE COLEGIOS 」`,
                   `│`,
-                  `│ Cara penggunaan:`,
-                  `│ .sekolah <keyword>`,
+                  `│ Modo de uso:`,
+                  `│.sekolah <búsqueda>`,
                   `│`,
-                  `│ Contoh:`,
-                  `│ .sekolah SMAN 1`,
+                  `│ Ejemplo:`,
+                  `│.sekolah PEQUEÑO 1`,
                   `│`,
-                  `│ Dengan limit:`,
-                  `│ .sekolah SMAN 1|20`,
+                  `│ Con límite:`,
+                  `│.sekolah ESCUELA SECUNDARIA 1|20`,
                   `│`,
-                  `│ Dengan kabupaten:`,
-                  `│ .sekolah SMAN|20|Banjar`,
+                  `│ Con ciudad:`,
+                  `│.sekolah SMAN|20|Banjar`,
                   `│`,
-                  `│ Format lengkap:`,
-                  `│ keyword|limit|kabupaten|bentuk|status`,
+                  `│ Formato completo:`,
+                  `│ búsqueda|límite|ciudad|tipo|estado`,
                   `│`,
-                  `│ Contoh:`,
-                  `│ .sekolah SMAN|20|Banjar|SMA|Negeri`,
+                  `│ Ejemplo:`,
+                  `│.sekolah ESCUELA SECUNDARIA|20|Banjar|SMA|Estado`,
                   `│`,
                   `╰──────────────`
               ].join('\n')
@@ -189,10 +189,10 @@ const pluginConfig = {
           const options = parseInput(text)
 
           if (!options.keyword) {
-              return reply('Masukkan nama atau keyword sekolah.')
+              return reply('Escribe el nombre o la palabra clave del colegio.')
           }
 
-          await reply('Sedang mencari data sekolah...')
+          await reply('Buscando datos del colegio...')
 
           const data =
               await cariSekolah(
@@ -210,7 +210,7 @@ const pluginConfig = {
           console.error('[SEKOLAH]', e)
 
           return reply(
-              `Gagal mengambil data sekolah.\n\n${e.message}`
+              `No se pudieron recuperar los datos de la escuela.\n\n${e.message}`
           )
       }
   }

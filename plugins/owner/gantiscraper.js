@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
       return m.reply(`📂 Folder src/scraper kosong`);
     }
 
-    let text = `📂 *DAFTAR SCRAPER*\n\n` + `╭─〔 *src/scraper* 〕───⬣\n`;
+    let text = `📂 *LISTA DE SCRAPERS*\n\n` + `╭─〔 *src/scraper* 〕───⬣\n`;
 
     scrapers.forEach((s, i) => {
       const stat = fs.statSync(path.join(SCRAPER_DIR, `${s}.js`));
@@ -129,7 +129,7 @@ async function handler(m, { sock }) {
     text +=
       `╰───────⬡\n\n` +
       `Total: ${scrapers.length} scraper\n\n` +
-      `> Gunakan \`${m.prefix}gantiscraper <nama>\` dengan reply code`;
+      `> Usa \`${m.prefix}gantiscraper <nombre>\` respondiendo al código`;
 
     return m.reply(text);
   }
@@ -137,12 +137,12 @@ async function handler(m, { sock }) {
   if (!quoted) {
     return m.reply(
       `🔄 *GANTI SCRAPER*\n\n` +
-        `Reply code scraper baru dengan caption:\n` +
-        `\`${m.prefix}gantiscraper\` - Auto detect dari export\n` +
-        `\`${m.prefix}gantiscraper namafile\` - Custom nama file\n\n` +
-        `📋 *Lihat daftar scraper:*\n` +
+        `Responde al código del nuevo scraper con el texto:\n` +
+        `\`${m.prefix}gantiscraper\` - Detección automática desde export\n` +
+        `\`${m.prefix}gantiscraper namafile\` - Nombre de archivo personalizado\n\n` +
+        `📋 *Ver lista de scrapers:*\n` +
         `\`${m.prefix}gantiscraper list\`\n\n` +
-        `⚠️ *PERINGATAN:*\nCode lama akan di-backup sebelum diganti`,
+        `⚠️ *ADVERTENCIA:*\nEl código anterior se respaldará antes de reemplazarlo`,
     );
   }
 
@@ -155,12 +155,12 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nGagal download file`);
+      return m.reply(`❌ *ERROR*\n\nNo se pudo descargar el archivo`);
     }
   }
 
   if (!code || code.length < 30) {
-    return m.reply(`❌ *GAGAL*\n\nCode terlalu pendek atau tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nEl código es demasiado corto o no es válido`);
   }
 
   const hasExport =
@@ -171,7 +171,7 @@ async function handler(m, { sock }) {
 
   if (!hasExport) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode bukan format scraper yang valid\nHarus ada export`,
+      `❌ *ERROR*\n\nEl código no tiene un formato de scraper válido\nDebe incluir export`,
     );
   }
 
@@ -195,14 +195,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nTidak bisa mendeteksi nama scraper\nGunakan \`${m.prefix}gantiscraper <namafile>\``,
+      `❌ *ERROR*\n\nNo se pudo detectar el nombre del scraper\nUsa \`${m.prefix}gantiscraper <namafile>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNama file tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -279,8 +279,8 @@ async function handler(m, { sock }) {
       `🔄 *Hot Reload:*\n` +
       `- Scraper: ${scraperReload.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
       `- Plugin Terdeteksi: ${pluginReloads.length}\n` +
-      `- Plugin Berhasil Reload: ${reloadSuccess.length}\n` +
-      `- Plugin Gagal Reload: ${reloadFailed.length}\n\n`;
+      `- Plugins recargados: ${reloadSuccess.length}\n` +
+      `- Plugins con error al recargar: ${reloadFailed.length}\n\n`;
 
     if (reloadSuccess.length) {
       replyText += `✅ *Plugin Reloaded:*\n`;
@@ -292,7 +292,7 @@ async function handler(m, { sock }) {
     }
 
     if (reloadFailed.length) {
-      replyText += `⚠️ *Plugin Gagal Reload:*\n`;
+      replyText += `⚠️ *Plugins con error al recargar:*\n`;
       replyText += reloadFailed
         .slice(0, 10)
         .map(
@@ -303,13 +303,13 @@ async function handler(m, { sock }) {
     }
 
     if (!pluginReloads.length) {
-      replyText += `ℹ️ Tidak ada plugin yang langsung mengimpor scraper ini.\n\n`;
+      replyText += `ℹ️ Ningún plugin importa este scraper directamente.\n\n`;
     }
 
     if (reloadFailed.length > 0) {
-      replyText += `⚠️ Sebagian reload gagal, restart bot mungkin diperlukan`;
+      replyText += `⚠️ Algunos plugins no se recargaron; puede que necesites reiniciar el bot`;
     } else {
-      replyText += `Scraper sudah aktif dan siap digunakan!`;
+      replyText += `¡El scraper ya está activo y listo para usar!`;
     }
 
     return m.reply(replyText);

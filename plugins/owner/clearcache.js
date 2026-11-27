@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -42,10 +42,10 @@ async function handler(m) {
     return m.reply(
       `╭─── ❖ 『 🧹 *STATUS AUTO CLEAR CACHE* 』 ❖\n` +
         `│ 📂 *Folder:* \`database/cache\`\n` +
-        `│ 📄 *Jumlah File:* ${stats.fileCount} file\n` +
-        `│ 💾 *Total Ukuran:* ${stats.formattedSize}\n` +
-        `│ ⚙️ *Auto Clear:* ${opt.enabled ? "✅ Aktif" : "❌ Nonaktif"}\n` +
-        `│ ⏱️ *Interval:* Tiap ${opt.intervalMinutes || 60} menit\n` +
+        `│ 📄 *Cantidad de archivos:* ${stats.fileCount} file\n` +
+        `│ 💾 *Tamaño total:* ${stats.formattedSize}\n` +
+        `│ ⚙️ *Borrado automático:* ${opt.enabled ? "✅ Activo" : "❌ Inactivo"}\n` +
+        `│ ⏱️ *Interval:* Cada ${opt.intervalMinutes || 60} minutos\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -54,25 +54,25 @@ async function handler(m) {
     opt.enabled = true;
     startDatabaseCacheCleaner();
     return m.reply(
-      `✅ *Auto Clear \`database/cache\` diaktifkan!*\n> Otomatis bersih tiap *${opt.intervalMinutes || 60} menit*.`
+      `✅ *Borrado automático \`database/cache\` activado!*\n> Se limpia automáticamente cada *${opt.intervalMinutes || 60} minutos*.`
     );
   }
 
   if (arg === "off") {
     opt.enabled = false;
     stopDatabaseCacheCleaner();
-    return m.reply(`🛑 *Auto Clear \`database/cache\` dinonaktifkan.*`);
+    return m.reply(`🛑 *Borrado automático \`database/cache\` dinonaktifkan.*`);
   }
 
   const r = clearDatabaseCache();
   if (r.missing || r.deleted === 0) {
-    return m.reply(`✨ Folder \`database/cache\` sudah bersih (0 file).`);
+    return m.reply(`✨ Folder \`database/cache\` ya está limpia (0 archivos).`);
   }
 
   return m.reply(
     `╭─── ❖ 『 🧹 *CACHE DATABASE DIBERSIHKAN* 』 ❖\n` +
       `│ 📂 *Folder:* \`database/cache\`\n` +
-      `│ 🗑️ *Dihapus:* ${r.deleted} file\n` +
+      `│ 🗑️ *Eliminados:* ${r.deleted} file\n` +
       `│ 💾 *Ruang Bebas:* ${r.formattedFreed}\n` +
       `│ 🛡️ *Database Utama:* Aman\n` +
       `╰──────────────────────────❖`

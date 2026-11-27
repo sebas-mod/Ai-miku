@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -96,14 +96,14 @@ const pluginConfig = {
 
   async function sendTrack(m, conn, track) {
       const info = await ncs.getDownloadInfo(track.tid)
-      if (!info || !info.downloadUrl) return m.reply('🚫 Gagal mengambil link download lagu.')
+      if (!info || !info.downloadUrl) return m.reply('🚫 Error al obtener el enlace de descarga de la canción.')
 
       const caption =
           `🎧 *NCS Music*\n\n` +
-          `✨ Judul: ${track.title}\n` +
-          `🍢 Artis: ${track.artist}\n` +
+          `✨ Título: ${track.title}\n` +
+          `🍢 Artista: ${track.artist}\n` +
           `🥧 Rilis: ${track.releaseDate}\n` +
-          `🍭 Link: ${info.downloadUrl}\n\n` +
+          `🍭 Enlace: ${info.downloadUrl}\n\n` +
           `💿 Source: ncs.io`
 
       try {
@@ -119,7 +119,7 @@ const pluginConfig = {
           }, { quoted: m })
       } catch (e) {
           console.error('[NCS] kirim:', e)
-          await m.reply('🍬 Gagal mengirim file audio.\nLink manual:\n' + info.downloadUrl)
+          await m.reply('🍬 Error con el enlace y el archivo de audio.\nEnlace Manual:\n' + info.downloadUrl)
       }
   }
 
@@ -130,30 +130,30 @@ const pluginConfig = {
       if (command === 'playncs') {
           let tracks
           if (q) {
-              await m.reply('🍭 Mencari lagu NCS...')
+              await m.reply('🍭 Buscando canciones de NCS...')
               tracks = await ncs.searchTracks(q)
-              if (!tracks.length) return m.reply('🍬 Tidak ada hasil ditemukan di NCS.io.')
+              if (!tracks.length) return m.reply('🍬 No se encontraron resultados en NCS.io.')
           } else {
-              await m.reply('🍭 Mengambil lagu acak...')
+              await m.reply('🍭 Obteniendo una canción aleatoria...')
               tracks = await ncs.searchTracks('')
-              if (!tracks.length) return m.reply('🍬 Tidak bisa mengambil daftar lagu NCS.')
+              if (!tracks.length) return m.reply('🍬 No se pudo obtener la lista de canciones de NCS.')
               tracks = [tracks[Math.floor(Math.random() * tracks.length)]]
           }
           return sendTrack(m, conn, tracks[0])
       }
 
       if (command === 'ncssearch') {
-          if (!q) return m.reply(`❀ Contoh: *${p}ncssearch Invincible*`)
+          if (!q) return m.reply(`❀ Ejemplo: *${p}ncssearch Invincible*`)
 
-          await m.reply('🍭 Sedang mencari lagu di NCS.io...')
+          await m.reply('🍭 Buscando canciones en NCS.io...')
           const results = await ncs.searchTracks(q)
-          if (!results.length) return m.reply('🍬 Tidak ada hasil ditemukan.')
+          if (!results.length) return m.reply('🍬 No se encontraron resultados.')
 
-          let list = `🎶 *Hasil pencarian NCS untuk:* ${q}\n\n`
+          let list = `🎶 *Resultados de búsqueda en NCS para:* ${q}\n\n`
           results.slice(0, 10).forEach((v, i) => {
               list += `*${i + 1}.* ${v.title} - ${v.artist}\n📅 ${v.releaseDate}\n\n`
           })
-          list += `Ketik *${p}ncsplay [nomor]* untuk memutar lagu dari hasil pencarian.\nContoh: *${p}ncsplay 1*`
+          list += `Escribe *${p}ncsplay [número]* para reproducir una canción de los resultados.\nEjemplo: *${p}ncsplay 1*`
 
           searchResults.set(m.sender, results.slice(0, 10))
           return m.reply(list)
@@ -161,15 +161,15 @@ const pluginConfig = {
 
       if (command === 'ncsplay') {
           const num = parseInt(q)
-          if (isNaN(num)) return m.reply(`🍬 Ketik nomor hasil pencarian, contoh: *${p}ncsplay 1*`)
+          if (isNaN(num)) return m.reply(`🍬 Escribe el número del resultado, ejemplo: *${p}ncsplay 1*`)
 
           const results = searchResults.get(m.sender)
-          if (!results) return m.reply(`🍬 Kamu belum melakukan pencarian. Gunakan *${p}ncssearch [judul]* dulu.`)
+          if (!results) return m.reply(`🍬 Todavía no has buscado. Usa primero *${p}ncssearch [título]* antes.`)
 
           const track = results[num - 1]
-          if (!track) return m.reply('⚠️ Nomor tidak valid.')
+          if (!track) return m.reply('⚠️ Número no válido.')
 
-          await m.reply('🍭 Mengambil lagu...')
+          await m.reply('🍭 Obteniendo la canción...')
           return sendTrack(m, conn, track)
       }
   }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "antimedia",
   alias: ["am", "nomedia"],
   category: "group",
-  description: "Mengatur antimedia di grup (blokir gambar/video/audio/dokumen)",
+  description: "Configura el antimedia en el grupo (bloquea imágenes/vídeos/audio/documentos)",
   usage: ".antimedia <on/off>",
   example: ".antimedia on",
   isOwner: false,
@@ -28,7 +28,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
+    antimedia: "⚠ *AntiMedia* — Se eliminó un archivo multimedia de @%user%.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
   if (!action) {
     const status = groupData.antimedia ? "✅ ON" : "❌ OFF";
     await m.reply(
-      `🖼️ *AntiMedia*\n\n> Status: *${status}*\n\n> \`.antimedia on/off\``,
+      `🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``,
     );
     return;
   }
@@ -76,18 +76,18 @@ async function handler(m, { sock }) {
   if (action === "on") {
     db.setGroup(m.chat, { antimedia: true });
     m.react("✅");
-    await m.reply(`✅ *AntiMedia diaktifkan*`);
+    await m.reply(`✅ *AntiMedia activado*`);
     return;
   }
 
   if (action === "off") {
     db.setGroup(m.chat, { antimedia: false });
     m.react("❌");
-    await m.reply(`❌ *AntiMedia dinonaktifkan*`);
+    await m.reply(`❌ *AntiMedia desactivado*`);
     return;
   }
 
-  await m.reply(`❌ Gunakan \`.antimedia on\` atau \`.antimedia off\``);
+  await m.reply(`❌ Usa \`.antimedia on\` o \`.antimedia off\``);
 }
 
 export { pluginConfig as config, handler, checkAntimedia };

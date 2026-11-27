@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const pluginConfig = {
     name: "ttimg",
@@ -34,7 +34,7 @@ const pluginConfig = {
 
   async function handler(m, { text, usedPrefix, command, conn }) {
     if (!text) {
-      return m.reply(`Contoh:\n${usedPrefix + command} https://vt.tiktok.com/xxxx`)
+      return m.reply(`Ejemplo:\n${usedPrefix + command} https://vt.tiktok.com/xxxx`)
     }
 
     await m.react('✨')
@@ -43,19 +43,19 @@ const pluginConfig = {
       const regex = /(https:\/\/(vt|vm)\.tiktok\.com\/[^\s]+|https:\/\/www\.tiktok\.com\/@[\w.-]+\/video\/\d+)/
       const url = text.match(regex)?.[0]
 
-      if (!url) return m.reply('❌ Link TikTok tidak valid.')
+      if (!url) return m.reply('❌ Enlace de TikTok no válido.')
 
       const data = await getSlide(url)
-      if (!data) return m.reply('❌ Gagal mengambil data.')
+      if (!data) return m.reply('❌ No se pudieron obtener los datos.')
 
       const images = data.images || []
-      if (!images.length) return m.reply('❌ Post ini bukan slideshow foto.')
+      if (!images.length) return m.reply('❌ Esta publicación no es un carrusel de fotos.')
 
       const link = `https://www.tiktok.com/@${data.author.unique_id || 'user'}/video/${data.video_id}`
       const caption =
   `*TIKTOK PHOTO*
 
-Judul: ${data.title || '-'}
+Título: ${data.title || '-'}
 Uploader: ${data.author.nickname}
 Total: ${images.length}
 Link: ${link}`
@@ -64,7 +64,7 @@ Link: ${link}`
       await sendAlbum(conn, m.chat, slides.map((url, i) => ({ type: 'image', url, caption: i === 0 ? caption : '' })), { quoted: m })
     } catch (e) {
       console.error(e)
-      m.reply('❌ Gagal mengambil slide.')
+      m.reply('❌ Error al obtener el carrusel.')
     }
   }
 

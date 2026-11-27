@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanraport',
@@ -36,12 +36,12 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       const level = clan.level || getLevelFromExp(clan.exp || 0)
@@ -76,9 +76,9 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const totalWars = warHistory.length
       const winRate = totalWars > 0 ? Math.floor((wins / totalWars) * 100) : 0
 
-      let txt = `📊 *ʟᴀᴘᴏʀᴀɴ ᴀᴋᴛɪᴠɪᴛᴀꜱ ᴄʟᴀɴ*\n\n`
+      let txt = `📊 *INFORME DE ACTIVIDAD DEL CLAN*\n\n`
       txt += `╭┈┈⬡「 🏰 *ɪɴꜰᴏ ᴜᴍᴜᴍ* 」\n`
-      txt += `┃ 📛 Nama: *${clan.name}*\n`
+      txt += `┃ 📛 Nombre: *${clan.name}*\n`
       txt += `┃ 🏆 Level: *${level}*\n`
       txt += `┃ 📈 Total XP: *${totalXP.toLocaleString('id-ID')}*\n`
       txt += `┃ 👥 Member: *${memberCount}* (${onlineMembers} online)\n`
@@ -86,7 +86,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       txt += `╭┈┈⬡「 💰 *ᴇᴋᴏɴᴏᴍɪ* 」\n`
       txt += `┃ 💵 Total kas: *Rp ${totalDonations.toLocaleString('id-ID')}*\n`
-      txt += `┃ 👤 Total donatur: *${donors} orang*\n`
+      txt += `┃ 👤 Donantes totales: *${donors} persona*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
       if (topDonorsList.length > 0) {
@@ -102,8 +102,8 @@ const getDatabase = ElysiaRuntime.getDatabase;
       }
 
       txt += `╭┈┈⬡「 💬 *ᴀᴋᴛɪᴠɪᴛᴀꜱ* 」\n`
-      txt += `┃ 📱 Chat 24 jam: *${last24h} pesan*\n`
-      txt += `┃ 📱 Chat 7 hari: *${last7d} pesan*\n`
+      txt += `┃ 📱 Chat 24 horas: *${last24h} mensaje*\n`
+      txt += `┃ 📱 Chat 7 días: *${last7d} mensaje*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
       txt += `╭┈┈⬡「 ⚔️ *ᴡᴀʀ ꜱᴛᴀᴛꜱ* 」\n`

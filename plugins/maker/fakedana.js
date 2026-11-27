@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
 import fs from 'fs'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
 const FontLibrary = { use: (name, file) => { try { if (fs.existsSync(file)) GlobalFonts.registerFromPath(file, name) } catch {} } }
 FontLibrary.use('CartoonVibes', process.cwd() + '/assets/fonts/Epep.ttf')
@@ -64,9 +64,9 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const nominal = m.text
     if (!nominal) {
-        return m.reply(`*FAKE DANA*\n\n\`Contoh: ${m.prefix}fakedana 10000\``)
+        return m.reply(`*FAKE DANA*\n\n\`Ejemplo: ${m.prefix}fakedana 10000\``)
     }
-    if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
+    if(isNaN(nominal)) return m.reply(`*INTRODUCE UN NÚMERO*`)
     m.react('🕕')
 
     try {

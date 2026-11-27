@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,9 +29,9 @@ function handler(m) {
     db.setting('botRules', null)
 
     m.reply(
-        `✅ *ʙᴏᴛ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n\n` +
-        `> Rules bot berhasil direset ke default!\n` +
-        `> Ketik \`${m.prefix}rules\` untuk melihat.`
+        `✅ *REGLAS DEL BOT RESTABLECIDAS*\n\n` +
+        `> ¡Las reglas del bot se restablecieron por defecto!\n` +
+        `> Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

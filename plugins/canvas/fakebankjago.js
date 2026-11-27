@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -86,7 +86,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const [nama,nominal] = m.text?.split(',')
     if (!nama || !nominal) {
-        return m.reply(`*FAKE BANK*\n\n> Masukkan teks untuk chat\n\n\`Contoh: ${m.prefix}fakebank Zann,10000\``)
+        return m.reply(`*FAKE BANK*\n\n> Ingrese texto para chatear\n\n\`Ejemplo: ${m.prefix}banco falso Zann,10000\``)
     }
     if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
     m.react('🕕')
@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
         if (h >= 4 && h < 11) waktu = 'Pagi'
         else if (h >= 11 && h < 15) waktu = 'Siang'
         else if (h >= 15 && h < 18) waktu = 'Sore'
-        const fake = await generateImage(saldo, `Selamat ${waktu}, ${nama}`)
+        const fake = await generateImage(saldo, `Feliz ${waktu}, ${nama}`)
         await sock.sendMedia(m.chat, fake, null, m, {
             type: 'image',
         })

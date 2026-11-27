@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const createElysiaFeature = (module, exports, require) => {
+const createMikuFeature = (module, exports, require) => {
         const axios = require('axios'), { B } = require('style')
         const BASE = 'https://data.bmkg.go.id/DataMKG/TEWS/'
         const LINE = '━━━━━━━━━━━━━━━━━━━━'
@@ -20,17 +20,17 @@ const createElysiaFeature = (module, exports, require) => {
             try {
               if (q === 'dirasakan' || q === 'rasa') {
                 const { data } = await axios.get(BASE + 'gempadirasakan.json', { timeout: 15000 }), l = (data.Infogempa.gempa || []).slice(0, 8)
-                return reply(`${B('GEMPA DIRASAKAN')}\n${LINE}\n${l.map((g, i) => `${i + 1}. M${g.Magnitude} • ${g.Tanggal} ${g.Jam}\n   ${g.Wilayah}\n   Kedalaman ${g.Kedalaman}`).join('\n')}\n\n_Sumber: BMKG_`)
+                return reply(`${B('TERREMOTO SENTIDO')}\n${LINE}\n${l.map((g, i) => `${i + 1}. M${g.Magnitude} • ${g.Tanggal} ${g.Jam}\n   ${g.Wilayah}\n   Profundidad ${g.Kedalaman}`).join('\n')}\n\n_Fuente: BMKG_`)
               }
               if (/^m?5/.test(q) || q === 'm5' || q === 'besar') {
                 const { data } = await axios.get(BASE + 'gempaterkini.json', { timeout: 15000 }), l = (data.Infogempa.gempa || []).slice(0, 15)
-                return reply(`${B('GEMPA M5.0+ TERKINI')}\n${LINE}\n${l.map((g, i) => `${i + 1}. M${g.Magnitude} • ${g.Tanggal} ${g.Jam}\n   ${g.Wilayah}`).join('\n')}\n\n_Sumber: BMKG_`)
+                return reply(`${B('TERREMOTOS M5.0+ RECIENTES')}\n${LINE}\n${l.map((g, i) => `${i + 1}. M${g.Magnitude} • ${g.Tanggal} ${g.Jam}\n   ${g.Wilayah}`).join('\n')}\n\n_Fuente: BMKG_`)
               }
               const { data } = await axios.get(BASE + 'autogempa.json', { timeout: 15000 }), g = data.Infogempa.gempa
-              const cap = [B('GEMPA TERBARU'), LINE, `Waktu     : ${g.Tanggal}, ${g.Jam}`, `Magnitudo : M${g.Magnitude}`, `Kedalaman : ${g.Kedalaman}`, `Lokasi    : ${g.Lintang}, ${g.Bujur}`, `Wilayah   : ${g.Wilayah}`, `Dirasakan : ${g.Dirasakan || '-'}`, `Potensi   : ${g.Potensi || '-'}`, '', `_Lainnya: ${prefix}gempa dirasakan • ${prefix}gempa m5 • Sumber: BMKG_`].join('\n')
+              const cap = [B('TERREMOTO MÁS RECIENTE'), LINE, `Tiempo: ${g.Tanggal}, ${g.Jam}`, `Magnitud : M${g.Magnitude}`, `Profundidad : ${g.Kedalaman}`, `Ubicación : ${g.Lintang}, ${g.Bujur}`, `Zona      : ${g.Wilayah}`, `Sentido   : ${g.Dirasakan || '-'}`, `Potencial : ${g.Potensi || '-'}`, '', `_Otro: ${prefix}gempa dirasakan • ${prefix}gempa m5 • Sumber: BMKG_`].join('\n')
               if (g.Shakemap) { try { return await sock.sendMessage(m.chat, { image: { url: 'https://static.bmkg.go.id/' + g.Shakemap }, caption: cap }, { quoted: m }) } catch {} }
               return reply(cap)
-            } catch (e) { console.log('[gempa]', e.message); return reply('Gagal mengambil data BMKG: ' + e.message) }
+            } catch (e) { console.log('[gempa]', e.message); return reply('No se pudieron recuperar los datos BMKG: ' + e.message) }
           },
         }
     }
@@ -63,6 +63,6 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const handler = ElysiaRuntime.createWorldHandler(createElysiaFeature, typeof libs !== 'undefined' ? libs : {})
+const handler = MikuRuntime.createWorldHandler(createMikuFeature, typeof libs !== 'undefined' ? libs : {})
 
 export { pluginConfig as config, handler }

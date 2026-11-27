@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "snakerich",
   alias: ["ularkristal"],
   category: "rich",
-  description: "Game ular neon khas Elysia dengan kontrol swipe/D-pad & rekor skor",
+  description: "Game ular neon khas Miku dengan kontrol swipe/D-pad & rekor skor",
   usage: ".snakerich",
   example: ".snakerich",
   isOwner: false,
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Snake Classic — Elysia Assistant</title>
+<title>Snake Classic — Ai Miku</title>
 <style>
 ${buildGameBaseCss("snake")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -49,13 +49,13 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     <div class="logo">🐍</div>
     <div class="meta">
       <div class="title">Snake Classic</div>
-      <div class="sub">Swipe / tekan arah untuk main</div>
+      <div class="sub">Desliza o pulsa una dirección para jugar</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
-    <div class="stat"><b id="lv">1</b><span>Level</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
+    <div class="stat"><b id="lv">1</b><span>Nivel</span></div>
   </div>
   <canvas id="cv" width="320" height="320"></canvas>
   <div class="dpad">
@@ -79,7 +79,7 @@ function draw(){
   ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(food.x*S+S/2,food.y*S+S/2,S*.36,0,Math.PI*2);ctx.fill();
   if(bonus){ctx.fillStyle='#fbbf24';ctx.beginPath();ctx.arc(bonus.x*S+S/2,bonus.y*S+S/2,S*.4,0,Math.PI*2);ctx.fill();}
   snake.forEach((s,i)=>{ctx.fillStyle=i===0?'#4ade80':'#16a34a';ctx.fillRect(s.x*S+2,s.y*S+2,S-4,S-4);});
-  if(dead){ctx.fillStyle='rgba(6,19,11,.82)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.textAlign='center';ctx.fillText('GAME OVER',160,150);ctx.fillStyle='#ef4444';ctx.font='14px sans-serif';ctx.fillText('Tap tombol ↻ untuk main lagi',160,180);}
+  if(dead){ctx.fillStyle='rgba(6,19,11,.82)';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.textAlign='center';ctx.fillText('FIN DEL JUEGO',160,150);ctx.fillStyle='#ef4444';ctx.font='14px sans-serif';ctx.fillText('Pulsa ↻ para jugar otra vez',160,180);}
 }
 function step(){
   if(dead)return;

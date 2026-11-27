@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -165,7 +165,7 @@ ${usedPrefix + command} episode url`)
       }
 
       else if (type === 'search') {
-        if (!args[1]) return m.reply('Masukkan judul!')
+        if (!args[1]) return m.reply('¡Ingrese el título!')
         result = await api.search(args.slice(1).join(' '))
       }
 
@@ -189,7 +189,7 @@ ${usedPrefix + command} episode url`)
         return m.reply(msg)
       }
 
-      else return m.reply('Menu tidak dikenal')
+      else return m.reply('Menú desconocido')
 
       msg = result.map((v, i) =>
         `*${i + 1}.* ${v.title || v.name}\n${v.episode || ''}\n${v.url}`
@@ -204,6 +204,6 @@ ${usedPrefix + command} episode url`)
 
   run.register = true
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

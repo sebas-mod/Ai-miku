@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,20 +33,20 @@ async function handler(m, { sock }) {
 
   if (!groupData.mutegc) {
     return m.reply(
-      `🔊 *Mute GC Tidak Aktif*\n\n` +
-        `> Member sudah bisa menggunakan command bot di grup ini`
+      `🔊 *Mute del grupo inactivo*\n\n` +
+        `> Los miembros ya pueden usar los comandos del bot en este grupo`
     );
   }
 
   db.setGroup(m.chat, { mutegc: false });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔊 *Mute GC Nonaktif*\n\n` +
-      `> Grup: *${groupName}*\n` +
-      `> Member sekarang bisa menggunakan command bot lagi\n\n` +
-      `_Ketik *${m.prefix}mutegc* untuk memblokir kembali_`,
+    `🔊 *Mute del grupo desactivado*\n\n` +
+      `> Grupo: *${groupName}*\n` +
+      `> Los miembros ya pueden volver a usar los comandos del bot\n\n` +
+      `_Escribe *${m.prefix}mutegc* para volver a bloquear_`,
     { contextInfo: ctx }
   );
 }

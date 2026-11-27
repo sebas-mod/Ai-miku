@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanwarhistory',
@@ -32,12 +32,12 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (!db.db.data.warHistory) db.db.data.warHistory = []
@@ -48,10 +48,10 @@ const getDatabase = ElysiaRuntime.getDatabase;
           .reverse()
 
       if (warHistory.length === 0) {
-          return m.reply(`📜 *ʀɪᴡᴀʏᴀᴛ ᴡᴀʀ*\n\n> Clan *${clan.name}* belum memiliki riwayat perang!`)
+          return m.reply(`📜 *HISTORIA DE GUERRA*\n\n> Clanes *${clan.name}*¡aún no tiene ningún historial de guerra!`)
       }
 
-      let txt = `📜 *ʀɪᴡᴀʏᴀᴛ ᴡᴀʀ* [${clan.name}]\n\n`
+      let txt = `📜 *HISTORIA DE GUERRA* [${clan.name}]\n\n`
 
       for (let i = 0; i < warHistory.length; i++) {
           const war = warHistory[i]

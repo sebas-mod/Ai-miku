@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import https from 'https'
@@ -18,7 +18,7 @@ import { existsSync, unlinkSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const TEMPLATE_URL  = 'https://raw.githubusercontent.com/Ditzzx-vibecoder/Assets/main/ttqc/qyzwa.png';
 
@@ -31,11 +31,11 @@ const te = ElysiaRuntime.te;
   ];
 
   const MENU_ICONS = [
-    { unicode: '\uf3e5', text: 'Balas',           color: '#000000' },
+    { unicode: '\uf3e5', text: 'Responder',           color: '#000000' },
     { unicode: '\uf064', text: 'Teruskan',         color: '#000000' },
     { unicode: '\uf0c5', text: 'Salin',            color: '#000000' },
     { unicode: '\uf1ab', text: 'Terjemahkan',      color: '#000000' },
-    { unicode: '\uf2ed', text: 'Hapus untuk saya', color: '#000000' },
+    { unicode: '\uf2ed', text: 'Eliminar para mí', color: '#000000' },
     { unicode: '\uf024', text: 'Laporkan',         color: '#ea4335' },
   ];
 
@@ -266,7 +266,7 @@ const te = ElysiaRuntime.te;
 
     if (!text) {
       return m.reply(
-        `💬 *ᴛɪᴋᴛᴏᴋ ǫᴜᴏᴛᴇ*\n\n> Masukkan teks atau reply pesan yang ingin dijadikan quote.\n\n\`Contoh: ${m.prefix}ttqc Hallo Dunia\``,
+        `💬 *CITA DE TIKTOK*\n\n> Escribe un texto o responde a un mensaje para convertirlo en cita.\n\n\`Ejemplo: ${m.prefix}ttqc Hallo Dunia\``,
       );
     }
 

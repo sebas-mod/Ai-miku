@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
@@ -39,7 +39,7 @@ import { join } from 'node:path'
 
   async function handler(m, { sock, text, prefix, command }) {
     if (!text) {
-      return m.reply(`*Format Salah, Kak!* ✨\n\n> Contoh penggunaan:\n\`${prefix + command} Katanya just friend kok manggil sayang\`\n> Atau pakai custom nama:\n\`${prefix + command} Rin|Katanya just friend kok manggil sayang\``)
+      return m.reply(`*¡Formato incorrecto!* ✨\n\n> Ejemplo de uso:\n\`${prefix + command} Dice que solo somos amigos y me llama cariño\`\n> O usa un nombre personalizado:\n\`${prefix + command} Rin|Dice que solo somos amigos y me llama cariño\``)
     }
 
     let txtUsername, txtMeme
@@ -153,7 +153,7 @@ import { join } from 'node:path'
     } catch (e) {
       console.error("[Fmeme Error]", e)
       await m.react("❌")
-      throw 'Maaf Kak, terjadi kendala saat memproses gambar meme.'
+      throw 'Lo siento, hubo un problema al procesar la imagen del meme.'
     }
   }
 

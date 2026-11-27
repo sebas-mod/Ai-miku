@@ -1,24 +1,24 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 
-const te = ElysiaRuntime.te;
-const loadSent = ElysiaRuntime.loadSent;
-const saveSent = ElysiaRuntime.saveSent;
-const loadState = ElysiaRuntime.loadState;
-const saveState = ElysiaRuntime.saveState;
-const getOngoingAnimeList = ElysiaRuntime.getOngoingAnimeList;
-const startAutoCheck = ElysiaRuntime.startAutoCheck;
-const stopAutoCheck = ElysiaRuntime.stopAutoCheck;
-const runCheck = ElysiaRuntime.runCheck;
-const isRunning = ElysiaRuntime.isRunning;
+const te = MikuRuntime.te;
+const loadSent = MikuRuntime.loadSent;
+const saveSent = MikuRuntime.saveSent;
+const loadState = MikuRuntime.loadState;
+const saveState = MikuRuntime.saveState;
+const getOngoingAnimeList = MikuRuntime.getOngoingAnimeList;
+const startAutoCheck = MikuRuntime.startAutoCheck;
+const stopAutoCheck = MikuRuntime.stopAutoCheck;
+const runCheck = MikuRuntime.runCheck;
+const isRunning = MikuRuntime.isRunning;
 
   const pluginConfig = {
       name: 'autoanimewinbu',
@@ -43,15 +43,15 @@ const isRunning = ElysiaRuntime.isRunning;
       switch (sub) {
           case 'start': {
               if (isRunning()) {
-                  return m.reply(`⚠️ AutoAnime sudah berjalan!`)
+                  return m.reply(`⚠️ ¡AutoAnime está en funcionamiento!`)
               }
 
               const groups = state.groups || []
               if (groups.length === 0) {
                   return m.reply(
-                      `❌ Belum ada grup target!\n\n` +
-                      `> Tambahkan grup dulu:\n` +
-                      `> \`${m.prefix}autoanimewinbu addgrup\` (di grup target)\n` +
+                      `❌ ¡Aún no hay grupo objetivo!\n\n` +
+                      `> Agregar grupo primero:\n` +
+                      `> \`${m.prefix}autoanimewinbu addgroup\` (en el grupo objetivo)\n` +
                       `> \`${m.prefix}autoanimewinbu addgrup 120363xxx@g.us\``
                   )
               }
@@ -62,10 +62,10 @@ const isRunning = ElysiaRuntime.isRunning;
 
               return sock.sendMessage(m.chat, {
                   text: `✅ *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ sᴛᴀʀᴛᴇᴅ*\n\n` +
-                      `> 📲 Grup target: *${groups.length}*\n` +
-                      `> ⏱️ Interval: *${interval} menit*\n` +
+                      `> 📲 Grupo objetivo: *${groups.length}*\n` +
+                      `> ⏱️ Intervalos: *${interval} minuto*\n` +
                       `> 🎞️ Filter: *Pixeldrain 720p+*\n` +
-                      `> ⏰ Max age: *24 jam*\n\n` +
+                      `> ⏰ Edad máxima: *24 horas*\n\n` +
                       `Pengecekan pertama dimulai...\n\n` +
                       `▢ ${m.prefix}autoanimewinbu status — 📊 Status\n` +
                       `▢ ${m.prefix}autoanimewinbu stop — 🛑 Stop`
@@ -85,13 +85,13 @@ const isRunning = ElysiaRuntime.isRunning;
 
               let txt = `📊 *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ sᴛᴀᴛᴜs*\n\n`
               txt += `> 🔄 Status: *${running ? '🟢 ON' : '🔴 OFF'}*\n`
-              txt += `> 💾 Auto-start: *${state.enabled ? 'Ya' : 'Tidak'}*\n`
-              txt += `> 📋 Sudah terkirim: *${sent.size}* episode\n`
-              txt += `> ⏱️ Interval: *${state.interval || 5} menit*\n`
-              txt += `> 📲 Grup target: *${groups.length}*\n`
+              txt += `> 💾 Inicio automático: *${state.enabled ? 'Ya' : 'Tidak'}*\n`
+              txt += `> 📋 Ya enviado: *${sent.size}* episodios\n`
+              txt += `> ⏱️ Intervalos: *${state.interval || 5} minuto*\n`
+              txt += `> 📲 Grupo objetivo: *${groups.length}*\n`
 
               if (groups.length > 0) {
-                  txt += `\n*Grup:*\n`
+                  txt += `\n*Grupo:*\n`
                   groups.forEach((g, i) => {
                       txt += `> ${i + 1}. \`${g}\`\n`
                   })
@@ -108,24 +108,24 @@ const isRunning = ElysiaRuntime.isRunning;
               await m.reply('🔍 Mengecek anime terbaru...')
               try {
                   await runCheck()
-                  return m.reply('✅ Pengecekan selesai')
+                  return m.reply('✅ Comprobación completa')
               } catch (e) {
                   m.reply(te(m.prefix, m.command, m.pushName))
               }
           }
 
           case 'list': {
-              await m.reply('📺 Mengambil daftar anime...')
+              await m.reply('📺 Obteniendo lista de animes...')
               try {
                   const list = await getOngoingAnimeList()
-                  if (list.length === 0) return m.reply('❌ Tidak ada anime ditemukan')
+                  if (list.length === 0) return m.reply('❌ No se encontró ningún anime')
 
-                  let txt = `📺 *ᴅᴀꜰᴛᴀʀ ᴀɴɪᴍᴇ ᴛᴇʀʙᴀʀᴜ*\n\n`
+                  let txt = `📺 *LISTA DE ANIME MÁS RECIENTE*\n\n`
                   txt += `> Total: *${list.length}* anime\n\n`
                   list.slice(0, 15).forEach((a, i) => {
                       txt += `*${i + 1}.* ${a.title}\n`
                   })
-                  if (list.length > 15) txt += `\n> ...dan ${list.length - 15} lainnya`
+                  if (list.length > 15) txt += `\n> ...dan ${list.length - 15} otro`
 
                   return sock.sendMessage(m.chat, { text: txt }, { quoted: m })
               } catch (e) {
@@ -137,7 +137,7 @@ const isRunning = ElysiaRuntime.isRunning;
               const sent = loadSent()
               const count = sent.size
               saveSent(new Set())
-              return m.reply(`✅ Reset! *${count}* episode dihapus dari riwayat.\n> Semua episode bisa terkirim ulang.`)
+              return m.reply(`✅¡Reiniciar! *${count}*episodio eliminado del historial.\n> Todos los episodios se pueden reenviar.`)
           }
 
           case 'addgrup':
@@ -151,20 +151,20 @@ const isRunning = ElysiaRuntime.isRunning;
 
               if (!grupId || !grupId.includes('@g.us')) {
                   return m.reply(
-                      `❌ ID grup tidak valid\n\n` +
-                      `> Gunakan di dalam grup, atau:\n` +
+                      `❌ ID grupo no válido\n\n` +
+                      `> Uso dentro de un grupo, o:\n` +
                       `> \`${m.prefix}autoanimewinbu addgrup 120363xxx@g.us\``
                   )
               }
 
               const groups = state.groups || []
               if (groups.includes(grupId)) {
-                  return m.reply(`⚠️ Grup sudah ada di daftar target`)
+                  return m.reply(`⚠️ El grupo ya está en la lista de objetivos.`)
               }
 
               groups.push(grupId)
               saveState({ ...state, groups })
-              return m.reply(`✅ Grup \`${grupId}\` ditambahkan ke target\n> Total: *${groups.length}* grup`)
+              return m.reply(`✅ Grupo \`${grupId}\` se agrega al objetivo\n> Total: *${groups.length}* grupo`)
           }
 
           case 'delgrup':
@@ -179,19 +179,19 @@ const isRunning = ElysiaRuntime.isRunning;
               const groups = state.groups || []
               const idx = groups.indexOf(grupId)
               if (idx === -1) {
-                  return m.reply(`❌ Grup tidak ditemukan di daftar target`)
+                  return m.reply(`❌ Grupo no encontrado en la lista de objetivos`)
               }
 
               groups.splice(idx, 1)
               saveState({ ...state, groups })
-              return m.reply(`✅ Grup \`${grupId}\` dihapus dari target\n> Sisa: *${groups.length}* grup`)
+              return m.reply(`✅ Grupo \`${grupId}\` eliminado del objetivo\n> Resto: *${groups.length}* grupo`)
           }
 
           case 'interval': {
               const rest = (typeof args === 'string' ? args : '').replace(/^interval\s*/i, '').trim()
               const mins = parseInt(rest)
               if (!mins || mins < 1 || mins > 60) {
-                  return m.reply(`❌ Interval harus 1-60 menit\n\n> Contoh: \`${m.prefix}autoanimewinbu interval 10\``)
+                  return m.reply(`❌ El intervalo debe ser de 1-60 minutos.\n\n> Ejemplo: \`${m.prefix}intervalo autoanimewinbu 10\``)
               }
 
               saveState({ ...state, interval: mins })
@@ -201,7 +201,7 @@ const isRunning = ElysiaRuntime.isRunning;
                   startAutoCheck(sock, mins)
               }
 
-              return m.reply(`✅ Interval diubah ke *${mins} menit*`)
+              return m.reply(`✅ Intervalo cambiado a *${mins} minuto*`)
           }
 
           default: {
@@ -210,15 +210,15 @@ const isRunning = ElysiaRuntime.isRunning;
                   text: `🎬 *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ᴡɪɴʙᴜ*\n\n` +
                       `> Status: *${running ? '🟢 ON' : '🔴 OFF'}*\n\n` +
                       `*ᴄᴏᴍᴍᴀɴᴅs:*\n` +
-                      `> \`${m.prefix}aaw start\` — Mulai auto-check\n` +
+                      `> \`${m.prefix}aaw start\`: inicia la verificación automática\n` +
                       `> \`${m.prefix}aaw stop\` — Hentikan\n` +
-                      `> \`${m.prefix}aaw status\` — Lihat status\n` +
-                      `> \`${m.prefix}aaw cek\` — Manual check sekarang\n` +
-                      `> \`${m.prefix}aaw list\` — Daftar anime terbaru\n` +
-                      `> \`${m.prefix}aaw addgrup\` — Tambah grup target\n` +
-                      `> \`${m.prefix}aaw delgrup\` — Hapus grup target\n` +
-                      `> \`${m.prefix}aaw interval 10\` — Ubah interval\n` +
-                      `> \`${m.prefix}aaw reset\` — Reset riwayat terkirim\n\n` +
+                      `> \`${m.prefix}aaw status\` — Ver estado\n` +
+                      `> \`${m.prefix}aaw check\` — Verificación manual ahora\n` +
+                      `> \`${m.prefix}aaw list\` — Lista del anime más reciente\n` +
+                      `> \`${m.prefix}aaw addgroup\` — Agregar grupo objetivo\n` +
+                      `> \`${m.prefix}aaw delgroup\` — Eliminar grupo objetivo\n` +
+                      `> \`${m.prefix}intervalo aaw 10\` — Cambiar intervalo\n` +
+                      `> \`${m.prefix}aaw reset\` — Restablecer el historial enviado\n\n` +
                       `▢ ${m.prefix}autoanimewinbu ${running ? 'stop' : 'start'} — ${running ? '🛑 Stop' : '▶️ Start'}\n` +
                       `▢ ${m.prefix}autoanimewinbu status — 📊 Status`
               }, { quoted: m })
@@ -226,6 +226,6 @@ const isRunning = ElysiaRuntime.isRunning;
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

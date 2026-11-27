@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -323,28 +323,28 @@ const kit = {
   }
 }
 
-global._elysiaMediaPool = global._elysiaMediaPool || new Map()
+global._mikuMediaPool = global._mikuMediaPool || new Map()
 
 const pool = {
   list(sender) {
-    return global._elysiaMediaPool.get(sender) || []
+    return global._mikuMediaPool.get(sender) || []
   },
   add(sender, item) {
     const cur = pool.list(sender)
     if (cur.length >= 20) cur.shift()
     cur.push(item)
-    global._elysiaMediaPool.set(sender, cur)
+    global._mikuMediaPool.set(sender, cur)
     return cur.length
   },
   remove(sender, index1) {
     const cur = pool.list(sender)
     if (index1 < 1 || index1 > cur.length) return false
     cur.splice(index1 - 1, 1)
-    global._elysiaMediaPool.set(sender, cur)
+    global._mikuMediaPool.set(sender, cur)
     return true
   },
   clear(sender) {
-    global._elysiaMediaPool.delete(sender)
+    global._mikuMediaPool.delete(sender)
   }
 }
 
@@ -381,7 +381,7 @@ const io = {
 
 const ffm = {
   runMulti(buffers, outExt, buildArgs, timeout = 240000) {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-pool-'))
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-pool-'))
     const ins = buffers.map((b, i) => {
       const p = path.join(dir, `in_${i}`)
       fs.writeFileSync(p, b)
@@ -398,7 +398,7 @@ const ffm = {
       proc.on('close', (code) => {
         clearTimeout(timer)
         try {
-          if (code !== 0 || !fs.existsSync(outFile)) throw new Error(err.split('\n').slice(-3).join(' ') || 'FFmpeg gagal memproses media.')
+          if (code !== 0 || !fs.existsSync(outFile)) throw new Error(err.split('\n').slice(-3).join(' ') || 'FFmpeg no pudo procesar los medios.')
           const res = fs.readFileSync(outFile)
           fs.rmSync(dir, { recursive: true, force: true })
           resolve(res)
@@ -468,36 +468,36 @@ const fail = (m) => Object.assign(new Error(m), { userMessage: m })
 const ICON = { image: '🖼️', pdf: '📕', video: '🎬', audio: '🎵', other: '📄' }
 const mine = (c, kind) => pool.list(c.sender).filter((i) => (Array.isArray(kind) ? kind.includes(i.kind) : !kind || i.kind === kind))
 const need = (items, n, what) => {
-  if (items.length < n) throw fail(`Butuh minimal ${n} ${what} di keranjang. Tambahkan dengan reply media lalu ketik \`.kumpul\``)
+  if (items.length < n) throw fail(`Mínimo requerido ${n} ${what} en la canasta. Agregue con medios de respuesta y luego escriba \`.kumpul\`.`)
 }
 const nameArg = (c, def) => du.safeName(kit.rest(c.body).trim().replace(/\.[a-z0-9]{2,4}$/i, '') || def, def)
 
 const specs = {
   kumpul: {
-    desc: 'Keranjang media: kumpulkan gambar/video/audio/file untuk diolah bersama',
+    desc: 'Cesta de medios: recopile imágenes/videos/audio/archivos para procesarlos juntos',
     usage: '[list|reset|hapus <no>]',
     run: async (c) => {
       const a = (c.args[0] || '').toLowerCase()
       if (a === 'reset' || a === 'kosong') {
         pool.clear(c.sender)
-        return '🗑️ Keranjang media berhasil dikosongkan.'
+        return '🗑️ La cesta de medios se vació con éxito.'
       }
       if (a === 'hapus') {
         const n = Number(c.args[1])
-        return pool.remove(c.sender, n) ? `🗑️ Item #${n} dihapus dari keranjang.` : 'Nomor item tidak ditemukan. Cek daftar dengan `.kumpul list`'
+        return pool.remove(c.sender, n) ? `🗑️ N.º de artículo${n} retirado de la cesta.` : 'Número de artículo no encontrado. Consulta la lista con `.kumpul list`'
       }
       if (a === 'list' || a === 'daftar') {
         const items = pool.list(c.sender)
-        if (!items.length) return '📦 Keranjang masih kosong. Reply file/media dengan `.kumpul` untuk menambahkan.'
-        return uitext.panel('KERANJANG MEDIA', [
+        if (!items.length) return '📦 El carrito aún está vacío. Responda el archivo/medio con `.kumpul` para agregar.'
+        return uitext.panel('CESTA DE MEDIOS', [
           { head: `📦 *${items.length} BERKAS TERSIMPAN*`, lines: items.map((i, n) => `${n + 1}. ${ICON[i.kind]} ${i.name} (${kit.fmtSize(i.buffer.length)})`) },
-          { head: '🛠️ *PERINTAH OLAH*', lines: ['.pdfbuat • .kolase • .slideshow • .zipkan', '.gabungvideo • .gabungaudio • .mixav', '.kumpul hapus <no> • .kumpul reset'] }
+          { head: '🛠️ *PERINTAH OLAH*', lines: ['.pdfbuat • .kolase • .slideshow • .zipkan', '.gabungvideo • .gabungaudio • .mixav', '.kumpul eliminar <no> •.kumpul restablecer'] }
         ])
       }
       const f = await du.getFile(c.sock, c.msg).catch(() => null)
       if (!f) {
         const items = pool.list(c.sender)
-        return `📦 Isi keranjang saat ini: *${items.length} file*.\n\nReply gambar/video/audio/file dengan *\${c.prefix}kumpul* untuk menambahkan, lalu olah dengan:\n\`.pdfbuat\` • \`.kolase\` • \`.slideshow\` • \`.zipkan\` • \`.gabungvideo\` • \`.gabungaudio\` • \`.mixav\``
+        return `📦 Contenido actual del carrito: *${items.length} archivos*.\n\nResponda imagen/video/audio/archivo con *\${c.prefix}gather* para agregar, luego procese con:\n\`.pdfbuat\` • \`.kolase\` • \`.slideshow\` • \`.zipkan\` • \`.gabungvideo\` • \`.gabungaudio\` • \`.mixav\``
       }
       const kind = ['image', 'pdf', 'video', 'audio'].includes(f.sniff.kind) ? f.sniff.kind : 'other'
       const n = pool.add(c.sender, { buffer: f.buffer, name: f.name, kind, mime: f.mime })
@@ -505,7 +505,7 @@ const specs = {
     }
   },
   pdfbuat: {
-    desc: 'Gabungkan semua gambar di keranjang menjadi satu dokumen PDF',
+    desc: 'Combina todas las imágenes de la cesta en un solo documento PDF',
     usage: '[nama file]',
     heavy: true,
     run: async (c) => {
@@ -518,11 +518,11 @@ const specs = {
         jpegPages.push({ jpg, width: meta.width || 800, height: meta.height || 1000 })
       }
       const out = await buildPdfFromJpegsPure(jpegPages)
-      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF selesai dibuat: ${jpegPages.length} halaman • ${kit.fmtSize(out.length)}` }] }
+      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF completado: ${jpegPages.length} halaman • ${kit.fmtSize(out.length)}` }] }
     }
   },
   kolase: {
-    desc: 'Susun semua gambar di keranjang menjadi satu kolase rapi',
+    desc: 'Organiza todas las imágenes de la cesta en un bonito collage.',
     usage: '[jumlah kolom]',
     heavy: true,
     run: async (c) => {
@@ -541,11 +541,11 @@ const specs = {
         comps.push({ input: t, left: gap + (i % cols) * (cell + gap), top: gap + Math.floor(i / cols) * (cell + gap) })
       }
       const img = await sharp({ create: { width: W, height: H, channels: 3, background: '#ffffff' } }).composite(comps).jpeg({ quality: 92 }).toBuffer()
-      return { image: img, caption: `🖼️ Kolase ${list.length} foto (${cols}×${rows})` }
+      return { image: img, caption: `🖼️ Kolase ${list.length} Foto (${cols}×${rows})` }
     }
   },
   slideshow: {
-    desc: 'Jadikan gambar di keranjang menjadi video slideshow (+ musik jika ada audio di keranjang)',
+    desc: 'Convierta las imágenes de la cesta en un vídeo de presentación de diapositivas (+ música si hay audio en la cesta)',
     usage: '[detik per foto 1-8]',
     heavy: true,
     run: async (c) => {
@@ -569,17 +569,17 @@ const specs = {
           f += `[${last}][${i}:v]xfade=transition=fade:duration=${fade.toFixed(2)}:offset=${off}[x${i}];`
           last = `x${i}`
         }
-        f += `[${last}]format=yuv420p[v]`
+        f += `[${last}]formato=yuv420p[v]`
         a.push('-filter_complex', f, '-map', '[v]')
         if (aud) a.push('-map', `${frames.length}:a`, '-c:a', 'aac', '-b:a', '128k', '-t', total.toFixed(2))
         a.push('-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-movflags', '+faststart', o)
         return a
       }, 240000)
-      return { video: out, caption: `🎞️ Slideshow ${items.length} foto • ${total.toFixed(0)} detik${aud ? ' + musik' : ''}` }
+      return { video: out, caption: `🎞️ Presentaciones de diapositivas ${items.length} Foto • ${total.toFixed(0)} segundo${aud ? ' + musik' : ''}` }
     }
   },
   zipkan: {
-    desc: 'Kompres semua file di keranjang menjadi satu arsip ZIP',
+    desc: 'Comprime todos los archivos de la cesta en un solo archivo ZIP',
     usage: '[nama arsip]',
     heavy: true,
     run: async (c) => {
@@ -604,7 +604,7 @@ const specs = {
     }
   },
   gabungvideo: {
-    desc: 'Gabungkan semua video di keranjang menjadi satu video MP4',
+    desc: 'Combine todos los videos de la cesta en un video MP4',
     heavy: true,
     run: async (c) => {
       const items = mine(c, 'video').slice(0, 6)
@@ -614,17 +614,17 @@ const specs = {
         ins.forEach((f) => a.push('-i', f))
         let f = ''
         ins.forEach((_, i) => {
-          f += `[${i}:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:black,setsar=1,fps=30,format=yuv420p[v${i}];`
+          f += `[${i}:v]escala=1280:720:force_original_aspect_ratio=disminución,pad=1280:720:(ow-iw)/2:(oh-ih)/2:negro,setsar=1,fps=30,format=yuv420p[v${i}];`
         })
         f += ins.map((_, i) => `[v${i}]`).join('') + `concat=n=${ins.length}:v=1:a=0[v]`
         a.push('-filter_complex', f, '-map', '[v]', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '25', '-movflags', '+faststart', o)
         return a
       }, 300000)
-      return { video: out, caption: `🎬 ${items.length} video berhasil digabung` }
+      return { video: out, caption: `🎬 ${items.length} vídeos fusionados exitosamente` }
     }
   },
   gabungaudio: {
-    desc: 'Gabungkan semua audio/VN di keranjang menjadi satu MP3',
+    desc: 'Combine todo el audio/VN de la cesta en un MP3',
     heavy: true,
     run: async (c) => {
       const items = mine(c, 'audio').slice(0, 12)
@@ -640,23 +640,23 @@ const specs = {
         )
         return a
       }, 240000)
-      return { audio: out, caption: `🎵 ${items.length} audio berhasil digabung` }
+      return { audio: out, caption: `🎵 ${items.length} audio fusionado exitosamente` }
     }
   },
   mixav: {
-    desc: 'Pasang audio dari keranjang sebagai suara baru pada video di keranjang',
+    desc: 'Instala el audio en la cesta como un nuevo audio en el vídeo de la cesta.',
     heavy: true,
     run: async (c) => {
       const v = mine(c, 'video')[0]
       const a = mine(c, 'audio')[0]
-      if (!v || !a) throw fail('Butuh 1 video dan 1 audio di keranjang. Tambahkan dengan reply media lalu ketik `.kumpul`')
+      if (!v || !a) throw fail('Necesita 1 video y 1 audio en la cesta. Agregue con medias de respuesta y luego escriba `.kumpul`')
       const out = await ffm.runMulti(
         [v.buffer, a.buffer],
         'mp4',
         (ins, o) => ['-i', ins[0], '-i', ins[1], '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', o],
         240000
       )
-      return { video: out, caption: '🎧 Audio berhasil dipasang pada video' }
+      return { video: out, caption: '🎧 Instalación de corrección de audio en video.' }
     }
   }
 }

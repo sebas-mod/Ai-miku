@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -38,13 +38,13 @@ async function handler(m) {
         let text = `🎂 *sᴇᴛ ʙɪʀᴛʜᴅᴀʏ*\n\n`
 
         if (currentBday) {
-            text += `> Birthday kamu: *${currentBday}*\n\n`
+            text += `> Tu cumpleaños: *${currentBday}*\n\n`
         }
 
         text += `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n`
         text += `┃ ${m.prefix}setbirthday DD-MM\n`
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `*Contoh:*\n`
+        text += `*Ejemplo:*\n`
         text += `> ${m.prefix}setbirthday 25-12\n`
         text += `> ${m.prefix}setbirthday 01-01`
 
@@ -55,19 +55,19 @@ async function handler(m) {
     const match = input.match(dateRegex)
 
     if (!match) {
-        return m.reply(`❌ Format salah! Gunakan: DD-MM\n\n> Contoh: ${m.prefix}setbirthday 25-12`)
+        return m.reply(`❌ ¡Formato incorrecto! Uso: DD-MM\n\n> Ejemplo: ${m.prefix}establecercumpleaños 25-12`)
     }
 
     const day = parseInt(match[1])
     const month = parseInt(match[2])
 
     if (month < 1 || month > 12) {
-        return m.reply(`❌ Bulan tidak valid! (1-12)`)
+        return m.reply(`❌ ¡Mes no válido! (1-12)`)
     }
 
     const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if (day < 1 || day > daysInMonth[month - 1]) {
-        return m.reply(`❌ Tanggal tidak valid untuk bulan ${month}!`)
+        return m.reply(`❌ Fecha no válida para el mes ${month}!`)
     }
 
     const formattedDate = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}`
@@ -86,8 +86,8 @@ async function handler(m) {
         `┃ 📅 Tanggal: *${day} ${months[month - 1]}*\n` +
         `┃ 👤 User: @${cleanJid}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Bot akan mengucapkan selamat\n` +
-        `> ulang tahun di hari spesialmu! 🎉`,
+        `> Bot te felicitará\n` +
+        `> cumpleaños en tu día especial! 🎉`,
         { mentions: [userJid] }
     )
 }

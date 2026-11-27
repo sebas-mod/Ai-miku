@@ -1,21 +1,21 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmLoop = ElysiaRuntime.jpmLoop;
-const jpmStartJob = ElysiaRuntime.jpmStartJob;
-const getMedia = ElysiaRuntime.getMedia;
-const mediaContent = ElysiaRuntime.mediaContent;
-const splitInterval = ElysiaRuntime.splitInterval;
-const JPM_MIN_INTERVAL = ElysiaRuntime.JPM_MIN_INTERVAL;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmLoop = MikuRuntime.jpmLoop;
+const jpmStartJob = MikuRuntime.jpmStartJob;
+const getMedia = MikuRuntime.getMedia;
+const mediaContent = MikuRuntime.mediaContent;
+const splitInterval = MikuRuntime.splitInterval;
+const JPM_MIN_INTERVAL = MikuRuntime.JPM_MIN_INTERVAL;
 
 const pluginConfig = {
     name: "autojpm",
@@ -36,11 +36,11 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
       const { interval, teks } = splitInterval(text)
-      if (!teks && !media) return example('5m pesan auto broadcast  (interval: 30s / 5m / 1h / 60000)')
-      if (interval < JPM_MIN_INTERVAL) return reply(`❌ Interval minimal ${JPM_MIN_INTERVAL / 1000} detik.`)
+      if (!teks && !media) return example('5m mensajes de transmisión automática (intervalo: 30s / 5m / 1h / 60000)')
+      if (interval < JPM_MIN_INTERVAL) return reply(`❌ Intervalo mínimo ${JPM_MIN_INTERVAL / 1000} segundo.`)
 
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ AUTO JPM AKTIF*\n• Interval : setiap ${interval / 1000} detik\n• Delay antar grup : ${delay}ms\n• Pesan : ${teks || '[Media]'}\n\nHentikan dengan *stopautojpm*`)
+      await reply(`*▢ AUTO JPM ACTIVO*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}ms\n• Mensaje: ${teks || '[Media]'}\n\nParar con *stopautojpm*`)
 
       jpmStartJob('autoJpm', interval, async isStopped => {
           const groups = await jpmGroups(sock, { auto: true })

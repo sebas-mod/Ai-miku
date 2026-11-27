@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import sharp from 'sharp'
 import { createCanvas, GlobalFonts } from '@napi-rs/canvas'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFilesOrg;
-const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const uploadToTmpFiles = MikuRuntime.uploadToTmpFilesOrg;
+const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
 
   const pluginConfig = {
       name: 'balogo',
@@ -37,7 +37,7 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
       const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
 
       if (parts.length < 2) {
-          return m.reply(`🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ʟᴏɢᴏ*\n\n> Masukkan 2 teks untuk logo\n\n> Contoh: ${m.prefix}balogo Blue & Archive`)
+          return m.reply(`🎮 *LOGO BLUE ARCHIVE*\n\n> Escribe 2 textos para el logo\n\n> Ejemplo: ${m.prefix}balogo Blue & Archive`)
       }
 
       const textL = parts[0]

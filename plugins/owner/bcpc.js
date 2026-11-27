@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -15,7 +15,7 @@ const pluginConfig = {
   alias: ["broadcastpc", "bcprivate"],
   category: "owner",
   description: "Broadcast pesan ke semua kontak private chat",
-  usage: ".bcpc <pesan>",
+  usage: ".bcpc <mensaje>",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -51,17 +51,17 @@ async function handler(m, { sock }) {
     return m.reply(
       `📱 *BROADCAST PRIVATE CHAT*\n\n` +
         `Jeda: ${jeda}ms (${(jeda / 1000).toFixed(1)}s)\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `• \`${m.prefix}bcpc <pesan>\` — Kirim ke semua kontak\n` +
-        `• \`${m.prefix}bcpc (reply media)\` — Kirim dengan media\n\n` +
-        `⚠️ *Peringatan:* Bot akan mengirim pesan ke semua kontak yang tersimpan!\n\n` +
-        `ℹ️ *Note:* Kontak hanya terdeteksi jika mereka sudah pernah mengirim pesan ke bot. Kontak yang hanya disimpan tapi belum pernah chat tidak akan muncul.`,
+        `*USO:*\n` +
+        `• \`${m.prefix}bcpc <mensaje>\` — Envía a todos los contactos\n` +
+        `• \`${m.prefix}bcpc (reply media)\` — Envía con multimedia\n\n` +
+        `⚠️ *Advertencia:* ¡El bot enviará el mensaje a todos los contactos guardados!\n\n` +
+        `ℹ️ *Nota:* los contactos solo se detectan si alguna vez escribieron al bot. Los contactos guardados que nunca han chateado no aparecerán.`,
     );
   }
 
   if (global.statusBcpc) {
     return m.reply(
-      `❌ Broadcast private sedang berjalan.\nKetik \`${m.prefix}stopbcpc\` untuk menghentikan.`,
+      `❌ Hay una difusión privada en curso.\nEscribe \`${m.prefix}stopbcpc\` para detenerla.`,
     );
   }
 
@@ -123,7 +123,7 @@ async function handler(m, { sock }) {
     if (privateJids.size === 0) {
       m.react("❌");
       return m.reply(
-        "❌ Tidak ada kontak ditemukan.\n\nPastikan bot sudah pernah menerima pesan dari kontak tersebut.",
+        "❌ No se encontraron contactos.\n\nAsegúrate de que el bot haya recibido algún mensaje de esos contactos.",
       );
     }
 
@@ -136,13 +136,13 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-          `┃ 📝 ᴘᴇsᴀɴ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
-          `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "Tidak"}\`\n` +
-          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` kontak\n` +
-          `┃ ⏱️ ᴊᴇᴅᴀ: \`${jeda}ms\`\n` +
-          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} menit\`\n` +
+          `📱 *DIFUSIÓN PRIVADA*\n\n` +
+          `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+          `┃ 📝 MENSAJE: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
+          `┃ 📷 MULTIMEDIA: \`${mediaBuffer ? mediaType : "Ninguna"}\`\n` +
+          `┃ 👥 OBJETIVO: \`${filtered.length}\` kontak\n` +
+          `┃ ⏱️ INTERVALO: \`${jeda}ms\`\n` +
+          `┃ 📊 ESTIMACIÓN: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
           `╰┈┈⬡\n\n` +
           `> Memulai broadcast...`,
         contextInfo: ctx,
@@ -182,11 +182,11 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ sᴇʟᴇsᴀɪ*\n\n` +
-          `╭┈┈⬡「 📊 *ʜᴀsɪʟ* 」\n` +
-          `┃ ✅ ʙᴇʀʜᴀsɪʟ: \`${success}\`\n` +
-          `┃ ❌ ɢᴀɢᴀʟ: \`${failed}\`\n` +
-          `┃ 📊 ᴛᴏᴛᴀʟ: \`${filtered.length}\`\n` +
+          `✅ *DIFUSIÓN PRIVADA TERMINADA*\n\n` +
+          `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
+          `┃ ✅ EXITOSO: \`${success}\`\n` +
+          `┃ ❌ FALLIDO: \`${failed}\`\n` +
+          `┃ 📊 TOTAL: \`${filtered.length}\`\n` +
           `╰┈┈⬡`,
         contextInfo: ctx,
       },
@@ -195,7 +195,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     delete global.statusBcpc;
     m.react("❌");
-    m.reply("Gagal: " + e.message);
+    m.reply("Error: " + e.message);
   }
 }
 

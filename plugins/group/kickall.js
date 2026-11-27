@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -18,17 +18,17 @@ const config = {
 }
 
 async function handler(m, { sock }) {
-    if (!m.isGroup) return m.reply('❌ Fitur ini hanya bisa digunakan di grup.')
+    if (!m.isGroup) return m.reply('❌ Esta función solo se puede usar en grupos.')
 
     // Hanya nomor bot yang sedang aktif yang boleh memakai perintah ini.
     const botNumber = (sock.user?.id || '').split(':')[0].replace(/[^0-9]/g, '')
     const senderNumber = (m.sender || '').replace(/[^0-9]/g, '')
     if (!botNumber || senderNumber !== botNumber) {
-        return m.reply('❌ Akses ditolak. `.shindaratensei` hanya untuk nomor bot.')
+        return m.reply('❌ Acceso denegado. `.shindaratensei` es solo para el número del bot.')
     }
 
     if (!m.isBotAdmin) {
-        return m.reply('❌ Bot harus menjadi admin grup.')
+        return m.reply('❌ El bot debe ser administrador del grupo.')
     }
 
     try {
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
             .map(p => p.id)
 
         if (!targets.length) {
-            return m.reply('ℹ️ Tidak ada member biasa yang bisa dikeluarkan.')
+            return m.reply('ℹ️ No hay miembros normales que puedan ser expulsados.')
         }
 
         let removed = 0
@@ -55,9 +55,9 @@ async function handler(m, { sock }) {
             } catch (e) {}
         }
 
-        return m.reply(`✅ ShindaraTensei selesai.\n\n👤 Member biasa diproses: ${removed}\n🛡️ Admin & bot tetap aman.`)
+        return m.reply(`✅ ShindaraTensei terminado.\n\n👤 Miembros normales procesados: ${removed}\n🛡️ Administradores y bot quedan a salvo.`)
     } catch (e) {
-        return m.reply('❌ Terjadi kesalahan saat menjalankan shindaratensei.')
+        return m.reply('❌ Ocurrió un error al ejecutar shindaratensei.')
     }
 }
 

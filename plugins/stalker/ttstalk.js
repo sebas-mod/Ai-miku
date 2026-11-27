@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -66,19 +66,19 @@ async function fetchTikTokProfile(username) {
 
 async function handler(m, { sock }) {
   const username = String(m.text || "").trim().replace(/^@/, "");
-  if (!username) return m.reply(`🎵 Masukkan username TikTok!\n> Contoh: \`${m.prefix}ttstalk tiktok\``);
+  if (!username) return m.reply(`🎵 ¡Escribe el nombre de usuario de TikTok!\n> Ejemplo: \`${m.prefix}ttstalk tiktok\``);
 
   await m.react("🔎");
   const u = await fetchTikTokProfile(username);
   if (!u) {
     await m.react("❌");
-    return m.reply(`❌ Profil TikTok *@${username}* tidak ditemukan.`);
+    return m.reply(`❌ No se encontró el perfil de TikTok *@${username}*.`);
   }
 
   const fmt = (v) => Number(v || 0).toLocaleString("id-ID");
   const caption =
     `╭─❖「 🎵 *TIKTOK STALKER* 」\n` +
-    `│ 👤 Nama      : *${u.nickname}* ${u.verified ? "☑️" : ""}\n` +
+    `│ 👤 Nombre    : *${u.nickname}* ${u.verified ? "☑️" : ""}\n` +
     `│ 🔖 Username  : \`@${u.username}\`\n` +
     `├───〔 *STATISTIK* 〕\n` +
     `│ 👥 Followers : *${fmt(u.followers)}*\n` +

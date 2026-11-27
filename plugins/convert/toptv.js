@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -44,7 +44,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'toptv' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/^video\//i.test(media.mime || '')) {
-    return m.reply(`⭕ Kirim atau reply video pendek dengan perintah *${usedPrefix + command}* untuk mengubahnya menjadi PTV (Video Bulat).`)
+    return m.reply(`⭕ Enviar o responder videos cortos con comandos *${usedPrefix + command}* para cambiarlo a PTV (Video Esférico).`)
   }
 
   await m.react('⏳')
@@ -57,7 +57,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'toptv' }) {
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengirim PTV:* ${e.message}`)
+    return m.reply(`❌ *No se pudo enviar PTV:* ${e.message}`)
   }
 }
 

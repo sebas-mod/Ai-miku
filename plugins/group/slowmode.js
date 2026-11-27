@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -11,8 +11,8 @@ const pluginConfig = {
     name: 'slowmode',
     alias: ['slow', 'setslowmode'],
     category: 'group',
-    description: 'Slowmode grup — batasi kecepatan pesan member',
-    usage: '.slowmode <on/off/onlycommand> [detik]',
+    description: 'Slowmode del grupo — limita la velocidad de los mensajes',
+    usage: '.slowmode <on/off/onlycommand> [segundos]',
     example: '.slowmode on 30',
     isOwner: false,
     isPremium: false,
@@ -35,8 +35,8 @@ const PRESETS = {
 }
 
 const MODES = {
-    all: 'Semua pesan + command dihapus',
-    onlycommand: 'Command di-silent, chat biasa tetap jalan',
+    all: 'Se borran todos los mensajes + comandos',
+    onlycommand: 'Los comandos se ignoran, el chat normal sigue funcionando',
 }
 
 async function handler(m, { sock }) {
@@ -56,23 +56,23 @@ async function handler(m, { sock }) {
 
         return m.reply(
             `🐢 *SLOWMODE*\n\n` +
-            `Status: ${enabled ? `✅ ON (${delay}s)` : '❌ OFF'}\n` +
-            `Mode: *${mode}*\n\n` +
-            `*Penggunaan:*\n` +
-            `*.slowmode on 30* — semua pesan + command\n` +
-            `*.slowmode onlycommand 30* — command only\n` +
-            `*.slowmode off* — nonaktifkan\n\n` +
-            `*Preset:*\n${presetList}\n\n` +
-            `*Mode:*\n` +
-            `  *all* — hapus semua pesan saat delay\n` +
-            `  *onlycommand* — silent command, chat bebas\n\n` +
-            `_Admin & owner tidak terpengaruh_`
+            `Estado: ${enabled ? `✅ ON (${delay}s)` : '❌ OFF'}\n` +
+            `Modo: *${mode}*\n\n` +
+            `*Uso:*\n` +
+            `*.slowmode on 30* — todos los mensajes + comandos\n` +
+            `*.slowmode onlycommand 30* — solo comandos\n` +
+            `*.slowmode off* — desactivar\n\n` +
+            `*Preajustes:*\n${presetList}\n\n` +
+            `*Modos:*\n` +
+            `  *all* — borra todos los mensajes durante la espera\n` +
+            `  *onlycommand* — ignora los comandos, el chat queda libre\n\n` +
+            `_Los administradores y el dueño no se ven afectados_`
         )
     }
 
     if (subCmd === 'off') {
         db.setGroup(m.chat, { ...groupData, slowmode: { enabled: false } })
-        return m.reply(`✅ Slowmode *dinonaktifkan*`)
+        return m.reply(`✅ Slowmode *desactivado*`)
     }
 
     let mode = 'all'
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
     } else {
         delay = parseInt(subCmd)
         if (isNaN(delay)) {
-            return m.reply(`❌ Gunakan *.slowmode on 30* atau *.slowmode onlycommand 30*`)
+            return m.reply(`❌ Usa *.slowmode on 30* o *.slowmode onlycommand 30*`)
         }
     }
 
@@ -104,7 +104,7 @@ async function handler(m, { sock }) {
     }
 
     if (delay < 5 || delay > 600) {
-        return m.reply(`❌ Delay harus antara 5–600 detik`)
+        return m.reply(`❌ La espera debe estar entre 5 y 600 segundos`)
     }
 
     db.setGroup(m.chat, {
@@ -117,11 +117,11 @@ async function handler(m, { sock }) {
     const modeDesc = MODES[mode]
 
     await m.reply(
-        `✅ Slowmode *aktif*\n\n` +
-        `Delay: *${delay} detik*${label}\n` +
-        `Mode: *${mode}*\n` +
+        `✅ Slowmode *activado*\n\n` +
+        `Espera: *${delay} segundos*${label}\n` +
+        `Modo: *${mode}*\n` +
         `${modeDesc}\n\n` +
-        `_Admin & owner tidak terpengaruh_`
+        `_Los administradores y el dueño no se ven afectados_`
     )
 }
 

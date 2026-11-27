@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'fs'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
@@ -66,7 +66,7 @@ const pluginConfig = {
 
       $ = cheerio.load(r2.data)
       const form = $('#go-link')
-      if (!form.length) throw new Error('Form #go-link tidak ditemukan (tahap 2).')
+      if (!form.length) throw new Error('No se encontró el formulario #go-link (paso 2).')
       const val = n => form.find(`input[name="${n}"]`).val() || ''
 
       const p2 = new URLSearchParams({
@@ -87,7 +87,7 @@ const pluginConfig = {
       })
 
       const out = r3.data?.url
-      if (!out) throw new Error('Tidak ada URL pada balasan server.')
+      if (!out) throw new Error('La respuesta del servidor no trae ninguna URL.')
       if (/^https?:/i.test(out)) return [out]
 
       const redirect = new URL(`${base}/${out}`)
@@ -97,7 +97,7 @@ const pluginConfig = {
           if (!enc) continue
           try { results.push(decodeURIComponent(Buffer.from(enc, 'base64').toString('utf8'))) } catch {}
       }
-      if (!results.length) throw new Error('Link tujuan tidak bisa didekode.')
+      if (!results.length) throw new Error('No se pudo decodificar el enlace de destino.')
       return results
   }
 
@@ -124,7 +124,7 @@ const pluginConfig = {
 
   async function vplink(url) {
       const slug = url.replace(/\/+$/, '').split('/').pop()
-      if (!slug) throw new Error('Slug tidak ditemukan.')
+      if (!slug) throw new Error('Slug no encontrado.')
 
       const headers = { 'User-Agent': UA, Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' }
       const jar = {}
@@ -179,7 +179,7 @@ const pluginConfig = {
               }
               await sleep(1000)
           }
-          if (!found) throw new Error('Gagal mengambil URL tujuan.')
+          if (!found) throw new Error('No se pudo obtener la URL de destino.')
           return [found]
       } finally {
           await browser.close().catch(() => {})
@@ -194,7 +194,7 @@ const pluginConfig = {
 
   async function bicolink(url) {
       const slug = url.replace(/\/+$/, '').split('/').pop()
-      if (!slug) throw new Error('Slug tidak ditemukan.')
+      if (!slug) throw new Error('Slug no encontrado.')
 
       const browser = await launchBrowser()
       try {
@@ -247,7 +247,7 @@ const pluginConfig = {
               }
               await sleep(1000)
           }
-          if (!found) throw new Error('Gagal mengambil URL tujuan.')
+          if (!found) throw new Error('No se pudo obtener la URL de destino.')
           return [found]
       } finally {
           await browser.close().catch(() => {})
@@ -260,35 +260,35 @@ const pluginConfig = {
 
       if (!raw) {
           return reply(
-              `🔓 *BYPASS SHORTLINK*\n\n` +
-              `Penggunaan: *${prefix + command} <url>*\n` +
-              `Contoh: ${prefix + command} https://vplink.in/T5Sr3\n\n` +
-              `Didukung: ${PROVIDERS.map(p => p.name).join(', ')}\n` +
-              `_Bisa juga membalas pesan berisi link._`
+              `🔓 *SALTAR ACORTADORES*\n\n` +
+              `Uso: *${prefix + command} <url>*\n` +
+              `Ejemplo: ${prefix + command} https://vplink.in/T5Sr3\n\n` +
+              `Compatible con: ${PROVIDERS.map(p => p.name).join(', ')}\n` +
+              `_También puedes responder a un mensaje que contenga el enlace._`
           )
       }
 
       let host
-      try { host = new URL(raw).hostname.toLowerCase() } catch { return reply('❌ URL tidak valid.') }
+      try { host = new URL(raw).hostname.toLowerCase() } catch { return reply('❌ URL no válida.') }
 
       const provider = PROVIDERS.find(p => p.match(host))
-      if (!provider) return reply(`❌ Domain *${host}* belum didukung.\nDidukung: ${PROVIDERS.map(p => p.name).join(', ')}`)
+      if (!provider) return reply(`❌ El dominio *${host}* aún no está soportado.\nCompatible con: ${PROVIDERS.map(p => p.name).join(', ')}`)
 
-      await reply(`⏳ Memproses link *${provider.name}*, mohon tunggu...`)
+      await reply(`⏳ Procesando el enlace de *${provider.name}*, un momento...`)
 
       const t0 = Date.now()
       try {
           const urls = await provider.run(raw)
           const body = urls.length === 1 ? urls[0] : urls.map((u, i) => `${i + 1}. ${u}`).join('\n')
           return reply(
-              `✅ *BYPASS BERHASIL*\n\n` +
-              `🌐 Provider : ${provider.name}\n` +
-              `🔗 Asal     : ${raw}\n` +
-              `🎯 Tujuan   :\n${body}\n\n` +
-              `⏱ ${((Date.now() - t0) / 1000).toFixed(1)} detik`
+              `✅ *ENLACE DESBLOQUEADO*\n\n` +
+              `🌐 Servicio : ${provider.name}\n` +
+              `🔗 Acortado : ${raw}\n` +
+              `🎯 Destino  :\n${body}\n\n` +
+              `⏱ ${((Date.now() - t0) / 1000).toFixed(1)} segundos`
           )
       } catch (e) {
-          return reply(`❌ Gagal: ${e.message || 'terjadi kesalahan'}`)
+          return reply(`❌ Error: ${e.message || 'ocurrió un error'}`)
       }
   }
 

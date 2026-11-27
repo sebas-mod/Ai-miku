@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const mediafire = ElysiaRuntime.mediafire;
+const mediafire = MikuRuntime.mediafire;
 
 const pluginConfig = {
     name: "mediafire",
@@ -61,17 +61,17 @@ const pluginConfig = {
   }
 
   async function handler(m, { conn, text, usedPrefix, command }) {
-    if (!text) throw `Contoh:\n${usedPrefix + command} https://www.mediafire.com/file/xxxxx`
+    if (!text) throw `Ejemplo:\n${usedPrefix + command} https://www.mediafire.com/file/xxxxx`
 
     await m.react('🕒')
 
     try {
       let res = await mediafiredl(text)
-      if (!res.download) throw 'Link download tidak ditemukan.'
+      if (!res.download) throw 'Enlace de descarga no encontrado.'
 
       let sizeMB = sizeToMB(res.filesize)
       if (sizeMB > 100) {
-        return m.reply(`❌ File terlalu besar (${res.filesize})\nBatas maksimal: 100 MB`)
+        return m.reply(`❌ El archivo es demasiado grande (${res.filesize})\nLímite máximo: 100 MB`)
       }
 
       let ext = res.download.split('.').pop().split('?')[0]
@@ -83,13 +83,13 @@ const pluginConfig = {
         fileName,
         caption:
   `📦 MediaFire Downloader
-📝 Nama: ${res.filename}
-📁 Tipe: ${res.filetype}
-📏 Ukuran: ${res.filesize}
+📝 Nombre: ${res.filename}
+📁 Tipo: ${res.filetype}
+📏 Tamaño: ${res.filesize}
 📅 Upload: ${res.uploaded}`
       }, { quoted: m })
     } catch (e) {
-      m.reply(typeof e === 'string' ? e : '❌ Gagal mengambil file MediaFire.')
+      m.reply(typeof e === 'string' ? e : '❌ Error al obtener el archivo de MediaFire.')
     }
   }
 

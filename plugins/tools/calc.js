@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "calc",
@@ -27,8 +27,8 @@ const pluginConfig = {
   async function handler(m, { text }) {
     if (!text) {
       return m.reply(
-        `🧮 *KALKULATOR PINTAR ${global.namebot}*\n\n` +
-        `Contoh penggunaan:\n` +
+        `🧮 *CALCULADORA INTELIGENTE ${global.namebot}*\n\n` +
+        `Ejemplos de uso:\n` +
         `• *.calc 50 * 20*\n` +
         `• *.calc 1000 / 4 + 150*\n` +
         `• *.kalkulator (25 + 75) * 5*`
@@ -36,19 +36,19 @@ const pluginConfig = {
     }
 
     const clean = text.replace(/[^0-9+\-*/().\s]/g, '')
-    if (!clean.trim()) return m.reply('❌ Format perhitungan matematika tidak valid!')
+    if (!clean.trim()) return m.reply('❌ ¡Formato de operación matemática no válido!')
 
     try {
       const result = Function(`'use strict'; return (${clean})`)()
       await m.reply(
-        `╭─── ୨୧ KALKULATOR ୨୧ ───╮\n` +
-        `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა hasil hitung!\n` +
+        `╭─── ୨୧ CALCULADORA ୨୧ ───╮\n` +
+        `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა ¡resultado listo!\n` +
         `╰─────────────────────────╯\n\n` +
-        `୨ৎ Soal  : *${clean.trim()}*\n` +
-        `୨ৎ Hasil : *${result.toLocaleString('id-ID')}*`
+        `୨ৎ Operación : *${clean.trim()}*\n` +
+        `୨ৎ Resultado : *${result.toLocaleString('es-ES')}*`
       )
     } catch {
-      await m.reply('❌ Gagal menghitung ekspresi matematika tersebut!')
+      await m.reply('❌ ¡No se pudo calcular esa expresión matemática!')
     }
   }
 

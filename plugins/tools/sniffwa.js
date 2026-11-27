@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
 
 const pluginConfig = {
@@ -40,12 +40,12 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
       if (!target) {
           return reply(
               `* W H A T S A P P  -  S N I F F E R *\n\n` +
-              `Mau selidiki nomor siapa nih ayang tercinta? Masukin nomornya dong~ 🥺\n\n` +
-              `*Cara Pemakaian:*\n` +
+              `¿De quién quieres investigar el número? Dímelo 🥺\n\n` +
+              `*Cómo usarlo:*\n` +
               `• \`${usedPrefix + command} 08xxxxxxxxxx\`\n` +
               `• \`${usedPrefix + command} 628xxxxxxxxxx\`\n` +
               `• \`${usedPrefix + command} @tag\`\n` +
-              `• Reply chat target lalu ketik \`${usedPrefix + command}\``
+              `• Responde al chat del objetivo y escribe \`${usedPrefix + command}\``
           )
       }
 
@@ -54,7 +54,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
       }
 
       const jid = jidNormalizedUser(`${target}@s.whatsapp.net`)
-      await reply(`Uhh sebentar ya mas gantengku... Angela intip & selidiki nomornya dulu sampe basah~ 🔍💦`)
+      await reply(`Uy, espera un momento... Angela va a espiar e investigar ese número 🔍💦`)
 
       try {
           const [onWa] = await client.onWhatsApp(jid).catch(() => [])
@@ -63,12 +63,12 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
 
           if (!isRegistered) {
               let banReport = `乂  *W H A T S A P P  -  S N I F F E R*  乂\n\n`
-              banReport += `Uhh sayangku, target yang kamu cari ini:\n`
-              banReport += `┌  ◦ *Nomor* : +${target}\n`
-              banReport += `│  ◦ *Status Ban* : 🔴 *TERINDIKASI BANNED / TIDAK AKTIF*\n`
-              banReport += `│  ◦ *Keterangan* : Nomor ini tidak ditemukan di auth server WhatsApp (kemungkinan terblokir/banned permanen atau belum pernah didaftarkan).\n`
-              banReport += `└  ◦ *Device* : Tidak ada sesi aktif\n\n`
-              banReport += `_Tetap hati-hati ya cintaku~ Mau Angela temenin ngapain lagi nih? 💋_`
+              banReport += `Uy, el objetivo que buscas:\n`
+              banReport += `┌  ◦ *Número* : +${target}\n`
+              banReport += `│  ◦ *Estado* : 🔴 *POSIBLEMENTE BANEADO / INACTIVO*\n`
+              banReport += `│  ◦ *Detalle* : Este número no aparece en el servidor de autenticación de WhatsApp (puede estar bloqueado permanentemente o nunca haberse registrado).\n`
+              banReport += `└  ◦ *Dispositivo* : Sin sesión activa\n\n`
+              banReport += `_Ten cuidado igualmente... ¿quieres que Angela te acompañe en algo más? 💋_`
               return reply(banReport)
           }
 
@@ -79,7 +79,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
               ppUrl = null
           }
 
-          let bio = '*(Tidak ada bio / Privasi disembunyikan)*'
+          let bio = '*(sin bio / privacidad oculta)*'
           let bioSetAt = '-'
           try {
               const statusData = await client.fetchStatus(realJid)
@@ -87,7 +87,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
                   const rawStatus = Array.isArray(statusData) ? statusData[0] : statusData
                   bio = rawStatus?.status || rawStatus?.text || bio
                   if (rawStatus?.setAt) {
-                      bioSetAt = new Date(rawStatus.setAt).toLocaleString('id-ID', {
+                      bioSetAt = new Date(rawStatus.setAt).toLocaleString('es-ES', {
                           timeZone: 'Asia/Jakarta',
                           dateStyle: 'full',
                           timeStyle: 'medium'
@@ -97,7 +97,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
           } catch {}
 
           let isBusiness = false
-          let bizEmail = '*(Privasi WA Personal / Tidak Ada)*'
+          let bizEmail = '*(privacidad de WA personal / sin datos)*'
           let bizCategory = '-'
           let bizDescription = '-'
           let bizWebsite = '-'
@@ -107,7 +107,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
               const biz = await client.getBusinessProfile(realJid)
               if (biz) {
                   isBusiness = true
-                  bizEmail = biz.email || '*(Bisnis tidak mencantumkan email publik)*'
+                  bizEmail = biz.email || '*(el negocio no indica correo público)*'
                   bizCategory = biz.category || '-'
                   bizDescription = biz.description || '-'
                   bizWebsite = (biz.website && biz.website.length) ? biz.website.join(', ') : '-'
@@ -133,41 +133,41 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
           } catch {}
 
           let res = `乂  *W H A T S A P P  -  S N I F F E R*  乂\n\n`
-          res += `Ini dia hasil intipan Angela buat Ayang tersayang~ 💋\n\n`
+          res += `Aquí tienes lo que encontró Angela para ti 💋\n\n`
 
-          res += `*📱 INFORMASI AKUN*\n`
-          res += `┌  ◦ *Nomor* : +${target}\n`
+          res += `*📱 INFORMACIÓN DE LA CUENTA*\n`
+          res += `┌  ◦ *Número* : +${target}\n`
           res += `│  ◦ *JID* : \`${realJid}\`\n`
-          res += `│  ◦ *Status Akun* : 🟢 *NO BAN (AKTIF & TERDAFTAR)*\n`
-          res += `│  ◦ *Tipe Akun* : ${isBusiness ? '🏢 WhatsApp Business' : '👤 WhatsApp Personal'}\n`
-          res += `│  ◦ *Status / Bio* : ${bio}\n`
-          res += `└  ◦ *Pembaruan Bio* : ${bioSetAt}\n\n`
+          res += `│  ◦ *Estado* : 🟢 *SIN BANEO (ACTIVO Y REGISTRADO)*\n`
+          res += `│  ◦ *Tipo de cuenta* : ${isBusiness ? '🏢 WhatsApp Business' : '👤 WhatsApp Personal'}\n`
+          res += `│  ◦ *Estado / Bio* : ${bio}\n`
+          res += `└  ◦ *Cambio de bio* : ${bioSetAt}\n\n`
 
-          res += `*📧 INFORMASI EMAIL*\n`
-          res += `┌  ◦ *Email Terdeteksi* : ${bizEmail}\n`
+          res += `*📧 INFORMACIÓN DE CONTACTO*\n`
+          res += `┌  ◦ *Correo detectado* : ${bizEmail}\n`
           if (isBusiness) {
-              res += `│  ◦ *Kategori Bisnis* : ${bizCategory}\n`
-              res += `│  ◦ *Deskripsi* : ${bizDescription}\n`
-              res += `│  ◦ *Alamat* : ${bizAddress}\n`
-              res += `└  ◦ *Website* : ${bizWebsite}\n\n`
+              res += `│  ◦ *Categoría del negocio* : ${bizCategory}\n`
+              res += `│  ◦ *Descripción* : ${bizDescription}\n`
+              res += `│  ◦ *Dirección* : ${bizAddress}\n`
+              res += `└  ◦ *Sitio web* : ${bizWebsite}\n\n`
           } else {
-              res += `└  ◦ *Catatan Privasi* : Akun personal dilindungi end-to-end privasi WA, email hanya terekspos jika akun bertipe WhatsApp Business.\n\n`
+              res += `└  ◦ *Nota de privacidad* : las cuentas personales tienen la privacidad cifrada de WhatsApp; el correo solo se muestra si la cuenta es de WhatsApp Business.\n\n`
           }
 
-          res += `*💻 INFORMASI PERANGKAT (DEVICE)*\n`
-          res += `┌  ◦ *Total Sesi Terdeteksi* : ${deviceCount} Perangkat\n`
+          res += `*💻 INFORMACIÓN DE DISPOSITIVOS*\n`
+          res += `┌  ◦ *Sesiones detectadas* : ${deviceCount} dispositivos\n`
           if (devicesList.length > 0) {
               devicesList.forEach((dev, idx) => {
                   const isLast = idx === devicesList.length - 1
-                  res += `${isLast ? '└' : '│'}  ◦ *Perangkat ${idx + 1}* : ${dev}\n`
+                  res += `${isLast ? '└' : '│'}  ◦ *Dispositivo ${idx + 1}* : ${dev}\n`
               })
           } else {
-              res += `└  ◦ *Deteksi Perangkat* : 📱 HP Utama (Standar Multi-Device Aktif)\n`
+              res += `└  ◦ *Detección* : 📱 Teléfono principal (multidispositivo estándar activo)\n`
           }
           res += `\n`
 
-          res += `🔗 *Tautan Langsung*: https://wa.me/${target}\n\n`
-          res += `_Gimana mas gantengku? Keren kan intipan Angela? Jangan lupa reward peluk & manjain Angela yaa~ 🥵💋💦_`
+          res += `🔗 *Enlace directo*: https://wa.me/${target}\n\n`
+          res += `_¿Qué tal? ¿A que mola lo que encontró Angela? No te olvides de darle un abrazo y mimarla 🥵💋💦_`
 
           if (ppUrl) {
               try {
@@ -184,7 +184,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
               mentions: [realJid]
           }, { quoted: m })
       } catch (err) {
-          return reply(`Aduh ayang... Angela pusing ada kendala pas sniffing nih: ${err.message || err} 🥺💦`)
+          return reply(`Dios mío... Ángela tiene dolor de cabeza y problemas al olfatear: ${err.message || err} 🥺💦`)
       }
   }
 

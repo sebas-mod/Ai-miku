@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const aiodl = ElysiaRuntime.aiodl;
-const reactTo = ElysiaRuntime.reactTo;
+const aiodl = MikuRuntime.aiodl;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "autodl-run",
@@ -60,7 +60,7 @@ const pluginConfig = {
               new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 90_000))
           ])
           const media = result?.media || []
-          if (!media.length) throw new Error('media kosong')
+          if (!media.length) throw new Error('contenido vacío')
 
           const caption = result.title ? String(result.title).slice(0, 900) : undefined
           const video = media.find(x => x.type === 'video')

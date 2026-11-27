@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import sharp from 'sharp'
 
 const pluginConfig = {
@@ -27,14 +27,14 @@ const pluginConfig = {
 
   async function handler(m, { conn, usedPrefix, command }) {
     if (!m.quoted) {
-      return m.reply(`Reply sticker dengan command *${usedPrefix + command}*`)
+      return m.reply(`Responde sticker con el comando *${usedPrefix + command}*`)
     }
 
     let q = m.quoted
     let mime = q.mimetype || ''
 
     if (!/image\/webp/.test(mime)) {
-      return m.reply('Itu bukan sticker')
+      return m.reply('Eso no es sticker')
     }
 
     try {
@@ -53,7 +53,7 @@ const pluginConfig = {
       )
     } catch (e) {
       console.error(e)
-      m.reply('Gagal convert sticker ke image')
+      m.reply('No se pudo convertir sticker a imagen')
     }
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,10 +31,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid || !targetJid.endsWith('@g.us')) {
         return m.reply(
-            '🗑️ *ʜᴀᴘᴜs ɢʀᴜᴘ*\n\n' +
-            '> `.hapusgrup` (di dalam grup) — Keluar dari grup ini\n' +
-            '> `.hapusgrup <id_grup>` — Keluar dari grup tertentu\n\n' +
-            '⚠️ Bot akan keluar dari grup, bukan menghapus grup secara permanen'
+            '🗑️ *ELIMINAR GRUPO*\n\n' +
+            '> `.hapusgrup` (dentro del grupo) — Sal de este grupo\n' +
+            '> `.hapusgrup <id_grupo>` — Sal de un grupo concreto\n\n' +
+            '⚠️ El bot saldrá del grupo; no lo elimina permanentemente'
         )
     }
 
@@ -45,12 +45,12 @@ async function handler(m, { sock }) {
         await sock.groupLeave(targetJid)
         await m.react('✅')
         return m.reply(
-            `🗑️ *ʙᴏᴛ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ ɢʀᴜᴘ*\n\n` +
-            `> Grup: ${groupName}\n` +
+            `🗑️ *BOT SALIÓ DEL GRUPO*\n\n` +
+            `> Grupo: ${groupName}\n` +
             `> ID: ${targetJid}`
         )
     } catch (err) {
-        return m.reply(`❌ Gagal keluar dari grup: ${err.message}`)
+        return m.reply(`❌ Error al salir del grupo: ${err.message}`)
     }
 }
 

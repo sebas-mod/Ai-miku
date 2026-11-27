@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -13,7 +13,7 @@ const PAGE_SIZE = 20;
 
 function getRegistrationContextInfo() {
   const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+  const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
 
   return {
     forwardingScore: 9999,
@@ -135,7 +135,7 @@ async function handler(m, { sock }) {
   let registeredUsers = Object.values(allUsers).filter((u) => u.isRegistered);
 
   if (registeredUsers.length === 0) {
-    return m.reply(`❌ Belum ada user yang terdaftar!`);
+    return m.reply(`❌ ¡Aún no hay usuarios registrados!`);
   }
 
   if (options.search) {
@@ -155,7 +155,7 @@ async function handler(m, { sock }) {
 
   if (registeredUsers.length === 0) {
     return m.reply(
-      `❌ Tidak ada user yang cocok dengan pencarian: *${options.search}*`,
+      `❌ Ningún usuario coincidió con la búsqueda: *${options.search}*`,
     );
   }
 
@@ -167,8 +167,8 @@ async function handler(m, { sock }) {
     startIndex + PAGE_SIZE,
   );
 
-  let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴜsᴇʀ ᴛᴇʀᴅᴀꜰᴛᴀʀ*\n\n`;
-  text += `> Total hasil: *${registeredUsers.length}* user\n`;
+  let text = `📋 *REGISTRAR USUARIO REGISTRADO*\n\n`;
+  text += `> Resultados totales: *${registeredUsers.length}* user\n`;
   text += `> Halaman: *${page}/${totalPages}*\n`;
   text += `> Urut: *${options.sort === "terbaru" ? "Terbaru" : "Default"}*\n`;
   if (options.search) {
@@ -188,11 +188,11 @@ async function handler(m, { sock }) {
       user.lastRegisteredAt || user.registeredAt,
     );
     text += `${listNumber}. ${genderEmoji} *${user.regName || "Unknown"}*\n`;
-    text += `   > @${user.jid} | ${user.regAge || "?"} tahun | ${registeredAt}\n`;
+    text += `   > @${user.jid} | ${user.regAge || "?"} año | ${registeredAt}\n`;
   });
 
   if (totalPages > 1) {
-    text += `\n> Gunakan \`${m.prefix}listdaftar page ${page + 1 > totalPages ? totalPages : page + 1}\` untuk halaman lain`;
+    text += `\n> Utilice \`${m.prefix}listapágina de lista ${page + 1 > totalPages ? totalPages : page + 1}\` para otras páginas`;
   }
 
   const mentions = displayUsers.map((u) => u.jid + "@s.whatsapp.net");

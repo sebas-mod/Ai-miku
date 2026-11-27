@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -17,7 +17,7 @@ export async function uploadTo0x0(buffer, { filename = "file.bin", contentType =
   const form = new FormData();
   form.append("file", buffer, { filename, contentType });
   const res = await axios.post("https://0x0.st", form, {
-    headers: { ...form.getHeaders(), "User-Agent": "ElysiaAssistant/1.0 (WhatsApp bot)" },
+    headers: { ...form.getHeaders(), "User-Agent": "AiMiku/1.0 (WhatsApp bot)" },
     maxBodyLength: Infinity,
     maxContentLength: Infinity,
     timeout: 60000,

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -42,10 +42,10 @@ async function handler(m, { sock }) {
   if (!quoted) {
     return m.reply(
       `📦 *ADD PLUGIN*\n\n` +
-        `Reply code plugin dengan caption:\n` +
+        `Responde al código del plugin con el texto:\n` +
         `\`${m.prefix}addplugin\` - Auto detect\n` +
-        `\`${m.prefix}addplugin namafile\` - Custom nama\n` +
-        `\`${m.prefix}addplugin namafile folder\` - Custom nama + folder`,
+        `\`${m.prefix}addplugin namafile\` - Nombre personalizado\n` +
+        `\`${m.prefix}addplugin namafile folder\` - Nombre y carpeta personalizados`,
     );
   }
 
@@ -58,19 +58,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nGagal download file`);
+      return m.reply(`❌ *ERROR*\n\nNo se pudo descargar el archivo`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`❌ *GAGAL*\n\nCode terlalu pendek atau tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nEl código es demasiado corto o no es válido`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode bukan format plugin yang valid\nHarus ada export dan config`,
+      `❌ *ERROR*\n\nEl código no tiene un formato de plugin válido\nDebe incluir export y config`,
     );
   }
 
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nTidak bisa mendeteksi nama plugin\nGunakan \`${m.prefix}addplugin <namafile>\``,
+      `❌ *ERROR*\n\nNo se pudo detectar el nombre del plugin\nUsa \`${m.prefix}addplugin <namafile>\``,
     );
   }
 
@@ -92,7 +92,7 @@ async function handler(m, { sock }) {
   folderName = folderName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNama file tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -109,9 +109,9 @@ async function handler(m, { sock }) {
     if (fs.existsSync(filePath)) {
       await m.react("❌");
       return m.reply(
-        `❌ *GAGAL*\n\n` +
-          `File \`${fileName}.js\` sudah ada di folder \`${folderName}\`\n\n` +
-          `💡 Gunakan \`${m.prefix}ganticode ${fileName} ${folderName}\` untuk mengganti code yang sudah ada`,
+        `❌ *ERROR*\n\n` +
+          `File \`${fileName}.js\` ya existe en la carpeta \`${folderName}\`\n\n` +
+          `💡 Usa \`${m.prefix}ganticode ${fileName} ${folderName}\` para reemplazar el código existente`,
       );
     }
 
@@ -131,7 +131,7 @@ async function handler(m, { sock }) {
         `│ Size: \`${code.length} bytes\`\n` +
         `│ Hot Reload: ${reloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
-        `Plugin sudah aktif dan siap digunakan!`,
+        `¡El plugin ya está activo y listo para usar!`,
     );
   } catch (error) {
     await m.react("☢");

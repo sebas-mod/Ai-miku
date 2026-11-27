@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import fs from 'fs';
 import path from 'path';
 
@@ -15,7 +15,7 @@ import path from 'path';
     name: 'fotorandom002',
     alias: [],
     category: "anime",
-    description: 'Elysia Assistant random image 💗',
+    description: 'Ai Miku random image 💗',
     usage: '.fotorandom',
     isEnabled: true,
     cooldown: 5
@@ -26,7 +26,7 @@ import path from 'path';
   const folderPath = path.join(process.cwd(), 'assets', 'foto-random')
 
   if (!fs.existsSync(folderPath)) {
-      return m.reply('❌ Folder Elysia Assistant belum ada, darling...')
+      return m.reply('❌ La carpeta Ai Miku aún no existe, cariño...')
   }
 
   const files = fs.readdirSync(folderPath)
@@ -39,20 +39,20 @@ import path from 'path';
   )
 
   if (images.length === 0) {
-      return m.reply('📂 Foto Elysia Assistant masih kosong... aku jadi kesepian 😢')
+      return m.reply('📂 Foto de Ai Miku sigue vacía... Me estoy sintiendo solo 😢')
   }
 
   const randomFile = images[Math.floor(Math.random() * images.length)]
   const filePath = path.join(folderPath, randomFile)
 
   const captions = [
-  "Darling… kamu manggil aku? 😈",
-  "Aku cuma punya kamu loh 💕",
-  "Jangan liat yang lain ya… aku cemburu 😠",
-  "Ara ara~ kamu suka aku ya? 😏",
-  "Aku cantik hari ini kan? 💗",
-  "Kamu gak bakal ninggalin aku kan...? 🥺",
-  "Kalo kamu pergi… aku marah 😈🔥"
+  "Cariño... ¿me llamaste? 😈",
+  "solo te tengo a ti 💕",
+  "No mires a los demás... tengo celos 😠",
+  "Ara ara~ te gusto ¿eh? 😏",
+  "Estoy hermosa hoy, ¿verdad? 💗",
+  "No me dejarás, ¿verdad...? 🥺",
+  "Si te vas... me enojaré 😈🔥"
   ]
 
   const randomCaption = captions[Math.floor(Math.random() * captions.length)]
@@ -65,14 +65,14 @@ import path from 'path';
 ┃
 ┃ ${randomCaption}
 ┃
-┃ 📸 File : ${randomFile}
-┃ 💞 Mode : Waifu Active
+┃ 📸 Archivos: ${randomFile}
+┃ 💞 Modo: Waifu Activo
 ┃
 ╰━━━━━━━━━━━━━━━━━━⬣`
   }, { quoted: m })
 
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -18,14 +18,14 @@ import {
   getCategories,
   getPlugin,
 } from "../../src/lib/core/plugins.js";
-import { getCasesByCategory, getCaseCount } from "../../src/case/elysia.js";
+import { getCasesByCategory, getCaseCount } from "../../src/case/miku.js";
 
 const pluginConfig = {
   name: "allmenu",
   alias: ["fullmenu", "am", "allcommand", "semua"],
   category: "main",
-  description: "Menampilkan semua fitur bot dengan tampilan ringkas dan rapi",
-  usage: ".allmenu [kategori]",
+  description: "Muestra todas las funciones del bot con un diseño ordenado y compacto",
+  usage: ".allmenu [categoría]",
   example: ".allmenu ai",
   isOwner: false,
   isPremium: false,
@@ -38,11 +38,9 @@ const pluginConfig = {
 
 const CATEGORY_EMOJIS = {
   owner: "👑",
-  rpg: "⚔️",
   rich: "🕹️",
   stalker: "🔎",
   roleplay: "🎭",
-  tebak: "🧩",
   vercel: "▲",
   audio: "🎧",
   maker: "🎨",
@@ -61,10 +59,7 @@ const CATEGORY_EMOJIS = {
   media: "🎬",
   ai: "🤖",
   group: "👥",
-  religi: "☪️",
-  islamic: "🕌",
   info: "ℹ️",
-  cek: "🔮",
   menfess: "💌",
   user: "📊",
   canvas: "🎨",
@@ -77,7 +72,6 @@ const CATEGORY_EMOJIS = {
   convert: "🔄",
   vps: "☁️",
   linode: "☁️",
-  primbon: "🔮",
   tts: "🗣️",
   anime: "🍥",
   berita: "📰",
@@ -86,9 +80,9 @@ const CATEGORY_EMOJIS = {
 const CATEGORY_ORDER = [
   "main", "utility", "tools", "ai", "download", "search", "media",
   "sticker", "game",
-    "rich", "fun", "group", "religi", "economy", "canvas",
-  "random", "convert", "info", "cek", "menfess", "user", "premium", "store",
-  "ephoto", "jpm", "pushkontak", "vps", "linode", "primbon", "tts",
+    "rich", "fun", "group", "economy", "canvas",
+  "random", "convert", "info", "menfess", "user", "premium", "store",
+  "ephoto", "jpm", "pushkontak", "vps", "linode", "tts",
   "anime", "berita", "owner",
 ];
 
@@ -169,19 +163,19 @@ async function handler(m, { sock, config: botConfig, db }) {
   if (m.args?.[0] && !requestedCategory) {
     const available = categories.map((cat) => cat).join(", ");
     return m.reply(
-      `❌ *KATEGORI TIDAK DITEMUKAN*\n\n` +
-      `Gunakan *${prefix}allmenu* untuk semua fitur.\n` +
-      `Atau *${prefix}allmenu ai* untuk melihat satu kategori.\n\n` +
-      `Kategori: ${available}`,
+      `❌ *CATEGORÍA NO ENCONTRADA*\n\n` +
+      `Usa *${prefix}allmenu* para ver todas las funciones.\n` +
+      `O *${prefix}allmenu ai* para ver una sola categoría.\n\n` +
+      `Categorías: ${available}`,
     );
   }
 
   if (!sections.length) {
-    return m.reply("⚠️ *Belum ada fitur yang tersedia pada mode ini.*");
+    return m.reply("⚠️ *Todavía no hay funciones disponibles en este modo.*");
   }
 
   const user = db.getUser(m.sender) || {};
-  const botName = botConfig.bot?.name || "Elysia Assistant";
+  const botName = botConfig.bot?.name || "Ai Miku";
   const version = botConfig.bot?.version || "1.0.0";
   const greeting = getTimeGreeting();
   const role = m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Member";
@@ -194,20 +188,20 @@ async function handler(m, { sock, config: botConfig, db }) {
   const statusEmojiFallback = m.isOwner ? "👑" : m.isPremium ? "💎" : "🆓";
   const remainingFallback = m.isOwner || m.isPremium ? "∞" : (user.energi ?? 0);
   let text = `ɪ ᴀᴍ ᴇʟʏꜱɪᴀ ʏᴏᴜʀ ᴘᴇʀꜱᴏɴᴀʟ ᴀᴜᴛᴏᴍᴀᴛᴇᴅ ᴀꜱꜱɪꜱᴛᴀɴᴛ ᴏɴ ᴡʜᴀᴛꜱᴀᴘᴘ, ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴡɪᴛʜ ᴄᴏᴍᴍᴀɴᴅꜱ, ᴛᴏᴏʟꜱ, ᴀɴᴅ ᴀʟʟ ᴛʜᴇ ꜰᴇᴀᴛᴜʀᴇꜱ ᴀᴠᴀɪʟᴀʙʟᴇ ɪɴ ᴛʜɪꜱ ʙᴏᴛ.\n\n`;
-  text += `—–·「 PROFILE 」·–—\n`;
-  text += `   ✧ Username : ${m.pushName || "User"}\n`;
-  text += `   ✧ Status   : ${statusEmojiFallback} ${role}\n`;
-  text += `   ✧ Limit    : ${remainingFallback}\n\n`;
-  text += `—–·「 SYSTEM 」·–—\n`;
-  text += `   ✧ Bot Name      : ${botName}\n`;
-  text += `   ✧ Owner         : ${ownerNameFallback}\n`;
-  text += `   ✧ Version       : v${version}\n`;
-  text += `   ✧ Total Feature : ${totalCommands}\n\n`;
+  text += `—–·「 PERFIL 」·–—\n`;
+  text += `   ✧ Usuario : ${m.pushName || "User"}\n`;
+  text += `   ✧ Estado  : ${statusEmojiFallback} ${role}\n`;
+  text += `   ✧ Límite  : ${remainingFallback}\n\n`;
+  text += `—–·「 SISTEMA 」·–—\n`;
+  text += `   ✧ Nombre-Bot     : ${botName}\n`;
+  text += `   ✧ Dueño          : ${ownerNameFallback}\n`;
+  text += `   ✧ Versión        : v${version}\n`;
+  text += `   ✧ Total-Funciones : ${totalCommands}\n\n`;
   text += sections.join("\n\n");
-  text += `\n\n Enjoy the bot's features`;
+  text += `\n\n Disfruta de las funciones del bot`;
 
-  // Gaya All Menu disamakan dengan uji.zip: pesan daftar panjang
-  // dengan satu tombol lebar "☰ Menu" untuk membuka pilihan kategori.
+  // El estilo del All Menu sigue el mismo patrón: un mensaje con la lista larga
+  // y un botón ancho "☰ Menú" para abrir la selección de categorías.
   try {
     const thumbnail8 = await getJpegThumb("allmenu", { width: 300, height: 170 });
 
@@ -219,20 +213,20 @@ async function handler(m, { sock, config: botConfig, db }) {
       const emoji = CATEGORY_EMOJIS[category.toLowerCase()] || "▪";
       return {
         title: `${emoji} ${category.toUpperCase()}`,
-        description: `${categoryCommands.length} fitur tersedia`,
+        description: `${categoryCommands.length} funciones disponibles`,
         id: `${prefix}allmenu ${category}`,
       };
-    }).filter((row) => row.description !== "0 fitur tersedia");
+    }).filter((row) => row.description !== "0 funciones disponibles");
 
     const categorySections8 = [];
     const chunkSize8 = 10;
     for (let i = 0; i < categoryRows8.length; i += chunkSize8) {
       categorySections8.push({
-        title: i === 0 ? "📋 PILIH KATEGORI" : `📋 KATEGORI LANJUTAN ${Math.floor(i / chunkSize8) + 1}`,
+        title: i === 0 ? "📋 ELIGE CATEGORÍA" : `📋 MÁS CATEGORÍAS ${Math.floor(i / chunkSize8) + 1}`,
         rows: categoryRows8.slice(i, i + chunkSize8),
       });
     }
-    const paramsJson8 = JSON.stringify({ title: "☰ Menu", sections: categorySections8 });
+    const paramsJson8 = JSON.stringify({ title: "☰ Menú", sections: categorySections8 });
 
     const now8 = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Makassar" }));
     const time8 = `${String(now8.getHours()).padStart(2, "0")}.${String(now8.getMinutes()).padStart(2, "0")}`;
@@ -242,7 +236,7 @@ async function handler(m, { sock, config: botConfig, db }) {
     const days8 = Math.floor(uptimeSeconds8 / 86400);
     const hours8 = Math.floor((uptimeSeconds8 % 86400) / 3600);
     const minutes8 = Math.floor((uptimeSeconds8 % 3600) / 60);
-    const uptimeText8 = days8 ? `${days8} hari ${hours8} jam` : hours8 ? `${hours8} jam ${minutes8} menit` : `${minutes8} menit`;
+    const uptimeText8 = days8 ? `${days8} días ${hours8} horas` : hours8 ? `${hours8} horas ${minutes8} minutos` : `${minutes8} minutos`;
     const ownerNumber8 = String(
       Array.isArray(botConfig.owner?.number)
         ? (botConfig.owner.number[0] || "")
@@ -253,21 +247,21 @@ async function handler(m, { sock, config: botConfig, db }) {
     const statusEmoji8 = m.isOwner ? "👑" : m.isPremium ? "💎" : "🆓";
     const remaining8 = m.isOwner || m.isPremium ? "∞" : (user.energi ?? 0);
     const profileSystem8 = [
-      "—–·「 PROFILE 」·–—",
-      `   ✧ Username : ${m.pushName || "User"}`,
-      `   ✧ Status   : ${statusEmoji8} ${role}`,
-      `   ✧ Limit    : ${remaining8}`,
+      "—–·「 PERFIL 」·–—",
+      `   ✧ Usuario : ${m.pushName || "User"}`,
+      `   ✧ Estado  : ${statusEmoji8} ${role}`,
+      `   ✧ Límite  : ${remaining8}`,
       "",
-      "—–·「 SYSTEM 」·–—",
-      `   ✧ Bot Name      : ${botName}`,
-      `   ✧ Owner         : ${ownerName8}`,
-      `   ✧ Version       : v${version}`,
-      `   ✧ Total Feature : ${totalCommands}`,
-      `   ✧ Time          : ${time8} WITA`,
-      `   ✧ Active since  : ${uptimeText8}`,
+      "—–·「 SISTEMA 」·–—",
+      `   ✧ Nombre-Bot     : ${botName}`,
+      `   ✧ Dueño          : ${ownerName8}`,
+      `   ✧ Versión        : v${version}`,
+      `   ✧ Total-Funciones : ${totalCommands}`,
+      `   ✧ Hora           : ${time8} WITA`,
+      `   ✧ Activo desde   : ${uptimeText8}`,
       "",
     ].join("\n");
-    const longList8 = `${profileSystem8}\n${sections.join("\n\n")}\n\n Enjoy the bot's features`;
+    const longList8 = `${profileSystem8}\n${sections.join("\n\n")}\n\n Disfruta de las funciones del bot`;
     const saluranId8 = botConfig.saluran?.id || "120363393471527483@newsletter";
     const saluranName8 = botConfig.saluran?.name || botName;
 
@@ -277,7 +271,7 @@ async function handler(m, { sock, config: botConfig, db }) {
         buttonsMessage: {
           buttons: [{
             buttonId: "pilihan_menu",
-            buttonText: { displayText: "☰ Menu" },
+            buttonText: { displayText: "☰ Menú" },
             type: 1,
             nativeFlowInfo: {
               name: "single_select",

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -46,7 +46,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'blur'
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\/(jpe?g|png|webp)/i.test(media.mime || '')) {
-    return m.reply(`🖼️ Kirim atau reply gambar dengan perintah *${usedPrefix + command} [intensitas 1-50]*\nContoh: \`${usedPrefix + command} 15\``)
+    return m.reply(`🖼️ Enviar o responder imágenes con comandos *${usedPrefix + command} [intensidad 1-50]*\nEjemplo: \`${usedPrefix + command} 15\``)
   }
 
   const level = Math.min(50, Math.max(1, Number(args[0]) || 12))
@@ -60,13 +60,13 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'blur'
 
     await client.sendMessage(
       m.chat,
-      { image: out, caption: `🌫️ *Efek Blur Selesai* (Intensitas: ${level})` },
+      { image: out, caption: `🌫️ *Efecto de desenfoque completado* (Intensidad: ${level})` },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal memproses gambar:* ${e.message}`)
+    return m.reply(`❌ *No se pudo procesar la imagen:* ${e.message}`)
   }
 }
 

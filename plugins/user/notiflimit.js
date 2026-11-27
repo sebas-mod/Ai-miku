@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
 
     const newStatus = db.setting("notiflimit") ? "AKTIF ✅" : "MATI ❌";
 
-    await m.reply(`*NOTIFIKASI LIMIT (GLOBAL)*\n\nStatus saat ini: *${newStatus}*\n\n> Ketika aktif, bot akan selalu memberitahu sisa limit SEMUA PENGGUNA setiap kali ada pemotongan saat menggunakan fitur bot.`);
+    await m.reply(`*NOTIFIKASI LIMIT (GLOBAL)*\n\nEstado actual: *${newStatus}*\n\n> Cuando está activo, bot siempre notificará el límite restante ALL USERS cada vez que haya una deducción al usar la función bot.`);
 }
 
 export { pluginConfig as config, handler };

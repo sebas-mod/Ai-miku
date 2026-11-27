@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -229,9 +229,9 @@ async function generateVoice(text, voiceObj) {
   })
   const raw = await r.text()
   let j
-  try { j = JSON.parse(raw) } catch { throw new Error('Respons server TTS tidak valid.') }
+  try { j = JSON.parse(raw) } catch { throw new Error('La respuesta del servidor TTS no es válida.') }
   if (!r.ok || j.error) throw new Error(j.error || `HTTP ${r.status}`)
-  if (!j.audio_base64) throw new Error('Audio kosong dari server.')
+  if (!j.audio_base64) throw new Error('Audio en blanco del servidor.')
   return Buffer.from(j.audio_base64, 'base64')
 }
 
@@ -239,7 +239,7 @@ function formatVoiceCatalog() {
   const groups = {}
   for (const x of V) (groups[x.c] ||= []).push(x)
   let out = `🎙️ *KATALOG SUARA MULTILINGUAL (${V.length} KARAKTER)*\n`
-  out += `Pakai: *.tts <suara> | <teks>*\nContoh: *.tts furina | Halo selamat pagi!*\n`
+  out += `Uso: *.tts <voz> | <texto>*\nEjemplo: *.tts furina | ¡Hola, buenos días!*\n`
   for (const [cat, items] of Object.entries(groups)) {
     out += `\n*── ${cat} (${items.length}) ──*\n`
     out += items.map((x, i) => `${i + 1}. *${x.k[0]}* — ${x.n} _(${x.g}, ${x.t})_`).join('\n') + '\n'
@@ -259,9 +259,9 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
   if (!raw && !m.quoted?.text) {
     return m.reply(
       `🎙️ *TEXT TO SPEECH MULTILINGUAL (${V.length} SUARA)*\n\n` +
-      `• \`${usedPrefix + cmd} <teks>\` (suara default)\n` +
-      `• \`${usedPrefix + cmd} <nama_suara> | <teks>\`\n` +
-      `• \`${usedPrefix + cmd} list\` (lihat daftar ${V.length} karakter suara)`
+      `• \`${usedPrefix + cmd} <texto>\` (sonido predeterminado)\n` +
+      `• \`${usedPrefix + cmd} <nombre_sonido> | <texto>\`\n` +
+      `• \`${usedPrefix + cmd} lista\` (ver lista ${V.length} carácter de voz)`
     )
   }
 
@@ -273,7 +273,7 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
     const key = vName.trim().toLowerCase()
     const found = V.find((x) => x.k.includes(key) || x.n.toLowerCase().includes(key))
     if (!found) {
-      return m.reply(`❌ Karakter suara *"${vName.trim()}"* tidak ditemukan. Ketik \`${usedPrefix + cmd} list\` untuk melihat daftar suara.`)
+      return m.reply(`❌ Carácter de voz *"${vName.trim()}"* no encontrado. Escriba \`${usedPrefix + cmd} list\` para ver la lista de sonidos.`)
     }
     voice = found
     content = rest.join('|').trim() || m.quoted?.text || ''
@@ -288,8 +288,8 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
     content = m.quoted.text.trim()
   }
 
-  if (!content) return m.reply('❌ Tulis teks yang ingin diubah menjadi suara.')
-  if (content.length > 500) return m.reply(`❌ Maksimal 500 karakter (teks kamu ${content.length} karakter).`)
+  if (!content) return m.reply('❌ Escribe el texto que deseas convertir en sonido.')
+  if (content.length > 500) return m.reply(`❌ Máximo 500 caracteres (su texto ${content.length} personaje).`)
 
   await m.react('⏳')
   try {
@@ -302,7 +302,7 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal membuat suara:* ${e.message}`)
+    return m.reply(`❌ *No se pudo emitir sonido:* ${e.message}`)
   }
 }
 

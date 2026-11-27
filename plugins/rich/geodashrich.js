@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -115,7 +115,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       <div class="chips" id="tabs"></div>
       <canvas id="cv" width="360" height="210"></canvas>
       <div class="bar"><i id="pg"></i></div>
-      <div class="st3"><div><b id="sp">0%</b>Progres</div><div><b id="sa">1</b>Percobaan</div><div><b id="sb">0%</b>Terbaik</div><div><b id="sm">Cube</b>Mode</div></div>
+      <div class="st3"><div><b id="sp">0%</b>Progreso</div><div><b id="sa">1</b>Intentos</div><div><b id="sb">0%</b>Mejor</div><div><b id="sm">Cube</b>Modo</div></div>
       <button class="btn jump" id="jb">⬆ TAP / TAHAN</button>
       <div class="lg"><span><i style="background:#22c55e"></i>Cube</span><span><i style="background:#ec4899"></i>Pesawat</span><span><i style="background:#f97316"></i>Bola</span><span><i style="background:#ef4444"></i>UFO</span><span><i style="background:#a855f7"></i>Wave</span><span><i style="background:#38bdf8"></i>Gravitasi ↑</span><span><i style="background:#facc15"></i>Gravitasi ↓</span></div>
     </div></div>
@@ -218,7 +218,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     var K='geodash_v2',best=[0,0,0],att=[1,1,1];
     try{var raw=localStorage.getItem(K);if(raw){var o0=JSON.parse(raw);if(o0&&o0.length===3)best=o0;}}catch(e){}
     function save(){try{localStorage.setItem(K,JSON.stringify(best));}catch(e){}}
-    $('who').textContent='Pemain: '+C.nama;
+    $('who').textContent='Jugador:'+C.nama;
 
     /* ---------- AUDIO (synth orisinal, tanpa file) ---------- */
     var AC=null,mg=null,nb=null,mOn=true,mt=null,mstep=0,mnext=0;
@@ -365,8 +365,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       if(mode!=='dead')player();
       else parts.forEach(function(p){if(p.l>0){cx.fillStyle=p.c;cx.fillRect(p.x-sx-4,p.y-4,8,8);}});
       cx.textAlign='center';cx.fillStyle='#fff';
-      if(mode==='ready'){cx.font='800 18px sans-serif';cx.fillText('TAP UNTUK MULAI',W/2,70);cx.font='12px sans-serif';cx.fillText('Level: '+LV[li].n+' • Terbaik '+best[li]+'%',W/2,92);}
-      if(mode==='win'){cx.fillStyle='#000a';cx.fillRect(0,0,W,H);cx.fillStyle='#fff';cx.font='800 22px sans-serif';cx.fillText('LEVEL SELESAI! 🎉',W/2,90);cx.font='13px sans-serif';cx.fillText('Percobaan: '+(att[li]-1)+' • Tap untuk main lagi',W/2,115);}
+      if(mode==='ready'){cx.font='800 18px sans-serif';cx.fillText('TOCA PARA COMENZAR',W/2,70);cx.font='12px sans-serif';cx.fillText('Level: '+LV[li].n+' • Récord '+best[li]+'%',W/2,92);}
+      if(mode==='win'){cx.fillStyle='#000a';cx.fillRect(0,0,W,H);cx.fillStyle='#fff';cx.font='800 22px sans-serif';cx.fillText('¡NIVEL COMPLETO! 🎉',W/2,90);cx.font='13px sans-serif';cx.fillText('Intentos: '+(att[li]-1)+' • Toca para jugar otra vez',W/2,115);}
     }
     reset();hud();requestAnimationFrame(frame);
     })();

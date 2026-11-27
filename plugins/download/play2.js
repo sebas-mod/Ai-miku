@@ -1,21 +1,21 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import yts from 'yt-search'
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
 import axios from 'axios'
 
-const fallbackToMp3Buffer = ElysiaRuntime.fallbackToMp3Buffer;
-const ytdl = ElysiaRuntime.ytdl;
-const toPTT = ElysiaRuntime.toPTT;
+const fallbackToMp3Buffer = MikuRuntime.fallbackToMp3Buffer;
+const ytdl = MikuRuntime.ytdl;
+const toPTT = MikuRuntime.toPTT;
 
 const pluginConfig = {
     name: "play2",
@@ -57,7 +57,7 @@ const pluginConfig = {
       if (!meta) return null
       try {
         const audio = await fs.promises.readFile(P(`${key}.mp3`))
-        if (audio.length < CACHE_MIN_ITEM) throw new Error('cache rusak')
+        if (audio.length < CACHE_MIN_ITEM) throw new Error('caché dañada')
         const now = new Date()
         fs.promises.utimes(P(`${key}.mp3`), now, now).catch(() => null)
         const thumb = await fs.promises.readFile(P(`${key}.jpg`)).catch(() => null)
@@ -140,7 +140,7 @@ const pluginConfig = {
       return { download: fallback.dl, title: fallback.title, fallback: true }
     }
 
-    throw new Error(fallback?.mess || 'Gagal mendapatkan audio')
+    throw new Error(fallback?.mess || 'Error al obtener el audio')
   }
 
   async function downloadAudio(url, fallback = false) {
@@ -155,7 +155,7 @@ const pluginConfig = {
 
     const type = String(res.headers['content-type'] || '').toLowerCase()
     if (type.includes('text/html') || type.includes('application/json')) {
-      throw new Error('URL download tidak mengembalikan audio')
+      throw new Error('La URL de descarga no devolvió audio')
     }
 
     return Buffer.from(res.data)
@@ -204,7 +204,7 @@ const pluginConfig = {
 
       if (!hit) {
         const search = await yts(query)
-        if (!search.videos?.length) throw new Error('Lagu/video tidak ditemukan')
+        if (!search.videos?.length) throw new Error('Canción/video no encontrado')
 
         const video = search.videos[0]
         info = {
@@ -269,7 +269,7 @@ const pluginConfig = {
       }
 
       await conn.sendMessage(m.chat, vn
-        ? { audio: vn, mimetype: 'audio/ogg; codecs=opus', ptt: true }
+        ? { audio: vn, mimetype: 'audio/ogg; códecs=opus', ptt: true }
         : { audio, mimetype: 'audio/mpeg', ptt: true },
       { quoted: m })
 
@@ -277,7 +277,7 @@ const pluginConfig = {
     } catch (e) {
       console.error('[PLAY2]', e)
       await m.react('❌')
-      return conn.reply(m.chat, `⚠️ Gagal mengambil audio.\n${e?.message || ''}`.trim(), m)
+      return conn.reply(m.chat, `⚠️Error de audio.\n${e?.message || ''}`.trim(), m)
     }
   }
 

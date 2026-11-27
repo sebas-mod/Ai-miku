@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,7 +32,7 @@ function makeSerial(sender) {
     .update(String(sender) + ":" + Date.now())
     .digest("hex")
     .toUpperCase();
-  return `ELYSIA-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
+  return `MIKU-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
 }
 
 async function handler(m, { sock }) {
@@ -46,10 +46,10 @@ async function handler(m, { sock }) {
 
   if (!user?.isRegistered) {
     return m.reply(
-      `╭─── ❖ 『 🔒 *BELUM TERDAFTAR* 』 ❖\n` +
-        `│ ✦ Kamu belum memiliki Kartu Identitas Petualang.\n` +
-        `│ ✦ Ketik *${p}daftar Nama.Umur* untuk mendaftar!\n` +
-        `│ ✦ *Contoh:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
+      `╭─── ❖ 『 🔒 *NO REGISTRADO* 』 ❖\n` +
+        `│ ✦ Aún no tienes Tarjeta de Identidad de Aventurero.\n` +
+        `│ ✦ Tipo *${p}regístrese Nombre.Edad* para registrarse!\n` +
+        `│ ✦ *Ejemplo:* \`${p}lista ${m.pushName || "Arthazy"}.19\`\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -76,14 +76,14 @@ async function handler(m, { sock }) {
 
   return m.reply(
     `╭─── ❖ 『 🪪 *ASTRAL ADVENTURER CARD* 』 ❖\n` +
-      `│ 👤 *Nama Resmi:* ${user.regName || user.name || m.pushName}\n` +
-      `│ 🎂 *Umur:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
+      `│ 👤 *Nombre legal:* ${user.regName || user.name || m.pushName}\n` +
+      `│ 🎂 *Edad:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
       `│ 🎖️ *Pangkat:* ${rank.title} (Lv.${lv})\n` +
       `│ ⭐ *Bintang:* ${rank.starBar}\n` +
       `│ 🔑 *Serial Number:* \`${sn}\`\n` +
       `│ 📅 *Terdaftar Sejak:* ${regDate}\n` +
       `╰──────────────────────────❖\n` +
-      `_💡 Gunakan *${p}unreg ${sn}* jika ingin menghapus pendaftaran._`
+      `_💡Usar*${p}desregistrar ${sn}*si deseas eliminar el registro._`
   );
 }
 

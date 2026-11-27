@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -24,7 +24,7 @@ const pluginConfig = {
 
 async function summarizeText(content) {
   const prompt =
-    `Ringkas teks berikut dalam Bahasa Indonesia menjadi poin-poin inti yang jelas, padat, dan mudah dipahami:\n\n${content}`
+    `Resuma el siguiente texto en indonesio en puntos centrales claros, concisos y fáciles de entender:\n\n${content}`
   const endpoints = [
     `https://v2.api-varhad.my.id/ai/claude?text=${encodeURIComponent(prompt)}`,
     `https://api.nexray.eu.cc/ai/gemini?text=${encodeURIComponent(prompt)}`,
@@ -38,7 +38,7 @@ async function summarizeText(content) {
       if (typeof ans === "string" && ans.trim()) return ans.trim()
     } catch {}
   }
-  throw new Error("Layanan AI perangkum sedang tidak dapat dijangkau.")
+  throw new Error("Actualmente no se puede acceder al resumidor del servicio AI.")
 }
 
 async function handler(m, { conn, sock, text, args, usedPrefix = ".", command = "ringkas" }) {
@@ -58,9 +58,9 @@ async function handler(m, { conn, sock, text, args, usedPrefix = ".", command = 
 
   if (!input || input.length < 30) {
     return m.reply(
-      `📑 *PERANGKUM TEKS OTOMATIS*\n\n` +
-      `Kirim atau reply teks/artikel panjang yang ingin diringkas.\n` +
-      `Contoh: \`${usedPrefix + command} <teks panjang>\``
+      `📑 *RESUMEN DE TEXTO AUTOMÁTICO*\n\n` +
+      `Envíe o responda textos/artículos largos que desee resumir.\n` +
+      `Ejemplo: \`${usedPrefix + command} <texto largo>\``
     )
   }
 
@@ -68,10 +68,10 @@ async function handler(m, { conn, sock, text, args, usedPrefix = ".", command = 
   try {
     const summary = await summarizeText(input.slice(0, 12000))
     await m.react("✅")
-    return m.reply(`📑 *RINGKASAN INTI*\n\n${summary}\n\n_Elysia Assistant_`)
+    return m.reply(`📑 *RINGKASAN INTI*\n\n${summary}\n\n_Ai Miku_`)
   } catch (e) {
     await m.react("❌")
-    return m.reply(`❌ *Gagal meringkas teks:* ${e.message}`)
+    return m.reply(`❌ *No se pudo resumir el texto:* ${e.message}`)
   }
 }
 

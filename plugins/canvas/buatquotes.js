@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -126,7 +126,7 @@ async function download(url) {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
     }
   });
-  if (!res.ok) throw new Error(`Gagal download ${url}: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw new Error(`Descarga fallida ${url}: ${res.status} ${res.statusText}`);
   return Buffer.from(await res.arrayBuffer());
 }
 
@@ -241,7 +241,7 @@ function drawUsernameText(ctx, text, x, y, opts, fontSize, maxWidth) {
 
 async function drawScene(bgId, quoteText, usernameStr, outFile) {
   const bg = BACKGROUNDS[bgId];
-  if (!bg) throw new Error(`Background nomor ${bgId} tidak ditemukan`);
+  if (!bg) throw new Error(`Fondo numérico ${bgId} extraviado`);
 
   const bgBuffer = await setupEnv(bg);
 
@@ -273,12 +273,12 @@ async function drawScene(bgId, quoteText, usernameStr, outFile) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `🎨 *FITUR BUAT QUOTES ANIME*\n\n` +
-            `Fitur ini akan membantumu merangkai kata-kata mutiara dengan latar belakang karakter anime favorit yang sangat keren!\n\n` +
+            `🎨 *FUNCIÓN PARA CITAS DE ANIME*\n\n` +
+            `¡Esta función te ayudará a componer perlas de sabiduría con fondos realmente geniales de tus personajes de anime favoritos!\n\n` +
             `*CARA PENGGUNAAN:*\n` +
-            `- \`${m.prefix}buatquotes <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks> | <namamu>\`\n\n` +
+            `- \`${m.prefix}crear citas <texto>\`\n` +
+            `- \`${m.prefix}crear citas <id_antecedentes> | <texto>\`\n` +
+            `- \`${m.prefix}crear citas <id_antecedentes> | <texto> | <tu nombre>\`\n\n` +
             `*DAFTAR BACKGROUND PENDUKUNG (ID 1-8):*\n` +
             `- 1: L (Death Note)\n` +
             `- 2: Gojo Satoru\n` +
@@ -288,7 +288,7 @@ async function handler(m, { sock, text }) {
             `- 6: Naruto\n` +
             `- 7: Light Yagami\n` +
             `- 8: Higuruma\n\n` +
-            `_Contoh: ${m.prefix}buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman_`
+            `_Ejemplo: ${m.prefix}crear citas 2 | Sigue viviendo aunque sea inútil | mamá_`
         );
     }
 
@@ -342,7 +342,7 @@ async function handler(m, { sock, text }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\nMaaf, sistem mengalami gangguan saat mencoba membuat gambar quote. Silakan coba lagi nanti.`);
+        m.reply(`❌ *NO SE PUDO CREAR LA CITA*\n\nLo sentimos, el sistema experimentó un problema al intentar crear una imagen de cotización. Inténtelo de nuevo más tarde.`);
     }
 }
 

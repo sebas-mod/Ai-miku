@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "tencent",
@@ -105,10 +105,10 @@ const pluginConfig = {
 
       if (res.type === 'detail') {
         const r = res.result
-        if (!r.title || !r.content) throw new Error('Isi artikel tidak ditemukan di link itu.')
+        if (!r.title || !r.content) throw new Error('El contenido del artículo no se encuentra en ese enlace.')
         const caption =
           `*▢ TENCENT NEWS*\n\n` +
-          `❀ Judul : ${r.title}\n` +
+          `❀ Título: ${r.title}\n` +
           (r.date ? `❀ Tanggal : ${r.date}\n` : '') +
           (r.categories.length ? `❀ Kategori : ${r.categories.join(', ')}\n` : '') +
           `❀ Link : ${r.url}\n\n` +
@@ -125,7 +125,7 @@ const pluginConfig = {
       }
 
       const items = res.result.slice(0, 10)
-      if (!items.length) throw new Error(input ? `Tidak ada berita untuk "${input}".` : 'Tidak ada berita saat ini.')
+      if (!items.length) throw new Error(input ? `No hay noticias para "${input}".` : 'No hay noticias en este momento.')
 
       const head = input ? `*▢ TENCENT NEWS: ${input}* (hal. ${page})` : `*▢ TENCENT NEWS — Terbaru* (hal. ${page})`
       const body = items.map((x, i) =>
@@ -135,12 +135,12 @@ const pluginConfig = {
         `   ${x.link}`
       ).join('\n\n')
 
-      await reply(`${head}\n\n${body}\n\n_Baca isi artikel: ${p}tencent <link>_`)
+      await reply(`${head}\n\n${body}\n\n_Leer el contenido del artículo: ${p}tencent <link>_`)
       return reactTo(sock, m, '✅')
     } catch (e) {
       await reactTo(sock, m, '❌')
       const status = e.response?.status
-      return reply(`❌ ${status ? `Gagal mengambil data (HTTP ${status}).` : e.message}`)
+      return reply(`❌ ${status ? `No se pudieron obtener los datos (HTTP ${status}).` : e.message}`)
     }
   }
 

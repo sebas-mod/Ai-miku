@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
@@ -38,13 +38,13 @@ const pluginConfig = {
   async function searchPinterest(query, limit) {
       const base = 'https://api.termai.cc'.replace(/\/+$/, '')
       const key = global.token?.termai || ''
-      if (!key) throw new Error('API key Termai belum diisi di config.js (global.token.termai).')
+      if (!key) throw new Error('API La clave de Termai no se ha completado en config.js (global.token.termai).')
       const { data } = await axios.get(`${base}/api/search/pinterest-image`, {
           params: { query, key },
           timeout: 20000
       })
       const images = (data?.data || []).slice(0, limit)
-      if (!images.length) throw new Error('Gambar tidak ditemukan, coba kata kunci lain.')
+      if (!images.length) throw new Error('Imagen no encontrada, pruebe con otra palabra clave.')
       return images
   }
 
@@ -81,7 +81,7 @@ const pluginConfig = {
           })
           const pin = apiRes.data?.resource_response?.data
           if (pin) {
-              const title = String(pin.title || pin.grid_title || pin.closeup_unified_description || 'Pinterest Media').trim()
+              const title = String(pin.title || pin.grid_title || pin.closeup_unified_description || 'Medios de comunicación').trim()
               const videoList = pin.videos?.video_list || pin.story_pin_data?.pages?.[0]?.blocks?.[0]?.video?.video_list
               if (videoList) {
                   const order = ['V_1080P', 'V_720P', 'V_EXP4', 'V_EXP3', 'V_EXP7', 'V_480P', 'V_HLSV4']
@@ -110,7 +110,7 @@ const pluginConfig = {
           ...find(/https:\/\/[a-z0-9.-]*pinimg\.com\/videos\/[^"'\\\s<>]+\.mp4/gi),
           ...find(/https:\/\/[a-z0-9.-]*pinimg\.com\/videos\/[^"'\\\s<>]+\.m3u8/gi)
       ])]
-      if (videos.length) return { type: 'video', title: 'Pinterest Video', quality: '720p', url: hlsToMp4(videos[0]), source: finalUrl }
+      if (videos.length) return { type: 'video', title: 'Vídeos de Pinterest', quality: '720p', url: hlsToMp4(videos[0]), source: finalUrl }
 
       const images = [...new Set([
           ...find(/https:\/\/i\.pinimg\.com\/originals\/[^"'\\\s<>()]+?\.(?:jpg|jpeg|png|webp)/gi),
@@ -118,7 +118,7 @@ const pluginConfig = {
       ])].filter(u => !/logo|favicon|default|75x75|60x60/i.test(u))
       if (images.length) return { type: 'image', title: 'Pinterest Image', url: images[0], source: finalUrl }
 
-      throw new Error('Media video maupun gambar tidak ditemukan di link itu.')
+      throw new Error('No se encontraron medios de video o imágenes en ese enlace.')
   }
 
   const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
@@ -128,9 +128,9 @@ const pluginConfig = {
       if (!input) {
           return reply(
               `*▢ PINTEREST*\n\n` +
-              `${prefix}pin3 Elysia Assistant shinomiya       → cari 10 gambar\n` +
-              `${prefix}pin3 Elysia Assistant shinomiya 18    → cari 18 gambar (maks 18)\n` +
-              `${prefix}pin3 https://pin.it/xxx → download video/gambar dari link`
+              `${prefix}pin3 Ai Miku shinomiya → buscar imagen 10\n` +
+              `${prefix}pin3 Ai Miku shinomiya 18 → buscar 18 imágenes (máximo 18)\n` +
+              `${prefix}pin3 https://pin.it/xxx → descargar vídeo/imagen desde el enlace`
           )
       }
 
@@ -140,8 +140,8 @@ const pluginConfig = {
               const r = await downloadPinterest(input.split(/\s+/)[0])
               const caption =
                   `*▢ PINTEREST*\n\n` +
-                  `❀ Judul : ${r.title}\n` +
-                  `❀ Tipe  : ${r.type === 'video' ? `Video (${r.quality})` : 'Gambar'}\n` +
+                  `❀ Título: ${r.title}\n` +
+                  `❀ Tipo: ${r.type === 'video' ? `Video (${r.quality})` : 'Gambar'}\n` +
                   `❀ Link  : ${r.source}`
               if (r.type === 'video') {
                   await sock.sendMessage(m.chat, { video: { url: r.url }, mimetype: 'video/mp4', caption }, { quoted: m })
@@ -163,8 +163,8 @@ const pluginConfig = {
                   mediaList.push({ image: Buffer.from(res.data) })
               } catch {}
           }
-          if (!mediaList.length) throw new Error('Gagal mengirim gambar.')
-          mediaList[0].caption = `*▢ PINTEREST: ${query}*\n_${mediaList.length} gambar_`
+          if (!mediaList.length) throw new Error('No se pudo enviar la imagen.')
+          mediaList[0].caption = `*▢ PINTEREST: ${query}*\n_${mediaList.length} imagen_`
 
           const opener = generateWAMessageFromContent(
               m.chat,

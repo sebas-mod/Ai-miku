@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -95,18 +95,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+      return m.reply("⚠️ Hermana, ¡responde el mensaje con imagen!");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`👾 *PIXEL ART MAKER*\n\nKirim atau reply foto dengan perintah \`${m.prefix}topixel [level]\` untuk mengubah fotomu menjadi gaya retro pixel art!\n\n_Catatan: Level opsional antara 1-40 (semakin besar semakin kotak-kotak)._`);
+      return m.reply(`👾 *PIXEL ART MAKER*\n\nEnviar o responder fotos con el comando \`${m.prefix}topixel [nivel]\` para convertir tus fotos en un estilo retro pixel art.\n\n_Nota: Nivel opcional entre 1-40 (cuanto más grande, más bloques)._`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("❌ Gagal membaca media gambar, coba lagi!");
+  if (!media) return m.reply("❌ No se pudo leer la imagen multimedia, ¡inténtalo de nuevo!");
 
   await m.react("🕕");
 
@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: pixelatedBuffer,
-        caption: `👾 *PIXEL ART BERHASIL!*\n\nIni dia fotomu dalam gaya pixel art retro 8-bit. Keren kan? ✨`
+        caption: `👾 *¡PIXEL ART LISTO!*\n\nAquí está tu foto en estilo retro pixel art de 8 bits. Genial, ¿verdad? ✨`
       },
       { quoted: m }
     );

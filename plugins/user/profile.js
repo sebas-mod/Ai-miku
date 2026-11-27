@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -130,7 +130,7 @@ async function handler(m, { sock }) {
     : m.pushName || user.name || "Petualang";
   const regStatus = isReg
     ? `✅ Terdaftar (${user.regAge ?? "-"} thn)`
-    : `⚠️ Belum Terdaftar (${m.prefix || "."}daftar)`;
+    : `⚠️ No registrado (${m.prefix || "."}lista)`;
   const snCode = isReg && user.serialNumber ? user.serialNumber : "-";
   const regDateRaw = isReg ? user.lastRegisteredAt || user.registeredAt : null;
   const regDateFmt = regDateRaw
@@ -145,17 +145,17 @@ async function handler(m, { sock }) {
     (user.clanId && global.db?.data?.clans?.[user.clanId]?.name) ||
     user.clanId ||
     rpgGlobal.guild ||
-    "Belum Bergabung";
+    "Aún no unido";
 
   let caption =
-    `╭─── ❖ 『 🌟 *ELYSIA ASTRAL DOSSIER* 』 ❖\n` +
-    `│ 👤 *Nama:* *${displayName}*\n` +
+    `╭─── ❖ 『 🌟 *MIKU ASTRAL DOSSIER* 』 ❖\n` +
+    `│ 👤 *Nombre:* *${displayName}*\n` +
     `│ 🏷️ *Mention:* @${phone}\n` +
-    `│ 👑 *Status Akun:* ${tierBadge}\n` +
-    `│ 🪪 *Verifikasi:* ${regStatus}\n` +
+    `│ 👑 *Estado de la cuenta:* ${tierBadge}\n` +
+    `│ 🪪 *Verificación:* ${regStatus}\n` +
     (snCode !== "-" ? `│ 🔑 *Serial ID:* \`${snCode}\`\n` : "") +
     (regDateFmt ? `│ 📅 *Terdaftar:* ${regDateFmt}\n` : "") +
-    (user.birthday ? `│ 🎂 *Ulang Tahun:* ${user.birthday}\n` : "") +
+    (user.birthday ? `│ 🎂 *Cumpleaños:* ${user.birthday}\n` : "") +
     `│ 🏰 *Clan / Guild:* ${clanName}\n` +
     `├─── ❖ 『 📈 *PANGKAT & LEVEL* 』 ❖\n` +
     `│ 🎖️ *Rank:* *${rankInfo.title}*\n` +
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
     `│ ◦ _${fmt(expInLevel)} / ${fmt(expNeeded)} XP menuju Lv.${userLevel + 1}_\n` +
     `├─── ❖ 『 💰 *KEKAYAAN & ENERGI* 』 ❖\n` +
     `│ 💵 *Koin Dompet:* Rp ${fmt(koin)}\n` +
-    `│ 🏦 *Saldo Bank:* Rp ${fmt(bank)}\n` +
+    `│ 🏦 *Saldo bancario:* Rp ${fmt(bank)}\n` +
     `│ 🪙 *Emas & Berlian:* ${fmt(gold)} Gold • ${fmt(diamond)} Diamond\n` +
     `│ ⚡ *Energi Akses:* ${energiDisplay}\n` +
     `├─── ❖ 『 ⚔️ *ATRIBUT PETUALANG* 』 ❖\n` +
@@ -174,9 +174,9 @@ async function handler(m, { sock }) {
     `│ 💙 *MP:* [${statBar(mp, maxMp)}] ${mp}/${maxMp}\n` +
     `│ ⚡ *STA:* [${statBar(sta, maxSta)}] ${sta}/${maxSta}\n` +
     `├─── ❖ 『 📱 *INFO WHATSAPP* 』 ❖\n` +
-    `│ 📞 *Nomor:* +${phone}\n` +
+    `│ 📞 *Número:* +${phone}\n` +
     `│ 💬 *Bio:* ${bioStatus}\n` +
-    `│ 🏢 *Tipe Akun:* ${isBiz ? "WhatsApp Business 💼" : "WhatsApp Personal 📱"}\n` +
+    `│ 🏢 *Tipo de cuenta:* ${isBiz ? "WhatsApp Business 💼" : "WhatsApp Personal 📱"}\n` +
     `│ 💻 *Perangkat:* ${deviceInfo?.device || "Mobile / Web"}\n`;
 
   if (user.inventory && Object.keys(user.inventory).length > 0) {
@@ -193,7 +193,7 @@ async function handler(m, { sock }) {
 
   caption +=
     `╰──────────────────────────❖\n` +
-    `_✦ Ketik *${m.prefix || "."}level* atau *${m.prefix || "."}claimlevel* untuk klaim hadiah naik level!_`;
+    `_✦ Tipo *${m.prefix || "."}nivel* o *${m.prefix || "."}Claimlevel* para reclamar premios para subir de nivel!_`;
 
   // Foto profil pengguna; kalau tidak ada / privasi -> pp kosong.
   const hasPp = Boolean(ppUrl) && ppUrl !== DEFAULT_PP;

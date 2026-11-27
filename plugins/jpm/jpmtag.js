@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmLoop = ElysiaRuntime.jpmLoop;
-const getMedia = ElysiaRuntime.getMedia;
-const mediaContent = ElysiaRuntime.mediaContent;
-const tagList = ElysiaRuntime.tagList;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmLoop = MikuRuntime.jpmLoop;
+const getMedia = MikuRuntime.getMedia;
+const mediaContent = MikuRuntime.mediaContent;
+const tagList = MikuRuntime.tagList;
 
 const pluginConfig = {
     name: "jpmtag",
@@ -33,11 +33,11 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
-      if (!text && !media) return example('pesan broadcast  (atau reply foto/video + caption)')
+      if (!text && !media) return example('mensaje del transmisor (o contestador foto/video + titulo)')
 
       const groups = await jpmGroups(sock)
       const delay = jpmCfg().delayJpmTag
-      await reply(`*▢ PROSES JPM TAG*\n• Total grup : ${groups.length}\n• Delay : ${delay}ms`)
+      await reply(`*▢ ENVIANDO JPM TAG*\n• Grupo total: ${groups.length}\n• Retardo: ${delay}ms`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => {
           const tag = tagList(g)
@@ -45,7 +45,7 @@ const pluginConfig = {
           return sock.sendMessage(g.id, media ? mediaContent(media, caption, tag.mentions) : { text: caption, mentions: tag.mentions })
       })
 
-      return reply(`*▢ JPM TAG SELESAI*\n• Berhasil : ${ok} grup\n• Gagal : ${fail} grup`)
+      return reply(`*▢ JPM TAG TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cekplat",
@@ -85,7 +85,7 @@ const pluginConfig = {
   }
 
   const SPECIAL = {
-      CD: 'Korps Diplomatik (kedutaan besar / perwakilan negara asing)',
+      CD: 'Cuerpo Diplomático (embajadas/representantes de países extranjeros)',
       CC: 'Korps Konsuler (konsulat negara asing)'
   }
 
@@ -102,27 +102,27 @@ const pluginConfig = {
       if (!input) return example('BK 1234 ABC')
 
       const letters = (input.match(/^[A-Z]{1,2}/) || [''])[0]
-      if (!letters) return reply('Plat tidak valid. Plat diawali 1-2 huruf kode wilayah, contoh: BK 1234 ABC')
+      if (!letters) return reply('Matrícula no válida. Empieza con 1 o 2 letras del código de región, por ejemplo: BK 1234 ABC')
 
       const hit = SPECIAL[letters] ? { code: letters, info: SPECIAL[letters] }
           : PLAT[letters] ? { code: letters, info: PLAT[letters] }
           : null
 
       if (!hit) {
-          return reply(`Kode wilayah *${letters}* tidak ada di data.\n\nPeriksa lagi hurufnya. Contoh plat: B 1234 XYZ, DK 5678 AB`)
+          return reply(`El código de región *${letters}* no está en los datos.\n\nRevisa las letras. Ejemplo de matrícula: B 1234 XYZ, DK 5678 AB`)
       }
 
       const rest = input.slice(hit.code.length).trim()
       const suffix = (rest.match(/[A-Z]{1,3}$/) || [''])[0]
 
       return reply(
-          `🚘 *CEK PLAT NOMOR*\n\n` +
-          `Plat   : ${input}\n` +
-          `Kode   : *${hit.code}*\n` +
-          `Wilayah: ${hit.info}` +
-          (suffix && !SPECIAL[hit.code] ? `\nHuruf akhir: ${suffix} (kode seri, bukan penentu wilayah pasti)` : '') +
-          `\n\n*Warna plat*\n${WARNA.map(w => `- ${w}`).join('\n')}` +
-          `\n\n_Kode wilayah menunjukkan tempat registrasi awal kendaraan, bukan lokasi pemilik saat ini._`
+          `🚘 *CONSULTA DE MATRÍCULA*\n\n` +
+          `Matrícula : ${input}\n` +
+          `Código    : *${hit.code}*\n` +
+          `Región    : ${hit.info}` +
+          (suffix && !SPECIAL[hit.code] ? `\nLetras finales: ${suffix} (código de serie, no determinan la región exacta)` : '') +
+          `\n\n*Colores de matrícula*\n${WARNA.map(w => `- ${w}`).join('\n')}` +
+          `\n\n_El código de región indica dónde se registró el vehículo, no dónde está su dueño ahora._`
       )
   }
 

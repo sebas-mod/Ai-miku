@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createRequire } from 'node:module'
 import axios from 'axios'
 
@@ -63,7 +63,7 @@ import axios from 'axios'
           const data = JSON.parse(response.data.slice(4))
           const { fileName, sizeBytes, downloadUrl } = data
 
-          if (!downloadUrl) throw new Error("Link Download Limit!")
+          if (!downloadUrl) throw new Error("¡Enlace con límite de descargas!")
 
           return {
               downloadUrl: downloadUrl,
@@ -82,30 +82,30 @@ import axios from 'axios'
 
       if (!url) {
           return m.reply(
-              `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
+              `*GOOGLE DRIVE*\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
               `┃   ${m.prefix}gdrive <url>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}gdrive https://drive.google.com/file/d/xxx/view\n` +
               `┃\n` +
-              `┃ *${global.namebot || 'Bot'}:* Mau download file dari Google Drive apa darling~?\n` +
+              `┃ *${global.namebot || 'Bot'}:* ¿Qué archivo de Google Drive quieres descargar, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
 
       if (!url.match(/drive\.google/i)) {
           return m.reply(
-              `💔 *ᴇʀʀᴏʀ*\n\n` +
-              `> URL tidak valid. Kirim link Google Drive yang bener darling~ 🥺`
+              `💔 *ERROR*\n\n` +
+              `> URL sin validez. Envía un enlace de Google Drive correcto, cariño~ 🥺`
           )
       }
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n *${global.namebot || 'Bot'}:* Lagi mengambil file dari Google Drive darling~ tunggu sebentar yaa 📁`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n *${global.namebot || 'Bot'}:* Estoy obteniendo el archivo de Google Drive, cariño~ espera un momento 📁`)
 
       try {
           const data = await drive(url)
@@ -113,8 +113,8 @@ import axios from 'axios'
           if (data.error || !data.downloadUrl) {
               m.react('💔')
               return m.reply(
-                  `💔 *ɢᴀɢᴀʟ*\n\n` +
-                  `> File tidak dapat diakses atau link limit darling~ 🥺`
+                  `💔 *ERROR*\n\n` +
+                  `> No se puede acceder al archivo o el enlace alcanzado su límite, cariño~ 🥺`
               )
           }
 
@@ -122,12 +122,12 @@ import axios from 'axios'
               document: { url: data.downloadUrl },
               fileName: data.fileName,
               mimetype: data.mimetype,
-              caption: `*ɢᴏᴏɢʟᴇ ᴅʀɪᴠᴇ*\n\n` +
+              caption: `*GOOGLE DRIVE*\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ 📄 *ɴᴀᴍᴀ*: ${data.fileName}\n` +
-                      `┃ 📦 *ᴜᴋᴜʀᴀɴ*: ${data.fileSize}\n` +
+                      `┃ 📄 *NOMBRE*: ${data.fileName}\n` +
+                      `┃ 📦 *TAMAÑO*: ${data.fileSize}\n` +
                       `┃\n` +
-                      `┃ *${global.namebot || 'Bot'}:* Ini file nya darling~ 📂\n` +
+                      `┃ *${global.namebot || 'Bot'}:* Aquí tienes el archivo, cariño~ 📂\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -136,9 +136,9 @@ import axios from 'axios'
           console.error('[GDrive] Error:', err)
           m.react('💔')
           return m.reply(
-              `💔 *ᴇʀʀᴏʀ*\n\n` +
+              `💔 *ERROR*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, cariño~ 🥺`
           )
       }
   }

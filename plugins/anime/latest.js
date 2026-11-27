@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import fetch from 'node-fetch'
 
   const pluginConfig = {
@@ -31,7 +31,7 @@ import fetch from 'node-fetch'
       const res = await fetch('https://api.sansekai.my.id/api/anime/latest')
       const data = await res.json()
 
-      if (!data.length) throw 'Anime tidak ditemukan.'
+      if (!data.length) throw 'Anime no encontrado.'
 
       let teks = `🎌 *ANIME TERBARU*\n\n`
 
@@ -51,10 +51,10 @@ import fetch from 'node-fetch'
       )
 
     } catch (e) {
-      m.reply('❌ Gagal mengambil data anime terbaru')
+      m.reply('❌ No se pudieron recuperar los datos del anime más recientes')
     }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

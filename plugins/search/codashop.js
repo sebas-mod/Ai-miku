@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
   const BASE = 'https://www.codashop.com'
@@ -25,8 +25,8 @@ import axios from 'axios'
       }
     )
     if (status >= 400 || !data) throw new Error(`Search API error (HTTP ${status})`)
-    if (!Array.isArray(data)) throw new Error('Format balasan search tidak valid')
-    if (!data.length) throw new Error('Game tidak ditemukan')
+    if (!Array.isArray(data)) throw new Error('Formato de respuesta de búsqueda no válido')
+    if (!data.length) throw new Error('Juego no encontrado')
 
     return data.map(i => ({
       name: i.productName || 'Unknown',
@@ -69,11 +69,11 @@ import axios from 'axios'
     }
 
     const nuxt = html.match(/<script type="application\/json" data-nuxt-data="nuxt-app"[^>]*>([\s\S]*?)<\/script>/i)
-    if (!nuxt?.[1]) throw new Error('NUXT_DATA tidak ditemukan di halaman')
+    if (!nuxt?.[1]) throw new Error('NUXT_DATA no encontrado en la página')
 
     let arr
-    try { arr = JSON.parse(nuxt[1]) } catch { throw new Error('Gagal parse NUXT_DATA') }
-    if (!Array.isArray(arr)) throw new Error('NUXT_DATA bukan array')
+    try { arr = JSON.parse(nuxt[1]) } catch { throw new Error('No se pudo analizar NUXT_DATA') }
+    if (!Array.isArray(arr)) throw new Error('NUXT_DATA no es una matriz')
 
     let title = '', cover = ''
     for (const v of arr) {
@@ -107,7 +107,7 @@ import axios from 'axios'
       }
       if (payments.length) items.push({ name, payments: payments.sort((a, b) => a.price - b.price) })
     }
-    if (!items.length) throw new Error('Gagal mengekstrak daftar item')
+    if (!items.length) throw new Error('No se pudo extraer la lista de elementos')
 
     return { title: title || 'Unknown Game', publisher, rating, reviews, description, cover, items }
   }
@@ -133,8 +133,8 @@ import axios from 'axios'
     if (!text) {
       m.react('❌')
       return m.reply(
-        `📌 Contoh:\n*${m.prefix + m.command} free fire* (cari game)\n` +
-        `*${m.prefix + m.command} detail /id/free-fire* (cek harga)`
+        `📌 Ejemplo:\n*${m.prefix + m.command} free fire* (buscar juegos)\n` +
+        `*${m.prefix + m.command} detalles /id/free-fire* (consultar precio)`
       )
     }
 
@@ -155,9 +155,9 @@ import axios from 'axios'
           `🎮 *${d.title}*\n` +
           `- Publisher: ${d.publisher}\n` +
           `- Rating: ${d.rating} (${d.reviews} ulasan)\n\n` +
-          `*Harga termurah per item:*\n${lines.join('\n')}` +
-          (d.items.length > 25 ? `\n\n...dan ${d.items.length - 25} item lainnya` : '') +
-          `\n\n💡 Harga bisa berbeda per metode pembayaran.`
+          `*Precio más bajo por artículo:*\n${lines.join('\n')}` +
+          (d.items.length > 25 ? `\n\n...dan ${d.items.length - 25} otros artículos` : '') +
+          `\n\n💡 Los precios pueden variar según el método de pago.`
 
         if (d.cover) {
           await sock.sendMessage(m.chat, { image: { url: d.cover }, caption }, { quoted: m })
@@ -169,7 +169,7 @@ import axios from 'axios'
         const list = results.slice(0, 10).map((r, i) =>
           `${i + 1}. *${r.name}*\n   ${m.prefix + m.command} detail ${r.url.replace(BASE, '')}`
         ).join('\n')
-        await m.reply(`🔎 *Hasil "${text}"*\n\n${list}\n\nSalin perintah di bawah game untuk lihat harga.`)
+        await m.reply(`🔎 *Resultados"${text}"*\n\n${list}\n\nCopia el pedido debajo del juego para ver el precio.`)
       }
       m.react('✅')
     } catch (e) {

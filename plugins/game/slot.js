@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "slot",
   alias: ["slots", "spin"],
   category: "game",
-  description: "Putar mesin slot kristal Elysia berhadiah hingga 10x taruhan",
+  description: "Putar mesin slot kristal Miku berhadiah hingga 10x taruhan",
   usage: ".slot [taruhan]",
   example: ".slot 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -31,7 +31,7 @@ async function handler(m) {
   const bet = Math.max(100, Math.min(50000, parseInt(m.text, 10) || 500));
 
   if ((user?.koin || 0) < bet) {
-    return m.reply(`❌ Koin tidak cukup! Saldo kamu: *${(user?.koin || 0).toLocaleString("id-ID")} Koin*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Tu saldo: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   db.updateKoin(m.sender, -bet);
@@ -40,7 +40,7 @@ async function handler(m) {
   const row3 = [pick(), pick(), pick()];
 
   let mult = 0;
-  let badge = "😢 *Belum beruntung!*";
+  let badge = "😢 *¡Sin suerte!*";
   if (mid[0] === mid[1] && mid[1] === mid[2]) {
     if (mid[0] === "7️⃣") { mult = 10; badge = "👑 *MEGA JACKPOT 777 (10x)!*"; }
     else if (mid[0] === "💎" || mid[0] === "🌸") { mult = 6; badge = "💎 *CRYSTAL JACKPOT (6x)!*"; }
@@ -57,7 +57,7 @@ async function handler(m) {
   }
 
   await m.reply(
-    `╭─❖「 🎰 *ELYSIA CRYSTAL SLOT* 」\n` +
+    `╭─❖「 🎰 *MIKU CRYSTAL SLOT* 」\n` +
       `│     ${row1.join(" │ ")}\n` +
       `│ ▶  ${mid.join(" │ ")}  ◀\n` +
       `│     ${row3.join(" │ ")}\n` +

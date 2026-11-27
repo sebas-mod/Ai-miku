@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmJobs = ElysiaRuntime.jpmJobs;
+const jpmJobs = MikuRuntime.jpmJobs;
 
 const pluginConfig = {
     name: "stoppush",
@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { reply }) {
       const jobs = jpmJobs()
-      if (!jobs.pushRunning) return reply('❌ Push kontak tidak sedang berjalan.')
+      if (!jobs.pushRunning) return reply('❌ El envío de contactos no está en marcha.')
       jobs.pushRunning = false
       return reply('*▢ PUSH KONTAK*\n• Status : Dihentikan')
   }

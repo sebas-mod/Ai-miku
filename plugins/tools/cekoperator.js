@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cekoperator",
@@ -69,7 +69,7 @@ async function handler(m, { text, reply, example }) {
 
     const number = normalize(text)
     if (!/^08\d{8,12}$/.test(number)) {
-        return reply('Nomor tidak valid. Masukkan nomor HP Indonesia, contoh: 08123456789 atau 628123456789')
+        return reply('Número no válido. Escribe un número de Indonesia, por ejemplo 08123456789 o 628123456789')
     }
 
     const prefix = number.slice(0, 4)
@@ -80,17 +80,17 @@ async function handler(m, { text, reply, example }) {
     }
 
     if (!operator) {
-        return reply(`Prefix *${prefix}* belum ada di data operator.\n\nBisa jadi nomor ini dari operator kecil atau prefix baru.`)
+        return reply(`El prefijo *${prefix}* no está en los datos de operadores.\n\nPuede que sea de un operador pequeño o un prefijo nuevo.`)
     }
 
     return reply(
         `📱 *CEK OPERATOR*\n\n` +
-        `Nomor    : ${number}\n` +
-        `Format   : +62${number.slice(1)}\n` +
+        `Número: ${number}\n` +
+        `Formato: +62${number.slice(1)}\n` +
         `Prefix   : ${prefix}\n` +
         `Operator : *${operator}*\n` +
         `Kartu    : ${kartu}\n\n` +
-        `_Berdasarkan prefix awal. Nomor yang pindah operator (MNP) bisa berbeda dari hasil ini._`
+        `_Basado en el prefijo inicial. Los números que cambiaron de operador (portabilidad) pueden no coincidir con este resultado._`
     )
 }
 

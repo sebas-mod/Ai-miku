@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { exec } from 'node:child_process'
 
 const pluginConfig = {
@@ -47,9 +47,9 @@ const { promisify } = (await import('node:util'))
       const h = Math.floor(sec / 3600);
       const m = Math.floor((sec % 3600) / 60);
       const s = sec % 60;
-      if (h > 0) return `${h} jam ${m} mnt ${s} dtk`;
+      if (h > 0) return `${h} h ${m} min ${s} s`;
       if (m > 0) return `${m} mnt ${s} dtk`;
-      return `${s} detik`;
+      return `${s} segundos`;
   };
 
   async function handler(m, { usedPrefix, command, reply }) {
@@ -57,16 +57,16 @@ const { promisify } = (await import('node:util'))
       const mime = (q.msg || q).mimetype || q.mtype || '';
 
       if (!/video|gif/.test(mime)) {
-          return reply(`Kirim atau reply video/GIF dengan caption *${usedPrefix + command}*`);
+          return reply(`Envía o responde a un vídeo/GIF con el texto *${usedPrefix + command}*`);
       }
 
-      reply(global.mess?.loading || '⏳ _Menganalisis metadata video..._');
+      reply(global.mess?.loading || '⏳ _Analizando metadatos de vídeo..._');
 
       let tmpFile = null;
       try {
           const media = await q.download();
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ ɢᴀɢᴀʟ mendownload media video.');
+              return reply('❌ FALLÓ al descargar videos.');
           }
 
           const tmpName = `vid_${Date.now()}_${crypto.randomBytes(4).toString('hex')}.mp4`;
@@ -88,7 +88,7 @@ const { promisify } = (await import('node:util'))
           const [fNom, fDenom] = fpsRaw.split('/').map(Number);
           const fps = fDenom && fNom ? Math.round(fNom / fDenom) : '-';
           const vCodec = (vStream.codec_name || '-').toUpperCase();
-          const aCodec = (aStream.codec_name || 'Tidak ada audio').toUpperCase();
+          const aCodec = (aStream.codec_name || 'pecado de audio').toUpperCase();
           const bitRate = fmt.bit_rate ? `${Math.round(fmt.bit_rate / 1000)} kbps` : '-';
           const size = media.length ? formatBytes(media.length) : formatBytes(fmt.size || 0);
           const formatName = (fmt.format_long_name || fmt.format_name || 'MP4').split(',')[0];
@@ -96,23 +96,23 @@ const { promisify } = (await import('node:util'))
           const totalPixels = width && height ? (width * height).toLocaleString('id-ID') : '-';
           const aspect = width && height ? `${(width / height).toFixed(2)} (${width}:${height})` : '-';
 
-          const teks = `🎬 *VIDEO SPEC & METADATA IDENTIFIER*\n\n` +
+          const teks = `🎬 *IDENTIFICADOR DE METADATOS Y ESPECIFICACIONES DE VIDEO*\n\n` +
               `• 📐 *Resolusi (Px):* ${width} x ${height} px\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect}\n` +
               `• ⏱️ *⏱️ *ᴅᴜʀᴀsɪ:** ${formatDuration(duration)} (${duration.toFixed(1)}s)\n` +
               `• 🎞️ *Frame Rate (FPS):* ${fps} FPS\n` +
-              `• 📦 *Format Container:* ${formatName}\n` +
-              `• 🎥 *Video Codec:* ${vCodec}\n` +
-              `• 🔊 *Audio Codec:* ${aCodec}\n` +
+              `• 📦 *Formato de contenedor:* ${formatName}\n` +
+              `• 🎥 *Códec de vídeo:* ${vCodec}\n` +
+              `• 🔊 *Códec de audio:* ${aCodec}\n` +
               `• ⚡ *Bitrate:* ${bitRate}\n` +
-              `• 💾 *Ukuran File:* ${size}\n\n` +
-              `_Identifikasi video berhasil!_`;
+              `• 💾 *Tamaño del archivo:* ${size}\n\n` +
+              `_¡Vídeo identificado!_`;
 
           reply(teks);
       } catch (err) {
           console.error('[cekvideo error]:', err);
-          reply(`❌ ɢᴀɢᴀʟ membaca metadata video: ${err.message || err}`);
+          reply(`❌ FAIL lectura de metadatos de vídeo: ${err.message || err}`);
       } finally {
           if (tmpFile && fs.existsSync(tmpFile)) {
               await fs.promises.unlink(tmpFile).catch(() => null);

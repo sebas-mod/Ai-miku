@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
 import path from 'path'
 import fetch from 'node-fetch'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "bratbahlil",
@@ -198,7 +198,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
     const text = m.text;
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+      return m.reply(`⚠️ ¡Por favor ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
     }
 
     await m.react("🕕");
@@ -227,7 +227,7 @@ const te = ElysiaRuntime.te;
 
       const template = TEMPLATES[cmd];
       if (!template) {
-        throw new Error("Template tidak ditemukan");
+        throw new Error("Plantilla no encontrada");
       }
 
       if (!isFontLoaded) {

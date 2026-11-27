@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,26 +32,26 @@ async function handler(m, { sock }) {
     const customWords = groupData.toxicWords || []
     const defaultWords = DEFAULT_TOXIC_WORDS || []
 
-    let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴋᴀᴛᴀ ᴛᴏxɪᴄ*\n\n`
+    let text = `📋 *LISTA DE PALABRAS TÓXICAS*\n\n`
 
     if (customWords.length > 0) {
-        text += `╭┈┈⬡「 ✏️ *ᴄᴜsᴛᴏᴍ* (${customWords.length}) 」\n`
+        text += `╭┈┈⬡「 ✏️ *PERSONALIZADO* (${customWords.length}) 」\n`
         for (let i = 0; i < customWords.length; i++) {
             text += `┃ ${i + 1}. ${customWords[i]}\n`
         }
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     }
 
-    text += `╭┈┈⬡「 📦 *ᴅᴇꜰᴀᴜʟᴛ* (${defaultWords.length}) 」\n`
+    text += `╭┈┈⬡「 📦 *PREDETERMINADO* (${defaultWords.length}) 」\n`
 
     for (let i = 0; i < defaultWords.length; i++) {
         text += `┃ ${i + 1}. ${defaultWords[i]}\n`
     }
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
-    text += `Total: *${customWords.length + defaultWords.length}* kata\n`
-    text += `\`.addtoxic <kata>\` untuk tambah\n`
-    text += `\`.deltoxic <kata>\` untuk hapus`
+    text += `Total: *${customWords.length + defaultWords.length}* palabras\n`
+    text += `\`.addtoxic <palabra>\` para añadir\n`
+    text += `\`.deltoxic <palabra>\` para eliminar`
 
     await m.reply(text)
 }

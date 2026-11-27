@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const te = ElysiaRuntime.te;
-const likee = ElysiaRuntime.likee;
+const te = MikuRuntime.te;
+const likee = MikuRuntime.likee;
 
   const pluginConfig = {
       name: 'likeedl',
@@ -32,15 +32,15 @@ const likee = ElysiaRuntime.likee;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}likeedl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}likeedl https://likee.video/@xxx\``
           )
       }
 
       if (!url.match(/likee\.(video|com)/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link Likee.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de Likee.`)
       }
 
       await m.react('🕕')
@@ -49,13 +49,13 @@ const likee = ElysiaRuntime.likee;
           const data = await likee(url)
 
           if (!data) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const videoUrl = data.without_watermark || data.with_watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video tidak ditemukan.`)
+              return m.reply(`❌ Vídeo no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {

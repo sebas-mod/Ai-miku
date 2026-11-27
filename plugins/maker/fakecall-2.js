@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: ['fakecall', 'fakecall-android', 'fakecall-ios'],
@@ -18,7 +18,7 @@ const te = ElysiaRuntime.te;
       category: "maker",
       description: 'Membuat gambar fake call WhatsApp (Tersedia versi Android dan iOS)',
       usage: '.fakecall nama | durasi',
-      example: '.fakecall Elysia Assistant | 19:00',
+      example: '.fakecall Ai Miku | 19:00',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -33,18 +33,18 @@ const te = ElysiaRuntime.te;
       const text = m.text
 
       if (!text || !text.includes('|')) {
-          let helpText = `Halo! Sepertinya format yang kamu masukkan kurang tepat.\n\n`
-          helpText += `Fitur ini digunakan untuk membuat gambar panggilan palsu (Fake Call) seolah-olah seseorang sedang meneleponmu secara langsung.\n\n`
-          helpText += `*Daftar Perintah yang Tersedia:*\n`
-          helpText += `- *${m.prefix}fakecall* (Untuk tampilan panggilan Android)\n`
-          helpText += `- *${m.prefix}fakecall-ios* (Untuk tampilan panggilan iPhone atau iOS)\n\n`
-          helpText += `*Cara Penggunaan:*\n`
-          helpText += `Ketik perintah diikuti dengan *Nama* dan *Durasi* yang dipisahkan oleh tanda pipa (|).\n\n`
-          helpText += `*Contoh Penggunaan:*\n`
-          helpText += `- *${m.prefix}fakecall Elysia Assistant | 03:33:33*\n`
+          let helpText = `¡Hola! Parece que el formato que enviaste no es correcto.\n\n`
+          helpText += `Esta función crea una imagen de llamada falsa, como si alguien te estuviera llamando.\n\n`
+          helpText += `*Comandos disponibles:*\n`
+          helpText += `- *${m.prefix}fakecall* (Para la vista de llamada de Android)\n`
+          helpText += `- *${m.prefix}fakecall-ios* (Para la vista de llamada de iPhone o iOS)\n\n`
+          helpText += `*Cómo usar:*\n`
+          helpText += `Escribe el comando seguido de *Nombre* y *Duración* separados por una barra vertical (|).\n\n`
+          helpText += `*Ejemplo de uso:*\n`
+          helpText += `- *${m.prefix}fakecall Ai Miku | 03:33:33*\n`
           helpText += `- *${m.prefix}fakecall-ios Sayangku | 12:00:00*\n\n`
           helpText += `*Tips Tambahan:*\n`
-          helpText += `Kamu bisa me-reply (membalas) sebuah gambar jika ingin menggunakan foto tersebut sebagai avatar profil sang penelepon!`
+          helpText += `¡Puedes responder a una imagen para usarla como foto de perfil de quien llama!`
 
           return m.reply(helpText)
       }
@@ -52,11 +52,11 @@ const te = ElysiaRuntime.te;
       const [nama, durasi] = text.split('|').map(s => s.trim())
 
       if (!nama) {
-          return m.reply(`Maaf, nama penelepon tidak boleh dikosongkan. Silakan isi namanya terlebih dahulu!`)
+          return m.reply(`El nombre de quien llama no puede estar vacío. ¡Escribe un nombre primero!`)
       }
 
       if (!durasi) {
-          return m.reply(`Maaf, durasi panggilan tidak boleh dikosongkan. Silakan isi durasinya terlebih dahulu!`)
+          return m.reply(`La duración de la llamada no puede estar vacía. ¡Escribe una duración primero!`)
       }
 
       await m.react('🕕')

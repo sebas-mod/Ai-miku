@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -40,7 +40,7 @@ const pluginConfig = {
           timeout: 15000
       })
       const out = (data?.[0] || []).map(part => part?.[0] || '').join('').trim()
-      if (!out) throw new Error('Hasil terjemahan kosong')
+      if (!out) throw new Error('Los resultados de la traducción están vacíos.')
       return { text: out, from: data?.[2] || from, to }
   }
 
@@ -49,16 +49,16 @@ const pluginConfig = {
       if (!input && m.quoted) input = String(m.quoted.text || '').trim()
 
       if (!input) {
-          return reply(`*▢ TRANSLATE*\n\n${prefix}indo <teks>  → ke Indonesia\n\nBisa juga reply pesan lalu ketik ${prefix}${command}`)
+          return reply(`*▢ TRADUCIR*\n\n${prefix}indo <texto>  → al indonesio\n\nTambién puedes responder a un mensaje y escribir ${prefix}${command}`)
       }
-      if (input.length > MAX_CHARS) return reply(`Teks terlalu panjang (${input.length} karakter, maks ${MAX_CHARS}).`)
+      if (input.length > MAX_CHARS) return reply(`El texto es demasiado largo (${input.length} caracteres, máx. ${MAX_CHARS}).`)
 
       try {
           const result = await translate(input, 'id')
-          return reply(`🌐 *Terjemahan* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
+          return reply(`🌐 *Traducción* (${nama(result.from)} → ${nama(result.to)})\n\n${result.text}`)
       } catch (e) {
           console.error('[TRANSLATE]', e?.message || e)
-          return reply(`Gagal menerjemahkan: ${e?.response?.status ? `server menolak (HTTP ${e.response.status})` : e?.message || 'error'}.\nCoba lagi sebentar.`)
+          return reply(`No se pudo traducir: ${e?.response?.status ? `el servidor lo rechazó (HTTP ${e.response.status})` : e?.message || 'error'}.\nInténtalo de nuevo en un momento.`)
       }
   }
 

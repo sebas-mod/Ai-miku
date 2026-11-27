@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "anticulik",
   alias: ["antikidnap", "antiileng", "anticulikgc"],
   category: "group",
-  description: "Bot otomatis keluar grup jika ditambah tanpa izin",
+  description: "El bot sale solo del grupo si lo añaden sin permiso",
   usage: ".anticulik on/off",
   example: ".anticulik on",
   isOwner: true,
@@ -34,13 +34,13 @@ async function handler(m, { sock }) {
 
     return m.reply(
       `🛡️ *Anti Culik*\n\n` +
-        `Bot akan otomatis keluar dari grup jika ditambah oleh orang yang tidak dikenal tanpa izin.\n\n` +
+        `El bot saldrá solo del grupo si lo añade alguien desconocido sin permiso.\n\n` +
         `*STATUS:*\n` +
-        `> Mode: *${status === "on" ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticulik on* — Aktifkan\n` +
-        `> *${m.prefix}anticulik off* — Nonaktifkan\n\n` +
-        `_Jika aktif, bot hanya bisa join via *${m.prefix}join* atau ditambah oleh owner_`
+        `> Modo: *${status === "on" ? "Activado ✅" : "Desactivado ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}anticulik on* — Activar\n` +
+        `> *${m.prefix}anticulik off* — Desactivar\n\n` +
+        `_Si está activo, el bot solo puede entrar con *${m.prefix}join* o si lo añade el dueño_`
     );
   }
 
@@ -48,10 +48,10 @@ async function handler(m, { sock }) {
     db.setting("anticulik", "on");
     const ctx = saluranCtx();
     return m.reply(
-      `🛡️ *Anti Culik Aktif*\n\n` +
-        `> Bot akan keluar otomatis jika ditambah tanpa izin\n` +
-        `> Satu-satunya cara bot bisa join: *${m.prefix}join* oleh owner\n\n` +
-        `_Member yang menambah bot akan diberi peringatan_`,
+      `🛡️ *Anti Secuestro Activo*\n\n` +
+        `> El bot saldrá solo si lo añaden sin permiso\n` +
+        `> La única forma de que entre: *${m.prefix}join* por el dueño\n\n` +
+        `_El miembro que añada el bot recibirá un aviso_`,
       { contextInfo: ctx }
     );
   }
@@ -59,14 +59,14 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("anticulik", "off");
     return m.reply(
-      `🛡️ *Anti Culik Nonaktif*\n\n` +
-        `> Bot tidak akan keluar otomatis jika ditambah ke grup\n` +
-        `> Siapapun bisa menambahkan bot ke grup`
+      `🛡️ *Anti Secuestro Inactivo*\n\n` +
+        `> El bot no saldrá solo si lo añaden a un grupo\n` +
+        `> Cualquiera puede añadir el bot a un grupo`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}anticulik on* atau *${m.prefix}anticulik off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}anticulik on* o *${m.prefix}anticulik off*`
   );
 }
 
@@ -113,10 +113,10 @@ async function handleAntiCulik(event, sock, db) {
   await sock.sendMessage(event.id, {
     text:
       `🛡️ *Anti Culik*\n\n` +
-      `Minimal izin dulu ya bang, jangan asal culik 🗿\n\n` +
-      `> Bot ditambah oleh ${inviterMention} tanpa izin\n` +
-      `> Bot akan keluar dari grup ini\n\n` +
-      `_Hubungi owner untuk menambahkan bot dengan cara yang benar_`,
+      `Pide permiso primero, no secuestres a lo loco 🗿\n\n` +
+      `> El bot fue añadido por ${inviterMention} sin permiso\n` +
+      `> El bot va a salir de este grupo\n\n` +
+      `_Contacta al dueño para añadir el bot de la forma correcta_`,
     contextInfo: saluranCtx(),
     mentionedJid: inviter ? [inviter] : [],
   });

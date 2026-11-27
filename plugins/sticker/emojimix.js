@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
 const pluginConfig = {
     name: "emojimix",
@@ -63,7 +63,7 @@ const pluginConfig = {
     try {
       let url = await mix(a, b)
       if (!url) url = await mix(b, a)
-      if (!url) return reply(`❌ Kombinasi ${a} + ${b} belum tersedia. Coba emoji lain.`)
+      if (!url) return reply(`❌ Combinación ${a} + ${b} aún no está disponible. Prueba con otro emoji.`)
 
       const res = await axios.get(url, { responseType: 'arraybuffer', timeout: 20000 })
       await sock.sendImageAsSticker(m.chat, Buffer.from(res.data), m, {
@@ -72,7 +72,7 @@ const pluginConfig = {
       })
     } catch (e) {
       console.error('[emojimix]', e?.message || e)
-      return reply('❌ Gagal mengambil emoji mix. Server Google/Tenor mungkin sedang bermasalah, coba lagi nanti.')
+      return reply('❌ No se pudo recuperar la mezcla de emoji. Es posible que los servidores de Google/Tenor estén teniendo problemas. Vuelva a intentarlo más tarde.')
     }
   }
 

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import { load } from 'cheerio'
 
@@ -105,9 +105,9 @@ import { load } from 'cheerio'
     if (!input) {
       m.react('❌')
       return m.reply(
-        `📌 Contoh:\n*${m.prefix + m.command} @username*\n` +
-        `*${m.prefix + m.command} @username 2* (ambil story ke-2)\n` +
-        `*${m.prefix + m.command} @username all* (maks ${MAX_ALL} story)`
+        `📌 Ejemplo:\n*${m.prefix + m.command} @username*\n` +
+        `*${m.prefix + m.command} @username 2* (obtén la historia n.º 2)\n` +
+        `*${m.prefix + m.command} @username all* (máx. ${MAX_ALL} historias)`
       )
     }
 
@@ -116,7 +116,7 @@ import { load } from 'cheerio'
       const result = await fetchStories(input)
       if (!result.count) {
         m.react('❌')
-        return m.reply(`❌ Story *@${result.username}* tidak ditemukan atau akun private / sedang tidak ada story.`)
+        return m.reply(`❌ La historia de *@${result.username}* no se encontró, la cuenta es privada o no hay historias.`)
       }
 
       let targets
@@ -124,7 +124,7 @@ import { load } from 'cheerio'
       else if (/^\d+$/.test(pick)) targets = result.stories.filter(s => s.index === Number(pick))
       else targets = result.stories.slice(0, 1)
 
-      if (!targets.length) return m.reply(`❌ Story nomor ${pick} tidak ada. Total story: ${result.count}`)
+      if (!targets.length) return m.reply(`❌ La historia número ${pick} no existe. Total de historias: ${result.count}`)
 
       for (const s of targets) {
         if (!s.download_url) continue
@@ -142,18 +142,18 @@ import { load } from 'cheerio'
           }
         } catch (e) {
           console.error(`[TTStory] Story ${s.index} gagal:`, e.message)
-          await m.reply(`⚠️ Story ${s.index} gagal diunduh.`)
+          await m.reply(`⚠️ No se pudo descargar la historia ${s.index}.`)
         }
       }
 
       if (result.count > 1 && !pick) {
-        await m.reply(`💡 @${result.username} punya ${result.count} story.\nPakai *${m.prefix + m.command} ${input} <nomor>* atau *all*.`)
+        await m.reply(`💡 @${result.username} tiene ${result.count} historias.\nUsa *${m.prefix + m.command} ${input} <número>* o *all*.`)
       }
       m.react('✅')
     } catch (e) {
       console.error('[TTStory] Error:', e)
       m.react('❌')
-      m.reply(`❌ *Gagal mengambil story*\n\n> ${e.message}`)
+      m.reply(`❌ *Error al obtener las historias*\n\n> ${e.message}`)
     }
   }
 

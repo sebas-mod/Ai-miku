@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -27,13 +27,13 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, args, usedPrefix, command }) {
-    if (args.length < 2) return m.reply(`Contoh:\n${usedPrefix + command} tiktok https://vt.tiktok.com/ZSBKKk4HS/`)
+    if (args.length < 2) return m.reply(`Ejemplo:\n${usedPrefix + command} tiktok https://vt.tiktok.com/ZSBKKk4HS/`)
 
     const platform = args[0].toLowerCase()
     const inputUrl = args[1]
 
     if (!['instagram', 'tiktok', 'facebook'].includes(platform))
-      return m.reply('Platform tidak valid! Gunakan: instagram, tiktok, atau facebook')
+      return m.reply('¡Plataforma no válida! Usa: instagram, tiktok o facebook')
 
     const SITE_URL = 'https://instatiktok.com/'
     const form = new URLSearchParams()
@@ -53,7 +53,7 @@ const pluginConfig = {
       })
 
       const html = res?.data?.html
-      if (!html || res?.data?.status !== 'success') throw 'Gagal ambil data'
+      if (!html || res?.data?.status !== 'success') throw 'No se pudieron obtener los datos'
 
       const $ = cheerio.load(html)
       const links = []
@@ -63,7 +63,7 @@ const pluginConfig = {
         if (link && !links.includes(link)) links.push(link)
       })
 
-      if (links.length === 0) throw 'Link download tidak ditemukan'
+      if (links.length === 0) throw 'Enlace de descarga no encontrado'
 
       let download
       if (platform === 'instagram') {
@@ -76,13 +76,13 @@ const pluginConfig = {
 
       if (Array.isArray(download)) {
         for (let link of download) {
-          await conn.sendFile(m.chat, link, 'media.mp4', `✅ Hasil download dari ${platform}`, m)
+          await conn.sendFile(m.chat, link, 'media.mp4', `✅ Descarga de ${platform}`, m)
         }
       } else {
-        await conn.sendFile(m.chat, download, 'media.mp4', `✅ Berhasil download dari ${platform}`, m)
+        await conn.sendFile(m.chat, download, 'media.mp4', `✅ Descarga completada de ${platform}`, m)
       }
     } catch (e) {
-      m.reply(`❌ Gagal: ${e.message || e}`)
+      m.reply(`❌ Error: ${e.message || e}`)
     }
   }
 

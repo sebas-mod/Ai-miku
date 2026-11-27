@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const FONT_URL = 'https://github.com/rzkrohan/Font/raw/2e114f4712fbab9e290cb822ab7bfe0b02bbcaab/arialnarrow.ttf'
   const BG_URL = 'https://raw.githubusercontent.com/rzkrohan/image-canvas/refs/heads/main/IMG-20261110-WA0238.jpg'
@@ -45,7 +45,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
       const content = m.text?.trim()
       if (!content) {
-          return m.reply(`✏️ *CATATAN*\n\nMasukkan teks yang mau ditulis.\n\nContoh:\n${m.prefix}${pluginConfig.name} ${pluginConfig.example.split(' ').slice(1).join(' ')}`)
+          return m.reply(`✏️ *NOTA*\n\nEscribe el texto que quieres escribir.\n\nEjemplo:\n${m.prefix}${pluginConfig.name} ${pluginConfig.example.split(' ').slice(1).join(' ')}`)
       }
 
       try {

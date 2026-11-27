@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuGlobal = MikuRuntime.mikuGlobal;
 import { exec } from 'child_process'
 
 const pluginConfig = {
@@ -67,20 +67,20 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
   };
 
   async function handler(m, { sock, conn, usedPrefix, command, reply }) {
-      const client = conn || sock || elysiaGlobal.mainSock;
+      const client = conn || sock || mikuGlobal.mainSock;
       const qmsg = m.quoted ? m.quoted : m;
 
       const mime = qmsg.mimetype || qmsg.msg?.mimetype || (qmsg.message?.documentMessage?.mimetype) || (qmsg.message?.documentWithCaptionMessage?.message?.documentMessage?.mimetype) || '';
 
       if (!/application\/pdf/i.test(mime)) {
           let help = `*${toSmallCaps('PDF to Image Converter')}*\n\n` +
-              `*${toSmallCaps('Kirim atau reply dokumen PDF dengan perintah')}* *${usedPrefix + command}* ʏᴀ ᴋᴀᴋ~\n\n` +
-              `• 📌 *${toSmallCaps('Fitur:')}* Mengonversi tiap halaman file PDF menjadi Album Foto gambar JPG!\n` +
-              `• *${toSmallCaps('Contoh:')}* Balas dokumen .pdf dengan \`${usedPrefix + command}\``;
+              `*${toSmallCaps('Envía o responde a un documento PDF con el comando')}* *${usedPrefix + command}*\n\n` +
+              `• 📌 *${toSmallCaps('Función:')}* ¡Convierte cada página del PDF en imágenes JPG de un álbum!\n` +
+              `• *${toSmallCaps('Ejemplo:')}* Responde a un documento .pdf con \`${usedPrefix + command}\``;
           return reply(help);
       }
 
-      await reply(`⏳ *${toSmallCaps('Sedang mengekstrak halaman PDF menjadi gambar album, tunggu sebentar ya kak~')}*`);
+      await reply(`⏳ *${toSmallCaps('Extrayendo las páginas del PDF como imágenes, un momento...')}*`);
 
       const id = Date.now() + '_' + Math.random().toString(36).substring(7);
       const tempPdfPath = path.join('/tmp', `pdf_${id}.pdf`);
@@ -89,7 +89,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
       try {
           const pdfBuffer = await extractMediaBuffer(qmsg, client);
           if (!pdfBuffer) {
-              return reply(`❌ *${toSmallCaps('Gagal mengunduh dokumen PDF!')}*`);
+              return reply(`❌ *${toSmallCaps('¡No se pudo descargar el documento PDF!')}*`);
           }
 
           fs.writeFileSync(tempPdfPath, pdfBuffer);
@@ -113,7 +113,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
 
           if (!files.length) {
               if (fs.existsSync(tempPdfPath)) fs.unlinkSync(tempPdfPath);
-              return reply(`❌ *${toSmallCaps('Tidak ada halaman yang berhasil diekstrak dari PDF!')}*`);
+              return reply(`❌ *${toSmallCaps('¡No se pudo extraer ninguna página del PDF!')}*`);
           }
 
           const totalPages = files.length;
@@ -166,7 +166,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
       } catch (e) {
           console.error('[PDF2IMG ERROR]', e);
           if (fs.existsSync(tempPdfPath)) fs.unlinkSync(tempPdfPath);
-          reply(`❌ *${toSmallCaps('Terjadi kesalahan saat mengekstrak PDF:')}* ${e.message}`);
+          reply(`❌ *${toSmallCaps('Ocurrió un error al extraer el PDF:')}* ${e.message}`);
       }
   };
 

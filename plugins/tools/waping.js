@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { performance } from 'perf_hooks'
 
 const pluginConfig = {
@@ -58,19 +58,19 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
 
   const getStatusBadge = (ms) => {
       if (ms === null) return '❌ *TIMEOUT*'
-      if (ms < 40) return `⚡ *${ms} ms* (Kilat)`
-      if (ms < 100) return `🟢 *${ms} ms* (Stabil)`
-      if (ms < 200) return `🟡 *${ms} ms* (Sedang)`
-      return `🔴 *${ms} ms* (Lambat)`
+      if (ms < 40) return `⚡ *${ms} ms* (Rapidísimo)`
+      if (ms < 100) return `🟢 *${ms} ms* (Estable)`
+      if (ms < 200) return `🟡 *${ms} ms* (Medio)`
+      return `🔴 *${ms} ms* (Lento)`
   }
 
   const getQuality = (avg, active, total) => {
-      if (active === 0) return '❌ *Tidak Terhubung*'
-      if (active < total) return `⚠️ *Sebagian Server Gagal* (${total - active} timeout)`
-      if (avg < 60) return '🚀 *Sangat Kilat*'
-      if (avg < 120) return '🟢 *Stabil & Optimal*'
-      if (avg < 200) return '🟡 *Sedang*'
-      return '🔴 *Lambat*'
+      if (active === 0) return '❌ *Sin conexión*'
+      if (active < total) return `⚠️ *Algunos servidores fallaron* (${total - active} sin respuesta)`
+      if (avg < 60) return '🚀 *Rapidísimo*'
+      if (avg < 120) return '🟢 *Estable y óptimo*'
+      if (avg < 200) return '🟡 *Medio*'
+      return '🔴 *Lento*'
   }
 
   async function handler(m, { sock }) {
@@ -112,7 +112,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
               await dns.lookup('web.whatsapp.com')
               dnsText = `${(performance.now() - dStart).toFixed(1)} ms`
           } catch {
-              dnsText = '❌ Gagal'
+              dnsText = '❌ Fallido'
           }
 
           const allServers = serverList.flatMap(c => c.servers)
@@ -129,7 +129,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
 
           let caption = `╭─── 🌐 *WHATSAPP NETWORK BENCHMARK* ───╮\n`
           caption += `│ 📡 *DNS Lookup :* \`${dnsText}\`\n`
-          caption += `│ 🕒 *Waktu Uji  :* \`${waktu} WIB\`\n`
+          caption += `│ 🕒 *Tiempo de prueba:* \`${waktu} WIB\`\n`
           caption += `╰────────────────────────────────────────╯\n\n`
 
           for (const group of serverList) {
@@ -149,7 +149,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
           const avg = activeCount > 0 ? totalLatency / activeCount : 0
 
           caption += `╭─── 📊 *STATUS KONEKSI SERVER* ───╮\n`
-          caption += `│ • Server Aktif : *${activeCount}/${allServers.length} Server*\n`
+          caption += `│ • Servidor Activo: *${activeCount}/${allServers.length} Servidores*\n`
           caption += `│ • Rata-rata    : *${activeCount > 0 ? `${avg.toFixed(1)} ms` : '-'}*\n`
           caption += `│ • Kualitas     : ${getQuality(avg, activeCount, allServers.length)}\n`
           caption += `╰──────────────────────────────────╯\n`
@@ -160,7 +160,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
       } catch (e) {
           console.error('[waping]', e)
           await sock.sendMessage(m.chat, { react: { text: '❌', key: m.key } }).catch(() => null)
-          await sock.sendMessage(m.chat, { text: `Gagal menguji jaringan: ${e.message}` }, { quoted: m }).catch(() => null)
+          await sock.sendMessage(m.chat, { text: `No se pudo probar la red: ${e.message}` }, { quoted: m }).catch(() => null)
       }
   }
 

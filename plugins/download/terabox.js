@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import path from 'path'
 import fs from 'fs'
 import axios from 'axios'
@@ -14,7 +14,7 @@ import os, { tmpdir } from 'os'
 import { execFile } from 'child_process'
 import { promisify } from 'util'
 
-const TeraBoxDL = ElysiaRuntime.TeraBoxDL;
+const TeraBoxDL = MikuRuntime.TeraBoxDL;
 
   const exec = promisify(execFile);
 
@@ -40,12 +40,12 @@ const TeraBoxDL = ElysiaRuntime.TeraBoxDL;
       m.react("❌");
       return m.reply(
         `📦 *TeraBox Downloader*\n\n` +
-          `Download video atau file dari TeraBox.\n\n` +
-          `*PENGGUNAAN:*\n` +
+          `Descarga videos o archivos de TeraBox.\n\n` +
+          `*USO:*\n` +
           `> *${m.prefix}terabox <link>*\n\n` +
-          `*CONTOH:*\n` +
+          `*EJEMPLO:*\n` +
           `> *${m.prefix}terabox https://terabox.com/s/xxx*\n\n` +
-          `_File dikirim sebagai dokumen, mungkin agak lama_`,
+          `_Archivo enviado como documento, puede tardar un poco_`,
       );
     }
 
@@ -56,14 +56,14 @@ const TeraBoxDL = ElysiaRuntime.TeraBoxDL;
 
       if (!result.status) {
         m.react("☢");
-        return m.reply(`❌ *TeraBox Gagal*\n\n> ${result.error}`);
+        return m.reply(`❌ *TeraBox falló*\n\n> ${result.error}`);
       }
 
       let caption =
         `📦 *TeraBox*\n\n` +
         `> 📌 ${result.file_name}\n` +
         `> 📏 Size: ${result.file_size}\n` +
-        `> ⏱️ Durasi: ${result.duration}`;
+        `> ⏱️ Duración: ${result.duration}`;
 
       if (result.thumbnail) {
         await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -130,7 +130,7 @@ const TeraBoxDL = ElysiaRuntime.TeraBoxDL;
     } catch (e) {
       console.error(e);
       m.react("☢");
-      m.reply("❌ Gagal mengambil data TeraBox, coba lagi nanti");
+      m.reply("❌ Error al obtener los datos de TeraBox, inténtalo más tarde");
     }
   }
 

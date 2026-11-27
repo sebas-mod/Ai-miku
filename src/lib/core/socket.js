@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -369,7 +369,7 @@ async function extendSocket(sock) {
     if (!stickers || !stickers.length) throw new Error("No stickers provided");
 
     const packname = options.name ?? options.packname ?? "Sticker Pack";
-    const publisher = options.publisher ?? options.author ?? "Elysia Assistant";
+    const publisher = options.publisher ?? options.author ?? "Ai Miku";
     const packDescription = options.description || "";
     const stickerPackId = options.id || crypto.randomUUID();
     const emojis = options.emojis || ["\uD83C\uDFA8"];
@@ -627,7 +627,7 @@ async function extendSocket(sock) {
       const msg = {};
       if (options.contextInfo) msg.contextInfo = options.contextInfo;
       if (text !== null) msg[media ? "caption" : "text"] = text;
-      msg.footer = options.footer || config.bot?.name || "Elysia Assistant";
+      msg.footer = options.footer || config.bot?.name || "Ai Miku";
       msg.interactiveButtons = options.buttons || options.interactiveButtons;
       if (media) msg[(options.type || options.mediaType || "image")] = typeof media === "string" ? { url: media } : media;
       return _originalSendMessage(jid, msg, { quoted });

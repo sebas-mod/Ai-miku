@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -83,7 +83,7 @@ export function saveStore() {
   } catch {}
 }
 
-/** Data user dari database Elysia (dibuat kalau belum ada). */
+/** Data user dari database Miku (dibuat kalau belum ada). */
 export function userData(jid) {
   const db = getDatabase();
   return db.getUser(jid) || db.setUser(jid) || null;
@@ -123,20 +123,20 @@ export function menfessId(k) {
 /** Mengembalikan teks error kalau isi pesan tidak boleh, atau null kalau aman. */
 export function menfessIsi(pesan, c = cfg()) {
   const t = String(pesan || "").trim();
-  if (!t) return "Pesan tidak boleh kosong.";
-  if (t.length > c.maxPanjang) return `Pesan terlalu panjang (maks ${c.maxPanjang} karakter).`;
+  if (!t) return "El mensaje no puede estar vacío.";
+  if (t.length > c.maxPanjang) return `El mensaje es demasiado largo (máx. ${c.maxPanjang} caracteres).`;
   if (c.blokirLink && /(https?:\/\/|www\.|wa\.me|chat\.whatsapp\.com|\b[a-z0-9-]+\.(com|net|org|xyz|io|me|co|link|site|online|my\.id|id)\b)/i.test(t)) {
-    return "Pesan tidak boleh berisi link.";
+    return "El mensaje no puede contener enlaces.";
   }
   if (c.blokirNomor) {
     const rapat = t.replace(/[\s.\-()]/g, "");
     if (/(\+?62|0)8\d{7,12}/.test(rapat) || /\d{10,}/.test(rapat)) {
-      return "Pesan tidak boleh berisi nomor telepon.";
+      return "El mensaje no puede contener números de teléfono.";
     }
   }
   const low = t.toLowerCase();
   for (const w of c.kataTerlarang || []) {
-    if (w && low.includes(String(w).toLowerCase())) return "Pesan mengandung kata yang tidak diizinkan.";
+    if (w && low.includes(String(w).toLowerCase())) return "El mensaje contiene una palabra no permitida.";
   }
   return null;
 }
@@ -154,10 +154,10 @@ export function menfessBatas(user, c = cfg()) {
   if (!user) return null;
   const l = user.menfessLog?.day === wibDay() ? user.menfessLog : { n: 0, nb: 0 };
   if ((l.n || 0) >= c.maxPerHari) {
-    return `Batas kirim menfess hari ini sudah habis (${l.n}/${c.maxPerHari}). Coba lagi besok ya.`;
+    return `Ya alcanzaste el límite diario de mensajes anónimos (${l.n}/${c.maxPerHari}). Inténtalo mañana.`;
   }
   const sisa = Math.ceil(((user.menfessLast || 0) + c.jedaDetik * 1000 - Date.now()) / 1000);
-  if (sisa > 0) return `Tunggu ${sisa} detik lagi sebelum mengirim lagi.`;
+  if (sisa > 0) return `Espera ${sisa} segundos antes de volver a enviar.`;
   return null;
 }
 
@@ -180,7 +180,7 @@ export function menfessPetakan(k, msgId, id) {
 }
 
 export function menfessFooter(prefix = ".", id = "") {
-  return `_Balas anonim: reply pesan ini · Blok: ${prefix}blokmenfess · Lapor: ${prefix}lapormenfess ${id} alasan_`;
+  return `_Responder anónimo: responde a este mensaje · Bloquear: ${prefix}blokmenfess · Reportar: ${prefix}lapormenfess ${id} motivo_`;
 }
 
 /** Hapus menfess lama + petakan pesan yatim supaya database tidak membengkak. */
@@ -231,39 +231,39 @@ export function menfessCari(k, jid, { id = "", quotedId = "" } = {}) {
 export async function menfessBalas(sock, { jid, user, id, d, pesan, prefix = "." }) {
   const c = cfg();
   const k = store();
-  if (!c.on) return { ok: false, msg: "Fitur menfess sedang dimatikan." };
-  if (d.tutup) return { ok: false, msg: "Menfess itu sudah ditarik, tidak bisa dibalas lagi." };
+  if (!c.on) return { ok: false, msg: "La función de mensajes anónimos está desactivada." };
+  if (d.tutup) return { ok: false, msg: "Ese mensaje anónimo fue retirado y ya no se puede responder." };
   if (!menfessAktif(d, c)) {
-    return { ok: false, msg: `Menfess #${id} sudah kedaluwarsa (lebih dari ${c.kedaluwarsaJam} jam tanpa aktivitas).` };
+    return { ok: false, msg: `El mensaje anónimo #${id} caducó (más de ${c.kedaluwarsaJam} horas sin actividad).` };
   }
   const ban = k.menfessBan[numOf(jid)];
-  if (ban) return { ok: false, msg: "🚫 Kamu dilarang memakai menfess." + (ban.alasan ? `\nAlasan: ${ban.alasan}` : "") };
+  if (ban) return { ok: false, msg: "🚫 Tienes prohibido usar los mensajes anónimos." + (ban.alasan ? `\nMotivo: ${ban.alasan}` : "") };
 
   const salah = menfessIsi(pesan, c);
   if (salah) return { ok: false, msg: salah };
 
   const l = user?.menfessLog?.day === wibDay() ? user.menfessLog : { nb: 0 };
   if ((l.nb || 0) >= c.maxBalasPerHari) {
-    return { ok: false, msg: `Batas balasan menfess hari ini sudah habis (${l.nb}/${c.maxBalasPerHari}).` };
+    return { ok: false, msg: `Ya alcanzaste el límite diario de respuestas anónimas (${l.nb}/${c.maxBalasPerHari}).` };
   }
   const sisa = Math.ceil(((user?.menfessLast || 0) + c.jedaDetik * 1000 - Date.now()) / 1000);
-  if (sisa > 0) return { ok: false, msg: `Tunggu ${sisa} detik lagi sebelum membalas.` };
+  if (sisa > 0) return { ok: false, msg: `Espera ${sisa} segundos antes de responder.` };
 
   const penerima = same(d.to, jid);
   const tujuan = penerima ? d.from : d.to;
   if (!penerima && (k.menfessBlock[numOf(d.to)] || k.menfessPair[`${numOf(d.to)}|${numOf(d.from)}`])) {
-    return { ok: false, msg: "Penerima tidak menerima menfess." };
+    return { ok: false, msg: "El destinatario no acepta mensajes anónimos." };
   }
 
   const teks = penerima
-    ? `💬 *BALASAN MENFESS* · #${id}\n\nPenerima membalas menfess-mu:\n\n“${pesan}”\n\n_Reply pesan ini untuk melanjutkan obrolan._`
-    : `💌 *MENFESS* · #${id}\n\n*${user?.menfessNama || "Seseorang"}* membalas:\n\n“${pesan}”\n\n${menfessFooter(prefix, id)}`;
+    ? `💬 *RESPUESTA ANÓNIMA* · #${id}\n\nEl destinatario respondió a tu mensaje:\n\n“${pesan}”\n\n_Responde a este mensaje para seguir la conversación._`
+    : `💌 *ANÓNIMO* · #${id}\n\n*${user?.menfessNama || "Alguien"}* responde:\n\n“${pesan}”\n\n${menfessFooter(prefix, id)}`;
 
   let sent;
   try {
     sent = await sock.sendMessage(toJid(tujuan), { text: teks });
   } catch {
-    return { ok: false, msg: "Gagal mengirim, pihak lain tidak bisa dihubungi." };
+    return { ok: false, msg: "No se pudo enviar: no se puede contactar con la otra persona." };
   }
 
   const now = Date.now();
@@ -278,14 +278,14 @@ export async function menfessBalas(sock, { jid, user, id, d, pesan, prefix = "."
   menfessPetakan(k, sent?.key?.id, id);
   saveStore();
   menfessCatat(user, "balas");
-  return { ok: true, msg: `✅ Balasan terkirim secara anonim ke ${penerima ? "pengirim" : "penerima"} (menfess #${id}).` };
+  return { ok: true, msg: `✅ Respuesta enviada de forma anónima ${penerima ? "al remitente" : "al destinatario"} (anónimo #${id}).` };
 }
 
 /** Laporkan menfess yang melecehkan / spam ke owner. Pengirim diban otomatis setelah beberapa laporan. */
 export async function menfessLapor(sock, { jid, id, d, alasan = "" }) {
   const c = cfg();
   const k = store();
-  if (d.dilapor) return { ok: false, msg: "Menfess ini sudah pernah dilaporkan." };
+  if (d.dilapor) return { ok: false, msg: "Este mensaje anónimo ya fue reportado." };
 
   const dari = numOf(d.from);
   const rec = k.menfessLapor[dari] || { n: 0, last: 0 };
@@ -297,22 +297,22 @@ export async function menfessLapor(sock, { jid, id, d, alasan = "" }) {
 
   let diban = false;
   if (c.laporBan > 0 && rec.n >= c.laporBan && !k.menfessBan[dari]) {
-    k.menfessBan[dari] = { t: Date.now(), alasan: `Dilaporkan ${rec.n} kali`, oleh: "sistem" };
+    k.menfessBan[dari] = { t: Date.now(), alasan: `Reportado ${rec.n} veces`, oleh: "sistem" };
     diban = true;
   }
   saveStore();
 
   const info =
     `🚨 *LAPORAN MENFESS* #${id}\n\n` +
-    `Pelapor : ${numOf(jid)}\nPengirim: ${dari}\nAlasan  : ${alasan || "-"}\n` +
-    `Total laporan ke pengirim: ${rec.n}${diban ? " (otomatis diban)" : ""}\n\n` +
-    `Lihat isi: ${config.command?.prefix || "."}cekmenfess ${id}`;
+    `Reportado por: ${numOf(jid)}\nRemitente   : ${dari}\nMotivo      : ${alasan || "-"}\n` +
+    `Total de reportes al remitente: ${rec.n}${diban ? " (baneado automáticamente)" : ""}\n\n` +
+    `Ver el contenido: ${config.command?.prefix || "."}cekmenfess ${id}`;
   const owners = Array.isArray(config.owner?.number) ? config.owner.number : [];
   for (const o of owners) {
     const n = numOf(o);
     if (n) await sock.sendMessage(`${n}@s.whatsapp.net`, { text: info }).catch(() => {});
   }
-  return { ok: true, msg: "Laporan sudah dikirim ke owner. Terima kasih sudah melapor." };
+  return { ok: true, msg: "Reporte enviado al dueño. Gracias por avisar." };
 }
 
 /**

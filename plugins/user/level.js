@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -72,11 +72,11 @@ async function handler(m, { sock }) {
     `├─── ❖ 『 🎖️ *STATUS PANGKAT* 』 ❖\n` +
     `│ 🏆 *Pangkat:* *${rank.title}*\n` +
     `│ ⭐ *Tier Star:* ${rank.starBar} (${rank.stars}/5)\n` +
-    `│ 📈 *Level Saat Ini:* *Lv.${level}*\n` +
+    `│ 📈 *Nivel actual:* *Lv.${level}*\n` +
     `│ ✨ *Total EXP:* ${exp.toLocaleString("id-ID")} XP\n` +
     `│ 🔋 *Progres Level ${level + 1}:*\n` +
     `│ [${bar}] *${pct}%*\n` +
-    `│ ◦ _${expInLevel.toLocaleString("id-ID")} / ${expNeeded.toLocaleString("id-ID")} XP (Kurang ${expToNextLevel(exp).toLocaleString("id-ID")} XP)_\n` +
+    `│ ◦ _${expInLevel.toLocaleString("id-ID")} / ${expNeeded.toLocaleString("id-ID")} XP (Menos ${expToNextLevel(exp).toLocaleString("id-ID")} XP)_\n` +
     `├─── ❖ 『 🎁 *PRIVILEGE & REWARD* 』 ❖\n` +
     `│ 💰 *Bonus Naik Level:* +Rp ${rank.bonusKoin.toLocaleString("id-ID")} / level\n` +
     `│ ⚡ *Bonus Energi:* +${rank.bonusEnergi} Energi / level\n` +
@@ -85,14 +85,14 @@ async function handler(m, { sock }) {
       : `│ 🌌 *Status Tier:* Pangkat Tertinggi Tercapai!\n`) +
     (availableMilestones > 0
       ? `│ 🎉 *Peti Milestone:* *${availableMilestones} Peti Siap Diklaim!* (\`${p}claimlevel\`)\n`
-      : `│ 📦 *Peti Milestone:* Terbuka setiap kelipatan 5 level\n`) +
-    `├─── ❖ 『 🧭 *MENU LEVEL LAINNYA* 』 ❖\n` +
-    `│ ◦ \`${p}claimlevel\` — Klaim hadiah milestone level\n` +
+      : `│ 📦 *Cofre de hitos:* Abre cada nivel múltiplo de 5\n`) +
+    `├─── ❖ 『 🧭 *MENÚ DE MÁS NIVELES* 』 ❖\n` +
+    `│ ◦ \`${p}Claimlevel\` — Reclama recompensas de nivel de hito\n` +
     `│ ◦ \`${p}boostexp\` — Latihan astral (+EXP gratis)\n` +
-    `│ ◦ \`${p}ranklist\` — Daftar seluruh 21 pangkat Astral\n` +
-    `│ ◦ \`${p}toplevel\` — Peringkat level tertinggi\n` +
+    `│ ◦ \`${p}rankinglist\` — Lista de todos los 21 rangos astrales\n` +
+    `│ ◦ \`${p}toplevel\` — La calificación de nivel más alto\n` +
     `╰──────────────────────────❖\n` +
-    `_✦ Elysia Assistant • by Arthazy_`;
+    `_✦ Ai Miku • by Arthazy_`;
 
   await m.reply(txt, { mentions: [targetJid] });
 }

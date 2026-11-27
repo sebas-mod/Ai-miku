@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -27,11 +27,11 @@ const pluginConfig = {
 async function handler(m, { sock, args }) {
     if (!m.quoted || !m.quoted.key || !m.quoted.key.id) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Reply pesan yang ingin di-pin!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> Reply pesan → ketik \`.pinchat\`\n` +
-            `> Optional: \`.pinchat 24\` (pin 24 jam)`
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> ¡Responde al mensaje que quieres fijar!\n\n` +
+            `*Cómo usar:*\n` +
+            `> Responde al mensaje → escribe \`.pinchat\`\n` +
+            `> Optional: \`.pinchat 24\` (fijar 24 horas)`
         );
         return;
     }
@@ -59,16 +59,16 @@ async function handler(m, { sock, args }) {
         });
 
         const durationText = duration >= 86400
-            ? `${Math.floor(duration / 86400)} hari`
-            : `${Math.floor(duration / 3600)} jam`;
+            ? `${Math.floor(duration / 86400)} días`
+            : `${Math.floor(duration / 3600)} horas`;
 
-        const successMsg = `✅ Success pin pesan ini`;
+        const successMsg = `✅ Mensaje fijado correctamente`;
         await m.reply(successMsg, { mentions: [m.sender] })
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal mem-pin pesan.\n` +
+            `❌ *ERROR*\n\n` +
+            `> No se pudo fijar el mensaje.\n` +
             `> _${error.message}_`
         );
     }

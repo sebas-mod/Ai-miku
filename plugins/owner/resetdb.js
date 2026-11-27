@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,7 +31,7 @@ if (!global.resetDbPending) global.resetDbPending = {}
 
 async function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
 
     const confirm = m.args?.[0]?.toLowerCase()
@@ -40,24 +40,24 @@ async function handler(m, { sock }) {
         global.resetDbPending[m.sender] = Date.now()
 
         return m.reply(
-            `⚠️ *ᴘᴇʀɪɴɢᴀᴛᴀɴ!*\n\n` +
-            `> Ini akan menghapus SEMUA data:\n` +
+            `⚠️ *¡ADVERTENCIA!*\n\n` +
+            `> Esto eliminará TODOS los datos:\n` +
             `> • Data user\n` +
             `> • Data group\n` +
             `> • Data clan\n` +
-            `> • Semua statistik\n\n` +
-            `╭┈┈⬡「 ⚠️ *ᴋᴏɴғɪʀᴍᴀsɪ* 」\n` +
-            `┃ Ketik: *.resetdb confirm*\n` +
-            `┃ dalam 60 detik\n` +
+            `> • Todas las estadísticas\n\n` +
+            `╭┈┈⬡「 ⚠️ *CONFIRMACIÓN* 」\n` +
+            `┃ Escribe: *.resetdb confirm*\n` +
+            `┃ en 60 segundos\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> ❌ Aksi ini TIDAK BISA dibatalkan!`
+            `> ❌ ¡Esta acción NO se puede deshacer!`
         )
     }
 
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`❌ Timeout! Ketik *.resetdb* ulang untuk memulai.`)
+        return m.reply(`❌ ¡Tiempo agotado! Escribe *.resetdb* de nuevo para empezar.`)
     }
 
     delete global.resetDbPending[m.sender]
@@ -94,8 +94,8 @@ async function handler(m, { sock }) {
         await db.save()
 
         await m.reply(
-            `✅ *ᴅᴀᴛᴀʙᴀsᴇ ᴅɪʀᴇsᴇᴛ!*\n\n` +
-            `╭┈┈⬡「 📊 *ᴅᴀᴛᴀ ᴅɪʜᴀᴘᴜs* 」\n` +
+            `✅ *¡BASE DE DATOS RESTABLECIDA!*\n\n` +
+            `╭┈┈⬡「 📊 *DATOS ELIMINADOS* 」\n` +
             `┃ 👤 Users: ${userCount}\n` +
             `┃ 👥 Groups: ${groupCount}\n` +
             `┃ ⚔️ Clans: ${clanCount}\n` +

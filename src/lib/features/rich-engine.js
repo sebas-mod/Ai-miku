@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -36,8 +36,8 @@ const escapeHtml = (s) =>
       })[c]
   );
 
-// Tema Elysia Assistant: Sakura Rose-Pink (#f472b6), Astral Violet (#c084fc), Crystal Obsidian (#120c1c)
-const ELYSIA_BASE_CSS = String.raw`
+// Tema Ai Miku: Sakura Rose-Pink (#f472b6), Astral Violet (#c084fc), Crystal Obsidian (#120c1c)
+const MIKU_BASE_CSS = String.raw`
 :root{
   --bg:#120c1c;
   --card:#1d142c;
@@ -160,12 +160,12 @@ function pickThemeForGame(keys = []) {
 function rebrandHtml(html) {
   if (typeof html !== "string") return html;
   return html
-    .replace(/Kaguya\s*MD|Kaguya\s*Multi\s*Device|Kaguya/gi, "Elysia Assistant")
+    .replace(/Kaguya\s*MD|Kaguya\s*Multi\s*Device|Kaguya/gi, "Ai Miku")
     .replace(/YannRzy\s*Tech|YannRzy/gi, "Arthazy")
-    .replace(/HutaoMD/gi, "Elysia");
+    .replace(/HutaoMD/gi, "Miku");
 }
 
-function buildRichHtmlPayload(html, title = "Elysia Arcade", opts = {}) {
+function buildRichHtmlPayload(html, title = "Miku Arcade", opts = {}) {
   const q = opts.quoted;
   const qKey = q?.key || q?.raw?.key;
   const qMsg = q?.message || q?.raw?.message;
@@ -234,11 +234,11 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     } catch {}
     return true;
   } catch (err) {
-    console.error(`[ELYSIA-RICH:${title}] gagal kirim:`, err.message);
+    console.error(`[MIKU-RICH:${title}] gagal kirim:`, err.message);
     await sock.sendMessage(
       m.chat,
       {
-        text: "❌ Kartu interaktif gagal dikirim. Fitur ini membutuhkan WhatsApp versi terbaru.",
+        text: "❌ No se pudo enviar la tarjeta interactiva. Esta función necesita la versión más reciente de WhatsApp.",
       },
       { quoted: m }
     );
@@ -246,12 +246,12 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
   }
 }
 
-const elysiaHtmlCardModule = {
+const mikuHtmlCardModule = {
   buildRichHtmlPayload,
   sendHtmlCard,
   safeJson,
   escapeHtml,
-  BASE_CSS: ELYSIA_BASE_CSS,
+  BASE_CSS: MIKU_BASE_CSS,
 };
 
 const dquoteModule = {
@@ -280,7 +280,7 @@ const styleModule = {
 };
 
 /**
- * Eksekutor modul game HTML live dengan resolver internal & tema Elysia Assistant.
+ * Eksekutor modul game HTML live dengan resolver internal & tema Ai Miku.
  */
 function createRichRunner(libs = {}, featureFn) {
   let cachedMod = null;
@@ -298,7 +298,7 @@ function createRichRunner(libs = {}, featureFn) {
 
       if (base === "htmlcard") {
         const themeKey = pickThemeForGame(Object.keys(libs));
-        return { ...elysiaHtmlCardModule, BASE_CSS: buildGameBaseCss(themeKey) };
+        return { ...mikuHtmlCardModule, BASE_CSS: buildGameBaseCss(themeKey) };
       }
       if (base === "dquote") return dquoteModule;
       if (base === "style") return styleModule;
@@ -356,7 +356,7 @@ export {
   sendHtmlCard,
   safeJson,
   escapeHtml,
-  ELYSIA_BASE_CSS,
+  MIKU_BASE_CSS,
   buildGameBaseCss,
   createRichRunner,
 };

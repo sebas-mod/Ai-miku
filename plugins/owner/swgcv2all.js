@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     }
 
     if (!buffer) {
-      return m.reply("❌ Gagal mengunduh media. Silakan coba lagi.");
+      return m.reply("❌ No se pudo descargar el multimedia. Inténtalo de nuevo.");
     }
 
     const fileType = await fileTypeFromBuffer(buffer);
@@ -80,17 +80,17 @@ async function handler(m, { sock }) {
         ptt: m.quoted?.ptt || m.ptt || false,
       };
     } else {
-      return m.reply("❌ Format media tidak didukung untuk SW GC.");
+      return m.reply("❌ Formato de multimedia no compatible con SW GC.");
     }
   } else if (text) {
     rawContent = { text: text };
   } else {
     return m.reply(
-      `👋 *sᴡɢᴄᴠ2 ᴀʟʟ ɢʟᴏʙᴀʟ*\n\n` +
-      `> Kirim pesan *Status Grup V2* ke SEMUA grup sekaligus.\n\n` +
-      `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-      `┃ ${m.prefix}swgcv2all Halo semua!\n` +
-      `┃ atau reply gambar/video dengan caption ${m.prefix}swgcv2all\n` +
+      `👋 *SWGCV2 ALL GLOBAL*\n\n` +
+      `> Envía un mensaje de *Estado de grupo V2* a TODOS los grupos a la vez.\n\n` +
+      `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
+      `┃ ${m.prefix}swgcv2all ¡Hola a todos!\n` +
+      `┃ o responde a una imagen/vídeo con el texto ${m.prefix}swgcv2all\n` +
       `╰┈┈┈┈┈┈┈┈⬡`
     );
   }
@@ -103,10 +103,10 @@ async function handler(m, { sock }) {
 
     if (groupIds.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Bot tidak berada di grup manapun.");
+      return m.reply("❌ El bot no está en ningún grupo.");
     }
 
-    await m.reply(`⏳ *Memulai Broadcast Status Grup V2 ke ${groupIds.length} Grup...*\n\n> Proses ini mungkin memakan waktu beberapa saat.`);
+    await m.reply(`⏳ *Iniciando la difusión de estado de grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar un poco.`);
 
     let successCount = 0;
     let failCount = 0;
@@ -178,13 +178,13 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     await m.reply(
-      `✅ *sᴡɢᴄᴠ2 ᴀʟʟ sᴇʟᴇsᴀɪ*\n\n` +
-      `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-      `┃ 🌐 Total Grup: *${groupIds.length}*\n` +
+      `✅ *SWGCV2 ALL TERMINADO*\n\n` +
+      `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
+      `┃ 🌐 Total de grupos: *${groupIds.length}*\n` +
       `┃ ✅ Sukses: *${successCount}*\n` +
-      `┃ ❌ Gagal: *${failCount}*\n` +
+      `┃ ❌ Fallidos: *${failCount}*\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Broadcast Status Grup V2 (Ring Pink) berhasil dikirim ke semua grup!`
+      `> ¡El estado de grupo V2 (Ring Pink) se envió a todos los grupos!`
     );
 
   } catch (error) {

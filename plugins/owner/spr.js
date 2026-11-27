@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -26,7 +26,7 @@ const pluginConfig = {
 };
 
 const MAKS_TARGET = 100;
-const TEKS_DEFAULT = "Halo @user, ada pesan untukmu.";
+const TEKS_DEFAULT = "Hola @user, tienes un mensaje.";
 const BATAS_DEVICE_MS = 9000;
 
 const nomorDari = (jid) => {
@@ -136,7 +136,7 @@ async function kirimStanza(sock, alat, groupJid, meta, { teksPublik, perDevice }
     )
   ).filter(Boolean);
 
-  if (!nodes.length) return { ok: false, error: "Enkripsi ke semua penerima gagal. Coba lagi." };
+  if (!nodes.length) return { ok: false, error: "Error al cifrar a todos los destinatarios. Inténtalo de nuevo." };
 
   const isi = [];
   if (teksPublik != null) {
@@ -168,24 +168,24 @@ async function handler(m, { sock, text }) {
   let reaksi = false;
   let sukses = false;
   try {
-    if (!m.isGroup) return m.reply("Perintah ini hanya bisa dipakai di grup.");
+    if (!m.isGroup) return m.reply("Este comando solo se puede usar en grupos.");
 
     if (
       typeof sock?.query !== "function" ||
       !sock.signalRepository?.encryptMessage ||
       !sock.signalRepository?.encryptGroupMessage
     ) {
-      return m.reply("API enkripsi internal Baileys tidak tersedia di versi ini.");
+      return m.reply("La API de cifrado interna de Baileys no está disponible en esta versión.");
     }
     const alat = await muatAlatEnkripsi();
-    if (!alat) return m.reply("Versi Baileys yang terpasang tidak menyediakan encodeWAMessage / encodeSignedDeviceIdentity.");
+    if (!alat) return m.reply("La versión instalada de Baileys no incluye encodeWAMessage / encodeSignedDeviceIdentity.");
 
     await sock.sendMessage(m.chat, { react: { text: "⏱️", key: m.key } });
     reaksi = true;
 
     const template = String(text || "").trim() || TEKS_DEFAULT;
     const { meta, target } = await ambilTarget(sock, m.chat);
-    if (!target.length) return m.reply("Tidak ada anggota grup yang bisa dijadikan target.");
+    if (!target.length) return m.reply("No hay miembros del grupo que puedan ser objetivo.");
 
     const devices = await cariDeviceAman(sock, target.map((p) => p.id));
     const semuaMention = [
@@ -193,7 +193,7 @@ async function handler(m, { sock, text }) {
     ];
 
     const hasil = await kirimStanza(sock, alat, m.chat, meta, {
-      teksPublik: template.replace(/@user/gi, "semua"),
+      teksPublik: template.replace(/@user/gi, "todos"),
       perDevice: devices.map((d) => ({
         jid: d.jid,
         message: pesanTeks(template.replace(/@user/gi, `@${nomorDari(d.jid)}`), semuaMention),

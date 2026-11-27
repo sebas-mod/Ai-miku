@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -44,8 +44,8 @@ async function handler(m, { sock }) {
 
     if (!sub || !['list', 'approve', 'reject'].includes(sub)) {
         return m.reply(
-            `📋 *ᴊᴏɪɴ ʀᴇQᴜᴇsᴛ ᴍᴀɴᴀɢᴇʀ*\n\n` +
-            `╭┈┈⬡「 📌 *ᴄᴏᴍᴍᴀɴᴅ* 」\n` +
+            `📋 *GESTOR DE SOLICITUDES DE INGRESO*\n\n` +
+            `╭┈┈⬡「 📌 *COMANDO* 」\n` +
             `┃ ${m.prefix}acc list\n` +
             `┃ ${m.prefix}acc approve all\n` +
             `┃ ${m.prefix}acc reject all\n` +
@@ -62,11 +62,11 @@ async function handler(m, { sock }) {
 
         if (!pendingList?.length) {
             await m.react('📭')
-            return m.reply(`📭 Tidak ada permintaan masuk yang tertunda.`)
+            return m.reply(`📭 No hay solicitudes pendientes.`)
         }
 
         if (sub === 'list') {
-            let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴘᴇʀᴍɪɴᴛᴀᴀɴ ᴍᴀsᴜᴋ*\n\n`
+            let text = `📋 *LISTA DE SOLICITUDES PENDIENTES*\n\n`
             text += `> Total: ${pendingList.length} permintaan\n\n`
 
             for (let i = 0; i < pendingList.length; i++) {
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
                 text += `   🕐 ${time}\n\n`
             }
 
-            text += `> Gunakan \`${m.prefix}acc approve all\` atau \`${m.prefix}acc reject all\``
+            text += `> Usa \`${m.prefix}acc approve all\` o \`${m.prefix}acc reject all\``
 
             const mentions = pendingList.map(r => r.jid)
             await m.react('📋')
@@ -101,9 +101,9 @@ async function handler(m, { sock }) {
             const label = action === 'approve' ? 'Diterima' : 'Ditolak'
             await m.react('✅')
             return m.reply(
-                `✅ *${label.toUpperCase()} SEMUA*\n\n` +
-                `> ✅ Berhasil: ${success}\n` +
-                `> ❌ Gagal: ${failed}\n` +
+                `✅ *${label.toUpperCase()} TODOS*\n\n` +
+                `> ✅ Correctos: ${success}\n` +
+                `> ❌ Fallidos: ${failed}\n` +
                 `> 📊 Total: ${results.length}`
             )
         }
@@ -113,9 +113,9 @@ async function handler(m, { sock }) {
         if (!indices.length) {
             await m.react('❌')
             return m.reply(
-                `❌ Nomor tidak valid.\n\n` +
-                `> Gunakan \`${m.prefix}acc list\` untuk melihat daftar.\n` +
-                `> Contoh: \`${m.prefix}acc ${action} 1|2|3\``
+                `❌ Número no válido.\n\n` +
+                `> Usa \`${m.prefix}acc list\` para ver la lista.\n` +
+                `> Ejemplo: \`${m.prefix}acc ${action} 1|2|3\``
             )
         }
 
@@ -131,7 +131,7 @@ async function handler(m, { sock }) {
                 const ok = status === '200' || !status || status === 200
 
                 const number = target.jid.split('@')[0]
-                text += `${ok ? '✅' : '❌'} ${number} — ${ok ? label : 'Gagal'}\n`
+                text += `${ok ? '✅' : '❌'} ${number} — ${ok ? label : 'Fallido'}\n`
                 if (ok) successCount++
             } catch {
                 const number = target.jid.split('@')[0]
@@ -141,9 +141,9 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         return m.reply(
-            `📋 *ʜᴀsɪʟ ${label.toUpperCase()}*\n\n` +
+            `📋 *RESULTADO ${label.toUpperCase()}*\n\n` +
             text + `\n` +
-            `> ✅ ${successCount}/${targets.length} berhasil`
+            `> ✅ ${successCount}/${targets.length} correctos`
         )
     } catch (error) {
         await m.react('☢')

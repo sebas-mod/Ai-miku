@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
     alias: ['unmutmember', 'unsilentmember', 'unbisukanmember', 'listmutemember', 'listmute'],
     category: 'group',
     description: 'Membuka mute member tertentu',
-    usage: '.unmutemember <@tag/reply/nomor>',
+    usage: '.unmutemember <@mención/respuesta/número>',
     example: '.unmutemember @user',
     isOwner: false,
     isPremium: false,
@@ -53,15 +53,15 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply(`🔇 *LIST MUTED MEMBERS*\n\n> Tidak ada member yang dimute di grup ini`)
+            return m.reply(`🔇 *MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`)
         }
 
-        let txt = `🔇 *LIST MUTED MEMBERS*\n\n╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
+        let txt = `🔇 *LIST MUTED MEMBERS*\n\n╭┈┈⬡「 📋 *LISTA* 」\n`
         mutedMembers.forEach((jid, i) => {
             const num = jid.replace(/@.+/g, '')
             txt += `┃ ${i + 1}. @${num}\n`
         })
-        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` member dimute`
+        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` miembros silenciados`
 
         return m.reply(txt, { mentions: mutedMembers })
     }
@@ -70,12 +70,12 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            `🔊 *UNMUTE MEMBER*\n\n` +
-            `> Membuka mute member tertentu\n\n` +
-            `\`Contoh:\`\n` +
+            `🔊 *UNSILENCIAR MIEMBRO*\n\n` +
+            `> Reactiva el silencio de un miembro concreto\n\n` +
+            `\`Ejemplo:\`\n` +
             `> ${m.prefix}unmutemember @user\n` +
             `> ${m.prefix}unmutemember 6281234567890\n` +
-            `> Reply pesan member + ${m.prefix}unmutemember`
+            `> Responde al mensaje del miembro + ${m.prefix}unmutemember`
         )
     }
 
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Member @${targetNumber} tidak sedang dimute`, { mentions: [targetJid] })
+        return m.reply(`❌ *FALLIDO*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
@@ -95,11 +95,11 @@ async function handler(m, { sock }) {
 
     m.react('🔊')
     await m.reply(
-        `🔊 *MEMBER DIUNMUTE*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
-        `┃ 🔊 sᴛᴀᴛᴜs: \`Unmuted\`\n` +
-        `┃ 📊 sɪsᴀ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
+        `🔊 *MIEMBRO REACTIVADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+        `┃ 👤 MIEMBRO: @${targetNumber}\n` +
+        `┃ 🔊 ESTADO: \`Unmuted\`\n` +
+        `┃ 📊 SILENCIADOS RESTANTES: \`${mutedMembers.length}\` MIEMBRO\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

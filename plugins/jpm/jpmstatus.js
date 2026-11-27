@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmJobs = ElysiaRuntime.jpmJobs;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmJobs = MikuRuntime.jpmJobs;
 
 const pluginConfig = {
     name: "jpmstatus",
@@ -28,7 +28,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const onoff = v => (v ? '🟢 Aktif' : '🔴 Nonaktif')
+  const onoff = v => (v ? '🟢 Activo' : '🔴 Apagado')
 
   async function handler(m, { sock, reply }) {
       const jobs = jpmJobs()
@@ -51,8 +51,8 @@ const pluginConfig = {
           `• Delay JPM Tag : ${cfg.delayJpmTag}ms\n` +
           `• Delay Auto SWGC : ${cfg.delayAutoSwgc}ms\n` +
           `• Delay Push Kontak : ${cfg.delayPushKontak}ms\n` +
-          `• Total grup : ${total} grup\n` +
-          `• Grup banchat (dilewati) : ${banned} grup`
+          `• Grupo total: ${total} grupo\n` +
+          `• Grupo Banchat (omitido): ${banned} grupo`
       )
   }
 

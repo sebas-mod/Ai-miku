@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas'
 import fs from 'fs'
 import path from 'path'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const FontLibrary = { use: (name, file) => { try { if (fs.existsSync(file)) GlobalFonts.registerFromPath(file, name) } catch {} } }
   async function ensureFile(url, file) {
@@ -90,20 +90,20 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
       const [nama,nominal] = m.text?.split(',')
       if (!nama || !nominal) {
-          return m.reply(`*FAKE BANK*\n\n> Masukkan teks untuk chat\n\n\`Contoh: ${m.prefix}fakebank Elysia Assistant,10000\``)
+          return m.reply(`*BANCO FALSO*\n\n> Escribe el texto del chat\n\n\`Ejemplo: ${m.prefix}fakebank Ai Miku,10000\``)
       }
-      if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
+      if(isNaN(nominal)) return m.reply(`*INTRODUCE UN NÚMERO*`)
       m.react('🕕')
 
       try {
           const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
           const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: '2-digit', hour12: false })
           const h = Number(hour)
-          let waktu = 'Malam'
-          if (h >= 4 && h < 11) waktu = 'Pagi'
-          else if (h >= 11 && h < 15) waktu = 'Siang'
-          else if (h >= 15 && h < 18) waktu = 'Sore'
-          const fake = await generateImage(saldo, `Selamat ${waktu}, ${nama}`)
+          let waktu = 'noche'
+          if (h >= 4 && h < 11) waktu = 'día'
+          else if (h >= 11 && h < 15) waktu = 'tarde'
+          else if (h >= 15 && h < 18) waktu = 'tarde'
+          const fake = await generateImage(saldo, `¡Feliz ${waktu}, ${nama}!`)
           await sock.sendMedia(m.chat, fake, null, m, {
               type: 'image',
           })

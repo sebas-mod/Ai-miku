@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,12 +33,12 @@ async function handler(m, { sock }) {
 
   if (!input || !input.includes("|")) {
     let txt = `💌 *LAYANAN MENFESS ANONIM* 💌\n\n`;
-    txt += `Mau ngirim pesan rahasia ke gebetan atau teman tanpa ketahuan? Bisa banget kak!\n\n`;
+    txt += `¿Quieres enviar un mensaje secreto a tu crush o a un amigo sin que te descubran? ¡Claro que sí!\n\n`;
     txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}confess nomor|pesan\`\n\n`;
-    txt += `*Contoh:*\n`;
-    txt += `> \`${m.prefix}confess 6281234567890|Hai kak, aku suka deh liat senyum kamu!\`\n\n`;
-    txt += `> 🤫 _Tenang aja, identitas kamu 100% aman dan dirahasiakan!_`;
+    txt += `👉 \`${m.prefix}confess número|mensaje\`\n\n`;
+    txt += `*Ejemplo:*\n`;
+    txt += `> \`${m.prefix}confess 6281234567890|Hola, ¡me encanta ver tu sonrisa!\`\n\n`;
+    txt += `> 🤫 _Tranquilo, tu identidad está 100% segura y en secreto!_`;
     return m.reply(txt);
   }
 
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   const message = messageParts.join("|").trim();
 
   if (!rawNumber || !message) {
-    return m.reply(`Aduh kak formatnya salah! 😅\n\nCoba ketik gini: \`${m.prefix}confess nomor|pesan\``);
+    return m.reply(`¡Uy, el formato está mal! 😅\n\nPrueba a escribir así: \`${m.prefix}confess número|mensaje\``);
   }
 
   let targetNumber = rawNumber.trim().replace(/[^0-9]/g, "");
@@ -56,37 +56,37 @@ async function handler(m, { sock }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`Hmm, nomor tujuan yang kamu masukin kayaknya nggak valid deh kak! 🤔`);
+    return m.reply(`Hmm, ¡el número de destino que pusiste no parece válido! 🤔`);
   }
 
   const targetJid = targetNumber + "@s.whatsapp.net";
   const senderNumber = m.sender.split("@")[0];
 
   if (targetNumber === senderNumber) {
-    return m.reply(`Ih masa ngirim menfess buat diri sendiri sih kak? Kasih buat orang lain dong! 😂`);
+    return m.reply(`¿Enviarte un mensaje secreto a ti mismo? ¡Mejor dáselo a otra persona! 😂`);
   }
 
   try {
     const [onWa] = await sock.onWhatsApp(targetNumber);
     if (!onWa?.exists) {
-      return m.reply(`Yah kak, nomor \`${targetNumber}\` ternyata nggak terdaftar di WhatsApp! 😔`);
+      return m.reply(`Vaya, ¡el número \`${targetNumber}\` no está registrado en WhatsApp! 😔`);
     }
   } catch (e) {}
 
   if (message.length < 5) {
-    return m.reply(`Pesannya kependekan kak! Minimal 5 karakter ya biar lebih bermakna. 📝`);
+    return m.reply(`¡El mensaje es demasiado corto! Mínimo 5 caracteres para que tenga sentido. 📝`);
   }
 
   if (message.length > 1000) {
-    return m.reply(`Wah pesannya kepanjangan kak! Maksimal 1000 karakter ya biar bacanya nggak pusing. 📜`);
+    return m.reply(`¡El mensaje es demasiado largo! Máximo 1000 caracteres para que no sea pesado. 📜`);
   }
 
-  const confessText = `💌 *ADA PESAN RAHASIA BUAT KAMU KAK!* 💌\n\n` +
-    `Sstt.. Ada seseorang yang diam-diam ngirim pesan buat kamu nih:\n\n` +
-    `💬 *Isi Pesan:*\n` +
+  const confessText = `💌 *¡TIENES UN MENSAJE SECRETO!* 💌\n\n` +
+    `Sshh... Alguien te ha enviado un mensaje en secreto:\n\n` +
+    `💬 *Contenido del mensaje:*\n` +
     `\`\`\`${message}\`\`\`\n\n` +
-    `> 🔒 _Pesan ini dikirim secara anonim (identitas pengirim dirahasiakan)._\n` +
-    `> ✉️ _Kamu bisa balas pesan ini kok! Tinggal *REPLY* aja pesannya ya!_`;
+    `> 🔒 _Este mensaje se envió de forma anónima (la identidad del remitente es secreta).\n` +
+    `> ✉️ _¡Puedes responder a este mensaje! Solo tienes que *RESPONDER* al mensaje._`;
 
   try {
     const sentMsg = await sock.sendMessage(targetJid, {
@@ -108,10 +108,10 @@ async function handler(m, { sock }) {
       global.confessData.delete(sentMsg.key.id);
     }, 24 * 60 * 60 * 1000);
 
-    let successTxt = `✅ *MENFESS BERHASIL TERKIRIM!* ✅\n\n`;
+    let successTxt = `✅ *¡MENSAJE SECRETO ENVIADO!* ✅\n\n`;
     successTxt += `> 📱 Terkirim ke: \`${targetNumber}\`\n`;
-    successTxt += `> 🔒 Identitas kamu aman sentosa!\n\n`;
-    successTxt += `> _Nanti kalau dia balas pesannya, aku bakal langsung terusin ke sini kak! Santai aja_ 😉`;
+    successTxt += `> 🔒 ¡Tu identidad está a salvo!\n\n`;
+    successTxt += `> _Si te responde, ¡te lo haré llegar aquí mismo! Tranquilo_ 😉`;
     await m.reply(successTxt);
   } catch (error) {
     m.reply(te(m.prefix, m.command, m.pushName));
@@ -135,11 +135,11 @@ async function replyHandler(m, { sock }) {
   const saluranId = config.saluran?.id || "120363408770415209@newsletter";
   const saluranName = config.saluran?.name || config.bot?.name || "vemzo-AI";
 
-  const replyText = `💌 *ADA BALASAN MENFESS NIH KAK!* 💌\n\n` +
-    `Orang yang kamu kirimin menfess tadi barusan balas pesanmu:\n\n` +
+  const replyText = `💌 *¡TIENES UNA RESPUESTA AL MENSAJE SECRETO!* 💌\n\n` +
+    `La persona a la que enviaste el mensaje secreto acaba de responderte:\n\n` +
     `💬 *Isi Balasan:*\n` +
     `\`\`\`${replyMessage}\`\`\`\n\n` +
-    `> 🔒 _Tenang, identitas kamu masih aman!_`;
+    `> 🔒 _Tranquilo, ¡tu identidad sigue siendo secreta!_`;
 
   try {
     await sock.sendMessage(confessInfo.senderChat, {
@@ -151,7 +151,7 @@ async function replyHandler(m, { sock }) {
     });
 
     await sock.sendMessage(m.chat, {
-      text: `✅ Sip kak! Balasan kamu udah aku sampaikan ke pengirim rahasianya.`,
+      text: `✅ ¡Listo! He entregado tu respuesta al remitente secreto.`,
     });
 
     global.confessData.delete(quotedId);

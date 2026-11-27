@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -24,33 +24,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Karena memang sudah takdirnya begitu.',
-    'Hmm, pertanyaan bagus! Aku juga bingung.',
-    'Karena itulah cara kerjanya.',
-    'Karena Tuhan berkehendak demikian.',
-    'Aku nggak tau, cari di Google aja.',
-    'Karena ya gitu aja.',
-    'Mungkin karena kebetulan?',
-    'Karena dunia memang penuh misteri.',
-    'Hmm, sulit dijelaskan sih.',
-    'Karena alam semesta bekerja dengan cara yang misterius.',
-    'Aku juga penasaran, kenapa ya?',
-    'Karena hal tersebut memang seharusnya terjadi.',
-    'Pertanyaan yang bagus! Sayangnya aku nggak punya jawabannya.',
-    'Karena itulah keunikan hidup.',
-    'Karena setiap hal punya alasannya masing-masing.',
-    'Hmm... aku butuh waktu untuk memikirkannya.',
-    'Karena begitulah logikanya.',
-    'Aku rasa karena memang harus begitu.',
-    'Karena segala sesuatu saling berhubungan.',
-    'Nah itu aku juga mikir!'
+    'Porque ese ya era su destino.',
+    'Hmm, ¡buena pregunta! Yo también estoy perdido.',
+    'Porque así es como funciona.',
+    'Porque así estaba escrito.',
+    'No lo sé, búscalo en Google.',
+    'Porque sí, así son las cosas.',
+    '¿Quizá por casualidad?',
+    'Porque el mundo está lleno de misterios.',
+    'Hmm, es difícil de explicar.',
+    'Porque el universo funciona de forma misteriosa.',
+    'Yo también tengo curiosidad, ¿por qué será?',
+    'Porque eso tenía que pasar.',
+    '¡Buena pregunta! Lástima que no tenga la respuesta.',
+    'Porque así es la vida de curiosa.',
+    'Porque cada cosa tiene su propia razón.',
+    'Hmm... necesito tiempo para pensarlo.',
+    'Porque así es la lógica.',
+    'Creo que porque tenía que ser así.',
+    'Porque todo está conectado.',
+    '¡Pues yo también me lo pregunto!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`🤔 *ᴍᴇɴɢᴀᴘᴀ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .mengapa langit biru?`);
+        return m.reply(`🤔 *¿POR QUÉ?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n>.mengapa ¿por qué el cielo es azul?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

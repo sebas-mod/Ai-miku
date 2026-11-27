@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
+const mikuGlobal = MikuRuntime.mikuGlobal;
 
 const libs = {
-    "googleimage": async ({ elysiaLib }) => {
+    "googleimage": async ({ mikuLib }) => {
       const axios = (__m => __m.default ?? __m)((await import('axios')))
       const cheerio = (await import('cheerio'))
 
@@ -69,17 +69,17 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const { googleImageSearch } = (await elysiaLib('googleimage'))
+  const { googleImageSearch } = (await mikuLib('googleimage'))
 
   async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
-      const client = conn || sock || elysiaGlobal.mainSock || elysiaGlobal.conn;
+      const client = conn || sock || mikuGlobal.mainSock || mikuGlobal.conn;
 
       if (!text) {
           return reply(
               `🔍 *Google Image Search*\n\n` +
-              `Ketik kata kunci gambar yang ingin dicari, sayang~\n\n` +
-              `*Contoh:* \`${usedPrefix + command} kucing persia\`\n` +
-              `*Contoh:* \`${usedPrefix + command} cyber city wallpaper\``
+              `Escribe las palabras clave de la imagen que deseas buscar, cariño~\n\n` +
+              `*Ejemplo:* \`${usedPrefix + command} Gato persa\`\n` +
+              `*Ejemplo:* \`${usedPrefix + command} fondo de pantalla de la ciudad cibernética\``
           );
       }
 
@@ -90,19 +90,19 @@ const pluginConfig = {
 
           if (!results || results.length === 0) {
               await client.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-              return reply(`❌ Gambar tidak ditemukan untuk pencarian *"${text}"*, coba kata kunci lain ya sayang~`);
+              return reply(`❌ Imagen no encontrada para la búsqueda *"${text}"*, prueba con otra palabra clave, querida ~`);
           }
 
           const firstItem = results[0];
           await client.sendMessage(m.chat, {
               image: { url: firstItem.url },
-              caption: `*Google Image Search*\n\n🔍 *Query:* ${text}\n🖼️ *Judul:* ${firstItem.title}\n🌐 *Sumber:* ${firstItem.source}`
+              caption: `*Google Image Search*\n\n🔍 *Query:* ${text}\n🖼️ *Título:* ${firstItem.title}\n🌐 *Sumber:* ${firstItem.source}`
           }, { quoted: m });
           await client.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
       } catch (err) {
           console.error('[GOOGLE IMAGE SEARCH ERROR]:', err);
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-          return reply(`❌ Terjadi kesalahan saat mencari gambar: ${err.message}`);
+          return reply(`❌ Se produjo un error al buscar imágenes: ${err.message}`);
       }
   };
 

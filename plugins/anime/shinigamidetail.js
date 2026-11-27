@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from "axios";
 
   const pluginConfig = {
@@ -156,10 +156,10 @@ import axios from "axios";
 
     if (!input) {
       return await m.reply(
-        `*Format Salah!*\n\n` +
+        `*¡Formato incorrecto!*\n\n` +
         `📌 *Cara Penggunaan:*\n` +
         `Ketik \`${pfx}${command} <URL Series / Manga ID>\`\n\n` +
-        `💡 *Contoh:*\n` +
+        `💡 *Ejemplo:*\n` +
         `\`${pfx}${command} https://g.shinigami.asia/series/fc727dec-d1f5-43e8-a77d-37382f636659\``
       );
     }
@@ -167,7 +167,7 @@ import axios from "axios";
     const mangaId = getUuid(input);
 
     if (!mangaId) {
-      return await m.reply(`❌ *Manga ID / UUID tidak ditemukan dari input URL.*`);
+      return await m.reply(`❌ *Manga ID / UUID no encontrado en la entrada URL.*`);
     }
 
     if (typeof m.react === 'function') await m.react('⏳');
@@ -176,13 +176,13 @@ import axios from "axios";
       const detail = await getMangaDetail(mangaId);
 
       if (!detail.json || typeof detail.json !== "object" || detail.json.retcode !== 0) {
-        throw new Error(detail.json?.message || "Gagal mengambil data detail komik.");
+        throw new Error(detail.json?.message || "No se pudieron recuperar datos detallados del cómic.");
       }
 
       const chapters = await getChapterList(mangaId);
 
       if (!chapters.json || typeof chapters.json !== "object" || chapters.json.retcode !== 0) {
-        throw new Error(chapters.json?.message || "Gagal mengambil daftar chapter.");
+        throw new Error(chapters.json?.message || "No se pudo recuperar la lista de capítulos.");
       }
 
       const formattedDetail = formatDetail(detail.json.data);
@@ -197,7 +197,7 @@ import axios from "axios";
       caption += `🏷️ *Genre:* ${formattedDetail.Genre.length ? formattedDetail.Genre.join(", ") : '-'}\n`;
       caption += `👤 *Author:* ${formattedDetail.Author.length ? formattedDetail.Author.join(", ") : '-'}\n`;
       caption += `🎨 *Artist:* ${formattedDetail.Artist.length ? formattedDetail.Artist.join(", ") : '-'}\n`;
-      caption += `📌 *Type / Format:* ${formattedDetail.Type.join(", ") || '-'} / ${formattedDetail.Format.join(", ") || '-'}\n`;
+      caption += `📌 *Tipo / Formato:* ${formattedDetail.Type.join(", ") || '-'} / ${formattedDetail.Format.join(", ") || '-'}\n`;
       caption += `STATUS: *${formattedDetail.Status || '-'}* | Rilis: *${formattedDetail.Release_year || '-'}*\n`;
       caption += `👁️ *Views:* ${formattedDetail.View_count || 0} | 🔖 *Bookmarks:* ${formattedDetail.Bookmark_count || 0}\n\n`;
 
@@ -212,7 +212,7 @@ import axios from "axios";
           caption += `• *${ch.Title}*\n  🔗 ${ch.Url}\n`;
         });
       } else {
-        caption += `_Belum ada chapter_\n`;
+        caption += `_Aún no hay capítulos_\n`;
       }
 
       caption += `\n🔗 *Link Series:* ${formattedDetail.Url}`;
@@ -244,10 +244,10 @@ import axios from "axios";
     } catch (error) {
       console.error('Shinigamidetail Plugin Error:', error);
       if (typeof m.react === 'function') await m.react('❌');
-      await m.reply('❌ *GAGAL*\n\n> ' + (error.message || String(error)));
+      await m.reply('❌ *ERROR*\n\n> ' + (error.message || String(error)));
     }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

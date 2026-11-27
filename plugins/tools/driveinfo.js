@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "driveinfo",
@@ -47,7 +47,7 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, prefix, command }) {
       const url = (String(text || '') + ' ' + (m.quoted?.text || '')).match(/https?:\/\/drive\.google\.com\/[^\s]+/i)?.[0]
-      if (!url) return reply(`📁 *DRIVE INFO*\n\nPenggunaan: *${prefix + command} <link Google Drive>*\nContoh: ${prefix + command} https://drive.google.com/file/d/xxxx/view\n\n_Untuk mengunduh file gunakan .drivedl_`)
+      if (!url) return reply(`📁 *INFO DE DRIVE*\n\nUso: *${prefix + command} <enlace de Google Drive>*\nEjemplo: ${prefix + command} https://drive.google.com/file/d/xxxx/view\n\n_Para descargar el archivo usa .drivedl_`)
 
       try {
           const res = await fetch(API_URL, {
@@ -68,11 +68,11 @@ const pluginConfig = {
           if (!name && !size && !mime) return reply('```' + JSON.stringify(data, null, 1).slice(0, 1500) + '```')
           return reply(
               `📁 *INFO FILE DRIVE*\n\n` +
-              `• Nama : ${name || '-'}\n• Ukuran : ${fmtBytes(size) || size || '-'}\n• Tipe : ${mime || '-'}\n` +
+              `• Nombre: ${name || '-'}\n• Tamaño: ${fmtBytes(size) || size || '-'}\n• Tipo: ${mime || '-'}\n` +
               (duration ? `• Durasi : ${duration}\n` : '') + (thumb ? `• Thumbnail : ${thumb}\n` : '') + `\n🔗 ${url}`
           )
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil info file'}`)
+          return reply(`❌ ${e.message || 'No se pudo obtener la información del archivo'}`)
       }
   }
 

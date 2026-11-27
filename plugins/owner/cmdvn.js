@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,22 +33,22 @@ function handler(m) {
     if (!subCmd || subCmd === 'status') {
         const status = current ? '✅ ON' : '❌ OFF'
         return m.reply(
-            `🎤 *ᴄᴍᴅ ᴠᴏɪᴄᴇ ɴᴏᴛᴇ*\n\n` +
-            `> Status: *${status}*\n\n` +
+            `🎤 *COMANDO POR NOTA DE VOZ*\n\n` +
+            `> Estado: *${status}*\n\n` +
             `> \`${m.prefix}cmdvn on\` — Command via VN\n` +
             `> \`${m.prefix}cmdvn off\` — Command via text (default)\n\n` +
-            `> Saat ON, kirim VN berisi nama command\n` +
-            `> Contoh: VN "menu" → trigger .menu`
+            `> Con ON, envía una nota de voz con el nombre del comando\n` +
+            `> Ejemplo: VN "menu" → activa .menu`
         )
     }
 
     if (subCmd === 'on') {
         db.setting('cmdVn', true)
         return m.reply(
-            `✅ *ᴄᴍᴅ ᴠɴ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Kirim voice note berisi nama command\n` +
-            `> Bot akan transkrip dan jalankan otomatis\n` +
-            `> Contoh: VN "menu" → trigger .menu`
+            `✅ *COMANDO POR NOTA DE VOZ ACTIVO*\n\n` +
+            `> Envía una nota de voz con el nombre del comando\n` +
+            `> El bot la transcribirá y ejecutará el comando automáticamente\n` +
+            `> Ejemplo: VN "menu" → activa .menu`
         )
     }
 
@@ -57,7 +57,7 @@ function handler(m) {
         return m.reply(`❌ CMD VN *dinonaktifkan*. Command via text normal.`)
     }
 
-    return m.reply(`❌ Gunakan \`${m.prefix}cmdvn on\` atau \`${m.prefix}cmdvn off\``)
+    return m.reply(`❌ Usa \`${m.prefix}cmdvn on\` o \`${m.prefix}cmdvn off\``)
 }
 
 export { pluginConfig as config, handler }

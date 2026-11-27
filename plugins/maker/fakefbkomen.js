@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "fakefbkomen",
@@ -65,7 +65,7 @@ const te = ElysiaRuntime.te;
   async function handler(m, { sock }) {
     const text = m.text?.trim();
     if (!text || !text.includes("|")) {
-      return m.reply(`⚠️ Harap masukkan nama dan komentar yang dipisahkan dengan tanda |!\nContoh: \`${m.prefix}${m.command} Fauzan|Ini komentar\``);
+      return m.reply(`⚠️ ¡Escribe el nombre y el comentario separados por |!\nEjemplo: \`${m.prefix}${m.command} Fauzan|Este es mi comentario\``);
     }
 
     const [nama, ...komenArr] = text.split("|");
@@ -76,14 +76,14 @@ const te = ElysiaRuntime.te;
     const type = getContentType(msgObj.message);
 
     if (!type || type !== "imageMessage") {
-      return m.reply(`⚠️ Harap kirim atau reply foto dengan perintah \`${m.prefix}${m.command}\``);
+      return m.reply(`⚠️ Envía o responde a una foto con el comando \`${m.prefix}${m.command}\``);
     }
 
     await m.react("🕕");
 
     try {
       media = await downloadMediaMessage(msgObj, "buffer", {});
-      if (!media) throw new Error("Gagal membaca media");
+      if (!media) throw new Error("No se pudo leer el multimedia");
 
       const avatar = await loadImage(media);
       const canvas = createCanvas(1280, 780);
@@ -126,7 +126,7 @@ const te = ElysiaRuntime.te;
 
       ctx.fillStyle = "#65676b";
       ctx.font = "13px sans-serif";
-      ctx.fillText("baru saja · 🌍", postX + 70, postHeaderY + 45);
+      ctx.fillText("hace un momento · 🌍", postX + 70, postHeaderY + 45);
 
       const imgX = postX + 30;
       const imgY = postHeaderY + 80;
@@ -140,7 +140,7 @@ const te = ElysiaRuntime.te;
 
       ctx.fillStyle = "#65676b";
       ctx.font = "bold 15px sans-serif";
-      ctx.fillText("👍 Suka · 💬 Komentar · ↗️ Bagikan", postX + 30, postY + 580);
+      ctx.fillText("👍 Me gusta · 💬 Comentar · ↗️ Compartir", postX + 30, postY + 580);
 
       const buffer = await canvas.encode("png");
       await sock.sendMessage(m.chat, { image: buffer, caption: "💬 *Fake FB Comment*" }, { quoted: m });

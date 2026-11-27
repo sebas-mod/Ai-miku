@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getCaseCommands } from "../../src/case/elysia.js";
+import { getCaseCommands } from "../../src/case/miku.js";
 import fs from "fs";
 import path from "path";
 import config from "../../config.js";
-import { sendElysiaNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu } from "../../src/lib/core/native-menu.js";
 import te from "../../src/lib/core/error.js";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -19,8 +19,8 @@ const pluginConfig = {
   name: "carifitur",
   alias: ["searchcmd", "findcmd", "cari", "search", "cf"],
   category: "main",
-  description: "Mencari fitur berdasarkan keyword dengan detail lengkap",
-  usage: ".carifitur <keyword>",
+  description: "Busca funciones por palabra clave con información completa",
+  usage: ".carifitur <palabra>",
   example: ".carifitur sticker",
   isOwner: false,
   isPremium: false,
@@ -96,7 +96,7 @@ async function loadAllPlugins() {
                 : plugin.config.name,
               alias: plugin.config.alias || [],
               category: plugin.config.category || category,
-              description: plugin.config.description || "Tidak ada deskripsi",
+              description: plugin.config.description || "Sin descripción",
               usage: plugin.config.usage || "",
               example: plugin.config.example || "",
               isEnabled: plugin.config.isEnabled !== false,
@@ -119,9 +119,9 @@ async function loadAllPlugins() {
       listallplugin: ["lplugin", "pluginlist", "allplugin"],
     };
     const caseDescriptions = {
-      cping: "Cek ping case system",
-      listallcase: "Lihat daftar semua case commands",
-      listallplugin: "Lihat daftar semua plugin commands",
+      cping: "Comprueba el ping del sistema de cases",
+      listallcase: "Ver la lista de todos los comandos case",
+      listallplugin: "Ver la lista de todos los comandos de plugin",
     };
     for (const [category, commands] of Object.entries(caseCommands)) {
       for (const cmd of commands) {
@@ -129,7 +129,7 @@ async function loadAllPlugins() {
           name: cmd,
           alias: caseAliases[cmd] || [],
           category: category,
-          description: caseDescriptions[cmd] || "Case command",
+          description: caseDescriptions[cmd] || "Comando case",
           usage: `.${cmd}`,
           example: `.${cmd}`,
           isEnabled: true,
@@ -148,11 +148,11 @@ async function handler(m, { sock }) {
   const keyword = m.text;
   if (!keyword) {
     return m.reply(
-      `🔍 *ᴄᴀʀɪ ꜰɪᴛᴜʀ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-      `┃ \`${m.prefix}carifitur <keyword>\`\n` +
+      `🔍 *ʙᴜsᴄᴀʀ ꜰᴜɴᴄɪᴏɴ*\n\n` +
+      `╭┈┈⬡「 📋 *ᴄᴏ́ᴍᴏ ᴜsᴀʀʟᴏ* 」\n` +
+      `┃ \`${m.prefix}carifitur <palabra>\`\n` +
       `╰┈┈⬡\n\n` +
-      `> Contoh:\n` +
+      `> Ejemplo:\n` +
       `\`${m.prefix}carifitur sticker\`\n` +
       `\`${m.prefix}carifitur download\`\n` +
       `\`${m.prefix}carifitur game\``,
@@ -173,7 +173,7 @@ async function handler(m, { sock }) {
           matchScore,
           getSimilarity(plugin.name, keyword) * 1.2,
         );
-        matchReason = "nama";
+        matchReason = "nombre";
       }
       for (const alias of plugin.alias) {
         if (matchesKeyword(alias, keyword)) {
@@ -191,7 +191,7 @@ async function handler(m, { sock }) {
           matchScore,
           getSimilarity(plugin.description, keyword) * 0.8,
         );
-        matchReason = matchReason || "deskripsi";
+        matchReason = matchReason || "descripción";
       }
       if (matchesKeyword(plugin.category, keyword)) {
         isMatch = true;
@@ -199,7 +199,7 @@ async function handler(m, { sock }) {
           matchScore,
           getSimilarity(plugin.category, keyword) * 0.7,
         );
-        matchReason = matchReason || "kategori";
+        matchReason = matchReason || "categoría";
       }
       if (isMatch) {
         matches.push({ ...plugin, score: matchScore, matchReason });
@@ -209,14 +209,14 @@ async function handler(m, { sock }) {
     if (matches.length === 0) {
       m.react("❌");
       return m.reply(
-        `🔍 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ*\n\n> Tidak ditemukan fitur dengan keyword \`${keyword}\``,
+        `🔍 *ʀᴇsᴜʟᴛᴀᴅᴏs*\n\n> No se encontró ninguna función con la palabra \`${keyword}\``,
       );
     }
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
-    let text = `🔍 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ: "${keyword}"*\n`;
-    text += `> Ditemukan *${matches.length}* fitur\n`;
-    text += `> Pilih salah satu command di bawah:\n\n`;
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
+    let text = `🔍 *ʀᴇsᴜʟᴛᴀᴅᴏs: "${keyword}"*\n`;
+    text += `> Se encontraron *${matches.length}* funciones\n`;
+    text += `> Elige uno de los comandos de abajo:\n\n`;
     const topMatches = matches.slice(0, 15);
     for (let i = 0; i < Math.min(5, topMatches.length); i++) {
       const p = topMatches[i];
@@ -224,14 +224,14 @@ async function handler(m, { sock }) {
       if (p.isPremium) badges.push("💎");
       if (p.isOwner) badges.push("👑");
       text += `*${i + 1}. ${m.prefix}${p.name}* ${badges.join("")}\n`;
-      text += `📁 Kategori: \`${p.category}\`\n`;
+      text += `📁 Categoría: \`${p.category}\`\n`;
       text += `📝 ${p.description.slice(0, 50)}${p.description.length > 50 ? "..." : ""}\n`;
-      if (p.usage) text += `💡 Usage: \`${p.usage}\`\n`;
+      if (p.usage) text += `💡 Uso: \`${p.usage}\`\n`;
       if (p.cooldown > 0) text += `⏱️ Cooldown: ${p.cooldown}s\n`;
       text += `\n`;
     }
     if (topMatches.length > 5) {
-      text += `_+${topMatches.length - 5} hasil lainnya tersedia_`;
+      text += `_+${topMatches.length - 5} resultados más disponibles_`;
     }
     const buttons = topMatches.slice(0, 10).map((p, i) => ({
       title: `${m.prefix}${p.name}`,
@@ -239,12 +239,12 @@ async function handler(m, { sock }) {
       id: `${m.prefix}${p.name}`,
     }));
     m.react("✅");
-    await sendElysiaNativeMenu(sock, m, {
+    await sendMikuNativeMenu(sock, m, {
       buttonId: "pilihan_carifitur",
-      pickerTitle: "📋 Pilih Command",
-      sections: [{ title: `Hasil untuk "${keyword}"`, rows: buttons }],
+      pickerTitle: "📋 Elige un comando",
+      sections: [{ title: `Resultados para "${keyword}"`, rows: buttons }],
       contentText: text,
-      address: `HASIL CARI FITUR: ${keyword}`,
+      address: `RESULTADOS DE BÚSQUEDA: ${keyword}`,
       thumbKey: "carifitur",
     });
   } catch (error) {

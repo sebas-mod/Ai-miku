@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { need, pickTarget, explain } from './setch.js'
 
 const pluginConfig = {
@@ -30,10 +30,10 @@ const pluginConfig = {
           need(sock, 'newsletterFollow')
           const t = await pickTarget(sock, text, prefix)
           await sock.newsletterFollow(t.id)
-          return reply(`✅ Sekarang mengikuti saluran: *${t.name}*`)
+          return reply(`✅ Ahora siguiendo los canales: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chfollow:', err.message)
-          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nContoh: ${prefix || '.'}chfollow <link saluran>`}`)
+          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nEjemplo: ${prefix || '.'}chfollow <link saluran>`}`)
       }
   }
 

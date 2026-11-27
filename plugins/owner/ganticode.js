@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -63,11 +63,11 @@ async function handler(m, { sock }) {
   if (!quoted) {
     return m.reply(
       `🔄 *GANTI CODE*\n\n` +
-        `Reply code plugin baru dengan caption:\n` +
+        `Responde al código del nuevo plugin con el texto:\n` +
         `\`${m.prefix}ganticode\` - Auto detect\n` +
-        `\`${m.prefix}ganticode namafile\` - Custom nama\n` +
-        `\`${m.prefix}ganticode namafile folder\` - Custom nama + folder\n\n` +
-        `⚠️ *PERINGATAN:*\nCode lama akan di-backup sebelum diganti`,
+        `\`${m.prefix}ganticode namafile\` - Nombre personalizado\n` +
+        `\`${m.prefix}ganticode namafile folder\` - Nombre y carpeta personalizados\n\n` +
+        `⚠️ *ADVERTENCIA:*\nEl código anterior se respaldará antes de reemplazarlo`,
     );
   }
 
@@ -80,19 +80,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nGagal download file`);
+      return m.reply(`❌ *ERROR*\n\nNo se pudo descargar el archivo`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`❌ *GAGAL*\n\nCode terlalu pendek atau tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nEl código es demasiado corto o no es válido`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode bukan format plugin yang valid\nHarus ada export dan config`,
+      `❌ *ERROR*\n\nEl código no tiene un formato de plugin válido\nDebe incluir export y config`,
     );
   }
 
@@ -104,14 +104,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nTidak bisa mendeteksi nama plugin\nGunakan \`${m.prefix}ganticode <namafile>\``,
+      `❌ *ERROR*\n\nNo se pudo detectar el nombre del plugin\nUsa \`${m.prefix}ganticode <namafile>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNama file tidak valid`);
+    return m.reply(`❌ *ERROR*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -186,7 +186,7 @@ async function handler(m, { sock }) {
       replyText += `💾 *Backup:*\n\`${relBackup}\`\n\n`;
     }
 
-    replyText += `Plugin sudah aktif dan siap digunakan!`;
+    replyText += `¡El plugin ya está activo y listo para usar!`;
 
     return m.reply(replyText);
   } catch (error) {

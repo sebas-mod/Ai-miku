@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -34,19 +34,19 @@ const pluginConfig = {
   const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
 
   async function handler(m, { sock, reply, example }) {
-      if (!m.quoted) return example('dengan reply video atau dokumen (foto/video)')
+      if (!m.quoted) return example('responder a un vídeo o documento (foto/vídeo)')
 
       const q = m.quoted
       const isVideo = q.mtype === 'videoMessage'
 
       if (q.mtype !== 'documentMessage' && !isVideo) {
-          return reply(' Reply video, atau file foto/video yang dikirim dalam bentuk *Dokumen*!')
+          return reply(' ¡Responde un vídeo, o envía una foto/vídeo como *Documento*!')
       }
 
       const mime = (q.msg || q).mimetype || (isVideo ? 'video/mp4' : '')
 
       if (!mime.includes('image') && !mime.includes('video')) {
-          return reply(' Dokumen yang direply bukan format foto atau video!')
+          return reply(' ¡El documento al que responde no es una foto ni un video!')
       }
 
       await react(sock, m, '⏳')
@@ -58,7 +58,7 @@ const pluginConfig = {
 
       try {
           const buffer = await q.download()
-          if (!Buffer.isBuffer(buffer) || !buffer.length) throw new Error('Gagal mengunduh dokumen')
+          if (!Buffer.isBuffer(buffer) || !buffer.length) throw new Error('No se pudo descargar el documento')
 
           if (mime.includes('image')) {
               await sock.sendMessage(m.chat, {
@@ -79,7 +79,7 @@ const pluginConfig = {
 
               await sock.sendMessage(m.chat, {
                   video: fs.readFileSync(tempOut),
-                  caption: `乂  *Proses di selesaikan*`
+                  caption: `乂 *Proceso completado*`
               }, { quoted: m })
           }
 
@@ -87,7 +87,7 @@ const pluginConfig = {
       } catch (e) {
           console.error('[SWHD ERROR]', e)
           await react(sock, m, '')
-          reply(' Terjadi kesalahan saat memproses dokumen.')
+          reply(' Ocurrió un error al procesar el documento.')
       } finally {
           for (const f of [tempIn, tempOut]) fs.promises.unlink(f).catch(() => null)
       }

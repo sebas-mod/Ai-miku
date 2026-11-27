@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,14 +30,14 @@ async function handler(m, { sock }) {
         const amount = parseInt(m.args[0])
 
         if (isNaN(amount) || amount <= 0) {
-            return m.reply(`⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n> Masukkan jumlah limit yang ingin ditambahkan.\n\n\`Contoh: ${m.prefix}addlimitall 50\``)
+            return m.reply(`⚠️ *CÓMO USAR*\n\n> Escribe la cantidad de límites que quieres añadir.\n\n\`Ejemplo: ${m.prefix}addlimitall 50\``)
         }
 
         const groupMeta = m.groupMetadata
         const participants = groupMeta.participants || []
 
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ERROR*\n\n> No hay miembros en este grupo`)
         }
 
         await m.react('🕕')
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
         await db.save()
         await m.react('⚡')
         await m.reply(
-           `✅ Berhasil menambahkan limit ke semua member ( Total *${successCount}* Member ) di grup *${gb?.subject}*`,
+           `✅ Se añadieron límites a todos los miembros (total *${successCount}* miembros) en el grupo *${gb?.subject}*`,
             )
 
     } catch (error) {

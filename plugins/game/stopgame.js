@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getActiveGame, clearActiveGame } from "../../src/lib/features/elysia-game.js";
+import { getActiveGame, clearActiveGame } from "../../src/lib/features/miku-game.js";
 
 const pluginConfig = {
   name: "stopgame",
@@ -21,9 +21,9 @@ const pluginConfig = {
 
 async function handler(m) {
   const active = getActiveGame(m.chat);
-  if (!active) return m.reply("❌ Tidak ada game aktif di chat ini.");
+  if (!active) return m.reply("❌ No hay ningún juego activo en este chat.");
   clearActiveGame(m.chat);
-  await m.reply(`🏳️ Sesi game *${active.type}* berhasil dihentikan.`);
+  await m.reply(`🏳️ La sesión del juego *${active.type}* se detuvo.`);
 }
 
 export { pluginConfig as config, handler };

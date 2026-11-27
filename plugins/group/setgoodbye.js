@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,23 +30,23 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📝 *sᴇᴛ ɢᴏᴏᴅʙʏᴇ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀ* 」\n` +
-        `┃ ◦ \`{user}\` - Nama member\n` +
-        `┃ ◦ \`{number}\` - Nomor member\n` +
-        `┃ ◦ \`{group}\` - Nama grup\n` +
-        `┃ ◦ \`{desc}\` - Deskripsi grup\n` +
-        `┃ ◦ \`{count}\` - Sisa member\n` +
-        `┃ ◦ \`{owner}\` - Nama owner grup\n` +
+      `📝 *ESTABLECER DESPEDIDA*\n\n` +
+        `╭┈┈⬡「 📋 *MARCADORES* 」\n` +
+        `┃ ◦ \`{user}\` - Nombre del miembro\n` +
+        `┃ ◦ \`{number}\` - Número del miembro\n` +
+        `┃ ◦ \`{group}\` - Nombre del grupo\n` +
+        `┃ ◦ \`{desc}\` - Descripción del grupo\n` +
+        `┃ ◦ \`{count}\` - Miembros restantes\n` +
+        `┃ ◦ \`{owner}\` - Nombre del propietario del grupo\n` +
         `┃ ◦ \`{date}\` - Tanggal (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Waktu (HH:mm WIB)\n` +
-        `┃ ◦ \`{day}\` - Hari (Senin, Selasa, dll)\n` +
-        `┃ ◦ \`{bot}\` - Nama bot\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{day}\` - Día (lunes, martes, etc.)\n` +
+        `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefix bot\n` +
         `╰┈┈⬡\n\n` +
-        `\`Contoh:\`\n` +
+        `\`Ejemplo:\`\n` +
         `\`${m.prefix}setgoodbye Bye {user}! 👋\`\n` +
-        `\`Sampai jumpa lagi pada {day}, {date}\``,
+        `\`Hasta la próxima el {day}, {date}\``,
     );
   }
 
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
   m.react("✅");
 
   await m.reply(
-    `✅ Goodbye berhasil di set menjadi *${text}*\nMau reset? ketik ${m.prefix}resetgoodbye`,
+    `✅ Mensaje de despedida actualizado a *${text}*\n¿Quieres restablecerlo? Escribe ${m.prefix}resetgoodbye`,
   );
 }
 

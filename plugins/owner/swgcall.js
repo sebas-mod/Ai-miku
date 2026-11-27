@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -44,7 +44,7 @@ async function handler(m, { sock, db }) {
     const pending = global._swgcallPending?.get(m.sender);
     if (!pending) {
       return m.reply(
-        `⚠️ *Tidak ada data pending. Kirim ulang media + .swgcall*`,
+        `⚠️ *No hay datos pendientes. Vuelve a enviar el multimedia + .swgcall*`,
       );
     }
 
@@ -96,14 +96,14 @@ async function handler(m, { sock, db }) {
     }
 
     let report =
-      `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ sᴇʟᴇsᴀɪ*\n\n` +
-      `> Total: *${total}* grup\n` +
-      `> Berhasil: *${success}* ✅\n` +
-      `> Gagal: *${failed}* ❌`;
+      `✅ *DIFUSIÓN SWGC TERMINADA*\n\n` +
+      `> Total: *${total}* grupos\n` +
+      `> Correctos: *${success}* ✅\n` +
+      `> Fallidos: *${failed}* ❌`;
 
     if (failedGroups.length > 0) {
       report +=
-        `\n\n*Grup gagal:*\n` + failedGroups.map((g) => `> • ${g}`).join("\n");
+        `\n\n*Grupos con error:*\n` + failedGroups.map((g) => `> • ${g}`).join("\n");
     }
 
     await m.reply(report);
@@ -130,7 +130,7 @@ async function handler(m, { sock, db }) {
   if (source) {
     try {
       buffer = await source.download();
-      if (!buffer) return m.reply(`❌ Gagal mengambil media.`);
+      if (!buffer) return m.reply(`❌ No se pudo obtener el multimedia.`);
 
       const fileType = await fileTypeFromBuffer(buffer);
       ext = fileType?.ext || "bin";
@@ -164,11 +164,11 @@ async function handler(m, { sock, db }) {
     rawContent.backgroundColor = "#128C7E";
   } else {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}swgcall teks\` - Story teks ke semua grup\n` +
-        `> Reply gambar/video/audio + \`${m.prefix}swgcall\`\n` +
-        `> Kirim gambar/video + caption \`${m.prefix}swgcall\`\n\n` +
-        `⚠️ _Fitur ini akan mengirim story ke SEMUA grup!_`,
+      `⚠️ *CÓMO USAR*\n\n` +
+        `> \`${m.prefix}swgcall text\` - Historia de texto a todos los Grupos\n` +
+        `> Responde con imagen/video/audio + \`${m.prefix}swgcall\`\n` +
+        `> Envía una imagen/vídeo con el texto \`${m.prefix}swgcall\`\n\n` +
+        `⚠️ _¡Esta función enviará la historia a TODOS los grupos!_`,
     );
   }
 
@@ -179,7 +179,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      return m.reply(`⚠️ *Bot tidak berada di grup manapun.*`);
+      return m.reply(`⚠️ *El bot no está en ningún grupo.*`);
     }
 
     if (!global._swgcallPending) global._swgcallPending = new Map();
@@ -193,7 +193,7 @@ async function handler(m, { sock, db }) {
     const mediaType = rawContent.text
       ? "Teks"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
@@ -211,21 +211,21 @@ async function handler(m, { sock, db }) {
 
     await sock.sendMessage(m.chat, {
       text:
-        `📢 *ᴋᴏɴꜰɪʀᴍᴀsɪ ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ*\n\n` +
-        `> Media: *${mediaType}*\n` +
-        `> Total Grup: *${groupList.length}*\n` +
-        `> Estimasi: *~${estimatedTime} detik*\n\n` +
-        `⚠️ _Story akan dipost ke SEMUA grup!_\n` +
-        `_Tekan konfirmasi untuk melanjutkan._`,
+        `📢 *CONFIRMACIÓN DE DIFUSIÓN SWGC*\n\n` +
+        `> Medios: *${mediaType}*\n` +
+        `> Total de grupos: *${groupList.length}*\n` +
+        `> Estimasi: *~${estimatedTime} segundos*\n\n` +
+        `⚠️ _¡La historia se publicará en TODOS los grupos!_\n` +
+        `_Pulsa confirmar para continuar._`,
       contextInfo: {
         ...saluranCtx()
       },
-      footer: "elysia MD",
+      footer: "miku MD",
       interactiveButtons: [
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: `✅ Kirim ke ${groupList.length} Grup`,
+            display_text: `✅ Enviar a ${groupList.length} grupos`,
             id: `${m.prefix}swgcall --yes`,
           }),
         },
@@ -240,7 +240,7 @@ async function handler(m, { sock, db }) {
     });
   } catch (error) {
     await m.reply(
-      `❌ *ᴇʀʀᴏʀ*\n\n> Gagal mengambil daftar grup.\n> _${error.message}_`,
+      `❌ *ERROR*\n\n> No se pudo obtener la lista de grupos.\n> _${error.message}_`,
     );
     if (tempFile && fs.existsSync(tempFile)) {
       try {

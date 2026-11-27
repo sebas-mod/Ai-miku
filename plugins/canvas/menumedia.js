@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,7 +8,7 @@
  */
 import { runMenuLoading } from "../../src/lib/core/menu-loading.js";
 import configOwner from "../../config.js";
-import { sendElysiaNativeMenu as sendVemzoNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu as sendVemzoNativeMenu } from "../../src/lib/core/native-menu.js";
 
 const pluginConfig = {
   name: "menumedia",
@@ -52,21 +52,21 @@ async function sendMediaList(m, sock, prefix) {
     `╭─〔 🖼️ *VEMZO MEDIA* 〕─╮\n` +
     `│ IQC • VOS • VOSV2\n` +
     `╰────────────────╯\n\n` +
-    `Pilih fitur dari tombol *LIST MENU MEDIA* di bawah.`;
+    `Seleccione una función de los botones *LIST MENU MEDIA* que aparecen a continuación.`;
 
   await sendVemzoNativeMenu(sock, m, {
     buttonId: "pilihan_menumedia",
-    pickerTitle: "☰ LIST MENU MEDIA",
-    sections: [{ title: "MEDIA VEMZO", rows }],
+    pickerTitle: "☰ LISTA DEL MENÚ MULTIMEDIA",
+    sections: [{ title: "MEDIOS VEMZO", rows }],
     contentText: text,
-    footerText: "Vemzo • Media",
-    address: "MENU MEDIA VEMZO",
+    footerText: "Vemzo • Medios",
+    address: "MENÚ MULTIMEDIA VEMZO",
     thumbKey: "allmenu",
   });
 }
 
 async function handler(m, { sock }) {
-  await runMenuLoading(sock, m.chat, "menu media");
+  await runMenuLoading(sock, m.chat, "menú multimedia");
   const prefix = m.prefix || configOwner?.command?.prefix || ".";
   const args = (m.args || []).join(" ").trim().toLowerCase();
 
@@ -78,15 +78,15 @@ async function handler(m, { sock }) {
     `╭─〔 🖼️ *VEMZO MEDIA* 〕─╮\n` +
     `│ IQC • VOS • VOSV2\n` +
     `╰────────────────╯\n\n` +
-    `Gunakan tombol *LIST MENU MEDIA* untuk melihat cara pakai dan memilih fitur.`;
+    `Utilice los botones *LIST MENU MEDIA* para ver como usar y seleccionar funciones.`;
 
   await sendVemzoNativeMenu(sock, m, {
     buttonId: "pilihan_menumedia",
-    pickerTitle: "☰ LIST MENU MEDIA",
-    sections: [{ title: "MEDIA VEMZO", rows: makeRows(prefix) }],
+    pickerTitle: "☰ LISTA DEL MENÚ MULTIMEDIA",
+    sections: [{ title: "MEDIOS VEMZO", rows: makeRows(prefix) }],
     contentText: text,
-    footerText: "Vemzo • Media",
-    address: "MENU MEDIA VEMZO",
+    footerText: "Vemzo • Medios",
+    address: "MENÚ MULTIMEDIA VEMZO",
     thumbKey: "allmenu",
   });
 

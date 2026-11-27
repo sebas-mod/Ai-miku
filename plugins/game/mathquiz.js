@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getActiveGame, setActiveGame } from "../../src/lib/features/elysia-game.js";
+import { getActiveGame, setActiveGame } from "../../src/lib/features/miku-game.js";
 
 const pluginConfig = {
   name: "mathquiz",
@@ -35,7 +35,7 @@ function genQuestion(level) {
 
 async function handler(m, { sock }) {
   const active = getActiveGame(m.chat);
-  if (active) return m.reply(`⏳ Masih ada game *${active.type}* yang aktif di chat ini! Ketik \`${m.prefix}stopgame\` untuk berhenti.`);
+  if (active) return m.reply(`⏳ ¡Todavía hay un juego *${active.type}* activo en este chat! Escribe \`${m.prefix}stopgame\` para pararlo.`);
 
   const level = /^(easy|medium|hard)$/i.test(String(m.text || "").trim())
     ? String(m.text).trim().toLowerCase()
@@ -50,16 +50,16 @@ async function handler(m, { sock }) {
   };
 
   setActiveGame(m.chat, session, 30000, async (cur) => {
-    await sock.sendMessage(m.chat, { text: `⏰ Waktu *Hitung Cepat* habis! Jawabannya adalah *${cur.answer}*.` });
+    await sock.sendMessage(m.chat, { text: `⏰ ¡Se acabó el tiempo de *Cálculo Rápido*! La respuesta era *${cur.answer}*.` });
   });
 
   await m.reply(
-    `╭─❖「 ⚡ *HITUNG CEPAT — ${level.toUpperCase()}* 」\n` +
+    `╭─❖「 ⚡ *CÁLCULO RÁPIDO — ${level.toUpperCase()}* 」\n` +
       `│ 🧮 Soal   : *${q.expr} = ?*\n` +
-      `│ ⏱️ Waktu  : *30 detik*\n` +
-      `│ 💰 Hadiah : *+${q.koin.toLocaleString("id-ID")} Koin* (+Bonus Cepat!)\n` +
+      `│ ⏱️ Tiempo  : *30 segundos*\n` +
+      `│ 💰 Premio  : *+${q.koin.toLocaleString("id-ID")} monedas* (¡+bonus por rapidez!)\n` +
       `╰─────────────────────❖\n` +
-      `_Ketik hasil angkanya langsung di chat!_`
+      `_¡Escribe el resultado directamente en el chat!_`
   );
 }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m) {
   const uid = String(m.text || "").trim().replace(/[^0-9]/g, "");
-  if (!uid) return m.reply(`🔥 Masukkan UID Free Fire!\n> Contoh: \`${m.prefix}ffstalk 123456789\``);
+  if (!uid) return m.reply(`🔥 ¡Escribe el UID de Free Fire!\n> Ejemplo: \`${m.prefix}ffstalk 123456789\``);
 
   await m.react("🔎");
   const endpoints = [
@@ -54,7 +54,7 @@ async function handler(m) {
   }
 
   await m.react("❌");
-  await m.reply(`❌ Akun Free Fire UID \`${uid}\` tidak ditemukan.`);
+  await m.reply(`❌ No se encontró la cuenta de Free Fire con UID \`${uid}\`.`);
 }
 
 export { pluginConfig as config, handler };

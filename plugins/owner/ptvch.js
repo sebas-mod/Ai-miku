@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,27 +31,27 @@ async function handler(m, { sock }) {
         try {
             video = await m.quoted.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video dari quoted.`)
+            return m.reply(`❌ No se pudo descargar el vídeo del mensaje respondido.`)
         }
     } else if (m.isVideo) {
         try {
             video = await m.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video.`)
+            return m.reply(`❌ No se pudo descargar el vídeo.`)
         }
     }
 
     if (!video) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Kirim *video* atau *balas video* lalu ketik:\n` +
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> Envía un *vídeo* o *responde a un vídeo* y escribe:\n` +
             `> \`${m.prefix}ptvch\``
         )
     }
 
     const channelId = config.saluran?.id || '120363393471527483@newsletter'
 
-    await m.reply(`🕕 *ᴍᴇɴɢɪʀɪᴍ ᴘᴛᴠ ᴋᴇ ᴄʜᴀɴɴᴇʟ...*`)
+    await m.reply(`🕕 *ENVIANDO PTV AL CANAL...*`)
 
     try {
         await sock.sendMessage(channelId, {
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
         })
 
         await m.react('✅')
-        return m.reply(`✅ *sᴜᴋsᴇs*\n\n> Video berhasil dikirim ke channel sebagai PTV.`)
+        return m.reply(`✅ *ÉXITO*\n\n > El vídeo se envió al canal como PTV.`)
 
     } catch (err) {
         return m.reply(te(m.prefix, m.command, m.pushName))

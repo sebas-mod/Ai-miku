@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "biner2text",
@@ -25,17 +25,17 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, usedPrefix, command }) {
-      if (!text) return m.reply(`🚩 *BINARY TO TEXT*\n\nMasukkan kode biner yang ingin diubah!\n\n*ᴄᴏɴᴛᴏʜ:* \`${usedPrefix + command} 01001000 01100001 01101100 01101111\``);
+      if (!text) return m.reply(`🚩 *BINARIO A TEXTO*\n\n¡Escribe el código binario que quieres convertir!\n\n*ᴇᴊᴇᴍᴘʟᴏ:* \`${usedPrefix + command} 01001000 01100001 01101100 01101111\``);
 
       try {
           const binary = text.replace(/\s+/g, '');
-          if (binary.length % 8 !== 0) throw new Error("Format biner tidak valid (harus kelipatan 8 bit).");
+          if (binary.length % 8 !== 0) throw new Error("Formato binario no válido (debe ser múltiplo de 8 bits).");
 
           const result = binary.match(/.{1,8}/g).map(bin => {
               return String.fromCharCode(parseInt(bin, 2));
           }).join('');
 
-          await m.reply(`* *ʜᴀsɪʟ:**\n\n\`\`\`${result}\`\`\``);
+          await m.reply(`* *Resultados:**\n\n\`\`\`${result}\`\`\``);
       } catch (e) {
           m.reply(`❌ *Error:* ${e.message}`);
       }

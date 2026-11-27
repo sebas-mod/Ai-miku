@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
 
     const eligible = participants.filter((p) => !isBotParticipant(p, [botNum]));
     if (eligible.length === 0) {
-      return m.reply(`❌ Tidak ada member di grup!`);
+      return m.reply(`❌ ¡No hay miembros en el grupo!`);
     }
 
     const picked = eligible[Math.floor(Math.random() * eligible.length)];
@@ -70,10 +70,10 @@ async function handler(m, { sock }) {
 
     const positiveWords = ["ganteng", "cantik", "keren", "pro", "sultan", "kaya", "pinter", "pintar", "mastah"];
     const isPositive = positiveWords.includes(command);
-    const label = isPositive ? "Yang paling" : "Anak";
+    const label = isPositive ? "El más" : "Anak";
     const mentionNum = String(targetJid || "").split("@")[0].split(":")[0];
 
-    await m.reply(`*${label} ${command} di sini adalah* @${mentionNum}`, {
+    await m.reply(`*${label} ${command} aquí es* @${mentionNum}`, {
       mentions: [targetJid],
     });
     m.react("✅");

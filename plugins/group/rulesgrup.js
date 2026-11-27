@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -24,37 +24,37 @@ const pluginConfig = {
     isEnabled: true,
 }
 
-const DEFAULT_GROUP_RULES = `📜 *ATURAN GRUP*
+const DEFAULT_GROUP_RULES = `📜 *REGLAS DEL GRUPO*
 
-Selamat datang di grup ini! Supaya suasana tetap nyaman dan kondusif untuk semua anggota, harap patuhi aturan-aturan berikut ini ya.
+¡Bienvenido a este grupo! Para que el ambiente siga siendo agradable y cómodo para todos los miembros, respeta estas normas.
 
-🔹 *ETIKA BERKOMUNIKASI*
+🔹 *ETIQUETA AL COMUNICARSE*
 
-- Gunakan *bahasa yang sopan* dan saling menghargai satu sama lain. Tidak ada toleransi untuk kata-kata kasar atau ujaran kebencian.
-- Dilarang melakukan *spam* pesan berulang-ulang, termasuk spam sticker, gambar, dan voice note secara berlebihan.
-- Dilarang menyebarkan *konten SARA, pornografi, dan kekerasan* dalam bentuk apapun.
-- Jangan *menghina, membully, atau mempermalukan* anggota grup lainnya.
+- Usa un *lenguaje respetuoso* y trátate bien con los demás. No se toleran insultos ni discursos de odio.
+- Prohibido hacer *spam* de mensajes repetidos, incluidos stickers, imágenes y notas de voz en exceso.
+- Prohibido difundir *contenido discriminatorio, pornográfico o violento* en cualquier forma.
+- No *insultes, acoses ni avergüences* a los demás miembros del grupo.
 
-🔹 *KONTEN DAN LINK*
+🔹 *CONTENIDO Y ENLACES*
 
-- Dilarang *promosi* produk, jasa, atau akun media sosial tanpa izin admin grup.
-- Dilarang *menyebarkan link* apapun tanpa persetujuan admin, termasuk link grup WhatsApp lain.
-- Dilarang menyebarkan *berita hoax* atau informasi yang belum terverifikasi kebenarannya.
-- Dilarang mengirim *dokumen atau file mencurigakan* yang berpotensi mengandung virus.
+- Prohibido *promocionar* productos, servicios o cuentas de redes sociales sin permiso de los administradores.
+- Prohibido *difundir enlaces* sin la aprobación de los administradores, incluidos enlaces a otros grupos de WhatsApp.
+- Prohibido difundir *noticias falsas* o información sin verificar.
+- Prohibido enviar *documentos o archivos sospechosos* que puedan contener virus.
 
-🔹 *PENGGUNAAN BOT*
+🔹 *USO DEL BOT*
 
-- Gunakan command bot *secukupnya*, jangan spam command berulang-ulang.
-- *Patuhi instruksi admin* grup kapan saja. Keputusan admin adalah final.
-- Jika ada masalah, sampaikan dengan baik-baik ke admin, bukan di grup.
+- Usa los comandos del bot *con moderación*, sin spamearlos.
+- *Respeta las instrucciones de los administradores* en todo momento. Su decisión es definitiva.
+- Si tienes un problema, coméntalo con los administradores en privado, no en el grupo.
 
-🔹 *KONSEKUENSI*
+🔹 *CONSECUENCIAS*
 
-- Pelanggaran ringan mendapat *peringatan (warning)* dari admin
-- Pelanggaran berat atau berulang akan di-*kick* dari grup
-- Admin berhak mengeluarkan member kapan saja tanpa pemberitahuan
+- Las faltas leves reciben un *aviso* de los administradores.
+- Las faltas graves o repetidas suponen la *expulsión* del grupo.
+- Los administradores pueden expulsar a un miembro en cualquier momento sin previo aviso.
 
-_Dengan bergabung di grup ini, kamu dianggap sudah menyetujui semua aturan di atas._`
+_Al unirte a este grupo, se considera que aceptas todas estas reglas._`
 
 async function handler(m) {
     const db = getDatabase()

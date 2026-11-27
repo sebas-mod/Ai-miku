@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,9 +28,9 @@ async function handler(m, { sock }) {
     const newDesc = m.text?.trim() || ''
     if (!m.text && m.args?.length === 0) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setdeskgc Deskripsi baru\`\n` +
-            `> \`${m.prefix}setdeskgc clear\` - Hapus deskripsi`
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> \`${m.prefix}setdeskgc Descripción nueva\`\n` +
+            `> \`${m.prefix}setdeskgc clear\` - Eliminar descripción`
         )
         return
     }
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
 
     if (descToSet.length > 2048) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Deskripsi maksimal 2048 karakter.`
+            `⚠️ *VALIDACIÓN*\n\n` +
+            `> La descripción admite un máximo de 2048 caracteres.`
         )
         return
     }
@@ -49,17 +49,17 @@ async function handler(m, { sock }) {
 
         if (descToSet) {
             await m.reply(
-                `✅ Deskripsi grup berhasil diperbarui!`
+                `✅ ¡La descripción del grupo se ha actualizado!`
             )
         } else {
             await m.reply(
-                `✅ Deskripsi grup berhasil dihapus!`
+                `✅ ¡La descripción del grupo se ha eliminado!`
             )
         }
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah deskripsi grup.\n` +
+            `❌ *FALLIDO*\n\n` +
+            `> No se puede cambiar la descripción del grupo.\n` +
             `> _${error.message}_`
         )
     }

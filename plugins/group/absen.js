@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,15 +28,15 @@ async function handler(m, { sock }) {
     const chatId = m.chat
     if (!global.absensi[chatId]) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-            `> Belum ada sesi absen di grup ini!\n\n` +
-            `> Admin dapat memulai dengan\n` +
-            `> *.mulaiabsen [keterangan]*`
+            `❌ *NO HAY NINGUNA ASISTENCIA*\n\n` +
+            `> ¡No hay ninguna sesión de asistencia en este grupo!\n\n` +
+            `> Un administrador puede iniciarla con\n` +
+            `> *.mulaiabsen [descripción]*`
         )
     }
     const absen = global.absensi[chatId]
     if (absen.peserta.includes(m.sender)) {
-        return m.reply(`❌ Kamu sudah absen!`)
+        return m.reply(`❌ ¡Ya has registrado tu asistencia!`)
     }
     absen.peserta.push(m.sender)
     const now = moment().tz('Asia/Jakarta')
@@ -44,16 +44,16 @@ async function handler(m, { sock }) {
     const list = absen.peserta
         .map((jid, i) => `┃ ${i + 1}. @${jid.split('@')[0]}`)
         .join('\n')
-    await m.reply(`✅ *MANTAP, @${m.sender.split('@')[0]} HADIRR*\n` +
-            `TUJUAN ABSEN: ${absen.keterangan}\n` +
-            `╭┈┈⬡「 📋 INFO LAIN 」\n` +
+    await m.reply(`✅ *¡BIEN, @${m.sender.split('@')[0]} PRESENTE!*\n` +
+            `MOTIVO DE LA ASISTENCIA: ${absen.keterangan}\n` +
+            `╭┈┈⬡「 📋 MÁS INFO 」\n` +
             `┃ 📅 ${dateStr}\n` +
             `┃ 👥 Total: ${absen.peserta.length}\n` +
-            `├┈┈⬡「 📝 *ᴅᴀғᴛᴀʀ ʜᴀᴅɪʀ* 」\n` +
+            `├┈┈⬡「 📝 *LISTA DE ASISTENCIA* 」\n` +
             `${list}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> _Ketik *${m.prefix}absen* untuk hadir_\n` +
-            `> _Ketik *${m.prefix}cekabsen* untuk melihat daftar_`,
+            `> _Escribe *${m.prefix}absen* para asistir_\n` +
+            `> _Escribe *${m.prefix}cekabsen* para ver la lista_`,
             { mentions: absen.peserta })
 }
 export { pluginConfig as config, handler }

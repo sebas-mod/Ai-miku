@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,17 +29,17 @@ async function handler(m, { sock, args }) {
         const target = args[0]?.toLowerCase();
 
         if (!target) {
-            const helpText = `🛑 *sᴛᴏᴘ sᴄʜᴇᴅᴜʟᴇʀ*
+            const helpText = `🛑 *DETENER PROGRAMADOR*
 
 *Usage:*
-\`.stopschedule <nama>\`
+\`.stopschedule <nombre>\`
 
 *Available schedulers:*
 • \`limitreset\` - Daily Limit Reset
 • \`groupschedule\` - Group Schedule
 • \`sewa\` - Sewa Checker
 • \`messages\` - Scheduled Messages
-• \`all\` - Semua scheduler
+• \`all\` - Todos los programadores
 
 *Example:*
 \`.stopschedule limitreset\`
@@ -52,16 +52,16 @@ async function handler(m, { sock, args }) {
         const result = stopSchedulerByName(target);
 
         if (result.stopped) {
-            await m.reply(`🛑 *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪʜᴇɴᴛɪᴋᴀɴ*
+            await m.reply(`🛑 *PROGRAMADOR DETENIDO*
 
 > Scheduler: *${result.name}*
 > Status: ❌ Dihentikan
 
-_Gunakan \`.startschedule ${target}\` untuk mengaktifkan kembali_`);
+_Usa \`.startschedule ${target}\` para volver a activarlo_`);
         } else {
-            await m.reply(`❌ Scheduler tidak ditemukan atau sudah nonaktif
+            await m.reply(`❌ Programador no encontrado o ya inactivo
 
-Gunakan \`.stopschedule\` untuk melihat daftar scheduler`);
+Usa \`.stopschedule\` para ver la lista de programadores`);
         }
     } catch (error) {
         console.error('[StopSchedule Error]', error);

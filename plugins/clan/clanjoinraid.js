@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanjoinraid',
@@ -32,12 +32,12 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan || !clan.raid || !clan.raid.active) {
-          return m.reply(`❌ Tidak ada raid yang aktif!\n> Leader bisa mulai raid dengan *.clanraid*`)
+          return m.reply(`❌ ¡No hay redadas activas!\n> El líder puede iniciar la incursión con *.clanraid*`)
       }
 
       const raid = clan.raid
@@ -45,13 +45,13 @@ const getDatabase = ElysiaRuntime.getDatabase;
       if (Date.now() > raid.endTime) {
           raid.active = false
           await db.save()
-          return m.reply(`⏰ Raid sudah berakhir!\n> Mulai raid baru dengan *.clanraid*`)
+          return m.reply(`⏰ ¡Se acabó la incursión!\n> Iniciar una nueva incursión con *.clanraid*`)
       }
 
       if (raid.kills >= raid.targetKills) {
           raid.active = false
           await db.save()
-          return m.reply(`✅ Raid sudah selesai!\n> Semua target sudah terpenuhi.`)
+          return m.reply(`✅ ¡La incursión está completa!\n> Se han cumplido todos los objetivos.`)
       }
 
       const userPower = 50 + (user.level || 1) * 5

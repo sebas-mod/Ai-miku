@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -35,8 +35,8 @@ async function handler(m, { sock }) {
     if (!senderData.fun.pasangan) {
         await m.react('❌')
         return m.reply(
-            `❌ *Kamu gak ada pacar wehh*\n\n` +
-            `Cari dulu dengan \`${m.prefix}tembak @tag\``
+            `❌ *¡No tienes pareja!*\n\n` +
+            `Búscala primero con \`${m.prefix}tembak @tag\``
         )
     }
     const exPartner = senderData.fun.pasangan
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     await m.reply(
         `💔 *PUTUS!*\n\n` +
         `@${m.sender.split('@')[0]} dan @${exPartner.split('@')[0]} resmi putus !!\n\n` +
-        `Semoga mendapat yang lebih baik! 🙏`,
+        `¡Ojalá encuentres algo mejor! 🙏`,
         { mentions: [m.sender, exPartner] }
     )
 }

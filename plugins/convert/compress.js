@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -48,7 +48,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\/(jpe?g|png|webp)/i.test(media.mime || '')) {
-    return m.reply(`🗜️ Kirim atau reply gambar dengan perintah *${usedPrefix + command} [kualitas 20-90]*`)
+    return m.reply(`🗜️ Enviar o responder imágenes con comandos *${usedPrefix + command} [calidad 20-90]*`)
   }
 
   const quality = Math.min(90, Math.max(20, Number(args[0]) || 60))
@@ -66,14 +66,14 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
       m.chat,
       {
         image: out,
-        caption: `🗜️ *KOMPRES GAMBAR SELESAI*\n• Awal : ${fmtKB(media.buffer.length)}\n• Akhir : ${fmtKB(out.length)} (Hemat ${saved}%)`
+        caption: `🗜️ *IMAGEN COMPRIMIDA*\n• Antes: ${fmtKB(media.buffer.length)}\n• Después: ${fmtKB(out.length)} (Ahorro ${saved}%)`
       },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengompres gambar:* ${e.message}`)
+    return m.reply(`❌ *No se pudo comprimir la imagen:* ${e.message}`)
   }
 }
 

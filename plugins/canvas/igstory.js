@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -273,12 +273,12 @@ async function handler(m, { sock }) {
 
         if (!targetImgBuffer) {
             return m.reply(
-                `📸 *FITUR IG STORY POST*\n\n` +
-                `Sistem ini akan membuat simulasi gambar postingan Instagram Story menggunakan foto yang kamu kirimkan.\n\n` +
+                `📸 *FUNCIÓN DE PUBLICACIÓN DE HISTORIAS DE IG*\n\n` +
+                `Este sistema creará una simulación de una imagen de publicación de Instagram Story usando la foto que enviaste.\n\n` +
                 `*CARA PENGGUNAAN:*\n` +
-                `- Kirimkan gambar langsung dengan caption \`${m.prefix}igstory\`\n` +
-                `- Atau balas (*reply*) pesan gambar yang sudah ada dengan perintah \`${m.prefix}igstory\`\n\n` +
-                `_Bot akan otomatis memasukkan nama pengguna, foto profilmu, beserta detail interaksi seperti jumlah suka dan komentar secara acak!_`
+                `- Enviar la imagen directamente con el título \`${m.prefix}igstory\`\n` +
+                `- O responder (*responder*) a un mensaje con imagen existente con el comando \`${m.prefix}igstory\`\n\n` +
+                `_Bot ingresará automáticamente su nombre de usuario, foto de perfil, junto con detalles de interacción como la cantidad de megusta y comentarios aleatorios._`
             );
         }
 
@@ -321,7 +321,7 @@ async function handler(m, { sock }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar IG Story. Pastikan gambar yang dikirim valid dan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo sentimos, se produjo un error al intentar crear una imagen de Historia IG. Asegúrate de que la imagen enviada sea válida y vuelve a intentarlo en unos momentos.`);
     }
 }
 

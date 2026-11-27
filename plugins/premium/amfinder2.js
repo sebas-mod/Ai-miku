@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -65,7 +65,7 @@ function scanPresetUrls(str) {
 async function scanTikTokForPresets(rawUrl) {
   const resolved = await resolveShortUrl(rawUrl)
   const videoId = getAwemeId(resolved)
-  if (!videoId) throw new Error('URL TikTok tidak valid atau ID video tidak ditemukan.')
+  if (!videoId) throw new Error('URL TikTok no válido o ID vídeo no encontrado.')
 
   const links = new Set()
   let captionText = ''
@@ -101,7 +101,7 @@ async function scanTikTokForPresets(rawUrl) {
   return {
     videoId,
     resolvedUrl: resolved,
-    caption: captionText.slice(0, 120) || 'Video TikTok',
+    caption: captionText.slice(0, 120) || 'Vídeo TikTok',
     scannedComments,
     links: [...links]
   }
@@ -117,7 +117,7 @@ async function handler(m, ctx = {}) {
   if (!url || !/tiktok\.com/i.test(url)) {
     return m.reply(
       `🔎 *PENCARI PRESET KOMENTAR TIKTOK*\n\n` +
-      `Memindai deskripsi dan komentar video TikTok untuk mencari tautan preset Alight Motion / Google Drive.\n\n` +
+      `Escanee descripciones y comentarios de videos TikTok para encontrar enlaces preestablecidos de Alight Motion / Google Drive.\n\n` +
       `📌 *Cara Pakai:*\n` +
       `\`${usedPrefix + command} <url TikTok>\``
     )
@@ -129,25 +129,25 @@ async function handler(m, ctx = {}) {
     if (!info.links.length) {
       await m.react('❌')
       return m.reply(
-        `⚠️ Tidak ditemukan tautan preset setelah memindai *${info.scannedComments}* komentar pada video tersebut.`
+        `⚠️ No se encontró ningún enlace preestablecido después del escaneo *${info.scannedComments}*comentarios en el vídeo.`
       )
     }
 
-    let msg = `🎬 *HASIL SCAN PRESET TIKTOK*\n\n`
-    msg += `• *ID Video* : ${info.videoId}\n`
+    let msg = `🎬 *RESULTADO DE ESCANEO PREESTABLECIDO TIKTOK*\n\n`
+    msg += `• *ID de vídeo*: ${info.videoId}\n`
     msg += `• *Komentar Dipindai* : ${info.scannedComments}\n`
-    msg += `• *Tautan Ditemukan* : ${info.links.length}\n\n`
-    msg += `🔗 *Daftar Tautan:*\n`
+    msg += `• *Enlace encontrado*: ${info.links.length}\n\n`
+    msg += `🔗 *Lista de enlaces:*\n`
     info.links.forEach((l, i) => {
       msg += `${i + 1}. ${l}\n`
     })
-    msg += `\n_Elysia Assistant by Arthazy_`
+    msg += `\n_Ai Miku by Arthazy_`
 
     await m.react('✅')
     return m.reply(msg)
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal:* ${e.message}`)
+    return m.reply(`❌ *Error:* ${e.message}`)
   }
 }
 

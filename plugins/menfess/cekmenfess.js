@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,13 +29,13 @@ async function handler(m, { text }) {
   const k = store();
   const id = String(text || "").trim().toUpperCase();
   const d = k.menfess[id];
-  if (!d) return m.reply("ID menfess tidak ditemukan.");
+  if (!d) return m.reply("ID menfess no encontrado.");
   const w = (t) => new Date(t).toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
   const log = (d.log || [{ by: "a", t: d.t, pesan: d.pesan }])
-    .map((x) => `[${w(x.t)}] ${x.by === "a" ? "Pengirim" : "Penerima"}: ${x.pesan}`)
+    .map((x) => `[${w(x.t)}] ${x.by === "a" ? "Remitente" : "Destinatario"}: ${x.pesan}`)
     .join("\n");
   return m.reply(
-    `🍰 *MENFESS ${id}*\n\nDari : ${numOf(d.from)}\nKe   : ${numOf(d.to)}\nWaktu: ${w(d.t)}\nStatus: ${d.tutup ? "ditarik" : "aktif"}${d.dilapor ? " · dilaporkan" : ""}${d.terungkap ? " · identitas diungkap" : ""}\n\n${log}`,
+    `🍰 *MENFESS ${id}*\n\nDe: ${numOf(d.from)}\nA: ${numOf(d.to)}\nTiempo: ${w(d.t)}\nEstado: ${d.tutup ? "retirado" : "activo"}${d.dilapor ? " · reportado" : ""}${d.terungkap ? " · identidad revelada" : ""}\n\n${log}`,
   );
 }
 

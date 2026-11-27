@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -147,24 +147,24 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       <canvas id="cv" width="340" height="300"></canvas>
      </div>
      <div class="hud">
-      <span class="pill">Hancur <b id="sc">0</b></span>
+      <span class="pill">Destruido <b id="sc">0</b></span>
       <div class="meter"><i id="mt"></i></div>
       <button class="rst" id="rs">⟳</button>
      </div>
      <div class="wp">
-      <button class="wb on" data-w="0">1 PISTOL</button>
-      <button class="wb" data-w="1">2 SHOTGUN</button>
-      <button class="wb" data-w="2">3 GRANAT</button>
+      <button class="wb on" data-w="0">1 PISTOLA</button>
+      <button class="wb" data-w="1">2 ESCOPETA</button>
+      <button class="wb" data-w="2">3 GRANADA</button>
      </div>
-     <a class="cta" id="go" href="#" target="_blank" rel="noopener">▶ MAINKAN GAME ASLI</a>
-     <div class="mode"><span>🧍 SOLO</span><span>⚡ QUICK MATCH</span><span>👥 ROOM TEMAN</span></div>
-     <div class="help">Tap / klik situs untuk menembak • <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ganti senjata • <kbd>←</kbd><kbd>→</kbd> geser karakter<br>Di game asli kamu ketik alamat web apa saja, lalu semua teks, gambar, dan kotaknya jadi level yang bisa dihancurkan.</div>
+     <a class="cta" id="go" href="#" target="_blank" rel="noopener">▶ JUGAR AL JUEGO ORIGINAL</a>
+     <div class="mode"><span>🧍 SOLO</span><span>⚡ PARTIDA RÁPIDA</span><span>👥 SALA DE AMIGOS</span></div>
+     <div class="help">Toca / haz clic en el sitio para disparar • <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> cambia de arma • <kbd>←</kbd><kbd>→</kbd> mueve al personaje<br>En el juego original escribes la dirección de cualquier web y todos sus textos, imágenes y cajas se convierten en un nivel que puedes destruir.</div>
      <div class="lnk" id="lk"></div>
     </div></div>
     <script>
     (function(){
     var CFG=__CFG__,$=function(i){return document.getElementById(i)};
-    $('who').textContent='by Sprite Fusion • Pemain: '+CFG.nama;
+    $('who').textContent='by Sprite Fusion • Jugador: '+CFG.nama;
     $('url').innerHTML='https://<b>'+CFG.host+'</b>';$('lk').textContent=CFG.url;$('go').href=CFG.url;
     var cv=$('cv'),c=cv.getContext('2d'),W=340,H=300,S=6,CW=Math.floor(W/S),GY=H-26;
     var cells,total,alive,deb,bul,gren,fx,pl,wp=0,cool=0,best=0,shake=0,done=false,flash=0,aim={x:W/2,y:80},tick=0;
@@ -250,7 +250,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      man(pl.x,GY,pl.f,pl.r);
      // bidik
      c.strokeStyle='rgba(239,68,68,.75)';c.lineWidth=1;c.beginPath();c.arc(aim.x,aim.y,6,0,7);c.moveTo(aim.x-9,aim.y);c.lineTo(aim.x+9,aim.y);c.moveTo(aim.x,aim.y-9);c.lineTo(aim.x,aim.y+9);c.stroke();
-     if(done){c.fillStyle='rgba(20,19,27,.78)';c.fillRect(0,96,W,92);c.textAlign='center';c.fillStyle='#ffb703';c.font='bold 20px monospace';c.fillText('WEBSITE HANCUR!',W/2,128);c.fillStyle='#fff';c.font='12px monospace';c.fillText('Skor '+(total-alive)+'  •  Rekor '+best,W/2,150);c.fillStyle='#a3e635';c.fillText('tap ⟳ untuk bangun ulang',W/2,172);c.textAlign='left';}
+     if(done){c.fillStyle='rgba(20,19,27,.78)';c.fillRect(0,96,W,92);c.textAlign='center';c.fillStyle='#ffb703';c.font='bold 20px monospace';c.fillText('¡SITIO DESTRUIDO!',W/2,128);c.fillStyle='#fff';c.font='12px monospace';c.fillText('Puntos '+(total-alive)+'  •  Récord '+best,W/2,150);c.fillStyle='#a3e635';c.fillText('toca ⟳ para reconstruir',W/2,172);c.textAlign='left';}
      if(flash>0){c.fillStyle='rgba(255,255,255,'+(flash/60)+')';c.fillRect(0,0,W,H);}
     }
     function loop(){step();draw();requestAnimationFrame(loop);}
@@ -297,11 +297,11 @@ module.exports = {
     const html = buildDestroyHtml({ playerName: pushname || String(m.sender).split('@')[0], url: URL_GAME })
     const ok = await sendHtmlCard(sock, m, html, 'Destroy Any Website', '💥', { quoted: m })
     const btns = [
-      { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '▶ Mainkan Game Asli', url: URL_GAME, merchant_url: URL_GAME }) },
-      { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: 'Salin Tautan', id: 'copy_destroy', copy_code: URL_GAME }) },
+      { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '▶ Jugar al juego original', url: URL_GAME, merchant_url: URL_GAME }) },
+      { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: 'Copiar enlace', id: 'copy_destroy', copy_code: URL_GAME }) },
     ]
-    const body = '*DESTROY ANY WEBSITE*\nKetik alamat web apa saja, lalu semua teks, gambar, dan kotaknya jadi level pixel yang bisa kamu hancurkan. Main solo, quick match, atau bareng teman lewat room. Ada kontrol sentuh untuk HP.'
-    try { await sock.sendButton(m.chat, null, body, m, { buttons: btns, footer: 'Game oleh Sprite Fusion' }) }
+    const body = '*DESTROY ANY WEBSITE*\nEscribe la dirección de cualquier web y todos sus textos, imágenes y cajas se convierten en un nivel pixel que puedes destruir. Juega solo, partida rápida o en sala con amigos. Incluye controles táctiles para el móvil.'
+    try { await sock.sendButton(m.chat, null, body, m, { buttons: btns, footer: 'Juego de Sprite Fusion' }) }
     catch (e) { if (ok !== false) await reply(`${body}\n\n${URL_GAME}`) }
   },
 }

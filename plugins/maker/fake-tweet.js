@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const te = ElysiaRuntime.te;
-const config = ElysiaRuntime.config;
-const ImageUploadService = ElysiaRuntime.ImageUploadService;
+const te = MikuRuntime.te;
+const config = MikuRuntime.config;
+const ImageUploadService = MikuRuntime.ImageUploadService;
 
   const pluginConfig = {
     name: "fake-tweet",
@@ -32,18 +32,18 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
     const raw = m.text?.trim();
     if (!raw || !raw.includes("|")) {
       return m.reply(
-        `🐦 *ꜰᴀᴋᴇ ᴛᴡᴇᴇᴛ*\n\n` +
-          `- Buat tweet palsu buat hiburan 😂\n` +
-          `- Format dipisah pakai |\n\n` +
-          `- Bisa pakai reply gambar` +
-          `\`${m.prefix}fake-tweet | Nama | Username | Teks tweet\``,
+        `🐦 *TUIT FALSO*\n\n` +
+          `- Crea tuits falsos para entretenerte 😂\n` +
+          `- |Separa el formato con ||\n\n` +
+          `- Puedes responder a una imagen` +
+          `\`${m.prefix}fake-tweet | Nombre | Usuario || Texto del tweet\``,
       );
     }
 
     const parts = raw.split("|").map((s) => s.trim());
     if (parts.length < 4) {
       return m.reply(
-        `🐦 *ꜰᴏʀᴍᴀᴛ ᴋᴜʀᴀɴɢ*\n\n` + `- Butuh: Nama | Username | Teks tweet`,
+        `🐦 *FORMATO INCOMPLETO*\n\n` + `- Necesita: Nombre | Usuario | Texto del tweet`,
       );
     }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -34,12 +34,12 @@ async function handler(m, { sock }) {
 
   if (!name || name.length < 2) {
     return m.reply(
-      "📢 *ʙᴜᴀᴛ sᴀʟᴜʀᴀɴ*\n\n" +
-        "> `.buatsaluran Nama Saluran`\n" +
-        "> `.buatsaluran Nama|Deskripsi`\n\n" +
-        "📝 Contoh:\n" +
+      "📢 *CREAR CANAL*\n\n" +
+        "> `.buatsaluran Nombre del canal`\n" +
+        "> `.buatsaluran Nombre|Descripción`\n\n" +
+        "📝 Ejemplo:\n" +
         "> `.buatsaluran Info Bot`\n" +
-        "> `.buatsaluran Info Bot|Update terbaru bot kami`",
+        "> `.buatsaluran Info del bot|Últimas novedades del bot`",
     );
   }
 
@@ -49,15 +49,15 @@ async function handler(m, { sock }) {
     const saluranName = result?.name || name;
     await m.react("✅");
     return m.reply(
-      `📢 *sᴀʟᴜʀᴀɴ ᴅɪʙᴜᴀᴛ*\n\n` +
-        `> Nama: ${saluranName}\n` +
+      `📢 *CANAL CREADO*\n\n` +
+        `> Nombre: ${saluranName}\n` +
         (description ? `> Deskripsi: ${description}\n` : "") +
         `> ID: ${saluranId}\n` +
         `> Subscribers: ${result?.subscribers || 0}\n\n` +
-        `_Saluran ini bisa dikonfigurasi di config.saluran.id_`,
+        `_Este canal se puede configurar en config.saluran.id_`,
     );
   } catch (err) {
-    return m.reply(`❌ Gagal membuat saluran: ${err.message}`);
+    return m.reply(`❌ Error al crear el canal: ${err.message}`);
   }
 }
 

@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { capcut } from 'btch-downloader'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'capcutdl',
@@ -32,15 +32,15 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}capcutdl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}capcutdl https://www.capcut.com/t/xxx\``
           )
       }
 
       if (!url.match(/capcut\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link CapCut.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de CapCut.`)
       }
 
       await m.react('🕕')
@@ -49,7 +49,7 @@ const te = ElysiaRuntime.te;
           const data = await capcut(url)
 
           if (!data?.status || !data?.originalVideoUrl) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           await sock.sendMedia(m.chat, data.originalVideoUrl, null, m, {

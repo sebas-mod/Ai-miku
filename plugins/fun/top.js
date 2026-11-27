@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
   const kategori = m.args.join(" ")?.trim();
 
   if (!kategori) {
-    return m.reply(`\`Contoh: ${m.prefix}top5 orang pintar\``);
+    return m.reply(`\`Ejemplo: ${m.prefix}top5 personas inteligentes\``);
   }
 
   m.react("🕕");
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
 
     const eligible = participants.filter((p) => !isBotParticipant(p, [botNum]));
     if (eligible.length < 2) {
-      return m.reply(`❌ Member grup kurang dari 2 orang!`);
+      return m.reply(`❌ ¡El grupo tiene menos de 2 miembros!`);
     }
 
     const shuffled = [...eligible].sort(() => Math.random() - 0.5).slice(0, 5);

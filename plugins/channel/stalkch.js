@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -61,7 +61,7 @@ const pluginConfig = {
 
   async function handler(m, { sock, args, prefix, reply }) {
       const code = normalize(args[0])
-      if (!code) return reply(`Format: ${prefix || '.'}stalkch <link saluran>\nContoh: ${prefix || '.'}stalkch https://whatsapp.com/channel/0029VbDT59vC1Fu4nO1w6t2d`)
+      if (!code) return reply(`Formato: ${prefix || '.'}stalkch <link saluran>\nEjemplo: ${prefix || '.'}stalkch https://whatsapp.com/channel/0029VbDT59vC1Fu4nO1w6t2d`)
       const url = `https://whatsapp.com/channel/${code}`
 
       let info
@@ -70,9 +70,9 @@ const pluginConfig = {
           info = parse(String(data))
       } catch (err) {
           console.log('[STALKCH]', err.message)
-          return reply('❌ Gagal membaca halaman saluran. Pastikan link benar dan saluran masih ada.')
+          return reply('❌ No se pudo leer la página del canal. Asegúrese de que el enlace sea correcto y que el canal aún exista.')
       }
-      if (!info.name) return reply('❌ Saluran tidak ditemukan atau halamannya tidak memuat data.')
+      if (!info.name) return reply('❌ No se encontró el canal o la página no carga datos.')
 
       let photo = null
       try {
@@ -85,15 +85,15 @@ const pluginConfig = {
 
       const caption =
           `📡 *INFO SALURAN*\n\n` +
-          `Nama: ${info.name}\n` +
+          `Nombre: ${info.name}\n` +
           `Pengikut: ${info.followers || '-'}\n` +
           `Tipe: ${info.type || 'Channel'}\n` +
-          `Status: ${info.verified ? '✅ Terverifikasi' : 'Belum terverifikasi'}\n` +
+          `Estado: ${info.verified ? '✅ Terverifikasi' : 'Belum terverifikasi'}\n` +
           `Link: ${url}` +
           (info.desc ? `\n\nDeskripsi: ${info.desc.slice(0, 600)}` : '')
 
       try {
-          const teks = `${caption}\n\n📋 Salin link: ${url}\n📋 Salin nama: ${info.name}\n\n_${global.namebot || 'Elysia Assistant MD'}_`
+          const teks = `${caption}\n\n📋 Copiar enlace: ${url}\n📋 Copiar nombre: ${info.name}\n\n_${global.namebot || 'Ai Miku MD'}_`
           return await sock.sendMessage(m.chat, photo ? { image: photo, caption: teks } : { text: teks }, { quoted: m })
       } catch {
           if (photo) return sock.sendMessage(m.chat, { image: photo, caption }, { quoted: m })

@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import path from 'path'
 
-const te = ElysiaRuntime.te;
-const queueFFmpeg = ElysiaRuntime.queueFFmpeg;
-const f = ElysiaRuntime.f;
+const te = MikuRuntime.te;
+const queueFFmpeg = MikuRuntime.queueFFmpeg;
+const f = MikuRuntime.f;
 
   const pluginConfig = {
     name: "pindl",
@@ -34,21 +34,21 @@ const f = ElysiaRuntime.f;
     const url = m.text?.trim();
     if (!url) {
       return m.reply(
-        `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-          `> Download gambar/video dari Pinterest\n\n` +
-          `*ᴄᴏɴᴛᴏʜ:*\n` +
+        `📌 *PINTEREST DESCARGA*\n\n` +
+          `> Descarga imágenes/videos de Pinterest\n\n` +
+          `*EJEMPLO:*\n` +
           `> \`${m.prefix}pindl https://pin.it/xxx\`\n` +
           `> \`${m.prefix}pindl https://pinterest.com/pin/xxx\``,
       );
     }
     if (!url.includes("pinterest") && !url.includes("pin.it")) {
-      return m.reply("❌ URL tidak valid. Gunakan link Pinterest.");
+      return m.reply("❌ URL no válida. Usa un enlace de Pinterest.");
     }
     m.react("🕕");
     try {
       const res = await axios.get(`https://api.azbry.com/api/download/pinterest?url=${encodeURIComponent(url)}`);
       if (!res.data || !res.data.status || !res.data.result) {
-        throw new Error("Gagal mengambil data dari API Pinterest.");
+        throw new Error("Error al obtener los datos de la API de Pinterest.");
       }
 
       const data = res.data.result;
@@ -67,7 +67,7 @@ const f = ElysiaRuntime.f;
       }
 
       if (mediaList.length === 0) {
-        throw new Error("Tidak ada media ditemukan");
+        throw new Error("No se encontró contenido");
       }
 
       for (const media of mediaList) {
@@ -166,12 +166,12 @@ const f = ElysiaRuntime.f;
             const mp4Path = path.join(tempPath, `pin-${id}.mp4`);
             try {
               const raw = await f(media.url, "buffer");
-              if (!raw) throw new Error("Gagal download GIF");
+              if (!raw) throw new Error("Error al descargar el GIF");
               fs.writeFileSync(gifPath, raw);
               await queueFFmpeg(
                 `ffmpeg -y -ignore_loop 0 -i "${gifPath}" -t 30 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -pix_fmt yuv420p -movflags faststart -preset ultrafast -an "${mp4Path}"`,
               );
-              if (!fs.existsSync(mp4Path)) throw new Error("Gagal convert GIF");
+              if (!fs.existsSync(mp4Path)) throw new Error("Error al convertir el GIF");
               await sock.sendMedia(m.chat, fs.readFileSync(mp4Path), null, m, {
                 type: "video",
                 gifPlayback: true,

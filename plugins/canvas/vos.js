@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -367,12 +367,12 @@ async function handler(m, { sock, text }) {
   const input = String(text || '').trim();
   if (!input || !input.includes(',')) {
     return m.reply(
-      `❌ *Format VOS salah!*\n\n` +
-      `VOS wajib menggunakan format:*\n` +
-      `> ${m.prefix}vos nama,kata kata\n\n` +
-      `*Contoh yang benar:*\n` +
-      `> ${m.prefix}vos Jack,lu ajah bikin gua minder 🔥\n\n` +
-      `_Kalau tidak memakai tanda koma (,) setelah nama, VOS tidak akan diproses._`
+      `❌ *¡Formato VOS incorrecto!*\n\n` +
+      `VOS debe usar el formato:*\n` +
+      `> ${m.prefix}vos nombres, palabras\n\n` +
+      `*Ejemplo correcto:*\n` +
+      `> ${m.prefix}Vos Jack, simplemente me haces sentir inferior 🔥\n\n` +
+      `_Si no utiliza una coma (,) después del nombre, VOS no se procesará._`
     );
   }
 
@@ -381,11 +381,11 @@ async function handler(m, { sock, text }) {
   const quote = input.slice(comma + 1).trim();
 
   if (!name || !quote) {
-    return m.reply(`❌ *Format VOS salah!*\n\nGunakan:\n> ${m.prefix}vos nama,kata kata\n\nContoh:\n> ${m.prefix}vos Jack,lu ajah bikin gua minder 🔥`);
+    return m.reply(`❌ *¡Formato VOS incorrecto!*\n\nUsar:\n> ${m.prefix}vos nombres, palabras\n\nEjemplo:\n> ${m.prefix}Vos Jack, simplemente me haces sentir inferior 🔥`);
   }
 
   if (quote.length > 420) {
-    return m.reply('❌ Kata-katanya terlalu panjang. Maksimal 420 karakter agar gambar tetap jelas.');
+    return m.reply('❌ Las palabras son demasiado largas. Máximo 420 caracteres para mantener la imagen clara.');
   }
 
   await m.react('🕕');
@@ -406,7 +406,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error('[VOS] Error:', error?.stack || error);
     await m.react('❌');
-    await m.reply('❌ Gagal membuat gambar VOS. Coba lagi sebentar.');
+    await m.reply('❌ No se pudo crear la imagen VOS. Inténtalo de nuevo en un momento.');
   }
 }
 

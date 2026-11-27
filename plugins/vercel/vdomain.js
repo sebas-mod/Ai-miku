@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getVercelToken, vercelRequest, sanitizeProjectName, missingTokenReply } from "../../src/lib/features/elysia-vercel.js";
+import { getVercelToken, vercelRequest, sanitizeProjectName, missingTokenReply } from "../../src/lib/features/miku-vercel.js";
 
 const pluginConfig = {
   name: "vdomain",
@@ -26,7 +26,7 @@ async function handler(m) {
   const [rawProj, newDomain] = String(m.text || "").trim().split(/\s+/).filter(Boolean);
   const proj = sanitizeProjectName(rawProj);
   if (!proj) {
-    return m.reply(`🌐 Masukkan nama proyek Vercel!\n> Lihat domain: \`${m.prefix}vdomain <proyek>\`\n> Tambah domain: \`${m.prefix}vdomain <proyek> <domain.com>\``);
+    return m.reply(`🌐 ¡Escribe el nombre del proyecto de Vercel!\n> Ver dominio: \`${m.prefix}vdomain <proyecto>\`\n> Añadir dominio: \`${m.prefix}vdomain <proyecto> <dominio.com>\``);
   }
 
   await m.react("🕕");
@@ -35,7 +35,7 @@ async function handler(m) {
       const res = await vercelRequest(token, "POST", `/v10/projects/${encodeURIComponent(proj)}/domains`, { name: newDomain });
       await m.react("✅");
       return m.reply(
-        `╭─❖「 🌐 *DOMAIN DITAMBAHKAN* 」\n` +
+        `╭─❖「 🌐 *DOMINIO AÑADIDO* 」\n` +
         `│ 📦 Proyek : *${proj}*\n` +
         `│ 🔗 Domain : *${res?.name || newDomain}*\n` +
         `│ ✅ Status : ${res?.verified ? "Terverifikasi" : "Menunggu konfigurasi DNS"}\n` +
@@ -47,7 +47,7 @@ async function handler(m) {
     const domains = Array.isArray(data?.domains) ? data.domains : [];
     if (!domains.length) {
       await m.react("✅");
-      return m.reply(`🌐 Proyek *${proj}* belum memiliki domain terdaftar.`);
+      return m.reply(`🌐 El proyecto *${proj}* todavía no tiene dominios registrados.`);
     }
 
     const lines = domains.map((d, i) => `│ ${i + 1}. ${d.verified ? "✅" : "⏳"} *${d.name}*`);
@@ -59,7 +59,7 @@ async function handler(m) {
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Gagal memproses domain Vercel: ${err.message}`);
+    await m.reply(`❌ No se pudo procesar el dominio de Vercel: ${err.message}`);
   }
 }
 

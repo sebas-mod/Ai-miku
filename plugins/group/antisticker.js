@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'antisticker',
     alias: ['as', 'nosticker'],
     category: 'group',
-    description: 'Mengatur antisticker di grup',
+    description: 'Configura el antistickers en el grupo',
     usage: '.antisticker <on/off>',
     example: '.antisticker on',
     isOwner: false,
@@ -28,7 +28,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
     const defaults = {
-        antisticker: '⚠ *AntiSticker* — Sticker dari @%user% dihapus.',
+        antisticker: '⚠ *AntiSticker* — Se eliminó un sticker de @%user%.',
     }
     let text = config.groupProtection?.[key] || defaults[key] || ''
     for (const [k, v] of Object.entries(replacements)) {
@@ -66,25 +66,25 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antisticker ? '✅ ON' : '❌ OFF'
-        await m.reply(`🎭 *AntiSticker*\n\n> Status: *${status}*\n\n> \`.antisticker on/off\``)
+        await m.reply(`🎭 *AntiSticker*\n\n> Estado: *${status}*\n\n> \`.antisticker on/off\``)
         return
     }
 
     if (action === 'on') {
         db.setGroup(m.chat, { antisticker: true })
         m.react('✅')
-        await m.reply(`✅ *AntiSticker diaktifkan*`)
+        await m.reply(`✅ *AntiSticker activado*`)
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { antisticker: false })
         m.react('❌')
-        await m.reply(`❌ *AntiSticker dinonaktifkan*`)
+        await m.reply(`❌ *AntiSticker desactivado*`)
         return
     }
 
-    await m.reply(`❌ Gunakan \`.antisticker on\` atau \`.antisticker off\``)
+    await m.reply(`❌ Usa \`.antisticker on\` o \`.antisticker off\``)
 }
 
 export { pluginConfig as config, handler, checkAntisticker }

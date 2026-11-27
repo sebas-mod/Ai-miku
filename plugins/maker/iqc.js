@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import https from 'https'
@@ -18,7 +18,7 @@ import { existsSync, unlinkSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: "iqc",
@@ -40,12 +40,12 @@ const te = ElysiaRuntime.te;
           const targetText = text || (m.quoted && m.quoted.text ? m.quoted.text : "");
 
           if (!targetText) {
-              let help = `💬 *FITUR FAKE QUOTE iOS*\n\n`
-              help += `Fitur ini digunakan untuk membuat gambar quote elegan bergaya iOS dengan sangat cepat.\n\n`
-              help += `*Cara Penggunaan:*\n`
-              help += `- Ketik *${m.prefix}iqc <teks kamu>*\n`
-              help += `- Atau kamu bisa membalas (reply) pesan teks orang lain dengan perintah *${m.prefix}iqc*\n\n`
-              help += `_Pesan tersebut akan secara otomatis diubah menjadi quote keren!_`
+              let help = `💬 *FUNCIÓN DE CITA FALSA DE iOS*\n\n`
+              help += `Sirve para crear imágenes de citas elegantes al estilo iOS muy rápido.\n\n`
+              help += `*Cómo usar:*\n`
+              help += `- Escribe *${m.prefix}iqc <tu texto>*\n`
+              help += `- O responde a un mensaje de texto de otra persona con *${m.prefix}iqc*\n\n`
+              help += `_¡Ese mensaje se convertirá automáticamente en una cita genial!_`
               return m.reply(help)
           }
 
@@ -59,7 +59,7 @@ const te = ElysiaRuntime.te;
       } catch (error) {
           console.error("[IQC Plugin Error]", error)
           await m.react('❌')
-          m.reply(`Maaf, terjadi kesalahan saat mencoba membuat gambar quote. Silakan coba lagi beberapa saat.`)
+          m.reply(`Lo siento, hubo un error al crear la imagen de la cita. Inténtalo de nuevo en un momento.`)
       }
   }
 

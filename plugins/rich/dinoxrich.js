@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'dinoxrich',
   alias: [],
   category: 'rich',
-  desc: 'Dino Run versi Elysia: lompati kaktus dan burung',
+  desc: 'Dino Run versi Miku: lompati kaktus dan burung',
   run: async ({ sock, m, reply }) => {
     try {
       let html = await loadHtml()
@@ -125,7 +125,7 @@ module.exports = {
       html = /<\/head>/i.test(html) ? html.replace(/<\/head>/i, wideCss + '</head>') : wideCss + html
       await sendHtmlCard(sock, m, html, 'Dino Run X', '🦖')
     } catch (e) {
-      reply(`❌ Gagal memuat rich: ${e.message}`)
+      reply(`❌ No se pudo cargar rico: ${e.message}`)
     }
   },
 }

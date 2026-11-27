@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,9 +33,9 @@ async function handler(m, { db }) {
     if (!action) {
         const status = group.antiswgc || 'off'
         await m.reply(
-            `📡 *ᴀɴᴛɪsᴡɢᴄ*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `> Fitur ini mendeteksi tipe SW group mention seperti:\n` +
+            `📡 *ANTISWGC*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Esta función detecta las menciones masivas de estado como:\n` +
             `> • groupStatusMentionMessage\n` +
             `> • groupMentionedMessage\n` +
             `> • statusMentionMessage\n` +
@@ -48,17 +48,17 @@ async function handler(m, { db }) {
 
     if (action === 'on') {
         db.setGroup(m.chat, { ...group, antiswgc: 'on' })
-        await m.reply('✅ *AntiSWGC aktif*\n\n> Tipe SW group mention akan dihapus otomatis.')
+        await m.reply('✅ *AntiSWGC activo*\n\n> Las menciones masivas de estado se eliminarán automáticamente.')
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...group, antiswgc: 'off' })
-        await m.reply('❌ *AntiSWGC nonaktif*')
+        await m.reply('❌ *AntiSWGC desactivado*')
         return
     }
 
-    await m.reply('❌ Gunakan: on atau off')
+    await m.reply('❌ Usa: on u off')
 }
 
 export { pluginConfig as config, handler }

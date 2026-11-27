@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'claninfo',
@@ -50,8 +50,8 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       if (!clanId) {
           return m.reply(
-              `❌ Kamu belum punya clan\n\n` +
-              `Buat: *.clancreate <nama>*\n` +
+              `❌ Aún no tienes un clan\n\n` +
+              `Crear: *.clancreate <nombre>*\n` +
               `Gabung: *.clanjoin <id>*`
           )
       }
@@ -61,7 +61,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const clan = db.db.data.clans[clanId]
           || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
           || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
-      if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
+      if (!clan) return m.reply(`❌ Clan no encontrado`)
 
       const totalGames = (clan.wins || 0) + (clan.losses || 0)
       const winRate = totalGames > 0
@@ -74,7 +74,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       await m.reply(
           `${emblem} *${clan.name}*\n` +
-          `${rank} · Level ${clan.level || 1}\n\n` +
+          `${rank} · Niveles ${clan.level || 1}\n\n` +
           `EXP  ${bar}\n\n` +
           `┌ 👑 Leader · @${clan.leader.split('@')[0]}\n` +
           `├ 👥 Members · ${clan.members.length}/50\n` +

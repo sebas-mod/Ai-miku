@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const createElysiaFeature = (module, exports, require) => {
+const createMikuFeature = (module, exports, require) => {
         const axios = require('axios'), { B } = require('style')
         const LINE = '━━━━━━━━━━━━━━━━━━━━'
         const TOP = ['bitcoin', 'ethereum', 'tether', 'binancecoin', 'solana', 'ripple', 'dogecoin', 'cardano']
@@ -18,16 +18,16 @@ const createElysiaFeature = (module, exports, require) => {
         const arrow = (c) => c == null ? '' : (c >= 0 ? '▲ +' : '▼ ') + c.toFixed(2) + '%'
         module.exports = {
           name: 'kripto', alias: ['crypto', 'hargakripto', 'coin'], category: 'search', cmds: ['kripto'], noLimit: false,
-          desc: 'Harga kripto realtime (IDR & USD): .kripto, .kripto btc eth',
+          desc: 'Precios de criptomonedas en tiempo real (IDR y USD):.kripto,.kripto btc eth',
           run: async ({ text, prefix, reply }) => {
             const want = String(text || '').toLowerCase().split(/[\s,]+/).filter(Boolean).slice(0, 6).map(x => SYM[x] || x.replace(/[^a-z0-9-]/g, ''))
             const ids = want.length ? want : TOP
             try {
               const { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price', { timeout: 15000, params: { ids: ids.join(','), vs_currencies: 'idr,usd', include_24hr_change: true } })
               const rows = ids.filter(i => data[i]).map(i => `*${i.toUpperCase().replace(/-/g, ' ')}*\n   ${rp(data[i].idr)}  •  ${usd(data[i].usd)}  ${arrow(data[i].usd_24h_change)}`)
-              if (!rows.length) return reply(`Koin tidak dikenal.\nContoh: ${prefix}kripto btc eth sol`)
-              return reply(`${B('HARGA KRIPTO')}\n${LINE}\n${rows.join('\n')}\n\n_Sumber: CoinGecko • bukan saran investasi_`)
-            } catch (e) { console.log('[kripto]', e.message); return reply('Gagal mengambil harga: ' + (e.response && e.response.status === 429 ? 'batas permintaan tercapai, coba lagi semenit lagi' : e.message)) }
+              if (!rows.length) return reply(`Moneda desconocida.\nEjemplo: ${prefix}cripto btc eth sol`)
+              return reply(`${B('PRECIO DE CRIPTO')}\n${LINE}\n${rows.join('\n')}\n\n_Fuente: CoinGecko • no es asesoramiento de inversión_`)
+            } catch (e) { console.log('[kripto]', e.message); return reply('No se pudo recuperar el precio: ' + (e.response && e.response.status === 429 ? 'Se alcanzó el límite de solicitudes. Vuelva a intentarlo en un minuto.' : e.message)) }
           },
         }
     }
@@ -60,6 +60,6 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const handler = ElysiaRuntime.createWorldHandler(createElysiaFeature, typeof libs !== 'undefined' ? libs : {})
+const handler = MikuRuntime.createWorldHandler(createMikuFeature, typeof libs !== 'undefined' ? libs : {})
 
 export { pluginConfig as config, handler }

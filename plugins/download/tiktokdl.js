@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
   async function tiktokDl(url) {
     function formatNumber(integer) {
@@ -136,7 +136,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
     if (!text) {
       m.react("❌");
       return m.reply(
-        `📌 Contoh: *${prefix + command} https://vt.tiktok.com/...*`,
+        `📌 Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
       );
     }
     m.react("🕕");
@@ -149,14 +149,14 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
         ) || result.data[0];
 
         const caption =
-          `🎵 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗢 𝗪 𝗡 𝗟 𝗢 𝗔 𝗗 𝗘 𝗥*\n\n` +
+          `🎵 *DESCARGADOR DE TIKTOK*\n\n` +
           `- Author: *${result.author.nickname}* (${result.author.fullname})\n` +
           `- Caption: ${result.title || "-"}\n` +
           `- Music: ${result.music_info.title} - ${result.music_info.author}\n` +
           `- Duration: ${result.duration}\n` +
           `- Uploaded: ${result.taken_at}\n` +
           `- Region: ${result.region}\n\n` +
-          `*Statistik Video:*\n` +
+          `*Estadísticas del video:*\n` +
           `- Views: *${result.stats.views}*\n` +
           `- Likes: *${result.stats.likes}*\n` +
           `- Comments: *${result.stats.comment}*\n` +
@@ -167,13 +167,13 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
           m.chat,
           {
             video: { url: videoItem.url },
-            caption: `${caption}\n\n🎵 Ambil music: *${prefix}ttmp3 ${text}*`,
+            caption: `${caption}\n\n🎵 Obtén la música: *${prefix}ttmp3 ${text}*`,
           },
           { quoted: m },
         );
       } else {
         const caption =
-          `📸 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗢 𝗪 𝗡 𝗟 𝗢 𝗔 𝗗 𝗘 𝗥*\n\n` +
+          `📸 *DESCARGADOR DE TIKTOK*\n\n` +
           `- Author: *${result.author.nickname}* (${result.author.fullname})\n` +
           `- Caption: ${result.title || "-"}\n` +
           `- Music: ${result.music_info.title} - ${result.music_info.author}\n` +
@@ -191,7 +191,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
 
         await sock.sendMessage(
           m.chat,
-          { text: `📸 Slide berhasil dikirim!\nKetik *${prefix}ttmp3 ${text}* untuk ambil music.` },
+          { text: `📸 ¡Carrusel enviado!\nEscribe *${prefix}ttmp3 ${text}* para obtener la música.` },
           { quoted: m },
         );
       }
@@ -199,7 +199,7 @@ const sendAlbum = ElysiaRuntime.sendAlbum;
     } catch (e) {
       console.error(e);
       m.react("❌");
-      m.reply("Coba lagi nanti, atau bisa coba " + m.prefix + "tiktok2");
+      m.reply("Inténtalo más tarde, o prueba con " + m.prefix + "tiktok2");
     }
   }
 

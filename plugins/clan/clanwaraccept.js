@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanwaraccept',
@@ -32,16 +32,16 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender && clan.roles?.[m.sender] !== 'coleader') {
-          return m.reply(`❌ Hanya *Leader* atau *Co-Leader* yang bisa menerima war!`)
+          return m.reply(`❌ ¡Solo *Líder* o *Co-Líder* pueden aceptar la guerra!`)
       }
 
       if (!db.db.data.pendingWars) db.db.data.pendingWars = {}
@@ -58,14 +58,14 @@ const getDatabase = ElysiaRuntime.getDatabase;
       }
 
       if (!pendingWar) {
-          return m.reply(`❌ Tidak ada tantangan war yang masuk untuk clanmu!`)
+          return m.reply(`❌ ¡No hay desafíos de guerra entrantes para tu clan!`)
       }
 
       const attackerClan = db.db.data.clans[pendingWar.attackerClanId]
       if (!attackerClan) {
           delete db.db.data.pendingWars[pendingId]
           await db.save()
-          return m.reply(`❌ Clan pengirim sudah tidak ada!`)
+          return m.reply(`❌ ¡El clan emisor ya no existe!`)
       }
 
       pendingWar.status = 'accepted'
@@ -96,10 +96,10 @@ const getDatabase = ElysiaRuntime.getDatabase;
       txt += `╭┈┈⬡「 🎯 *ᴡᴀʀ ɪɴꜰᴏ* 」\n`
       txt += `┃ ⚔️ Attacker: *${attackerClan.name}*\n`
       txt += `┃ 🛡️ Defender: *${clan.name}*\n`
-      txt += `┃ ⏰ Durasi: *24 jam*\n`
-      txt += `┃ 📅 Mulai: Sekarang\n`
+      txt += `┃ ⏰ Duración: *24 horas*\n`
+      txt += `┃ 📅 Inicio: Ahora\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-      txt += `> Ketik *.clanwar* untuk lihat status war!\n> Ketik *.clanwarscore* untuk lihat skor!`
+      txt += `> ¡Escribe *.clanwar* para ver el estado de la guerra!\n> ¡Escribe *.clanwarscore* para ver la puntuación!`
 
       for (const member of clan.members) {
           await sock.sendMessage(member, { text: txt }).catch(() => {})

@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "nokia",
@@ -32,13 +32,13 @@ const te = ElysiaRuntime.te;
     const input = m.text?.trim();
 
     if (!input || !input.includes("|")) {
-      return m.reply(`⚠️ Harap masukkan nama dan pesan dipisah dengan tanda |\nContoh: \`${m.prefix}${m.command} Bot|Halo semuanya\``);
+      return m.reply(`⚠️ |Escribe el nombre y el mensaje separados por ||\nEjemplo: \`${m.prefix}${m.command} Bot|Hola a todos\``);
     }
 
     const [nama, text] = input.split("|").map((v) => v.trim());
 
     if (!nama || !text) {
-      return m.reply(`⚠️ Harap lengkapi nama dan pesan!\nContoh: \`${m.prefix}${m.command} Bot|Halo\``);
+      return m.reply(`⚠️ ¡Completa el nombre y el mensaje!\nEjemplo: \`${m.prefix}${m.command} Bot|Hola\``);
     }
 
     await m.react("🕕");
@@ -96,7 +96,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: `📱 Pesan nokia dari ${nama}`
+        caption: `📱 Mensaje de Nokia de ${nama}`
       }, { quoted: m });
 
       await m.react("✅");

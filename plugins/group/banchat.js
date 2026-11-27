@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -37,44 +37,44 @@ async function handler(m, { sock }) {
         if (isUnban) {
             if (!groupData.isBanned) {
                 return m.reply(
-                    `⚠️ *ɢʀᴜᴘ ᴛɪᴅᴀᴋ ᴅɪʙᴀɴ*\n\n` +
-                    `> Grup ini tidak dalam status banned.\n` +
-                    `> Semua user bisa menggunakan bot.`
+                    `⚠️ *EL GRUPO NO ESTÁ BANEADO*\n\n` +
+                    `> Este grupo no está bloqueado.\n` +
+                    `> Todos los usuarios pueden usar el bot.`
                 )
             }
 
             db.setGroup(m.chat, { ...groupData, isBanned: false })
 
             return sock.sendMessage(m.chat, {
-                text: `✅ *ɢʀᴜᴘ ᴅɪ-ᴜɴʙᴀɴ*\n\n` +
-                    `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-                    `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                    `┃ 📊 sᴛᴀᴛᴜs: *✅ AKTIF*\n` +
-                    `┃ 👤 ᴜɴʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+                text: `✅ *GRUPO DESBANEADO*\n\n` +
+                    `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+                    `┃ 📛 GRUPO: *${groupName}*\n` +
+                    `┃ 📊 ESTADO: *✅ ACTIVO*\n` +
+                    `┃ 👤 DESBANEADO POR: @${m.sender.split('@')[0]}\n` +
                     `╰┈┈⬡\n\n` +
-                    `> Semua member sekarang bisa menggunakan bot kembali.`,
+                    `> Todos los miembros ya pueden volver a usar el bot.`,
                 mentions: [m.sender]
             }, { quoted: m })
         }
 
         if (groupData.isBanned) {
             return m.reply(
-                `⚠️ *ɢʀᴜᴘ sᴜᴅᴀʜ ᴅɪʙᴀɴ*\n\n` +
-                `> Grup ini sudah dalam status banned.\n` +
-                `> Gunakan \`.unbanchat\` untuk membuka akses.`
+                `⚠️ *GRUPO YA BANEADO*\n\n` +
+                `> Este grupo ya está bloqueado.\n` +
+                `> Usa \`.unbanchat\` para abrir el acceso.`
             )
         }
 
         db.setGroup(m.chat, { ...groupData, isBanned: true })
 
-        await m.reply(`🚫 *ɢʀᴜᴘ ᴅɪʙᴀɴ*\n\n` +
-                `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-                `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                `┃ 📊 sᴛᴀᴛᴜs: *🔴 BANNED*\n` +
-                `┃ 👤 ʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+        await m.reply(`🚫 *GRUPO BANEADO*\n\n` +
+                `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+                `┃ 📛 GRUPO: *${groupName}*\n` +
+                `┃ 📊 ESTADO: *🔴 BANNED*\n` +
+                `┃ 👤 BANEADO POR: @${m.sender.split('@')[0]}\n` +
                 `╰┈┈⬡\n\n` +
-                `> Member biasa tidak bisa menggunakan bot di grup ini.\n` +
-                `> Hanya owner yang bisa menggunakan bot.`, {  mentions: [m.sender] })
+                `> Los miembros normales no pueden usar el bot en este grupo.\n` +
+                `> Solo el propietario puede usar el bot.`, {  mentions: [m.sender] })
 
     } catch (error) {
         m.reply(te(m.prefix, m.command, m.pushName))

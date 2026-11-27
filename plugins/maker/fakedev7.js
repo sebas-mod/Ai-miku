@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import FormData from 'form-data'
 import * as _canvas from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
-const defaultAvatar = ElysiaRuntime.defaultAvatar;
+const te = MikuRuntime.te;
+const defaultAvatar = MikuRuntime.defaultAvatar;
 
   const pluginConfig = {
     name: "fakedev7",
@@ -33,7 +33,7 @@ const defaultAvatar = ElysiaRuntime.defaultAvatar;
   async function handler(m, { sock }) {
     const name = m.text?.trim();
     if (!name) {
-      return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 7*\n\n> Masukkan nama untuk profile\n\n*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n> 1. Kirim foto + caption \`${m.prefix}fakedev7 <nama>\`\n> 2. Reply foto dengan \`${m.prefix}fakedev7 <nama>\``);
+      return m.reply(`🎮 *DESARROLLADOR FALSO 7*\n\n> Escribe un nombre para el perfil\n\n*CÓMO USAR:*\n> 1. Envía una foto con el texto \`${m.prefix}fakedev7 <nombre>\`\n> 2. Responde a la foto con \`${m.prefix}fakedev7 <nombre>\``);
     }
     let buffer = null;
     if (m.quoted && (m.quoted.type === "imageMessage" || m.quoted.mtype === "imageMessage")) {
@@ -48,7 +48,7 @@ const defaultAvatar = ElysiaRuntime.defaultAvatar;
         buffer = defaultAvatar();
       }
     }
-    if (!buffer) return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+    if (!buffer) return m.reply(`❌ ¡Envía o responde a una imagen para usarla como avatar!`);
 
     m.react("🕕");
 
@@ -174,7 +174,7 @@ const defaultAvatar = ElysiaRuntime.defaultAvatar;
       m.react("✅");
     } catch (error) {
       m.react("❌");
-      m.reply(`❌ Terjadi kesalahan saat memproses gambar.`);
+      m.reply(`❌ Hubo un error al procesar la imagen.`);
     }
   }
 

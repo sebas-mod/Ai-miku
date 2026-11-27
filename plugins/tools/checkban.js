@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "checkban",
@@ -33,9 +33,9 @@ const pluginConfig = {
       const number = String(text || '').trim().split(/\s+/)[0]?.replace(/[^0-9]/g, '')
 
       if (!number) {
-          return reply(`❀ Masukkan nomor WhatsApp yang ingin dicek!\n\n乂 Contoh:\n  ${prefix}${command} 6283456789011`)
+          return reply(`❀ ¡Escribe el número de WhatsApp que quieres comprobar!\n\n乂 Ejemplo:\n  ${prefix}${command} 6283456789011`)
       }
-      if (number.length < 8 || number.length > 15) return reply('❌ Format nomor tidak valid!')
+      if (number.length < 8 || number.length > 15) return reply('❌ ¡Formato de número no válido!')
 
       try {
           await reactTo(sock, m, '🔎')
@@ -48,7 +48,7 @@ const pluginConfig = {
 
           if (!res?.status || !res?.data) {
               await reactTo(sock, m, '❌')
-              return reply('❌ Gagal mendapatkan data pengecekan nomor.')
+              return reply('❌ No se pudieron obtener los datos del número.')
           }
 
           const d = res.data
@@ -60,35 +60,35 @@ const pluginConfig = {
           const statusText = banned === true ? '🔴 BANNED'
               : banned === false ? '🟢 TIDAK BANNED'
               : String(d.status || 'Unknown').toUpperCase()
-          const registeredText = registered === true ? '✅ Terdaftar' : registered === false ? '❌ Tidak terdaftar' : '❔ Tidak diketahui'
-          const existsText = exists === true ? '✅ Ya' : exists === false ? '❌ Tidak' : '❔ Tidak diketahui'
+          const registeredText = registered === true ? '✅ Terdaftar' : registered === false ? '❌ No registrado' : '❔ Desconocido'
+          const existsText = exists === true ? '✅ Ya' : exists === false ? '❌No' : '❔ Desconocido'
 
           const methods = Array.isArray(detail.fallback_methods) ? detail.fallback_methods : []
           const recommended = Array.isArray(detail.recommended_method) ? detail.recommended_method : []
-          const formatList = (arr) => arr.length ? arr.map((v, i) => `  ${i + 1}. ${v}`).join('\n') : '  Tidak tersedia'
+          const formatList = (arr) => arr.length ? arr.map((v, i) => `  ${i + 1}. ${v}`).join('\n') : '  No disponible'
 
           const checkedAt = detail.checked_at
               ? new Date(detail.checked_at).toLocaleString('id-ID', { timeZone: 'Asia/Jakarta', dateStyle: 'medium', timeStyle: 'medium' })
-              : 'Tidak tersedia'
+              : 'No disponible'
 
           const teks = `
-乂 *WHATSAPP BAN CHECK*
+*WHATSAPP REVISIÓN DE NEUMÁTICOS*
 
-┌─「 📱 INFORMASI NOMOR 」
-│ • Nomor: ${d.phone || number}
-│ • Masked: ${d.masked || '-'}
-│ • Status: ${statusText}
-│ • Ban: ${banned === true ? 'Ya' : banned === false ? 'Tidak' : 'Unknown'}
-│ • Terdaftar WA: ${existsText}
-│ • Registrasi: ${registeredText}
+┌─「 📱INFORMACIÓN DEL NÚMERO 」
+│ • Número: ${d.phone || number}
+│ • Enmascarado: ${d.masked || '-'}
+│ • Estado: ${statusText}
+│ • Neumáticos: ${banned === true ? 'Ya' : banned === false ? 'Tidak' : 'Unknown'}
+│ • Registrado WA: ${existsText}
+│ • Registro: ${registeredText}
 └──────────────
 
 ┌─「 🔐 METODE LOGIN 」
-│ • Total metode: ${detail.total_methods ?? 0}
-│ • Database terlihat: ${detail.num_visible_dbs_methods ?? 0}
-│ • Panjang kode SMS: ${detail.sms_length ?? '-'}
-│ • Panjang kode voice: ${detail.voice_length ?? '-'}
-│ • Flash type: ${detail.flash_type ?? '-'}
+│ • Métodos totales: ${detail.total_methods ?? 0}
+│ • Base de datos visible: ${detail.num_visible_dbs_methods ?? 0}
+│ • Longitud del código SMS: ${detail.sms_length ?? '-'}
+│ • Longitud del código de voz: ${detail.voice_length ?? '-'}
+│ • Tipo de flash: ${detail.flash_type ?? '-'}
 └──────────────
 
 ┌─「 📋 FALLBACK METHODS 」
@@ -103,7 +103,7 @@ ${formatList(recommended)}
 │ • ${checkedAt}
 └──────────────
 
-> *Arthazy </>*
+>*Arthazy </>*
 `.trim()
 
           await sock.sendMessage(m.chat, { text: teks }, { quoted: m })
@@ -111,7 +111,7 @@ ${formatList(recommended)}
       } catch (e) {
           console.error('[CEKBAN WA]', e)
           await reactTo(sock, m, '❌')
-          return reply('❌ Gagal mengecek nomor WhatsApp.\nAPI mungkin sedang error atau timeout. Coba lagi nanti.')
+          return reply('❌ No se pudo comprobar el número de WhatsApp.\nPuede que la API esté caída o tardando. Inténtalo más tarde.')
       }
   }
 

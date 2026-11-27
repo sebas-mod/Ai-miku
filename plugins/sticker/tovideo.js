@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const webp2mp4 = ElysiaRuntime.webp2mp4;
-const ffmpeg = ElysiaRuntime.ffmpeg;
+const webp2mp4 = MikuRuntime.webp2mp4;
+const ffmpeg = MikuRuntime.ffmpeg;
 
 const pluginConfig = {
     name: "tovideo",
@@ -28,9 +28,9 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, usedPrefix, command }) {
-      if (!m.quoted) throw `Balas stiker/audio yang ingin diubah menjadi video dengan perintah ${usedPrefix + command}`
+      if (!m.quoted) throw `Responde al stickers/audio que deseas convertir en video con un comando ${usedPrefix + command}`
       let mime = m.quoted.mimetype || ''
-      if (!/webp|audio/.test(mime)) throw `Balas stiker/audio yang ingin diubah menjadi video dengan perintah ${usedPrefix + command}`
+      if (!/webp|audio/.test(mime)) throw `Responde al stickers/audio que deseas convertir en video con un comando ${usedPrefix + command}`
       let media = await m.quoted.download()
       let out = Buffer.alloc(0)
       if (/webp/.test(mime)) {

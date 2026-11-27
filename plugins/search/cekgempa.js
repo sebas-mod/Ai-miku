@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const fetchJSON = ElysiaRuntime.fetchJSON;
-const FriendlyError = ElysiaRuntime.FriendlyError;
-const guard = ElysiaRuntime.guard;
+const fetchJSON = MikuRuntime.fetchJSON;
+const FriendlyError = MikuRuntime.FriendlyError;
+const guard = MikuRuntime.guard;
 
 const pluginConfig = {
     name: "cekgempa",
@@ -44,12 +44,12 @@ const pluginConfig = {
       if (arg) {
           const key = arg.replace(/\s+/g, '')
           const list = LISTS[key === 'm5.0' || key === 'm5+' ? 'm5' : key]
-          if (!list) return reply('Pilihan tidak dikenal.\n\nGunakan:\n- cekgempa (gempa terbaru)\n- cekgempa m5\n- cekgempa dirasakan')
+          if (!list) return reply('Opción desconocida.\n\nUsar:\n- checkearthquake (último terremoto)\n- comprobar terremoto M5\n- comprobar el terremoto sentido')
 
           const json = await fetchJSON(`${BASE}/${list.file}`)
           const data = json?.Infogempa?.gempa
           const items = Array.isArray(data) ? data : (data ? [data] : [])
-          if (!items.length) throw new FriendlyError('Data gempa belum tersedia dari BMKG.')
+          if (!items.length) throw new FriendlyError('Los datos del terremoto aún no están disponibles desde BMKG.')
 
           const lines = items.slice(0, 15).map((g, i) =>
               `${i + 1}. M ${show(g.Magnitude)} | ${show(g.Tanggal)} ${show(g.Jam)}\n    ${show(g.Wilayah)}`
@@ -59,11 +59,11 @@ const pluginConfig = {
 
       const json = await fetchJSON(`${BASE}/autogempa.json`)
       const g = json?.Infogempa?.gempa
-      if (!g || typeof g !== 'object') throw new FriendlyError('Data gempa belum tersedia dari BMKG.')
+      if (!g || typeof g !== 'object') throw new FriendlyError('Los datos del terremoto aún no están disponibles desde BMKG.')
 
       const caption =
           `🌋 *GEMPA TERBARU*\n\n` +
-          `Waktu       : ${show(g.Tanggal)} ${show(g.Jam)}\n` +
+          `Tiempo: ${show(g.Tanggal)} ${show(g.Jam)}\n` +
           `Magnitudo   : ${show(g.Magnitude)}\n` +
           `Kedalaman   : ${show(g.Kedalaman)}\n` +
           `Lokasi      : ${show(g.Wilayah)}\n` +

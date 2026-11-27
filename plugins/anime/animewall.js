@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import { createCanvas } from '@napi-rs/canvas';
 
@@ -131,7 +131,7 @@ import { createCanvas } from '@napi-rs/canvas';
       ctx.textAlign = 'center'
       ctx.shadowColor = THEME.glow
       ctx.shadowBlur = 10
-      ctx.fillText('🖼️ Elysia Assistant WALLPAPER 🖼️', w/2, 45)
+      ctx.fillText('🖼️ Ai Miku WALLPAPER 🖼️', w/2, 45)
       ctx.shadowBlur = 0
 
       ctx.fillStyle = THEME.cardBg || '#1a0b1a'
@@ -162,7 +162,7 @@ import { createCanvas } from '@napi-rs/canvas';
 
       ctx.fillStyle = THEME.white
       ctx.font = '10px "Segoe UI"'
-      ctx.fillText('📌 Klik gambar lalu "Save as image" untuk download', w/2, 223)
+      ctx.fillText('📌 Haga clic en la imagen y luego en "Guardar como imagen" para descargar', w/2, 223)
 
       ctx.fillStyle = `${THEME.primary}80`
       ctx.font = '9px "Segoe UI"'
@@ -187,7 +187,7 @@ import { createCanvas } from '@napi-rs/canvas';
   }
 
   function formatCaption(query, wallpaper) {
-      let caption = `🖼️ *Elysia Assistant WALLPAPER* 🖼️\n\n`
+      let caption = `🖼️ *Ai Miku WALLPAPER* 🖼️\n\n`
 
       if (query) {
           caption += `📺 *Request:* ${query.toUpperCase()}\n`
@@ -198,15 +198,15 @@ import { createCanvas } from '@napi-rs/canvas';
       caption += `📡 *Source:* ${wallpaper.source}\n`
       caption += `\n`
       caption += `📌 *Cara download:*\n`
-      caption += `1. Klik gambar di atas\n`
+      caption += `1. Haga clic en la imagen de arriba\n`
       caption += `2. Tekan "...", pilih "Save as image"\n`
       caption += `\n`
 
       if (wallpaper.isFallback) {
-          caption += `⚠️ *Note:* API sedang sibuk, ini wallpaper cadangan.\n`
+          caption += `⚠️ *Nota:* API está ocupado, este es un fondo de pantalla de respaldo.\n`
       }
 
-      caption += `💕 *Elysia Assistant:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
+      caption += `💕 *Ai Miku:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
 
       return caption
   }
@@ -217,13 +217,13 @@ import { createCanvas } from '@napi-rs/canvas';
       await m.react('🖼️')
 
       try {
-          await m.reply(query ? `🦋 *Elysia Assistant:* Lagi nyari wallpaper *${query}*... tunggu sebentar ya~ 🖼️` : `🦋 *Elysia Assistant:* Lagi ambil random wallpaper... tunggu sebentar ya~ 🖼️`)
+          await m.reply(query ? `🦋 *Ai Miku:* Buscando fondo de pantalla*${query}*... espera un momento, vale~ 🖼️` : `🦋 *Ai Miku:* Tomando un fondo de pantalla aleatorio... espera un momento, vale~ 🖼️`)
 
           const wallpaper = await fetchWallpaper(query)
 
           if (!wallpaper.success && !wallpaper.url) {
               await m.react('❌')
-              return m.reply(`❌ Gagal mengambil wallpaper!\n\nCoba lagi nanti ya darling~ 🦋`)
+              return m.reply(`❌ ¡No se pudo recuperar el fondo de pantalla!\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
           }
 
           try {
@@ -236,7 +236,7 @@ import { createCanvas } from '@napi-rs/canvas';
 
               await sock.sendMessage(m.chat, {
                   image: { url: wallpaper.url },
-                  caption: `🖼️ *Wallpaper ${query ? query.toUpperCase() : 'Random'}* 🖼️\n\n📡 Source: ${wallpaper.source}\n💕 Elysia Assistant: Semoga suka darling~`
+                  caption: `🖼️ *Wallpaper ${query ? query.toUpperCase() : 'Random'}* 🖼️\n\n📡 Source: ${wallpaper.source}\n💕 Ai Miku: Semoga suka darling~`
               }, { quoted: m })
 
           } catch (imgErr) {
@@ -252,10 +252,10 @@ import { createCanvas } from '@napi-rs/canvas';
       } catch (err) {
           console.error('[AnimeWall] Error:', err)
           await m.react('❌')
-          await m.reply(`❌ *Error:* ${err.message}\n\nCoba lagi nanti ya darling~ 🦋`)
+          await m.reply(`❌ *Error:* ${err.message}\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
       }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

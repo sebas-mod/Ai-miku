@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -23,7 +23,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    await m.reply('🛑 *Stopping Bot...*\n\n> Bot dimatikan. Harus dinyalakan manual dari terminal.')
+    await m.reply('🛑 *Deteniendo el bot...*\n\n> El bot se apagó. Debes encenderlo manualmente desde la terminal.')
     console.log('Stopping via command...')
 
     // Allow message to send before exit

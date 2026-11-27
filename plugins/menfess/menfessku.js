@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,7 +32,7 @@ async function handler(m, { command, prefix }) {
   const c = cfg();
   const k = store();
   const user = userData(m.sender) || {};
-  const status = (d) => (d.tutup ? "🗑 ditarik" : menfessAktif(d, c) ? "🟢 aktif" : "⏳ kedaluwarsa");
+  const status = (d) => (d.tutup ? "🗑 retirado" : menfessAktif(d, c) ? "🟢 activo" : "⏳ kedaluwarsa");
   const urut = (a, b) => (b[1].last || b[1].t) - (a[1].last || a[1].t);
   const masuk = Object.entries(k.menfess).filter(([, d]) => same(d.to, m.sender)).sort(urut);
   const keluar = Object.entries(k.menfess).filter(([, d]) => same(d.from, m.sender)).sort(urut);
@@ -40,14 +40,14 @@ async function handler(m, { command, prefix }) {
   if (command === "inboxmenfess" || command === "outboxmenfess") {
     const inbox = command === "inboxmenfess";
     const list = (inbox ? masuk : keluar).slice(0, 10);
-    if (!list.length) return m.reply(inbox ? "Belum ada menfess masuk." : "Kamu belum pernah mengirim menfess.");
+    if (!list.length) return m.reply(inbox ? "Aún no ha entrado ningún menfess." : "Nunca has enviado menfess.");
     const baris = list.map(
-      ([id, d]) => `• *#${id}* · ${waktu(d.last || d.t)} · ${(d.log || [1]).length} pesan · ${status(d)}\n  “${potong(d.pesan)}”`,
+      ([id, d]) => `• *#${id}* · ${waktu(d.last || d.t)} · ${(d.log || [1]).length} mensaje · ${status(d)}\n  “${potong(d.pesan)}”`,
     );
     return m.reply(
-      `💌 *${inbox ? "MENFESS MASUK" : "MENFESS TERKIRIM"}* (${list.length} terbaru)\n\n${baris.join("\n")}\n\n` +
+      `💌 *${inbox ? "MENFESS RECIBIDOS" : "MENFESS ENVIADOS"}* (${list.length} más recientes)\n\n${baris.join("\n")}\n\n` +
         (inbox
-          ? `Balas: reply pesan menfess-nya\nBlok: ${prefix}blokmenfess ID · Lapor: ${prefix}lapormenfess ID alasan`
+          ? `Responder: responder al mensaje menfess\nBloquear: ${prefix}blokmenfess ID · Informe: ${prefix}lapormenfess ID razones`
           : `Tarik: ${prefix}tarikmenfess ID · Ungkap diri: ${prefix}ungkapmenfess ID`),
     );
   }
@@ -58,17 +58,17 @@ async function handler(m, { command, prefix }) {
   return m.reply(
     `💌 *MENFESSKU*\n\n` +
       `👤 Samaran : ${user.menfessNama || "Seseorang"}\n` +
-      `📨 Kirim hari ini : ${l.n || 0}/${c.maxPerHari}\n` +
-      `💬 Balasan hari ini : ${l.nb || 0}/${c.maxBalasPerHari}\n` +
+      `📨 Enviar hoy: ${l.n || 0}/${c.maxPerHari}\n` +
+      `💬 La respuesta de hoy: ${l.nb || 0}/${c.maxBalasPerHari}\n` +
       `📥 Menerima menfess : ${k.menfessBlock[me] ? "ditolak ⛔" : "terbuka ✅"}\n` +
-      `🚫 Pengirim diblok : ${diblok}\n` +
-      `🗂 Masuk ${masuk.length} · Terkirim ${keluar.length}` +
-      (k.menfessBan[me] ? "\n⛔ Kamu sedang dilarang memakai menfess" : "") +
-      `\n\n*Perintah*\n` +
-      `• ${prefix}menfess nomor|pesan\n` +
-      `• Balas: reply pesan menfess lalu tulis balasanmu\n` +
+      `🚫 Remitente bloqueado: ${diblok}\n` +
+      `🗂 Iniciar sesión ${masuk.length} · Terkirim ${keluar.length}` +
+      (k.menfessBan[me] ? "\n⛔ Actualmente tienes prohibido usar menfess" : "") +
+      `\n\n*Orden*\n` +
+      `• ${prefix}menfess número|mensaje\n` +
+      `• Responder: responde al mensaje menfess y luego escribe tu respuesta\n` +
       `• ${prefix}inboxmenfess · ${prefix}outboxmenfess\n` +
-      `• ${prefix}samaranmenfess nama\n` +
+      `• ${prefix}samaranmenfess nombre\n` +
       `• ${prefix}tarikmenfess ID · ${prefix}ungkapmenfess ID\n` +
       `• ${prefix}blokmenfess · ${prefix}lapormenfess · ${prefix}tolakmenfess`,
   );

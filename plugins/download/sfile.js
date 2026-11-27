@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const sfileSearch = ElysiaRuntime.sfileSearch;
-const sfileDownload = ElysiaRuntime.sfileDownload;
+const sfileSearch = MikuRuntime.sfileSearch;
+const sfileDownload = MikuRuntime.sfileDownload;
 
 const pluginConfig = {
     name: "sfile",
@@ -28,14 +28,14 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, text, command }) {
-    if (!text) throw 'Masukkan query atau link!'
+    if (!text) throw '¡Envía una búsqueda o un enlace!'
 
     if (command === 'sfile') {
       const results = await sfileSearch(text)
 
-      if (!results.length) throw 'File tidak ditemukan'
+      if (!results.length) throw 'Archivo no encontrado'
 
-      let msg = '🔎 Hasil pencarian:\n\n'
+      let msg = '🔎 Resultados de búsqueda:\n\n'
 
       results.slice(0, 10).forEach((v, i) => {
         msg += `${i + 1}. ${v.title}\n`
@@ -47,12 +47,12 @@ const pluginConfig = {
     }
 
     if (command === 'sfiledl') {
-      if (!text.includes('sfile.co')) throw 'Link tidak valid'
+      if (!text.includes('sfile.co')) throw 'Enlace no válido'
 
       const { metadata, download } = await sfileDownload(text, true)
 
-      const caption = `📄 Nama: ${metadata.filename}
-📦 Tipe: ${metadata.mimetype}
+      const caption = `📄 Nombre: ${metadata.filename}
+📦 Tipo: ${metadata.mimetype}
 ⬇️ Download: ${metadata.download_count}
 👤 Author: ${metadata.author_name}`
 

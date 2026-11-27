@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -20,31 +20,31 @@ import {
   getOwnerName,
 } from "./src/helper.js";
 
-//  utamakan baca object config sampai bawah
+//  lee el objeto config completo hasta el final
 const config = {
   owner: {
-    name: "Arthazy", // Nama owner
-    number: ["6289677587355"], // Format: 628xxx (tanpa + atau 0)
+    name: "Arthazy", // Nombre del dueño
+    number: ["6289677587355"], // Formato: 628xxx (sin + ni 0)
   },
 
   session: {
-    pairingNumber: "6281930730973", // Kosongkan agar terminal meminta nomor WhatsApp saat startup
-    usePairingCode: true, // true = Pairing Code, false = QR Code
-    folderName: "session", // Folder session di dalam ./storage
-    compact: true, // true = key session digabung per tipe (folder session hanya beberapa file)
+    pairingNumber: "6281930730973", // Déjalo vacío para que la terminal pida el número de WhatsApp al arrancar
+    usePairingCode: true, // true = código de emparejamiento, false = código QR
+    folderName: "session", // Carpeta de sesión dentro de ./storage
+    compact: true, // true = las claves de sesión se agrupan por tipo (la carpeta de sesión tiene pocos archivos)
     autoClear: {
-      enabled: true, // true = cache session yang aman dibuang dibersihkan otomatis (login & sesi chat tetap aman)
-      intervalMinutes: 60, // Jeda pembersihan, satuan MENIT
+      enabled: true, // true = la caché de sesión que se puede borrar se limpia sola (el inicio de sesión y los chats siguen seguros)
+      intervalMinutes: 60, // Intervalo de limpieza, en MINUTOS
     },
     backup: {
-      keep: 3, // Backup MANUAL (.backupsession): jumlah backup terakhir yang disimpan
+      keep: 3, // Copia MANUAL (.backupsession): cuántas copias recientes se guardan
     },
   },
 
   bot: {
-    name: "Elysia Assistant", // Nama bot
-    version: "2.0", // Versi bot
-    developer: "arthazyy", // Nama developer
+    name: "Ai Miku", // Nombre del bot
+    version: "2.0", // Versión del bot
+    developer: "arthazyy", // Nombre del desarrollador
   },
 
   info: {
@@ -52,55 +52,55 @@ const config = {
     grupwa: "https://chat.whatsapp.com/xxxx",
   },
 
-  // Pengaturan thumbnail dipisahkan ke ./src/settings/thumbnail.js (disambungkan di sini)
+  // La configuración de miniaturas está en ./src/settings/thumbnail.js (conectada aquí)
   thumbUrl,
   thumbSize,
 
   mode: "public",
 
-  // Untuk mengganti prefix
+  // Para cambiar el prefijo de comandos
   command: {
     prefix: ".",
   },
 
   vercel: {
-    // ambil token vercel: https://vercel.com/account/tokens
-    token: "", // Vercel Token untuk fitur deploy ( Kalau .deploy mau work, ini wajib di isi )
+    // consigue el token de Vercel aquí: https://vercel.com/account/tokens
+    token: "", // Token de Vercel para la función de deploy (obligatorio si quieres que .deploy funcione)
   },
 
   energi: {
-    enabled: true, // Jika true, maka sistem energi/limit akan bekerja
+    enabled: true, // Si es true, el sistema de energía/límite funciona
     default: 99999,
     premium: -1,
     owner: -1,
   },
 
-  // Pengaturan fitur menfess (kirim pesan anonim, hanya lewat chat pribadi bot)
+  // Ajustes de la función menfess (mensajes anónimos, solo por chat privado del bot)
   menfess: {
-    on: true, // false = fitur menfess dimatikan total
-    maxPanjang: 800, // Maks karakter per pesan
-    maxPerHari: 30, // Maks menfess yang boleh dikirim per user per hari (WIB)
-    maxBalasPerHari: 30, // Maks balasan per user per hari
-    maxPerTujuan: 10, // Maks menfess ke satu nomor yang sama per hari
-    jedaDetik: 15, // Jeda antar pengiriman/balasan (detik)
-    biayaEnergi: 1, // Energi yang terpakai per menfess baru (0 = gratis). Premium/owner bebas
-    kedaluwarsaJam: 72, // Menfess tidak bisa dibalas lagi kalau tanpa aktivitas selama ini
-    simpanHari: 14, // Menfess lama dihapus otomatis dari database setelah sekian hari
-    laporBan: 3, // Pengirim otomatis diban menfess setelah dilaporkan sekian kali
-    blokirLink: true, // Tolak pesan yang mengandung link
-    blokirNomor: true, // Tolak pesan yang mengandung nomor telepon
-    kataTerlarang: [], // Daftar kata yang ditolak, contoh: ["kata1", "kata2"]
+    on: true, // false = la función menfess se desactiva por completo
+    maxPanjang: 800, // Máximo de caracteres por mensaje
+    maxPerHari: 30, // Máximo de menfess que puede enviar un usuario al día (hora de Indonesia)
+    maxBalasPerHari: 30, // Máximo de respuestas por usuario al día
+    maxPerTujuan: 10, // Máximo de menfess al mismo número al día
+    jedaDetik: 15, // Espera entre envíos/respuestas (segundos)
+    biayaEnergi: 1, // Energía que cuesta cada menfess nuevo (0 = gratis). Premium/dueño sin costo
+    kedaluwarsaJam: 72, // Un menfess ya no se puede responder si pasa este tiempo sin actividad
+    simpanHari: 14, // Los menfess viejos se borran solos de la base de datos tras estos días
+    laporBan: 3, // El remitente se banea de menfess tras ser reportado estas veces
+    blokirLink: true, // Rechazar mensajes que contengan enlaces
+    blokirNomor: true, // Rechazar mensajes que contengan números de teléfono
+    kataTerlarang: [], // Lista de palabras rechazadas, ejemplo: ["palabra1", "palabra2"]
   },
 
   sticker: {
-    packname: "Elysia Assistant || arthazy", // Nama pack sticker
-    author: "arthazy", // Author sticker
+    packname: "Ai Miku || arthazy", // Nombre del paquete de stickers
+    author: "arthazy", // Autor del sticker
   },
 
   saluran: {
-    id: "120363393471527483@newsletter", // ID saluran utama Elysia Assistant
-    name: "Elysia Assistant", // Nama saluran
-    link: "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O", // Link saluran (isi link channel kamu)
+    id: "120363393471527483@newsletter", // ID del canal principal de Ai Miku
+    name: "Ai Miku", // Nombre del canal
+    link: "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O", // Enlace del canal (pon el enlace de tu canal)
     autoFollow: [
       "120363393471527483@newsletter",
       "120363412661006467@newsletter",
@@ -108,8 +108,8 @@ const config = {
   },
 
   features: {
-    antiCall: false, // Jika true, bot akan menolak panggilan masuk
-    blockIfCall: false, // Jika true, bot akan memblokir nomor yang menelpon bot
+    antiCall: false, // Si es true, el bot rechaza las llamadas entrantes
+    blockIfCall: false, // Si es true, el bot bloquea el número que lo llame
     autoTyping: true,
     autoRead: true,
     logMessage: true,
@@ -118,7 +118,7 @@ const config = {
   },
 
   registration: {
-    enabled: false, // Default: user tidak wajib mendaftar sebelum menggunakan bot
+    enabled: false, // Por defecto: el usuario no tiene que registrarse antes de usar el bot
     rewards: {
       energi: 300,
       exp: 3000,
@@ -134,23 +134,23 @@ const config = {
   database: {
     path: "./database/main",
     autoClearCache: {
-      enabled: true, // true = folder database/cache dibersihkan otomatis tiap interval (database utama tetap aman)
-      intervalMinutes: 60, // Jeda pembersihan otomatis, satuan MENIT (sama seperti session.autoClear)
+      enabled: true, // true = la carpeta database/cache se limpia sola cada intervalo (la base de datos principal sigue segura)
+      intervalMinutes: 60, // Intervalo de limpieza automática, en MINUTOS (igual que session.autoClear)
     },
   },
   backup: { enabled: false, intervalHours: 24, retainDays: 7 },
   scheduler: { resetHour: 0, resetMinute: 0 },
-  errorTemplate: `waduhh Kayaknya command \`{prefix}{command}\` lagi ada kendala`,
+  errorTemplate: `uy, parece que el comando \`{prefix}{command}\` tiene un problema`,
 
-  // Dev mode settings (auto-enabled jika NODE_ENV=development)
+  // Ajustes de modo desarrollo (se activan solos si NODE_ENV=development)
   dev: {
     enabled: process.env.NODE_ENV === "development",
-    watchPlugins: true, // Hot reload plugins (SAFE)
-    watchSrc: false, // DISABLED - src reload causes connection conflict 440
-    debugLog: false, // Show stack traces
+    watchPlugins: true, // Recarga en caliente de plugins (SEGURO)
+    watchSrc: false, // DESACTIVADO - recargar src provoca el conflicto de conexión 440
+    debugLog: false, // Mostrar trazas de error
   },
 
-  // Bagian yang dipisah ke src/settings (apikey, messages, payment, pterodactyl, dll)
+  // Partes separadas en src/settings (apikey, messages, payment, pterodactyl, etc.)
   ...settings,
 };
 

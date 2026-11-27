@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
@@ -15,7 +15,7 @@ import { execFile } from 'child_process'
 import { promisify } from 'util'
 import { parseRef, metadata, getCurrent, assertCanPost, explain } from './setch.js'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "chvn",
@@ -51,7 +51,7 @@ const pluginConfig = {
           ], { timeout: 120000 })
 
           const buffer = fs.readFileSync(outFile)
-          if (buffer.length < 1000) throw new Error('Hasil convert kosong.')
+          if (buffer.length < 1000) throw new Error('El resultado de la conversión está vacío.')
           return { buffer, ...(await buildWaveform(outFile)) }
       } finally {
           for (const f of [inFile, outFile]) { try { fs.rmSync(f, { force: true }) } catch {} }
@@ -91,11 +91,11 @@ const pluginConfig = {
 
       if (!src) {
           return reply(
-              `📢 *AUDIO KE SALURAN (VN)*\n\n` +
-              `Reply audio dengan:\n` +
+              `📢 *AUDIO AL CANAL (VN)*\n\n` +
+              `Concursantes de audio:\n` +
               `${p}${cmd} → ke saluran bawaan (.setch)\n` +
               `${p}${cmd} <id@newsletter / link saluran>\n\n` +
-              `Contoh:\n${p}${cmd} 120363xxxxxxxxxxxxxx@newsletter`
+              `Ejemplo:\n${p}${cmd} 120363xxxxxxxxxxxxxxx@newsletter`
           )
       }
 
@@ -104,12 +104,12 @@ const pluginConfig = {
           const raw = String(text || '').trim().split(/\s+/)[0]
           if (raw) {
               const ref = parseRef(raw) || (/^\d{15,}$/.test(raw) ? parseRef(`${raw}@newsletter`) : null)
-              if (!ref) return reply('ID/link saluran tidak valid!\nContoh: 120363xxxxxxxxxxxxxx@newsletter')
+              if (!ref) return reply('ID/enlace de canal no válido!\nEjemplo: 120363xxxxxxxxxxxxxx@newsletter')
               if (ref.type === 'jid') { channelId = ref.jid; channelLabel = ref.jid }
               else { const md = await metadata(sock, ref); channelId = md.id; channelLabel = md.name; assertCanPost(md) }
           } else {
               const cur = getCurrent()
-              if (!cur) return reply(`Belum ada saluran tujuan. Tulis id/link saluran, atau atur dulu: ${p}setch <link saluran>`)
+              if (!cur) return reply(`Aún no hay ningún canal de destino. Escribe el ID/enlace del canal, o configúralo primero: ${p}establecer <enlace de canal>`)
               channelId = cur.id; channelLabel = cur.name
               assertCanPost(cur)
           }
@@ -121,14 +121,14 @@ const pluginConfig = {
 
       try {
           const audio = await src.download()
-          if (!Buffer.isBuffer(audio) || audio.length < 1000) throw new Error('Gagal mengunduh audio.')
-          if (audio.length > MAX_SIZE) throw new Error('File terlalu besar! Maksimal 20MB.')
+          if (!Buffer.isBuffer(audio) || audio.length < 1000) throw new Error('No se pudo descargar el audio.')
+          if (audio.length > MAX_SIZE) throw new Error('¡El archivo es demasiado grande! Máximo 20 MB.')
 
           const { buffer, waveform, seconds } = await convertToOpus(audio)
 
           const { prepareWAMessageMedia, generateMessageIDV2, proto } = await import('@rexxhayanasi/elaina-baileys')
           const prepared = await prepareWAMessageMedia(
-              { audio: buffer, mimetype: 'audio/ogg; codecs=opus', ptt: true },
+              { audio: buffer, mimetype: 'audio/ogg; códecs=opus', ptt: true },
               { upload: sock.waUploadToServer, jid: channelId }
           )
           const payload = {
@@ -136,7 +136,7 @@ const pluginConfig = {
                   ...prepared.audioMessage,
                   ptt: true,
                   seconds,
-                  mimetype: 'audio/ogg; codecs=opus',
+                  mimetype: 'audio/ogg; códecs=opus',
                   waveform
               }
           }
@@ -152,9 +152,9 @@ const pluginConfig = {
           console.error('[CHVN ERROR]', err)
           await reactTo(sock, m, '❌')
           const msg = /ffmpeg/i.test(err.message) && /ENOENT|not found/i.test(err.message)
-              ? 'FFmpeg belum terpasang di server.'
+              ? 'FFmpeg aún no está instalado en el servidor.'
               : err.message || err
-          return reply(`❌ Gagal kirim VN ke saluran.\n\n> ${msg}`)
+          return reply(`❌ No se pudo enviar VN al canal.\n\n> ${msg}`)
       }
   }
 

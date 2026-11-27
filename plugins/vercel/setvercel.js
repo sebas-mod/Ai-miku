@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { setVercelToken, vercelRequest } from "../../src/lib/features/elysia-vercel.js";
+import { setVercelToken, vercelRequest } from "../../src/lib/features/miku-vercel.js";
 
 const pluginConfig = {
   name: "setvercel",
@@ -25,8 +25,8 @@ async function handler(m) {
     return m.reply(
       `▲ *SET VERCEL TOKEN*\n` +
       `> Ambil token di: https://vercel.com/account/tokens\n` +
-      `> Lalu ketik: \`${m.prefix}setvercel <token_kamu>\`\n` +
-      `_Disarankan kirim di chat pribadi agar token tetap aman._`
+      `> Luego escribe: \`${m.prefix}setvercel <tu_token>\`\n` +
+      `_Se recomienda enviarlo en el chat privado para que el token esté seguro._`
     );
   }
 
@@ -38,14 +38,14 @@ async function handler(m) {
     await m.react("✅");
     await m.reply(
       `╭─❖「 ▲ *VERCEL TOKEN TERVERIFIKASI* 」\n` +
-      `│ 👤 Akun  : *${u.name || u.username || "-"}*\n` +
+      `│ 👤 Cuenta: *${u.name || u.username || "-"}*\n` +
       `│ 📧 Email : ${u.email || "-"}\n` +
       `│ ✅ Status: Tersimpan ke akunmu (\`.mytoken\`)\n` +
       `╰─────────────────────❖`
     );
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Token Vercel tidak valid: *${err.message}*`);
+    await m.reply(`❌ Token de Vercel no válido: *${err.message}*`);
   }
 }
 

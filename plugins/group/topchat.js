@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -36,19 +36,19 @@ async function handler(m, { sock }) {
     .sort((a, b) => b.count - a.count);
   if (sorted.length === 0) {
     return m.reply(
-      `📊 *ᴄʜᴀᴛ sᴛᴀᴛɪsᴛɪᴄs*\n\n` +
-      `> Belum ada data chat di grup ini.\n` +
-      `> Data akan tercatat otomatis setelah member aktif chat.`,
+      `📊 *ESTADÍSTICAS DEL CHAT*\n\n` +
+      `> Aún no hay datos de chat en este grupo.\n` +
+      `> Los datos se registrarán automáticamente cuando los miembros chateen.`,
     );
   }
-  let txt = `📊 *TOTAL CHAT*\nBerikut ini adalah jumlah pesan yang dikirim oleh member di grup ini:\n\n`;
+  let txt = `📊 *CHAT TOTAL*\nEstos son los mensajes enviados por los miembros de este grupo:\n\n`;
   for (let i = 0; i < sorted.length; i++) {
     const { jid, count } = sorted[i];
     const name = group.chatStats[jid]?.name || jid.split("@")[0];
     const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "▸";
-    txt += `${medal} @${jid.split("@")[0]} — *${count.toLocaleString("id-ID")}* pesan\n`;
+    txt += `${medal} @${jid.split("@")[0]} — *${count.toLocaleString("id-ID")}* mensajes\n`;
   }
-  txt += `\n*Total Pesan: ${sorted.reduce((a, b) => a + b.count, 0).toLocaleString("id-ID")}*`;
+  txt += `\n*Total de mensajes: ${sorted.reduce((a, b) => a + b.count, 0).toLocaleString("id-ID")}*`;
   const mentions = sorted.map((u) => u.jid);
   await m.reply(txt, { mentions });
 }

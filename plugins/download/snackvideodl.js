@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { snackvideo } from 'btch-downloader'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'snackvideodl',
@@ -32,15 +32,15 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+              `⚠️ *CÓMO USAR*\n\n` +
               `> \`${m.prefix}snackvideodl <url>\`\n\n` +
-              `> Contoh:\n` +
+              `> Ejemplo:\n` +
               `> \`${m.prefix}snackvideodl https://www.snackvideo.com/@xxx/video/xxx\``
           )
       }
 
       if (!url.match(/snackvideo\.com/i)) {
-          return m.reply(`❌ URL tidak valid. Gunakan link SnackVideo.`)
+          return m.reply(`❌ URL no válida. Usa un enlace de SnackVideo.`)
       }
 
       await m.react('🕕')
@@ -49,7 +49,7 @@ const te = ElysiaRuntime.te;
           const data = await snackvideo(url)
 
           if (!data?.status || !data?.result?.videoUrl) {
-              return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const result = data.result

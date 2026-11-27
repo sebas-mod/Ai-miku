@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -17,7 +17,7 @@ const pluginConfig = {
   name: "owner",
   alias: [],
   category: "main",
-  description: "Menampilkan informasi owner dalam modern card carousel bergaya WhatsApp",
+  description: "Muestra la información del dueño en un carrusel de tarjetas estilo WhatsApp",
   usage: ".owner",
   example: ".owner",
   isOwner: false,
@@ -77,10 +77,10 @@ async function handler(m, { sock, config: botConfig }) {
     .filter(Boolean)
     .slice(0, 9);
 
-  const botName = botConfig.bot?.name || "Elysia Assistant";
+  const botName = botConfig.bot?.name || "Ai Miku";
 
   if (!ownerNumbers.length) {
-    await m.reply("❌ Data owner belum tersedia di konfigurasi bot.");
+    await m.reply("❌ Todavía no hay datos del dueño en la configuración del bot.");
     return;
   }
 
@@ -88,10 +88,10 @@ async function handler(m, { sock, config: botConfig }) {
 
   const cards = [];
 
-  // Modern Card: setiap owner menjadi satu kartu yang bisa digeser.
+  // Tarjeta moderna: cada dueño es una tarjeta deslizable.
   for (let index = 0; index < ownerNumbers.length; index++) {
     const number = ownerNumbers[index];
-    const ownerName = getOwnerName(number) || `Owner ${index + 1}`;
+    const ownerName = getOwnerName(number) || `Dueño ${index + 1}`;
     const ownerJid = normalizeJid(number);
     const ownerImage = await getImageBuffer(sock, ownerJid, fallbackImage);
 
@@ -99,25 +99,25 @@ async function handler(m, { sock, config: botConfig }) {
       image: ownerImage,
       title: `👑 ${ownerName}`,
       body:
-        `OWNER INFORMATION  •  ${index + 1}/${ownerNumbers.length}\n\n` +
-        `✦ Lead Developer\n` +
+        `INFORMACIÓN DEL DUEÑO  •  ${index + 1}/${ownerNumbers.length}\n\n` +
+        `✦ Desarrollador principal\n` +
         `✦ ${ownerName}\n` +
-        `✦ Status : 🟢 Online\n` +
-        `✦ Contact : +${number}\n\n` +
-        `Owner resmi ${botName}.` ,
-      footer: `${botName}  •  Owner Contact`,
+        `✦ Estado : 🟢 En línea\n` +
+        `✦ Contacto : +${number}\n\n` +
+        `Dueño oficial de ${botName}.` ,
+      footer: `${botName}  •  Contacto del dueño`,
       buttons: [
         {
           name: "cta_url",
           params: {
-            display_text: "Chat Owner",
-            url: `https://wa.me/${number}?text=${encodeURIComponent(`Halo ${ownerName}, saya ingin bertanya tentang ${botName}.`)}`,
+            display_text: "Chatear con el dueño",
+            url: `https://wa.me/${number}?text=${encodeURIComponent(`Hola ${ownerName}, quería preguntarte algo sobre ${botName}.`)}`,
           },
         },
         {
           name: "cta_url",
           params: {
-            display_text: "Info Update",
+            display_text: "Novedades",
             url: botConfig.saluran?.link || "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O",
             merchant_url: botConfig.saluran?.link || "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O",
           },
@@ -126,7 +126,7 @@ async function handler(m, { sock, config: botConfig }) {
     }));
   }
 
-  // Kartu terakhir untuk identitas bot.
+  // Última tarjeta: la identidad del bot.
   const botJid = normalizeJid(sock.user?.id || sock.user?.jid);
   const botImage = botJid
     ? await getImageBuffer(sock, botJid, fallbackImage)
@@ -136,18 +136,18 @@ async function handler(m, { sock, config: botConfig }) {
     image: botImage,
     title: `🤖 ${botName}`,
     body:
-      `OFFICIAL BOT  •  ${ownerNumbers.length + 1}/${ownerNumbers.length + 1}\n\n` +
-      `✦ Official Bot\n` +
+      `BOT OFICIAL  •  ${ownerNumbers.length + 1}/${ownerNumbers.length + 1}\n\n` +
+      `✦ Bot oficial\n` +
       `✦ ${botName}\n` +
-      `✦ Status : 🟢 Online\n` +
-      `✦ Platform : WhatsApp Multi-Device\n\n` +
-      `Bot aktif dan siap digunakan.`,
-    footer: `${botName}  •  Active System`,
+      `✦ Estado : 🟢 En línea\n` +
+      `✦ Plataforma : WhatsApp Multi-Device\n\n` +
+      `Bot activo y listo para usar.`,
+    footer: `${botName}  •  Sistema activo`,
     buttons: [
       {
         name: "quick_reply",
         params: {
-          display_text: "Info Bot",
+          display_text: "Info del bot",
           id: `${botConfig.command?.prefix || "."}infobot`,
         },
       },
@@ -169,20 +169,20 @@ async function handler(m, { sock, config: botConfig }) {
   try {
     const carousel = new Carousel(sock)
       .setBody(
-        `♛  OWNER INFORMATION\n\n` +
-        `Kenali owner dan official bot dalam tampilan card yang bisa digeser.\n\n` +
-        `Owner: ${ownerNames.join(", ") || "Owner"}\n` +
+        `♛  INFORMACIÓN DEL DUEÑO\n\n` +
+        `Conoce al dueño y al bot oficial en tarjetas deslizables.\n\n` +
+        `Dueño: ${ownerNames.join(", ") || "Owner"}\n` +
         `Bot: ${botName}\n` +
-        `Status: 🟢 Online`,
+        `Estado: 🟢 En línea`,
       )
-      .setFooter("Swipe kartu ← → untuk melihat profil owner.");
+      .setFooter("Desliza las tarjetas ← → para ver el perfil del dueño.");
 
     carousel.addCard(cards);
     await carousel.send(m.chat, { quoted: m.raw });
   } catch (error) {
     console.error("OWNER CAROUSEL ERROR:", error);
     await m.reply(
-      "❌ Carousel gagal dikirim. Cek log server untuk detail error dari builder WhatsApp.",
+      "❌ No se pudo enviar el carrusel. Revisa el log del servidor para ver el error del builder de WhatsApp.",
     );
   }
 }

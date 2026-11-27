@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,9 +29,9 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     if (!m.quoted) {
         return m.reply(
-            `📢 *ᴛᴏᴛᴀɢ*\n\n` +
-            `> Reply pesan yang ingin di-forward ke semua member\n\n` +
-            `> Contoh: Reply pesan lalu ketik \`${m.prefix}totag\``
+            `📢 *TOTAG*\n\n` +
+            `> Responde al mensaje que quieres reenviar a todos los miembros\n\n` +
+            `> Ejemplo: Responde a un mensaje y escribe \`${m.prefix}totag\``
         )
     }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
         const participants = m.groupMembers || []
 
         if (!participants || participants.length === 0) {
-            return m.reply(`❌ Gagal mendapatkan data member grup`)
+            return m.reply(`❌ No se pudieron obtener los datos de los miembros del grupo`)
         }
 
         const users = participants

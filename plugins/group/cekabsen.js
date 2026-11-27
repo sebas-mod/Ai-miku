@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,10 +28,10 @@ async function handler(m, { sock }) {
   const chatId = m.chat;
   if (!global.absensi[chatId]) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-        `> Belum ada sesi absen di grup ini!\n\n` +
-        `> Admin dapat memulai dengan\n` +
-        `> *.mulaiabsen [keterangan]*`,
+      `❌ *NO HAY NINGUNA ASISTENCIA*\n\n` +
+        `> ¡No hay ninguna sesión de asistencia en este grupo!\n\n` +
+        `> Un administrador puede iniciarla con\n` +
+        `> *.mulaiabsen [descripción]*`,
     );
   }
   const absen = global.absensi[chatId];
@@ -39,25 +39,25 @@ async function handler(m, { sock }) {
   const dateStr = now.format("D MMMM YYYY");
   const createdDate = moment(absen.createdAt).tz("Asia/Jakarta");
   const timeStr = createdDate.format("HH:mm");
-  let list = "┃ _Belum ada yang absen_";
+  let list = "┃ _Nadie ha registrado asistencia todavía_";
   if (absen.peserta.length > 0) {
     list = absen.peserta
       .map((jid, i) => `┃ ${i + 1}. @${jid.split("@")[0]}`)
       .join("\n");
   }
   const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+  const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
   await m.reply(
-    `📋 *DAFTAR YANG UDAH ABSEN*\n\n` +
+    `📋 *LISTA DE ASISTENCIAS*\n\n` +
       `╭┈┈⬡「 📋 *INFO* 」\n` +
       `┃ 📝 ${absen.keterangan}\n` +
       `┃ 📅 ${dateStr}\n` +
       `┃ ⏰ Dimulai: ${timeStr}\n` +
-      `┃ 👑 Dibuat: @${absen.createdBy.split("@")[0]}\n` +
-      `├┈┈⬡「 👥 *PESERTA (${absen.peserta.length})* 」\n` +
+      `┃ 👑 Creado: @${absen.createdBy.split("@")[0]}\n` +
+      `├┈┈⬡「 👥 *PARTICIPANTES (${absen.peserta.length})* 」\n` +
       `${list}\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `Ketik *${m.prefix}absen* untuk hadir`,
+      `Escribe *${m.prefix}absen* para asistir`,
     { mentions: [...absen.peserta, absen.createdBy] },
   );
 }

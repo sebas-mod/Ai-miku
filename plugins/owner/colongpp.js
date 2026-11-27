@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -41,10 +41,10 @@ async function handler(m, { sock }) {
   console.log(targetJid);
   if (!targetJid) {
     return m.reply(
-      `🕵️ *ᴄᴏʟᴏɴɢ ᴘᴘ*\n\n` +
-        `> Reply pesan seseorang untuk mencuri PP-nya\n\n` +
-        `*ᴄᴀʀᴀ:*\n` +
-        `> Reply pesan target → \`${m.prefix}colongpp\``,
+      `🕵️ *ROBAR FOTO DE PERFIL*\n\n` +
+        `> Responde a un mensaje de alguien para robarle la foto de perfil\n\n` +
+        `*CÓMO:*\n` +
+        `> Responde al mensaje del objetivo → \`${m.prefix}colongpp\``,
     );
   }
   await m.react("🕵️");
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
         timeout: 15000,
       });
       ppBuffer = Buffer.from(res.data);
-      source = "default (target tidak punya PP)";
+      source = "por defecto (el objetivo no tiene foto de perfil)";
     }
     const processed = await resizeForPP(ppBuffer);
     const botJid = sock.user?.id;
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.split("@")[0];
     await m.react("✅");
     return m.reply(
-      `✅ *ᴘᴘ ʙᴇʀʜᴀsɪʟ ᴅɪᴄᴏʟᴏɴɢ!*\n\n` +
+      `✅ *¡FOTO DE PERFIL ROBADA!*\n\n` +
         `> 🎯 Target: @${targetNumber}\n` +
         `> 📸 Sumber: ${source}`,
       { mentions: [targetJid] },

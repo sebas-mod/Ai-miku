@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const formatNumber = (n) => Number(n || 0).toLocaleString('id-ID');
 const formatDuration = (sec) => {
@@ -47,7 +47,7 @@ const pluginConfig = {
   async function resolveUrl(raw) {
     let url = String(raw || '').trim()
     const mt = url.match(/https?:\/\/[^\s]+/)
-    if (!mt) throw new Error('Link TikTok tidak valid.')
+    if (!mt) throw new Error('Enlace de TikTok no válido.')
     url = mt[0]
 
     if (/(vt|vm)\.tiktok\.com/.test(url)) {
@@ -159,7 +159,7 @@ const pluginConfig = {
           timeout: 20000
         })
         if (res.data && res.data.code === 0) return res
-        lastErr = new Error(res.data?.msg || 'Respon TikWM tidak valid.')
+        lastErr = new Error(res.data?.msg || 'Respuesta de TikWM no válida.')
       } catch (e) {
         lastErr = e
       }
@@ -170,7 +170,7 @@ const pluginConfig = {
   async function tikwm(url) {
     const res = await tikwmGet('/api/', { url, hd: 1 })
     const d = res.data?.data
-    if (!d) throw new Error(res.data?.msg || 'Data kosong dari TikWM.')
+    if (!d) throw new Error(res.data?.msg || 'Datos vacíos de TikWM.')
     const abs = (u) => !u ? null : /^https?:/.test(u) ? u : `https://www.tikwm.com${u}`
     const isPhoto = Array.isArray(d.images) && d.images.length > 0
     return {
@@ -203,13 +203,13 @@ const pluginConfig = {
       const cookie = (res.headers?.['set-cookie'] || []).map((c) => c.split(';')[0]).join('; ')
       if (p && (p.videoUrl || p.images?.length)) return { ...p, url, cookie }
     } catch {}
-    throw new Error(`Gagal mengekstrak media: ${tikwmErr?.message || 'konten tidak ditemukan / private.'}`)
+    throw new Error(`Error al extraer el contenido: ${tikwmErr?.message || 'contenido no encontrado o privado.'}`)
   }
 
   async function searchTikTok(query) {
     const res = await tikwmGet('/api/feed/search', { keywords: query, count: 1 })
     const v = res.data?.data?.videos?.[0]
-    if (!v) throw new Error('Hasil tidak ditemukan')
+    if (!v) throw new Error('Resultado no encontrado')
     return `https://www.tiktok.com/@${v.author.unique_id}/video/${v.video_id}`
   }
 
@@ -234,9 +234,9 @@ const pluginConfig = {
     const input = (m.quoted ? m.quoted.text : text)?.trim()
     if (!input) {
       return m.reply(
-        `Contoh:\n` +
+        `Ejemplo:\n` +
         `${usedPrefix + command} https://vt.tiktok.com/xxxx\n` +
-        `${usedPrefix + command} Elysia Assistant edit`
+        `${usedPrefix + command} Ai Miku edit`
       )
     }
 
@@ -249,9 +249,9 @@ const pluginConfig = {
       const caption = `
 — DOWNLOADER TIKTOK —
 
-❀ Judul : ${title.length > 80 ? title.slice(0, 80) + '...' : title}
+❀ Título : ${title.length > 80 ? title.slice(0, 80) + '...' : title}
 ❀ Uploader : ${uploader}
-❀ Durasi : ${formatDuration(r.duration)}
+❀ Duración : ${formatDuration(r.duration)}
 ❀ Views : ${formatNumber(r.views)}
 `.trim()
 
@@ -262,13 +262,13 @@ const pluginConfig = {
           const image = await getBuffer(img, r.cookie).catch(() => null)
           if (image) bufs.push(image)
         }
-        if (!bufs.length) throw new Error('Gagal mengunduh foto slide.')
+        if (!bufs.length) throw new Error('Error al descargar las fotos del carrusel.')
 
-        const cap = (i) => i === 0 ? `${caption}\n\n🖼️ Slide ${r.images.length} foto` : `Slide ${i + 1}/${r.images.length}`
+        const cap = (i) => i === 0 ? `${caption}\n\n🖼️ Diapositiva ${r.images.length} de fotos` : `Diapositiva ${i + 1}/${r.images.length}`
 
         await sendAlbum(conn, m.chat, bufs.map((buffer, i) => ({ type: 'image', buffer, caption: cap(i) })), { quoted: m })
       } else {
-        if (!r.videoUrl) throw new Error('URL video tidak ditemukan.')
+        if (!r.videoUrl) throw new Error('URL del video no encontrada.')
         const video = await getBuffer(r.videoUrl, r.cookie)
         await conn.sendMessage(m.chat, { video, mimetype: 'video/mp4', caption }, { quoted: m })
       }

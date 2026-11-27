@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "stats",
   alias: ["botstats", "status", "stat"],
   category: "main",
-  description: "Menampilkan statistik bot",
+  description: "Muestra las estadísticas del bot",
   usage: ".stats",
   example: ".stats",
   isOwner: false,
@@ -64,7 +64,7 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
     const premiumUsers = Object.values(users).filter((u) => u.premium).length;
 
     const statsObj = {
-      bot: botConfig?.bot?.name || "Elysia Assistant",
+      bot: botConfig?.bot?.name || "Ai Miku",
       version: `v${botConfig?.bot?.version || "1.0.0"}`,
       uptime: formatUptime(uptime),
       database: {
@@ -79,22 +79,22 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
         ram: `${formatBytes(usedMem)} / ${formatBytes(totalMem)}`,
         heap: `${formatBytes(memUsed.heapUsed)} / ${formatBytes(memUsed.heapTotal)}`,
       },
-      updated: new Date().toLocaleTimeString("id-ID", {
+      updated: new Date().toLocaleTimeString("es-ES", {
         timeZone: "Asia/Jakarta",
       }),
     };
 
     const table = [
-      "📊 Bot Statistics",
-      "Key | Value",
-      `Bot | ${statsObj.bot};;Version | ${statsObj.version};;Uptime | ${statsObj.uptime}`,
-      `Users | ${statsObj.database.users};;Premium | ${statsObj.database.premium};;Groups | ${statsObj.database.groups}`,
-      `Platform | ${statsObj.system.platform};;Node | ${statsObj.system.node};;CPU Load | ${statsObj.system.cpuLoad}`,
-      `RAM | ${statsObj.system.ram};;Heap | ${statsObj.system.heap};;Updated | ${statsObj.updated}`,
+      "📊 Estadísticas del bot",
+      "Dato | Valor",
+      `Bot | ${statsObj.bot};;Versión | ${statsObj.version};;Uptime | ${statsObj.uptime}`,
+      `Usuarios | ${statsObj.database.users};;Premium | ${statsObj.database.premium};;Grupos | ${statsObj.database.groups}`,
+      `Plataforma | ${statsObj.system.platform};;Node | ${statsObj.system.node};;Carga CPU | ${statsObj.system.cpuLoad}`,
+      `RAM | ${statsObj.system.ram};;Heap | ${statsObj.system.heap};;Actualizado | ${statsObj.updated}`,
     ];
 
     await sock.sendTableV2(m.chat, table, m, {
-      title: "📊 Berikut ini adalah statistik dari bot kami",
+      title: "📊 Estas son las estadísticas de nuestro bot",
       footer: botConfig?.bot?.name,
     });
   } catch (error) {

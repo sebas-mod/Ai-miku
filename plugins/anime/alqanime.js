@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
@@ -84,7 +84,7 @@ const pluginConfig = {
   		!response.data.data ||
   		!Array.isArray(response.data.data.latest)
   	) {
-  		throw new Error('Format API AlqAnime tidak valid');
+  		throw new Error('El formato API AlqAnime no es válido');
   	}
 
   	return response.data.data.latest;
@@ -103,7 +103,7 @@ const pluginConfig = {
   		response.data.status !== 'success' ||
   		!response.data.data
   	) {
-  		throw new Error('Detail anime tidak ditemukan');
+  		throw new Error('Detalles del anime no encontrados');
   	}
 
   	return response.data.data;
@@ -134,7 +134,7 @@ const pluginConfig = {
   }
 
   function createMessage(item, detail) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
   	const title = detail.title || item.title || 'Anime Terbaru';
   	const poster = detail.poster || item.poster || null;
   	const originalUrl = item.url || `https://alqanime.net/${item.slug}/`;
@@ -143,7 +143,7 @@ const pluginConfig = {
   	const caption = [
   		'*ALQANIME AUTO UPDATE*',
   		'----------------------------------------',
-  		`*Judul:* ${title}`,
+  		`*Título:* ${title}`,
   		`*Status:* ${info.status || '-'}`,
   		`*Tipe:* ${info.tipe || '-'}`,
   		`*Musim:* ${info.musim || '-'}`,
@@ -175,7 +175,7 @@ const pluginConfig = {
   }
 
   async function sendAnime(sock, jid, item) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
 
   	try {
   		const detail = await getDetail(item.slug);
@@ -197,14 +197,14 @@ const pluginConfig = {
   		return true;
 
   	} catch (error) {
-  		console.error(`[ALQANIME] Gagal mengirim detail ${item.title}:`, error?.message || error);
+  		console.error(`[ALQANIME] No se pudieron enviar los detalles ${item.title}:`, error?.message || error);
 
   		try {
   			const url = item.url || `https://alqanime.net/${item.slug}/`;
   			const fallbackText = [
   				'*ALQANIME AUTO UPDATE*',
   				'----------------------------------------',
-  				`*Judul:* ${item.title || '-'}`,
+  				`*Título:* ${item.title || '-'}`,
   				`*Episode:* ${item.episode || '-'}`,
   				'----------------------------------------',
   				'*Sumber:* ' + url,
@@ -226,7 +226,7 @@ const pluginConfig = {
 
   			return true;
   		} catch (sendError) {
-  			console.error('[ALQANIME] Fallback gagal:', sendError?.message || sendError);
+  			console.error('[ALQANIME] Error de respaldo:', sendError?.message || sendError);
   			return false;
   		}
   	}
@@ -272,7 +272,7 @@ const pluginConfig = {
   					await new Promise((resolve) => setTimeout(resolve, 2000));
   				} catch (err) {
   					isSuccess = false;
-  					console.error(`[ALQANIME] Error kirim ke ${jid}:`, err?.message || err);
+  					console.error(`[ALQANIME] Enviar a error ${jid}:`, err?.message || err);
   				}
   			}
 
@@ -302,7 +302,7 @@ const pluginConfig = {
   	if (watcherStarted) return;
 
   	watcherStarted = true;
-  	console.log('[ALQANIME] Auto updater watcher aktif (Interval: 5m).');
+  	console.log('[ALQANIME] El observador de actualización automática está activo (Intervalo: 5m).');
 
   	setTimeout(() => {
   		checkUpdates();
@@ -314,11 +314,11 @@ const pluginConfig = {
   }
 
   async function handler(m, { sock, args, reply, usedPrefix, command }) {
-  	const botName = global.namaBot || 'Elysia AI';
+  	const botName = global.namaBot || 'Miku AI';
   	startWatcher(sock);
 
   	if (!m.isGroup) {
-  		return reply('Perintah ini hanya dapat diaktifkan di dalam grup.');
+  		return reply('Este comando sólo se puede activar dentro de un grupo.');
   	}
 
   	const action = (args?.[0] || 'status').toLowerCase();
@@ -332,15 +332,15 @@ const pluginConfig = {
   		await sock.sendMessage(m.chat, { react: { text: '\u2728', key: m.key } }).catch(() => null);
 
   		const text = [
-  			'*ALQANIME AUTO UPDATE AKTIF*',
+  			'*ACTUALIZACIÓN AUTOMÁTICA DE ALQANIME ACTIVADA*',
   			'----------------------------------------',
-  			'Grup ini sekarang akan menerima pembaruan anime otomatis dari AlqAnime.',
+  			'Este grupo ahora recibirá actualizaciones automáticas de anime de AlqAnime.',
   			'',
-  			'*Interval Cek:* Setiap 5 menit',
+  			'*Intervalo de verificación:* Cada 5 minutos',
   			'*Maksimal:* 10 anime / check',
   			'*Sumber:* AlqAnime',
   			'',
-  			'Matikan kapan saja dengan `' + usedPrefix + command + ' off`',
+  			'Apágalo en cualquier momento con `' + usedPrefix + command + ' off`',
   			'',
   			`© ${botName}`
   		].join('\n');
@@ -355,9 +355,9 @@ const pluginConfig = {
   		await sock.sendMessage(m.chat, { react: { text: '\u2728', key: m.key } }).catch(() => null);
 
   		const text = [
-  			'*ALQANIME AUTO UPDATE NONAKTIF*',
+  			'*ACTUALIZACIÓN AUTOMÁTICA DE ALQANIME DESACTIVADA*',
   			'----------------------------------------',
-  			'Grup ini telah berhenti menerima pembaruan otomatis.',
+  			'Este grupo ha dejado de recibir actualizaciones automáticas.',
   			'',
   			`© ${botName}`
   		].join('\n');
@@ -371,8 +371,8 @@ const pluginConfig = {
   		const text = [
   			'*ALQANIME AUTO UPDATE STATUS*',
   			'----------------------------------------',
-  			`*Status Grup:* ${isEnabled ? 'AKTIF' : 'NONAKTIF'}`,
-  			'*Interval Pengecekan:* 5 Menit',
+  			`*Estado del grupo:* ${isEnabled ? 'AKTIF' : 'NONAKTIF'}`,
+  			'*Intervalo de comprobación:* 5 Minutos',
   			'*Maksimal / Update:* 10 Anime',
   			`*Status Watcher:* ${watcherStarted ? 'Berjalan' : 'Standby'}`,
   			'',
@@ -389,7 +389,7 @@ const pluginConfig = {
   			const latest = await getLatest();
   			if (!latest || !latest.length) {
   				await sock.sendMessage(m.chat, { react: { text: '\u274C', key: m.key } }).catch(() => null);
-  				return reply('Tidak ada data terbaru yang diterima dari API AlqAnime.');
+  				return reply('No se han recibido datos recientes de API AlqAnime.');
   			}
 
   			const item = latest[0];
@@ -399,7 +399,7 @@ const pluginConfig = {
   		} catch (error) {
   			console.error('[ALQANIME TEST ERROR]:', error);
   			await sock.sendMessage(m.chat, { react: { text: '\u274C', key: m.key } }).catch(() => null);
-  			return reply('Uji coba AlqAnime gagal: ' + (error?.message || error));
+  			return reply('La prueba de AlqAnime falló: ' + (error?.message || error));
   		}
 
   		return;
@@ -407,11 +407,11 @@ const pluginConfig = {
 
   	return reply(
   		'*ALQANIME AUTO UPDATE*\n\n' +
-  		'Pilihan perintah:\n' +
-  		'- `' + usedPrefix + command + ' on` (Aktifkan di grup ini)\n' +
-  		'- `' + usedPrefix + command + ' off` (Matikan di grup ini)\n' +
-  		'- `' + usedPrefix + command + ' status` (Lihat status berjalan)\n' +
-  		'- `' + usedPrefix + command + ' test` (Kirim sample anime terbaru)'
+  		'Opciones de comando:\n' +
+  		'- `' + usedPrefix + command + ' on` (Habilitar en este grupo)\n' +
+  		'- `' + usedPrefix + command + ' off` (Apagar en este grupo)\n' +
+  		'- `' + usedPrefix + command + ' status` (Ver estado de ejecución)\n' +
+  		'- `' + usedPrefix + command + ' test` (Enviar muestras del último anime)'
   	);
   };
 

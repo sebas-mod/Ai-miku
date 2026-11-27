@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { spawn } from 'node:child_process';
 import { access, writeFile, unlink } from 'node:fs/promises';
 import { constants } from 'node:fs';
@@ -33,7 +33,7 @@ const pluginConfig = {
   const SAMPLE_RATE = 16000;
   const DEFAULT_WINDOW = 12;
   const MIN_WINDOW = 3;
-  const DATA_URI_PREFIX = 'data:audio/vnd.shazam.sig;base64,';
+  const DATA_URI_PREFIX = 'datos:audio/vnd.shazam.sig;base64,';
 
   function ffmpegBin() {
     return process.env.SHAZAM_FFMPEG || 'ffmpeg';
@@ -65,7 +65,7 @@ const pluginConfig = {
       '-acodec', 'pcm_s16le', 'pipe:1',
     ]);
     if (buf.length < SAMPLE_RATE * MIN_WINDOW * 2) {
-      throw new Error('audio terlalu pendek setelah decode (≥3 detik)');
+      throw new Error('el audio es demasiado corto tras decodificarlo (≥3 segundos)');
     }
     return buf;
   }
@@ -477,7 +477,7 @@ const pluginConfig = {
     const urlInput = String(text || '').trim().match(/https?:\/\/\S+/i)?.[0];
 
     if (!urlInput && !/audio|video/.test(mime) && !/audio|video/i.test(String(q.mtype || ''))) {
-      return m.reply(`🎵 *Shazam*\n\nReply audio / VN / video dengan *${usedPrefix || '.'}${command}*\natau kirim link: ${usedPrefix || '.'}${command} https://.../lagu.mp3`);
+      return m.reply(`🎵 *Shazam*\n\nResponde a un audio / nota de voz / video con *${usedPrefix || '.'}${command}*\no envía un enlace: ${usedPrefix || '.'}${command} https://.../cancion.mp3`);
     }
 
     await m.react('🎧');
@@ -497,7 +497,7 @@ const pluginConfig = {
           created = true;
         } else {
           await m.react('❌');
-          return m.reply('❌ Gagal mengunduh media. Reply audio/VN/video-nya.');
+          return m.reply('❌ No se pudo descargar el archivo. Responde al audio/nota de voz/vídeo.');
         }
         target = filePath;
       }
@@ -506,12 +506,12 @@ const pluginConfig = {
 
       if (!res.is_matched || !res.summary) {
         await m.react('❌');
-        return m.reply('❌ Lagu tidak ditemukan. Coba potongan audio yang lebih jelas (min. 3 detik, tanpa banyak noise).');
+        return m.reply('❌ No se encontró la canción. Prueba con un fragmento de audio más claro (min. 3 segundos, sin mucho ruido).');
       }
 
       const s = res.summary;
       let caption = `🎵 *Shazam*\n\n` +
-        `🎼 *Judul:* ${s.title || '-'}\n` +
+        `🎼 *Título:* ${s.title || '-'}\n` +
         `🎤 *Artis:* ${s.artist || '-'}\n` +
         `🎧 *Genre:* ${s.genre || '-'}`;
       if (s.isrc) caption += `\n🔖 *ISRC:* ${s.isrc}`;
@@ -527,7 +527,7 @@ const pluginConfig = {
     } catch (e) {
       console.log(e);
       await m.react('❌');
-      m.reply(`❌ Gagal: ${e?.message || e}`);
+      m.reply(`❌ Error: ${e?.message || e}`);
     } finally {
       if (created && filePath) unlink(filePath).catch(() => {});
     }

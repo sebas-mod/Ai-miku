@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,25 +30,25 @@ async function handler(m, { sock }) {
 
     if (!word) {
         return m.reply(
-            `📝 *ᴀᴅᴅ ᴛᴏxɪᴄ*\n\n` +
-            `> Gunakan: \`.addtoxic <kata>\`\n\n` +
-            `\`Contoh: ${m.prefix}addtoxic katakasar\``
+            `📝 *AÑADIR TÓXICO*\n\n` +
+            `> Usa: \`.addtoxic <palabra>\`\n\n` +
+            `\`Ejemplo: ${m.prefix}addtoxic katakasar\``
         )
     }
 
     if (word.length < 2) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata terlalu pendek (min 2 huruf)`)
+        return m.reply(`❌ *FALLIDO*\n\n> La palabra es demasiado corta (mín. 2 letras)`)
     }
 
     if (word.length > 30) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata terlalu panjang (max 30 huruf)`)
+        return m.reply(`❌ *FALLIDO*\n\n> La palabra es demasiado larga (máx. 30 letras)`)
     }
 
     const groupData = db.getGroup(m.chat) || {}
     const toxicWords = groupData.toxicWords || []
 
     if (toxicWords.includes(word)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata \`${word}\` sudah ada di daftar`)
+        return m.reply(`❌ *FALLIDO*\n\n> La palabra \`${word}\` ya está en la lista`)
     }
 
     toxicWords.push(word)
@@ -57,10 +57,10 @@ async function handler(m, { sock }) {
     m.react('✅')
 
     await m.reply(
-        `✅ *ᴋᴀᴛᴀ ᴛᴏxɪᴄ ᴅɪᴛᴀᴍʙᴀʜ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📝 ᴋᴀᴛᴀ: \`${word}\`\n` +
-        `┃ 📊 ᴛᴏᴛᴀʟ: \`${toxicWords.length}\` kata\n` +
+        `✅ *PALABRA TÓXICA AÑADIDA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+        `┃ 📝 PALABRA: \`${word}\`\n` +
+        `┃ 📊 TOTAL: \`${toxicWords.length}\` palabras\n` +
         `╰┈┈⬡`
     )
 }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ import { getDatabase } from "../../src/lib/data/database.js";
 
 const pluginConfig = {
   name: "gemini",
-  alias: ["g", "elysia"],
+  alias: ["g", "miku"],
   category: "ai",
   description: "Ngobrol dengan Gemini (sesi tersimpan, bisa lanjut dengan reply)",
   usage: ".gemini <pertanyaan>",
@@ -87,7 +87,7 @@ function http(url, { method = "GET", headers = {}, body } = {}) {
 async function ambilCookie() {
   const res = await http(HOME_URL, { method: "HEAD" });
   const cookie = res.headers["set-cookie"]?.[0]?.split("; ")?.[0];
-  if (!cookie) throw new Error("gagal mendapatkan cookie");
+  if (!cookie) throw new Error("no se pudo obtener la cookie");
   return cookie;
 }
 
@@ -130,9 +130,9 @@ function bacaRespons(mentah) {
   }
 
   if (!temuan) {
-    simpanDebug(adaError ? "Gemini membalas error (er)" : "format respons tidak dikenali", mentah);
+    simpanDebug(adaError ? "Gemini devolvió un error (er)" : "formato de respuesta no reconocido", mentah);
     throw new FormatTidakDikenali(
-      adaError ? "Gemini menolak request (sesi/limit/cookie)" : "format respons tidak dikenali",
+      adaError ? "Gemini menolak request (sesi/limit/cookie)" : "formato de respuesta no reconocido",
     );
   }
   const { isi, pilih } = temuan;
@@ -191,7 +191,7 @@ async function tanyaGemini(prompt, sesiLama = "") {
     return await tanyaSekali(prompt, sesiLama);
   } catch (e) {
     if (sesiLama && (e instanceof FormatTidakDikenali || /^HTTP (4|5)/.test(e.message))) {
-      console.log("[gemini] sesi lama gagal, coba ulang dengan sesi baru");
+      console.log("[gemini] la sesión anterior falló, reintentando con una sesión nueva");
       return await tanyaSekali(prompt, "");
     }
     throw e;
@@ -215,10 +215,10 @@ const rapikan = (t) =>
 const menuBantuan = (p) =>
   `GEMINI\n${GARIS}\n` +
   `• ${p}gemini <pertanyaan>\n` +
-  `• ${p}gemini -e [nama]  export sesi\n` +
+  `• ${p}gemini -e [nombre]  exportar sesión\n` +
   `• ${p}gemini -r  import sesi (reply file)\n` +
-  `• ${p}gemini reset  hapus sesi\n` +
-  `• reply jawaban Elysia  lanjut ngobrol tanpa perintah`;
+  `• ${p}gemini reset  borrar sesión\n` +
+  `• responde a la respuesta de Miku  sigue hablando sin comandos`;
 
 async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
   const mentah = String(text || "").trim();
@@ -232,11 +232,11 @@ async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
     const ada = Boolean(g.sessions[user]);
     delete g.sessions[user];
     simpan();
-    return m.reply(ada ? `SESI DIHAPUS\n${GARIS}\nPercakapan baru dimulai.` : "Tidak ada sesi aktif.");
+    return m.reply(ada ? `SESIÓN BORRADA\n${GARIS}\nSe inició una conversación nueva.` : "No hay ninguna sesión activa.");
   }
 
   if (flag === "-e") {
-    if (!g.sessions[user]) return m.reply(`❌ Belum ada sesi. Tanya dulu: ${prefix}gemini <pertanyaan>`);
+    if (!g.sessions[user]) return m.reply(`❌ Todavía no hay sesión. Pregunta primero: ${prefix}gemini <pregunta>`);
     const nama =
       sisa.join("-").replace(/[^\w-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || `gemini-${Date.now()}`;
     const berkas = await sock.sendMessage(
@@ -250,23 +250,23 @@ async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
     );
     return sock.sendMessage(
       chat,
-      { text: `SESI DI-EXPORT\n${GARIS}\nNama   : ${nama}\nImport : reply file di atas dengan "${prefix}gemini -r"` },
+      { text: `SESIÓN EXPORTADA\n${GARIS}\nNombre   : ${nama}\nImportar : responde al archivo de arriba con "${prefix}gemini -r"` },
       { quoted: berkas },
     );
   }
 
   if (flag === "-r") {
-    if (!m.quoted) return m.reply(`❌ Reply file export dengan: ${prefix}gemini -r`);
+    if (!m.quoted) return m.reply(`❌ Responde al archivo exportado con: ${prefix}gemini -r`);
     let obj;
     try {
       obj = JSON.parse((await m.quoted.download()).toString("utf8"));
     } catch (e) {
-      return m.reply(`❌ File tidak bisa dibaca: ${e.message}`);
+      return m.reply(`❌ No se pudo leer el archivo: ${e.message}`);
     }
-    if (obj?.type !== "gemini-session" || !sesiValid(obj.session)) return m.reply("❌ File export tidak valid");
+    if (obj?.type !== "gemini-session" || !sesiValid(obj.session)) return m.reply("❌ Archivo de exportación no válido");
     g.sessions[user] = obj.session;
     simpan();
-    return m.reply(`SESI DI-IMPORT\n${GARIS}\nNama : ${obj.name || "-"}\nLanjutkan dengan: ${prefix}gemini <pertanyaan>`);
+    return m.reply(`SESIÓN IMPORTADA\n${GARIS}\nNombre : ${obj.name || "-"}\nContinúa con: ${prefix}gemini <pregunta>`);
   }
 
   const prompt = mentah || m.quoted?.text || "";
@@ -279,14 +279,14 @@ async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
     if (sesiAktif && ukuranSesi(sesiAktif) >= MAKS_UKURAN_SESI) {
       delete g.sessions[user];
       sesiAktif = "";
-      catatan = "\n\nℹ️ Sesi sebelumnya sudah mencapai 1 MB, jadi percakapan dimulai dari sesi baru.";
+      catatan = "\n\nℹ️ La sesión anterior llegó a 1 MB, así que la conversación empieza en una sesión nueva.";
     }
 
     const { jawaban, sesi } = await tanyaGemini(prompt, sesiAktif);
     if (ukuranSesi(sesi) >= MAKS_UKURAN_SESI) {
       // Sesi menyentuh 1 MB: buang, pertanyaan berikutnya otomatis memakai sesi baru.
       delete g.sessions[user];
-      catatan = "\n\nℹ️ Sesi percakapan sudah mencapai 1 MB, pertanyaan berikutnya dimulai dari sesi baru.";
+      catatan = "\n\nℹ️ La sesión de conversación llegó a 1 MB, la siguiente pregunta empieza en una sesión nueva.";
     } else {
       g.sessions[user] = sesi;
     }
@@ -295,7 +295,7 @@ async function jalankan(m, { sock, text, prefix = ".", modeReply = false }) {
     ingatJawaban(terkirim?.key?.id);
   } catch (e) {
     console.error("[gemini]", e);
-    await m.reply(`❌ Gagal: ${e.message}\nCoba lagi, atau "${prefix}gemini reset" jika terus error.`);
+    await m.reply(`❌ Falló: ${e.message}\nInténtalo otra vez, o "${prefix}gemini reset" si sigue fallando.`);
   }
 }
 

@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas';
 import axios from 'axios';
 
-const config = ElysiaRuntime.config;
+const config = MikuRuntime.config;
 
   const pluginConfig = {
       name: 'fakesertifikat',
@@ -18,7 +18,7 @@ const config = ElysiaRuntime.config;
       category: "maker",
       description: 'Bikin fake sertifikat penghargaan (buat konten/gaguan doang)',
       usage: '.fakesertifikat <nama> | <penghargaan>',
-      example: '.fakesertifikat Elysia Assistant | Best Darling Award',
+      example: '.fakesertifikat Ai Miku | Best Darling Award',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -74,17 +74,17 @@ const config = ElysiaRuntime.config;
 
       if (!text) {
           return m.reply(
-              `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ* 💕\n\n` +
+              `💕 *CERTIFICADO FALSO* 💕\n\n` +
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-              `┃ ✦ *Cara Pakai*\n` +
+              `┃ ✦ *Cómo usar*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakesertifikat <nama> | <penghargaan>\n` +
+              `┃   ${m.prefix}fakesertifikat <nombre> | <premio>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
-              `┃   ${m.prefix}fakesertifikat Elysia Assistant | Best Darling Award\n` +
+              `┃   ${m.prefix}fakesertifikat Ai Miku | Best Darling Award\n` +
               `┃\n` +
-              `┃ 💗 *Elysia Assistant:* Mau award apa darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿Qué premio quieres, darling~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -94,20 +94,20 @@ const config = ElysiaRuntime.config;
       let penghargaan = parts[1] || AWARDS[Math.floor(Math.random() * AWARDS.length)]
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Elysia Assistant:* Lagi bikin sertifikat darling~`)
+      await m.reply(`⏳ *PROCESANDO...*\n\n💗 *Ai Miku:* Creando el certificado, darling~`)
 
       try {
           const imageBuffer = await generateFakeSertifikat(nama, penghargaan)
 
           await sock.sendMessage(m.chat, {
               image: imageBuffer,
-              caption: `💕 *ғᴀᴋᴇ ꜱᴇʀᴛɪꜰɪᴋᴀᴛ* 💕\n\n` +
+              caption: `💕 *CERTIFICADO FALSO* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
-                      `┃ ✅ *ʙᴇʀʜᴀꜱɪʟ*\n` +
-                      `┃ 👤 *ɴᴀᴍᴀ*: ${nama}\n` +
-                      `┃ 🏆 *ᴘᴇɴɢʜᴀʀɢᴀᴀɴ*: ${penghargaan}\n` +
+                      `┃ ✅ *ÉXITO*\n` +
+                      `┃ 👤 *NOMBRE*: ${nama}\n` +
+                      `┃ 🏆 *HOMENAJE*: ${penghargaan}\n` +
                       `┃\n` +
-                      `┃ 💗 *Elysia Assistant:* Selamat ya darling! 🗿\n` +
+                      `┃ 💗 *Ai Miku:* ¡Felicidades, darling! 🗿\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -116,7 +116,7 @@ const config = ElysiaRuntime.config;
       } catch (err) {
           console.error('[FakeSertifikat] Error:', err)
           m.react('💔')
-          return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> ${err.message}`)
+          return m.reply(`💔 *ERROR*\n\n> ${err.message}`)
       }
   }
 

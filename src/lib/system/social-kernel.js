@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
 /**
- * ✦ Elysia Assistant — Social & Waifu Kernel (src/lib/system/social-kernel.js)
+ * ✦ Ai Miku — Social & Waifu Kernel (src/lib/system/social-kernel.js)
  * ✦ Architect: Arthazy
  */
-import _elysiaConfig from '../../../config.js'
+import _mikuConfig from '../../../config.js'
 import _eFs, { promises as _eFsPromises, mkdirSync as _eMkdirSync } from 'fs'
 import _ePath, { join as _ePathJoin } from 'path'
 import _eOs from 'os'
@@ -29,15 +29,15 @@ import _ngHttps from 'https'
 import _ngNet from 'net'
 import { createContext as _igjhCreateContext, runInContext as _igjhRunInContext } from 'node:vm'
 
-import { ElysiaEngine } from './elysia-engine.js'
+import { MikuEngine } from './miku-engine.js'
 
-const ElysiaGuildKernel = (() => {
-  const { saveDB, persist, sleep, jidNumber, toPN, ensureUser } = ElysiaEngine
+const MikuGuildKernel = (() => {
+  const { saveDB, persist, sleep, jidNumber, toPN, ensureUser } = MikuEngine
   const store = () => (global.db.fitur ||= {})
   const save = () => saveDB()
   const num = jidNumber
   const rupiah = (n) => Number(n || 0).toLocaleString('id-ID')
-  const formatDuration = (ms) => ElysiaEngine.clockString(ms)
+  const formatDuration = (ms) => MikuEngine.clockString(ms)
   const pick = (a) => a[Math.floor(Math.random() * a.length)]
   const rememberSock = (s) => { if (s) global.__sosialSock = s }
 
@@ -211,5 +211,5 @@ const ElysiaGuildKernel = (() => {
   }
 })()
 
-export { ElysiaGuildKernel };
-export default ElysiaGuildKernel;
+export { MikuGuildKernel };
+export default MikuGuildKernel;

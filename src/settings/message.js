@@ -1,41 +1,41 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-// Bagian config: message
+// Sección de config: message
 export default {
   messages: {
-    wait: "okee, tunggu sebentar lagi di proses nih",
+    wait: "ok, dame un momento que lo estoy procesando",
     success: "successful",
-    error: "waduh eror nih",
+    error: "uy, qué error este",
 
-    ownerOnly: "lu gabisa make fitur ini, soalnya cuman owner yang bisa",
+    ownerOnly: "no puedes usar esta función, solo el dueño puede",
     premiumOnly:
-      "fitur ini khusus premium woi, beli premium dulu biar dapet akses ini.",
+      "esta función es solo para premium, compra premium primero para tener acceso.",
 
-    groupOnly: "fitur ini cuman dapat akses di group only",
+    groupOnly: "esta función solo está disponible en grupos",
     privateOnly:
-      "cuman bisa di akses private chat.",
+      "solo se puede usar en chat privado.",
 
     adminOnly:
-      "woi ini fitur khusus admin only ya dek",
+      "oye, esta función es solo para administradores, ¿eh?",
     botAdminOnly:
-      "bot bukan admin njir, jadikan bot admin group agar dapat mengakses tersebut",
+      "el bot no es admin, hazlo admin del grupo para que pueda acceder a eso",
 
     cooldown:
-      "ehh bentar dulu\nKamu masih dalam cooldown. Tunggu %time% detik lagi ya.",
+      "ehh espera un momento\nTodavía estás en cooldown. Espera %time% segundos más.",
     energiExceeded:
-      "info terkini\n⚡ *Energi Habis!* Energi kamu sudah habis. Tunggu reset besok atau beli Premium.",
+      "información actual\n⚡ *¡Sin energía!* Tu energía se agotó. Espera el reinicio de mañana o compra Premium.",
     limitDeducted:
-      "bentar dulu woi\nLimit kamu berkurang sebanyak {amount}. Sisa limit: {sisa}",
+      "espera un momento\nTu límite bajó {amount}. Límite restante: {sisa}",
 
     banned:
-      "Kamu di banned karena melanggar aowkwowk",
+      "Estás baneado por romper las reglas jajaja",
 
-    rejectCall: "ANTI CALL TERDETEKSI\nharap jangan menelepon bot",
+    rejectCall: "ANTI LLAMADAS DETECTADO\npor favor no llames al bot",
   }
 };

@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "dymc",
@@ -19,7 +19,7 @@ const te = ElysiaRuntime.te;
     category: "maker",
     description: "Buat gambar dengan efek dynamic circular text",
     usage: ".dymc <teks>",
-    example: ".dymc Elysia Assistant (sambil reply gambar)",
+    example: ".dymc Ai Miku (sambil reply gambar)",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -54,7 +54,7 @@ const te = ElysiaRuntime.te;
     const text = m.text?.trim();
 
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} Halo (sambil balas gambar)\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} Hola (respondiendo a una imagen)\``);
     }
 
     const msg = m.message;
@@ -62,7 +62,7 @@ const te = ElysiaRuntime.te;
     const isImage = getContentType(msg) === "imageMessage" || m.mtype === "imageMessage";
 
     if (!isImage && !isQuotedImage) {
-      return m.reply(`⚠️ Harap kirim atau balas gambar dengan caption \`${m.prefix}${m.command} ${text}\``);
+      return m.reply(`⚠️ Envía o responde a una imagen con el texto \`${m.prefix}${m.command} ${text}\``);
     }
 
     await m.react("🕕");
@@ -137,7 +137,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: "✨ Berhasil membuat efek dymc!"
+        caption: "✨ ¡Efecto dymc creado!"
       }, { quoted: m });
 
       await m.react("✅");

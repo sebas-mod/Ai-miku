@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { getRpStats, getRpTitle, resolveRpTarget } from "../../src/lib/features/elysia-roleplay.js";
+import { getRpStats, getRpTitle, resolveRpTarget } from "../../src/lib/features/miku-roleplay.js";
 
 const pluginConfig = {
   name: "rpprofile",
@@ -36,11 +36,11 @@ async function handler(m) {
       `│ 💭 Mood      : ${stats.mood}\n` +
       `├───〔 *INTERAKSI* 〕\n` +
       `│ 💖 Affection : *${stats.affection}* poin\n` +
-      `│ 📤 Aksi Kirim: *${stats.given}x*\n` +
+      `│ 📤 Acciones enviadas: *${stats.given}x*\n` +
       `│ 📥 Diterima  : *${stats.received}x*\n` +
       `│ ⭐ Favorit   : ${topActs}\n` +
       `╰─────────────────────❖\n` +
-      `_Ubah mood dengan \`${m.prefix}rpmood <mood baru>\`._`,
+      `_Cambia el estado de ánimo con \`${m.prefix}rpmood <nuevo estado>\`._`,
     { mentions: [target] }
   );
 }

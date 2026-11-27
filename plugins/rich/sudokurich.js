@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Sudoku 9x9 — Elysia Assistant</title>
+<title>Sudoku 9x9 — Ai Miku</title>
 <style>
 ${buildGameBaseCss("puzzle")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -55,16 +55,16 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     <div class="logo">🔢</div>
     <div class="meta">
       <div class="title">Sudoku 9x9</div>
-      <div class="sub">Isi kotak 1-9 tanpa angka kembar</div>
+      <div class="sub">Rellena las casillas del 1 al 9 sin repetir números</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="st">Main</b><span>Status</span></div>
-    <div class="stat"><b id="tm">00:00</b><span>Waktu</span></div>
+    <div class="stat"><b id="st">Jugar</b><span>Estado</span></div>
+    <div class="stat"><b id="tm">00:00</b><span>Tiempo</span></div>
   </div>
   <div class="sg" id="sg"></div>
   <div class="nums" id="nums"></div>
-  <div class="row"><button class="btn alt" onclick="hint()">💡 Hint</button><button class="btn" onclick="newGame()">↻ Baru</button></div>
+  <div class="row"><button class="btn alt" onclick="hint()">💡 Pista</button><button class="btn" onclick="newGame()">↻ Nuevo</button></div>
 </div></div>
 <script>
 const BASE="534678912672195348198342567859761423426853791713924856961537284287419635345286179";
@@ -76,7 +76,7 @@ function newGame(){
   let rem=42;while(rem>0){const i=Math.floor(Math.random()*81);if(cur[i]){cur[i]=0;fix[i]=false;rem--;}}
   sel=-1;sec=0;clearInterval(tmr);
   tmr=setInterval(()=>{sec++;document.getElementById('tm').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');},1000);
-  document.getElementById('st').textContent='Main';render();
+  document.getElementById('st').textContent='Jugar';render();
 }
 function render(){
   document.getElementById('sg').innerHTML=cur.map((v,i)=>{

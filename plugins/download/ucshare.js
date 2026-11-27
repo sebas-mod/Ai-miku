@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -204,12 +204,12 @@ const pluginConfig = {
   function normalizeUrl(input) {
       let t = String(input).trim()
       if (!/^https?:\/\//i.test(t)) {
-          if (!/^[A-Za-z0-9]{6,32}$/.test(t)) throw Error('Link atau kode UC Share tidak valid.')
+          if (!/^[A-Za-z0-9]{6,32}$/.test(t)) throw Error('Enlace o código de UC Share no válido.')
           t = `https://uc-share.com/s/${t}`
       }
 
       const u = new URL(t)
-      if (!/(^|\.)uc-share\.com$/i.test(u.hostname)) throw Error('Hanya link uc-share.com yang didukung.')
+      if (!/(^|\.)uc-share\.com$/i.test(u.hostname)) throw Error('Solo se admiten enlaces de uc-share.com.')
       u.searchParams.set('la', 'id')
       return u.toString()
   }
@@ -230,7 +230,7 @@ const pluginConfig = {
       const props = extractInitialProps(html)
       const result = parseFromJson(props) || parseFromHtml(html)
       if (!result.files.length && !result.folders.length && result.share.title === '-') {
-          throw Error('Halaman tidak bisa dibaca. Link mungkin sudah kedaluwarsa atau salah.')
+          throw Error('No se pudo leer la página. El enlace puede haber caducado o ser incorrecto.')
       }
 
       result.url = url
@@ -260,7 +260,7 @@ const pluginConfig = {
       })
 
       if (data?.code !== 0 || !data?.data?.play_info?.url) {
-          throw Error(`Video tidak bisa diambil (code ${data?.code}, ${data?.message || 'tanpa pesan'}).`)
+          throw Error(`No se pudo obtener el video (código ${data?.code}, ${data?.message || 'sin mensaje'}).`)
       }
 
       const play = data.data.play_info
@@ -279,12 +279,12 @@ const pluginConfig = {
       const lines = [
           `*▢ UC SHARE*`,
           ``,
-          `• Judul: ${s.title || '-'}`,
-          `• Pemilik: ${s.author || '-'}`,
+          `• Título: ${s.title || '-'}`,
+          `• Propietario: ${s.author || '-'}`,
           `• Isi: ${share.files.length} file${share.folders.length ? `, ${share.folders.length} folder` : ''}`
       ]
       if (s.total_size) lines.push(`• Total: ${s.total_size}`)
-      if (s.expired_at && s.expired_at !== '-') lines.push(`• Berlaku: ${s.is_permanent ? 'permanen' : `sampai ${s.expired_at}`}`)
+      if (s.expired_at && s.expired_at !== '-') lines.push(`• Válido: ${s.is_permanent ? 'permanente' : `hasta ${s.expired_at}`}`)
       lines.push('')
 
       for (const f of share.files.slice(0, LIST_MAX)) {
@@ -294,15 +294,15 @@ const pluginConfig = {
           lines.push(`${f.no}. ${f.is_video ? '🎬' : '📄'} ${f.file_name}`)
           lines.push(`    ${detail}`)
       }
-      if (share.files.length > LIST_MAX) lines.push(`... dan ${share.files.length - LIST_MAX} file lain`)
+      if (share.files.length > LIST_MAX) lines.push(`... y ${share.files.length - LIST_MAX} archivos más`)
       if (share.folders.length) {
           lines.push('')
-          lines.push(`📁 Folder (isinya belum bisa dibuka): ${share.folders.slice(0, 5).map(f => f.name).join(', ')}`)
+          lines.push(`📁 Carpeta (aún no se puede abrir su contenido): ${share.folders.slice(0, 5).map(f => f.name).join(', ')}`)
       }
 
       if (share.files.some(f => f.is_video && f.fid)) {
           lines.push('')
-          lines.push(`Ambil video: ${prefix}ucshare ${share.pwd_id || '<link>'} <nomor>`)
+          lines.push(`Obtén el video: ${prefix}ucshare ${share.pwd_id || '<link>'} <número>`)
       }
       return lines.join('\n')
   }
@@ -313,35 +313,35 @@ const pluginConfig = {
       if (!link) {
           return reply(
               `*▢ UC SHARE*\n\n` +
-              `Lihat isi link UC Drive lalu ambil videonya.\n\n` +
+              `Revisa el contenido del enlace de UC Drive y luego obtén el video.\n\n` +
               `${prefix}ucshare <link / kode>\n` +
-              `${prefix}ucshare <link / kode> <nomor>\n\n` +
-              `Contoh:\n${prefix}ucshare https://uc-share.com/s/6e1505b566c14\n${prefix}ucshare 6e1505b566c14 1`
+              `${prefix}ucshare <link / kode> <número>\n\n` +
+              `Ejemplo:\n${prefix}ucshare https://uc-share.com/s/6e1505b566c14\n${prefix}ucshare 6e1505b566c14 1`
           )
       }
 
       try {
-          await reply(global.mess?.wait || '⏳ Sedang mengambil data...')
+          await reply(global.mess?.wait || '⏳ Obteniendo los datos...')
           const share = await fetchShare(link)
 
           const no = noRaw ? parseInt(noRaw, 10) : 0
           if (!no) return reply(listText(share, prefix))
 
           const file = share.files.find(f => f.no === no)
-          if (!file) return reply(`❌ Nomor ${no} tidak ada. Pilih 1-${share.files.length}.`)
-          if (!file.is_video) return reply('❌ File itu bukan video.')
-          if (!file.fid) return reply('❌ Video ini tidak bisa diambil (data file tidak lengkap di halaman).')
-          if (!share.stoken) return reply('❌ Token halaman tidak ditemukan, video tidak bisa diambil.')
+          if (!file) return reply(`❌ El número ${no} no existe. Elige entre 1 y ${share.files.length}.`)
+          if (!file.is_video) return reply('❌ Ese archivo no es un vídeo.')
+          if (!file.fid) return reply('❌ No se puede obtener este video (faltan datos del archivo en la página).')
+          if (!share.stoken) return reply('❌ Token de la página no encontrado, no se puede obtener el vídeo.')
 
           const pv = await getVideoPreview(share, file)
           const sizeBytes = pv.size_bytes || file.size || 0
 
           const caption =
               `*▢ UC SHARE VIDEO*\n\n` +
-              `• Nama: ${file.file_name}\n` +
-              `• Durasi: ${pv.duration}\n` +
-              `• Resolusi: ${pv.resolution}\n` +
-              `• Ukuran: ${formatSize(sizeBytes)}\n` +
+              `• Nombre: ${file.file_name}\n` +
+              `• Duración: ${pv.duration}\n` +
+              `• Resolución: ${pv.resolution}\n` +
+              `• Tamaño: ${formatSize(sizeBytes)}\n` +
               `• Codec: ${pv.codec}`
 
           const thumb = pv.thumbnail_url || file.thumbnail
@@ -353,10 +353,10 @@ const pluginConfig = {
 
           const streamInfo = `🔗 Link stream:\n${pv.video_url}`
           if (sizeBytes && sizeBytes > MAX_SEND) {
-              return reply(`📎 Videonya ${formatSize(sizeBytes)}, terlalu besar untuk dikirim lewat WhatsApp.\n\n${streamInfo}`)
+              return reply(`📎 El video mensaje ${formatSize(sizeBytes)}, es demasiado grande para enviarlo por WhatsApp.\n\n${streamInfo}`)
           }
           if (/\.m3u8(\?|$)/i.test(pv.video_url)) {
-              return reply(`📎 Videonya berbentuk stream HLS, tidak bisa dikirim langsung.\n\n${streamInfo}`)
+              return reply(`📎 El video es un stream HLS y no se puede enviar directamente.\n\n${streamInfo}`)
           }
 
           try {
@@ -375,11 +375,11 @@ const pluginConfig = {
               }, { quoted: m })
           } catch (e) {
               console.warn('[UCSHARE] kirim video gagal:', e.message)
-              return reply(`📎 Videonya tidak bisa dikirim langsung.\n\n${streamInfo}`)
+              return reply(`📎 El vídeo no se puede enviar directamente.\n\n${streamInfo}`)
           }
       } catch (e) {
           console.error('[UCSHARE ERROR]', e)
-          return reply(`❌ ${e.response?.status ? `Gagal (HTTP ${e.response.status}). ` : ''}${e.message}`)
+          return reply(`❌ ${e.response?.status ? `Error (HTTP ${e.response.status}). ` : ''}${e.message}`)
       }
   }
 

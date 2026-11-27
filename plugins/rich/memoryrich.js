@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -115,14 +115,14 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">🧠</div><div class="meta"><div class="title">Memory Live</div><div class="sub" id="who"></div></div></div>
      <div class="chips" id="lv"><button class="chip on" data-n="6">Mudah 4×3</button><button class="chip" data-n="8">Sedang 4×4</button><button class="chip" data-n="10">Susah 4×5</button></div>
-     <div class="st"><span class="pill">Langkah <b id="mv">0</b></span><span class="pill">Waktu <b id="tm">0</b>d</span><span class="pill">Rekor <b id="bs">-</b></span></div>
+     <div class="st"><span class="pill">Movimientos <b id="mv">0</b></span><span class="pill">Tiempo <b id="tm">0</b>d</span><span class="pill">Récord <b id="bs">-</b></span></div>
      <div class="grid" id="g"></div>
      <div class="win" id="win"></div>
-     <button class="btn" style="width:100%" id="rs">⟳ Acak Ulang</button>
+     <button class="btn" style="width:100%" id="rs">⟳ Barajar de nuevo</button>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var E=['🐶','🐱','🦊','🐼','🐸','🦁','🐙','','🍕',''],N=6,first=null,lock=false,mv=0,tm=0,iv=null,left=0,rec={};
     try{rec=JSON.parse(localStorage.getItem('pix_mem')||'{}');}catch(e){}
@@ -135,7 +135,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      if(first.dataset.e===c.dataset.e){first.classList.add('m');c.classList.add('m');first=null;left--;if(!left)done();}
      else{lock=true;var a=first;first=null;setTimeout(function(){a.classList.remove('f');c.classList.remove('f');lock=false;},750);}}
     function done(){clearInterval(iv);var b=!rec[N]||mv<rec[N];if(b){rec[N]=mv;try{localStorage.setItem('pix_mem',JSON.stringify(rec));}catch(e){}}$('bs').textContent=rec[N];
-     $('win').textContent='🎉 Selesai! '+mv+' langkah, '+tm+' detik'+(b?' — REKOR BARU!':'');}
+     $('win').textContent='🎉 ¡Completado! '+mv+' movimientos, '+tm+' segundos'+(b?' — ¡NUEVO RÉCORD!':'');}
     $('rs').onclick=start;
     $('lv').onclick=function(e){var n=e.target.dataset&&e.target.dataset.n;if(!n)return;N=+n;[].forEach.call($('lv').children,function(x){x.classList.toggle('on',x===e.target)});start();};
     start();

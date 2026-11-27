@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -206,7 +206,7 @@ async function getAvatarBuffer(sock, jid) {
   if (Buffer.isBuffer(DEFAULT_PP_PATH) && DEFAULT_PP_PATH.length) {
     return DEFAULT_PP_PATH;
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No puedo tomar foto de perfil");
 }
 async function handler(m, { sock }) {
   const username = m.args.join(" ").trim() || m.pushName || "User";
@@ -221,9 +221,9 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n` +
-          `> Reply 1 atau 2 gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory Misaki\``,
+          `> Responder 1 o 2 imagen!\n\n` +
+          `> Formato: \`${m.prefix}historia falsa <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}historia falsa Misaki\``,
       );
     }
     if (m.isImage && m.download) {
@@ -235,7 +235,7 @@ async function handler(m, { sock }) {
     }
     if (!imageTopBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+      return m.reply(`❌ *FALLÓ*\n\n> No puedo descargar imágenes`);
     }
     const resultBuffer = await createFakeStory(
       username,

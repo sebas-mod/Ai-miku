@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "trackipv2",
@@ -33,15 +33,15 @@ const pluginConfig = {
       command
   }) {
       if (!text) {
-          return m.reply(`📌 *Contoh penggunaan:*\n${usedPrefix + command} 103.217.224.106`);
+          return m.reply(`📌 *Ejemplo de uso:*\n${usedPrefix + command} 103.217.224.106`);
       }
 
       const ipTarget = text.trim();
       const isIP = /^(?:\d{1,3}\.){3}\d{1,3}$/.test(ipTarget);
-      if (!isIP) return m.reply('❌ *Format IP tidak valid!*');
+      if (!isIP) return m.reply('❌ *¡Formato de IP no válido!*');
 
       try {
-          m.reply('⏳ *Sedang mengambil informasi...*');
+          m.reply('⏳ *Obteniendo información...*');
 
           let ipData = await getIPData(ipTarget);
 
@@ -53,34 +53,34 @@ const pluginConfig = {
           let formattedData = `
   🔍 *\`INFORMASI IP: ${ipTarget}\`*
 
-  📟 *IP Address : ${safe(ipData.ip)}*
-  📞 *Status : ${ipData.success ? 'Berhasil' : 'Gagal'}*
-  📡 *Tipe IP : ${safe(ipData.type)}*
-  📖 *Kontinen : ${safe(ipData.continent)} ${safe(ipData.continent_code)}*
-  📀 *Negara : ${safe(ipData.country)} ${safe(ipData.country_code)}*
-  📂 *Region : ${safe(ipData.region)} ${safe(ipData.region_code)}*
-  📌 *Kota : ${safe(ipData.city)}*
+  📟 *IP Dirección: ${safe(ipData.ip)}*
+  📞 *Estado: ${ipData.success ? 'Berhasil' : 'Gagal'}*
+  📡 *Tipo IP: ${safe(ipData.type)}*
+  📖 *Continente: ${safe(ipData.continent)} ${safe(ipData.continent_code)}*
+  📀 *País: ${safe(ipData.country)} ${safe(ipData.country_code)}*
+  📂 *Región: ${safe(ipData.region)} ${safe(ipData.region_code)}*
+  📌 *Ciudad: ${safe(ipData.city)}*
 
-  📍 *Koordinat*
-  • Latitude : ${safe(ipData.latitude)}
-  • Longitude : ${safe(ipData.longitude)}
+  📍 *Coordenadas*
+  • Latitud: ${safe(ipData.latitude)}
+  • Longitud: ${safe(ipData.longitude)}
 
-  📬 *Uni Eropa : ${ipData.is_eu ? 'Ya' : 'Tidak'}*
-  📎 *Kode Pos : ${safe(ipData.postal)}*
-  ☎️ *Kode Panggilan : +${safe(ipData.calling_code)}*
-  🏷️ *Ibu Kota : ${safe(ipData.capital)}*
+  📬 *Unión Europea: ${ipData.is_eu ? 'Ya' : 'Tidak'}*
+  📎 *Código Postal: ${safe(ipData.postal)}*
+  ☎️ *Código de llamada: +${safe(ipData.calling_code)}*
+  🏷️ *Ciudad Capital: ${safe(ipData.capital)}*
 
-  🧮 *\`Koneksi\`*
-  💡 ASN : ${safe(ipData.connection?.asn)}
-  🖥️ Org : ${safe(ipData.connection?.org)}
-  📡 ISP : ${safe(ipData.connection?.isp)}
-  💻 Domain : ${safe(ipData.connection?.domain)}
+  🧮 *\`Conexión\`*
+  💡 ASN: ${safe(ipData.connection?.asn)}
+  🖥️ Organización: ${safe(ipData.connection?.org)}
+  📡 ISP: ${safe(ipData.connection?.isp)}
+  💻 Dominios: ${safe(ipData.connection?.domain)}
 
-  ⏰ *\`Timezone\`*
-  ⌨️ ID : ${safe(ipData.timezone?.id)}
-  📅 Waktu : ${safe(ipData.timezone?.current_time)}
+  ⏰ *\`Zona horaria\`*
+  ⌨️ ID: ${safe(ipData.timezone?.id)}
+  📅 Hora: ${safe(ipData.timezone?.current_time)}
 
-  📖 *Map :* ${mapLink}
+  📖 *Mapa:* ${mapLink}
   `.trim();
 
           if (ipData.latitude && ipData.longitude) {
@@ -117,14 +117,14 @@ const pluginConfig = {
           });
 
           if (res.data.success) return res.data;
-          throw new Error('ipwho gagal');
+          throw new Error('ipwho falló');
       } catch {
           const res2 = await axios.get(`http://ip-api.com/json/${ip}`, {
               timeout: 8000
           });
 
           if (res2.data.status !== 'success') {
-              throw new Error('Semua API gagal');
+              throw new Error('Fallaron todas las APIs');
           }
 
           return {

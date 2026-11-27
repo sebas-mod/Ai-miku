@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios'
 
   class Mobinime {
@@ -37,14 +37,14 @@ import axios from 'axios'
         'live-action': '4'
       }
 
-      if (!types[type]) throw 'Tipe anime tidak valid'
+      if (!types[type]) throw 'Tipo de anime no válido'
 
       const genres = await this.genreList()
       const gnr = genres.find(
         g => g.title.toLowerCase().replace(/\s+/g, '-') === genre.toLowerCase()
       )?.id
 
-      if (!gnr) throw 'Genre tidak ditemukan'
+      if (!gnr) throw 'Género no encontrado'
 
       const { data } = await this.inst.post('/anime/list', {
         perpage: count,
@@ -76,7 +76,7 @@ import axios from 'axios'
     }
 
     detail = async (id) => {
-      if (isNaN(id)) throw 'ID tidak valid'
+      if (isNaN(id)) throw 'ID no es válido'
 
       const { data } = await this.inst.post('/anime/detail', {
         id: id.toString()
@@ -101,7 +101,7 @@ import axios from 'axios'
         position: '0'
       })
 
-      if (!data?.url) throw 'Link stream tidak ditemukan'
+      if (!data?.url) throw 'Enlace de transmisión no encontrado'
       return data.url
     }
   }
@@ -129,24 +129,24 @@ import axios from 'axios'
       if (!text)
         return m.reply(
   `🎌 *MOBINIME*
-Gunakan:
-${usedPrefix + command} search <judul>
-${usedPrefix + command} detail <id>
+Uso:
+${usedPrefix + command} buscar <título>
+${usedPrefix + command} detalles <id>
 
-Contoh:
-${usedPrefix + command} search naruto`
+Ejemplo:
+${usedPrefix + command} buscar naruto`
         )
 
       const [sub, ...rest] = text.split(' ')
       const q = rest.join(' ')
 
       if (sub === 'search') {
-        if (!q) return m.reply('Masukkan judul anime')
+        if (!q) return m.reply('Introduce el título del anime.')
 
         const res = await mob.search(q)
-        if (!res?.data?.length) return m.reply('Anime tidak ditemukan')
+        if (!res?.data?.length) return m.reply('anime no encontrado')
 
-        let out = `🔎 *Hasil Pencarian*\n\n`
+        let out = `🔎 *Resultados de la búsqueda*\n\n`
         res.data.slice(0, 10).forEach((v, i) => {
           out += `${i + 1}. *${v.title}*\n`
           out += `   ID: ${v.id}\n`
@@ -171,13 +171,13 @@ ${usedPrefix + command} search naruto`
         return m.reply(out)
       }
 
-      m.reply('Sub-command tidak dikenali')
+      m.reply('Subcomando no reconocido')
     } catch (e) {
       console.error(e)
-      m.reply('❌ Terjadi error saat mengambil data anime')
+      m.reply('❌ Se produjo un error al recuperar datos de anime.')
     }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

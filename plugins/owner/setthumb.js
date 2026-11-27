@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -37,14 +37,14 @@ async function handler(m, { args }) {
         const rows = thumbKeys.map((k) => `• ${k}: ${getThumbUrl(k) || '-'}`)
         return m.reply(
             `🖼️ *MEDIA BOT*\n\n${rows.join('\n')}\n\n` +
-            `Ubah: \`${m.prefix}setthumb <key> <url>\`\nHapus override: \`${m.prefix}setthumb <key> reset\``
+            `Cambiar: \`${m.prefix}setthumb <key> <url>\`\nEliminar override: \`${m.prefix}setthumb <key> reset\``
         )
     }
 
     const name = key === 'ppkosong' ? 'ppKosong' : key
     const valid = [...thumbKeys]
     if (!valid.includes(name)) {
-        return m.reply(`❌ Key tidak dikenal.\nPilihan: ${valid.join(', ')}`)
+        return m.reply(`❌ Clave no reconocida.\nOpciones: ${valid.join(', ')}`)
     }
 
     const current = { ...(db.setting('mediaUrl') || {}) }
@@ -52,11 +52,11 @@ async function handler(m, { args }) {
     if (value === 'reset') {
         delete current[name]
         db.setting('mediaUrl', current)
-        return m.reply(`♻️ Override *${name}* dihapus, kembali memakai config.js`)
+        return m.reply(`♻️ Se eliminó la personalización de *${name}*; se vuelve a usar config.js`)
     }
 
     if (!isUrl(value)) {
-        return m.reply(`❌ URL tidak valid.\nContoh: \`${m.prefix}setthumb ${name} https://example.com/file\``)
+        return m.reply(`❌ URL no válida.\nEjemplo: \`${m.prefix}setthumb ${name} https://example.com/file\``)
     }
 
     current[name] = value

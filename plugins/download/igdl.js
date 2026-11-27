@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
-const igDownloadAuto = ElysiaRuntime.igDownloadAuto;
+const sendAlbum = MikuRuntime.sendAlbum;
+const igDownloadAuto = MikuRuntime.igDownloadAuto;
 
 const pluginConfig = {
     name: "igdl",
@@ -29,7 +29,7 @@ const pluginConfig = {
 
   async function handler(m, { conn, args, text, command, usedPrefix }) {
     const input = (text || args?.[0] || '').trim()
-    if (!input) return m.reply(`*Example:* ${usedPrefix || '.'}${command} https://www.instagram.com/p/xxxx/\n_Untuk story cukup kirim username, contoh:_ ${usedPrefix || '.'}${command} jkt48.fiony`)
+    if (!input) return m.reply(`*Example:* ${usedPrefix || '.'}${command} https://www.instagram.com/p/xxxx/\n_Para las historias basta con enviar el nombre de usuario, ejemplo:_ ${usedPrefix || '.'}${command} jkt48.fiony`)
 
     try {
       await m.react('🕒')
@@ -61,7 +61,7 @@ const pluginConfig = {
     } catch (e) {
       console.log(e)
       await m.react('❌')
-      m.reply(`❌ Gagal: ${e?.message || e}`)
+      m.reply(`❌ Error: ${e?.message || e}`)
     }
   }
 

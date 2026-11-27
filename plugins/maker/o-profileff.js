@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "profileff",
@@ -18,7 +18,7 @@ const te = ElysiaRuntime.te;
     category: "maker",
     description: "Buat gambar profil FF keren",
     usage: ".profileff <nama> | <guild> | <bg_index>",
-    example: ".profileff Fauzan | Elysia Assistant | 1",
+    example: ".profileff Fauzan | Ai Miku | 1",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -57,7 +57,7 @@ const te = ElysiaRuntime.te;
     const input = m.text?.trim();
 
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan nama!\nContoh: \`${m.prefix}${m.command} Fauzan | Guild | rand\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan | Guild | rand\``);
     }
 
     const parts = input.split("|").map(v => v.trim());
@@ -71,7 +71,7 @@ const te = ElysiaRuntime.te;
 
     const index = parseInt(bgPick, 10) - 1;
     if (isNaN(index) || index < 0 || index >= backgroundList.length) {
-      return m.reply(`⚠️ Background tidak valid! Pilih angka 1–${backgroundList.length} atau 'rand'.`);
+      return m.reply(`⚠️ ¡Fondo no válido! Elige un número del 1 al ${backgroundList.length} o 'rand'.`);
     }
 
     await m.react("🕕");
@@ -136,7 +136,7 @@ const te = ElysiaRuntime.te;
 
       await sock.sendMessage(m.chat, {
         image: buffer,
-        caption: `🔥 Profil FF berhasil dibuat!\n👤 Nama: ${nickname}\n🛡️ Guild: ${guild || "-"}`
+        caption: `🔥 ¡Perfil de FF creado!\n👤 Nombre: ${nickname}\n🛡️ Guild: ${guild || "-"}`
       }, { quoted: m });
 
       await m.react("✅");

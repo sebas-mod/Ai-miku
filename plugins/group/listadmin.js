@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,27 +33,27 @@ async function handler(m, { sock }) {
         const admins = participants.filter(p => p.admin)
 
         if (admins.length === 0) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada admin di grup ini.`)
+            await m.reply(`❌ *FALLIDO*\n\n> No hay administradores en este grupo.`)
             return
         }
 
         const owner = admins.find(a => a.admin === 'superadmin')
         const regularAdmins = admins.filter(a => a.admin === 'admin')
 
-        let adminList = `👑 *ʟɪsᴛ ᴀᴅᴍɪɴ*\n\n`
+        let adminList = `👑 *LISTA DE ADMINS*\n\n`
 
         if (owner) {
-            adminList += `\`\`\`━━━ ᴏᴡɴᴇʀ ━━━\`\`\`\n`
+            adminList += `\`\`\`━━━ PROPIETARIO ━━━\`\`\`\n`
             adminList += `\`\`\`👑 @${getParticipantJid(owner).split('@')[0]}\`\`\`\n\n`
         }
 
         if (regularAdmins.length > 0) {
-            adminList += `\`\`\`━━━ ᴀᴅᴍɪɴ ━━━\`\`\`\n`
+            adminList += `\`\`\`━━━ ADMIN ━━━\`\`\`\n`
             regularAdmins.forEach((admin, i) => {
                 adminList += `\`\`\`${i + 1}. @${getParticipantJid(admin).split('@')[0]}\`\`\`\n`
             })
         }
-        adminList += `\n\`Total Admin: ${admins.length}\``
+        adminList += `\n\`Total de administradores: ${admins.length}\``
 
         const mentions = admins.map(a => getParticipantJid(a))
 

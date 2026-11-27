@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
@@ -19,7 +19,7 @@ import fetch from 'node-fetch';
       const html = response.data;
       const $ = cheerio.load(html);
 
-      const trending = $('.landing-section.trending .results .media-card')
+      const trending = $('.landing-section.tendencia.results.media-card')
         .map((index, element) => {
           const title = $(element).find('.title').text().trim();
           const link = url + $(element).find('a.cover').attr('href');
@@ -28,7 +28,7 @@ import fetch from 'node-fetch';
         })
         .get();
 
-      const populer = $('.landing-section.season .results .media-card')
+      const populer = $('.landing-section.temporada.results.media-card')
         .map((index, element) => {
           const title = $(element).find('.title').text().trim();
           const link = url + $(element).find('a.cover').attr('href');
@@ -37,7 +37,7 @@ import fetch from 'node-fetch';
         })
         .get();
 
-      const upcoming = $('.landing-section.nextSeason .results .media-card')
+      const upcoming = $('.landing-section.siguientetemporada.results.media-card')
         .map((index, element) => {
           const title = $(element).find('.title').text().trim();
           const link = url + $(element).find('a.cover').attr('href');
@@ -46,7 +46,7 @@ import fetch from 'node-fetch';
         })
         .get();
 
-      const top = $('.landing-section.top .results .media-card')
+      const top = $('.landing-section.arriba.results.media-card')
         .map((index, element) => {
           const rank = $(element).find('.rank').text().trim();
           const title = $(element).find('.title').text().trim();
@@ -144,7 +144,7 @@ import fetch from 'node-fetch';
           ? $('.banner').css('background-image').replace(/^url\(\s*['"]?|['"]?\s*\)$/g, '')
           : null,
         details: {
-          format: cleanText($('div.data-set:contains("Format") .value').text()),
+          format: cleanText($('div.data-set:contiene("Formato").value').text()),
           episodes: cleanText($('div.data-set:contains("Episodes") .value').text()),
           status: cleanText($('div.data-set:contains("Status") .value').text()),
           season: cleanText($('div.data-set:contains("Season") .value').text()),
@@ -190,7 +190,7 @@ import fetch from 'node-fetch';
     try {
       if (command === 'anilist') {
         if (!args[0]) {
-          return m.reply(`Contoh penggunaan: ${usedPrefix}anilist search <query>`);
+          return m.reply(`Ejemplo de uso: ${usedPrefix}búsqueda anilista <consulta>`);
         }
 
         const subCommand = args[0].toLowerCase();
@@ -201,7 +201,7 @@ import fetch from 'node-fetch';
             if (!query) return m.reply('Masukkan query pencarian!');
             const searchResults = await search(query);
             if (!searchResults || searchResults.length === 0) {
-              return m.reply('Tidak ada hasil ditemukan.');
+              return m.reply('No se encontraron resultados.');
             }
             const searchMessage = searchResults
               .map((result, index) => `${index + 1}. ${result.title}\nLink: ${result.link}`)
@@ -210,7 +210,7 @@ import fetch from 'node-fetch';
               m.chat,
               {
                 image: { url: searchResults[0].imageUrl },
-                caption: `Hasil pencarian:\n\n${searchMessage}`,
+                caption: `Resultados de la búsqueda:\n\n${searchMessage}`,
               },
               { quoted: m }
             );
@@ -220,19 +220,19 @@ import fetch from 'node-fetch';
             if (!query) return m.reply('Masukkan URL anime!');
             const detailResults = await detail(query);
             if (detailResults.error) {
-              return m.reply('Gagal mengambil detail anime.');
+              return m.reply('No se pudieron recoger los detalles del anime.');
             }
             const detailMessage = `
-📌 *Judul:*
-- Romaji: ${detailResults.title.romaji}
+📌 *Título:*
+-Romaji: ${detailResults.title.romaji}
 - English: ${detailResults.title.english}
 - Native: ${detailResults.title.native}
 
-📝 *Deskripsi:*
+📝 *Descripción:*
 ${detailResults.description.translated}
 
-🎬 *Detail:*
-- Format: ${detailResults.details.format}
+🎬 *Detalles:*
+- Formato: ${detailResults.details.format}
 - Episodes: ${detailResults.details.episodes}
 - Status: ${detailResults.details.status}
 - Season: ${detailResults.details.season}
@@ -258,7 +258,7 @@ ${detailResults.studios.translated.join(', ')}
           case 'populer':
             const populerResults = await populer();
             if (!populerResults) {
-              return m.reply('Gagal mengambil data anime populer.');
+              return m.reply('No se pudieron recuperar datos de anime populares.');
             }
             const populerMessage = `
 🎉 *Trending Anime:*
@@ -284,15 +284,15 @@ ${populerResults.top.map((anime, index) => `${index + 1}. ${anime.title} (Rank: 
             break;
 
           default:
-            return m.reply(`Subcommand tidak valid. Gunakan ${usedPrefix}anilist search, detail, atau populer.`);
+            return m.reply(`Subcomando no válido. Usar ${usedPrefix}Búsqueda anilista, detallada o popular.`);
         }
       }
     } catch (error) {
       console.error('Error:', error);
-      m.reply('Terjadi kesalahan saat memproses permintaan.');
+      m.reply('Se produjo un error al procesar la solicitud.');
     }
   };
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

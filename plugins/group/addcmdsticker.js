@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,19 +33,19 @@ async function handler(m, { sock }) {
     if (!commandName) {
         const existingCmds = listStickerCommands()
 
-        let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴛᴏ ᴄᴏᴍᴍᴀɴᴅ*\n\n`
-        txt += `> Reply sticker + ketik command yang ingin dijadikan shortcut.\n\n`
-        txt += `*Contoh:*\n`
-        txt += `> Reply sticker, lalu ketik:\n`
+        let txt = `🖼️ *STICKER A COMANDO*\n\n`
+        txt += `> Responde al sticker y escribe el comando que quieres usar como atajo.\n\n`
+        txt += `*Ejemplo:*\n`
+        txt += `> Reply sticker, y escribe:\n`
         txt += `> \`.addcmdsticker menu\`\n\n`
 
         if (existingCmds.length > 0) {
-            txt += `╭┈┈⬡「 📋 *ᴀᴋᴛɪꜰ* 」\n`
+            txt += `╭┈┈⬡「 📋 *ACTIVO* 」\n`
             for (const cmd of existingCmds.slice(0, 10)) {
                 txt += `┃ 🖼️ → \`${cmd.command}\`\n`
             }
             if (existingCmds.length > 10) {
-                txt += `┃ ... dan ${existingCmds.length - 10} lainnya\n`
+                txt += `┃ ... y ${existingCmds.length - 10} más\n`
             }
             txt += `╰┈┈┈┈┈┈┈┈⬡`
         }
@@ -55,12 +55,12 @@ async function handler(m, { sock }) {
 
     // Validasi reply sticker
     if (!m.quoted) {
-        return m.reply('⚠️ *Reply sticker* yang ingin dijadikan command!')
+        return m.reply('⚠️ ¡*Responde al sticker* que quieres convertir en comando!')
     }
 
     const stickerHash = getQuotedStickerHash(m)
     if (!stickerHash) {
-        return m.reply('⚠️ Pesan yang di-reply bukan *sticker*!')
+        return m.reply('⚠️ ¡El mensaje al que respondes no es un *sticker*!')
     }
 
     // Validasi command exists
@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
 
     if (!plugin) {
         return m.reply(
-            `❌ Command \`${cleanCmd}\` tidak ditemukan!\n\n` +
-            `> Pastikan command yang ingin dijadikan shortcut valid.`
+            `❌ ¡No se encontró el comando \`${cleanCmd}\`!\n\n` +
+            `> Asegúrate de que el comando que quieres usar como atajo existe.`
         )
     }
 
@@ -80,12 +80,12 @@ async function handler(m, { sock }) {
     if (success) {
         await m.react('✅')
         await m.reply(
-            `✅ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ*\n\n` +
+            `✅ *COMANDO DE STICKER AÑADIDO*\n\n` +
             `> 🖼️ Sticker → \`.${cleanCmd}\`\n\n` +
-            `_Kirim sticker tersebut untuk menjalankan command!_`
+            `_¡Envía ese sticker para ejecutar el comando!_`
         )
     } else {
-        await m.reply('❌ Gagal menyimpan sticker command!')
+        await m.reply('❌ ¡No se pudo guardar el comando de sticker!')
     }
 }
 

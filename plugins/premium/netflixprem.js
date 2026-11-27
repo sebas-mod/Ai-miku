@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -46,32 +46,32 @@ async function handler(m) {
   const p = m.prefix || ".";
   const count = parseInt(String(m.text || "").trim().split(/\s+/)[0], 10) || 1;
   if (count < 1 || count > 5) {
-    return m.reply(`⚠️ Contoh: \`${p}netflixprem 1\` (maksimal 5 token sekaligus).`);
+    return m.reply(`⚠️ Ejemplo: \`${p}netflixprem 1\` (máximo 5 tokens a la vez).`);
   }
 
   await m.react("⏳").catch(() => {});
-  await m.reply(`⏳ Sedang membuat *${count}* token Netflix Premium...`);
+  await m.reply(`⏳ Actualmente creando *${count}* Token de Netflix Premium...`);
 
   let result;
   try {
     result = await fetchNetflixTokens(count);
   } catch (e) {
     await m.react("❌").catch(() => {});
-    return m.reply(`❌ Gagal menghubungi server token: ${e.message}`);
+    return m.reply(`❌ No se pudo contactar al servidor de tokens: ${e.message}`);
   }
 
   const tokens = result?.data || [];
   if (!tokens.length) {
     await m.react("❌").catch(() => {});
-    return m.reply(`❌ Stok token sedang kosong atau server bermasalah.`);
+    return m.reply(`❌ El stock de tokens está vacío o el servidor tiene problemas.`);
   }
 
   const okCount = tokens.filter((t) => t.success).length;
   let txt =
     `╭─── ❖ 『 🎬 *NETFLIX PREMIUM TOKEN* 』 ❖\n` +
-    `│ ✧ *Status:* Aktif\n` +
+    `│ ✧ *Estado:* Activo\n` +
     `│ ✧ *Wilayah:* Indonesia (ID)\n` +
-    `│ ✧ *Berhasil:* ${okCount} / ${count}\n`;
+    `│ ✧ *Éxito:* ${okCount} / ${count}\n`;
 
   tokens.forEach((item, idx) => {
     if (!item.success) return;
@@ -88,7 +88,7 @@ async function handler(m) {
       `│ 📺 *TV:* ${links.tv}\n`;
   });
 
-  txt += `╰──────────────────────────❖\n_✦ Elysia Assistant • ${result.time_ms || 0}ms_`;
+  txt += `╰──────────────────────────❖\n_✦ Ai Miku • ${result.time_ms || 0}ms_`;
   await m.react("✅").catch(() => {});
   return m.reply(txt);
 }

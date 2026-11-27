@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'calledit',
@@ -105,11 +105,11 @@ const te = ElysiaRuntime.te;
 
       if (!text.includes('/')) {
           return m.reply(
-              `⚠️ *CARA PAKAI*\n\n` +
-              `Kirim foto dengan caption:\n` +
-              `> \`${m.prefix}calledit <waktu>/<nama>\`\n\n` +
-              `Contoh: \`${m.prefix}calledit 0.09/Jack\`\n\n` +
-              `📷 Foto yang kamu kirim akan langsung ditempel ke lingkaran profil.`
+              `⚠️ *CÓMO USAR*\n\n` +
+              `Envia una foto con el texto:\n` +
+              `> \`${m.prefix}calledit <hora>/<nombre>\`\n\n` +
+              `Ejemplo: \`${m.prefix}calledit 0.09/Jack\`\n\n` +
+              `📷 La foto que envíes se colocará directamente en el círculo del perfil.`
           )
       }
 
@@ -117,16 +117,16 @@ const te = ElysiaRuntime.te;
       const waktu = rawWaktu.trim()
       const nama = nameParts.join('/').trim()
 
-      if (!waktu) return m.reply('❌ Waktu tidak boleh kosong!')
-      if (!nama) return m.reply('❌ Nama tidak boleh kosong!')
-      if (nama.length > 60) return m.reply('❌ Nama terlalu panjang. Maksimal 60 karakter.')
+      if (!waktu) return m.reply('❌ ¡La hora no puede estar vacía!')
+      if (!nama) return m.reply('❌ ¡El nombre no puede estar vacío!')
+      if (nama.length > 60) return m.reply('❌ El nombre es demasiado largo. Máximo 60 caracteres.')
 
       const imageSource = m.isImage ? m : (m.quoted?.isImage ? m.quoted : null)
       if (!imageSource?.download) {
           return m.reply(
-              `❌ Foto wajib dikirim.\n\n` +
-              `Kirim foto + caption \`${m.prefix}calledit ${waktu}/${nama}\` ` +
-              `atau reply foto lalu kirim perintah tersebut.`
+              `❌Debes entorno para fotos.\n\n` +
+              `Envía una foto con el texto \`${m.prefix}calledit ${waktu}/${nama}\` ` +
+              `o responde a una foto y envía ese comando.`
           )
       }
 
@@ -135,7 +135,7 @@ const te = ElysiaRuntime.te;
       try {
           const imageBuffer = await imageSource.download()
           if (!Buffer.isBuffer(imageBuffer) || imageBuffer.length === 0) {
-              throw new Error('Gagal mengunduh gambar')
+              throw new Error('No se pudo descargar la imagen')
           }
 
           const result = await generateLocalCallEdit(nama, waktu, imageBuffer)

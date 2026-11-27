@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "kodepos",
@@ -222,7 +222,7 @@ const pluginConfig = {
       if (!text) {
           return example(
               'kotabaru kelumpang hulu\n\n' +
-              'atau:\n' +
+              'o:\n' +
               '.kodepos kelumpang hulu\n' +
               '.kodepos cantung kiri hilir'
           )
@@ -233,8 +233,8 @@ const pluginConfig = {
 
           if (!result) {
               return reply(
-                  `❌ Wilayah *${text}* tidak ditemukan.\n\n` +
-                  `Coba gunakan nama kecamatan atau kelurahan.`
+                  `❌ No se encontró la zona *${text}*.\n\n` +
+                  `Prueba con el nombre del distrito o del barrio.`
               )
           }
 
@@ -245,21 +245,21 @@ const pluginConfig = {
 
               const villages = data.data || data
 
-              let teks = `📮 *CEK KODE POS*\n`
+              let teks = `📮 *CONSULTA DE CÓDIGO POSTAL*\n`
               teks += `━━━━━━━━━━━━━━━━━━\n\n`
 
-              teks += `📍 Kecamatan: *${result.district.name}*\n`
-              teks += `🏙️ Kabupaten/Kota: *${result.regency.name}*\n`
-              teks += `🗺️ Provinsi: *${result.province.name}*\n\n`
+              teks += `📍 Distrito: *${result.district.name}*\n`
+              teks += `🏙️ Ciudad: *${result.regency.name}*\n`
+              teks += `🗺️ Provincia: *${result.province.name}*\n\n`
 
-              teks += `*Daftar Kelurahan/Desa:*\n\n`
+              teks += `*Lista de barrios/pueblos:*\n\n`
 
               if (!villages.length) {
-                  teks += `Tidak ada data kelurahan/desa.`
+                  teks += `No hay datos de barrios.`
               } else {
                   for (const village of villages) {
                       teks += `• ${village.name}\n`
-                      teks += `  Kode Pos: *${village.postal_code || '-'}*\n\n`
+                      teks += `  Código postal: *${village.postal_code || '-'}*\n\n`
                   }
               }
 
@@ -271,14 +271,14 @@ const pluginConfig = {
           if (result.type === 'village') {
               const v = result.village
 
-              let teks = `📮 *CEK KODE POS*\n`
+              let teks = `📮 *CONSULTA DE CÓDIGO POSTAL*\n`
               teks += `━━━━━━━━━━━━━━━━━━\n\n`
 
-              teks += `🏠 Kelurahan/Desa: *${v.name}*\n`
-              teks += `📮 Kode Pos: *${v.postal_code || '-'}*\n`
-              teks += `📍 Kecamatan: *${result.district.name}*\n`
-              teks += `🏙️ Kabupaten/Kota: *${result.regency.name}*\n`
-              teks += `🗺️ Provinsi: *${result.province.name}*\n`
+              teks += `🏠 Barrio/Pueblo: *${v.name}*\n`
+              teks += `📮 Código postal: *${v.postal_code || '-'}*\n`
+              teks += `📍 Distrito: *${result.district.name}*\n`
+              teks += `🏙️ Ciudad: *${result.regency.name}*\n`
+              teks += `🗺️ Provincia: *${result.province.name}*\n`
 
               teks += `\n━━━━━━━━━━━━━━━━━━`
 
@@ -288,13 +288,13 @@ const pluginConfig = {
           if (result.type === 'regency') {
               let teks = `🏙️ *${result.regency.name}*\n`
               teks += `━━━━━━━━━━━━━━━━━━\n\n`
-              teks += `Kabupaten/Kota ditemukan.\n\n`
-              teks += `Masukkan nama kecamatan atau kelurahan untuk mendapatkan kode pos.\n\n`
-              teks += `Contoh:\n`
+              teks += `Ciudad encontrada.\n\n`
+              teks += `Escribe el nombre del distrito o del barrio para obtener el código postal.\n\n`
+              teks += `Ejemplo:\n`
               teks += `.kodepos ${result.regency.name.replace(
                 /^(Kabupaten|Kota)\s+/i,
                 ''
-            )} kelumpang hulu`
+            )} lodo aguas arriba`
 
               return reply(teks)
           }
@@ -302,15 +302,15 @@ const pluginConfig = {
           if (result.type === 'province') {
               return reply(
                   `🗺️ *${result.province.name}*\n\n` +
-                  `Provinsi ditemukan.\n` +
-                  `Masukkan nama kecamatan atau kelurahan untuk mencari kode pos.`
+                  `Provincia encontrada.\n` +
+                  `Escribe el nombre del distrito o del barrio para buscar el código postal.`
               )
           }
       } catch (e) {
           console.error('[KODEPOS ERROR]', e)
 
           return reply(
-              `❌ Gagal mengambil data kode pos.\n\n` +
+              `❌ No se pudieron obtener los datos del código postal.\n\n` +
               `Error: ${e.message}`
           )
       }

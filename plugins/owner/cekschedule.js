@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     try {
         const status = getFullSchedulerStatus();
 
-        let text = `📊 *sᴄʜᴇᴅᴜʟᴇʀ sᴛᴀᴛᴜs*\n\n`;
+        let text = `📊 *ESTADO DE LOS PROGRAMADORES*\n\n`;
 
         for (const sched of status.schedulers) {
             const statusIcon = sched.running ? '✅' : '❌';
@@ -52,11 +52,11 @@ async function handler(m, { sock }) {
         }
 
         text += `━━━━━━━━━━━━━━━━━━━\n`;
-        text += `✅ Aktif: ${status.summary.totalActive}\n`;
-        text += `❌ Nonaktif: ${status.summary.totalInactive}\n\n`;
+        text += `✅ Activos: ${status.summary.totalActive}\n`;
+        text += `❌ Inactivos: ${status.summary.totalInactive}\n\n`;
 
-        text += `> Gunakan \`.stopschedule <key>\` untuk stop\n`;
-        text += `> Gunakan \`.startschedule <key>\` untuk start`;
+        text += `> Usa \`.stopschedule <key>\` para detener\n`;
+        text += `> Usa \`.startschedule <key>\` para iniciar`;
 
         await m.reply(text);
     } catch (error) {

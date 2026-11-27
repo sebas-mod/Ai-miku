@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const ytdl = ElysiaRuntime.ytdl;
+const ytdl = MikuRuntime.ytdl;
 
   const pluginConfig = {
     name: "ytmp4",
@@ -47,15 +47,15 @@ const ytdl = ElysiaRuntime.ytdl;
       return fallback.dl;
     }
 
-    throw new Error(fallback?.mess || "Gagal mendapatkan video download URL");
+    throw new Error(fallback?.mess || "Error al obtener la URL de descarga del video");
   }
 
   async function handler(m, { sock }) {
     const url = m.text?.trim();
     if (!url)
-      return m.reply(`Contoh: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
+      return m.reply(`Ejemplo: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
     if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-      return m.reply("❌ URL harus YouTube");
+      return m.reply("❌ La URL debe ser de YouTube");
 
     m.react("🕕");
 
@@ -69,7 +69,7 @@ const ytdl = ElysiaRuntime.ytdl;
     } catch (err) {
       console.error("[YTMP4]", err);
       m.react("❌");
-      m.reply("Gagal mengunduh video.");
+      m.reply("Error al descargar el vídeo.");
     }
   }
 

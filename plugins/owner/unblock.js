@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         targetJid = m.quoted.sender || m.quoted.participant
     } else if (m.args[0]) {
         let num = m.args[0].replace(/[^0-9]/g, '')
-        if (!num) return m.reply('❌ Nomor tidak valid.')
+        if (!num) return m.reply('❌ Número no válido.')
         targetJid = num + '@s.whatsapp.net'
     } else if (!m.isGroup) {
         targetJid = m.chat
@@ -38,11 +38,11 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
-            '> `.unblock 628xxx` — Unblock via nomor\n' +
-            '> `.unblock` (reply pesan) — Unblock pengirim\n' +
-            '> `.unblock @mention` — Unblock yang di-mention\n' +
-            '> `.unblock` (di private chat) — Unblock user ini'
+            '⚠️ *CÓMO USAR*\n\n' +
+            '> `.unblock 628xxx` — Unblock por número\n' +
+            '> `.unblock` (responde a un mensaje) — Desbloquea al remitente\n' +
+            '> `.unblock @mención` — Desbloquea al mencionado\n' +
+            '> `.unblock` (en chat privado) — Desbloquea a este usuario'
         )
     }
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
         await sock.updateBlockStatus(targetJid, 'unblock')
         await m.react('✅')
         return m.reply(
-            `✅ *ɴᴏᴍᴏʀ ᴅɪ-ᴜɴʙʟᴏᴄᴋ*\n\n` +
+            `✅ *NÚMERO DESBLOQUEADO*\n\n` +
             `> Target: @${targetJid.split('@')[0]}`,
             { mentions: [targetJid] }
         )

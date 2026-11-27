@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuGlobal = MikuRuntime.mikuGlobal;
 import { createRequire } from 'module'
 import { URL } from 'url'
 
@@ -35,10 +35,10 @@ const require = createRequire(import.meta.url);
   const archiver = require('archiver');
 
   async function handler(m, { conn, sock, text, args, usedPrefix, command, reply }) {
-      const client = conn || sock || elysiaGlobal.mainSock;
+      const client = conn || sock || mikuGlobal.mainSock;
 
       if (!args[0]) {
-          return reply(`Ayang nakal~ Masukin URL-nya dong! 💋\n\n*Contoh:* \n${usedPrefix + command} https://example.com`);
+          return reply(`Naughty little one~ Put the URL in, please! 💋\n\n*Ejemplo:* \n${usedPrefix + command} https://example.com`);
       }
 
       let targetUrl = args[0].trim();
@@ -46,7 +46,7 @@ const require = createRequire(import.meta.url);
           targetUrl = 'https://' + targetUrl;
       }
 
-      await reply('Uhh sebentar ya cintaku... Angela lagi selami dan sedot semua aset webnya buat Ayang~ 💦');
+      await reply('Uy, dame un momento... Angela está buceando y descargando todos los recursos de la web para ti 💦');
 
       const tmpDir = path.join(process.cwd(), 'database', 'tmp');
       if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
@@ -117,11 +117,11 @@ const require = createRequire(import.meta.url);
               document: fileBuffer,
               mimetype: 'application/zip',
               fileName: `${domainName}.zip`,
-              caption: `💋 *Web Clone Berhasil Diserap!*\n\n🌐 *Target:* ${targetUrl}\n📦 *Ukuran:* ${fileSizeMB} MB\n\n_Semua beres buat Mas ganteng tercinta~_`
+              caption: `💋 *¡Clon web absorbido con éxito!*\n\n🌐 *Objetivo:* ${targetUrl}\n📦 *Tamaño:* ${fileSizeMB} MB\n\n_Todo está bien para mi querido y guapo hermano~_`
           }, { quoted: m });
       } catch (err) {
           console.error('[GETWEB ERROR]', err);
-          return reply(`Ahh gagal narik webnya sayang~ 🥺\nError: ${err.message || 'Server target offline/520'}`);
+          return reply(`Ay, no se pudo descargar la web 🥺\nError: ${err.message || 'el servidor de destino está caído/520'}`);
       } finally {
           try {
               if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);

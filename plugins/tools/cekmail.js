@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const tempMailInbox = ElysiaRuntime.tempMailInbox;
+const tempMailInbox = MikuRuntime.tempMailInbox;
 
 const pluginConfig = {
     name: "cekmail",
@@ -29,14 +29,15 @@ const pluginConfig = {
   const fail = (reply, e) => reply(e.friendly ? e.message : `❌ ${e.message}`)
 
   async function inbox(reply, prefix, email) {
-      if (!email) return reply(`Contoh: ${prefix}cekmail <alamat_email>`)
+      if (!email) return reply(`Ejemplo: ${prefix}cekmail <correo>`)
+      
 
       const { mailbox, messages } = await tempMailInbox(email)
-      if (!messages.length) return reply('📭 Belum ada pesan yang masuk.')
+      if (!messages.length) return reply('📭 Todavía no hay mensajes recibidos.')
 
-      let out = `📥 *Daftar Pesan Masuk*\n📫 Email: ${mailbox}\n\n`
-      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(Tanpa Subjek)'}\n📩 ID: ${v.id}`).join('\n\n')
-      return reply(out + `\n\nBaca isi pesan: *${prefix}pesanmail <id>*`)
+      let out = `📥 *Mensajes recibidos*\n📫 Correo: ${mailbox}\n\n`
+      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(Sin asunto)'}\n📩 ID: ${v.id}`).join('\n\n')
+      return reply(out + `\n\nPara leer un mensaje: *${prefix}pesanmail <id>*`)
   }
 
   async function handler(m, { text, reply, prefix }) {

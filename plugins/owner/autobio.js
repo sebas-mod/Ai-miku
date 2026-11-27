@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,23 +30,23 @@ async function handler(m, { sock, db }) {
 
   if (!arg) {
     const status = db.setting("autobio_status") || false;
-    const text = db.setting("autobio_text") || "Bot aktif | 🕒 {clock} | ⏳ {runtime}";
+    const text = db.setting("autobio_text") || "Bot activo | 🕒 {clock} | ⏳ {runtime}";
     const intervalMs = db.setting("autobio_interval") || 60000;
 
     return m.reply(
       `📝 *AUTO BIO SETTINGS*\n\n` +
-      `> Status: *${status ? "Aktif ✅" : "Nonaktif ❌"}*\n` +
-      `> Interval: *${intervalMs / 1000} detik*\n` +
+      `> Estado: *${status ? "Activo ✅" : "Inactivo ❌"}*\n` +
+      `> Intervalo: *${intervalMs / 1000} segundos*\n` +
       `> Teks Bio: ${text}\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}autobio on/off* — Menyalakan/mematikan fitur\n` +
-      `- *${m.prefix}autobio ganti_setiap <waktu>* — Mengatur interval. Contoh: \`.autobio ganti_setiap 30 detik\` atau \`1 jam\`\n` +
-      `- *${m.prefix}autobio <teks>* — Mengatur teks bio\n\n` +
-      `*PLACEHOLDER TERSEDIA:*\n` +
-      `- \`{clock}\` — Menampilkan jam saat ini\n` +
-      `- \`{runtime}\` — Menampilkan lama bot menyala\n` +
-      `- \`{botname}\` — Menampilkan nama bot dari config\n` +
-      `- \`{version}\` — Menampilkan versi bot`
+      `*USO:*\n` +
+      `- *${m.prefix}autobio on/off* — Activa/desactiva la función\n` +
+      `- *${m.prefix}autobio ganti_setiap <tiempo>* — Ajusta el intervalo. Ejemplo: \`.autobio ganti_setiap 30 segundos\` o \`1 hora\`\n` +
+      `- *${m.prefix}autobio <teks>* — Ajusta el texto de la biografía\n\n` +
+      `*PLACEHOLDERS DISPONIBLES:*\n` +
+      `- \`{clock}\` — Muestra la hora actual\n` +
+      `- \`{runtime}\` — Muestra cuánto tiempo lleva el bot encendido\n` +
+      `- \`{botname}\` — Muestra el nombre del bot desde config\n` +
+      `- \`{version}\` — Muestra la versión del bot`
     );
   }
 
@@ -59,25 +59,25 @@ async function handler(m, { sock, db }) {
       const { startAutoBioChecker } = await import("../../src/lib/system/scheduler.js");
       startAutoBioChecker(sock);
     } catch (e) {}
-    return m.reply(`✅ *AUTO BIO DIAKTIFKAN*\n\nBio WhatsApp bot sekarang akan diperbarui secara otomatis setiap menit.`);
+    return m.reply(`✅ *AUTO BIO DIAKTIFKAN*\n\nLa bio del bot de WhatsApp ahora se actualizará automáticamente cada minuto.`);
   }
 
   if (option === "off") {
     db.setting("autobio_status", false);
     await m.react("❌");
-    return m.reply(`❌ *AUTO BIO DINONAKTIFKAN*\n\nBio WhatsApp bot tidak akan di-update lagi.`);
+    return m.reply(`❌ *AUTO-BIO DESACTIVADO*\n\nLa bio del bot de WhatsApp ya no se actualizará.`);
   }
 
   if (option.startsWith("ganti_setiap")) {
     const timeStr = arg.replace(/ganti_setiap/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("❌ *Format Salah*\n\nContoh: `.autobio ganti_setiap 30 detik` atau `1 jam`");
+      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio reemplazar_cada 30 segundos` o `1 hora`");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("❌ *Format Salah*\n\nMasukkan angka yang valid. Contoh: `.autobio ganti_setiap 30 detik`");
+      return m.reply("❌ *Formato incorrecto*\n\nEscribe un número válido. Ejemplo: `.autobio reemplazar_cada 30 segundos`");
     }
 
     if (timeStr.includes("d") || timeStr.includes("detik")) ms = value * 1000;
@@ -86,7 +86,7 @@ async function handler(m, { sock, db }) {
     else ms = value * 60000; // default to minutes
 
     if (ms < 10000) {
-      return m.reply("❌ *Gagal*\n\nInterval minimal adalah 10 detik agar tidak terkena spam dari server WhatsApp.");
+      return m.reply("❌ *Error*\n\nEl intervalo mínimo es de 10 segundos para evitar el spam del servidor de WhatsApp.");
     }
 
     db.setting("autobio_interval", ms);
@@ -98,7 +98,7 @@ async function handler(m, { sock, db }) {
       startAutoBioChecker(sock);
     } catch (e) {}
 
-    return m.reply(`✅ *Interval Diubah*\n\nBio akan di-update otomatis setiap *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (atau ${ms / 1000} detik).`);
+    return m.reply(`✅ *Intervalo cambiado*\n\nLa bio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).`);
   }
 
   db.setting("autobio_text", arg);
@@ -111,8 +111,8 @@ async function handler(m, { sock, db }) {
   } catch (e) {}
 
   return m.reply(
-    `✅ *TEKS BIO DIUBAH*\n\n` +
-    `Format autobio yang baru telah disimpan:\n` +
+    `✅ *TEXTO DE LA BIOGRAFÍA CAMBIADO*\n\n` +
+    `El nuevo formato de autobio se ha guardado:\n` +
     `> ${arg}`
   );
 }

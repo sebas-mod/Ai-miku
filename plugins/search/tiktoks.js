@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -73,7 +73,7 @@ const normalizeVideo = (v) => {
   const videoId = v.video_id || v.id || v.aweme_id || "";
 
   return {
-    title: v.title || v.desc || v.description || "Tanpa Judul",
+    title: v.title || v.desc || v.description || "Sin titulo",
     author: { nickname, unique_id: uniqueId },
     duration: Number(v.duration || 0),
     digg_count: Number(
@@ -98,7 +98,7 @@ async function searchTikwmGotScraping(query) {
   const mod = await import("got-scraping").catch(() => null);
   const gotScraping = mod?.gotScraping || mod?.default?.gotScraping || mod?.default;
   if (typeof gotScraping !== "function") {
-    throw new Error("got-scraping tidak tersedia");
+    throw new Error("Got-scraping no está disponible");
   }
 
   for (const host of ["https://www.tikwm.com", "https://tikwm.com"]) {
@@ -189,7 +189,7 @@ async function searchVideos(query) {
       });
       const list = pickArray(res.data).map(normalizeVideo).filter(Boolean);
       if (list.length) return list;
-      errs.push(`${host}: hasil kosong`);
+      errs.push(`${host}: resultado vacío`);
     } catch (e) {
       errs.push(`${host}: ${e.message}`);
     }
@@ -210,7 +210,7 @@ async function fetchVideoBuffer(videoUrl) {
     },
   });
   const buf = Buffer.from(res.data);
-  if (buf.length < 1024) throw new Error("File video tidak valid");
+  if (buf.length < 1024) throw new Error("Archivo de vídeo no válido");
   return buf;
 }
 
@@ -223,8 +223,8 @@ async function handler(m, ctx = {}) {
   if (!query) {
     return m.reply(
       `╭─── ❖ 『 🔍 *TIKTOK SEARCH* 』 ❖\n` +
-        `│ ✦ Masukkan kata kunci pencarian video TikTok!\n` +
-        `│ 📌 *Contoh:* \`${p}${cmd} stecu stecu 20 detik\`\n` +
+        `│ ✦ ¡Ingrese la palabra clave de búsqueda de vídeo TikTok!\n` +
+        `│ 📌 *Ejemplo:* \`${p}${cmd} stecu stecu 20 segundos\`\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -239,7 +239,7 @@ async function handler(m, ctx = {}) {
       await client
         .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
         .catch(() => {});
-      return m.reply(`❌ Tidak ditemukan video TikTok untuk kata kunci \`${query}\`.`);
+      return m.reply(`❌ No se encontró ningún vídeo TikTok para la palabra clave \`${query}\`.`);
     }
 
     const video = videos[Math.floor(Math.random() * Math.min(videos.length, 6))];
@@ -249,16 +249,16 @@ async function handler(m, ctx = {}) {
 
     const caption =
       `╭─── ❖ 『 🎵 *TIKTOK SEARCH* 』 ❖\n` +
-      `│ 📝 *Judul:* ${video.title}\n` +
+      `│ 📝 *Título:* ${video.title}\n` +
       `│ 👤 *Author:* ${video.author.nickname}${video.author.unique_id ? ` (@${video.author.unique_id})` : ""}\n` +
-      `│ ⏱️ *Durasi:* ${video.duration} detik\n` +
+      `│ ⏱️ *Duración:* ${video.duration} segundo\n` +
       `│ ❤️ *Likes:* ${video.digg_count.toLocaleString("id-ID")}\n` +
       `│ 💬 *Komentar:* ${video.comment_count.toLocaleString("id-ID")}\n` +
       `│ 🔁 *Share:* ${video.share_count.toLocaleString("id-ID")}\n` +
       `│ 👀 *Views:* ${video.play_count.toLocaleString("id-ID")}\n` +
       (directLink !== "-" ? `│ 🔗 *Link:* ${directLink}\n` : "") +
       `╰──────────────────────────❖\n` +
-      `_✦ Elysia Assistant • TikTok Search_`;
+      `_✦ Ai Miku • TikTok Search_`;
 
     let videoPayload;
     try {
@@ -278,7 +278,7 @@ async function handler(m, ctx = {}) {
       .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
       .catch(() => {});
     await m.reply(
-      `❌ *TikTok Search gagal*\n> ${err.message || "Semua server sedang sibuk, coba lagi sebentar."}`
+      `❌ *TikTok La búsqueda falló*\n> ${err.message || "Todos los servidores están ocupados, inténtalo en un momento."}`
     );
   }
 }

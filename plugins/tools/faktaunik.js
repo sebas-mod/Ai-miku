@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "faktaunik",
@@ -25,26 +25,26 @@ const pluginConfig = {
 }
 
   const facts = [
-    'Madu murni adalah satu-satunya makanan yang tidak pernah basi, bahkan setelah ribuan tahun!',
-    'Jantung paus biru berukuran sebesar mobil kecil dan detaknya terdengar hingga radius 3 kilometer. 🐋',
-    'Kucing menghabiskan sekitar 70% dari hidupnya untuk tidur. ( ˘͈ ᵕ ˘͈ ) 🐱',
-    'Semut tidak pernah tidur dan tidak memiliki paru-paru. 🐜',
-    'Sidik jari koala sangat mirip dengan sidik jari manusia hingga sulit dibedakan di bawah mikroskop. 🐨',
-    'Air panas akan membeku lebih cepat daripada air dingin (efek Mpemba). ❄️',
-    'Gurita memiliki 3 jantung dan darah mereka berwarna biru. 🐙',
-    'Satu sendok teh bintang neutron memiliki berat sekitar 6 miliar ton! 🌌',
-    'Pisang secara botani tergolong sebagai buah beri, sedangkan stroberi bukan!',
-    'Kupu-kupu merasakan makanan menggunakan kakinya. 🦋'
+    'La miel pura es el único alimento que nunca caduca, ¡ni siquiera después de miles de años!',
+    'El corazón de la ballena azul es del tamaño de un coche pequeño y su latido se oye a 3 kilómetros de distancia. 🐋',
+    'Los gatos pasan cerca del 70% de su vida durmiendo. ( ˘͈ ᵕ ˘͈ ) 🐱',
+    'Las hormigas nunca duermen y no tienen pulmones. 🐜',
+    'Las huellas dactilares de los koalas se parecen tanto a las humanas que cuesta distinguirlas al microscopio. 🐨',
+    'El agua caliente se congela más rápido que la fría (efecto Mpemba). ❄️',
+    'Los pulpos tienen 3 corazones y su sangre es azul. 🐙',
+    'Una cucharadita de una estrella de neutrones pesa unos 6.000 millones de toneladas. 🌌',
+    'Botánicamente el plátano es una baya, ¡y la fresa no!',
+    'Las mariposas saborean con las patas. 🦋'
   ]
 
   async function handler(m) {
     const item = facts[Math.floor(Math.random() * facts.length)]
     await m.reply(
-      `╭─── ୨୧ FAKTA UNIK ୨୧ ───╮\n` +
-      `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა tahukah kamu?\n` +
+      `╭─── ୨୧ DATO CURIOSO ୨୧ ───╮\n` +
+      `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა ¿lo sabías?\n` +
       `╰─────────────────────────╯\n\n` +
-      `୨ৎ *Fakta Dunia:*\n${item}\n\n` +
-      `꒰ა ♡ ໒꒱ wawasan baru bersama ${global.namebot}!`
+      `୨ৎ *Dato del mundo:*\n${item}\n\n` +
+      `꒰ა ♡ ໒꒱ nuevos conocimientos con ${global.namebot}!`
     )
   }
 

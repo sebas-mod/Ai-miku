@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,36 +33,36 @@ async function handler(m, { sock }) {
     const arg = args[0]?.toLowerCase()
 
     if (!arg) {
-        const status = current ? '✅ Aktif' : '❌ Nonaktif'
+        const status = current ? '✅ Activado' : '❌ Desactivado'
         return m.reply(
-            `🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n` +
-            `> Status: ${status}\n\n` +
-            `> Gunakan:\n` +
-            `> \`${m.prefix}autosticker on\` - aktifkan\n` +
+            `🖼️ *AUTOSTICKER*\n\n` +
+            `> Estado: ${status}\n\n` +
+            `> Usa:\n` +
+            `> \`${m.prefix}autosticker on\` - activar\n` +
             `> \`${m.prefix}autosticker off\` - nonaktifkan\n\n` +
-            `> _Otomatis jadikan gambar/video jadi sticker_`
+            `> _Convierte imágenes y videos en stickers automáticamente_`
         )
     }
 
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah aktif!`)
+            return m.reply(`🖼️ *AUTOSTICKER*\n\n> ¡Ya estaba activado!`)
         }
         db.setGroup(m.chat, { autosticker: true })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ Berhasil diaktifkan!\n> Gambar/video akan otomatis jadi sticker`)
+        return m.reply(`🖼️ *AUTOSTICKER*\n\n> ✅ ¡Activado correctamente!\n> Las imágenes y vídeos se convertirán solos en sticker`)
     }
 
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah nonaktif!`)
+            return m.reply(`🖼️ *AUTOSTICKER*\n\n> ¡Ya estaba desactivado!`)
         }
         db.setGroup(m.chat, { autosticker: false })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ Berhasil dinonaktifkan!`)
+        return m.reply(`🖼️ *AUTOSTICKER*\n\n> ❌ ¡Desactivado correctamente!`)
     }
 
-    return m.reply(`❌ Gunakan: \`${m.prefix}autosticker on/off\``)
+    return m.reply(`❌ Usa: \`${m.prefix}autosticker on/off\``)
 }
 
 async function autoStickerHandler(m, sock) {
@@ -100,7 +100,7 @@ async function autoStickerHandler(m, sock) {
 
         if (isImage) {
             await sock.sendImageAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'elysia',
+                packname: config.sticker?.packname || 'miku',
                 author: config.sticker?.author || 'Bot'
             })
         } else if (isVideo) {
@@ -109,7 +109,7 @@ async function autoStickerHandler(m, sock) {
             if (duration > 10) return false
 
             await sock.sendVideoAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'elysia',
+                packname: config.sticker?.packname || 'miku',
                 author: config.sticker?.author || 'Bot'
             })
         }

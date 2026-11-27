@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -10,9 +10,9 @@ const pluginConfig = {
     name: 'poll',
     alias: ['voting', 'vote', 'survei'],
     category: 'group',
-    description: 'Buat polling/voting di grup',
+    description: 'Crea una encuesta/votación en el grupo',
     usage: '.poll <pertanyaan> | <opsi1>, <opsi2>, ...',
-    example: '.poll Makan apa? | Nasi Goreng, Mie Ayam, Bakso',
+    example: '.poll ¿Qué comemos? | Arroz frito, Fideos, Albóndigas',
     isOwner: false,
     isPremium: false,
     isGroup: true,
@@ -27,15 +27,15 @@ async function handler(m, { sock }) {
 
     if (!text || text.trim() === '') {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Format tidak valid!\n\n` +
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> ¡Formato no válido!\n\n` +
             `*Format:*\n` +
             `> \`.poll pertanyaan | opsi1, opsi2\`\n\n` +
-            `*Contoh:*\n` +
-            `> \`.poll Makan siang apa? | Nasi Goreng, Mie Ayam\`\n\n` +
+            `*Ejemplo:*\n` +
+            `> \`.poll ¿Qué comemos? | Arroz frito, Fideos\`\n\n` +
             `*Opsi tambahan:*\n` +
             `> \`.poll multi | pertanyaan | opsi1, opsi2, opsi3, dst\`\n` +
-            `> (untuk pilihan ganda)`
+            `> (para opciones múltiples)`
         );
         return;
     }
@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
 
     if (parts.length < 2) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Format: \`pertanyaan | opsi1, opsi2, ...\``
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> Formato: \`preguntas | opción1, opción2,...\``
         );
         return;
     }
@@ -61,31 +61,31 @@ async function handler(m, { sock }) {
 
     if (options.length < 2) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Minimal 2 opsi pilihan!`
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> ¡Mínimo 2 opciones!`
         );
         return;
     }
 
     if (options.length > 12) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Maksimal 12 opsi pilihan!`
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> ¡Máximo 12 opciones!`
         );
         return;
     }
 
     if (question.length > 255) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Pertanyaan terlalu panjang!\n` +
-            `> Maksimal 255 karakter.`
+            `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
+            `> ¡La pregunta es demasiado larga!\n` +
+            `> Máximo 255 caracteres.`
         );
         return;
     }
 
     try {
-        const pollMsg = `✅ Success membuat poll`;
+        const pollMsg = `✅ Encuesta creada con éxito`;
 
         await m.reply(pollMsg, { mentions: [m.sender] });
 
@@ -99,8 +99,8 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         await m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal membuat poll.\n` +
+            `❌ *ERROR*\n\n` +
+            `> No se pudo crear la encuesta.\n` +
             `> _${error.message}_`
         );
     }

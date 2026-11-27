@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,7 +49,7 @@ async function fetchAuthToken() {
   const html = await res.text()
   const m = html.match(/PF\.obj\.config\.auth_token\s*=\s*"([a-f0-9]+)"/i)
   const cookie = res.headers.get('set-cookie') || ''
-  if (!m) throw new Error('Gagal mendapatkan token otentikasi ImgBB.')
+  if (!m) throw new Error('No se pudo obtener el token de autenticación de ImgBB.')
   return { token: m[1], cookie }
 }
 
@@ -64,14 +64,14 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'imgbb' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\//i.test(media.mime || '')) {
-    return m.reply(`🖼️ Kirim atau reply gambar dengan perintah *${usedPrefix + command}* untuk mengunggah ke ImgBB.`)
+    return m.reply(`🖼️ Enviar o responder imágenes con comandos *${usedPrefix + command}*para subir a ImgBB.`)
   }
 
   await m.react('⏳')
   try {
     const { token, cookie } = await fetchAuthToken()
     const ext = (media.mime.split('/')[1] || 'jpg').replace('jpeg', 'jpg')
-    const filename = `elysia_${crypto.randomBytes(4).toString('hex')}.${ext}`
+    const filename = `miku_${crypto.randomBytes(4).toString('hex')}.${ext}`
 
     const fd = new FormData()
     fd.append('source', new Blob([media.buffer], { type: media.mime }), filename)
@@ -91,13 +91,13 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'imgbb' }) {
       body: fd
     })
     const json = await upRes.json()
-    if (!json?.image?.url) throw new Error(json?.error?.message || 'Gagal mengunggah gambar ke ImgBB.')
+    if (!json?.image?.url) throw new Error(json?.error?.message || 'No se pudo cargar la imagen en ImgBB.')
 
     const img = json.image
     let txt = `☁️ *IMGBB IMAGE UPLOADER* ☁️\n\n`
-    txt += `• *Nama File* : ${img.filename || filename}\n`
+    txt += `• *Nombre del archivo*: ${img.filename || filename}\n`
     txt += `• *Resolusi* : ${img.width || '-'} × ${img.height || '-'} px\n`
-    txt += `• *Ukuran* : ${formatBytes(img.size || media.buffer.length)}\n`
+    txt += `• *Tamaño*: ${formatBytes(img.size || media.buffer.length)}\n`
     txt += `• *Direct URL* : ${img.url}\n`
     if (img.display_url && img.display_url !== img.url) txt += `• *Display URL* : ${img.display_url}\n`
     if (img.url_viewer) txt += `• *Viewer* : ${img.url_viewer}\n`
@@ -106,7 +106,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'imgbb' }) {
     return m.reply(txt.trim())
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal Upload ImgBB:* ${e.message}`)
+    return m.reply(`❌ *No se pudo cargar ImgBB:* ${e.message}`)
   }
 }
 

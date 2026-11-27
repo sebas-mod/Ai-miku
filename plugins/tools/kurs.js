@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const fetchJSON = ElysiaRuntime.fetchJSON;
-const FriendlyError = ElysiaRuntime.FriendlyError;
-const cached = ElysiaRuntime.cached;
-const peekCache = ElysiaRuntime.peekCache;
-const guard = ElysiaRuntime.guard;
+const fetchJSON = MikuRuntime.fetchJSON;
+const FriendlyError = MikuRuntime.FriendlyError;
+const cached = MikuRuntime.cached;
+const peekCache = MikuRuntime.peekCache;
+const guard = MikuRuntime.guard;
 
 const pluginConfig = {
     name: "kurs",
@@ -41,7 +41,7 @@ const pluginConfig = {
           return await cached(KEY, TTL, async () => {
               const json = await fetchJSON(API)
               if (json?.result !== 'success' || !json?.rates || typeof json.rates !== 'object') {
-                  throw new FriendlyError('Data kurs belum tersedia, coba lagi nanti.')
+                  throw new FriendlyError('Todavía no hay datos del tipo de cambio, inténtalo más tarde.')
               }
               return { rates: json.rates, updated: json.time_last_update_utc || '' }
           })
@@ -62,7 +62,7 @@ const pluginConfig = {
 
   function fmt(n, code) {
       const digits = code === 'IDR' || Math.abs(n) >= 1000 ? 0 : Math.abs(n) >= 1 ? 2 : 6
-      return new Intl.NumberFormat('id-ID', { maximumFractionDigits: digits }).format(n)
+      return new Intl.NumberFormat('es-ES', { maximumFractionDigits: digits }).format(n)
   }
 
   const convert = (rates, amount, from, to) => (amount / rates[from]) * rates[to]
@@ -74,21 +74,21 @@ const pluginConfig = {
       if (tokens.length && !Number.isNaN(parseAmount(tokens[0]))) {
           amount = parseAmount(tokens.shift())
       }
-      if (!(amount > 0) || amount > 1e15) return reply('Jumlah tidak valid.')
+      if (!(amount > 0) || amount > 1e15) return reply('Cantidad no válida.')
 
       const { rates, updated, stale } = await getRates()
-      const footer = `\n\n_Sumber: ExchangeRate-API${updated ? ` | ${updated.replace(/ \+0000$/, ' UTC')}` : ''}${stale ? ' (data lama, server sedang bermasalah)' : ''}_`
+      const footer = `\n\n_Fuente: ExchangeRate-API${updated ? ` | ${updated.replace(/ \+0000$/, ' UTC')}` : ''}${stale ? ' (datos antiguos, el servidor está fallando)' : ''}_`
 
       const codes = tokens.map(t => t.toUpperCase())
       for (const c of codes) {
           if (!/^[A-Z]{3}$/.test(c) || !rates[c]) {
-              return reply(`Mata uang *${c}* tidak dikenal.\n\nPakai kode 3 huruf, contoh: USD, EUR, SGD, JPY, IDR.`)
+              return reply(`La moneda *${c}* no se reconoce.\n\nUsa el código de 3 letras, por ejemplo: USD, EUR, SGD, JPY, IDR.`)
           }
       }
 
       if (!codes.length) {
           const lines = DEFAULT_LIST.map(c => `${fmt(amount, c)} ${c} = Rp ${fmt(convert(rates, amount, c, 'IDR'), 'IDR')}`)
-          return reply(`💱 *KURS KE RUPIAH*\n\n${lines.join('\n')}${footer}`)
+          return reply(`💱 *TIPO DE CAMBIO A RUPIAS*\n\n${lines.join('\n')}${footer}`)
       }
 
       const from = codes[0]

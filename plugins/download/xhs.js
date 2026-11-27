@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fetch from 'node-fetch'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
+const sendAlbum = MikuRuntime.sendAlbum;
 
 const pluginConfig = {
     name: "xhs",
@@ -71,22 +71,22 @@ const pluginConfig = {
   }
 
   async function handler(m, { text, conn, usedPrefix, command }) {
-      if (!text) return m.reply("Mana Url Nyah!");
+      if (!text) return m.reply("¿Dónde está la URL?");
 
       if (/(?:x|twitter)\.com\//i.test(text)) {
-          return m.reply(`Link itu dari X/Twitter, bukan RedNote.\nPakai: *${usedPrefix || '.'}twitter ${text.split(/\s+/)[0]}*`);
+          return m.reply(`Ese enlace es de X/Twitter, no de RedNote.\nUsa: *${usedPrefix || '.'}twitter ${text.split(/\s+/)[0]}*`);
       }
       if (!/(xiaohongshu\.com|xhslink\.com)/i.test(text)) {
-          return m.reply("URL harus dari xiaohongshu.com atau xhslink.com");
+          return m.reply("La URL debe ser de xiaohongshu.com o xhslink.com");
       }
 
       const result = await redNote(text.trim());
-      if (!result) return m.reply("Terkadi Kesalahan Pastikan URL valid!");
+      if (!result) return m.reply("¡Ocurrió un error, comprueba que la URL sea válida!");
 
       let { media } = result;
 
       if (!media.videoUrl && !(media.images && media.images.length)) {
-          return m.reply("Media tidak ditemukan di link tersebut.");
+          return m.reply("Contenido no encontrado en ese enlace.");
       }
 
       try {

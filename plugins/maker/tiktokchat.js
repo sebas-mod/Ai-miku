@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import https from 'https'
@@ -18,7 +18,7 @@ import { existsSync, unlinkSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "tiktokchat",
@@ -40,11 +40,11 @@ const te = ElysiaRuntime.te;
 
     if (!isImage || !text || !text.includes("|")) {
       let help = `💬 *TIKTOK CHAT CANVAS*\n\n`
-      help += `Fitur ini digunakan untuk membuat desain chat palsu bergaya TikTok yang estetis!\n\n`
-      help += `*Cara Penggunaan:*\n`
-      help += `- Kirim foto profil (avatar) dengan caption *${m.prefix}tiktokchat username | pesan kamu*\n`
-      help += `- Atau balas (reply) foto profil dengan pesan *${m.prefix}tiktokchat username | pesan kamu*\n\n`
-      help += `*Contoh:* ${m.prefix}tiktokchat Zann | Halo, hari ini cerah ya!`
+      help += `¡Esta función crea diseños de chat falsos con estilo TikTok!\n\n`
+      help += `*Cómo usar:*\n`
+      help += `- Envía una foto de perfil (avatar) con el texto *${m.prefix}tiktokchat usuario | tu mensaje*\n`
+      help += `- O responde a una foto de perfil con *${m.prefix}tiktokchat usuario | tu mensaje*\n\n`
+      help += `*Ejemplo:* ${m.prefix}tiktokchat Zann | ¡Hola, hoy hace buen día!`
       return m.reply(help);
     }
 
@@ -64,7 +64,7 @@ const te = ElysiaRuntime.te;
 
       if (!buffer) {
         await m.react("❌");
-        return m.reply(`Maaf, sistem gagal mengunduh gambar avatar yang kamu berikan.`);
+        return m.reply(`Lo siento, el sistema no pudo descargar el avatar que enviaste.`);
       }
 
       const form = new FormData();
@@ -83,7 +83,7 @@ const te = ElysiaRuntime.te;
     } catch (error) {
       console.error("[TIKTOKCHAT Plugin Error]", error);
       await m.react("❌");
-      m.reply(`Maaf, gagal membuat canvas TikTok Chat kali ini. Coba lagi beberapa saat.`);
+      m.reply(`Lo siento, no se pudo crear el canvas de TikTok Chat. Inténtalo de nuevo en un momento.`);
     }
   }
 

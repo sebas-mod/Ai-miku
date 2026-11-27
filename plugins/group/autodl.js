@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -34,15 +34,15 @@ function handler(m, { sock }) {
 
     if (!args || args === 'status') {
         return m.reply(
-            `🔗 *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Status: ${current ? '✅ Aktif' : '❌ Nonaktif'}\n\n` +
+            `🔗 *AUTO DESCARGA*\n\n` +
+            `> Estado: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
             `*Platform Support:*\n` +
             `> TikTok, Instagram, Facebook\n` +
             `> YouTube, Twitter/X\n` +
             `> Telegram, Discord\n\n` +
-            `*Penggunaan:*\n` +
-            `> \`${m.prefix}autodl on\` - Aktifkan\n` +
-            `> \`${m.prefix}autodl off\` - Nonaktifkan`
+            `*Uso:*\n` +
+            `> \`${m.prefix}autodl on\` - Activar\n` +
+            `> \`${m.prefix}autodl off\` - Desactivar`
         )
     }
 
@@ -50,8 +50,8 @@ function handler(m, { sock }) {
         db.setGroup(m.chat, { ...groupData, autodl: true })
         m.react('✅')
         return m.reply(
-            `✅ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Kirim link sosmed dan bot akan auto download!\n` +
+            `✅ *AUTO-DESCARGA ACTIVADA*\n\n` +
+            `> ¡Envía un enlace de redes sociales y el bot lo descargará automáticamente!\n` +
             `> Support: TikTok, IG, FB, YouTube, Twitter/X`
         )
     }
@@ -59,10 +59,10 @@ function handler(m, { sock }) {
     if (args === 'off') {
         db.setGroup(m.chat, { ...groupData, autodl: false })
         m.react('❌')
-        return m.reply(`❌ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ɴᴏɴᴀᴋᴛɪꜰ*`)
+        return m.reply(`❌ *AUTO-DESCARGA DESACTIVADA*`)
     }
 
-    return m.reply(`❌ *ᴀʀɢᴜᴍᴇɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n> Gunakan: \`on\` atau \`off\``)
+    return m.reply(`❌ *ARGUMENTO NO VÁLIDO*\n\n> Usa: \`on\` o \`off\``)
 }
 
 export { pluginConfig as config, handler }

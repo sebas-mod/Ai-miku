@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: 'bratvid2',
@@ -31,7 +31,7 @@ const te = ElysiaRuntime.te;
       const text = m.args.join(' ')
 
       if (!text) {
-          return m.reply(`🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid2 hello world\``)
+          return m.reply(`🎬 *VIDEO BRAT V2*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratvid2 hola mundo\``)
       }
 
       m.react('🕕')

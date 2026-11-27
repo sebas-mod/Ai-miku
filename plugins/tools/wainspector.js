@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "wainspector",
@@ -59,20 +59,20 @@ const pluginConfig = {
       const p = prefix || '.'
       const list = String(text || '').split(/[\n,;]+/).map(s => s.trim()).filter(Boolean)
       if (!list.length) {
-          return reply(`🔎 *WA Inspector*\n\nContoh:\n• ${p}${command} 081234567890\n• ${p}${command} 0812xxxx, 0813xxxx (maks ${MAX_NUMBERS} nomor)`)
+          return reply(`🔎 *WA Inspector*\n\nEjemplo:\n• ${p}${command} 081234567890\n• ${p}${command} 0812xxxx, 0813xxxx (máx. ${MAX_NUMBERS} números)`)
       }
-      if (list.length > MAX_NUMBERS) return reply(`⚠️ Maksimal ${MAX_NUMBERS} nomor sekali cek.`)
+      if (list.length > MAX_NUMBERS) return reply(`⚠️ Máximo ${MAX_NUMBERS} números por consulta.`)
 
       const rows = []
       for (const [i, raw] of list.entries()) {
           const f = formatPhoneNumber(raw)
-          if (!f.valid) { rows.push(`${i + 1}. ${raw}\n   ❌ Format nomor salah`); continue }
+          if (!f.valid) { rows.push(`${i + 1}. ${raw}\n   ❌ Formato de número incorrecto`); continue }
 
           const clean = f.number.replace(/\+/g, '')
           const kategori = []
-          if (checkIsMewah(f.number)) kategori.push('Mewah')
-          if (checkIsOldNumber(f.number)) kategori.push('Old')
-          if (!kategori.length) kategori.push('Regular')
+          if (checkIsMewah(f.number)) kategori.push('Premium')
+          if (checkIsOldNumber(f.number)) kategori.push('Antiguo')
+          if (!kategori.length) kategori.push('Normal')
 
           let registered = null, bio = null
           try {
@@ -84,9 +84,9 @@ const pluginConfig = {
 
           rows.push(
               `${i + 1}. ${f.number}\n` +
-              `   📂 Kategori: ${kategori.join(' + ')}\n` +
-              `   ${registered === null ? '❓ Status: gagal dicek' : registered ? '✅ Terdaftar di WhatsApp' : '🚫 Tidak terdaftar di WhatsApp'}` +
-              (registered ? `\n   💬 Bio: ${bio || '(kosong / disembunyikan)'}\n   🔗 https://wa.me/${clean}` : '')
+              `   📂 Categoría: ${kategori.join(' + ')}\n` +
+              `   ${registered === null ? '❓ Estado: no se pudo comprobar' : registered ? '✅ Registrado en WhatsApp' : '🚫 No registrado en WhatsApp'}` +
+              (registered ? `\n   💬 Bio: ${bio || '(vacía / oculta)'}\n   🔗 https://wa.me/${clean}` : '')
           )
           if (i < list.length - 1) await new Promise(r => setTimeout(r, 500))
       }

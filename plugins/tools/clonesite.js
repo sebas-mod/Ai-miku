@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import zlib from 'zlib'
 import crypto from 'crypto'
 import path from 'path'
 import * as cheerio from 'cheerio'
 
-const netguard = ElysiaRuntime.netguard;
-const reactTo = ElysiaRuntime.reactTo;
+const netguard = MikuRuntime.netguard;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "clonesite",
@@ -44,7 +44,7 @@ const pluginConfig = {
   const COOLDOWN_MS = 45000
   const MAX_RUNNING = 2
 
-  const UA = 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Elysia AssistantClone/1.0'
+  const UA = 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Ai MikuClone/1.0'
 
   const TEXT_EXT = new Set(['.html', '.htm', '.css', '.js', '.mjs', '.cjs', '.json', '.map', '.webmanifest', '.svg', '.xml', '.txt', '.ts', '.tsx', '.jsx', '.vue', '.md', '.csv', '.yaml', '.yml'])
   const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.avif', '.bmp'])
@@ -320,7 +320,7 @@ const pluginConfig = {
   async function fetchRes(url, deadline) {
       let lastErr
       for (let attempt = 0; attempt <= 1; attempt++) {
-          if (Date.now() > deadline) throw Object.assign(new Error('waktu habis'), { code: 'EDEADLINE' })
+          if (Date.now() > deadline) throw Object.assign(new Error('tiempo agotado'), { code: 'EDEADLINE' })
           try {
               return await safeFetch(url, { timeout: 20000, maxBytes: MAX_FILE, maxRedirects: 5, headers: { 'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.9,id;q=0.8' } })
           } catch (e) {
@@ -379,13 +379,13 @@ const pluginConfig = {
           if (!buf || buf.length === 0) { errors.push({ url, status, error: 'empty body' }); return }
 
           const wantsHtml = isRoot || (!ext && kind === 'page') || ['.html', '.htm'].includes(ext)
-          if (ctype === 'text/html' && !wantsHtml) { skipped.push({ url, status, reason: 'spa-fallback (bukan file asli)' }); return }
+          if (ctype === 'text/html' && !wantsHtml) { skipped.push({ url, status, reason: 'spa-fallback (no es un archivo original)' }); return }
 
           const isExternal = !sameHost
           const isHtml = ctype === 'text/html' || ['.html', '.htm'].includes(ext)
           const localPath = filePathFor(finalUrl, { isHtml, isExternal })
           if (store.has(localPath)) return
-          if (budget.total + buf.length > MAX_TOTAL) { truncated = true; skipped.push({ url, reason: 'melewati batas total ukuran' }); return }
+          if (budget.total + buf.length > MAX_TOTAL) { truncated = true; skipped.push({ url, reason: 'supera el tamaño total permitido' }); return }
           budget.total += buf.length
 
           const text = isTextType(ctype, ext, type) ? decodeText(buf, String(res.headers['content-type'] || '')) : null
@@ -452,37 +452,37 @@ const pluginConfig = {
       const input = String(text || m.quoted?.text || '').trim()
       if (!input) {
           return reply(
-              `*🌐 CLONE SOURCE WEBSITE*\n\n` +
-              `Ambil HTML, CSS, JS, source map (pulihkan file asli TS/TSX/JSX/Vue), gambar, font, dan JSON jadi ZIP.\n\n` +
-              `*Contoh:*\n${prefix}${command} https://contoh.com\n${prefix}${command} contoh.com --depth=2 --pages=30\n\n` +
-              `*Opsi:*\n• --depth=N  kedalaman halaman (default ${DEFAULTS.depth}, maks ${isOwner ? LIMIT_OWNER.depth : LIMIT_USER.depth})\n` +
-              `• --pages=N  jumlah halaman (default ${DEFAULTS.pages}, maks ${isOwner ? LIMIT_OWNER.pages : LIMIT_USER.pages})\n` +
-              `• --assets=N  jumlah file (default ${DEFAULTS.assets}, maks ${isOwner ? LIMIT_OWNER.assets : LIMIT_USER.assets})\n` +
-              `• --external=false  jangan ambil aset dari domain lain`
+              `*🌐 CLONAR EL CÓDIGO DE UNA WEB*\n\n` +
+              `Descarga HTML, CSS, JS, source maps (recupera los archivos originales TS/TSX/JSX/Vue), imágenes, fuentes y JSON en un ZIP.\n\n` +
+              `*Ejemplo:*\n${prefix}${command} https://ejemplo.com\n${prefix}${command} ejemplo.com --depth=2 --pages=30\n\n` +
+              `*Opciones:*\n• --depth=N  profundidad de páginas (por defecto ${DEFAULTS.depth}, máx. ${isOwner ? LIMIT_OWNER.depth : LIMIT_USER.depth})\n` +
+              `• --pages=N  número de páginas (por defecto ${DEFAULTS.pages}, máx. ${isOwner ? LIMIT_OWNER.pages : LIMIT_USER.pages})\n` +
+              `• --assets=N  número de archivos (por defecto ${DEFAULTS.assets}, máx. ${isOwner ? LIMIT_OWNER.assets : LIMIT_USER.assets})\n` +
+              `• --external=false  no descargar recursos de otros dominios`
           )
       }
 
       const { url: rawUrl, opts } = parseInput(input, isOwner)
       const parsed = netguard.parseUrl(rawUrl)
-      if (!parsed) return reply('❌ Link tidak valid atau mengarah ke alamat internal.')
+      if (!parsed) return reply('❌ Enlace no válido o que apunta a una dirección interna.')
 
       if (!isOwner) {
           const left = (cooldowns.get(m.sender) || 0) - Date.now()
-          if (left > 0) return reply(`⏳ Tunggu ${Math.ceil(left / 1000)} detik lagi sebelum clone website berikutnya.`)
+          if (left > 0) return reply(`⏳ Espera ${Math.ceil(left / 1000)} Quedan segundos antes del próximo clon del sitio web.`)
       }
-      if (running >= MAX_RUNNING) return reply('⏳ Bot sedang memproses clone lain. Coba lagi sebentar.')
+      if (running >= MAX_RUNNING) return reply('⏳ El bot está clonando otra web. Inténtalo de nuevo en un momento.')
 
       running++
       if (!isOwner) cooldowns.set(m.sender, Date.now() + COOLDOWN_MS)
       try {
           await reactTo(sock, m, '⏳')
-          await reply(`⏳ Mengambil source *${parsed.hostname}* ...\nDepth ${opts.depth} • maks ${opts.pages} halaman • maks ${opts.assets} file`)
+          await reply(`⏳ Descargando el código de *${parsed.hostname}* ...\nProfundidad ${opts.depth} • máx. ${opts.pages} páginas • máx. ${opts.assets} archivos`)
 
           const t0 = Date.now()
           const result = await crawl(parsed.href, opts, t0 + DEADLINE_MS)
           const { store, errors, skipped, recovered } = result
 
-          if (!store.size) throw new Error(errors[0] ? `tidak ada file yang berhasil diambil (${errors[0].error || 'HTTP ' + errors[0].status})` : 'tidak ada file yang berhasil diambil')
+          if (!store.size) throw new Error(errors[0] ? `no se pudo descargar ningún archivo (${errors[0].error || 'HTTP ' + errors[0].status})` : 'no se pudo descargar ningún archivo')
 
           const files = [...store.values()].map(v => v.meta).sort((a, b) => a.path.localeCompare(b.path))
           const byType = {}
@@ -529,7 +529,7 @@ const pluginConfig = {
           console.error('[CLONESITE ERROR]', e?.message || e)
           await reactTo(sock, m, '❌')
           cooldowns.delete(m.sender)
-          reply(`❌ Gagal clone website: ${e?.message || e}`)
+          reply(`❌ No se pudo clonar el sitio web: ${e?.message || e}`)
       } finally {
           running--
       }

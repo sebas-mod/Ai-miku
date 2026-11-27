@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,7 +49,7 @@ async function downloadFromMsg(m, sock) {
 }
 
 function convertToOpusWithWaveform(inputBuffer) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-voice-'))
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-voice-'))
   const inPath = path.join(dir, 'in.media')
   const outPath = path.join(dir, 'out.ogg')
   fs.writeFileSync(inPath, inputBuffer)
@@ -66,7 +66,7 @@ function convertToOpusWithWaveform(inputBuffer) {
     p.on('error', (e) => { fs.rmSync(dir, { recursive: true, force: true }); reject(e) })
     p.on('close', (code) => {
       try {
-        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg gagal mengonversi Voice Note.')
+        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg no pudo convertir la nota de voz.')
         const audio = fs.readFileSync(outPath)
         fs.rmSync(dir, { recursive: true, force: true })
         const bars = 64
@@ -92,7 +92,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'voice' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/(audio|video)\//i.test(media.mime || '')) {
-    return m.reply(`🎤 Kirim atau reply audio/video dengan perintah *${usedPrefix + command}* untuk menjadikannya Voice Note bergelombang (Waveform).`)
+    return m.reply(`🎤 Enviar o responder audio/video con comandos *${usedPrefix + command}* para hacer que la nota de voz sea ondulada (forma de onda).`)
   }
 
   await m.react('⏳')
@@ -100,13 +100,13 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'voice' }) {
     const { audio, waveform } = await convertToOpusWithWaveform(media.buffer)
     await client.sendMessage(
       m.chat,
-      { audio, mimetype: 'audio/ogg; codecs=opus', ptt: true, waveform },
+      { audio, mimetype: 'audio/ogg; códecs=opus', ptt: true, waveform },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal memproses Voice Note:* ${e.message}`)
+    return m.reply(`❌ *No se pudo procesar la nota de voz:* ${e.message}`)
   }
 }
 

@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
 /**
- * ✦ Elysia Assistant — Unified Media & Scraper Kernel (src/lib/system/media-scraper.js)
+ * ✦ Ai Miku — Unified Media & Scraper Kernel (src/lib/system/media-scraper.js)
  * ✦ Architect: Arthazy
  */
-import _elysiaConfig from '../../../config.js'
-import { ElysiaEngine } from './elysia-engine.js'
+import _mikuConfig from '../../../config.js'
+import { MikuEngine } from './miku-engine.js'
 import axios from 'axios'
 import crypto from 'crypto'
 import fs, { promises, mkdirSync } from 'fs'
@@ -31,9 +31,9 @@ import { createContext as _igjhCreateContext, runInContext as _igjhRunInContext 
 import { webcrypto as _igjhWebcrypto } from 'node:crypto'
 import _pkQRCode from 'qrcode'
 
-const { pickImage, reactTo } = ElysiaEngine
-const rbDefineLib = (name, fn) => ElysiaEngine.defineLib(name, fn)
-const footerText = () => '✦ Elysia Assistant • by Arthazy'
+const { pickImage, reactTo } = MikuEngine
+const rbDefineLib = (name, fn) => MikuEngine.defineLib(name, fn)
+const footerText = () => '✦ Ai Miku • by Arthazy'
 
 export const he = { decode: s => s };
 
@@ -1895,14 +1895,14 @@ const _tools = (() => {
         const usage = spec.fields.map(f => (f.req ? `<${f.label}>` : `[${f.label}]`)).join('|')
         const optional = spec.fields.filter(f => !f.req).map(f => f.label)
 
-        let t = '*Command salah!*\n'
+        let t = '*¡Comando incorrecto!*\n'
         if (reason) t += `${reason}\n`
         t += `\n*${spec.title}*\n`
-        t += spec.image ? 'Reply / kirim *foto* dengan caption:\n' : 'Cara pakai:\n'
+        t += spec.image ? 'Responde / envía una *foto* con el texto:\n' : 'Cómo usarlo:\n'
         t += `${prefix}${name}${usage ? ' ' + usage : ''}`
-        if (spec.example) t += `\n\n*Contoh:*\n${prefix}${name} ${spec.example}`
-        if (spec.quoted) t += `\n\n_Atau reply pesan teks lalu ketik ${prefix}${name}_`
-        if (optional.length && !spec.hideOptionalNote) t += `\n\n_Boleh dikosongkan: ${optional.join(', ')}_`
+        if (spec.example) t += `\n\n*Ejemplo:*\n${prefix}${name} ${spec.example}`
+        if (spec.quoted) t += `\n\n_O responde a un mensaje de texto y escribe ${prefix}${name}_`
+        if (optional.length && !spec.hideOptionalNote) t += `\n\n_Opcional: ${optional.join(', ')}_`
         if (spec.extraHelp) t += `\n\n${spec.extraHelp}`
         return t
     }
@@ -2072,7 +2072,7 @@ const _tools = (() => {
         } catch (e) {
             console.error('[API-TOOL]', spec.name, e?.message || e)
             await reactTo(sock, m, '❌')
-            await m.reply('Gagal memproses. API mungkin sedang down atau data tidak valid, coba lagi nanti.')
+            await m.reply('No se pudo procesar. Puede que la API esté caída o que los datos no sean válidos, inténtalo más tarde.')
         }
     }
 
@@ -2144,12 +2144,12 @@ const _dataid = (() => {
         } catch (e) {
             if (e instanceof FriendlyError) return ctx.reply(`[ ! ] ${e.message}`)
             console.error(e)
-            return ctx.reply('[ ! ] Terjadi kesalahan saat mengambil data, coba lagi nanti.')
+            return ctx.reply('[ ! ] Ocurrió un error al obtener los datos, inténtalo más tarde.')
         }
     }
 
-    const HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
-    const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    const HARI = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+    const BULAN = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
 
     function nowWib() {
         const t = new Date(Date.now() + 7 * 3600 * 1000)
@@ -2380,7 +2380,7 @@ rbDefineLib('helperbails', async () => {
 export const netguard = (() => {
   const dns = _ngDns, http = _ngHttp, https = _ngHttps, net = _ngNet
 
-  const UA = 'Mozilla/5.0 (compatible; Elysia AssistantBot/1.0; +https://whatsapp.com)'
+  const UA = 'Mozilla/5.0 (compatible; Ai MikuBot/1.0; +https://whatsapp.com)'
   let _allowPrivate = false
   const _testAllowPrivate = (v) => { _allowPrivate = !!v }
 
@@ -3358,7 +3358,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
         try {
             const msgPayload = coverBuffer
                 ? { image: coverBuffer, caption, footer: 'Klik tombol di bawah untuk download video 👇' }
-                : { text: caption, footer: 'Klik tombol di bawah untuk download video 👇' }
+                : { text: caption, footer: 'Pulsa el botón de abajo para descargar el vídeo 👇' }
 
             await sock.sendMessage(gid, {
                 ...msgPayload,
@@ -3478,11 +3478,11 @@ return { loadSent, saveSent, loadState, saveState, getOngoingAnimeList, startAut
 })()
 export const { loadSent, saveSent, loadState, saveState, getOngoingAnimeList, startAutoCheck, stopAutoCheck, initAutoStart, runCheck, isRunning } = __autoAnime
 
-export const ElysiaMediaKernel = {
+export const MikuMediaKernel = {
   he,
   yts,
   DailymotionDL, JHFastDL, JHICog, JHIgExport, JHSssIG, RedNoteDL, TeraBoxDL, Youtube, aiodl, detectPlatform, fallbackToMp3Buffer, fbdown, ffmpeg, igDownloadAuto, instagramDownloader, isPrivateIp, likee, mediafire, netguard, premku, resolveIgTarget, scrapePinterest, searchKonachan, sfileDownload, sfileSearch, toAudio, toPTT, toVideo, ttdown, webp2mp4, webp2png, ytdl,
   BULAN, FriendlyError, HARI, bestMatches, cached, fetchJSON, getAllRegencies, getDistricts, getOngoingAnimeList, getProvinces, getRegencies, getVillages, guard, handleApiTool, identifyAudio, isRunning, loadSent, loadState, matchByName, norm, nowWib, pad, peekCache, runCheck, saveSent, saveState, startAutoCheck, stopAutoCheck, tempMailCreate, tempMailInbox, tempMailRead, titleCase, webRecord, webScreenshot
 }
 
-export default ElysiaMediaKernel
+export default MikuMediaKernel

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -49,7 +49,7 @@ const activeJobs = new Set();
 async function createTempEmail() {
   const { data } = await client.post(`${MAIL_API}/create`, {});
   if (!data?.success || !data?.email) {
-    throw new Error("Gagal membuat email sementara");
+    throw new Error("No se pudo crear un correo electrónico temporal");
   }
   return { email: data.email, token: data.token };
 }
@@ -57,7 +57,7 @@ async function createTempEmail() {
 async function requestMagicLink(email) {
   const { data } = await client.post(`${CLAIM_API}/send-link`, { email });
   if (!data?.success) {
-    throw new Error(data?.message || "Gagal mengirim magic link");
+    throw new Error(data?.message || "No se pudo enviar el enlace mágico");
   }
   return data;
 }
@@ -81,7 +81,7 @@ async function pollMagicLink(email) {
     } catch {}
     await sleep(POLL_WAIT);
   }
-  throw new Error("Magic link tidak masuk (timeout)");
+  throw new Error("El enlace mágico no llega (tiempo de espera)");
 }
 
 async function verifyMagicLink(email, magicLink) {
@@ -90,7 +90,7 @@ async function verifyMagicLink(email, magicLink) {
     magicLink,
   });
   if (!data?.success || !data?.ok) {
-    throw new Error(data?.message || "Verifikasi link gagal");
+    throw new Error(data?.message || "Error en la verificación del enlace");
   }
   return data;
 }
@@ -125,26 +125,26 @@ async function handler(m) {
 
   if (!Number.isInteger(count) || count < 1) {
     return m.reply(
-      `╭─── ❖ 『 💎 *AMBULK — AUTO KLAIM AM* 』 ❖\n` +
-        `│ 📌 *Format:* \`${p}${cmd} [jumlah]\`\n` +
-        `│ ✨ *Contoh:* \`${p}${cmd} 1\` atau \`${p}${cmd} 2\`\n` +
-        `│ ℹ️ Maksimal *${MAX_BATCH} akun* per proses (±1 menit/akun)\n` +
+      `╭─── ❖ 『 💎 *AMBULK — RECLAMO AUTOMÁTICO AM* 』 ❖\n` +
+        `│ 📌 *Formato:* \`${p}${cmd} [cantidad]\`\n` +
+        `│ ✨ *Ejemplo:* \`${p}${cmd} 1\` o \`${p}${cmd} 2\`\n` +
+        `│ ℹ️ Máximo *${MAX_BATCH} cuentas* por proceso (±1 minutos/cuenta)\n` +
         `╰──────────────────────────❖`
     );
   }
 
   if (count > MAX_BATCH) {
-    return m.reply(`⚠️ Maksimal *${MAX_BATCH} akun* per perintah.`);
+    return m.reply(`⚠️Máximo*${MAX_BATCH} cuenta* por comando.`);
   }
   if (activeJobs.has(m.sender)) {
-    return m.reply("⏳ Proses sebelumnya masih berjalan, tunggu sampai selesai dulu ya.");
+    return m.reply("⏳ El proceso anterior aún está en ejecución, primero espera hasta que finalice.");
   }
 
   activeJobs.add(m.sender);
   await m.react("⏳").catch(() => {});
 
   try {
-    await m.reply(`⏳ Memproses *${count}* akun Alight Motion Premium, mohon tunggu...`);
+    await m.reply(`⏳ Procesamiento *${count}* Alight Motion cuenta Premium, espere...`);
 
     const results = [];
     for (let i = 1; i <= count; i++) {
@@ -156,8 +156,8 @@ async function handler(m) {
     const failCount = results.length - okCount;
 
     const lines = [
-      `╭─── ❖ 『 💎 *HASIL AMBULK ELYSIA* 』 ❖`,
-      `│ 📊 *Total:* ${results.length} | ✅ *Sukses:* ${okCount} | ❌ *Gagal:* ${failCount}`,
+      `╭─── ❖ 『 💎 *MIKU TOMA EL RESULTADO* 』 ❖`,
+      `│ 📊 *Total:* ${results.length} | ✅ *Éxito:* ${okCount} | ❌ *Error:* ${failCount}`,
     ];
 
     results.forEach((r, idx) => {
@@ -179,7 +179,7 @@ async function handler(m) {
     await m.react(okCount ? "✅" : "❌").catch(() => {});
   } catch (e) {
     await m.react("❌").catch(() => {});
-    await m.reply(`❌ Gagal memproses AMBulk: ${e.message}`);
+    await m.reply(`❌ No se pudo procesar AMBulk: ${e.message}`);
   } finally {
     activeJobs.delete(m.sender);
   }

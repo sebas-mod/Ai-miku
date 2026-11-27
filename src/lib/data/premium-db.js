@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -172,11 +172,11 @@ function removeOwner(jid) {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
     const owners = loadOwners()
     const index = owners.findIndex(o => o.number === cleanJid || o.jid === cleanJid)
-    if (index === -1) return { success: false, message: 'Tidak ditemukan di daftar owner' }
+    if (index === -1) return { success: false, message: 'No está en la lista de dueños' }
 
     owners.splice(index, 1)
     saveOwners(owners)
-    return { success: true, message: 'Berhasil dihapus dari owner' }
+    return { success: true, message: 'Eliminado de la lista de dueños' }
 }
 
 function addPremium(jid, days = 30, name = 'Unknown') {
@@ -192,7 +192,7 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         premiumList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         premiumList[existing].name = name || premiumList[existing].name
         savePremium(premiumList)
-        return { success: true, message: `Premium diperpanjang ${days} hari`, expiredAt: premiumList[existing].expiredAt }
+        return { success: true, message: `Premium ampliado ${days} días`, expiredAt: premiumList[existing].expiredAt }
     }
 
     premiumList.push({
@@ -203,14 +203,14 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePremium(premiumList)
-    return { success: true, message: `Berhasil ditambahkan sebagai premium ${days} hari`, expiredAt }
+    return { success: true, message: `Añadido como premium durante ${days} días`, expiredAt }
 }
 
 function removePremium(jid) {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
     const premiumList = loadPremium()
     const index = premiumList.findIndex(p => p.number === cleanJid || p.jid === cleanJid)
-    if (index === -1) return { success: false, message: 'Tidak ditemukan di daftar premium' }
+    if (index === -1) return { success: false, message: 'No está en la lista de premium' }
 
     premiumList.splice(index, 1)
     savePremium(premiumList)
@@ -230,7 +230,7 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         partnerList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         partnerList[existing].name = name || partnerList[existing].name
         savePartners(partnerList)
-        return { success: true, message: `Partner diperpanjang ${days} hari`, expiredAt: partnerList[existing].expiredAt }
+        return { success: true, message: `Partner ampliado ${days} días`, expiredAt: partnerList[existing].expiredAt }
     }
 
     partnerList.push({
@@ -241,7 +241,7 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePartners(partnerList)
-    return { success: true, message: `Berhasil ditambahkan sebagai partner ${days} hari`, expiredAt }
+    return { success: true, message: `Añadido como partner durante ${days} días`, expiredAt }
 }
 
 function removePartner(jid) {

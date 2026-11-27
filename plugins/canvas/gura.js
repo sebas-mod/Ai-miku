@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -48,7 +48,7 @@ async function uploadWithPixhost(buffer, filename = "gura.jpg") {
   const result = await service.uploadFromBinary(buffer, filename);
   const url = result?.directLink || result?.directUrl || result?.url;
   if (typeof url !== "string" || !/^https?:\/\//i.test(url)) {
-    throw new Error("Pixhost tidak mengembalikan direct URL gambar");
+    throw new Error("Pixhost no devuelve imágenes URL directas");
   }
   return url;
 }
@@ -80,13 +80,13 @@ async function uploadWithCatbox(buffer, filename = "gura.jpg") {
 
 async function uploadImage(buffer) {
   if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
-    throw new Error("Buffer gambar kosong");
+    throw new Error("El buffer de imagen está vacío");
   }
 
   try {
     return await uploadWithPixhost(buffer);
   } catch (pixErr) {
-    console.warn("[Gura] Pixhost gagal, mencoba Catbox:", pixErr?.message || pixErr);
+    console.warn("[Gura] Pixhost falló, probé Catbox:", pixErr?.message || pixErr);
     return await uploadWithCatbox(buffer);
   }
 }
@@ -94,27 +94,27 @@ async function uploadImage(buffer) {
 async function getMediaBuffer(m) {
   if (m?.quoted) {
     if (typeof m.quoted.download !== "function") {
-      throw new Error("Helper quoted.download tidak tersedia");
+      throw new Error("Ayudante citado. La descarga no está disponible");
     }
     const buffer = await m.quoted.download();
     if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
-      throw new Error("Reply gambar menghasilkan buffer kosong");
+      throw new Error("La respuesta de imagen produce un búfer vacío");
     }
     return buffer;
   }
 
   if (m?.message) {
     if (typeof m.download !== "function") {
-      throw new Error("Helper m.download tidak tersedia");
+      throw new Error("El asistente m.download no está disponible");
     }
     const buffer = await m.download();
     if (!Buffer.isBuffer(buffer) || buffer.length === 0) {
-      throw new Error("Gambar menghasilkan buffer kosong");
+      throw new Error("La imagen produce un buffer vacío.");
     }
     return buffer;
   }
 
-  throw new Error("Pesan gambar tidak ditemukan");
+  throw new Error("Mensaje de imagen no encontrado");
 }
 
 function getErrorText(data) {
@@ -193,7 +193,7 @@ async function requestGura(imageUrl) {
   }
 
   throw new Error(
-    `Nexray tidak mengembalikan gambar (${contentType || "unknown"})${text ? `: ${text.slice(0, 200)}` : ""}`
+    `Nexray no devuelve imágenes (${contentType || "unknown"})${text ? `: ${text.slice(0, 200)}` : ""}`
   );
 }
 
@@ -203,7 +203,7 @@ async function handler(m, { sock }) {
 
   if (!isReply && !hasCurrentImage) {
     return m.reply(
-      `🦈 *GURA CANVAS*\n\nKirim atau reply foto dengan perintah \`${m.prefix}gura\` untuk memberikan efek Gura!`
+      `🦈 *GURA CANVAS*\n\nEnviar o responder fotos con el comando \`${m.prefix}gura\` para dar el efecto de Gura!`
     );
   }
 
@@ -211,8 +211,8 @@ async function handler(m, { sock }) {
   try {
     media = await getMediaBuffer(m);
   } catch (err) {
-    console.error("[Gura] Gagal download gambar:", err);
-    return m.reply("❌ Gagal membaca/download gambar. Coba kirim ulang foto atau reply foto lagi ya!");
+    console.error("[Gura] No se pudo descargar la imagen:", err);
+    return m.reply("❌ No se pudo leer/descargar imágenes. ¡Intenta reenviar la foto o responder a la foto nuevamente!");
   }
 
   try {
@@ -246,19 +246,19 @@ async function handler(m, { sock }) {
 
     const msg = String(err?.message || "");
     if (/Nexray HTTP 400/i.test(msg)) {
-      return m.reply("⚠️ Server Gura menolak gambar yang dikirim. Coba kirim foto JPG/PNG lain.");
+      return m.reply("⚠️ El servicer de Gura rechazó la imagen enviada. Prueba a enviar otra foto JPG/PNG.");
     }
     if (/Nexray HTTP 429/i.test(msg)) {
-      return m.reply("⏳ Server Gura sedang membatasi request. Coba lagi sebentar lagi ya.");
+      return m.reply("⏳ El servidor de Gura está limitando las solicitudes. Inténtalo de nuevo en un momento, ¿vale?");
     }
     if (/Nexray HTTP 5\d\d/i.test(msg)) {
-      return m.reply("😔 Server pembuat Gura sedang error. Coba lagi beberapa saat lagi ya.");
+      return m.reply("😔 El servidor de Gura maker está experimentando un error. Inténtalo de nuevo en unos momentos.");
     }
     if (/Pixhost|Catbox|upload/i.test(msg)) {
-      return m.reply("❌ Gagal mengunggah gambar ke server pemrosesan. Coba kirim ulang foto ya.");
+      return m.reply("❌ No se pudo cargar la imagen en el servidor de procesamiento. Intenta enviar la foto nuevamente.");
     }
 
-    return m.reply("😔 *Gagal membuat Gura Canvas.*\n\nCoba lagi beberapa saat lagi ya.");
+    return m.reply("😔 *No se pudo crear Gura Canvas.*\n\nInténtalo de nuevo en unos momentos.");
   }
 }
 

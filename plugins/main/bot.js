@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "bot",
   alias: ["statusbot"],
   category: "main",
-  description: "Menampilkan status bot dan limit fitur harian",
+  description: "Muestra el estado del bot y el límite diario de funciones",
   usage: ".bot",
   example: ".bot",
   isOwner: false,
@@ -27,7 +27,7 @@ const pluginConfig = {
 };
 
 function currentDateText() {
-  const parts = new Intl.DateTimeFormat("id-ID", {
+  const parts = new Intl.DateTimeFormat("es-ES", {
     timeZone: "Asia/Jakarta",
     weekday: "long",
     day: "numeric",
@@ -49,26 +49,26 @@ function currentDateText() {
 }
 
 async function handler(m, { sock }) {
-  await runMenuLoading(sock, m.chat, "status bot");
+  await runMenuLoading(sock, m.chat, "estado del bot");
   const db = getDatabase();
   const role = m.isOwner ? "Owner" : (m.isGroup && m.isAdmin ? "Admin" : "Member");
   const waktu = currentDateText();
   const status = getDailyFeatureStatus(db, m.sender, m.groupMetadata?.participants || []);
   const limitText = status.unlimited
-    ? "UNLIMITED PERMANEN"
-    : `${status.used}/${status.limit} terpakai · ${status.remaining} tersisa`;
+    ? "ILIMITADO PERMANENTE"
+    : `${status.used}/${status.limit} usados · ${status.remaining} restantes`;
 
-  const text = `🤖 *HALLO SAYA BOT Elysia Assistant* 🔥\n\n` +
-    `Ada yang bisa saya bantu?\n\n` +
-    `╭─〔 *STATUS BOT* 〕\n` +
-    `│ 🕒 Jam     : *${waktu.jam} WIB*\n` +
-    `│ 📅 Hari    : *${waktu.hari}*\n` +
-    `│ 🗓️ Tanggal : *${waktu.tanggal} ${waktu.bulan} ${waktu.tahun}*\n` +
-    `│ 👤 User    : @${String(m.sender || "").split("@")[0]}\n` +
-    `│ 🛡️ Jabatan : *${role}*\n` +
-    `│ 📊 Limit   : *${limitText}*\n` +
+  const text = `🤖 *HOLA, SOY EL BOT Ai Miku* 🔥\n\n` +
+    `¿En qué te puedo ayudar?\n\n` +
+    `╭─〔 *ESTADO DEL BOT* 〕\n` +
+    `│ 🕒 Hora    : *${waktu.jam} WIB*\n` +
+    `│ 📅 Día     : *${waktu.hari}*\n` +
+    `│ 🗓️ Fecha   : *${waktu.tanggal} ${waktu.bulan} ${waktu.tahun}*\n` +
+    `│ 👤 Usuario : @${String(m.sender || "").split("@")[0]}\n` +
+    `│ 🛡️ Rol     : *${role}*\n` +
+    `│ 📊 Límite  : *${limitText}*\n` +
     `╰───────────────\n\n` +
-    `✅ Bot siap digunakan. Limit harian reset pukul *00.00 WIB*.`;
+    `✅ El bot está listo. El límite diario se reinicia a las *00.00 WIB*.`;
 
   return sock.sendMessage(
     m.chat,

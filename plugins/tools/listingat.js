@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const listReminders = ElysiaRuntime.listReminders;
-const userOf = ElysiaRuntime.userOf;
-const formatRemaining = ElysiaRuntime.formatRemaining;
-const formatWib = ElysiaRuntime.formatWib;
+const listReminders = MikuRuntime.listReminders;
+const userOf = MikuRuntime.userOf;
+const formatRemaining = MikuRuntime.formatRemaining;
+const formatWib = MikuRuntime.formatWib;
 
 const pluginConfig = {
     name: "listingat",
@@ -33,11 +33,11 @@ const pluginConfig = {
 
   async function handler(m, { prefix, sender, reply }) {
       const rows = listReminders().filter(r => mine(r, sender)).sort((a, b) => a.due - b.due)
-      if (!rows.length) return reply('Kamu belum punya pengingat aktif.')
+      if (!rows.length) return reply('No tienes ningún recordatorio activo.')
       return reply(
-          `*▢ PENGINGATMU* (${rows.length})\n\n` +
-          rows.map((r, i) => `${i + 1}. ${r.text.slice(0, 80)}\n   ⏰ ${formatWib(r.due)} (${formatRemaining(r.due)} lagi)`).join('\n') +
-          `\n\nHapus: ${prefix}delingat <nomor | all>`
+          `*▢ TUS RECORDATORIOS* (${rows.length})\n\n` +
+          rows.map((r, i) => `${i + 1}. ${r.text.slice(0, 80)}\n   ⏰ ${formatWib(r.due)} (en ${formatRemaining(r.due)})`).join('\n') +
+          `\n\nEliminar: ${prefix}delingat <número | all>`
       )
   }
 

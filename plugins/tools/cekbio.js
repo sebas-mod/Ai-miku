@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
 
 const pluginConfig = {
     name: "cekbio",
@@ -26,13 +26,13 @@ const pluginConfig = {
 }
 
   const fs = (__m => __m.default ?? __m)((await import('fs')))
-  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile } = (await elysiaLib('cekbio'))
+  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile } = (await mikuLib('cekbio'))
 
   async function handler(m, { sock, conn, text, reply }) {
     const connection = sock || conn;
 
     if (!text) {
-      return reply('❌ Format salah!\n\n*ᴄᴏɴᴛᴏʜ:*\n.cekbio 628123456789 628987654321');
+      return reply('❌ ¡Formato incorrecto!\n\n*EJEMPLO:*\n.cekbio 628123456789 628987654321');
     }
 
     const rawNumbers = text.split(/[\s,\n]+/).filter(num => num.trim().length > 0);
@@ -47,11 +47,11 @@ const pluginConfig = {
     }).filter(num => num.length >= 10 && num.length <= 15);
 
     if (validNumbers.length === 0) {
-      return reply('❌ Tidak ada nomor yang valid untuk dicek.');
+      return reply('❌ No hay ningún número válido que comprobar.');
     }
 
     const statusMsg = await connection.sendMessage(m.chat, {
-      text: `⏳ Memulai pengecekan 0/${validNumbers.length} nomor...\n📁 Sumber: Input Teks`
+      text: `⏳ Comprobando 0/${validNumbers.length} números...\n📁 Origen: texto enviado`
     }, { quoted: m });
 
     const results = [];
@@ -124,7 +124,7 @@ const pluginConfig = {
       try {
         await connection.sendMessage(m.chat, {
           edit: statusMsg.key,
-          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Sedang memproses: ${batch[0] || '...'}\n📁 Sumber: Input Teks`
+          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Procesamiento: ${batch[0] || '...'}\n📁 Fuente: Entrada de texto`
         });
       } catch (e) {}
 
@@ -133,19 +133,19 @@ const pluginConfig = {
       }
     }
 
-    const filename = createBioResultFile(results, validNumbers.length, 'Input Teks');
+    const filename = createBioResultFile(results, validNumbers.length, 'Entrada de texto');
 
     await connection.sendMessage(m.chat, {
       document: { url: filename },
       mimetype: 'text/plain',
-      fileName: `hasil_cekbio_${Date.now()}.txt`,
-      caption: `📋 *HASIL CEK BIO WHATSAPP (OWNER ONLY)*\n\n` +
-               `📊 Total: ${validNumbers.length} nomor\n` +
-               `✅ Terdaftar: ${results.filter(r => r.registered).length}\n` +
-               `❌ Tidak terdaftar: ${results.filter(r => !r.registered).length}\n` +
-               `📝 Dengan bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
+      fileName: `resultados_checkbio_${Date.now()}.txt`,
+      caption: `📋 *RESULTADO DEL CHEQUEO DE BIOS DE WHATSAPP (SOLO DUEÑO)*\n\n` +
+               `📊 Total: ${validNumbers.length} números\n` +
+               `✅ Registrados: ${results.filter(r => r.registered).length}\n` +
+               `❌ No registrados: ${results.filter(r => !r.registered).length}\n` +
+               `📝 Con bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
                `🏢 Meta Business: ${results.filter(r => r.metaBusiness).length}\n\n` +
-               `🕒 ${new Date().toLocaleString('id-ID')}`
+               `🕒 ${new Date().toLocaleString('es-ES')}`
     }, { quoted: m });
 
     setTimeout(() => {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -38,12 +38,12 @@ try {
 } catch (e) {}
 
 const loveQuotes = [
-  "Cinta sejati tidak pernah mengenal jarak 💕",
-  "Dua hati yang bersatu takkan terpisahkan 💗",
-  "Kalian seperti puzzle yang sempurna 🧩",
+  "El amor verdadero nunca conoce distancias 💕",
+  "Dos corazones unidos no se pueden separar 💗",
+  "Sois como un puzle perfecto 🧩",
   "Match made in heaven! ✨",
-  "Chemistry-nya kuat banget! 🔥",
-  "Couple goals banget sih kalian 💑",
+  "¡La química es muy fuerte! 🔥",
+  "¡Sois la pareja ideal! 💑",
   "Destiny brought you together 🌟",
   "Perfect match detected! 💘",
 ];
@@ -58,10 +58,10 @@ const compatibilityEmoji = (percent) => {
 
 const compatibilityText = (percent) => {
   if (percent >= 90) return "JODOH SEJATI! 💍";
-  if (percent >= 70) return "Sangat Cocok! 💖";
+  if (percent >= 70) return "¡Muy compatibles! 💖";
   if (percent >= 50) return "Lumayan Cocok 💗";
-  if (percent >= 30) return "Bisa Dicoba 💓";
-  return "Butuh Usaha Lebih 💔";
+  if (percent >= 30) return "Se puede intentar 💓";
+  return "Necesita más esfuerzo 💔";
 };
 
 async function handler(m, { sock }) {
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
   try {
     groupMeta = m.groupMetadata;
   } catch (e) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa mengambil data grup!");
+    return m.reply("❌ *FALLIDO*\n\n> ¡No se pudieron obtener los datos del grupo!");
   }
 
   const participants = groupMeta.participants || [];
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
     .filter((jid) => jid && jid !== botNumber);
 
   if (memberJids.length < 2) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Minimal ada 2 member untuk dijodohkan!");
+    return m.reply("❌ *FALLIDO*\n\n> ¡Hacen falta al menos 2 miembros para emparejar!");
   }
 
   const allUsers = db.getAllUsers();

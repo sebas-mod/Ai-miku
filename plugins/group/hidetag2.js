@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `📢 *HIDETAG 2*\n\n` +
             `• \`${m.prefix}h2 <text>\`\n` +
-            `• Reply pesan + \`${m.prefix}h2\``
+            `• Responde al mensaje + \`${m.prefix}h2\``
         )
     }
     try {
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
                 remoteJid: 'status@broadcast'
             },
             message: {
-                conversation: config.bot?.name || 'elysia MD'
+                conversation: config.bot?.name || 'miku MD'
             }
         }
         if (m.quoted) {

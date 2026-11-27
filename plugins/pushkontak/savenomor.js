@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "savenomor",
@@ -42,21 +42,21 @@ const pluginConfig = {
               if (digits) target = `${digits}@s.whatsapp.net`
               nama = rest.join('|').trim()
           } else {
-              return example('nama  (reply pesan target)\n   atau  @tag|nama\n   atau  628xxx|nama')
+              return example('nombre  (responde al mensaje del objetivo)\n   o  @tag|nombre\n   o  628xxx|nombre')
           }
       } else {
           target = m.chat
           nama = input
       }
 
-      if (!nama) return reply('❌ Masukkan nama kontak.')
-      if (!target) return reply('❌ Tidak dapat menentukan nomor target.')
+      if (!nama) return reply('❌ Escribe el nombre del contacto.')
+      if (!target) return reply('❌ No se pudo determinar el número del objetivo.')
 
       const nomor = String(target).split('@')[0].split(':')[0]
 
       if (typeof sock.addOrEditContact === 'function') {
           await sock.addOrEditContact(target, { fullName: nama, lidJid: target, saveOnPrimaryAddressbook: true })
-          return reply(`*▢ KONTAK DISIMPAN*\n• Nomor : ${nomor}\n• Nama : ${nama}`)
+          return reply(`*▢ CONTACTO GUARDADO*\n• Número : ${nomor}\n• Nombre : ${nama}`)
       }
 
       await sock.sendMessage(m.chat, {
@@ -65,7 +65,7 @@ const pluginConfig = {
               contacts: [{ displayName: nama, vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:${nama}\nTEL;type=CELL;type=VOICE;waid=${nomor}:+${nomor}\nEND:VCARD` }]
           }
       }, { quoted: m })
-      return reply('ℹ️ Versi Baileys ini belum mendukung simpan kontak langsung, jadi kartu kontak dikirim sebagai gantinya.')
+      return reply('ℹ️ Esta versión de Baileys todavía no permite guardar contactos directamente, así que se envía la tarjeta de contacto en su lugar.')
   }
 
 export { pluginConfig as config, handler }

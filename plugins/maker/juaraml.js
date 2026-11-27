@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import axios from "axios";
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "juaraml",
@@ -41,11 +41,11 @@ const te = ElysiaRuntime.te;
     const name = m.text?.trim();
 
     if (!name) {
-      return m.reply(`⚠️ Harap masukkan namanya!\nContoh: \`${m.prefix}${m.command} Fauzan\``);
+      return m.reply(`⚠️ ¡Escribe el nombre!\nEjemplo: \`${m.prefix}${m.command} Fauzan\``);
     }
 
     if (name.length > 50) {
-      return m.reply(`⚠️ Nama terlalu panjang! Maksimal 50 huruf.`);
+      return m.reply(`⚠️ ¡El nombre es demasiado largo! Máximo 50 caracteres.`);
     }
 
     await m.react("🕕");

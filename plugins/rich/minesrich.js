@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -112,15 +112,15 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">💣</div><div class="meta"><div class="title">Minesweeper Live</div><div class="sub" id="who"></div></div></div>
      <div class="chips" id="lv"><button class="chip on" data-k="0">Mudah</button><button class="chip" data-k="1">Sedang</button><button class="chip" data-k="2">Sulit</button></div>
-     <div class="st"><span class="pill">Ranjau <b id="mc">0</b></span><span class="pill">Waktu <b id="tm">0</b>d</span><span class="pill">Terbaik <b id="bs">-</b></span></div>
+     <div class="st"><span class="pill">Minas <b id="mc">0</b></span><span class="pill">Tiempo <b id="tm">0</b>d</span><span class="pill">Mejor <b id="bs">-</b></span></div>
      <div class="bd" id="bd"></div>
      <div class="msg" id="ms"></div>
-     <div class="row"><button class="btn alt" id="fl" style="flex:1">🚩 Mode bendera: OFF</button><button class="btn" id="rs" style="flex:1">⟳ Ulang</button></div>
-     <div class="muted" style="text-align:center;margin-top:8px">Tap petak untuk buka. Aktifkan mode bendera untuk menandai ranjau.</div>
+     <div class="row"><button class="btn alt" id="fl" style="flex:1">🚩 Modo bandera: OFF</button><button class="btn" id="rs" style="flex:1">⟳ Reiniciar</button></div>
+     <div class="muted" style="text-align:center;margin-top:8px">Toca una casilla para abrirla. Activa el modo bandera para marcar minas.</div>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var LV=[[8,8,9],[9,10,16],[9,12,24]],K=0,R,C,M,g,first,over,flag=false,tm=0,iv=null,left,rec={};
     try{rec=JSON.parse(localStorage.getItem('pix_mines')||'{}');}catch(e){}
@@ -135,14 +135,14 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      if(flag){if(c.o)return;c.f^=1;left+=c.f?-1:1;$('mc').textContent=left;render();return;}
      if(c.f||c.o)return;
      if(first){first=false;place(i,j);iv=setInterval(function(){tm++;$('tm').textContent=tm;},1000);}
-     if(c.m){over=true;clearInterval(iv);for(var a=0;a<R;a++)for(var b=0;b<C;b++)if(g[a][b].m)g[a][b].o=1;c.hit=1;$('ms').textContent='💥 Kena ranjau! Coba lagi.';render();return;}
+     if(c.m){over=true;clearInterval(iv);for(var a=0;a<R;a++)for(var b=0;b<C;b++)if(g[a][b].m)g[a][b].o=1;c.hit=1;$('ms').textContent='💥 ¡Una mina! Inténtalo de nuevo.';render();return;}
      open(i,j);var safe=0;for(var a2=0;a2<R;a2++)for(var b2=0;b2<C;b2++)if(!g[a2][b2].m&&!g[a2][b2].o)safe++;
-     if(!safe){over=true;clearInterval(iv);var nw=!rec[K]||tm<rec[K];if(nw){rec[K]=tm;try{localStorage.setItem('pix_mines',JSON.stringify(rec));}catch(e){}}$('bs').textContent=rec[K];$('ms').textContent='🎉 Menang dalam '+tm+' detik'+(nw?' — REKOR!':'');}
+     if(!safe){over=true;clearInterval(iv);var nw=!rec[K]||tm<rec[K];if(nw){rec[K]=tm;try{localStorage.setItem('pix_mines',JSON.stringify(rec));}catch(e){}}$('bs').textContent=rec[K];$('ms').textContent='🎉 Ganaste en '+tm+' detik'+(nw?' — REKOR!':'');}
      render();}
     function render(){var bd=$('bd');bd.style.gridTemplateColumns='repeat('+C+',1fr)';bd.innerHTML='';
      for(var i=0;i<R;i++)for(var j=0;j<C;j++){(function(i,j){var c=g[i][j],d=document.createElement('button');d.className='c'+(c.o?' o':'')+(c.hit?' m':'');
       d.textContent=c.o?(c.m?'💣':(c.n?c.n:'')):(c.f?'🚩':'');if(c.o&&!c.m&&c.n)d.classList.add('n'+c.n);d.onclick=function(){tap(i,j)};bd.appendChild(d);})(i,j);}}
-    $('fl').onclick=function(){flag=!flag;this.textContent='🚩 Mode bendera: '+(flag?'ON':'OFF');this.classList.toggle('alt',!flag);};
+    $('fl').onclick=function(){flag=!flag;this.textContent='🚩 Modo bandera: '+(flag?'ON':'OFF');this.classList.toggle('alt',!flag);};
     $('rs').onclick=start;
     $('lv').onclick=function(e){var k=e.target.dataset&&e.target.dataset.k;if(k===undefined)return;K=+k;[].forEach.call($('lv').children,function(x){x.classList.toggle('on',x===e.target)});start();};
     start();

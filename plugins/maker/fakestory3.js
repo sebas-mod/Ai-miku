@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import * as _canvas from '@napi-rs/canvas'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
-const roundedRectPath = ElysiaRuntime.canvasRoundedRectPath;
-const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
-const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
+const te = MikuRuntime.te;
+const roundedRectPath = MikuRuntime.canvasRoundedRectPath;
+const drawAvatar = MikuRuntime.canvasDrawAvatar;
+const getAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
 
   const pluginConfig = {
     name: "fakestory3",
@@ -205,11 +205,11 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
     const input = m.args.join(" ");
     if (!input || !input.includes("|")) {
       return m.reply(
-        `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 3*\n\n` +
-          `> Reply gambar dengan format:\n` +
-          `> \`${m.prefix}fakestory3 nama|text1|text2\`\n\n` +
-          `> Contoh:\n` +
-          `> \`${m.prefix}fakestory3 Misaki|Tersenyumlah|untuk menutupi kesedihan\``,
+        `📷 *HISTORIA FALSA 3*\n\n` +
+          `> Responde a una imagen con el formato:\n` +
+          `> \`${m.prefix}fakestory3 nombre|texto1|texto2\`\n\n` +
+          `> Ejemplo:\n` +
+          `> \`${m.prefix}fakestory3 Misaki|Sonríe|para ocultar la tristeza\``,
       );
     }
     const parts = input.split("|").map((s) => s.trim());
@@ -222,7 +222,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       const isImage = m.isImage || (m.quoted && m.quoted.isImage);
       if (!isImage) {
         m.react("❌");
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply gambar untuk membuat fake story!`);
+        return m.reply(`❌ *ERROR*\n\n> ¡Responde a una imagen para crear la historia falsa!`);
       }
       let imageBuffer;
       if (m.isImage && m.download) {
@@ -232,7 +232,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       }
       if (!imageBuffer) {
         m.react("❌");
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+        return m.reply(`❌ *ERROR*\n\n> No se pudo descargar la imagen`);
       }
       const resultBuffer = await createFakeStory(
         username,
@@ -246,7 +246,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
         m.chat,
         {
           image: resultBuffer,
-          caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+          caption: `📷 *HISTORIA FALSA*\n\n> USUARIO: \`${username}\``,
         },
         { quoted: m },
       );

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,13 +33,13 @@ async function handler(m, { text, command, prefix }) {
     const hari = wibDay();
     const laporan = Object.values(k.menfessLapor).reduce((a, v) => a + (v.n || 0), 0);
     return m.reply(
-      `📊 *STATISTIK MENFESS*\n\nTersimpan : ${semua.length}\nHari ini  : ${semua.filter((d) => wibDay(d.t) === hari).length}\nDitarik   : ${semua.filter((d) => d.tutup).length}\nDilaporkan: ${semua.filter((d) => d.dilapor).length} (total laporan ${laporan})\nDiban     : ${Object.keys(k.menfessBan).length}\nMenolak semua: ${Object.keys(k.menfessBlock).length} user`,
+      `📊 *ESTADÍSTICAS DE MENFESS*\n\nGuardado: ${semua.length}\nHoy: ${semua.filter((d) => wibDay(d.t) === hari).length}\nRetirado: ${semua.filter((d) => d.tutup).length}\nReportado: ${semua.filter((d) => d.dilapor).length} (informe total ${laporan})\nDibán: ${Object.keys(k.menfessBan).length}\nRechazar todo: ${Object.keys(k.menfessBlock).length} usuario`,
     );
   }
 
   if (command === "listbanmenfess") {
     const list = Object.entries(k.menfessBan);
-    if (!list.length) return m.reply("Tidak ada user yang diban dari menfess.");
+    if (!list.length) return m.reply("Ningún usuario está baneado de menfess.");
     return m.reply(
       `⛔ *BAN MENFESS* (${list.length})\n\n` + list.map(([j, v]) => `• ${j} — ${v.alasan || "-"} (${v.oleh || "owner"})`).join("\n"),
     );
@@ -47,7 +47,7 @@ async function handler(m, { text, command, prefix }) {
 
   const [no, ...sisa] = String(text || "").trim().split(/\s+/);
   const n = menfessNomor(no);
-  if (!n || n.length < 9) return m.reply(`Format: *${prefix}${command} nomor${command === "banmenfess" ? " alasan" : ""}*`);
+  if (!n || n.length < 9) return m.reply(`Formato: *${prefix}${command} número${command === "banmenfess" ? " alasan" : ""}*`);
 
   if (command === "banmenfess") {
     k.menfessBan[n] = { t: Date.now(), alasan: sisa.join(" ").trim(), oleh: "owner" };
@@ -56,7 +56,7 @@ async function handler(m, { text, command, prefix }) {
   }
 
   // unbanmenfess
-  if (!k.menfessBan[n]) return m.reply("Nomor itu tidak sedang diban.");
+  if (!k.menfessBan[n]) return m.reply("Ese número no está prohibido.");
   delete k.menfessBan[n];
   delete k.menfessLapor[n];
   saveStore();

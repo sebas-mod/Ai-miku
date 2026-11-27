@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 import yts from 'yt-search'
 const pluginConfig = {
@@ -26,15 +26,15 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, conn, usedPrefix, command }) {
-    if (!text) throw `Masukkan judul!
+    if (!text) throw `¡Envía un título!
 
-Contoh:
-${usedPrefix + command} dj 30 detik`
+Ejemplo:
+${usedPrefix + command} dj 30 segundos`
 
     let search = await yts(text)
     let videos = search.videos.slice(0, 10)
 
-    if (!videos.length) throw 'Video tidak ditemukan.'
+    if (!videos.length) throw 'Video no encontrado.'
 
     let caption = `*YouTube Search*\n`
     caption += `Query: ${text}\n\n`

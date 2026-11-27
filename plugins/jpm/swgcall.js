@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmLoop = ElysiaRuntime.jpmLoop;
-const getMedia = ElysiaRuntime.getMedia;
-const sendGroupStatus = ElysiaRuntime.sendGroupStatus;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmLoop = MikuRuntime.jpmLoop;
+const getMedia = MikuRuntime.getMedia;
+const sendGroupStatus = MikuRuntime.sendGroupStatus;
 
 const pluginConfig = {
     name: "swgcall",
@@ -31,34 +31,34 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, text, reply, example }) {
-      if (global.__jpmRunning) return reply('❌ Masih ada proses JPM/SWGC yang berjalan. Tunggu selesai atau ketik *stopjpm*.')
+      if (global.__jpmRunning) return reply('❌ Todavía hay procesos JPM/SWGC ejecutándose. Espere a que termine o escriba *stopjpm*.')
 
       const media = await getMedia(m, ['image', 'video', 'audio'])
       const caption = text || media?.caption || m.quoted?.text || ''
-      if (!caption && !media) return example('teks status  (atau reply foto/video/audio)')
+      if (!caption && !media) return example('texto de estado (o respuesta de foto/video/audio)')
 
       const groups = await jpmGroups(sock)
-      if (!groups.length) return reply('❌ Tidak ada grup yang bisa dikirimi status.')
+      if (!groups.length) return reply('❌ No hay grupos a los que enviar estados.')
 
       const delay = jpmCfg().delayJpm
-      const tipe = media ? ({ image: 'Foto', video: 'Video', audio: 'Audio' }[media.kind] || 'Media') : 'Teks'
+      const tipe = media ? ({ image: 'Foto', video: 'Video', audio: 'Audio' }[media.kind] || 'Media') : 'Texto'
       await reply(
-          `*▢ PROSES SWGC ALL*\n` +
-          `• Total grup : ${groups.length}\n` +
+          `*▢ PROCESAR SWGC TODOS*\n` +
+          `• Grupo total: ${groups.length}\n` +
           `• Tipe : ${tipe}\n` +
           `• Delay : ${delay}ms\n\n` +
-          `Hentikan dengan *stopjpm*`
+          `Para con *stopjpm*`
       )
 
       const { ok, fail } = await jpmLoop(groups, delay, g =>
           sendGroupStatus(sock, g.id, { text: caption, media }))
 
       return reply(
-          `*▢ SWGC ALL SELESAI*\n` +
-          `• Total grup : ${groups.length}\n` +
-          `• Berhasil : ${ok} grup\n` +
-          `• Gagal : ${fail} grup` +
-          (ok + fail < groups.length ? `\n• Dilewati (dihentikan) : ${groups.length - ok - fail} grup` : '')
+          `*▢ SWGC ALL TERMINADO*\n` +
+          `• Grupo total: ${groups.length}\n` +
+          `• Correctos: ${ok} grupo\n` +
+          `• Fallidos: ${fail} grupo` +
+          (ok + fail < groups.length ? `\n• Saltado (detenido): ${groups.length - ok - fail} grupo` : '')
       )
   }
 

@@ -1,33 +1,33 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-// Bagian config: message-group
+// Sección de config: message-group
 export default {
   groupProtection: {
-    antilink: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antilinkGc: "⚠ *Antilink WA* — @%user% mengirim link WA.\nPesan dihapus.",
+    antilink: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+    antilinkGc: "⚠ *Antilink WA* — @%user% envió un enlace de WA.\nMensaje eliminado.",
     antilinkGcKick:
-      "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
-    antilinkAll: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkAllKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antitagsw: "⚠ *AntiTagSW* — Tag status dari @%user% dihapus.",
-    antiviewonce: "👁️ *ViewOnce* — Dari @%user%",
-    antiremove: "🗑️ *AntiDelete* — @%user% menghapus pesan:",
-    antiswgc: "⚠ *AntiSWGC* — Gak ada sw grup sw grup @%user%",
-    antihidetag: "⚠ *AntiHidetag* — Hidetag dari @%user% dihapus.",
+      "⚠ *Antilink WA* — @%user% fue expulsado por enviar un enlace de WA.",
+    antilinkAll: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkAllKick: "⚠ *Antilink* — @%user% fue expulsado por enviar un enlace.",
+    antitagsw: "⚠ *AntiTagSW* — Se eliminó una mención de estado de @%user%.",
+    antiviewonce: "👁️ *ViewOnce* — De @%user%",
+    antiremove: "🗑️ *AntiDelete* — @%user% eliminó un mensaje:",
+    antiswgc: "⚠ *AntiSWGC* — No se permite el estado de grupo @%user%",
+    antihidetag: "⚠ *AntiHidetag* — Se eliminó un hidetag de @%user%.",
     antitoxicWarn:
-      "⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.",
-    antitoxicAction: "🚫 @%user% di-%method% karena toxic. (%warn%/%max%)",
-    antidocument: "⚠ *AntiDocument* — Dokumen dari @%user% dihapus.",
-    antisticker: "⚠ *AntiSticker* — Sticker dari @%user% dihapus.",
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
-    antibot: "🤖 *AntiBot* — @%user% terdeteksi sebagai bot dan di-kick.",
-    notAdmin: "Bot bukan admin, tidak bisa menghapus pesan.",
+      "⚠ @%user% habló con groserías.\nAdvertencia %warn% de %max%, la próxima infracción puede terminar en %method%.",
+    antitoxicAction: "🚫 @%user% recibió %method% por tóxico. (%warn%/%max%)",
+    antidocument: "⚠ *AntiDocument* — Se eliminó un documento de @%user%.",
+    antisticker: "⚠ *AntiSticker* — Se eliminó un sticker de @%user%.",
+    antimedia: "⚠ *AntiMedia* — Se eliminó un archivo multimedia de @%user%.",
+    antibot: "🤖 *AntiBot* — @%user% fue detectado como bot y expulsado.",
+    notAdmin: "El bot no es admin, no puede eliminar mensajes.",
   }
 };

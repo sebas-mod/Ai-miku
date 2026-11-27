@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const webScreenshot = ElysiaRuntime.webScreenshot;
-const webRecord = ElysiaRuntime.webRecord;
+const webScreenshot = MikuRuntime.webScreenshot;
+const webRecord = MikuRuntime.webRecord;
 
 const pluginConfig = {
     name: "ssweb",
@@ -29,19 +29,19 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, prefix, command }) {
       if (!text) {
-          return reply(`乂 *SSWEB / RECORD WEB*
+          return reply(`乂 *SSWEB / GRABAR WEB*
 
-📌 Screenshot:
+📌 Captura de pantalla:
 ${prefix}${command} https://github.com
 
-🎥 Record video:
-${prefix}${command} video https://github.com
+🎥 Grabar vídeo:
+${prefix}${command} vídeo https://github.com
 
-⚙️ Opsi:
-desktop_fhd / desktop / tablet / mobile
+⚙️ Opciones:
+escritorio_fhd / escritorio / tableta / móvil
 
-Contoh:
-${prefix}${command} video https://github.com desktop_fhd 8000`)
+Ejemplo:
+${prefix}${command} vídeo https://github.com escritorio_fhd 8000`)
       }
 
       try {
@@ -53,24 +53,24 @@ ${prefix}${command} video https://github.com desktop_fhd 8000`)
           const device = args[1] || 'desktop_fhd'
           const duration = Number(args[2]) || 8000
 
-          if (!url) return reply('Masukkan URL website-nya.')
+          if (!url) return reply('Escribe la URL de la web.')
           if (!/^https?:\/\//i.test(url)) url = 'https://' + url
 
-          await reply(mode === 'video' ? '⏳ Lagi record website jadi video...' : '⏳ Lagi screenshot website...')
+          await reply(mode === 'video' ? '⏳ Grabando la web en vídeo...' : '⏳ Haciendo la captura de la web...')
 
           if (mode === 'video') {
               const videoUrl = await webRecord(url, device, duration)
               return sock.sendMessage(m.chat, {
                   video: { url: videoUrl },
                   mimetype: 'video/mp4',
-                  caption: `乂 *WEB RECORD*\n\n🌐 URL: ${url}\n📱 Device: ${device}\n⏱️ Duration: ${duration}ms`
+                  caption: `乂 *GRABACIÓN WEB*\n\n🌐 URL: ${url}\n📱 Dispositivo: ${device}\n⏱️ Duración: ${duration} ms`
               }, { quoted: m })
           }
 
           const imageUrl = await webScreenshot(url, device)
           return sock.sendMessage(m.chat, {
               image: { url: imageUrl },
-              caption: `乂 *SS WEB*\n\n🌐 URL: ${url}\n📱 Device: ${device}`
+              caption: `乂 *CAPTURA WEB*\n\n🌐 URL: ${url}\n📱 Dispositivo: ${device}`
           }, { quoted: m })
       } catch (e) {
           reply(e.friendly ? e.message : `Error: ${e.message}`)

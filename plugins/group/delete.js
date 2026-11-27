@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -26,7 +26,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (!m.quoted) {
-        return m.reply('⚠️ *Reply pesan yang ingin dihapus!*')
+        return m.reply('⚠️ *¡Responde al mensaje que quieres borrar!*')
     }
 
     const quotedSender = m.quoted.sender || m.quoted.key?.participant
@@ -36,10 +36,10 @@ async function handler(m, { sock }) {
 
     if (!isOwnMessage && !isBotMessage) {
         if (!m.isBotAdmin) {
-            return m.reply('⚠️ *Bot harus jadi admin untuk hapus pesan orang lain!*')
+            return m.reply('⚠️ *¡El bot debe ser administrador para borrar mensajes de otros!*')
         }
         if (!m.isAdmin && !m.isOwner) {
-            return m.reply('⚠️ *Hanya admin yang bisa hapus pesan orang lain!*')
+            return m.reply('⚠️ *¡Solo los administradores pueden borrar mensajes de otros!*')
         }
     }
 
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
 
     } catch (err) {
         if (err.message?.includes('not found') || err.message?.includes('forbidden')) {
-            await m.reply('❌ *Gagal menghapus!*\n> Pesan mungkin sudah dihapus atau terlalu lama.')
+            await m.reply('❌ *¡No se pudo borrar!*\n> Puede que el mensaje ya se haya borrado o sea demasiado antiguo.')
         } else {
             await m.react('❌')
         }

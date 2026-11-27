@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaLib = (name) => ElysiaRuntime.elysiaLib(name, typeof libs !== 'undefined' ? libs : null);
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuLib = (name) => MikuRuntime.mikuLib(name, typeof libs !== 'undefined' ? libs : null);
 
 const pluginConfig = {
     name: "cekbiofile",
@@ -26,7 +26,7 @@ const pluginConfig = {
 }
 
   const fs = (__m => __m.default ?? __m)((await import('fs')))
-  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile, parseNumbersFromBuffer } = (await elysiaLib('cekbio'))
+  const { getJamPercentage, createProgressBar, checkMetaBusiness, createBioResultFile, parseNumbersFromBuffer } = (await mikuLib('cekbio'))
 
   async function handler(m, { sock, conn, text, args, reply }) {
     const connection = sock || conn;
@@ -34,13 +34,13 @@ const pluginConfig = {
     const mime = qmsg.mimetype || qmsg.msg?.mimetype || '';
 
     if (!mime && !qmsg.msg?.fileName) {
-      return reply('❌ Reply file TXT, CSV, atau XLSX yang berisi daftar nomor!\n\n💡 *Format Tambahan:*\n• `.cekbiofile 50` (Cek 50 nomor pertama)\n• `.cekbiofile 10 50` atau `.cekbiofile 10-50` (Cek dari nomor ke-10 sampai 50)');
+      return reply('❌ ¡Responde con un archivo TXT, CSV o XLSX que contenga la lista de números!\n\n💡 *Formatos adicionales:*\n• `.cekbiofile 50` (comprueba los primeros 50 números)\n• `.cekbiofile 10 50` o `.cekbiofile 10-50` (comprueba del número 10 al 50)');
     }
 
     const fileName = qmsg.msg?.fileName || 'file.txt';
     const ext = fileName.toLowerCase().split('.').pop();
     if (!['txt', 'csv', 'xlsx'].includes(ext)) {
-      return reply('❌ Format file tidak didukung. Gunakan file TXT, CSV, atau XLSX.');
+      return reply('❌ Formato de archivo no compatible. Usa TXT, CSV o XLSX.');
     }
 
     const sourceType = `File ${ext.toUpperCase()}`;
@@ -53,13 +53,13 @@ const pluginConfig = {
       } else if (typeof connection.downloadMediaMessage === 'function') {
         fileBuffer = await connection.downloadMediaMessage(qmsg);
       } else {
-        throw new Error('Metode download media tidak ditemukan.');
+        throw new Error('No se encontró el método de descarga del archivo.');
       }
     } catch (e) {
       if (mediaPath && fs.existsSync(mediaPath)) {
         try { fs.unlinkSync(mediaPath); } catch (_) {}
       }
-      return reply(`❌ ɢᴀɢᴀʟ mengunduh file media: ${e.message}`);
+      return reply(`❌ No se pudo descargar el archivo: ${e.message}`);
     } finally {
       if (mediaPath && fs.existsSync(mediaPath)) {
         try { fs.unlinkSync(mediaPath); } catch (_) {}
@@ -78,7 +78,7 @@ const pluginConfig = {
     }).filter(num => num.length >= 10 && num.length <= 15);
 
     if (validNumbers.length === 0) {
-      return reply('❌ Tidak ada nomor yang valid dalam file.');
+      return reply('❌ No hay ningún número válido en el archivo.');
     }
 
     let rangeInfo = '';
@@ -89,25 +89,25 @@ const pluginConfig = {
         const fromIdx = Math.max(0, start - 1);
         const toIdx = Math.min(validNumbers.length, end);
         validNumbers = validNumbers.slice(fromIdx, toIdx);
-        rangeInfo = ` (Nomor ${start} - ${end})`;
+        rangeInfo = ` (números ${start} - ${end})`;
       } else if (args && args.length >= 2 && !isNaN(args[0]) && !isNaN(args[1])) {
         const start = parseInt(args[0]);
         const end = parseInt(args[1]);
         const fromIdx = Math.max(0, start - 1);
         const toIdx = Math.min(validNumbers.length, end);
         validNumbers = validNumbers.slice(fromIdx, toIdx);
-        rangeInfo = ` (Nomor ${start} - ${end})`;
+        rangeInfo = ` (números ${start} - ${end})`;
       } else if (!isNaN(inputArg)) {
         const maxCount = parseInt(inputArg);
         if (maxCount > 0) {
           validNumbers = validNumbers.slice(0, maxCount);
-          rangeInfo = ` (Maksimal ${maxCount} nomor)`;
+          rangeInfo = ` (máximo ${maxCount} números)`;
         }
       }
     }
 
     const statusMsg = await connection.sendMessage(m.chat, {
-      text: `⏳ Memulai pengecekan 0/${validNumbers.length} nomor...\n📁 Sumber: ${sourceType}`
+      text: `⏳ Comprobando 0/${validNumbers.length} números...\n📁 Origen: ${sourceType}`
     }, { quoted: m });
 
     const results = [];
@@ -180,7 +180,7 @@ const pluginConfig = {
       try {
         await connection.sendMessage(m.chat, {
           edit: statusMsg.key,
-          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Sedang memproses: ${batch[0] || '...'}\n📁 Sumber: ${sourceType}`
+          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Procesamiento: ${batch[0] || '...'}\n📁 Fuente: ${sourceType}`
         });
       } catch (e) {}
 
@@ -195,15 +195,15 @@ const pluginConfig = {
     await connection.sendMessage(m.chat, {
       document: { url: filename },
       mimetype: 'text/plain',
-      fileName: `hasil_cekbio_${Date.now()}.txt`,
-      caption: `📋 *HASIL CEK BIO WHATSAPP FILE (OWNER ONLY)*\n\n` +
-               `📊 Total: ${validNumbers.length} nomor\n` +
-               `✅ Terdaftar: ${results.filter(r => r.registered).length}\n` +
-               `❌ Tidak terdaftar: ${results.filter(r => !r.registered).length}\n` +
-               `📝 Dengan bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
+      fileName: `resultados_checkbio_${Date.now()}.txt`,
+      caption: `📋 *RESULTADO DEL CHEQUEO DE BIOS DESDE ARCHIVO (SOLO DUEÑO)*\n\n` +
+               `📊 Total: ${validNumbers.length} números\n` +
+               `✅ Registrados: ${results.filter(r => r.registered).length}\n` +
+               `❌ No registrados: ${results.filter(r => !r.registered).length}\n` +
+               `📝 Con bio: ${results.filter(r => r.registered && r.bio && r.bio.length > 0).length}\n` +
                `🏢 Meta Business: ${results.filter(r => r.metaBusiness).length}\n` +
-               `📁 File: ${fileName}${rangeInfo}\n\n` +
-               `🕒 ${new Date().toLocaleString('id-ID')}`
+               `📁 Archivo: ${fileName}${rangeInfo}\n\n` +
+               `🕒 ${new Date().toLocaleString('es-ES')}`
     }, { quoted: m });
 
     setTimeout(() => {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,9 +30,9 @@ async function handler(m, { sock }) {
 
     if (!word) {
         return m.reply(
-            `🗑️ *ᴅᴇʟ ᴛᴏxɪᴄ*\n\n` +
-            `> Gunakan: \`.deltoxic <kata>\`\n\n` +
-            `\`Contoh: ${m.prefix}deltoxic katakasar\``
+            `🗑️ *DEL TÓXICO*\n\n` +
+            `> Usa: \`.deltoxic <palabra>\`\n\n` +
+            `\`Ejemplo: ${m.prefix}deltoxic katakasar\``
         )
     }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const index = toxicWords.indexOf(word)
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata \`${word}\` tidak ada di daftar`)
+        return m.reply(`❌ *FALLIDO*\n\n> La palabra \`${word}\` no está en la lista`)
     }
 
     toxicWords.splice(index, 1)
@@ -51,10 +51,10 @@ async function handler(m, { sock }) {
     m.react('✅')
 
     await m.reply(
-        `✅ *ᴋᴀᴛᴀ ᴛᴏxɪᴄ ᴅɪʜᴀᴘᴜs*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📝 ᴋᴀᴛᴀ: \`${word}\`\n` +
-        `┃ 📊 sɪsᴀ: \`${toxicWords.length}\` kata\n` +
+        `✅ *PALABRA TÓXICA ELIMINADA*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
+        `┃ 📝 PALABRA: \`${word}\`\n` +
+        `┃ 📊 RESTANTE: \`${toxicWords.length}\` palabras\n` +
         `╰┈┈⬡`
     )
 }

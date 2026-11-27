@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import FormData from "form-data";
 import fetch from "node-fetch";
 import mime from "mime-types";
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "gura",
@@ -45,7 +45,7 @@ const te = ElysiaRuntime.te;
       timeout: 30000,
     });
 
-    if (!res.ok) throw new Error("Catbox gagal");
+    if (!res.ok) throw new Error("Error de Catbox");
     const url = await res.text();
     if (!url.startsWith("http")) throw new Error("Invalid response");
     return url;
@@ -57,18 +57,18 @@ const te = ElysiaRuntime.te;
     if (m.quoted?.message) {
       const type = getContentType(m.quoted.message);
       if (!type || type !== "imageMessage") {
-        return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+        return m.reply("⚠️ ¡Responde al mensaje de la imagen!");
       }
       media = await downloadMediaMessage(m.quoted, "buffer", {});
     } else if (m.message) {
       const type = getContentType(m.message);
       if (!type || type !== "imageMessage") {
-        return m.reply(`🦈 *GURA CANVAS*\n\nKirim atau reply foto dengan perintah \`${m.prefix}gura\` untuk memberikan efek Gura!`);
+        return m.reply(`🦈 *GURA CANVAS*\n\nEnvía o responde a una foto con el comando \`${m.prefix}gura\` para aplicar el efecto Gura!`);
       }
       media = await downloadMediaMessage(m, "buffer", {});
     }
 
-    if (!media) return m.reply("❌ Gagal membaca media, coba lagi!");
+    if (!media) return m.reply("❌ No se pudo leer el multimedia, ¡inténtalo de nuevo!");
 
     await m.react("🕕");
 

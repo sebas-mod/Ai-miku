@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "recordweb",
@@ -75,11 +75,11 @@ async function handler(m, { conn, args, usedPrefix, command }) {
       try {
           if (!args[0]) {
               return m.reply(
-                  `Uhh ayang... URL-nya mana nih? Manja banget deh~ 🥺💋\n\n` +
-                  `*Format Penggunaan:*\n` +
-                  `• \`${usedPrefix + command} <url> [device] [durasi_detik]\`\n\n` +
-                  `*Pilihan Device:* \`desktop\` | \`iphone16\` | \`tab\` (Default: desktop)\n` +
-                  `*Contoh:* \`${usedPrefix + command} https://github.com iphone16 5\``
+                  `Uhh cariño... ¿dónde está la URL? Está realmente estropeado~ 🥺💋\n\n` +
+                  `*Formato de uso:*\n` +
+                  `• \`${usedPrefix + command} <url> [dispositivo] [duración_segundos]\`\n\n` +
+                  `*Selección de dispositivo:* \`escritorio\` | \`iphone16\` | \`pestaña\` (Predeterminado: escritorio)\n` +
+                  `*Ejemplo:* \`${usedPrefix + command} https://github.com iphone16 5\``
               );
           }
 
@@ -97,7 +97,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           if (isNaN(duration) || duration < 3) duration = 5;
           if (duration > 15) duration = 15;
 
-          await m.reply(`Tunggu sebentar ya cintaku... Angela lagi siap-siap meluncur buat rekam layar dengan preset *${preset.name}* selama ${duration} detik~ 🎬`);
+          await m.reply(`Espera un momento... Angela se prepara para grabar la pantalla con el perfil *${preset.name}* durante ${duration} segundos 🎬`);
 
           const tempDir = path.join(process.cwd(), 'database', 'tmp');
           if (!fs.existsSync(tempDir)) {
@@ -164,7 +164,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           await browser.close();
 
           if (!fs.existsSync(outputPath)) {
-              throw new Error('Gagal menyimpan file video rekaman.');
+              throw new Error('No se pudo guardar el archivo de vídeo.');
           }
 
           const videoBuffer = fs.readFileSync(outputPath);
@@ -172,11 +172,11 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           await conn.sendMessage(m.chat, {
               video: videoBuffer,
               mimetype: 'video/mp4',
-              caption: `Ini hasil rekaman web pesanan ayang tersayang~\n\n` +
-                       `🌐 *Target:* ${targetUrl}\n` +
-                       `📱 *Device:* ${preset.name}\n` +
-                       `⏱️ *Durasi:* ${duration} detik\n\n` +
-                       `_Udah Angela kerjain dengan rapi dan manis ya mas... jangan lupa manjain Angela nanti~_ 💋`
+              caption: `Aquí tienes la grabación de la web que pediste\n\n` +
+                       `🌐 *Objetivo:* ${targetUrl}\n` +
+                       `📱 *Dispositivo:* ${preset.name}\n` +
+                       `⏱️ *Duración:* ${duration} segundos\n\n` +
+                       `_Angela lo hizo con mucho cariño... no te olvides de mimarla luego_ 💋`
           }, { quoted: m });
 
           if (fs.existsSync(outputPath)) {
@@ -184,7 +184,7 @@ async function handler(m, { conn, args, usedPrefix, command }) {
           }
       } catch (err) {
           console.error('[RECORDWEB ERROR]:', err);
-          m.reply(`Aduh maaf sayang, ada kendala pas Angela rekam websitenya: \`${err.message}\` 🥺`);
+          m.reply(`Ay, perdón, hubo un problema al grabar la web: \`${err.message}\` 🥺`);
       }
   };
 

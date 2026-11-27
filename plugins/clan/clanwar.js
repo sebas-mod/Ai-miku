@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanwar',
@@ -80,16 +80,16 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
       const targetClanId = m.text?.trim()
 
-      if (!user?.clanId) return m.reply(`❌ Kamu belum punya clan`)
+      if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
 
       if (!targetClanId) {
           return m.reply(
               `⚔️ *CLAN WAR*\n\n` +
-              `Tantang clan lain untuk berperang!\n\n` +
-              `Contoh: *.clanwar clan_123456*\n` +
+              `¡Desafía a otros clanes a la guerra!\n\n` +
+              `Ejemplo: *.clanwar clan_123456*\n` +
               `Cek ID: *.clanleaderboard*\n\n` +
-              `Syarat: Minimal 3 member per clan\n` +
-              `Cooldown: 1 jam`
+              `Requisitos: Mínimo 3 miembros por clan\n` +
+              `Enfriamiento: 1 horas`
           )
       }
 
@@ -100,11 +100,11 @@ const getDatabase = ElysiaRuntime.getDatabase;
           || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === targetClanId.toLowerCase())
           || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === targetClanId.toLowerCase())
 
-      if (!myClan) return m.reply(`❌ Clan kamu tidak ditemukan`)
-      if (!enemyClan) return m.reply(`❌ Clan lawan tidak ditemukan`)
-      if (user.clanId === targetClanId) return m.reply(`❌ Tidak bisa war melawan clan sendiri`)
-      if (myClan.members.length < 3) return m.reply(`❌ Clan kamu butuh minimal 3 member`)
-      if (enemyClan.members.length < 3) return m.reply(`❌ Clan lawan butuh minimal 3 member`)
+      if (!myClan) return m.reply(`❌ Tu clan no fue encontrado`)
+      if (!enemyClan) return m.reply(`❌ Clan oponente no encontrado`)
+      if (user.clanId === targetClanId) return m.reply(`❌ No puedes hacer la guerra contra tu propio clan.`)
+      if (myClan.members.length < 3) return m.reply(`❌ Tu clan necesita un mínimo de 3 miembros`)
+      if (enemyClan.members.length < 3) return m.reply(`❌ El clan contrario requiere un mínimo de 3 miembros`)
 
       const myPower = calculatePower(db, myClan)
       const enemyPower = calculatePower(db, enemyClan)

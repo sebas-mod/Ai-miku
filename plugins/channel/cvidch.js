@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "cvidch",
@@ -33,7 +33,7 @@ const pluginConfig = {
           idch = q.match(/\d+@newsletter/)?.[0] || ''
       }
 
-      if (!idch) return reply(`Contoh: ${prefix || '.'}${command} xxxx@newsletter\natau reply pesan yang mengandung newsletter id`)
+      if (!idch) return reply(`Ejemplo: ${prefix || '.'}${command} xxxx@newsletter\no responder a mensajes que contengan el ID del boletín`)
 
       try {
           const meta = await sock.newsletterMetadata('jid', idch)
@@ -41,7 +41,7 @@ const pluginConfig = {
           const name = tm.name?.text || 'Unknown'
           const subs = Number(tm.subscribers_count || 0).toLocaleString('id-ID')
           const url = tm.invite ? `https://whatsapp.com/channel/${tm.invite}` : '-'
-          return reply(`*INFO SALURAN*\n\n- Nama: ${name}\n- Pengikut: ${subs}\n- ID: ${idch}\n- Link: ${url}`)
+          return reply(`*INFO SALURAN*\n\n- Nombre: ${name}\n- Seguidor: ${subs}\n- ID: ${idch}\n- Enlaces: ${url}`)
       } catch (e) {
           return reply(`*ERROR!*\n\n${e.message}`)
       }

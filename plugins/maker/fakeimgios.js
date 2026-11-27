@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const config = ElysiaRuntime.config;
-const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
+const config = MikuRuntime.config;
+const uploadToTmpFiles = MikuRuntime.uploadToTmpFiles;
 
   const pluginConfig = {
       name: 'fakeimgios',
@@ -35,7 +35,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
               m.react('❌')
               return m.reply(
                   `📷 *FAKE IMG IOS*\n\n` +
-                  `Tolong Reply gambar nya`
+                  `Responde a la imagen`
               )
           }
 
@@ -48,7 +48,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
 
           if (!imageBuffer) {
               m.react('❌')
-              return m.reply(`❌ *Gomen ne~* ✦\n\n> Tidak bisa download gambar~ 🥺`)
+              return m.reply(`❌ *Gomen ne~* ✦\n\n> No se pudo descargar la imagen~ 🥺`)
           }
 
       m.react('🕕')
@@ -66,7 +66,7 @@ const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFiles;
 
       } catch (error) {
           m.react('❌')
-          m.reply(`❌ *Gomen ne~* ✦\n\n> ${error.message}\n\n_Ai udah coba yang terbaik tapi gagal juga... coba lagi nanti ya~ 🌸_`)
+          m.reply(`❌ *Gomen ne~* ✦\n\n> ${error.message}\n\n_Lo intenté con todas mis fuerzas pero también falló... inténtalo de nuevo más tarde~ 🌸_`)
       }
   }
 

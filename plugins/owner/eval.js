@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -33,16 +33,16 @@ const pluginConfig = {
 
 async function handler(m, { sock, store }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo el owner!*')
     }
 
     const code = m.fullArgs?.trim() || m.text?.trim()
 
     if (!code) {
         return m.reply(
-            `⚙️ *ᴇᴠᴀʟ*\n\n` +
-            `> Masukkan kode JavaScript!\n\n` +
-            `*Contoh:*\n` +
+            `⚙️ *EVAL*\n\n` +
+            `> ¡Escribe código JavaScript!\n\n` +
+            `*Ejemplo:*\n` +
             `> .$ 1 + 1\n` +
             `> .$ m.chat\n` +
             `> .$ db.getUser(m.sender)`
@@ -84,8 +84,8 @@ async function handler(m, { sock, store }) {
     const type = isError ? result?.name || 'Error' : typeof result
 
     await m.reply(
-        `⚙️ *ᴇᴠᴀʟ ʀᴇsᴜʟᴛ*\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
+        `⚙️ *RESULTADO DE EVAL*\n\n` +
+        `╭┈┈⬡「 📋 *INFO* 」\n` +
         `┃ ${status}\n` +
         `┃ Type: ${type}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +

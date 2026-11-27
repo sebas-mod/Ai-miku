@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -28,11 +28,11 @@ const pluginConfig = {
   async function handler(m, { sock, reply }) {
       try {
           const { data } = await axios.get('https://raw.githubusercontent.com/ShirokamiRyzen/WAbot-DB/main/fitur_db/anime_loli.json', { timeout: 20000 })
-          if (!Array.isArray(data) || !data.length) return reply('❌ Data gambar kosong.')
+          if (!Array.isArray(data) || !data.length) return reply('❌ Los datos de la imagen están vacíos.')
           const url = data[Math.floor(Math.random() * data.length)]
-          return await sock.sendMessage(m.chat, { image: { url }, caption: 'Nih Kak' }, { quoted: m })
+          return await sock.sendMessage(m.chat, { image: { url }, caption: 'aquí hermana' }, { quoted: m })
       } catch (e) {
-          return reply(`❌ Gagal mengambil gambar: ${e.response?.status || e.message}`)
+          return reply(`❌ No se pudo tomar la foto: ${e.response?.status || e.message}`)
       }
   }
 

@@ -1,17 +1,17 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const te = ElysiaRuntime.te;
-const getDatabase = ElysiaRuntime.getDatabase;
+const te = MikuRuntime.te;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: "novel",
@@ -202,7 +202,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
   function listTxt(header, items, mapper) {
     let txt = `${header}\n\n`;
     items.forEach((it, i) => { txt += `*${i + 1}.* ${mapper(it)}\n`; });
-    txt += `\n> 💡 Balas dengan *angka* untuk memilih, atau ketik \`batal\` untuk keluar.`;
+    txt += `\n> 💡 Responda con *número* para seleccionar, o escriba \`cancelar\` para salir.`;
     return txt;
   }
 
@@ -218,13 +218,13 @@ const getDatabase = ElysiaRuntime.getDatabase;
     txt += `\n╭─「 📑 Chapter terbaru 」\n`;
     shown.forEach((ch, i) => { txt += `┃ *${i + 1}.* ${ch.title}\n`; });
     txt += `╰────────────\n\n`;
-    txt += `> 💡 Balas *angka* untuk baca chapter itu, atau \`batal\` untuk keluar.`;
+    txt += `> 💡 Responde *número* para leer ese capítulo, o \`cancela\` para salir.`;
     return txt;
   }
 
   async function sendChapterContent(m, chapter) {
     const header = `📖 *${chapter.title}*\n\n`;
-    const full = header + (chapter.content || '_Isi chapter tidak ditemukan (mungkin halaman berbayar / dilindungi)._');
+    const full = header + (chapter.content || '_No se encontró el contenido del capítulo (posiblemente una página paga/protegida)._');
 
     if (full.length <= CHUNK_SIZE) {
       await m.reply(full);
@@ -243,7 +243,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
     }
 
     await m.reply(
-      `> 📘 Ketik \`lanjut\` untuk chapter berikutnya, \`balik\` untuk chapter sebelumnya, atau \`batal\` untuk keluar.`
+      `> 📘 Escriba \`continuar\` para el siguiente capítulo, \`flip\` para el capítulo anterior o \`cancelar\` para salir.`
     );
   }
 
@@ -256,12 +256,12 @@ const getDatabase = ElysiaRuntime.getDatabase;
     if (!q) {
       return m.reply(
         `📖 *ɴᴏᴠᴇʟ — ɪɴᴅᴏᴡᴇʙɴᴏᴠᴇʟ*\n\n` +
-        `> Cari & baca web novel langsung di chat!\n\n` +
+        `> ¡Busca y lee novelas web directamente en el chat!\n\n` +
         `╭┈┈⬡「 📘 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-        `┃ • ${m.prefix}novel <judul> — cari novel\n` +
+        `┃ • ${m.prefix}novela <título> — buscar novela\n` +
         `┃ • ${m.prefix}novel latest — update terbaru\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> *Contoh:* ${m.prefix}novel shadow slave`
+        `> *Ejemplo:* ${m.prefix}Novelas de esclavos de las sombras`
       );
     }
 
@@ -272,7 +272,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
         const results = await getLatest(1);
         if (!results.length) {
           await m.react('❌');
-          return m.reply('❌ Tidak ada update terbaru saat ini.');
+          return m.reply('❌ No hay nuevas actualizaciones en este momento.');
         }
         const sliced = results.slice(0, MAX_LIST);
 
@@ -295,7 +295,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const results = await searchNovel(q, 1);
       if (!results.length) {
         await m.react('❌');
-        return m.reply(`❌ Novel "${q}" tidak ditemukan. Coba kata kunci lain.`);
+        return m.reply(`❌ Novelas "${q}" no encontrado. Pruebe con otra palabra clave.`);
       }
       const sliced = results.slice(0, MAX_LIST);
 
@@ -309,7 +309,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       await m.react('✅');
       await m.reply(listTxt(
-        `📖 *HASIL PENCARIAN: ${q.toUpperCase()}*`,
+        `📖 *RESULTADOS DE BÚSQUEDA: ${q.toUpperCase()}*`,
         sliced,
         r => `${r.title}${r.type ? ` (${r.type})` : ''}${r.rating ? ` ⭐${r.rating}` : ''}`
       ));
@@ -331,7 +331,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
     if (Date.now() - session.time > SESSION_TIMEOUT) {
       delete user.novel_session;
       db.save();
-      await m.reply('⏰ Sesi pencarian novel sudah kedaluwarsa. Silakan ulangi perintah.');
+      await m.reply('⏰ La nueva sesión de búsqueda ha caducado. Por favor repita el comando.');
       return true;
     }
 
@@ -340,7 +340,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
     if (text === 'batal' || text === 'cancel') {
       delete user.novel_session;
       db.save();
-      await m.reply('🚪 Sesi novel dibatalkan.');
+      await m.reply('🚪 Sesión de novela cancelada.');
       return true;
     }
 
@@ -365,7 +365,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       } catch (err) {
         console.error('[Novel] Detail error:', err.message);
         await m.react('☢');
-        await m.reply('❌ Gagal mengambil detail novel. Coba lagi nanti.');
+        await m.reply('❌ No se pudieron recuperar los detalles novedosos. Vuelve a intentarlo más tarde.');
       }
       return true;
     }
@@ -394,7 +394,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       } catch (err) {
         console.error('[Novel] Chapter error:', err.message);
         await m.react('☢');
-        await m.reply('❌ Gagal mengambil isi chapter. Coba lagi nanti.');
+        await m.reply('❌ No se pudo recuperar el contenido del capítulo. Vuelve a intentarlo más tarde.');
       }
       return true;
     }
@@ -406,7 +406,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       const newIndex = isNext ? session.index - 1 : session.index + 1;
       if (newIndex < 0 || newIndex >= session.chapters.length) {
-        await m.reply(isNext ? '📘 Sudah di chapter paling baru.' : '📘 Sudah di chapter paling awal yang tersedia.');
+        await m.reply(isNext ? '📘 Ya en el capítulo más nuevo.' : '📘 Ya en el primer capítulo disponible.');
         return true;
       }
 
@@ -425,7 +425,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       } catch (err) {
         console.error('[Novel] Navigasi chapter error:', err.message);
         await m.react('☢');
-        await m.reply('❌ Gagal mengambil chapter. Coba lagi nanti.');
+        await m.reply('❌No pude tomar el capítulo. Vuelve a intentarlo más tarde.');
       }
       return true;
     }

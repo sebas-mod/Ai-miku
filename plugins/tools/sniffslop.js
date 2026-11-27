@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
-const reactTo = ElysiaRuntime.reactTo;
+const reactTo = MikuRuntime.reactTo;
 
 const pluginConfig = {
     name: "sniffslop",
@@ -58,25 +58,25 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, prefix, command, reply }) {
       let url = String(text || m.quoted?.text || '').trim().split(/\s+/)[0]
-      if (!url) return reply(`Masukkan link website.\n\nContoh:\n${prefix}${command} https://contoh.com`)
+      if (!url) return reply(`Escribe el enlace de una web.\n\nEjemplo:\n${prefix}${command} https://ejemplo.com`)
       if (!/^https?:\/\//i.test(url)) url = `https://${url}`
       try {
           new URL(url)
       } catch {
-          return reply('❌ Link tidak valid.')
+          return reply('❌ Enlace no válido.')
       }
 
       try {
           await reactTo(sock, m, '⏳')
           const data = await scanWebsite(url)
           const lines = flatten(data)
-          if (!lines.length) throw new Error('Hasil scan kosong.')
+          if (!lines.length) throw new Error('Los resultados del escaneo están en blanco.')
           await reply(`*🕵️ SNIFFSLOP SCAN*\n${url}\n\n${lines.join('\n').slice(0, 3500)}`)
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')
           const d = e.response?.data
-          reply(`❌ Gagal scan website: ${d?.message || (typeof d === 'string' ? d.slice(0, 200) : e.message)}`)
+          reply(`❌ No se pudo escanear la web: ${d?.message || (typeof d === 'string' ? d.slice(0, 200) : e.message)}`)
       }
   }
 

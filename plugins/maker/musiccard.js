@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 import axios from "axios";
 
-const ImageUploadService = ElysiaRuntime.ImageUploadService;
+const ImageUploadService = MikuRuntime.ImageUploadService;
 
   const pluginConfig = {
     name: "musiccard",
@@ -37,7 +37,7 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
     if (m.quoted?.message) {
       const type = getContentType(m.quoted.message);
       if (type !== "imageMessage") {
-        return m.reply("❌ *Waduh, itu bukan gambar!*\n\nKamu harus me-reply (membalas) pesan berupa *gambar* dengan format `.musiccard <judul>|<nama>`.\n\nContoh: \nBalas gambar temanmu, lalu ketik: `.musiccard Perfect|Ed Sheeran`");
+        return m.reply("❌ *¡Vaya, eso no es una imagen!*\n\nDebes responder a un mensaje con una *imagen* con el formato `.musiccard <título>|<artista>`.\n\nEjemplo: \nResponde a la imagen de un amigo y escribe: `.musiccard Perfect|Ed Sheeran`");
       }
       try {
         mediaBuffer = await downloadMediaMessage(
@@ -46,12 +46,12 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
           {}
         );
         mimetype = m.quoted.message[type]?.mimetype;
-      } catch (e) { return m.reply("😔 *Gagal mendownload gambar.* Coba kirim ulang gambarnya ya.");
+      } catch (e) { return m.reply("😔 *No se pudo descargar la imagen.* Vuelve a enviarla.");
       }
     } else if (m.message) {
       const type = getContentType(m.message);
       if (type !== "imageMessage") {
-        return m.reply("❌ *Waduh, gambarnya mana nih?*\n\nKamu harus mengirim sebuah gambar dengan caption (teks pelengkap) `.musiccard <judul>|<nama>` atau reply gambar yang sudah ada.\n\nContoh: \nKirim gambar dengan caption: `.musiccard Perfect|Ed Sheeran`");
+        return m.reply("❌ *¿Y la imagen?*\n\nDebes enviar una imagen con el texto `.musiccard <título>|<artista>` o responder a una imagen existente.\n\nEjemplo: \nEnvía una imagen con el texto: `.musiccard Perfect|Ed Sheeran`");
       }
       try {
         mediaBuffer = await downloadMediaMessage(
@@ -60,20 +60,20 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
           {}
         );
         mimetype = m.message[type]?.mimetype;
-      } catch (e) { return m.reply("😔 *Gagal mendownload gambar.* Coba kirim ulang gambarnya ya.");
+      } catch (e) { return m.reply("😔 *No se pudo descargar la imagen.* Vuelve a enviarla.");
       }
     }
 
     if (!mediaBuffer) {
-      return m.reply("❌ *Gambar tidak terdeteksi!* Pastikan kamu mengirim gambar dengan benar.");
+      return m.reply("❌ *¡No se detectó la imagen!* Asegúrate de enviarla correctamente.");
     }
 
     if (!text) {
-      return m.reply("❌ *Judul lagu dan artis belum diisi!*\n\nFormat penulisan yang benar adalah: `.musiccard <judul>|<nama>`\nPisahkan judul dan nama artis dengan simbol pita ( | ).");
+      return m.reply("❌ *¡Faltan el título de la canción y el artista!*\n\nEl formato correcto es: `.musiccard <título>|<artista>`\nSepara el título y el artista con una barra vertical ( | ).");
     }
 
     let judul = text;
-    let nama = "Unknown Artist";
+    let nama = "Artista desconocido";
 
     if (text.includes("|")) {
       const parts = text.split("|");
@@ -90,7 +90,7 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
 
       if (!uploadResult || !uploadResult.directLink) {
         await m.react("❌");
-        return m.reply("⚠️ *Gagal mengunggah gambar!* Pastikan ukuran gambarnya tidak terlalu besar dan coba lagi ya.");
+        return m.reply("⚠️ *¡No se pudo subir la imagen!* Comprueba que no sea demasiado grande e inténtalo de nuevo.");
       }
 
       const apiUrl = `https://api.nexray.eu.cc/canvas/musiccard?judul=${encodeURIComponent(judul)}&nama=${encodeURIComponent(nama)}&image_url=${encodeURIComponent(uploadResult.directLink)}`;
@@ -102,21 +102,21 @@ const ImageUploadService = ElysiaRuntime.ImageUploadService;
 
       if (res.headers["content-type"] && !res.headers["content-type"].includes("image")) {
         await m.react("❌");
-        return m.reply("⚠️ *Gagal membuat Music Card.* Server merespon dengan format yang salah.");
+        return m.reply("⚠️ *No se pudo crear la Music Card.* El servidor respondió con un formato incorrecto.");
       }
 
       const cardBuffer = Buffer.from(res.data);
 
       await sock.sendMessage(m.chat, {
         image: cardBuffer,
-        caption: `✨ *MUSIC CARD BERHASIL DIBUAT!* ✨\n\n🎧 *Judul*: ${judul}\n🎤 *Artis*: ${nama}\n\nKeren banget kan hasilnya? Pamerin ke teman-temanmu yuk! 🚀`
+        caption: `✨ *¡MUSIC CARD CREADA!* ✨\n\n🎧 *Título*: ${judul}\n🎤 *Artista*: ${nama}\n\n¿A que quedó genial? ¡Presúmela con tus amigos! 🚀`
       }, { quoted: m });
 
       await m.react("✅");
 
     } catch (err) { console.error("[Music Card]", err.message);
       await m.react("☢");
-      m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat kartu. Silakan coba beberapa saat lagi ya.");
+      m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo contactar con el servidor de tarjetas. Inténtalo de nuevo en un momento.");
     }
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'afk',
     alias: ['away', 'brb'],
     category: 'group',
-    description: 'Set status AFK dengan alasan',
+    description: 'Activa el estado AFK con un motivo',
     usage: '.afk <alasan>',
     example: '.afk lagi makan',
     isOwner: false,
@@ -30,7 +30,7 @@ function getAfkUser(jid) {
 
 function setAfkUser(jid, reason) {
     afkStorage.set(jid, {
-        reason: reason || 'Tidak ada alasan',
+        reason: reason || 'Sin motivo',
         time: Date.now()
     })
 }
@@ -48,22 +48,22 @@ function formatDuration(ms) {
     const minutes = Math.floor(seconds / 60)
     const hours = Math.floor(minutes / 60)
     if (hours > 0) {
-        return `${hours} jam ${minutes % 60} menit`
+        return `${hours} horas ${minutes % 60} minutos`
     } else if (minutes > 0) {
-        return `${minutes} menit ${seconds % 60} detik`
+        return `${minutes} minutos ${seconds % 60} segundos`
     } else {
-        return `${seconds} detik`
+        return `${seconds} segundos`
     }
 }
 
 async function handler(m, { sock }) {
-    const reason = m.text || 'Tidak ada alasan'
+    const reason = m.text || 'Sin motivo'
     setAfkUser(m.sender, reason)
     await m.reply(
-        `💤 *ᴀꜰᴋ ᴀᴋᴛɪꜰ*\n\n` +
-        `\`\`\`@${m.sender.split('@')[0]} sekarang AFK\`\`\`\n` +
+        `💤 *AFK ACTIVO*\n\n` +
+        `\`\`\`@${m.sender.split('@')[0]} ahora está AFK\`\`\`\n` +
         `🍀 \`Alasan:\` *${reason}*\n\n` +
-        `_Ketik apapun untuk menonaktifkan AFK._`,
+        `_Escribe cualquier cosa para desactivar el AFK._`,
         { mentions: [m.sender] }
     )
 }
@@ -74,19 +74,19 @@ async function checkAfk(m, sock) {
         if (m.isCommand && m.command?.toLowerCase() === 'afk') return
         removeAfkUser(m.sender)
         const duration = formatDuration(Date.now() - afkData.time)
-        await m.reply(`👋 *ᴀꜰᴋ ʙᴇʀᴀᴋʜɪʀ*\n\n` +
-                `\`\`\`@${m.sender.split('@')[0]} sudah kembali!\`\`\`\n` +
-                `🍀 \`Durasi AFK:\` *${duration}*`, { mentions: [m.sender] })
+        await m.reply(`👋 *AFK TERMINADO*\n\n` +
+                `\`\`\`¡@${m.sender.split('@')[0]} ya ha vuelto!\`\`\`\n` +
+                `🍀 \`Duración AFK:\` *${duration}*`, { mentions: [m.sender] })
     }
     if (m.isGroup && m.mentionedJid && m.mentionedJid.length > 0) {
         for (const mentioned of m.mentionedJid) {
             const mentionedAfk = getAfkUser(mentioned)
             if (mentionedAfk) {
                 const duration = formatDuration(Date.now() - mentionedAfk.time)
-                await m.reply(`💤 *ᴜsᴇʀ ᴀꜰᴋ*\n\n` +
-                        `\`\`\`Hustt, jangan di ganggu!\`\`\` \`@${mentioned.split('@')[0]}\` lagi AFK\n` +
+                await m.reply(`💤 *USUARIO AFK*\n\n` +
+                        `\`\`\`¡Shhh, no molestar!\`\`\` \`@${mentioned.split('@')[0]}\` está AFK\n` +
                         `🍀 \`Alasan:\` *${mentionedAfk.reason}*\n` +
-                        `🍀 \`Sejak:\` *${duration} yang lalu*`, { mentions: [mentioned] })
+                        `🍀 \`Desde:\` *${duration} atrás*`, { mentions: [mentioned] })
             }
         }
     }

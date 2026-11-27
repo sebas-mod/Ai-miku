@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -111,11 +111,11 @@ const pluginConfig = {
       const p = usedPrefix + command
       return m.reply(
         `*GROWTOPIA INFO*\n\n` +
-        `• ${p} status — pemain online & status server\n` +
+        `• ${p} estado: jugadores en línea y estado del servidor\n` +
         `• ${p} wotd — World of the Day\n` +
-        `• ${p} world <nama> — render gambar world\n` +
+        `• ${p} mundo <nombre> — renderizar imagen del mundo\n` +
         `• ${p} leaderboard — Dungeons leaderboard\n` +
-        `• ${p} item <nama> — info item & resep (wiki)`
+        `• ${p} artículo <nombre> — información del artículo y receta (wiki)`
       )
     }
 
@@ -125,7 +125,7 @@ const pluginConfig = {
         const d = await getServerDetail()
         await m.reply(
           `*— GROWTOPIA STATUS —*\n\n` +
-          `❀ Pemain Online : ${fmt(d.online_user)}\n` +
+          `❀ Jugadores en línea: ${fmt(d.online_user)}\n` +
           `❀ WOTD : ${d.world_of_the_day.name || '-'}\n` +
           `❀ Trailer : ${d.trailer_url || '-'}`
         )
@@ -138,28 +138,28 @@ const pluginConfig = {
           await m.reply(caption)
         }
       } else if (sub === 'world') {
-        if (!param) return m.reply(`Contoh: ${usedPrefix + command} world START`)
+        if (!param) return m.reply(`Ejemplo: ${usedPrefix + command} mundo START`)
         const url = getWorldRenderUrl(param)
         const caption = `*Render World*\n\n❀ World : ${param.toUpperCase()}\n❀ Link : ${url}`
         try {
           await conn.sendMessage(m.chat, { image: { url }, caption }, { quoted: m })
         } catch {
-          await m.reply(`${caption}\n\n_Gambar belum tersedia (world mungkin belum pernah dirender)._`)
+          await m.reply(`${caption}\n\n_Imagen aún no disponible (es posible que el mundo nunca haya sido renderizado)._`)
         }
       } else if (sub === 'leaderboard' || sub === 'lb') {
         const lb = await getLeaderboard(20)
         if (!lb.length) {
           await m.react('❌')
-          return m.reply('Leaderboard sedang tidak dapat diakses.')
+          return m.reply('La tabla de clasificación es actualmente inaccesible.')
         }
         const lines = lb.map((e) => `${e.rank.padStart(2)}. ${e.player_name} — ${e.score}`)
         await m.reply(`*— TOP 20 DUNGEONS LEADERBOARD —*\n\n${lines.join('\n')}`)
       } else if (sub === 'item') {
-        if (!param) return m.reply(`Contoh: ${usedPrefix + command} item Laser Grid`)
+        if (!param) return m.reply(`Ejemplo: ${usedPrefix + command} Artículos de rejilla láser`)
         const items = await searchItem(param)
         if (!items.length) {
           await m.react('❌')
-          return m.reply('Item tidak ditemukan.')
+          return m.reply('Artículo no encontrado.')
         }
         let summary = ''
         try {
@@ -169,8 +169,8 @@ const pluginConfig = {
         await m.reply(
           `*— GROWTOPIA ITEM —*\n\n` +
           `❀ ${items[0].title}\n${items[0].page_url}\n\n` +
-          `${summary || '_Tidak ada deskripsi teks tambahan._'}` +
-          (others ? `\n\n*Hasil lain:*\n${others}` : '')
+          `${summary || '_Sin descripción adicional._'}` +
+          (others ? `\n\n*Otros resultados:*\n${others}` : '')
         )
       }
       await m.react('✅')

@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { existsSync, unlinkSync } from 'node:fs';
@@ -127,7 +127,7 @@ import { join } from 'node:path';
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
       }
     });
-    if (!res.ok) throw new Error(`Gagal download ${url}: ${res.status} ${res.statusText}`);
+    if (!res.ok) throw new Error(`Error al descargar ${url}: ${res.status} ${res.statusText}`);
     return Buffer.from(await res.arrayBuffer());
   }
 
@@ -242,7 +242,7 @@ import { join } from 'node:path';
 
   async function drawScene(bgId, quoteText, usernameStr, outFile) {
     const bg = BACKGROUNDS[bgId];
-    if (!bg) throw new Error(`Background nomor ${bgId} tidak ditemukan`);
+    if (!bg) throw new Error(`No se encontró el fondo número ${bgId}`);
 
     const bgBuffer = await setupEnv(bg);
 
@@ -274,13 +274,13 @@ import { join } from 'node:path';
   async function handler(m, { sock, text }) {
       if (!text) {
           return m.reply(
-              `🎨 *FITUR BUAT QUOTES ANIME*\n\n` +
-              `Fitur ini akan membantumu merangkai kata-kata mutiara dengan latar belakang karakter anime favorit yang sangat keren!\n\n` +
-              `*CARA PENGGUNAAN:*\n` +
-              `- \`${m.prefix}buatquotes <teks>\`\n` +
-              `- \`${m.prefix}buatquotes <id_background> | <teks>\`\n` +
-              `- \`${m.prefix}buatquotes <id_background> | <teks> | <namamu>\`\n\n` +
-              `*DAFTAR BACKGROUND PENDUKUNG (ID 1-8):*\n` +
+              `🎨 *FUNCIÓN DE CITAS ANIME*\n\n` +
+              `¡Esta función te ayuda a crear frases con el fondo de tu personaje de anime favorito!\n\n` +
+              `*CÓMO USAR:*\n` +
+              `- \`${m.prefix}buatquotes <texto>\`\n` +
+              `- \`${m.prefix}buatquotes <id_background> | <texto>\`\n` +
+              `- \`${m.prefix}buatquotes <id_background> | <texto> | <namamu>\`\n\n` +
+              `*FONDOS DISPONIBLES (ID 1-8):*\n` +
               `- 1: L (Death Note)\n` +
               `- 2: Gojo Satoru\n` +
               `- 3: Yuji Itadori\n` +
@@ -289,7 +289,7 @@ import { join } from 'node:path';
               `- 6: Naruto\n` +
               `- 7: Light Yagami\n` +
               `- 8: Higuruma\n\n` +
-              `_Contoh: ${m.prefix}buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman_`
+              `_Ejemplo: ${m.prefix}buatquotes 2 | Sigue viviendo aunque no sirvas | Maman_`
           );
       }
 
@@ -342,7 +342,7 @@ import { join } from 'node:path';
           fontsLoaded = false;
           console.error(e);
           await m.react('❌');
-          m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\nMaaf, sistem mengalami gangguan saat mencoba membuat gambar quote. Silakan coba lagi nanti.`);
+          m.reply(`❌ *ERROR AL CREAR LA CITA*\n\nLo siento, el sistema tuvo un problema al crear la imagen. Inténtalo más tarde.`);
       }
   }
 

@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const createElysiaFeature = (module, exports, require) => {
+const createMikuFeature = (module, exports, require) => {
         const NG = require('netguard'), { B } = require('style')
 
         const LINE = '━━━━━━━━━━━━━━━━━━━━'
@@ -36,7 +36,7 @@ const createElysiaFeature = (module, exports, require) => {
           .replace(/&#(\d+);/g, (_, n) => { try { return String.fromCodePoint(+n) } catch { return '' } }).replace(/&#x([0-9a-f]+);/gi, (_, n) => { try { return String.fromCodePoint(parseInt(n, 16)) } catch { return '' } })
         const strip = (s) => ent(String(s).replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()
         const clip = (s, n) => { s = String(s || ''); return s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s }
-        const ago = (d) => { const t = Date.parse(d); if (!t) return ''; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'baru saja' : m < 60 ? `${m} menit lalu` : m < 1440 ? `${Math.round(m / 60)} jam lalu` : `${Math.round(m / 1440)} hari lalu` }
+        const ago = (d) => { const t = Date.parse(d); if (!t) return ''; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'hace un momento' : m < 60 ? `${m} hace minutos` : m < 1440 ? `${Math.round(m / 60)} hace horas` : `${Math.round(m / 1440)} día último` }
 
         function parseRss(xml, n = 8) {
           return [...String(xml).matchAll(/<item[\s>]([\s\S]*?)<\/item>/g)].slice(0, n).map(([, it]) => {
@@ -64,17 +64,17 @@ const createElysiaFeature = (module, exports, require) => {
 
         async function get(url, o = {}) {
           const r = await NG.safeFetch(url, { timeout: 15000, maxBytes: 1.5 * 1024 * 1024, truncate: true, headers: BROWSER, ...o })
-          if (r.status >= 400) throw Object.assign(new Error('situs membalas HTTP ' + r.status), { code: 'EHTTP' })
+          if (r.status >= 400) throw Object.assign(new Error('el sitio responde HTTP ' + r.status), { code: 'EHTTP' })
           return { ...r, text: r.buffer.toString('utf8') }
         }
-        const cheerio = () => { try { return require('cheerio') } catch { throw new Error('modul cheerio belum terpasang (jalankan npm install)') } }
+        const cheerio = () => { try { return require('cheerio') } catch { throw new Error('Módulo Cherio no instalado (ejecute npm install)') } }
 
         const F = {
           async kabar({ text, prefix, reply }) {
             const k = String(text || '').trim().toLowerCase().split(/\s+/)[0]
-            if (!k || !FEEDS[k]) return reply(`${B('KABAR')}\nBerita terbaru langsung dari RSS media.\nSumber: ${Object.keys(FEEDS).join(', ')}\nContoh: ${prefix}kabar cnn`)
+            if (!k || !FEEDS[k]) return reply(`${B('KABAR')}\nLas últimas novedades directamente de RSS medios.\nFuente: ${Object.keys(FEEDS).join(', ')}\nEjemplo: ${prefix}noticias cnn`)
             const { text: xml } = await get(FEEDS[k]), items = parseRss(xml)
-            if (!items.length) throw new Error('RSS kosong atau formatnya berubah')
+            if (!items.length) throw new Error('RSS está vacío o el formato ha cambiado')
             return reply(`${B('KABAR ' + k.toUpperCase())}\n${LINE}\n` + items.map((x, i) => `${i + 1}. *${clip(x.title, 160)}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + `\n\n_Sumber: ${k}_`)
           },
 
@@ -90,7 +90,7 @@ const createElysiaFeature = (module, exports, require) => {
             const { text: html } = await get('https://kbbi.web.id/' + encodeURIComponent(w))
             const $ = cheerio().load(html), box = $('#d1').first()
             let body = box.length ? ent(box.html().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')).replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim() : ''
-            if (!body || /tidak ditemukan|tidak ada/i.test(body.slice(0, 80))) return reply(`Kata *${w}* tidak ditemukan di KBBI.`)
+            if (!body || /tidak ditemukan|tidak ada/i.test(body.slice(0, 80))) return reply(`Decir *${w}* no encontrado en KBBI.`)
             return reply(`${B('KBBI')} — ${w}\n${LINE}\n${clip(body, 1500)}\n\n_Sumber: kbbi.web.id_`)
           },
 
@@ -105,7 +105,7 @@ const createElysiaFeature = (module, exports, require) => {
               if (!/\/resep\/\d+/.test(href) || t.length < 4 || seen.has(href)) return
               seen.add(href); out.push({ t, href })
             })
-            if (!out.length) return reply(`Resep untuk *${q}* tidak ditemukan.`)
+            if (!out.length) return reply(`Receta para *${q}* extraviado.`)
             return reply(`${B('RESEP')} — ${q}\n${LINE}\n` + out.slice(0, 8).map((x, i) => `${i + 1}. *${clip(x.t, 90)}*\n   ${x.href}`).join('\n\n') + '\n\n_Sumber: Cookpad_')
           },
 
@@ -115,16 +115,16 @@ const createElysiaFeature = (module, exports, require) => {
               const c = $(tr).find('td,th').map((__, x) => $(x).text().replace(/\s+/g, ' ').trim()).get()
               if (c.length >= 2 && /^\d+([.,]\d+)?\s*(gr|gram)\b/i.test(c[0]) && /\d{3}\.\d{3}/.test(c[1])) rows.push([c[0], c[1].replace(/^Rp\s*/i, 'Rp ')])
             })
-            if (!rows.length) throw new Error('tabel harga tidak terbaca (halaman berubah atau memblokir bot)')
-            return reply(`${B('HARGA EMAS ANTAM')}\n${LINE}\n` + rows.slice(0, 12).map(([a, b]) => `${a.padEnd(8)} : ${b}`).join('\n') + '\n\n_Sumber: logammulia.com • harga bisa berubah tiap hari_')
+            if (!rows.length) throw new Error('tabla de precios ilegible (página modificada o bloqueada bot)')
+            return reply(`${B('PRECIO DEL ORO ANTAM')}\n${LINE}\n` + rows.slice(0, 12).map(([a, b]) => `${a.padEnd(8)} : ${b}`).join('\n') + '\n\n_Fuente:metalmulia.com • los precios pueden cambiar todos los días_')
           },
 
           async og({ sock, m, text, prefix, reply }) {
             const u = String(text || '').trim().split(/\s+/)[0]
-            if (!u) return reply(`${B('PRATINJAU TAUTAN')}\nContoh: ${prefix}og https://contoh.com/artikel`)
+            if (!u) return reply(`${B('VISTA PREVIA DEL ENLACE')}\nEjemplo: ${prefix}og https://contoh.com/artikel`)
             const r = await get(u), meta = parseMeta(r.text)
-            if (!meta.title && !meta.desc) throw new Error('halaman tidak punya metadata')
-            const cap = [B('PRATINJAU'), LINE, `Judul   : ${clip(meta.title, 200) || '-'}`, meta.site && `Situs   : ${meta.site}`, meta.author && `Penulis : ${clip(meta.author, 80)}`, meta.time && `Terbit  : ${meta.time.slice(0, 16).replace('T', ' ')}`, `Deskripsi: ${clip(meta.desc, 400) || '-'}`, '', r.url].filter(x => x !== '' ? x : true).filter(Boolean).join('\n')
+            if (!meta.title && !meta.desc) throw new Error('la página no tiene metadatos')
+            const cap = [B('VISTA PREVIA'), LINE, `Título: ${clip(meta.title, 200) || '-'}`, meta.site && `Sitio   : ${meta.site}`, meta.author && `Autor   : ${clip(meta.author, 80)}`, meta.time && `Publicado: ${meta.time.slice(0, 16).replace('T', ' ')}`, `Descripción: ${clip(meta.desc, 400) || '-'}`, '', r.url].filter(x => x !== '' ? x : true).filter(Boolean).join('\n')
             const img = meta.image && abs(meta.image, r.url)
             if (img && NG.parseUrl(img)) { try { return await sock.sendMessage(m.chat, { image: { url: img }, caption: cap }, { quoted: m }) } catch {} }
             return reply(cap)
@@ -132,12 +132,12 @@ const createElysiaFeature = (module, exports, require) => {
 
           async artikel({ text, prefix, reply }) {
             const u = String(text || '').trim().split(/\s+/)[0]
-            if (!u) return reply(`${B('BACA ARTIKEL')}\nContoh: ${prefix}artikel https://contoh.com/berita/123`)
+            if (!u) return reply(`${B('LEER ARTÍCULO')}\nEjemplo: ${prefix}artikel https://contoh.com/berita/123`)
             const r = await get(u, { maxBytes: 2 * 1024 * 1024 }), meta = parseMeta(r.text), paras = parseArticle(r.text)
-            if (!paras.length) throw new Error('isi artikel tidak terbaca (mungkin dirender JavaScript atau berbayar)')
+            if (!paras.length) throw new Error('el contenido del artículo es ilegible (puede ser JavaScript renderizado o pago)')
             let body = '', n = 0; for (const p of paras) { if (body.length + p.length > 1800) break; body += p + '\n\n'; n++ }
             if (!body) body = clip(paras[0], 1800)
-            return reply(`${B('ARTIKEL')}\n${LINE}\n*${clip(meta.title, 200) || 'Tanpa judul'}*\n\n${body.trim()}${n < paras.length ? '\n\n_…dipotong_' : ''}\n\n${r.url}`)
+            return reply(`${B('ARTÍCULO')}\n${LINE}\n*${clip(meta.title, 200) || 'Sin título'}*\n\n${body.trim()}${n < paras.length ? '\n\n_…recortado_' : ''}\n\n${r.url}`)
           },
         }
 
@@ -147,10 +147,10 @@ const createElysiaFeature = (module, exports, require) => {
           run: async (ctx) => {
             const cmd = ALIAS[String(ctx.command || '').toLowerCase()] || 'kabar', now = Date.now(), who = (ctx.m && ctx.m.sender) || ''
             const prev = last.get(who) || 0
-            if (now - prev < COOLDOWN) return ctx.reply(`⏳ Tunggu ${Math.ceil((COOLDOWN - (now - prev)) / 1000)} detik lagi.`)
+            if (now - prev < COOLDOWN) return ctx.reply(`⏳ Espera ${Math.ceil((COOLDOWN - (now - prev)) / 1000)} Quedan segundos.`)
             last.set(who, now)
             try { return await F[cmd](ctx) }
-            catch (e) { console.log('[scrapekit:' + cmd + ']', e.message); return ctx.reply(`Gagal mengambil data (${cmd}): ${e.message}`) }
+            catch (e) { console.log('[scrapekit:' + cmd + ']', e.message); return ctx.reply(`No se pudieron recuperar los datos (${cmd}): ${e.message}`) }
           },
         }
         module.exports._t = { parseRss, parseMeta, parseArticle, strip, ALIAS }
@@ -184,6 +184,6 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const handler = ElysiaRuntime.createWorldHandler(createElysiaFeature, typeof libs !== 'undefined' ? libs : {})
+const handler = MikuRuntime.createWorldHandler(createMikuFeature, typeof libs !== 'undefined' ? libs : {})
 
 export { pluginConfig as config, handler }

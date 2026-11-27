@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,26 +31,26 @@ async function handler(m) {
   if (!input) {
     return m.reply(
       `📝 *CUSTOM PAYMENT TEXT*\n\n` +
-      `Teks saat ini:\n${current || '_(belum diatur, pakai default)_'}\n\n` +
-      `*PLACEHOLDER YANG TERSEDIA:*\n` +
-      `• \`{botname}\` — Nama bot\n` +
-      `• \`{owner}\` — Nama owner\n` +
-      `• \`{methods}\` — Daftar e-wallet\n` +
-      `• \`{banks}\` — Daftar bank\n` +
+      `Texto actual:\n${current || '_(sin configurar, se usa el valor por defecto)_'}\n\n` +
+      `*PLACEHOLDERS DISPONIBLES:*\n` +
+      `• \`{botname}\` — Nombre del bot\n` +
+      `• \`{owner}\` — Nombre del owner\n` +
+      `• \`{methods}\` — Lista de billeteras electrónicas\n` +
+      `• \`{banks}\` — Lista de bancos\n` +
       `• \`{qris}\` — Status QRIS\n\n` +
-      `*CONTOH:*\n` +
-      `> \`${m.prefix}custompayment Halo! Bayar ke {methods}\`\n\n` +
+      `*EJEMPLO:*\n` +
+      `> \`${m.prefix}custompayment ¡Hola! Paga a {methods}\`\n\n` +
       `> \`${m.prefix}custompayment reset\` — Kembalikan ke default`
     )
   }
 
   if (input.toLowerCase() === 'reset') {
     db.setting('customPaymentText', '')
-    return m.reply('✅ Teks custom payment direset ke default.')
+    return m.reply('✅ El texto de pago personalizado se restablece a los valores predeterminados.')
   }
 
   db.setting('customPaymentText', input)
-  return m.reply(`✅ Teks custom payment disimpan!\n\nPreview:\n${input}`)
+  return m.reply(`✅ ¡Se guarda el texto de pago personalizado!\n\nPreview:\n${input}`)
 }
 
 export { pluginConfig as config, handler }

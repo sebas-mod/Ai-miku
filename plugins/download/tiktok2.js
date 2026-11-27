@@ -1,18 +1,18 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -131,15 +131,15 @@ const te = ElysiaRuntime.te;
 
       if (!url) {
           return m.reply(
-              `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」\n` +
-              `┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}tiktok2 <url>\`\n` +
+              `╭┈┈⬡「 🎵 *DESCARGADOR DE TIKTOK* 」\n` +
+              `┃ ㊗ USO: \`${m.prefix}tiktok2 <url>\`\n` +
               `╰┈┈⬡\n\n` +
-              `> Contoh: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
+              `> Ejemplo: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
           )
       }
 
       if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-          return m.reply('❌ URL tidak valid. Gunakan link TikTok.')
+          return m.reply('❌ URL no válida. Usa un enlace de TikTok.')
       }
 
       m.react('⏱️')
@@ -179,7 +179,7 @@ const te = ElysiaRuntime.te;
           }
 
           if (result.type === 'photo' && result.slides.length > 0) {
-              await m.reply(`📸 *Mengirim ${result.slides.length} slide...*`)
+              await m.reply(`📸 *Enviando ${result.slides.length} diapositivas...*`)
 
               const mediaList = []
               for (let i = 0; i < result.slides.length; i++) {
@@ -201,7 +201,7 @@ const te = ElysiaRuntime.te;
               }
 
               if (mediaList.length === 0) {
-                  throw new Error('Gagal mengunduh gambar slide')
+                  throw new Error('Error al descargar las imágenes del carrusel')
               }
 
               const opener = generateWAMessageFromContent(
@@ -260,7 +260,7 @@ const te = ElysiaRuntime.te;
           }
 
           if (result.mp3.length > 0) {
-              m.reply(`*NOTE*\n> Konten ini tidak memiliki video/slide, mengirim audio saja...`)
+              m.reply(`*NOTA*\n> Este contento no tiene video/carrusel, enviando solo el audio...`)
               await sock.sendMessage(
                   m.chat,
                   {
@@ -273,7 +273,7 @@ const te = ElysiaRuntime.te;
               return
           }
 
-          throw new Error('Tidak ada media yang dapat diunduh')
+          throw new Error('No hay contenido para descargar')
       } catch (err) {
           console.error('[TikTokDL2] Error:', err)
           m.react('☢')

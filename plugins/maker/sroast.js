@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import sharp from 'sharp'
 import { createCanvas, GlobalFonts } from '@napi-rs/canvas'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFilesOrg;
-const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const uploadToTmpFiles = MikuRuntime.uploadToTmpFilesOrg;
+const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
 
   const pluginConfig = {
     name: "sroast",
@@ -66,7 +66,7 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
     const input = m.text?.trim();
 
     if (!input) {
-      return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} aku | JELEK | banget\``);
+      return m.reply(`⚠️ ¡Escribe el texto!\nEjemplo: \`${m.prefix}${m.command} yo | FEO | mucho\``);
     }
 
     const parts = input.split('|').map(v => v.trim());

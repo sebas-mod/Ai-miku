@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from '@rexxhayanasi/elaina-baileys'
 
-const jpmGroups = ElysiaRuntime.jpmGroups;
-const jpmCfg = ElysiaRuntime.jpmCfg;
-const jpmLoop = ElysiaRuntime.jpmLoop;
-const getMedia = ElysiaRuntime.getMedia;
+const jpmGroups = MikuRuntime.jpmGroups;
+const jpmCfg = MikuRuntime.jpmCfg;
+const jpmLoop = MikuRuntime.jpmLoop;
+const getMedia = MikuRuntime.getMedia;
 
 const pluginConfig = {
     name: "jpmalbum",
@@ -65,29 +65,29 @@ const pluginConfig = {
 
       if (act === 'add') {
           const media = await getMedia(m)
-          if (!media) return reply(`❌ Reply foto/video dengan *${prefix}jpmalbum add*.`)
-          if (buf().length >= MAX) return reply(`❌ Album penuh (maks ${MAX} media).`)
+          if (!media) return reply(`❌ Respondió a fotos/vídeos *${prefix}jpmalbum agregar*.`)
+          if (buf().length >= MAX) return reply(`❌ Album penuh (maks ${MAX} medios de comunicación).`)
           buf().push(media)
-          return reply(`✅ Media ditambahkan. Antrean album: ${buf().length}/${MAX}\nKirim dengan *${prefix}jpmalbum <caption>*`)
+          return reply(`✅ Medios agregados. Cola de álbumes: ${buf().length}/${MAX}\nEnviar con *${prefix}jpmalbum <título>*`)
       }
       if (act === 'reset') { global.__jpmAlbum = []; return reply('✅ Antrean album dikosongkan.') }
-      if (act === 'list') return reply(`*▢ ANTREAN ALBUM*\n• Media : ${buf().length}/${MAX}`)
+      if (act === 'list') return reply(`*▢ ANTREAN ALBUM*\n• MEDIOS: ${buf().length}/${MAX}`)
 
       const list = [...buf()]
       const quoted = await getMedia(m)
       if (quoted && !list.length) list.push(quoted)
-      if (!list.length) return reply(`*▢ JPM ALBUM*\n\n1. Reply foto/video lalu *${prefix}jpmalbum add* (ulangi per media)\n2. Kirim: *${prefix}jpmalbum <caption>*\n\nAtau reply satu media langsung dengan *${prefix}jpmalbum <caption>*.`)
-      if (global.__jpmRunning) return reply('❌ JPM sedang berjalan. Ketik *stopjpm* untuk menghentikan.')
+      if (!list.length) return reply(`*▢ JPM ALBUM*\n\n1. Lo más importante en respuesta a fotos/vídeos *${prefix}jpmalbum add* (repetir por medio)\n2. Enviar: *${prefix}jpmalbum <título>*\n\nO responder a un medio directamente con *${prefix}jpmalbum <título>*.`)
+      if (global.__jpmRunning) return reply('❌ JPM se está ejecutando. Escriba *stopjpm* para detener.')
 
       const caption = [first, ...rest].join(' ').trim()
       const groups = await jpmGroups(sock)
-      if (!groups.length) return reply('❌ Tidak ada grup yang bisa dituju.')
+      if (!groups.length) return reply('❌ No hay grupos a los que acudir.')
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM ALBUM*\n• Media : ${list.length}\n• Target : ${groups.length} grup\n• Delay : ${delay}ms\n\nHentikan dengan *stopjpm*`)
+      await reply(`*▢ JPM ALBUM*\n• Medios: ${list.length}\n• Objetivos: ${groups.length} grupo\n• Retardo: ${delay}ms\n\nPara con *stopjpm*`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => sendAlbum(sock, g.id, list, caption))
       global.__jpmAlbum = []
-      return reply(`*▢ JPM ALBUM SELESAI*\n• Berhasil : ${ok} grup\n• Gagal : ${fail} grup`)
+      return reply(`*▢ JPM ÁLBUM TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

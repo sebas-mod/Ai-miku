@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,11 +32,11 @@ async function handler(m, { sock }) {
     const current = db.setting("onlyGc") || false;
     return m.reply(
       `🏘️ *Only Group*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}onlygc on* — Bot hanya bisa diakses di grup\n` +
-        `> *${m.prefix}onlygc off* — Bot bisa diakses di mana saja\n\n` +
-        `_Jika aktif, mode Only Private akan otomatis nonaktif_`
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}onlygc on* — El bot solo puede usarse en grupos\n` +
+        `> *${m.prefix}onlygc off* — El bot puede usarse en cualquier lugar\n\n` +
+        `_Si está activo, el modo Solo Privado se desactiva automáticamente_`
     );
   }
 
@@ -45,9 +45,9 @@ async function handler(m, { sock }) {
     db.setting("onlyPc", false);
     await m.react("✅");
     return m.reply(
-      `🏘️ *Only Group Aktif*\n\n` +
-        `> Bot hanya bisa diakses di grup\n` +
-        `> Mode Only Private dinonaktifkan`
+      `🏘️ *Solo grupos activado*\n\n` +
+        `> El bot solo puede usarse en grupos\n` +
+        `> Modo Solo privados desactivado`
     );
   }
 
@@ -55,13 +55,13 @@ async function handler(m, { sock }) {
     db.setting("onlyGc", false);
     await m.react("❌");
     return m.reply(
-      `🏘️ *Only Group Nonaktif*\n\n` +
-        `> Bot bisa diakses di mana saja`
+      `🏘️ *Solo grupos desactivado*\n\n` +
+        `> El bot puede usarse en cualquier lugar`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}onlygc on* atau *${m.prefix}onlygc off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}onlygc on* o *${m.prefix}onlygc off*`
   );
 }
 

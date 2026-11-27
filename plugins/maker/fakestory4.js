@@ -1,19 +1,19 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import * as _canvas from '@napi-rs/canvas'
 import { createCanvas, loadImage } from '@napi-rs/canvas'
 
-const te = ElysiaRuntime.te;
-const roundedRectPath = ElysiaRuntime.canvasRoundedRectPath;
-const drawAvatar = ElysiaRuntime.canvasDrawAvatar;
-const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
+const te = MikuRuntime.te;
+const roundedRectPath = MikuRuntime.canvasRoundedRectPath;
+const drawAvatar = MikuRuntime.canvasDrawAvatar;
+const getAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
 
   const pluginConfig = {
     name: "fakestory4",
@@ -175,11 +175,11 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
       if (!imageTopBuffer) {
         m.react("❌");
         return m.reply(
-          `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 4*\n\n` +
-            `> Kirim/reply 1-2 gambar!\n\n` +
-            `> Format: \`${m.prefix}fakestory4 <nama>\`\n` +
-            `> Contoh: \`${m.prefix}fakestory4 Misaki\`\n\n` +
-            `> Tips: Kirim gambar + reply gambar lain untuk 2 gambar berbeda`,
+          `📷 *HISTORIA FALSA 4*\n\n` +
+            `> ¡Envía o responde con 1-2 imágenes!\n\n` +
+            `> Formato: \`${m.prefix}fakestory4 <nombre>\`\n` +
+            `> Ejemplo: \`${m.prefix}fakestory4 Misaki\`\n\n` +
+            `> Consejo: envía una imagen y responde con otra para tener 2 imágenes distintas`,
         );
       }
       const resultBuffer = await createFakeStory(
@@ -192,7 +192,7 @@ const getAvatarBuffer = ElysiaRuntime.canvasGetAvatarBuffer;
         m.chat,
         {
           image: resultBuffer,
-          caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+          caption: `📷 *HISTORIA FALSA*\n\n> USUARIO: \`${username}\``,
         },
         { quoted: m },
       );

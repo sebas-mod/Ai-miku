@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -59,7 +59,7 @@ const pluginConfig = {
           }
 
           if (finalData.status !== 'completed') {
-              throw new Error('Waktu tunggu habis. Silahkan coba lagi nanti.')
+              throw new Error('Se agotó el tiempo de espera. Inténtalo de nuevo más tarde.')
           }
 
           const downloadUrl = `${apiBase}${finalData.fileUrl}`

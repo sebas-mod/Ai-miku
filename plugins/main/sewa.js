@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "sewa",
   alias: ["hargasewa", "listsewabot", "buybot"],
   category: "main",
-  description: "Menampilkan daftar harga sewa bot grup dan paket premium",
+  description: "Muestra la lista de precios de alquiler del bot para grupos y los planes premium",
   usage: ".sewa",
   example: ".sewa",
   isOwner: false,
@@ -26,23 +26,23 @@ const pluginConfig = {
   isEnabled: true,
 };
 
-// Ubah daftar paket & harga di sini sesuai kebutuhan
+// Cambia aquí la lista de planes y precios según lo que necesites
 const SEWA_PACKAGES = [
-  { label: "7 Hari (Mingguan)", price: "Rp 5.000", badge: "" },
-  { label: "15 Hari", price: "Rp 10.000", badge: "" },
-  { label: "30 Hari (1 Bulan)", price: "Rp 15.000", badge: "🔥 Best Seller" },
-  { label: "60 Hari (2 Bulan)", price: "Rp 25.000", badge: "💎 Hemat" },
-  { label: "Permanen", price: "Rp 45.000", badge: "👑 VIP" },
+  { label: "7 días (semanal)", price: "Rp 5.000", badge: "" },
+  { label: "15 días", price: "Rp 10.000", badge: "" },
+  { label: "30 días (1 mes)", price: "Rp 15.000", badge: "🔥 Más vendido" },
+  { label: "60 días (2 meses)", price: "Rp 25.000", badge: "💎 Ahorro" },
+  { label: "Permanente", price: "Rp 45.000", badge: "👑 VIP" },
 ];
 
 const PREMIUM_PACKAGES = [
-  { label: "Premium 15 Hari", price: "Rp 5.000" },
-  { label: "Premium 30 Hari", price: "Rp 10.000" },
-  { label: "Premium Permanen", price: "Rp 25.000" },
+  { label: "Premium 15 días", price: "Rp 5.000" },
+  { label: "Premium 30 días", price: "Rp 10.000" },
+  { label: "Premium permanente", price: "Rp 25.000" },
 ];
 
 async function handler(m, { sock }) {
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
   const ownerName = config.owner?.name || "Arthazy";
   const ownerNum = String(config.owner?.number?.[0] || "6289677587355").replace(
     /[^0-9]/g,
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
   const activeMethods = (config.donasi?.payment || [])
     .filter((pm) => pm.number && !pm.number.includes("xxxx"))
-    .map((pm) => `${pm.name} (${pm.number}${pm.holder ? ` a/n ${pm.holder}` : ""})`);
+    .map((pm) => `${pm.name} (${pm.number}${pm.holder ? ` a nombre de ${pm.holder}` : ""})`);
 
   const paymentLine =
     activeMethods.length > 0
@@ -69,24 +69,24 @@ async function handler(m, { sock }) {
       : "DANA • GoPay • OVO • QRIS";
 
   const caption =
-    `╭─── ❖ 『 💎 *LIST HARGA SEWA BOT* 』 ❖\n` +
-    `│ ✦ Hadirkan *${botName}* di grupmu!\n` +
-    `│ ✦ Online 24/7, respons cepat, & 1.000+ fitur siap pakai.\n` +
-    `├─── ❖ 『 🏰 *PAKET SEWA GRUP* 』 ❖\n` +
+    `╭─── ❖ 『 💎 *PRECIOS DE ALQUILER DEL BOT* 』 ❖\n` +
+    `│ ✦ ¡Ten a *${botName}* en tu grupo!\n` +
+    `│ ✦ Activo 24/7, respuestas rápidas y más de 1.000 funciones listas.\n` +
+    `├─── ❖ 『 🏰 *PLANES DE ALQUILER POR GRUPO* 』 ❖\n` +
     `${sewaLines}\n` +
-    `├─── ❖ 『 ⭐ *PAKET PREMIUM USER* 』 ❖\n` +
+    `├─── ❖ 『 ⭐ *PLANES PREMIUM DE USUARIO* 』 ❖\n` +
     `${premLines}\n` +
-    `├─── ❖ 『 ✨ *BENEFIT SEWA* 』 ❖\n` +
-    `│ ✧ Bot aktif 24 jam di grup (fast response)\n` +
-    `│ ✧ Fitur lengkap: AI, RPG, Game, Downloader, Sticker\n` +
-    `│ ✧ Kelola grup: Welcome, Antilink, Antispam, Tagall\n` +
-    `│ ✧ Garansi aktif penuh selama masa sewa\n` +
-    `├─── ❖ 『 💳 *PEMBAYARAN & ORDER* 』 ❖\n` +
-    `│ ✧ *Metode:* ${paymentLine}\n` +
-    `│ ✧ *Owner:* ${ownerName} (wa.me/${ownerNum})\n` +
-    `│ ✧ *Cara Order:* Chat owner / ketik \`${p}owner\`\n` +
+    `├─── ❖ 『 ✨ *VENTAJAS DEL ALQUILER* 』 ❖\n` +
+    `│ ✧ Bot activo 24 horas en el grupo (respuesta rápida)\n` +
+    `│ ✧ Funciones completas: IA, RPG, Juegos, Descargas, Stickers\n` +
+    `│ ✧ Gestión del grupo: Bienvenida, Antilink, Antispam, Tagall\n` +
+    `│ ✧ Garantía de servicio durante todo el alquiler\n` +
+    `├─── ❖ 『 💳 *PAGOS Y PEDIDOS* 』 ❖\n` +
+    `│ ✧ *Método:* ${paymentLine}\n` +
+    `│ ✧ *Dueño:* ${ownerName} (wa.me/${ownerNum})\n` +
+    `│ ✧ *Cómo pedir:* habla con el dueño o escribe \`${p}owner\`\n` +
     `╰──────────────────────────❖\n` +
-    `_✦ Cek sisa masa sewa grup kapan saja dengan \`${p}checksewa\`._`;
+    `_✦ Consulta cuánto te queda de alquiler con \`${p}checksewa\`._`;
 
   const imageBuffer = getAssetBuffer("sewa");
   const thumbUrl = getThumbUrl("sewa");
@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
       return;
     }
   } catch {
-    // Fallback ke teks biasa jika pengiriman gambar gagal
+    // Si falla el envío de la imagen, se manda solo el texto
   }
 
   await m.reply(caption);

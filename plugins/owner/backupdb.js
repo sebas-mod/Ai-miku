@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -20,7 +20,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const backupContents = [
-        '📁 database/*.json (semua file JSON)',
+        '📁 database/*.json (todos los archivos JSON)',
         '📄 storage/database.json (main database)',
         '📄 db.json (root database)',
         '📄 database/main/*.json (main database)',
@@ -28,8 +28,8 @@ async function handler(m, { sock }) {
     ]
 
     await m.reply(
-        `🕕 *Membuat backup database...*\n\n` +
-        `╭┈┈⬡「 📦 *ᴀᴘᴀ ʏᴀɴɢ ᴅɪ-ʙᴀᴄᴋᴜᴘ* 」\n` +
+        `🕕 *Creando copia de seguridad de la base de datos...*\n\n` +
+        `╭┈┈⬡「 📦 *QUÉ SE RESPALDA* 」\n` +
         backupContents.map(c => `┃ ${c}`).join('\n') +
         `\n╰┈┈┈┈┈┈┈┈⬡`
     )
@@ -38,15 +38,15 @@ async function handler(m, { sock }) {
 
     if (result.success) {
         await m.reply(
-            `✅ *Backup Berhasil!*\n\n` +
+            `✅ *¡Copia de seguridad completada!*\n\n` +
             `📦 Size: ${result.size}\n` +
             `📁 Files: ${result.files}\n` +
             `🔖 Schema: v${SCHEMA_VERSION}\n\n` +
-            `> Type-safe backup, kompatibel dengan update mendatang.\n` +
-            `> Backup telah dikirim ke owner utama.`
+            `> Copia segura, compatible con futuras actualizaciones.\n` +
+            `> Copia enviada al propietario principal.`
         )
     } else {
-        await m.reply(`❌ Backup gagal: ${result.error}`)
+        await m.reply(`❌ Error en la copia: ${result.error}`)
     }
 }
 

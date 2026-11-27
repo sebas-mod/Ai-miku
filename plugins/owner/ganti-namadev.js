@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -29,7 +29,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
 
     if (!newName) {
-        return m.reply(`👨‍💻 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ᴅᴇᴠᴇʟᴏᴘᴇʀ*\n\n> Nama saat ini: *${config.bot?.developer || '-'}*\n\n*Penggunaan:*\n\`${m.prefix}ganti-namadev <nama baru>\``)
+        return m.reply(`👨‍💻 *CAMBIAR NOMBRE DEL DESARROLLADOR*\n\n> Nombre actual: *${config.bot?.developer || '-'}*\n\n*Uso:*\n\`${m.prefix}ganti-namadev <nombre nuevo>\``)
     }
 
     try {
@@ -45,7 +45,7 @@ async function handler(m, { sock, config }) {
 
         config.bot.developer = newName
 
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama developer diganti ke: *${newName}*`)
+        m.reply(`✅ *LISTO*\n\n> Nombre del desarrollador cambiado a: *${newName}*`)
 
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

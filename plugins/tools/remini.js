@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "remini",
@@ -73,7 +73,7 @@ import { promisify } from 'node:util'
     const data = JSON.parse(stdout || '{}')
     const streams = data.streams || []
     const v = streams.find(s => s.codec_type === 'video')
-    if (!v || !v.width || !v.height) throw new Error('Video tidak terbaca (tidak ada stream video).')
+    if (!v || !v.width || !v.height) throw new Error('No se puede leer el vídeo (no tiene pista de vídeo).')
 
     return {
       width: Number(v.width),
@@ -110,15 +110,15 @@ import { promisify } from 'node:util'
 
     if (!/video|gif/.test(mime)) {
       return reply(
-        `🎞️ *HD VIDEO*\n\n` +
-        `Balas atau kirim video dengan caption:\n` +
+        `🎞️ *VÍDEO HD*\n\n` +
+        `Responde o envía un vídeo con el texto:\n` +
         `• \`${usedPrefix + command}\`\n\n` +
-        `Video diperbesar sampai 2x (maks Full HD), dipertajam, dikurangi noise, dan warnanya dibuat lebih hidup.\n\n` +
-        `_Batas: ${formatBytes(MAX_BYTES)}, durasi ${MAX_SECONDS} detik. Ini filter ffmpeg, bukan AI, jadi hasil terbaik muncul di video yang resolusinya kecil atau agak buram._`
+        `El vídeo se amplía hasta 2x (máx. Full HD), se enfoca, se le reduce el ruido y los colores se ven más vivos.\n\n` +
+        `_Límite: ${formatBytes(MAX_BYTES)}, duración máxima ${MAX_SECONDS} segundos. Es un filtro de ffmpeg, no IA, así que da mejores resultados en vídeos de poca resolución o algo borrosos._`
       )
     }
 
-    if (busy) return reply('⏳ Masih ada video lain yang diproses. Coba lagi sebentar ya.')
+    if (busy) return reply('⏳ Todavía se está procesando otro vídeo. Inténtalo de nuevo en un momento.')
     busy = true
 
     const id = `${Date.now()}_${crypto.randomBytes(4).toString('hex')}`
@@ -132,10 +132,10 @@ import { promisify } from 'node:util'
       else if (typeof client?.downloadMediaMessage === 'function') media = await client.downloadMediaMessage(q)
 
       if (!media || !Buffer.isBuffer(media)) {
-        return reply('❌ Gagal mengunduh video. Pastikan video bisa diputar.')
+        return reply('❌ No se pudo descargar el vídeo. Comprueba que se pueda reproducir.')
       }
       if (media.length > MAX_BYTES) {
-        return reply(`❌ Video terlalu besar (${formatBytes(media.length)}). Maksimal ${formatBytes(MAX_BYTES)}.`)
+        return reply(`❌ El vídeo es demasiado grande (${formatBytes(media.length)}). Máximo ${formatBytes(MAX_BYTES)}.`)
       }
 
       await fs.promises.writeFile(tmpIn, media)
@@ -144,15 +144,15 @@ import { promisify } from 'node:util'
       try {
         meta = await probe(tmpIn)
       } catch (e) {
-        if (e?.code === 'ENOENT') return reply('❌ ffmpeg/ffprobe belum terpasang di server bot.')
+        if (e?.code === 'ENOENT') return reply('❌ ffmpeg/ffprobe no está instalado en el servidor del bot.')
         throw e
       }
 
       if (meta.duration > MAX_SECONDS) {
-        return reply(`❌ Durasi video terlalu panjang (${formatDuration(meta.duration)}). Maksimal ${MAX_SECONDS} detik.`)
+        return reply(`❌ El vídeo dura demasiado (${formatDuration(meta.duration)}). Máximo ${MAX_SECONDS} segundos.`)
       }
 
-      await reply(global.mess?.wait || '⏳ Memproses video, mohon tunggu...')
+      await reply(global.mess?.wait || '⏳ Procesando el vídeo, un momento...')
 
       const t = targetSize(meta.width, meta.height)
       const scale = t.scaled ? `scale=${t.w}:${t.h}:flags=lanczos,` : ''
@@ -167,26 +167,26 @@ import { promisify } from 'node:util'
         try {
           await runFfmpeg(tmpIn, tmpOut, chain, meta.audio)
           if (fs.existsSync(tmpOut) && fs.statSync(tmpOut).size > 1024) { lastErr = null; break }
-          throw new Error('Hasil video kosong.')
+          throw new Error('El vídeo resultante está vacío.')
         } catch (e) {
           lastErr = e
-          console.warn(`[HDVIDEO] filter #${i + 1} gagal:`, String(e?.stderr || e?.message || e).slice(0, 200))
+          console.warn(`[HDVIDEO] filtro #${i + 1} fallar:`, String(e?.stderr || e?.message || e).slice(0, 200))
           await fs.promises.unlink(tmpOut).catch(() => null)
         }
       }
-      if (lastErr) throw new Error('Semua filter ffmpeg gagal. Coba video lain.')
+      if (lastErr) throw new Error('Fallaron todos los filtros de ffmpeg. Prueba con otro vídeo.')
 
       const out = await probe(tmpOut)
       const outBuffer = await fs.promises.readFile(tmpOut)
       const took = ((Date.now() - started) / 1000).toFixed(1)
 
       const caption =
-        `🎞️ *HD VIDEO*\n\n` +
+        `🎞️ *VÍDEO HD*\n\n` +
         `• 📐 *Resolusi:* \`${meta.width}x${meta.height} ➔ ${out.width}x${out.height}\`\n` +
         `• ⏱️ *Durasi:* \`${formatDuration(out.duration)}\`${out.fps ? `  • 🎬 *FPS:* \`${out.fps}\`` : ''}\n` +
-        `• 📦 *Ukuran:* \`${formatBytes(media.length)} ➔ ${formatBytes(outBuffer.length)}\`\n` +
-        `• ⚙️ *Proses:* \`${took}s\`` +
-        (t.scaled ? '' : `\n\n_Video sudah Full HD atau lebih, jadi hanya dipertajam tanpa diperbesar._`)
+        `• 📦 *Tamaño:* \`${formatBytes(media.length)} ➔ ${formatBytes(outBuffer.length)}\`\n` +
+        `• ⚙️ *Proceso:* \`${took}s\`` +
+        (t.scaled ? '' : `\n\n_El vídeo ya es Full HD o más, así que solo se enfoca sin ampliarlo._`)
 
       if (outBuffer.length > DOC_THRESHOLD) {
         return await client.sendMessage(m.chat, {
@@ -200,7 +200,7 @@ import { promisify } from 'node:util'
       return await client.sendMessage(m.chat, { video: outBuffer, mimetype: 'video/mp4', caption }, { quoted: m })
     } catch (err) {
       console.error('[HDVIDEO ERROR]', err)
-      return reply(`❌ Gagal memproses video: ${err?.message || err}`)
+      return reply(`❌ No se pudo procesar el vídeo: ${err?.message || err}`)
     } finally {
       busy = false
       await fs.promises.unlink(tmpIn).catch(() => null)

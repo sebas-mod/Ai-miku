@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -141,7 +141,7 @@ async function sendStoreBackup(sock) {
             `┃ 🔖 Schema: v${SCHEMA_VERSION}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
             `> Type-safe backup. Kompatibel dengan versi mendatang.\n` +
-            `> ${config.bot?.name || 'Elysia Assistant'} Store Backup System`
+            `> ${config.bot?.name || 'Ai Miku'} Store Backup System`
 
         await sock.sendMessage(ownerJid, {
             document: { url: backupInfo.path },

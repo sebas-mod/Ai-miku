@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 
 const pluginConfig = {
@@ -31,16 +31,16 @@ const pluginConfig = {
       if (!text?.trim()) {
           return sock.sendMessage(jid, {
               text:
-  `╭─「 CARI LOKER 」
+  `╭─「BÚSQUEDA DE CASQUILLO」
 │
-│ Cari lowongan kerja remote
+│ Búsqueda de ofertas de trabajo remoto
 │
-│ Contoh:
-│ .cariloker programmer
-│ .cariloker javascript
-│ .cariloker web developer
-│ .cariloker graphic designer
-│ .cariloker customer service
+│ Ejemplo:
+│.cariloker programador
+│.cariloker javascript
+│.cariloker desarrollador web
+│.cariloker diseñador gráfico
+│.cariloker atención al cliente
 │
 ╰──────────────`
           }, { quoted: m })
@@ -49,7 +49,7 @@ const pluginConfig = {
       const keyword = text.trim()
 
       await sock.sendMessage(jid, {
-          text: `🔎 Mencari loker remote untuk *${keyword}*...`
+          text: `🔎 Buscando empleos remotos de *${keyword}*...`
       }, { quoted: m })
 
       try {
@@ -72,11 +72,11 @@ const pluginConfig = {
           if (!jobs.length) {
               return sock.sendMessage(jid, {
                   text:
-  `❌ Tidak ditemukan lowongan untuk:
+  `❌ No se encontraron ofertas para:
 
 🔎 ${keyword}
 
-Coba keyword lain:
+Prueba otra palabra clave:
 • programmer
 • javascript
 • frontend
@@ -89,10 +89,10 @@ Coba keyword lain:
           const hasil = jobs.slice(0, 10)
 
           let textOut =
-  `╭─「 CARI LOKER 」
+  `╭─「 BUSCAR EMPLEO 」
 │ 🔎 ${keyword}
-│ 🌐 Remote / Work From Home
-│ 📋 ${hasil.length} hasil
+│ 🌐 Remoto / Trabajo desde casa
+│ 📋 ${hasil.length} resultados
 ╰──────────────
 
 `
@@ -103,12 +103,12 @@ Coba keyword lain:
               const title =
                   job.title ||
                   job.name ||
-                  'Tanpa judul'
+                  'Sin titulo'
 
               const company =
                   job.companyName ||
                   job.company?.name ||
-                  'Tidak diketahui'
+                  'Desconocido'
 
               const location =
                   job.location ||
@@ -170,10 +170,10 @@ Coba keyword lain:
 
           await sock.sendMessage(jid, {
               text:
-  `❌ Gagal mengambil data loker.
+  `❌ No se pudieron recuperar los datos del casillero.
 
-Server sumber sedang tidak dapat diakses.
-Coba lagi beberapa saat kemudian.`
+Actualmente no se puede acceder al servidor de origen.
+Inténtalo de nuevo unos momentos más tarde.`
           }, { quoted: m })
       }
   }

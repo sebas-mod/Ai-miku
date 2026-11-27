@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanpromote',
@@ -36,30 +36,30 @@ const getDatabase = ElysiaRuntime.getDatabase;
       let role = args?.find(a => ['coleader', 'elder'].includes(a.toLowerCase()))
 
       if (!target || !role) {
-          return m.reply(`⭐ *ᴄʟᴀɴ ᴘʀᴏᴍᴏᴛᴇ*\n\n> Promote member ke Co-Leader atau Elder\n\n> Contoh:\n> .clanpromote @user coleader\n> .clanpromote @user elder`)
+          return m.reply(`⭐ *CLAN PROMOTE*\n\n> Promocionar miembros a co-líder o anciano\n\n> Ejemplo:\n>.clanpromote @user colíder\n>.clanpromote @user mayor`)
       }
 
       target = target.replace('@', '').replace(/[^0-9]/g, '') + '@s.whatsapp.net'
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender) {
-          return m.reply(`❌ Hanya *leader* clan yang bisa promote member!`)
+          return m.reply(`❌ ¡Solo el *líder* del clan puede promocionar miembros!`)
       }
 
       if (!clan.members.includes(target)) {
-          return m.reply(`❌ Target bukan member clan kamu!`)
+          return m.reply(`❌ ¡El objetivo no es miembro de tu clan!`)
       }
 
       if (target === m.sender) {
-          return m.reply(`❌ Tidak bisa promote diri sendiri!`)
+          return m.reply(`❌ ¡No puedes promocionarte!`)
       }
 
       if (!clan.roles) clan.roles = {}
@@ -68,11 +68,11 @@ const getDatabase = ElysiaRuntime.getDatabase;
       await db.save()
 
       let txt = `⭐ *ᴄʟᴀɴ ᴘʀᴏᴍᴏᴛᴇ!*\n\n`
-      txt += `╭┈┈⬡「 📋 *ʜᴀꜱɪʟ* 」\n`
+      txt += `╭┈┈⬡「 📋 *RESULTADO* 」\n`
       txt += `┃ 📛 Clan: *${clan.name}*\n`
       txt += `┃ 👤 Member: @${target.split('@')[0]}\n`
-      txt += `┃ 🆙 Jabatan baru: *${role === 'coleader' ? 'Co-Leader' : 'Elder'}*\n`
-      txt += `┃ 👑 Dipromote oleh: @${m.sender.split('@')[0]}\n`
+      txt += `┃ 🆙 Nuevo puesto de trabajo: *${role === 'coleader' ? 'Co-Leader' : 'Elder'}*\n`
+      txt += `┃ 👑 Promovido por: @${m.sender.split('@')[0]}\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡`
 
       await m.reply(txt, { mentions: [target, m.sender] })

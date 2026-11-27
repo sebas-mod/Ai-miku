@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'botmode',
     alias: ['setmode', 'mode'],
     category: 'group',
-    description: 'Atur mode bot untuk grup ini',
+    description: 'Configura el modo del bot para este grupo',
     usage: '.botmode <md/pushkontak/store/otp/all>',
     example: '.botmode store',
     isOwner: false,
@@ -27,25 +27,25 @@ const pluginConfig = {
 const MODES = {
     md: {
         name: 'Multi-Device',
-        desc: 'Mode default dengan semua fitur standar',
+        desc: 'Modo por defecto con todas las funciones estándar',
         allowedCategories: null,
         excludeCategories: ['pushkontak', 'store']
     },
     all: {
         name: 'All Features',
-        desc: 'Semua fitur dari semua mode bisa diakses',
+        desc: 'Se puede acceder a todas las funciones de todos los modos',
         allowedCategories: null,
         excludeCategories: null
     },
     pushkontak: {
         name: 'Push Kontak',
-        desc: 'Mode khusus untuk push kontak ke member',
+        desc: 'Modo especial para enviar contactos a los miembros',
         allowedCategories: ['owner', 'main', 'group', 'sticker', 'pushkontak'],
         excludeCategories: null
     },
     store: {
         name: 'Store/Toko',
-        desc: 'Mode khusus untuk toko manual',
+        desc: 'Modo especial para tienda manual',
         allowedCategories: ['main', 'group', 'sticker', 'owner', 'store'],
         excludeCategories: null
     },
@@ -75,19 +75,19 @@ function handler(m, { sock }) {
         }
 
         return m.reply(
-            `🔧 *ʙᴏᴛ ᴍᴏᴅᴇ*\n\n` +
-            `> Mode saat ini: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Unknown'})\n` +
-            `\n╭─「 📋 *ᴘɪʟɪʜᴀɴ* 」\n` +
+            `🔧 *MODO DEL BOT*\n\n` +
+            `> Modo actual: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Desconocido'})\n` +
+            `\n╭─「 📋 *OPCIONES* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
-            `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n` +
+            `*TIENDA DE FLAGS:*\n` +
             `> \`${m.prefix}botmode store\` - Manual order\n\n` +
-            `> _Pengaturan per-grup_`
+            `> _Configuración por grupo_`
         )
     }
 
     if (!Object.keys(MODES).includes(mode)) {
-        return m.reply(`❌ Mode tidak valid. Pilihan: \`${Object.keys(MODES).join(', ')}\``)
+        return m.reply(`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``)
     }
 
     const newGroupData = {
@@ -110,20 +110,20 @@ function handler(m, { sock }) {
     let extraInfo = ''
     if (mode === 'store') {
         const products = newGroupData.storeConfig?.products || []
-        extraInfo = `\n\n📋 *Manual mode*\n` +
-            `> Admin perlu confirm order manual\n` +
-            `> Product: \`${products.length}\` item\n\n` +
-            `*ᴘᴀɴᴅᴜᴀɴ:*\n` +
-            `> \`${m.prefix}addprod <kode> <harga> <nama>\`\n` +
-            `> \`${m.prefix}listprod\` - Lihat produk`
+        extraInfo = `\n\n📋 *Modo manual*\n` +
+            `> El administrador debe confirmar el pedido manualmente\n` +
+            `> Producto: \`${products.length}\` artículo\n\n` +
+            `*GUÍA:*\n` +
+            `> \`${m.prefix}addprod <código> <precio> <nombre>\`\n` +
+            `> \`${m.prefix}listprod\` - Ver productos`
     }
 
     return m.reply(
-        `✅ *ᴍᴏᴅᴇ ᴅɪᴜʙᴀʜ*\n\n` +
-        `> Mode: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
-        `> Grup: *${m.chat.split('@')[0]}*\n` +
+        `✅ *MODO CAMBIADO*\n\n` +
+        `> Modo: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
+        `> Grupo: *${m.chat.split('@')[0]}*\n` +
         extraInfo +
-        `\n\n> Ketik \`${m.prefix}menu\` untuk melihat menu.`
+        `\n\n> Escribe \`${m.prefix}menu\` para ver el menú.`
     )
 }
 

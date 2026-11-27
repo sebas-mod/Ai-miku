@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const toPN = ElysiaRuntime.toPN;
+const toPN = MikuRuntime.toPN;
 
 const pluginConfig = {
     name: "getpp",
@@ -59,10 +59,10 @@ const pluginConfig = {
       const fail = results.filter(r => !r.buf)
 
       if (!ok.length) {
-          return reply(`❌ Tidak ada foto profil yang bisa diambil (kosong atau disembunyikan):\n${fail.map(f => '• @' + num(f.jid)).join('\n')}`)
+          return reply(`❌ No hay fotos de perfil que se puedan obtener (vacías u ocultas):\n${fail.map(f => '• @' + num(f.jid)).join('\n')}`)
       }
 
-      const cap = (r) => `Foto profil @${num(r.jid)}`
+      const cap = (r) => `Foto de perfil @${num(r.jid)}`
       const mentions = ok.map(r => r.jid)
 
       if (ok.length === 1) {
@@ -73,7 +73,7 @@ const pluginConfig = {
                   album: ok.map(r => ({ image: r.buf, caption: cap(r), mentions: [r.jid] }))
               }, { quoted: m })
           } catch (e) {
-              console.error('[getpp] album gagal, kirim satu-satu:', e?.message || e)
+              console.error('[getpp] falló el álbum, enviando uno a uno:', e?.message || e)
               for (const r of ok) {
                   await sock.sendMessage(chat, { image: r.buf, caption: cap(r), mentions: [r.jid] }, { quoted: m }).catch(() => {})
               }
@@ -81,8 +81,8 @@ const pluginConfig = {
       }
 
       const notes = []
-      if (fail.length) notes.push(`⚠️ Tanpa foto / disembunyikan: ${fail.map(f => '@' + num(f.jid)).join(', ')}`)
-      if (over) notes.push(`ℹ️ Maksimal ${MAX} orang sekali ambil.`)
+      if (fail.length) notes.push(`⚠️ Sin foto/oculta: ${fail.map(f => '@' + num(f.jid)).join(', ')}`)
+      if (over) notes.push(`ℹ️ Máximo ${MAX} la gente lo toma una vez.`)
       if (notes.length) await sock.sendMessage(chat, { text: notes.join('\n'), mentions: fail.map(f => f.jid) }, { quoted: m })
   }
 

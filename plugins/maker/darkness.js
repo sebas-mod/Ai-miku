@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { downloadMediaMessage, getContentType } from '@rexxhayanasi/elaina-baileys';
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
     name: "darkness",
@@ -45,7 +45,7 @@ const te = ElysiaRuntime.te;
     const amount = parseInt(amountStr, 10);
 
     if (isNaN(amount) || amount < 0 || amount > 255) {
-      return m.reply("⚠️ Parameter amount harus angka antara 0 - 255.");
+      return m.reply("⚠️ El parámetro amount debe ser un número entre 0 y 255.");
     }
 
     const msg = m.message;
@@ -53,7 +53,7 @@ const te = ElysiaRuntime.te;
     const isImage = getContentType(msg) === "imageMessage" || m.mtype === "imageMessage";
 
     if (!isImage && !isQuotedImage) {
-      return m.reply(`⚠️ Harap kirim atau balas gambar dengan caption \`${m.prefix}${m.command} ${amount}\``);
+      return m.reply(`⚠️ Envía o responde a una imagen con el texto \`${m.prefix}${m.command} ${amount}\``);
     }
 
     await m.react("🕕");

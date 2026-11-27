@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 import axios from "axios";
 import * as cheerio from "cheerio";
 
@@ -28,7 +28,7 @@ import * as cheerio from "cheerio";
 
   async function run(m, { text }) {
     if (!text)
-      return m.reply("Contoh:\n.ikiru Solo Leveling");
+      return m.reply("Ejemplo:\n.ikiru Nivelación en solitario");
 
     try {
       let html = null;
@@ -71,7 +71,7 @@ import * as cheerio from "cheerio";
           home.data.match(/data-nonce=["']([a-z0-9]+)["']/i)?.[1];
 
         if (!nonce)
-          return m.reply("❌ Gagal mengambil nonce Ikiru.");
+          return m.reply("❌ No se pudo recuperar el nonce de Ikiru.");
 
         const res = await axios.post(
           "https://02.ikiru.wtf/wp-admin/admin-ajax.php",
@@ -136,9 +136,9 @@ import * as cheerio from "cheerio";
       });
 
       if (!results.length)
-        return m.reply("❌ Tidak ditemukan hasil.");
+        return m.reply("❌ No se encontraron resultados.");
 
-      let msg = `🔍 *Hasil Pencarian Ikiru*\n\n`;
+      let msg = `🔍 *Resultados de la búsqueda de Ikiru*\n\n`;
 
       results.slice(0, 10).forEach((v, i) => {
         msg +=
@@ -160,10 +160,10 @@ import * as cheerio from "cheerio";
 
     } catch (e) {
       console.error(e);
-      m.reply("❌ Gagal mengambil data dari Ikiru.");
+      m.reply("❌ No se pudieron recuperar los datos de Ikiru.");
     }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

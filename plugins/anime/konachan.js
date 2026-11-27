@@ -1,15 +1,15 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 
-const searchKonachan = ElysiaRuntime.searchKonachan;
+const searchKonachan = MikuRuntime.searchKonachan;
 
   const pluginConfig = {
     name: "konachan",
@@ -30,10 +30,10 @@ const searchKonachan = ElysiaRuntime.searchKonachan;
   async function run(m, { args, sock }) {
     if (!args[0]) {
       let txt = `🌸 *KONACHAN SEARCH* 🌸\n\n`;
-      txt += `Halo kak! Lagi nyari referensi gambar anime keren? Sini aku carikan dari Konachan!\n\n`;
+      txt += `¡Hola hermana! ¿Buscas referencias interesantes de imágenes de anime? ¡Aquí lo obtuve de Konachan!\n\n`;
       txt += `*Cara Pakai:*\n`;
       txt += `👉 \`${m.prefix}konachan <tag1> <tag2>\`\n\n`;
-      txt += `*Contoh:*\n`;
+      txt += `*Ejemplo:*\n`;
       txt += `\`${m.prefix}konachan long_hair\`\n`;
       txt += `\`${m.prefix}konachan naruto\`\n`;
       txt += `\`${m.prefix}konachan blue_eyes smile\`\n\n`;
@@ -50,12 +50,12 @@ const searchKonachan = ElysiaRuntime.searchKonachan;
 
       if (results.error) {
         await m.react("❌");
-        return m.reply(`❌ Maaf kak, ada masalah saat nyari gambarnya!\nError: ${results.message}`);
+        return m.reply(`❌ Lo siento hermana, ¡hubo un problema para encontrar la imagen!\nError: ${results.message}`);
       }
 
       if (!results || results.length === 0) {
         await m.react("❌");
-        return m.reply(`❌ Aduh kak, gambarnya nggak ketemu nih! Coba ganti tag pencariannya ya. 😭\n\n*Contoh tag:*\n${args[0]} → coba pake tag lain kayak "anime", "wallpaper", atau yang lebih spesifik`);
+        return m.reply(`❌ ¡Ay hermanita, no encuentro la foto! Intento cambiar la etiqueta de búsqueda. 😭\n\n*Etiquetas de ejemplo:*\n${args[0]} → intenta usar otras etiquetas como "anime", "fondo de pantalla" o algo más específico`);
       }
 
       const maxResults = Math.min(results.length, 20);
@@ -64,19 +64,19 @@ const searchKonachan = ElysiaRuntime.searchKonachan;
 
       if (!image || !image.images || !image.images.preview) {
         await m.react("❌");
-        return m.reply(`❌ Waduh kak, gambarnya ga bisa dimuat! Coba cari dengan tag lain ya~`);
+        return m.reply(`❌ ¡Vaya hermana, la imagen no se puede cargar! Intenta buscar con otras etiquetas, OK~`);
       }
 
       let caption = `🌸 *KONACHAN SEARCH RESULT* 🌸\n\n`;
       caption += `🔍 *Query:* ${query}\n`;
-      caption += `📊 *Total found:* ${results.length} gambar\n`;
+      caption += `📊 *Total encontrado:* ${results.length} imagen\n`;
       caption += `🎲 *Random ke-${randomIdx + 1}*\n\n`;
       caption += `🏷️ *Tags:*\n`;
 
       const tagDisplay = image.tags.slice(0, 15).join(", ");
       caption += `${tagDisplay}${image.tags.length > 15 ? '...' : ''}\n\n`;
       caption += `🔗 *Source:*\n${image.details_page || 'https://konachan.net'}\n\n`;
-      caption += `💕 *Elysia Assistant:* Selamat menikmati darling~ ♡`;
+      caption += `💕 *Ai Miku:* Disfruta cariño~ ♡`;
 
       await sock.sendMessage(m.chat, {
         image: { url: image.images.preview },
@@ -88,10 +88,10 @@ const searchKonachan = ElysiaRuntime.searchKonachan;
     } catch (e) {
       console.error('[Konachan] Error:', e);
       await m.react("❌");
-      await m.reply(`❌ Maaf kak, sistem error! 😭\n\nError: ${e.message}\n\nCoba lagi nanti ya darling~ 💕`);
+      await m.reply(`❌ ¡Lo siento hermana, error del sistema! 😭\n\nError: ${e.message}\n\nInténtalo de nuevo más tarde, cariño~ 💕`);
     }
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

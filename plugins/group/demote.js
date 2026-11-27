@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
 
     if (!target) {
         await m.reply(
-            `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Reply pesan user atau mention!\n` +
-            `> Contoh: \`${m.prefix}demote @user\``
+            `❌ *OBJETIVO NO ENCONTRADO*\n\n` +
+            `> ¡Responde al mensaje del usuario o menciónalo!\n` +
+            `> Ejemplo: \`${m.prefix}demote @user\``
         )
         return
     }
@@ -49,24 +49,24 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di grup!`)
+            await m.reply(`❌ *FALLIDO*\n\n> ¡Usuario no encontrado en el grupo!`)
             return
         }
 
         if (!participant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User bukan admin!`)
+            await m.reply(`❌ *FALLIDO*\n\n> ¡El usuario no es administrador!`)
             return
         }
 
         if (participant.admin === 'superadmin') {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa demote owner grup!`)
+            await m.reply(`❌ *FALLIDO*\n\n> ¡No se puede degradar al propietario del grupo!`)
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'demote')
 
         await m.reply(
-            `@${target.split('@')[0]} sekarang bukan admin lagi.`,
+            `@${target.split('@')[0]} ya no es administrador.`,
             { mentions: [target] }
         )
 

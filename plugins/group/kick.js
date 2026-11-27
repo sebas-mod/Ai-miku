@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -19,7 +19,7 @@ const pluginConfig = {
   name: "kick",
   alias: ["remove", "tendang"],
   category: "group",
-  description: "Kick member dari grup",
+  description: "Expulsa a un miembro del grupo",
   usage: ".kick @user",
   example: ".kick @user",
   isOwner: false,
@@ -55,9 +55,9 @@ async function handler(m, { sock }) {
 
   if (!targetJid) {
     await m.reply(
-      `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-        `> Reply pesan user, mention, atau ketik nomornya!\n` +
-        `> Contoh: \`${m.prefix}kick @user\``
+      `❌ *OBJETIVO NO ENCONTRADO*\n\n` +
+        `> ¡Responde a un mensaje del usuario, menciónalo o escribe su número!\n` +
+        `> Ejemplo: \`${m.prefix}kick @user\``
     );
     return;
   }
@@ -113,13 +113,13 @@ async function handler(m, { sock }) {
     }
 
     if (!targetParticipant) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan dalam grup!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡El usuario no está en el grupo!`);
       return;
     }
 
     const botNum = cleanDigits(sock.user?.id || sock.user?.jid);
     if (isBotParticipant(targetParticipant, [botNum])) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick bot sendiri!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsar al propio bot!`);
       return;
     }
 
@@ -134,12 +134,12 @@ async function handler(m, { sock }) {
       .filter(Boolean);
 
     if (senderNum && targetIds.includes(senderNum)) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick diri sendiri!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsarte a ti mismo!`);
       return;
     }
 
     if (targetParticipant.admin) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick admin grup!`);
+      await m.reply(`❌ *FALLIDO*\n\n> ¡No puedes expulsar a un administrador del grupo!`);
       return;
     }
 
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
       kickId;
     const displayNum = cleanDigits(displayJid);
 
-    await m.reply(`✅ @${displayNum} telah dikeluarkan dari grup ini.`, {
+    await m.reply(`✅ @${displayNum} fue expulsado de este grupo.`, {
       mentions: [displayJid],
     });
   } catch (error) {

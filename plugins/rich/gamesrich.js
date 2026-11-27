@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -95,7 +95,7 @@ const quoteOf = (q) => { try { return q && q.key && q.message && q.chat ? q : nu
 module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     },
     "cards/arcade": (module, exports, require) => {
-    const NB = () => String(global.namebot || 'Elysia Assistant').replace(/[<>&'"`$\\]/g, '')
+    const NB = () => String(global.namebot || 'Ai Miku').replace(/[<>&'"`$\\]/g, '')
     const { BASE_CSS, safeJson } = require("../htmlcard");
 
     const BODY = String.raw`
@@ -138,9 +138,9 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
        <div class="pn" id="p0"><canvas id="c0" width="480" height="180"></canvas></div>
        <div class="pn" id="p1"><div class="st" id="ts"></div><div class="ttt" id="tg"></div></div>
        <div class="pn" id="p2"><canvas id="c2" width="320" height="200"></canvas>
-        <div class="pad"><button class="pb" id="dl">◀</button><button class="pb" id="du">▲</button><button class="pb" id="dd">▼</button><button class="pb" id="dr">▶</button><button class="pb f" id="df">🔫 TEMBAK</button></div></div>
+        <div class="pad"><button class="pb" id="dl">◀</button><button class="pb" id="du">▲</button><button class="pb" id="dd">▼</button><button class="pb" id="dr">▶</button><button class="pb f" id="df">🔫 DISPARAR</button></div></div>
        <div class="pn" id="p3"><canvas id="c3" width="320" height="440" style="width:100%;margin:0 auto"></canvas></div>
-       <div class="pn" id="p4"><div class="reels"><div class="rl" id="r0"> </div><div class="rl" id="r1"> </div><div class="rl" id="r2"> </div></div><div class="st" id="ss"></div><button class="bt" id="sb">PUTAR (10 koin)</button></div>
+       <div class="pn" id="p4"><div class="reels"><div class="rl" id="r0"> </div><div class="rl" id="r1"> </div><div class="rl" id="r2"> </div></div><div class="st" id="ss"></div><button class="bt" id="sb">GIRO (10 monedas)</button></div>
       </div>
       <div class="ft" id="ft"></div>
      </div>
@@ -183,8 +183,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      var dx=36,dy=d.y;c.fillStyle='#e8ecf7';c.fillRect(dx,dy+6,22,14);c.fillRect(dx+12,dy,16,12);c.fillRect(dx+26,dy+2,4,5);c.fillRect(dx-6,dy+8,8,6);c.fillRect(dx+4,dy+18,6,10);
      var lf=d.on&&state===1&&Math.floor(fr/5)%2;c.fillRect(dx+(lf?4:14),dy+20,6,10);c.fillStyle='#151922';c.fillRect(dx+22,dy+3,3,3);
      c.fillStyle='#e8ecf7';c.textAlign='center';
-     if(state===0){c.font='bold 16px sans-serif';c.fillText('TAP UNTUK MULAI',W/2,70)}
-     if(state===2){c.font='bold 26px sans-serif';c.fillText('GAME OVER',W/2,66);c.font='14px sans-serif';c.fillText('Tap layar untuk main lagi',W/2,92)}}
+     if(state===0){c.font='bold 16px sans-serif';c.fillText('TOCA PARA COMENZAR',W/2,70)}
+     if(state===2){c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,66);c.font='14px sans-serif';c.fillText('Toca la pantalla para volver a jugar.',W/2,92)}}
     cv.addEventListener('pointerdown',function(e){e.preventDefault();jump()});
     G[0]={anim:1,enter:function(){reset()},step:step,draw:draw,key:function(e){if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();jump()}}};
     })();
@@ -199,11 +199,11 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     function mm(bd,p){var w=win(bd);if(w)return{s:bd[w[0]]==='O'?1:-1};if(full(bd))return{s:0};
      var bs=p==='O'?-2:2,bm=-1;for(var i=0;i<9;i++)if(!bd[i]){bd[i]=p;var r=mm(bd,p==='O'?'X':'O').s;bd[i]='';if(p==='O'?r>bs:r<bs){bs=r;bm=i}}return{s:bs,m:bm}}
     function render(){var w=win(b);for(var i=0;i<9;i++){cells[i].textContent=b[i]||'';cells[i].className='ce'+(b[i]?' '+b[i].toLowerCase():'')+(w&&w.indexOf(i)>-1?' w':'')}}
-    function reset(){b=['','','','','','','','',''];over=false;ts.textContent='Giliranmu (X)';render();hud(wins,best)}
-    function end(){var w=win(b);over=true;if(w&&b[w[0]]==='X'){wins++;if(wins>best){best=wins;lsSet('ttt',best)}ts.textContent='Kamu menang! \uD83C\uDF89 Tap untuk lanjut'}else if(w)ts.textContent='CPU menang \uD83D\uDE08 Tap untuk lanjut';else ts.textContent='Seri. Tap untuk lanjut';render();hud(wins,best)}
+    function reset(){b=['','','','','','','','',''];over=false;ts.textContent='Tu turno (X)';render();hud(wins,best)}
+    function end(){var w=win(b);over=true;if(w&&b[w[0]]==='X'){wins++;if(wins>best){best=wins;lsSet('ttt',best)}ts.textContent='¡Ganaste! \uD83C\uDF89 Toca para continuar'}else if(w)ts.textContent='Gana la CPU \uD83D\uDE08 Toca para continuar';else ts.textContent='Serie. Toca para continuar';render();hud(wins,best)}
     function play(i){if(over){reset();return}if(b[i])return;b[i]='X';if(win(b)||full(b)){end();return}
      var m;if(Math.random()<.25){var f=[];for(var k=0;k<9;k++)if(!b[k])f.push(k);m=f[Math.floor(Math.random()*f.length)]}else m=mm(b,'O').m;
-     b[m]='O';if(win(b)||full(b)){end();return}render();ts.textContent='Giliranmu (X)'}
+     b[m]='O';if(win(b)||full(b)){end();return}render();ts.textContent='Tu turno (X)'}
     G[1]={enter:function(){reset()}};
     })();
 
@@ -252,7 +252,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.fillStyle='rgba(255,255,255,.7)';c.fillRect(W/2-1,H/2-6,2,12);c.fillRect(W/2-6,H/2-1,12,2);
      if(hurt>0){c.fillStyle='rgba(220,0,0,.3)';c.fillRect(0,0,W,H)}
      c.fillStyle='#0009';c.fillRect(6,6,104,14);c.fillStyle=hp>40?'#22c55e':'#ef4444';c.fillRect(8,8,Math.max(0,hp),10);
-     if(over){c.fillStyle='rgba(0,0,0,.6)';c.fillRect(0,0,W,H);c.fillStyle='#ef4444';c.textAlign='center';c.font='bold 28px sans-serif';c.fillText('KAMU MATI',W/2,H/2-6);c.fillStyle='#fff';c.font='14px sans-serif';c.fillText('Kill: '+kills+' \u2022 tekan TEMBAK untuk ulang',W/2,H/2+20)}}
+     if(over){c.fillStyle='rgba(0,0,0,.6)';c.fillRect(0,0,W,H);c.fillStyle='#ef4444';c.textAlign='center';c.font='bold 28px sans-serif';c.fillText('¡HAS MUERTO!',W/2,H/2-6);c.fillStyle='#fff';c.font='14px sans-serif';c.fillText('Kill: '+kills+' \u2022 tekan TEMBAK untuk ulang',W/2,H/2+20)}}
     function bind(id,k){var el=$(id),on=function(e){e.preventDefault();keys[k]=1},off=function(e){e.preventDefault();keys[k]=0};
      el.addEventListener('pointerdown',on);el.addEventListener('pointerup',off);el.addEventListener('pointerleave',off);el.addEventListener('pointercancel',off)}
     bind('dl','l');bind('dr','r');bind('du','u');bind('dd','d');
@@ -283,8 +283,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.fillStyle='#ff7043';c.beginPath();c.moveTo(10,2);c.lineTo(20,5);c.lineTo(10,9);c.fill();c.restore();
      c.textAlign='center';c.fillStyle='#fff';c.strokeStyle='#0008';c.lineWidth=4;c.font='bold 38px sans-serif';
      if(state>0){c.strokeText(score,W/2,70);c.fillText(score,W/2,70)}
-     if(state===0){c.font='bold 18px sans-serif';c.strokeText('TAP UNTUK MULAI',W/2,H/2+60);c.fillText('TAP UNTUK MULAI',W/2,H/2+60)}
-     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,120);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('GAME OVER',W/2,195);c.font='16px sans-serif';c.fillText('Skor '+score+' \u2022 Terbaik '+best,W/2,225);c.fillText('Tap untuk main lagi',W/2,250)}}
+     if(state===0){c.font='bold 18px sans-serif';c.strokeText('TOCA PARA COMENZAR',W/2,H/2+60);c.fillText('TOCA PARA COMENZAR',W/2,H/2+60)}
+     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,120);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,195);c.font='16px sans-serif';c.fillText('Puntos '+score+' \u2022 Récord '+best,W/2,225);c.fillText('Toca para jugar de nuevo',W/2,250)}}
     cv.addEventListener('pointerdown',function(e){e.preventDefault();flap()});
     G[3]={anim:1,enter:function(){reset()},step:step,draw:draw,key:function(e){if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();flap()}}};
     })();
@@ -293,18 +293,18 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     (function(){
     var SY=['\uD83C\uDF47','\uD83C\uDF52','\uD83C\uDF4B','\uD83D\uDC8E','7\uFE0F\u20E3','\uD83D\uDD14'],coins=100,best=Math.max(100,lsGet('slot')),busy=false;
     var sb=$('sb'),ss=$('ss'),rs=[$('r0'),$('r1'),$('r2')];
-    function show(){hud(coins,best);sb.textContent=coins>=10?'PUTAR (10 koin)':'KOIN HABIS \u2022 TAP UNTUK ISI ULANG'}
-    function spin(){if(busy)return;if(coins<10){coins=100;ss.textContent='Koin diisi ulang';show();return}
+    function show(){hud(coins,best);sb.textContent=coins>=10?'GIRAR (10 monedas)':'SIN MONEDAS \u2022 TOCA PARA RECARGAR'}
+    function spin(){if(busy)return;if(coins<10){coins=100;ss.textContent='Monedas recargadas';show();return}
      busy=true;sb.disabled=true;coins-=10;show();ss.textContent='Berputar...';for(var i=0;i<3;i++)rs[i].className='rl';
      var res=[0,0,0].map(function(){return Math.floor(Math.random()*SY.length)}),stop=[0,0,0],tk=0;
      var iv=setInterval(function(){tk++;for(var i=0;i<3;i++){if(tk>=10+i*8){if(!stop[i]){stop[i]=1;rs[i].textContent=SY[res[i]]}}else rs[i].textContent=SY[Math.floor(Math.random()*SY.length)]}
       if(tk>=26){clearInterval(iv);var s={};res.forEach(function(r){s[r]=(s[r]||0)+1});var mx=Math.max(s[res[0]],s[res[1]],s[res[2]]),win=0;
        if(mx===3)win=res[0]===4?200:100;else if(mx===2)win=20;
        coins+=win;if(coins>best){best=coins;lsSet('slot',best)}
-       if(win){for(var j=0;j<3;j++)rs[j].className='rl w';ss.textContent=mx===3?'JACKPOT! +'+win+' koin \uD83C\uDF89':'Dua sama +'+win+' koin'}else ss.textContent='Belum beruntung, putar lagi';
+       if(win){for(var j=0;j<3;j++)rs[j].className='rl w';ss.textContent=mx===3?'¡JACKPOT! +'+win+' monedas \uD83C\uDF89':'Dos iguales +'+win+' monedas'}else ss.textContent='No hubo suerte, juega de nuevo.';
        busy=false;sb.disabled=false;show()}},70)}
     sb.onclick=spin;
-    G[4]={enter:function(){ss.textContent='Tekan PUTAR';show()}};
+    G[4]={enter:function(){ss.textContent='Pulsa JUGAR';show()}};
     })();
 
     /* ===== TAB & LOOP ===== */
@@ -338,7 +338,7 @@ module.exports = {
   desc: 'Arcade mini: Dino Runner, Tic Tac Toe, Doom, Flappy, Slot dalam satu kartu',
   run: async ({ sock, m, pushname }) => {
     const html = buildArcadeHtml({ playerName: pushname || String(m.sender).split('@')[0] })
-    await sendHtmlCard(sock, m, html, (global.namebot || 'Elysia Assistant') + ' Arcade', '🎮')
+    await sendHtmlCard(sock, m, html, (global.namebot || 'Ai Miku') + ' Arcade', '🎮')
   },
 }
     }

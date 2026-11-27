@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "daftar",
   alias: ["reg", "register", "verifikasi", "verify"],
   category: "user",
-  description: "Daftar sebagai petualang resmi di Elysia Assistant",
+  description: "Daftar sebagai petualang resmi di Ai Miku",
   usage: ".daftar <nama>.<umur>",
   example: ".daftar Arthazy.19",
   isOwner: false,
@@ -33,7 +33,7 @@ function makeSerial(sender) {
     .update(String(sender) + ":" + Date.now() + ":" + Math.random())
     .digest("hex")
     .toUpperCase();
-  return `ELYSIA-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
+  return `MIKU-${hash.slice(0, 4)}-${hash.slice(4, 8)}`;
 }
 
 function parseRegInput(rawText, fallbackName) {
@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
   const targetJid = resolveCanonicalJid(m.sender, sock);
   const user = db.getUser(targetJid) || db.setUser(targetJid);
   if (!user) {
-    return m.reply("⚠️ Gagal membaca data akun kamu. Coba lagi ya!");
+    return m.reply("⚠️ No se pudieron leer los datos de tu cuenta. Inténtalo de nuevo, ¿vale?");
   }
   const p = m.prefix || ".";
 
@@ -110,16 +110,16 @@ async function handler(m, { sock }) {
         })
       : "-";
     return m.reply(
-      `╭─── ❖ 『 ✅ *SUDAH TERDAFTAR* 』 ❖\n` +
-        `│ ✦ Akun kamu sudah terdaftar di *Elysia Assistant*!\n` +
-        `│ 👤 *Nama:* ${user.regName || user.name || m.pushName || "Petualang"}\n` +
-        `│ 🎂 *Umur:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
+      `╭─── ❖ 『 ✅ *YA REGISTRADO* 』 ❖\n` +
+        `│ ✦ ¡Tu cuenta está registrada con *Ai Miku*!\n` +
+        `│ 👤 *Nombre:* ${user.regName || user.name || m.pushName || "Petualang"}\n` +
+        `│ 🎂 *Edad:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
         `│ 🔑 *Serial ID:* \`${sn}\`\n` +
         `│ 📅 *Terdaftar:* ${regDate}\n` +
         `├─── ❖ 『 💡 *INFO* 』 ❖\n` +
         `│ ◦ Cek kartu ID: *${p}ceksn*\n` +
         `│ ◦ Cek profil: *${p}profile*\n` +
-        `│ ◦ Hapus daftar: *${p}unreg ${sn}*\n` +
+        `│ ◦ Eliminar lista: *${p}desregistrar ${sn}*\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -128,27 +128,27 @@ async function handler(m, { sock }) {
   if (!parsed) {
     return m.reply(
       `╭─── ❖ 『 📜 *PENDAFTARAN PETUALANG* 』 ❖\n` +
-        `│ ✦ Silakan masukkan *Nama* dan *Umur* kamu!\n` +
+        `│ ✦ ¡Ingrese su *Nombre* y *Edad*!\n` +
         `│\n` +
-        `│ 📌 *Format:* \`${p}${m.command || "daftar"} Nama.Umur\`\n` +
-        `│ ✨ *Contoh 1:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
-        `│ ✨ *Contoh 2:* \`${p}daftar ${m.pushName || "Arthazy"} 19\`\n` +
+        `│ 📌 *Formato:* \`${p}${m.command || "daftar"} Nombre.Edad\`\n` +
+        `│ ✨ *Ejemplo 1:* \`${p}lista ${m.pushName || "Arthazy"}.19\`\n` +
+        `│ ✨ *Ejemplo 2:* \`${p}lista ${m.pushName || "Arthazy"} 19\`\n` +
         `├─── ❖ 『 🎁 *BONUS PENDAFTARAN* 』 ❖\n` +
         `│ 💰 *+Rp 25.000* Koin Awal\n` +
         `│ ✨ *+15.000* EXP Petualang\n` +
         `│ ⚡ *+15* Energi Tambahan\n` +
         `│ 🧪 *+5* Health Potion & *1* Common Crate\n` +
         `╰──────────────────────────❖\n` +
-        `_✦ Daftar sekarang untuk membuka seluruh fitur RPG, Clan, & Game!_`
+        `_✦ ¡Regístrate ahora para desbloquear todas las funciones de RPG, clanes y juegos!_`
     );
   }
 
   const { name, age } = parsed;
   if (name.length < 2 || name.length > 35) {
-    return m.reply(`⚠️ Nama harus terdiri dari *2 hingga 35 karakter*!`);
+    return m.reply(`⚠️ ¡El nombre debe constar de *2 a 35 caracteres*!`);
   }
   if (age < 7 || age > 90) {
-    return m.reply(`⚠️ Umur pendaftaran harus di antara *7 hingga 90 tahun*!`);
+    return m.reply(`⚠️ ¡La edad de registro debe estar entre *7 y 90 años*!`);
   }
 
   const sn = makeSerial(targetJid);
@@ -228,10 +228,10 @@ async function handler(m, { sock }) {
   const cleanTag = targetJid.split("@")[0].split(":")[0];
   const cardText =
     `╭─── ❖ 『 🌟 *KARTU IDENTITAS PETUALANG* 』 ❖\n` +
-    `│ ✦ Selamat datang di dunia *Elysia Assistant*!\n` +
+    `│ ✦ ¡Bienvenido al mundo de *Ai Miku*!\n` +
     `├─── ❖ 『 🪪 *BIODATA RESMI* 』 ❖\n` +
-    `│ 👤 *Nama:* ${name}\n` +
-    `│ 🎂 *Umur:* ${age} Tahun\n` +
+    `│ 👤 *Nombre:* ${name}\n` +
+    `│ 🎂 *Edad:* ${age} Año\n` +
     `│ 🏷️ *Tag:* @${cleanTag}\n` +
     `│ 🎖️ *Pangkat:* ${rankInfo.title} (Lv.${newLevel})\n` +
     `│ 🔑 *Serial ID:* \`${sn}\`\n` +
@@ -244,11 +244,11 @@ async function handler(m, { sock }) {
         `│ 🧪 *Item:* +5 Health Potion & +1 Common Crate\n`
       : "") +
     `├─── ❖ 『 🚀 *LANGKAH SELANJUTNYA* 』 ❖\n` +
-    `│ ◦ \`${p}profile\` — Lihat profil lengkapmu\n` +
+    `│ ◦ \`${p}perfil\` — Ver tu perfil completo\n` +
     `│ ◦ \`${p}ceksn\` — Cek kartu & Serial Number\n` +
-    `│ ◦ \`${p}unreg ${sn}\` — Hapus pendaftaran\n` +
+    `│ ◦ \`${p}desregistrar ${sn}\` — Eliminar registro\n` +
     `╰──────────────────────────❖\n` +
-    `_✦ Elysia Assistant • by Arthazy_`;
+    `_✦ Ai Miku • by Arthazy_`;
 
   await m.react("🎉");
   try {

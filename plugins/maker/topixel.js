@@ -1,20 +1,20 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import sharp from 'sharp'
 import { createCanvas, GlobalFonts } from '@napi-rs/canvas'
 
-const config = ElysiaRuntime.config;
-const te = ElysiaRuntime.te;
-const uploadToTmpFiles = ElysiaRuntime.uploadToTmpFilesOrg;
-const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
+const config = MikuRuntime.config;
+const te = MikuRuntime.te;
+const uploadToTmpFiles = MikuRuntime.uploadToTmpFilesOrg;
+const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
 
   const pluginConfig = {
     name: "topixel",
@@ -101,18 +101,18 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
     if (m.quoted?.message) {
       const type = m.quoted.mtype;
       if (!type || type !== "imageMessage") {
-        return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+        return m.reply("⚠️ ¡Responde al mensaje de la imagen!");
       }
       media = await m.quoted.download();
     } else if (m.message) {
       const type = m.mtype;
       if (!type || type !== "imageMessage") {
-        return m.reply(`👾 *PIXEL ART MAKER*\n\nKirim atau reply foto dengan perintah \`${m.prefix}topixel [level]\` untuk mengubah fotomu menjadi gaya retro pixel art!\n\n_Catatan: Level opsional antara 1-40 (semakin besar semakin kotak-kotak)._`);
+        return m.reply(`👾 *PIXEL ART MAKER*\n\nEnvía o responde a una foto con el comando \`${m.prefix}topixel [nivel]\` para convertir tu foto en estilo pixel art retro!\n\n_Nota: el nivel es opcional, de 1 a 40 (cuanto mayor, más pixelado)._`);
       }
       media = await m.download();
     }
 
-    if (!media) return m.reply("❌ Gagal membaca media gambar, coba lagi!");
+    if (!media) return m.reply("❌ No se pudo leer la imagen, ¡inténtalo de nuevo!");
 
     await m.react("🕕");
 
@@ -123,7 +123,7 @@ const uploadToCatbox = ElysiaRuntime.uploadToCatboxFile;
         m.chat,
         {
           image: pixelatedBuffer,
-          caption: `👾 *PIXEL ART BERHASIL!*\n\nIni dia fotomu dalam gaya pixel art retro 8-bit. Keren kan?`
+          caption: `👾 *¡PIXEL ART CREADO!*\n\nAquí tienes tu foto en estilo pixel art retro de 8 bits. ¿A qué mola?`
         },
         { quoted: m }
       );

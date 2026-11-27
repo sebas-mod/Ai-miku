@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,8 +28,8 @@ const pluginConfig = {
 async function handler(m, { sock, text, prefix }) {
   const c = cfg();
   const k = store();
-  if (!c.on) return m.reply("Fitur menfess sedang dimatikan.");
-  if (m.isGroup) return m.reply("Balas menfess lewat chat pribadi bot ya, supaya aman.");
+  if (!c.on) return m.reply("La función menfess está actualmente desactivada.");
+  if (m.isGroup) return m.reply("Responde menfess a través del chat privado bot Está bien, solo para estar seguro.");
 
   let pesan = String(text || "").trim();
   let id = "";
@@ -41,12 +41,12 @@ async function handler(m, { sock, text, prefix }) {
   }
   if (!pesan) {
     return m.reply(
-      `Format: *${prefix}balas pesanmu*\n\nCara termudah: *reply* pesan menfess, lalu ketik pesan balasanmu (tanpa perintah juga bisa).\nTanpa reply, balasan dikirim ke menfess terbaru.`,
+      `Formato: *${prefix}Responde a tu mensaje*\n\nLa forma más sencilla: *responder* mensaje menfess, luego escribe tu mensaje de respuesta (sin un comando también es posible).\nSin respuesta, la respuesta se envía al menfess más nuevo.`,
     );
   }
 
   const t = menfessCari(k, m.sender, { id, quotedId: m.quoted?.id });
-  if (!t) return m.reply("🍅 Tidak ada menfess aktif untuk dibalas.");
+  if (!t) return m.reply("🍅 No hay menfess activos para responder.");
   const r = await menfessBalas(sock, { jid: m.sender, user: userData(m.sender), id: t.id, d: t.d, pesan, prefix });
   return m.reply(r.msg);
 }

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -58,7 +58,7 @@ function compressVideoBuffer(buffer, mode = 'auto') {
     ultra: { scale: 480, crf: '33', ab: '64k' }
   }
   const cfg = presets[mode] || presets.auto
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'elysia-cvid-'))
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'miku-cvid-'))
   const inFile = path.join(tmpDir, 'in.mp4')
   const outFile = path.join(tmpDir, 'out.mp4')
   fs.writeFileSync(inFile, buffer)
@@ -82,7 +82,7 @@ function compressVideoBuffer(buffer, mode = 'auto') {
     proc.on('close', (code) => {
       try {
         if (code !== 0 || !fs.existsSync(outFile)) {
-          throw new Error(errLog.split('\n').slice(-3).join(' ') || 'FFmpeg gagal mengompres video.')
+          throw new Error(errLog.split('\n').slice(-3).join(' ') || 'FFmpeg No se pudo comprimir el video.')
         }
         const out = fs.readFileSync(outFile)
         fs.rmSync(tmpDir, { recursive: true, force: true })
@@ -100,11 +100,11 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
   const media = await downloadFromMsg(m, client)
   if (!media || !/(video|image)\//i.test(media.mime || '')) {
     return m.reply(
-      `🎬 *KOMPRES VIDEO & MEDIA*\n\n` +
-      `Kirim atau reply video/gambar dengan perintah:\n` +
-      `• \`${usedPrefix + command}\` — Mode seimbang (720p)\n` +
-      `• \`${usedPrefix + command} hd\` — Mode jernih (1080p)\n` +
-      `• \`${usedPrefix + command} ultra\` — Ukuran super hemat (480p)`
+      `🎬 *COMPRIMIR VIDEO Y MEDIOS*\n\n` +
+      `Envía o responde videos/imágenes con el comando:\n` +
+      `• \`${usedPrefix + command}\` — Modo equilibrado (720p)\n` +
+      `• \`${usedPrefix + command} hd\` — Modo claro (1080p)\n` +
+      `• \`${usedPrefix + command} ultra\` — Tamaño súper ahorro (480p)`
     )
   }
 
@@ -120,7 +120,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
       const saved = Math.max(0, Math.round((1 - out.length / media.buffer.length) * 100))
       await client.sendMessage(
         m.chat,
-        { image: out, caption: `🗜️ *Kompres Gambar (${mode.toUpperCase()})*\n• ${fmtSize(media.buffer.length)} ➔ ${fmtSize(out.length)} (Hemat ${saved}%)` },
+        { image: out, caption: `🗜️ *Comprimir imágenes (${mode.toUpperCase()})*\n• ${fmtSize(media.buffer.length)} ➔ ${fmtSize(out.length)} (Económico ${saved}%)` },
         { quoted: m }
       )
     } else {
@@ -128,14 +128,14 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
       const saved = Math.max(0, Math.round((1 - out.length / media.buffer.length) * 100))
       await client.sendMessage(
         m.chat,
-        { video: out, mimetype: 'video/mp4', caption: `🎬 *Kompres Video (${mode.toUpperCase()})*\n• ${fmtSize(media.buffer.length)} ➔ ${fmtSize(out.length)} (Hemat ${saved}%)` },
+        { video: out, mimetype: 'video/mp4', caption: `🎬 *Vídeo de empresa (${mode.toUpperCase()})*\n• ${fmtSize(media.buffer.length)} ➔ ${fmtSize(out.length)} (Económico ${saved}%)` },
         { quoted: m }
       )
     }
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengompres media:* ${e.message}`)
+    return m.reply(`❌ *No se pudo comprimir el medio:* ${e.message}`)
   }
 }
 

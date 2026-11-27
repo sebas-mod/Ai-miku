@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'cekonline',
     alias: ['checkonline', 'online', 'siapayangonline', 'whosonline'],
     category: 'group',
-    description: 'Cek member yang online di grup',
+    description: 'Consulta qué miembros del grupo están en línea',
     usage: '.cekonline',
     example: '.cekonline',
     isOwner: false,
@@ -32,10 +32,10 @@ async function handler(m, { sock }) {
 
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa mendapatkan data member grup`)
+            return m.reply(`❌ *FALLIDO*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
         }
 
-        await m.reply(`🔍 *ᴍᴇɴᴄᴀʀɪ ᴍᴇᴍʙᴇʀ ᴏɴʟɪɴᴇ...*\n\n> Menunggu response dari ${participants.length} member\n> Estimasi: 5-10 detik`)
+        await m.reply(`🔍 *BUSCANDO MIEMBROS EN LÍNEA...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)
 
         const presences = {}
 
@@ -69,23 +69,23 @@ async function handler(m, { sock }) {
         const onlineMembers = Object.keys(presences)
         const mentions = onlineMembers
 
-        let text = `📊 *ᴄᴇᴋ ᴏɴʟɪɴᴇ*\n\n`
-        text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ ɢʀᴜᴘ* 」\n`
-        text += `┃ 👥 ɴᴀᴍᴀ: *${groupMetadata.subject}*\n`
-        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` member\n`
-        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` member\n`
+        let text = `📊 *COMPROBAR EN LÍNEA*\n\n`
+        text += `╭┈┈⬡「 📋 *INFO DEL GRUPO* 」\n`
+        text += `┃ 👥 NOMBRE: *${groupMetadata.subject}*\n`
+        text += `┃ 👤 TOTAL: \`${participants.length}\` miembros\n`
+        text += `┃ 🟢 EN LÍNEA: \`${onlineMembers.length}\` miembros\n`
         text += `╰┈┈⬡\n\n`
 
         if (onlineMembers.length === 0) {
-            text += `> _Tidak ada member yang terdeteksi online_\n`
-            text += `> _Pastikan member telah membuka WA_`
+            text += `> _Ningún miembro detectado en línea_\n`
+            text += `> _Asegúrate de que los miembros hayan abierto WhatsApp_`
         } else {
-            text += `╭┈┈⬡「 🟢 *ᴍᴇᴍʙᴇʀ ᴏɴʟɪɴᴇ* 」\n`
+            text += `╭┈┈⬡「 🟢 *MIEMBROS EN LÍNEA* 」\n`
 
             let count = 0
             for (const jid of onlineMembers) {
                 if (count >= 50) {
-                    text += `┃ ... dan ${onlineMembers.length - 50} member lainnya\n`
+                    text += `┃ ... dan ${onlineMembers.length - 50} miembros más\n`
                     break
                 }
                 const number = jid.split('@')[0]

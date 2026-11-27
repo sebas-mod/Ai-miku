@@ -1,16 +1,16 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const sendAlbum = ElysiaRuntime.sendAlbum;
-const igDownloadAuto = ElysiaRuntime.igDownloadAuto;
-const JHICog = ElysiaRuntime.JHICog;
+const sendAlbum = MikuRuntime.sendAlbum;
+const igDownloadAuto = MikuRuntime.igDownloadAuto;
+const JHICog = MikuRuntime.JHICog;
 
   const pluginConfig = {
     name: "instagramdl",
@@ -42,13 +42,13 @@ const JHICog = ElysiaRuntime.JHICog;
 
     if (!raw) {
       return m.reply(
-        `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
+        `📸 *INSTAGRAM DESCARGADOR*\n\n` +
           `> \`${m.prefix}instagramdl <url>\`\n` +
-          `> \`${m.prefix}instagramdl <username> [mode]\`\n\n` +
-          `*ᴄᴏɴᴛᴏʜ:*\n` +
+          `> \`${m.prefix}instagramdl <nombre de usuario> [modo]\`\n\n` +
+          `*EJEMPLO:*\n` +
           `> \`${m.prefix}instagramdl https://www.instagram.com/reel/xxx\`\n` +
           `> \`${m.prefix}instagramdl jkt48.fiony stories\`\n\n` +
-          `*ᴍᴏᴅᴇ:* ${MODES.join(', ')}`,
+          `*MODO:* ${MODES.join(', ')}`,
       );
     }
 
@@ -58,7 +58,7 @@ const JHICog = ElysiaRuntime.JHICog;
       if (/instagram\.com/i.test(raw)) {
         if (!IG_REGEX.test(raw)) {
           await m.react("❌");
-          return m.reply(`❌ URL tidak valid. Gunakan link Instagram (reel/post/story).`);
+          return m.reply(`❌ URL no válida. Usa un enlace de Instagram (reel/post/story).`);
         }
 
         const result = await igDownloadAuto(raw, 'fastdl');
@@ -90,16 +90,16 @@ const JHICog = ElysiaRuntime.JHICog;
       const mode = (modeRaw || 'stories').toLowerCase();
       if (!MODES.includes(mode)) {
         await m.react("❌");
-        return m.reply(`❌ Mode tidak dikenal.\n\n*Mode:* ${MODES.join(', ')}`);
+        return m.reply(`❌ Modo desconocido.\n\n*Modos:* ${MODES.join(', ')}`);
       }
 
       const res = await JHICog(mode, uname, extraId);
-      if (!res.status) throw new Error(res.error || 'Gagal mengambil data');
+      if (!res.status) throw new Error(res.error || 'Error al obtener los datos');
 
       const items = res.data.items || [];
       if (!items.length) {
         await m.react("❌");
-        return m.reply(`❌ Tidak ada ${mode} untuk @${res.data.username}.`);
+        return m.reply(`❌ No hay ${mode} para @${res.data.username}.`);
       }
 
       if (mode === 'profile') {
@@ -116,7 +116,7 @@ const JHICog = ElysiaRuntime.JHICog;
 
       if (mode === 'highlights') {
         const list = items.map((h, i) => `${i + 1}. *${h.title || '-'}*\n   ID: \`${h.id}\``).join('\n');
-        await m.reply(`✨ *Highlights @${res.data.username}*\n\n${list}\n\n> Ambil isi: \`${m.prefix}instagramdl ${res.data.username} highlightstories <ID>\``);
+        await m.reply(`✨ *Highlights @${res.data.username}*\n\n${list}\n\n> Obtén contenido: \`${m.prefix}instagramdl ${res.data.username} highlightstories <ID>\``);
         await m.react("✅");
         return;
       }
@@ -133,13 +133,13 @@ const JHICog = ElysiaRuntime.JHICog;
         }
         count++;
       }
-      if (!flat.length) throw new Error('Tidak ada media yang bisa dikirim');
-      flat[0].caption = `📸 *Instagram ${mode}* @${res.data.username}\n📦 Total: ${items.length}${items.length > MAX_ITEMS ? ` (dikirim ${MAX_ITEMS})` : ''}`;
+      if (!flat.length) throw new Error('No hay contenido para enviar');
+      flat[0].caption = `📸 *Instagram ${mode}* @${res.data.username}\n📦 Total: ${items.length}${items.length > MAX_ITEMS ? ` (enviados ${MAX_ITEMS})` : ''}`;
       await sendAlbum(sock, m.chat, flat, { quoted: m });
       await m.react("✅");
     } catch (err) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+      return m.reply(`❌ *ERROR AL DESCARGAR*\n\n> ${err.message}`);
     }
   }
 

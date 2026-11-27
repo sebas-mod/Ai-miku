@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -108,12 +108,12 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">🐤</div><div class="meta"><div class="title">Flappy Live</div><div class="sub" id="who"></div></div></div>
      <canvas id="cv" class="cv" width="320" height="440"></canvas>
-     <div class="bar"><span class="pill">Skor <b id="sc">0</b></span><span class="pill">Terbaik <b id="bs">0</b></span><button class="btn alt" id="rs">⟳ Ulang</button></div>
-     <div class="muted" style="text-align:center">Tap layar / spasi untuk lompat. Lewati pipa sebanyak mungkin!</div>
+     <div class="bar"><span class="pill">Puntos <b id="sc">0</b></span><span class="pill">Mejor <b id="bs">0</b></span><button class="btn alt" id="rs">⟳ Reiniciar</button></div>
+     <div class="muted" style="text-align:center">Toca la pantalla / pulsa espacio para volar. ¡Pasa todos los tubos que puedas!</div>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var cv=document.getElementById('cv'),c=cv.getContext('2d'),W=320,H=440,G=0.42,J=-6.6,GAP=118,SP=2.3;
     var best=0;try{best=+localStorage.getItem('pix_flappy')||0;}catch(e){}
     var b,pipes,score,state,t,gx;
@@ -140,8 +140,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.fillStyle='#ff7043';c.beginPath();c.moveTo(10,2);c.lineTo(20,5);c.lineTo(10,9);c.fill();c.fillStyle='#f5b800';c.beginPath();c.ellipse(-4,3,6,4,0,0,7);c.fill();c.restore();
      c.textAlign='center';c.fillStyle='#fff';c.strokeStyle='#0008';c.lineWidth=4;c.font='bold 38px sans-serif';
      if(state>0){c.strokeText(score,W/2,70);c.fillText(score,W/2,70);}
-     if(state===0){c.font='bold 18px sans-serif';c.strokeText('TAP UNTUK MULAI',W/2,H/2+60);c.fillText('TAP UNTUK MULAI',W/2,H/2+60);}
-     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,130);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('GAME OVER',W/2,195);c.font='16px sans-serif';c.fillText('Skor '+score+'  •  Terbaik '+best,W/2,225);c.fillText(score>=20?'🏆 Emas':score>=10?'🥈 Perak':score>=5?'🥉 Perunggu':'Coba lagi!',W/2,253);}
+     if(state===0){c.font='bold 18px sans-serif';c.strokeText('TOCA PARA EMPEZAR',W/2,H/2+60);c.fillText('TOCA PARA EMPEZAR',W/2,H/2+60);}
+     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,130);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,195);c.font='16px sans-serif';c.fillText('Puntos '+score+'  •  Récord '+best,W/2,225);c.fillText(score>=20?'🏆 Emas':score>=10?'🥈 Perak':score>=5?'🥉 Perunggu':'Coba lagi!',W/2,253);}
     }
     cv.addEventListener('pointerdown',function(e){e.preventDefault();flap();});
     document.addEventListener('keydown',function(e){if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();flap();}});

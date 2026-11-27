@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanceckin',
@@ -35,12 +35,12 @@ const getDatabase = ElysiaRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       const today = new Date().toDateString()
@@ -48,7 +48,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
       if (!clan.memberXP) clan.memberXP = {}
 
       if (clan.checkins[m.sender] === today) {
-          return m.reply(`✅ Kamu sudah checkin hari ini!\n> Kembali besok untuk dapat XP lagi!`)
+          return m.reply(`✅ ¡Te registraste hoy!\n> ¡Vuelve mañana por otro XP!`)
       }
 
       let streak = clan.checkinStreak?.[m.sender] || 0
@@ -77,10 +77,10 @@ const getDatabase = ElysiaRuntime.getDatabase;
       await db.save()
 
       let txt = `✅ *ᴄʟᴀɴ ᴄʜᴇᴄᴋɪɴ!*\n\n`
-      txt += `╭┈┈⬡「 📋 *ʜᴀꜱɪʟ* 」\n`
+      txt += `╭┈┈⬡「 📋 *RESULTADO* 」\n`
       txt += `┃ 📛 Clan: *${clan.name}*\n`
       txt += `┃ 👤 Member: @${m.sender.split('@')[0]}\n`
-      txt += `┃ 🔥 Streak: *${streak} hari*\n`
+      txt += `┃ 🔥 Rayas: *${streak} día*\n`
       txt += `┃ 🎁 XP didapat: *+${totalXP}*\n`
       txt += `┃   └ Base: ${BASE_XP} + Bonus: ${bonusXP}\n`
       txt += `┃ 📈 Total XP clan: *${(clan.exp || 0).toLocaleString('id-ID')}*\n`

@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 
   const pluginConfig = {
       name: 'rekom-anime',
@@ -42,7 +42,7 @@ const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
   "Clannad After Story",
   "Toradora",
   "Horimiya",
-  "Elysia Assistant-sama Love is War",
+  "Ai Miku-sama Love is War",
   "My Dress Up Darling",
   "Angel Beats",
 
@@ -135,20 +135,20 @@ const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
 ┃
 ┃ EH?! DARLING!! 😳
 ┃
-┃ Elysia Assistant sangat merekomendasikan
-┃ anime ini!!
+┃ Ai Recomiendo encarecidamente a Miku.
+┃este anime!!
 ┃
-┃ 📺 Judul :
+┃ 📺 Título:
 ┃ ${anime}
 ┃
-┃ Ini anime tentang
-┃ *Elysia Assistant* loh!! 💕
+┃ Este es un anime sobre
+┃ *Ai Miku* ¡¡ya sabes!! 💕
 ┃
-┃ Darling wajib nonton!!
-┃ SERIUS!! 😆✨
+┃ ¡¡Cariño, debes mirar!!
+┃¡¡EN SERIO!! 😆✨
 ┃
-┃ Nanti bilang ya
-┃ Elysia Assistant paling lucu 😏
+┃ Luego di que si
+┃ Ai La Miku más Linda 😏
 ┃
 ╰━━━━━━━━━━━━━━━━⬣`
 
@@ -159,14 +159,14 @@ const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
   text =
   `╭━━━〔 🎌 REKOMENDASI ANIME 🎌 〕━━⬣
 ┃
-┃ Elysia Assistant punya
-┃ rekomendasi anime nih~
+┃ Ai Miku tiene
+┃ recomendación de anime aquí ~
 ┃
-┃ 📺 Judul :
+┃ 📺 Título:
 ┃ ${anime}
 ┃
-┃ Coba tonton ini ya
-┃ darling 😋
+┃ Intenta ver esto, ¿vale?
+┃ cariño 😋
 ┃
 ╰━━━━━━━━━━━━━━━━⬣`
 
@@ -176,6 +176,6 @@ const elysiaWrapPlugin = ElysiaRuntime.elysiaWrapPlugin;
 
   }
 
-  const handler = elysiaWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
+  const handler = mikuWrapPlugin(pluginConfig, (m, ctx) => run(m, { ...ctx, conn: ctx.sock, usedPrefix: ctx.prefix, args: m.args || [] }))
 
 export { pluginConfig as config, handler }

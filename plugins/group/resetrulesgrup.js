@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,9 +30,9 @@ function handler(m) {
     db.setGroup(m.chat, { groupRules: null })
 
     m.reply(
-        `✅ *ɢʀᴜᴘ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n` +
-        `Rules grup berhasil direset ke default!\n` +
-        `Ketik \`${m.prefix}rulesgrup\` untuk melihat.`
+        `✅ *REGLAS DEL GRUPO RESTABLECIDAS*\n` +
+        `¡Las reglas del grupo se han restablecido!\n` +
+        `Escribe \`${m.prefix}rulesgrup\` para verlas.`
     )
 }
 

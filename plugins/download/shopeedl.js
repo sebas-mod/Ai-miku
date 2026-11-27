@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fetch from 'node-fetch'
 
   const pluginConfig = {
@@ -55,7 +55,7 @@ import fetch from 'node-fetch'
     const url = m.args[0] || m.text?.trim();
 
     if (!url || !url.includes("shopee")) {
-      return m.reply("❌ Masukkan link video Shopee yang valid.\n\nContoh: `.shopeedl https://shopee.co.id/...`");
+      return m.reply("❌ Envía un enlace de vídeo de Shopee válido.\n\nEjemplo: `.shopeedl https://shopee.co.id/...`");
     }
 
     await m.react("🕕");
@@ -64,7 +64,7 @@ import fetch from 'node-fetch'
       const data = await extract(url);
       if (!data || !data.streams_array || data.streams_array.length === 0) {
         await m.react("❌");
-        return m.reply("⚠️ Gagal mengekstrak video. Pastikan link video Shopee sudah benar dan bersifat publik.");
+        return m.reply("⚠️ No se pudo extraer el vídeo. Comprueba que el enlace de Shopee sea correcto y público.");
       }
 
       const best = bestStream(data.streams_array);
@@ -72,8 +72,8 @@ import fetch from 'node-fetch'
 
       let caption = `🛍️ *SHOPEE VIDEO DOWNLOADER* 🛍️\n\n`;
       if (data.username) caption += `*Username:* ${data.username}\n`;
-      caption += `*Kualitas:* ${best.quality}\n`;
-      caption += `\n> Dibuat oleh bot kesayanganmu`;
+      caption += `*Calidad:* ${best.quality}\n`;
+      caption += `\n> Creado por tu bot favorito`;
 
       await sock.sendMessage(m.chat, {
         video: { url: videoUrl },
@@ -84,7 +84,7 @@ import fetch from 'node-fetch'
     } catch (error) {
       console.error("[Shopee DL]", error.message);
       await m.react("☢");
-      m.reply("😔 Gagal mengunduh video dari Shopee.");
+      m.reply("😔 Error al descargar el vídeo en Shopee.");
     }
   }
 

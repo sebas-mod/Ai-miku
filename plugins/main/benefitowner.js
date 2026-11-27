@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'benefitowner',
     alias: ['ownerbenefits', 'ownerfitur'],
     category: 'main',
-    description: 'Lihat penjelasan dan daftar fitur khusus Owner',
+    description: 'Ver la explicación y la lista de funciones exclusivas del dueño',
     usage: '.benefitowner',
     isOwner: false,
     isGroup: false,
@@ -38,27 +38,27 @@ async function handler(m, { sock }) {
     const totalCommands = commandList.length
 
     const message =
-        `👑 *ᴀᴘᴀ ɪᴛᴜ ᴏᴡɴᴇʀ?*\n\n` +
-        `Owner adalah *pemilik bot* yang memiliki akses penuh ke semua fitur dan kontrol sistem.\n\n` +
-        `╭┈┈⬡「 🔐 *ᴋᴇɪꜱᴛɪᴍᴇᴡᴀᴀɴ ᴏᴡɴᴇʀ* 」\n` +
-        `┃ ✦ \`\`\`Akses semua command tanpa batasan\`\`\`\n` +
-        `┃ ✦ \`\`\`Limit tidak terbatas (-1)\`\`\`\n` +
-        `┃ ✦ \`\`\`Bypass semua cooldown\`\`\`\n` +
-        `┃ ✦ \`\`\`Kontrol penuh sistem bot\`\`\`\n` +
-        `┃ ✦ \`\`\`Manajemen user & group\`\`\`\n` +
-        `┃ ✦ \`\`\`Akses panel & server\`\`\`\n` +
+        `👑 *¿ǫᴜᴇ ᴇs ᴇʟ ᴅᴜᴇñᴏ?*\n\n` +
+        `El dueño es *la persona propietaria del bot*, con acceso total a todas las funciones y al control del sistema.\n\n` +
+        `╭┈┈⬡「 🔐 *ᴘʀɪᴠɪʟᴇɢɪᴏs ᴅᴇʟ ᴅᴜᴇñᴏ* 」\n` +
+        `┃ ✦ \`\`\`Acceso a todos los comandos sin restricciones\`\`\`\n` +
+        `┃ ✦ \`\`\`Límite ilimitado (-1)\`\`\`\n` +
+        `┃ ✦ \`\`\`Se salta todos los cooldowns\`\`\`\n` +
+        `┃ ✦ \`\`\`Control total del sistema del bot\`\`\`\n` +
+        `┃ ✦ \`\`\`Gestión de usuarios y grupos\`\`\`\n` +
+        `┃ ✦ \`\`\`Acceso al panel y al servidor\`\`\`\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *ᴄᴀʀᴀ ᴋᴇʀᴊᴀ* 」\n` +
-        `┃ \`Owner ditambahkan melalui:\`\n` +
-        `┃ • \`\`\`${config.command?.prefix || '.'}addowner <nomor>\`\`\`\n` +
-        `┃ • Atau langsung di config.js\n` +
+        `╭┈┈⬡「 ⚙️ *ᴄᴏ́ᴍᴏ ꜰᴜɴᴄɪᴏɴᴀ* 」\n` +
+        `┃ \`El dueño se añade con:\`\n` +
+        `┃ • \`\`\`${config.command?.prefix || '.'}addowner <número>\`\`\`\n` +
+        `┃ • O directamente en config.js\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴄᴏᴍᴍᴀɴᴅ ᴏᴡɴᴇʀ* 」\n` +
-        `┃ \`Total: ${totalCommands} command\`\n` +
+        `╭┈┈⬡「 📋 *ᴄᴏᴍᴀɴᴅᴏs ᴅᴇʟ ᴅᴜᴇñᴏ* 」\n` +
+        `┃ \`Total: ${totalCommands} comandos\`\n` +
         `┃\n` +
         commandList.map(cmd => `┃ ${cmd}`).join('\n') +
         `\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Hubungi owner untuk mendapatkan akses!`
+        `> ¡Contacta al dueño para obtener acceso!`
 
     await m.reply(message)
 }

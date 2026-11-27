@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,9 +28,9 @@ const pluginConfig = {
 if (!global.sulapSessions) global.sulapSessions = new Map()
 
 const successLines = [
-    '💨 *POOF!* Dan... dia menghilang!',
-    '🌟 Sulap berhasil! Sampai jumpa lagi~',
-    '✨ Absen dulu ya, ditunggu berikutnya!',
+    '💨 *¡POOF!* Y... ¡desapareció!',
+    '🌟 ¡Magia lograda! Hasta la próxima~',
+    '✨ ¡Me ausento, nos vemos luego!',
     '🎪 Pertunjukan selesai! 👏'
 ]
 
@@ -42,8 +42,8 @@ async function handler(m, { sock }) {
     await m.react('🎩')
 
     const sent = await m.reply(`🎩✨ *ᴘᴇʀᴛᴜɴᴊᴜᴋᴀɴ sᴜʟᴀᴘ*\n\n` +
-            `Siapa yang ingin dihilangkan?\n\n` +
-            `> Reply pesan ini + mention orangnya`)
+            `¿A quién quieres hacer desaparecer?\n\n` +
+            `> Responde a este mensaje + menciona a la persona`)
 
     global.sulapSessions.set(sent.key.id, {
         admin: m.sender,
@@ -75,7 +75,7 @@ async function replyHandler(m, sock) {
     }
 
     if (!targetJid) {
-        await sock.sendMessage(m.chat, { text: '❌ Mention orangnya dong!' }, { quoted: m })
+        await sock.sendMessage(m.chat, { text: '❌ ¡Menciona a la persona!' }, { quoted: m })
         return true
     }
 
@@ -86,12 +86,12 @@ async function replyHandler(m, sock) {
     const senderNumber = m.sender.split('@')[0]
 
     if (targetNumber === botNumber) {
-        await sock.sendMessage(m.chat, { text: '🎭 Bot tidak bisa menghilangkan dirinya sendiri!' })
+        await sock.sendMessage(m.chat, { text: '🎭 ¡El bot no puede hacerse desaparecer a sí mismo!' })
         return true
     }
 
     if (targetJid === m.sender) {
-        await sock.sendMessage(m.chat, { text: '🎭 Tidak bisa menghilangkan diri sendiri!' })
+        await sock.sendMessage(m.chat, { text: '🎭 ¡No puedes hacerte desaparecer a ti mismo!' })
         return true
     }
 
@@ -102,12 +102,12 @@ async function replyHandler(m, sock) {
         )
 
         if (!target) {
-            await sock.sendMessage(m.chat, { text: '👻 Orang itu tidak ada di grup!' })
+            await sock.sendMessage(m.chat, { text: '👻 ¡Esa persona no está en el grupo!' })
             return true
         }
 
         if (['admin', 'superadmin'].includes(target.admin)) {
-            await sock.sendMessage(m.chat, { text: '🛡️ Admin kebal terhadap sihir!' })
+            await sock.sendMessage(m.chat, { text: '🛡️ ¡Los admins son inmunes a la magia!' })
             return true
         }
 
@@ -123,14 +123,14 @@ async function replyHandler(m, sock) {
         const line = successLines[Math.floor(Math.random() * successLines.length)]
         await sock.sendMessage(m.chat, {
             text: `${line}\n\n` +
-                `🎯 @${targetNumber} telah menghilang!\n` +
+                `🎯 ¡@${targetNumber} ha desaparecido!\n` +
                 `🎩 Pesulap: @${senderNumber}\n\n` +
                 `> _Pertunjukan selesai~_ ✨`,
             mentions: [targetJid, m.sender]
         })
 
     } catch (error) {
-        await sock.sendMessage(m.chat, { text: `😅 Sulapnya gagal...\n\n> ${error.message}` })
+        await sock.sendMessage(m.chat, { text: `😅 La magia falló...\n\n> ${error.message}` })
     }
 
     return true

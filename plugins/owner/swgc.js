@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -117,13 +117,13 @@ async function handler(m, { sock, db }) {
 
     if (!pendingData) {
       await m.reply(
-        `⚠️ *Tidak ada data pending. Silakan kirim ulang media + .swgc*`,
+        `⚠️ *No hay datos pendientes. Vuelve a enviar el multimedia + .swgc*`,
       );
       return;
     }
 
     try {
-      let groupName = "Grup";
+      let groupName = "Grupo";
       try {
         const meta = await sock.groupMetadata(targetGroupId);
         groupName = meta.subject;
@@ -168,14 +168,14 @@ async function handler(m, { sock, db }) {
       const mediaType = pendingData.rawContent.text
         ? "Teks"
         : pendingData.rawContent.image
-          ? "Gambar"
+          ? "Imagen"
           : pendingData.rawContent.video
             ? "Video"
             : pendingData.rawContent.audio
               ? "Audio"
               : "Media";
 
-      const successMsg = `✅ Berhasil up sw ke grup ${groupName}`;
+      const successMsg = `✅ Estado subido correctamente al grupo ${groupName}`;
 
       await m.reply(successMsg);
       pendingSwgc.delete(m.sender);
@@ -189,7 +189,7 @@ async function handler(m, { sock, db }) {
       }
     } catch (error) {
       await m.reply(
-        `❌ *ᴇʀʀᴏʀ*\n\n` + `> Gagal posting story.\n` + `> _${error.message}_`,
+        `❌ *ERROR*\n\n` + `> Error al publicar la historia.\n` + `> _${error.message}_`,
       );
     }
     return;
@@ -210,7 +210,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.quoted.download();
       if (!buffer) {
-        await m.reply(`❌ Gagal mengambil media.`);
+        await m.reply(`❌ No se pudo obtener el multimedia.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -243,7 +243,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.download();
       if (!buffer) {
-        await m.reply(`❌ Gagal mengambil media.`);
+        await m.reply(`❌ No se pudo obtener el multimedia.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -272,10 +272,10 @@ async function handler(m, { sock, db }) {
     rawContent.backgroundColor = "#128C7E";
   } else {
     await m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}swgc teks\` - Story teks\n` +
-        `> Reply gambar/video/audio + \`${m.prefix}swgc\`\n` +
-        `> Kirim gambar/video + caption \`${m.prefix}swgc\``,
+      `⚠️ *CÓMO USAR*\n\n` +
+        `> \`${m.prefix}swgc <texto>\` - Texto de la historia\n` +
+        `> Responde con imagen/video/audio + \`${m.prefix}swgc\`\n` +
+        `> Envía una imagen/vídeo con el texto \`${m.prefix}swgc\``,
     );
     return;
   }
@@ -293,7 +293,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      await m.reply(`⚠️ *Bot tidak berada di grup manapun.*`);
+      await m.reply(`⚠️ *El bot no está en ningún grupo.*`);
       return;
     }
 
@@ -307,7 +307,7 @@ async function handler(m, { sock, db }) {
     const mediaType = rawContent.text
       ? "Teks"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
@@ -321,22 +321,22 @@ async function handler(m, { sock, db }) {
 
     await sock.sendMessage(m.chat, {
       text:
-        `📋 *ᴘɪʟɪʜ ɢʀᴜᴘ ᴜɴᴛᴜᴋ ᴘᴏsᴛ sᴛᴏʀʏ*\n\n` +
-        `> Media: *${mediaType}*\n` +
-        `> Total Grup: *${groupList.length}*\n\n` +
-        `_Pilih grup dari daftar di bawah:_`,
+        `📋 *ELIGE UN GRUPO PARA PUBLICAR LA HISTORIA*\n\n` +
+        `> Medios: *${mediaType}*\n` +
+        `> Total de grupos: *${groupList.length}*\n\n` +
+        `_Elige un grupo de la lista de abajo:_`,
       contextInfo: {
         ...saluranCtx()
       },
-      footer: "elysia MD",
+      footer: "miku MD",
       interactiveButtons: [
         {
           name: "single_select",
           buttonParamsJson: JSON.stringify({
-            title: "🏠 Pilih Grup",
+            title: "🏠 Elegir grupo",
             sections: [
               {
-                title: "Daftar Grup",
+                title: "Lista de grupos",
                 rows: groupRows,
               },
             ],
@@ -353,8 +353,8 @@ async function handler(m, { sock, db }) {
     });
   } catch (error) {
     await m.reply(
-      `❌ *ᴇʀʀᴏʀ*\n\n` +
-        `> Gagal mengambil daftar grup.\n` +
+      `❌ *ERROR*\n\n` +
+        `> No se pudo obtener la lista de grupos.\n` +
         `> _${error.message}_`,
     );
     if (tempFile && fs.existsSync(tempFile)) {

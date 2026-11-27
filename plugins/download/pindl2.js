@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { conn, args }) {
     try {
-      if (!args[0]) return m.reply('Mana link Pinnya?')
+      if (!args[0]) return m.reply('¿Y el enlace del Pin?')
       let pinterestUrl = args[0]
 
       let { csrfToken, cookies } = await getSnappinToken()

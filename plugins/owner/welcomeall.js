@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -31,9 +31,9 @@ async function handler(m, { sock }) {
 
     if (!action || !['on', 'off'].includes(action)) {
         return m.reply(
-            `👋 *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ*\n\n` +
-            `> Aktifkan/nonaktifkan welcome di SEMUA grup sekaligus\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
+            `👋 *BIENVENIDA GLOBAL*\n\n` +
+            `> Activa/desactiva la bienvenida en TODOS los grupos a la vez\n\n` +
+            `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
             `┃ ${m.prefix}welcomeall on\n` +
             `┃ ${m.prefix}welcomeall off\n` +
             `╰┈┈┈┈┈┈┈┈⬡`
@@ -57,21 +57,21 @@ async function handler(m, { sock }) {
 
         if (status) {
             return m.reply(
-                `✅ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Welcome: *AKTIF*\n` +
+                `✅ *BIENVENIDA GLOBAL ON*\n\n` +
+                `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ✅ Bienvenida: *ACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Semua member baru akan disambut otomatis!`
+                `> ¡Todos los miembros nuevos serán recibidos automáticamente!`
             )
         } else {
             return m.reply(
-                `❌ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Welcome: *NONAKTIF*\n` +
+                `❌ *BIENVENIDA GLOBAL OFF*\n\n` +
+                `╭┈┈⬡「 📊 *RESULTADO* 」\n` +
+                `┃ 🌐 Total de grupos: *${count}*\n` +
+                `┃ ❌ Bienvenida: *INACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Welcome dinonaktifkan di semua grup.`
+                `> La bienvenida se desactivó en todos los grupos.`
             )
         }
     } catch (error) {

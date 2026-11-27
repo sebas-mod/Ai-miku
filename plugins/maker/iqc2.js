@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import axios from 'axios'
 import fs from 'fs'
 import https from 'https'
@@ -18,7 +18,7 @@ import { existsSync, unlinkSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
-const te = ElysiaRuntime.te;
+const te = MikuRuntime.te;
 
   const pluginConfig = {
       name: "iqc2",
@@ -41,10 +41,10 @@ const te = ElysiaRuntime.te;
 
           if (!targetText) {
               return m.reply(
-                  `Halo *${m.pushName}*, sepertinya kamu belum memasukkan teksnya.\n\n` +
-                  `Silakan gunakan perintah dengan format:\n` +
-                  `- .iqc2 <teks kamu>\n` +
-                  `- Atau balas (reply) pesan orang lain dengan .iqc2`
+                  `Hola *${m.pushName}*, parece que aún no has escrito el texto.\n\n` +
+                  `Usa el comando con el formato:\n` +
+                  `- .iqc2 <tu texto>\n` +
+                  `- O responde a un mensaje de otra persona con .iqc2`
               );
           }
 
@@ -66,7 +66,7 @@ const te = ElysiaRuntime.te;
       } catch (error) {
           console.error("[IQC2 Plugin Error]", error);
           await m.react('❌');
-          m.reply(`Maaf *${m.pushName}*, terjadi kesalahan saat mencoba membuat gambar quote. Silakan coba lagi beberapa saat.`);
+          m.reply(`Lo siento *${m.pushName}*, hubo un error al crear la imagen de la cita. Inténtalo de nuevo en un momento.`);
       }
   }
 

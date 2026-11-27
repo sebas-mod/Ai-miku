@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const saveDB = ElysiaRuntime.saveDB;
+const saveDB = MikuRuntime.saveDB;
 
 const pluginConfig = {
     name: "autodl",
@@ -36,8 +36,8 @@ const pluginConfig = {
 
       if (!ON.test(arg) && !OFF.test(arg)) {
           return reply(
-              `*▢ AUTO DOWNLOAD*\nStatus chat ini: ${chat.autodl ? '✅ ON' : '❌ OFF'}\n\n` +
-              `${prefix}autodl on  → link otomatis diunduh\n${prefix}autodl off\n\n` +
+              `*▢ AUTO DOWNLOAD*\nEstado de este chat: ${chat.autodl ? '✅ ON' : '❌ OFF'}\n\n` +
+              `${prefix}autodl on  → los enlaces se descargan automáticamente\n${prefix}autodl off\n\n` +
               `Mendukung: TikTok, Instagram, YouTube, Facebook, Twitter/X.`
           )
       }
@@ -47,8 +47,8 @@ const pluginConfig = {
       chat.autodl = on
       saveDB(global.db)
       return reply(on
-          ? '✅ Auto-download *aktif*. Kirim link TikTok / IG / YouTube / FB / X dan bot akan mengunduhnya.'
-          : '❌ Auto-download *dimatikan* di chat ini.')
+          ? '✅ Auto-descarga *activa*. Envía un enlace de TikTok / IG / YouTube / FB / X y el bot lo descargará.'
+          : '❌ Auto-download *desactivada* en este chat.')
   }
 
 export { pluginConfig as config, handler }

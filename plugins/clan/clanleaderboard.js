@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const getDatabase = ElysiaRuntime.getDatabase;
+const getDatabase = MikuRuntime.getDatabase;
 
   const pluginConfig = {
       name: 'clanleaderboard',
@@ -43,7 +43,7 @@ const getDatabase = ElysiaRuntime.getDatabase;
 
       const clans = Object.values(db.db.data.clans)
       if (clans.length === 0) {
-          return m.reply(`🏰 Belum ada clan terdaftar\n\nBuat: *.clancreate <nama>*`)
+          return m.reply(`🏰 Aún no hay clanes registrados\n\nCrear: *.clancreate <nombre>*`)
       }
 
       clans.sort((a, b) => {

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -22,8 +22,8 @@ const pluginConfig = {
   alias: ["settema", "theme", "temagc"],
   category: "group",
   description:
-    "Mengubah tema warna atau wallpaper chat grup (hex, preset, foto, dokumen, URL)",
-  usage: ".tema <#hex|warna|reset> atau reply foto",
+    "Cambia el tema de color o el fondo del chat del grupo (hex, preajuste, foto, documento, URL)",
+  usage: ".tema <#hex|color|reset> o responde a una foto",
   example: ".tema pink | .tema #ff69b4 | .tema reset",
   isOwner: false,
   isPremium: false,
@@ -150,7 +150,7 @@ const fetchUrlBuffer = async (url) => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const ctype = res.headers.get("content-type") || "";
-  if (!/^image\//i.test(ctype)) throw new Error("URL bukan file gambar");
+  if (!/^image\//i.test(ctype)) throw new Error("La URL no es un archivo de imagen");
   return Buffer.from(await res.arrayBuffer());
 };
 
@@ -250,7 +250,7 @@ const uploadWallpaper = async (sock, imgBuf) => {
     });
 
     if (!up?.directPath) {
-      throw new Error("Server CDN tidak mengembalikan directPath");
+      throw new Error("El servidor CDN no devolvió directPath");
     }
 
     return {
@@ -322,14 +322,14 @@ async function handler(m, extra = {}) {
   const usedPrefix = extra.usedPrefix || extra.prefix || m.prefix || ".";
   const command = extra.command || m.command || "tema";
   const isOwner = Boolean(extra.isOwner ?? m.isOwner);
-  const botName = config.bot?.name || "Elysia Assistant";
+  const botName = config.bot?.name || "Ai Miku";
 
   if (!m.chat.endsWith("@g.us")) {
-    return reply("❌ Perintah ini hanya bisa digunakan di dalam grup yaa~");
+    return reply("❌ Este comando solo se puede usar dentro de un grupo~");
   }
 
   const meta = await sock.groupMetadata(m.chat).catch(() => null);
-  if (!meta) return reply("❌ Gagal mengambil metadata grup~");
+  if (!meta) return reply("❌ No se pudieron obtener los datos del grupo~");
 
   const senderNum = normId(m.sender || m.key?.participant);
   const me = sock.authState?.creds?.me || sock.user || {};
@@ -348,13 +348,13 @@ async function handler(m, extra = {}) {
 
   if (!isSenderAdmin && !isOwner) {
     return reply(
-      "❌ Khusus Admin Grup atau Owner yang bisa mengganti tema grup yaa~"
+      "❌ Solo los administradores del grupo o el dueño pueden cambiar el tema~"
     );
   }
 
   if (meta.restrict && !isBotAdmin) {
     return reply(
-      "❌ Jadikan bot sebagai Admin Grup dulu supaya bisa mengubah tema grup~"
+      "❌ Haz primero al bot administrador del grupo para que pueda cambiar el tema~"
     );
   }
 
@@ -364,12 +364,12 @@ async function handler(m, extra = {}) {
 
   if (!q && !mediaTarget) {
     return reply(
-      `🎨 *GANTI TEMA & WALLPAPER GRUP*\n\n` +
-        `• *Warna Hex:* ${usedPrefix}${command} #ff69b4\n` +
-        `• *Warna Cepat:* ${usedPrefix}${command} pink\n` +
+      `🎨 *CAMBIAR TEMA Y FONDO DEL GRUPO*\n\n` +
+        `• *Color hex:* ${usedPrefix}${command} #ff69b4\n` +
+        `• *Color rápido:* ${usedPrefix}${command} pink\n` +
         `  _(pink, biru, ungu, hitam, hijau, merah, kuning, oren, putih)_\n` +
-        `• *Wallpaper Foto:* Reply/kirim foto, dokumen gambar, atau link foto + ${usedPrefix}${command}\n` +
-        `• *Reset Bawaan:* ${usedPrefix}${command} reset\n\n` +
+        `• *Fondo con foto:* responde o envía una foto, un documento de imagen o un enlace de foto + ${usedPrefix}${command}\n` +
+        `• *Volver al tema original:* ${usedPrefix}${command} reset\n\n` +
         `✨ ${botName}`
     );
   }
@@ -387,7 +387,7 @@ async function handler(m, extra = {}) {
 
     if (/^(reset|hapus|clear|limpar)$/i.test(q)) {
       themePayload.clearTheme = true;
-      modeLabel = "Reset ke tema bawaan";
+      modeLabel = "Vuelto al tema original";
     } else if (hexInput) {
       const cor = (0xff000000 | parseInt(hexInput, 16)) >>> 0;
       themePayload.solidColor = {
@@ -395,14 +395,14 @@ async function handler(m, extra = {}) {
         backgroundDarkArgb: cor,
         isDoodleEnabled: true,
       };
-      modeLabel = `Warna #${hexInput.toUpperCase()}`;
+      modeLabel = `Color #${hexInput.toUpperCase()}`;
     } else if (mediaTarget || urlMatch) {
       const imgBuf = mediaTarget
         ? await getMediaBuffer(sock, mediaTarget)
         : await fetchUrlBuffer(urlMatch[1]);
 
       if (!Buffer.isBuffer(imgBuf) || !imgBuf.length) {
-        throw new Error("Buffer gambar kosong atau gagal diunduh");
+        throw new Error("La imagen está vacía o no se pudo descargar");
       }
 
       const up = await uploadWallpaper(sock, imgBuf);
@@ -414,11 +414,11 @@ async function handler(m, extra = {}) {
         dimLevel: 0,
       };
       modeLabel = mediaTarget
-        ? `Wallpaper (${mediaTarget.dlType})`
-        : "Wallpaper dari URL";
+        ? `Fondo (${mediaTarget.dlType})`
+        : "Fondo desde URL";
     } else {
       return reply(
-        `Format tidak dikenali~ Gunakan kode hex (\`#ff69b4\`), nama warna (\`pink\`), reply foto/dokumen gambar, atau ketik \`${usedPrefix}${command} reset\``
+        `Formato no reconocido~ Usa un coded hex (\`#ff69b4\`), un nombre de color (\`pink\`), responde con una foto o documento de imagen, o escribe \`${usedPrefix}${command} reset\``
       );
     }
 
@@ -466,13 +466,13 @@ async function handler(m, extra = {}) {
       .sendMessage(m.chat, { react: { text: "✅", key: m.key } })
       .catch(() => {});
     return reply(
-      `✅ Berhasil mengubah tema grup!\n🎨 *Tema:* ${modeLabel}\n\n✨ ${botName}`
+      `✅ ¡Tema del grupo cambiado!\n🎨 *Tema:* ${modeLabel}\n\n✨ ${botName}`
     );
   } catch (err) {
     await sock
       .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
       .catch(() => {});
-    return reply(`❌ Gagal mengubah tema grup:\n${err.message}`);
+    return reply(`❌ No se pudo cambiar el tema del grupo:\n${err.message}`);
   }
 }
 

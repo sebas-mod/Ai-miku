@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -8,13 +8,13 @@
  */
 import config from "../../config.js";
 import { getPluginsByCategory } from "../../src/lib/core/plugins.js";
-import { sendElysiaNativeMenu } from "../../src/lib/core/native-menu.js";
+import { sendMikuNativeMenu } from "../../src/lib/core/native-menu.js";
 
 const pluginConfig = {
   name: "listmenu",
   alias: ["menugroup", "groupmenu", "listgroup"],
   category: "main",
-  description: "Menampilkan semua menu grup beserta fungsi setiap command",
+  description: "Muestra todos los menús de grupo junto con la función de cada comando",
   usage: ".listmenu",
   example: ".listmenu",
   isOwner: false,
@@ -26,7 +26,7 @@ const pluginConfig = {
   isEnabled: true,
 };
 
-const cleanText = (value, fallback = "Fitur grup") => {
+const cleanText = (value, fallback = "Funciones de grupo") => {
   const text = String(value || "").replace(/\s+/g, " ").trim();
   return text || fallback;
 };
@@ -55,39 +55,40 @@ async function handler(m, { sock }) {
     seen.add(name);
     rows.push({
       title: `${prefix}${name}`,
-      description: truncate(info.description || info.usage || "Fitur grup"),
+      description: truncate(info.description || info.usage || "Funciones de grupo"),
       id: `${prefix}${name}`,
     });
   }
-  if (!rows.length) return m.reply("❌ Menu grup belum tersedia.");
+  if (!rows.length) return m.reply("❌ El menú de grupo todavía no está disponible.");
 
   const sections = [];
   const chunkSize = 10;
   for (let i = 0; i < rows.length; i += chunkSize) {
-    sections.push({ title: `GROUP MENU ${Math.floor(i / chunkSize) + 1}`, rows: rows.slice(i, i + chunkSize) });
+    sections.push({ title: `MENÚ DE GRUPO ${Math.floor(i / chunkSize) + 1}`, rows: rows.slice(i, i + chunkSize) });
   }
-  // Tetap bisa kembali ke menu utama, sebagai section tersendiri agar batas baris tiap section terjaga.
+  // Siempre se puede volver al menú principal con una sección aparte,
+  // así no se supera el límite de filas por sección.
   sections.push({
-    title: "NAVIGASI",
+    title: "NAVEGACIÓN",
     rows: [{
-      title: "◆ KEMBALI",
-      description: "Kembali ke menu utama",
+      title: "◆ VOLVER",
+      description: "Volver al menú principal",
       id: `${prefix}menu`,
     }],
   });
   const body = [
-    `╭─〔 👥 GROUP MENU 〕─⬣`,
-    `│ Total fitur: ${rows.length}`,
-    `│ Pilih command untuk melihat/menjalankannya.`,
+    `╭─〔 👥 MENÚ DE GRUPO 〕─⬣`,
+    `│ Total de funciones: ${rows.length}`,
+    `│ Elige un comando para verlo o ejecutarlo.`,
     `╰─⬣`,
   ].join("\n");
-  return sendElysiaNativeMenu(sock, m, {
+  return sendMikuNativeMenu(sock, m, {
     buttonId: "pilihan_listmenu",
-    pickerTitle: "☰ LIST MENU GROUP",
+    pickerTitle: "☰ LISTA DE MENÚS DE GRUPO",
     sections,
     contentText: body,
-    footerText: `${config.bot?.name || "Elysia Assistant"} • Group Menu`,
-    address: "LIST MENU GROUP",
+    footerText: `${config.bot?.name || "Ai Miku"} • Menú de grupo`,
+    address: "LISTA DE MENÚS DE GRUPO",
     thumbKey: "listmenu",
   });
 }

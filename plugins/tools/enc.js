@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const obfuscateJs = ElysiaRuntime.obfuscateJs;
+const obfuscateJs = MikuRuntime.obfuscateJs;
 
 const pluginConfig = {
     name: "enc",
@@ -27,7 +27,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, text, reply }) {
-      if (!text) return reply('Masukkan kode JavaScript yang ingin di-obfuscate')
+      if (!text) return reply('Escribe el código JavaScript que quieres ofuscar')
 
       try {
           const code = await obfuscateJs(text)
@@ -39,7 +39,7 @@ const pluginConfig = {
           }, { quoted: m })
       } catch (e) {
           console.error(e)
-          reply(e.friendly ? e.message : 'Gagal meng-obfuscate kode')
+          reply(e.friendly ? e.message : 'No se pudo ofuscar el código')
       }
   }
 

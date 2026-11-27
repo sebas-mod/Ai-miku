@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import { unlinkSync, readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
 import { spawn } from 'child_process'
 
@@ -39,11 +39,11 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
           }
 
           if (!/audio/.test(mime)) {
-              return (reply || m.reply)(`Balas vn/audio yang ingin diubah dengan caption *${usedPrefix + command}*`)
+              return (reply || m.reply)(`Responde a la nota de voz/audio que quieres modificar con el texto *${usedPrefix + command}*`)
           }
 
           if (!args[0] || !args[1] || !TIME_REGEX.test(args[0].trim()) || !TIME_REGEX.test(args[1].trim())) {
-              return (reply || m.reply)(`Format waktu tidak valid!\nContoh: *${usedPrefix + command} 00:00:10 00:00:30*`)
+              return (reply || m.reply)(`¡Formato de tiempo no válido!\nEjemplo: *${usedPrefix + command} 00:00:10 00:00:30*`)
           }
 
           const startPos = args[0].trim()
@@ -75,7 +75,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
           } else if (Buffer.isBuffer(media)) {
               writeFileSync(inputPath, media)
           } else {
-              return (reply || m.reply)('❌ Gagal mengunduh audio.')
+              return (reply || m.reply)('❌ No se pudo descargar el audio.')
           }
 
           const cleanup = () => {
@@ -97,7 +97,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
           const timer = setTimeout(() => {
               try { ff.kill('SIGKILL') } catch {}
               cleanup();
-              (reply || m.reply)('❌ Pemrosesan audio melebihi batas waktu (timeout).')
+              (reply || m.reply)('❌ El procesamiento del audio superó el tiempo límite.')
           }, 30000)
 
           ff.on('close', async (code) => {
@@ -105,7 +105,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
               try {
                   if (code !== 0 || !existsSync(outputPath)) {
                       cleanup()
-                      return (reply || m.reply)('❌ Gagal memotong audio.')
+                      return (reply || m.reply)('❌ No se pudo recortar el audio.')
                   }
 
                   let buff = readFileSync(outputPath)
@@ -125,7 +125,7 @@ const TIME_REGEX = /^(\d{1,2}:)?[0-5]?\d:[0-5]\d(\.\d+)?$|^\d+(\.\d+)?$/
           ff.on('error', () => {
               clearTimeout(timer)
               cleanup();
-              (reply || m.reply)('❌ Gagal menjalankan FFmpeg.')
+              (reply || m.reply)('❌ No se pudo ejecutar FFmpeg.')
           })
       } catch (e) {
           console.error(e);

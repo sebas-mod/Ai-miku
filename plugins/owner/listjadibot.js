@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -28,12 +28,12 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (sessions.length === 0) {
-        return m.reply(`❌ Tidak ada session jadibot tersimpan`)
+        return m.reply(`❌ No hay sesiones de jadibot guardadas`)
     }
 
-    let txt = `🤖 *ᴅᴀꜰᴛᴀʀ ᴊᴀᴅɪʙᴏᴛ*\n\n`
+    let txt = `🤖 *LISTA DE JADIBOTS*\n\n`
     txt += `> 📊 Total: *${sessions.length}* session\n`
-    txt += `> 🟢 Aktif: *${active.length}*\n`
+    txt += `> 🟢 Activos: *${active.length}*\n`
     txt += `> ⚫ Offline: *${sessions.length - active.length}*\n\n`
 
     sessions.forEach((s, i) => {
@@ -42,9 +42,9 @@ async function handler(m, { sock }) {
         txt += `${status} *${i + 1}.* @${s.id} — _${label}_\n`
     })
 
-    txt += `\n> \`${m.prefix}listjadibotaktif\` — Detail aktif\n`
-    txt += `> \`${m.prefix}stopalljadibot\` — Stop semua\n`
-    txt += `> \`${m.prefix}stopdandeletejadibot @user\` — Hapus session`
+    txt += `\n> \`${m.prefix}listjadibotaktif\` — Detalle de activos\n`
+    txt += `> \`${m.prefix}stopalljadibot\` — Detén todas\n`
+    txt += `> \`${m.prefix}stopdandeletejadibot @user\` — Elimina la sesión`
 
     const mentions = sessions.map(s => s.jid)
 
@@ -55,14 +55,14 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🟢 Lihat Aktif',
+                    display_text: '🟢 Ver activos',
                     id: `${m.prefix}listjadibotaktif`
                 })
             },
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🛑 Stop Semua',
+                    display_text: '🛑 Detener todo',
                     id: `${m.prefix}stopalljadibot`
                 })
             }

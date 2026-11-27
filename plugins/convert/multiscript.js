@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -70,7 +70,7 @@ const KEYWORD_MAP = {
 function translateCode(source, fromLang, toLang) {
   const srcMap = KEYWORD_MAP[fromLang]
   const dstMap = KEYWORD_MAP[toLang]
-  if (!srcMap || !dstMap) throw new Error(`Bahasa tidak dikenali: ${fromLang} -> ${toLang}`)
+  if (!srcMap || !dstMap) throw new Error(`Idioma no reconocido: ${fromLang} -> ${toLang}`)
 
   const tokenToCanonical = new Map()
   for (const [canon, word] of Object.entries(srcMap)) {
@@ -191,7 +191,7 @@ const executeInSandbox = async (jsCode) => {
   })
 
   const timeoutPromise = new Promise((_, reject) => {
-    setTimeout(() => reject(new Error(`Batas waktu eksekusi habis (${TIMEOUT_MS / 1000} detik)!`)), TIMEOUT_MS)
+    setTimeout(() => reject(new Error(`Tiempo de espera de ejecución (${TIMEOUT_MS / 1000} segundo)!`)), TIMEOUT_MS)
   })
 
   const result = await Promise.race([execPromise, timeoutPromise])
@@ -221,7 +221,7 @@ const extractCodeInput = async (m, text, conn) => {
 
 const getHelpMessage = (usedPrefix) =>
   `⚡ *MULTISCRIPT ENGINE (RUN & TRANSPILER)* ⚡\n` +
-  `_Konversi & jalankan kode pemrograman berbahasa Jawa, Sunda, Indonesia, dan JavaScript!_\n\n` +
+  `_¡Convierta y ejecute código de programación javanés, sundanés, indonesio y JavaScript!_\n\n` +
   `🔄 *KONVERSI BAHASA:*\n` +
   `• \`${usedPrefix}js2jawa\` / \`${usedPrefix}jawa2js\`\n` +
   `• \`${usedPrefix}js2sunda\` / \`${usedPrefix}sunda2js\`\n` +
@@ -229,12 +229,12 @@ const getHelpMessage = (usedPrefix) =>
   `• \`${usedPrefix}jawa2sunda\` / \`${usedPrefix}sunda2jawa\`\n` +
   `• \`${usedPrefix}jawa2indo\` / \`${usedPrefix}indo2jawa\`\n` +
   `• \`${usedPrefix}sunda2indo\` / \`${usedPrefix}indo2sunda\`\n\n` +
-  `🏃 *JALANKAN KODE:*\n` +
-  `• \`${usedPrefix}jawa <kode>\`\n` +
-  `• \`${usedPrefix}sunda <kode>\`\n` +
-  `• \`${usedPrefix}indo <kode>\`\n` +
-  `• \`${usedPrefix}multiscript <kode>\` (deteksi otomatis)\n\n` +
-  `💡 *Contoh:*\n` +
+  `🏃 *EJECUTAR CÓDIGO:*\n` +
+  `• \`${usedPrefix}java <código>\`\n` +
+  `• \`${usedPrefix}Sundanés <código>\`\n` +
+  `• \`${usedPrefix}id <código>\`\n` +
+  `• \`${usedPrefix}multiscript <código>\` (detección automática)\n\n` +
+  `💡 *Ejemplo:*\n` +
   `\`${usedPrefix}js2jawa let x = 10; console.log(x);\``
 
 async function handler(m, { text, usedPrefix = '.', command = 'multiscript', conn, sock }) {
@@ -248,7 +248,7 @@ async function handler(m, { text, usedPrefix = '.', command = 'multiscript', con
 
   const code = cleanCodeFences(rawCode)
   if (!code) {
-    return m.reply(`💡 Ketik \`${usedPrefix + cmd} <kode>\` atau reply pesan/file berisi kode.`)
+    return m.reply(`💡 Escribe \`${usedPrefix + cmd} <código>\` o responder al mensaje/archivo que contiene el código.`)
   }
 
   const shortcutMatch = cmd.match(/^([a-z]+)2([a-z]+)$/i)
@@ -284,15 +284,15 @@ async function handler(m, { text, usedPrefix = '.', command = 'multiscript', con
       toLang = fromLang === 'jawa' ? 'indo' : fromLang === 'sunda' ? 'indo' : 'jawa'
     }
 
-    if (!KEYWORD_MAP[fromLang]) return m.reply(`❌ Bahasa asal tidak didukung: *${fromLang}*`)
-    if (!KEYWORD_MAP[toLang]) return m.reply(`❌ Bahasa tujuan tidak didukung: *${toLang}*`)
-    if (fromLang === toLang) return m.reply(`⚠️ Bahasa asal dan tujuan sudah sama (*${fromLang.toUpperCase()}*).`)
+    if (!KEYWORD_MAP[fromLang]) return m.reply(`❌ Idioma materno no compatible: *${fromLang}*`)
+    if (!KEYWORD_MAP[toLang]) return m.reply(`❌ Idioma de destino no admitido: *${toLang}*`)
+    if (fromLang === toLang) return m.reply(`⚠️ Los idiomas de origen y destino son los mismos (*${fromLang.toUpperCase()}*).`)
 
     try {
       const converted = translateCode(cleanConvertCode, fromLang, toLang)
-      return m.reply(`🔄 *KONVERSI KODE: ${fromLang.toUpperCase()} ➔ ${toLang.toUpperCase()}*\n\n\`\`\`${toLang}\n${converted}\n\`\`\``)
+      return m.reply(`🔄 *CÓDIGO DE CONVERSIÓN: ${fromLang.toUpperCase()} ➔ ${toLang.toUpperCase()}*\n\n\`\`\`${toLang}\n${converted}\n\`\`\``)
     } catch (err) {
-      return m.reply(`❌ *Gagal Konversi:* ${err.message}`)
+      return m.reply(`❌ *Error de conversión:* ${err.message}`)
     }
   }
 
@@ -304,7 +304,7 @@ async function handler(m, { text, usedPrefix = '.', command = 'multiscript', con
   else runLang = detectLanguage(code)
 
   if (!KEYWORD_MAP[runLang]) {
-    return m.reply(`❌ Bahasa tidak didukung: *${runLang}*`)
+    return m.reply(`❌ Idiomas no admitidos: *${runLang}*`)
   }
 
   const isTranspileOnly = /\B--(transpile|js)\b|-t\b/i.test(code)
@@ -318,7 +318,7 @@ async function handler(m, { text, usedPrefix = '.', command = 'multiscript', con
   }
 
   if (isTranspileOnly) {
-    return m.reply(`📜 *HASIL TRANSPILE (${runLang.toUpperCase()} ➔ JS):*\n\n\`\`\`javascript\n${transpiledJS}\n\`\`\``)
+    return m.reply(`📜 *TRANSPILAR RESULTADOS (${runLang.toUpperCase()} ➔ JS):*\n\n\`\`\`javascript\n${transpiledJS}\n\`\`\``)
   }
 
   try {
@@ -330,7 +330,7 @@ async function handler(m, { text, usedPrefix = '.', command = 'multiscript', con
       msg += `🔄 *Return:* \`${resStr}\`\n\n`
     }
     if (logs.length === 0 && result === undefined) {
-      msg += `✓ _Kode selesai dijalankan (tanpa output консоль)_\n`
+      msg += `✓ _Código terminado de ejecutarse (sin salida консоль)_\n`
     }
     return m.reply(msg.trim())
   } catch (err) {

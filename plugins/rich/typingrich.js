@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -108,16 +108,16 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </style>
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">⌨️</div><div class="meta"><div class="title">Typing Test Live</div><div class="sub" id="who"></div></div></div>
-     <div class="chips" id="md"><button class="chip on" data-s="30">30 detik</button><button class="chip" data-s="60">60 detik</button></div>
-     <div class="st"><div class="pill">WPM<b id="wp">0</b></div><div class="pill">Akurasi<b id="ac">100%</b></div><div class="pill">Waktu<b id="tm">30</b></div><div class="pill">Rekor<b id="bs">0</b></div></div>
+     <div class="chips" id="md"><button class="chip on" data-s="30">30 segundos</button><button class="chip" data-s="60">60 segundos</button></div>
+     <div class="st"><div class="pill">WPM<b id="wp">0</b></div><div class="pill">Precisión<b id="ac">100%</b></div><div class="pill">Tiempo<b id="tm">30</b></div><div class="pill">Récord<b id="bs">0</b></div></div>
      <div class="tx" id="tx"></div>
-     <textarea class="inp" id="in" rows="2" placeholder="Ketik di sini untuk mulai..." autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+     <textarea class="inp" id="in" rows="2" placeholder="Escribe aquí para empezar..." autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
      <div class="res" id="rs"></div>
-     <button class="btn" style="width:100%" id="rt">⟳ Ulang</button>
+     <button class="btn" style="width:100%" id="rt">⟳ Repetir</button>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador:'+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var P='yang dan untuk dengan tidak ini itu dari pada ada akan bisa saya kamu kita mereka rumah makan minum belajar bermain bekerja sekolah teman pagi siang malam hari bulan tahun cepat lambat besar kecil indah cantik tampan baik buruk senang sedih marah takut berani sabar rajin malas pintar bodoh kuat lemah tinggi rendah jauh dekat panas dingin basah kering baru lama muda tua air api tanah angin hujan matahari bintang laut gunung hutan sungai jalan kota desa pasar toko buku kertas pensil meja kursi pintu jendela lampu mobil motor sepeda kereta pesawat kapal'.split(' ');
     var T,typed,sec=30,left,iv,started,done,best={};

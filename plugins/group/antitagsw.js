@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -34,13 +34,13 @@ async function handler(m, { sock, db }) {
         const status = group.antitagsw || 'off'
 
         await m.reply(
-            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ sᴇᴛᴛɪɴɢs*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `> Fitur ini menghapus pesan tag status\n` +
+            `📢 *ANTITAGSW AJUSTES*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Esta función elimina los mensajes de etiqueta de estado\n` +
             `> (groupStatusMentionMessage)\n\n` +
-            `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-            `> \`${m.prefix}antitagsw on\` → Aktifkan\n` +
-            `> \`${m.prefix}antitagsw off\` → Nonaktifkan`
+            `\`\`\`━━━ OPCIONES ━━━\`\`\`\n` +
+            `> \`${m.prefix}antitagsw on\` → Activar\n` +
+            `> \`${m.prefix}antitagsw off\` → Desactivar`
         )
         return
     }
@@ -48,9 +48,9 @@ async function handler(m, { sock, db }) {
     if (action === 'on') {
         db.setGroup(groupId, { ...group, antitagsw: 'on' })
         await m.reply(
-            `✅ *ᴀɴᴛɪᴛᴀɢsᴡ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil diaktifkan!\n` +
-            `> Pesan tag status akan dihapus otomatis.`
+            `✅ *ANTITAGSW ACTIVADO*\n\n` +
+            `> ¡La función contra etiquetas de estado se ha activado!\n` +
+            `> Los mensajes de etiqueta de estado se eliminarán automáticamente.`
         )
         return
     }
@@ -58,15 +58,15 @@ async function handler(m, { sock, db }) {
     if (action === 'off') {
         db.setGroup(groupId, { ...group, antitagsw: 'off' })
         await m.reply(
-            `❌ *ᴀɴᴛɪᴛᴀɢsᴡ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil dinonaktifkan.`
+            `❌ *ANTITAGSW DESACTIVADO*\n\n` +
+            `> La función contra etiquetas de estado se ha desactivado.`
         )
         return
     }
 
     await m.reply(
-        `❌ *ᴘɪʟɪʜᴀɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-        `> Gunakan: on atau off`
+        `❌ *OPCIÓN NO VÁLIDA*\n\n` +
+        `> Usa: on u off`
     )
 }
 

@@ -1,14 +1,14 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
-const sendPremiumSticker = ElysiaRuntime.sendPremiumSticker;
+const sendPremiumSticker = MikuRuntime.sendPremiumSticker;
 
 const pluginConfig = {
     name: "sprem",
@@ -28,15 +28,15 @@ const pluginConfig = {
 
   async function handler(m, { sock, jid, reply }) {
       const q = m.quoted
-      if (q?.mtype !== 'stickerMessage') return reply('Reply sticker WEBP biasa dulu.')
-      if (q.mimetype !== 'image/webp') return reply('Ini bukan sticker WEBP biasa. Untuk lottie/application/was beda cara.')
+      if (q?.mtype !== 'stickerMessage') return reply('Responda primero sticker WEBP como de costumbre.')
+      if (q.mimetype !== 'image/webp') return reply('Este no es un sticker WEBP ordinario. Para lotetie/aplicación/was el método es diferente.')
 
       try {
           const buffer = await q.download()
           await sendPremiumSticker(sock, jid, buffer, { isAnimated: q.isAnimated, quoted: m })
       } catch (e) {
           console.error('[SPREM]', e)
-          reply('Gagal inject atribut sticker. Cek console.')
+          reply('No se pudo inyectar el atributo sticker. Verifique la consola.')
       }
   }
 

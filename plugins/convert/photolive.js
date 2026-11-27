@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -54,7 +54,7 @@ function firstFrame(videoBuffer) {
     fs.writeFileSync(input, videoBuffer)
     execFile(ffmpegBin, ["-y", "-i", input, "-frames:v", "1", "-q:v", "2", output], { timeout: 60000 }, (err) => {
       try {
-        if (err || !fs.existsSync(output)) throw err || new Error("Gagal mengambil frame awal video.")
+        if (err || !fs.existsSync(output)) throw err || new Error("No se pudo capturar el cuadro inicial del vídeo.")
         const img = fs.readFileSync(output)
         cleanup()
         resolve(img)
@@ -74,16 +74,16 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
   if (!target) {
     return m.reply(
       `📸 *LIVE PHOTO CONVERTER*\n\n` +
-      `Ubah video pendek menjadi *Live Photo* WhatsApp (foto diambil otomatis dari frame pertama).\n\n` +
+      `Cambie el vídeo corto a *Live Photo* WhatsApp (foto tomada automáticamente desde el primer fotograma).\n\n` +
       `📌 *Cara Pakai:*\n` +
-      `Kirim atau reply video dengan caption \`${p}\``
+      `Envía o responde al vídeo con el título \`${p}\``
     )
   }
 
   await m.react("⏳")
   try {
     const videoBuffer = await target.download()
-    if (!videoBuffer?.length) throw new Error("Gagal mengunduh video.")
+    if (!videoBuffer?.length) throw new Error("No se pudo descargar el video.")
 
     const image = await firstFrame(videoBuffer)
 
@@ -131,7 +131,7 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
     await m.react("✅")
   } catch (e) {
     await m.react("❌")
-    return m.reply(`❌ *Gagal membuat Live Photo:* ${e.message}`)
+    return m.reply(`❌ *No se pudo crear Live Photo:* ${e.message}`)
   }
 }
 

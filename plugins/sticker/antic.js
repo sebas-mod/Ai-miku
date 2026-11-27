@@ -1,13 +1,13 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
-const elysiaGlobal = ElysiaRuntime.elysiaGlobal;
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
+const mikuGlobal = MikuRuntime.mikuGlobal;
 
 const pluginConfig = {
     name: "antic",
@@ -57,7 +57,7 @@ const pluginConfig = {
       webpBuffer.slice(0, 4).toString() !== "RIFF" ||
       webpBuffer.slice(8, 12).toString() !== "WEBP"
     ) {
-      throw new Error("File bukan WEBP valid.");
+      throw new Error("El archivo no es válido WEBP.");
     }
     const chunks = [];
     let firstType = null;
@@ -112,7 +112,7 @@ const pluginConfig = {
 
   async function loadSharp() {
     const sharpMod = await import('sharp').catch(() => null);
-    if (!sharpMod?.default) throw new Error('Install sharp dulu:\nnpm i sharp');
+    if (!sharpMod?.default) throw new Error('Instale Sharp primero:\nnpm soy agudo');
     return sharpMod.default;
   }
 
@@ -145,7 +145,7 @@ const pluginConfig = {
 
       https.get(url, (res) => {
         if (res.statusCode !== 200) {
-          return reject(new Error(`Server CDN merespon dengan status: ${res.statusCode}`));
+          return reject(new Error(`El servidor CDN responde con el estado: ${res.statusCode}`));
         }
         const chunks = [];
         res.on('data', chunk => chunks.push(chunk));
@@ -163,7 +163,7 @@ const pluginConfig = {
             const decrypted = Buffer.concat([decipher.update(encrypted), decipher.final()]);
             resolve(decrypted);
           } catch (e) {
-            reject(new Error("Gagal melakukan dekripsi file pack: " + e.message));
+            reject(new Error("No se pudo descifrar el archivo del paquete: " + e.message));
           }
         });
       }).on('error', reject);
@@ -199,14 +199,14 @@ const pluginConfig = {
       content: [{ tag: 'media_conn', attrs: {} }],
     });
     const mediaConn = iq.content?.find(v => v.tag === 'media_conn');
-    if (!mediaConn) throw new Error('media_conn tidak ditemukan');
+    if (!mediaConn) throw new Error('media_conn no encontrado');
     const auth = mediaConn.attrs?.auth;
-    if (!auth) throw new Error('auth media_conn tidak ditemukan');
+    if (!auth) throw new Error('autenticación media_conn no encontrada');
     const hosts = (mediaConn.content || [])
       .filter(v => v.tag === 'host')
       .map(v => v.attrs?.hostname)
       .filter(Boolean);
-    if (!hosts.length) throw new Error('host upload tidak ditemukan');
+    if (!hosts.length) throw new Error('host de carga no encontrado');
     const token = encodeURIComponent(
       fileEncSha256.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, ''),
     );
@@ -235,12 +235,12 @@ const pluginConfig = {
               res.on('data', c => body += c);
               res.on('end', () => {
                 if (res.statusCode < 200 || res.statusCode >= 300) {
-                  return reject(new Error(`Upload gagal ${res.statusCode}: ${body}`));
+                  return reject(new Error(`Error al subir ${res.statusCode}: ${body}`));
                 }
                 try {
                   resolve(JSON.parse(body));
                 } catch {
-                  reject(new Error(`Response bukan JSON: ${body}`));
+                  reject(new Error(`Respuesta no JSON: ${body}`));
                 }
               });
             },
@@ -250,7 +250,7 @@ const pluginConfig = {
           req.end();
         });
         const directPath = json.direct_path ?? json.directPath ?? json.url ?? json.path;
-        if (!directPath) throw new Error('directPath tidak ditemukan');
+        if (!directPath) throw new Error('ruta directa no encontrada');
         return {
           mediaKey,
           fileLength: buffer.length,
@@ -263,14 +263,14 @@ const pluginConfig = {
         lastError = e;
       }
     }
-    throw lastError ?? new Error('Semua host upload gagal');
+    throw lastError ?? new Error('Error en la carga de todos los hosts');
   }
 
   async function handler(m, { conn, usedPrefix, command }) {
     try {
       const targetMessage = m.quoted?.fakeObj?.message?.stickerPackMessage || m.quoted?.message?.stickerPackMessage;
       if (!targetMessage) {
-        return m.reply('❌ Silahkan reply ke pesan *Sticker Pack* yang ingin dibuat anti-colong.');
+        return m.reply('❌ Por favor responde al mensaje *Sticker Pack* que quieres hacer anti-scratch.');
       }
       await m.react('🕜');
 
@@ -282,11 +282,11 @@ const pluginConfig = {
       }
 
       if (!packBuffer) {
-        throw new Error("Gagal memperoleh data biner archive sticker pack dari server.");
+        throw new Error("No se pudieron obtener los datos del paquete de archivo binario sticker del servidor.");
       }
 
-      const botName = elysiaGlobal.botName || 'ytta';
-      const dynamicPackName = `Elysia Assistant`;
+      const botName = mikuGlobal.botName || 'ytta';
+      const dynamicPackName = `Ai Miku`;
       const dynamicPublisher = `Arthazy`;
 
       const zip = await JSZip.loadAsync(packBuffer);
@@ -401,7 +401,7 @@ const pluginConfig = {
     } catch (error) {
       console.error('[AntiColongPack] Error:', error);
       await m.react('❌');
-      await m.reply('❌ *GAGAL PROSES PACK*\n\n> ' + error.message);
+      await m.reply('❌ *NO SE PUDO PROCESAR EL PAQUETE*\n\n> ' + error.message);
     }
   }
 

@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -47,11 +47,11 @@ async function handler(m, { sock }) {
     if (!targetJid || levels <= 0) {
         return m.reply(
             `📊 *ADD LEVEL*\n\n` +
-            `Sistem untuk menambahkan level kepada member secara instan.\n\n` +
-            `*PENGGUNAAN:*\n` +
-            `- *${m.prefix}addlevel <jumlah>* — (ke diri sendiri)\n` +
-            `- *${m.prefix}addlevel <jumlah> @user* — (ke orang lain)\n\n` +
-            `*CONTOH PENGGUNAAN:*\n` +
+            `Sistema para añadir niveles a un miembro al instante.\n\n` +
+            `*USO:*\n` +
+            `- *${m.prefix}addlevel <cantidad>* — (para ti mismo)\n` +
+            `- *${m.prefix}addlevel <cantidad> @user* — (a otra persona)\n\n` +
+            `*EJEMPLO DE USO:*\n` +
             `- *${m.prefix}addlevel 5*\n` +
             `- *${m.prefix}addlevel 10 @user*`
         )
@@ -78,11 +78,11 @@ async function handler(m, { sock }) {
     const finalLevel = addResult.newLevel || calculateLevel(user.exp)
 
     await m.reply(
-        `✅ *BERHASIL MENAMBAH LEVEL*\n\n` +
-        `Level milik *@${targetJid.split('@')[0]}* telah sukses ditambahkan sebanyak *${levels} Level*.\n\n` +
+        `✅ *NIVEL AÑADIDO*\n\n` +
+        `Se añadieron *${levels} niveles* a *@${targetJid.split('@')[0]}*.\n\n` +
         `*Statistik Terkini:*\n` +
-        `- Level Sekarang: *${finalLevel}*\n` +
-        `- Role Saat Ini: *${getRole(finalLevel)}*\n` +
+        `- Nivel actual: *${finalLevel}*\n` +
+        `- Rol actual: *${getRole(finalLevel)}*\n` +
         `- Total XP: *${user.exp.toLocaleString()}* XP`,
         { mentions: [targetJid] }
     )

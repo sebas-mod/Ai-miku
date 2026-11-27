@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -32,11 +32,11 @@ async function handler(m, { sock, text, reply, example }) {
     const url = String(text || '').trim().split(/\s+/)[0]
     if (!url) return example('https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O')
     const code = url.match(/whatsapp\.com\/channel\/([A-Za-z0-9_-]+)/i)?.[1]
-    if (!code) return reply('⚠️ Link tautan channel tidak valid!')
+    if (!code) return reply('⚠️ ¡El enlace del canal no es válido!')
 
     try {
         const res = await sock.newsletterMetadata('invite', code)
-        if (!res?.id) return reply('Tidak dapat menemukan ID channel dari link tersebut.')
+        if (!res?.id) return reply('No se puede encontrar el canal ID desde el enlace.')
         const channelId = res.id
 
         let channelName = res.thread_metadata?.name?.text || res.name?.text || ''
@@ -49,10 +49,10 @@ async function handler(m, { sock, text, reply, example }) {
         }
         channelName ||= 'WhatsApp Channel'
 
-        const botName = config.bot?.name || 'Elysia Assistant'
+        const botName = config.bot?.name || 'Ai Miku'
         const teks =
             `╭─❖「 📢 *CHANNEL ID CHECKER* 」\n` +
-            `│ 🏷️ Nama : *${channelName}*\n` +
+            `│ 🏷️ Nombre: *${channelName}*\n` +
             `│ 🆔 ID   : \`${channelId}\`\n` +
             `╰─────────────────────❖`
 
@@ -69,13 +69,13 @@ async function handler(m, { sock, text, reply, example }) {
         } catch {
             return await sock.sendMessage(
                 m.chat,
-                { text: `${teks}\n\n📋 Salin ID Channel: ${channelId}\n\n_${botName}_` },
+                { text: `${teks}\n\n📋 Copiar ID del canal: ${channelId}\n\n_${botName}_` },
                 { quoted: m }
             )
         }
     } catch (err) {
         console.error('❌ idch Error:', err)
-        return reply('Terjadi kesalahan saat mengambil ID channel!')
+        return reply('¡Ocurrió un error al recuperar el canal ID!')
     }
 }
 

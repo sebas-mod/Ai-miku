@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
       if (!inviteCode) {
         m.react("✘");
-        return m.reply(`── .✦ ──\n\n> Link grup tidak valid .☘︎ ݁˖`);
+        return m.reply(`── .✦ ──\n\n> Enlace de grupo no válido .☘︎ ݁˖`);
       }
 
       try {
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> Link grup tidak valid atau sudah expired .☘︎ ݁˖`,
+          `── .✦ ──\n\n> Enlace de grupo no válido o ya caducó .☘︎ ݁˖`,
         );
       }
     } else if (input && input.endsWith("@g.us")) {
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> Tidak bisa mengakses grup tersebut .☘︎ ݁˖`,
+          `── .✦ ──\n\n> No se puede acceder a ese grupo .☘︎ ݁˖`,
         );
       }
     } else if (m.isGroup) {
@@ -82,16 +82,16 @@ async function handler(m, { sock }) {
       groupMeta = await sock.groupMetadata(groupJid);
     } else {
       return m.reply(
-        `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗚𝗥𝗨𝗣 ✦. ── 𝜗ৎ\n\n` +
-          `> Gunakan di grup atau masukkan link grup\n\n` +
-          `> \`${m.prefix}cekidgc\` — di dalam grup\n` +
+        `── .✦ COMPROBAR ID DEL GRUPO ✦. ── 𝜗ৎ\n\n` +
+          `> Úsalo dentro del grupo o envía un enlace de grupo\n\n` +
+          `> \`${m.prefix}cekidgc\` — dentro del grupo\n` +
           `> \`${m.prefix}cekidgc https://chat.whatsapp.com/xxx\``,
       );
     }
 
     if (!groupMeta || !groupJid) {
       m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Tidak dapat menemukan info grup .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> No se pudo encontrar la información del grupo .☘︎ ݁˖`);
     }
 
     const groupName = groupMeta.subject || "Unknown";
@@ -106,9 +106,9 @@ async function handler(m, { sock }) {
     const groupDesc = groupMeta.desc || "—";
     const descPreview =
       groupDesc.length > 120 ? groupDesc.slice(0, 120) + "..." : groupDesc;
-    const isRestrict = groupMeta.restrict ? "Admin Only" : "Semua Member";
-    const isAnnounce = groupMeta.announce ? "Aktif" : "Nonaktif";
-    const isCommunity = groupMeta.isCommunity ? "✓ Ya" : "✘ Tidak";
+    const isRestrict = groupMeta.restrict ? "Solo administradores" : "Todos los miembros";
+    const isAnnounce = groupMeta.announce ? "Activo" : "Inactivo";
+    const isCommunity = groupMeta.isCommunity ? "✓ Sí" : "✘ No";
     const joinMode = groupMeta.joinApprovalMode ? "Perlu Approval" : "Bebas";
 
     let ppBuffer = null;
@@ -127,30 +127,30 @@ async function handler(m, { sock }) {
     } catch {}
 
     const saluranId = config.saluran?.id || "120363393471527483@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Elysia Assistant";
+    const saluranName = config.saluran?.name || config.bot?.name || "Ai Miku";
 
     const infoText =
-      `── .✦ 𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢 ✦. ── 𝜗ৎ\n\n` +
+      `── .✦ INFO DEL GRUPO ✦. ── 𝜗ৎ\n\n` +
       `╭─〔 ${groupName} 〕───⬣\n` +
-      `│  ✦ ɴᴀᴍᴀ        : *${groupName}*\n` +
-      `│  ✦ ɪᴅ             : \`${groupJid}\`\n` +
-      `│  ✦ ᴍᴇᴍʙᴇʀ     : *${memberCount}*\n` +
-      `│  ✦ ᴀᴅᴍɪɴ        : *${adminCount}*\n` +
-      `│  ✦ ᴏᴡɴᴇʀ       : @${groupOwner.replace(/@.+/g, "")}\n` +
-      `│  ✦ ᴅɪʙᴜᴀᴛ       : *${createdAt}*\n` +
-      `│  ✦ ᴋᴏᴍᴜɴɪᴛᴀs : *${isCommunity}*\n` +
-      `│  ✦ ᴇᴅɪᴛ ɪɴꜰᴏ   : *${isRestrict}*\n` +
-      `│  ✦ ᴀɴɴᴏᴜɴᴄᴇ : *${isAnnounce}*\n` +
-      `│  ✦ ᴊᴏɪɴ ᴍᴏᴅᴇ  : *${joinMode}*\n` +
-      `│  ✦ ᴅᴇsᴋʀɪᴘsɪ  : ${descPreview}\n` +
+      `│  ✦ NOMBRE        : *${groupName}*\n` +
+      `│  ✦ ID             : \`${groupJid}\`\n` +
+      `│  ✦ MIEMBROS    : *${memberCount}*\n` +
+      `│  ✦ ADMIN        : *${adminCount}*\n` +
+      `│  ✦ PROPIETARIO       : @${groupOwner.replace(/@.+/g, "")}\n` +
+      `│  ✦ CREADO       : *${createdAt}*\n` +
+      `│  ✦ COMUNIDAD : *${isCommunity}*\n` +
+      `│  ✦ EDITAR INFO   : *${isRestrict}*\n` +
+      `│  ✦ ANUNCIOS : *${isAnnounce}*\n` +
+      `│  ✦ MODO DE INGRESO  : *${joinMode}*\n` +
+      `│  ✦ DESCRIPCIÓN  : ${descPreview}\n` +
       `╰──────────────⬣\n\n` +
-      `.☘︎ ݁˖ © ${config.bot?.name || "Elysia Assistant"}`;
+      `.☘︎ ݁˖ © ${config.bot?.name || "Ai Miku"}`;
 
     const buttons = [
       {
         name: "cta_copy",
         buttonParamsJson: JSON.stringify({
-          display_text: "✦ Copy ID Grup",
+          display_text: "✦ Copiar ID del grupo",
           copy_code: groupJid,
         }),
       },
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Elysia Assistant"}`,
+                  text: `© ${config.bot?.name || "Ai Miku"}`,
                 }),
                 header: proto.Message.InteractiveMessage.Header.fromObject({
                   hasMediaAttachment: !!headerMedia,
@@ -221,7 +221,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Elysia Assistant"}`,
+                  text: `© ${config.bot?.name || "Ai Miku"}`,
                 }),
                 nativeFlowMessage:
                   proto.Message.InteractiveMessage.NativeFlowMessage.fromObject(

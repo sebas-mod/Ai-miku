@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -12,8 +12,8 @@ const pluginConfig = {
   name: "jadibot",
   alias: ["jadibotqr", "becomebot"],
   category: "main",
-  description: "Jadikan nomor kamu menjadi bot (Pairing Code / QR)",
-  usage: ".jadibot [nomor] atau .jadibot qr",
+  description: "Convierte tu número en un bot (código de emparejamiento / QR)",
+  usage: ".jadibot [número] o .jadibot qr",
   example: ".jadibot",
   isOwner: false,
   isPremium: true,
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     targetJid = sock.getJid(targetJid) || targetJid;
   }
 
-  // Izinkan user memasukkan nomor manual jika m.sender masih @lid atau ingin nomor lain
+  // Permite escribir el número a mano si m.sender sigue siendo @lid o se quiere otro número
   if (!useQR && arg0 && /^\+?[0-9]{10,15}$/.test(arg0.replace(/[\s-]/g, ""))) {
     let num = arg0.replace(/[^0-9]/g, "");
     if (num.startsWith("0")) num = "62" + num.slice(1);
@@ -42,8 +42,8 @@ async function handler(m, { sock }) {
 
   if (!targetJid || !targetJid.includes("@s.whatsapp.net")) {
     return m.reply(
-      `❌ Gagal mengidentifikasi nomor WhatsApp kamu.\n` +
-        `> Coba ketik: \`${m.prefix || "."}jadibot 628xxxxxxxxxx\``
+      `❌ No se pudo identificar tu número de WhatsApp.\n` +
+        `> Prueba con: \`${m.prefix || "."}jadibot 628xxxxxxxxxx\``
     );
   }
 
@@ -52,26 +52,26 @@ async function handler(m, { sock }) {
 
   if (isJadibotActive(targetJid)) {
     return m.reply(
-      `⚠️ *ᴊᴀᴅɪʙᴏᴛ ꜱᴜᴅᴀʜ ᴀᴋᴛɪꜰ*\n\n` +
-        `> Nomor *@${cleanNum}* sudah menjadi bot.\n` +
-        `> Ketik \`${m.prefix || "."}stopjadibot\` untuk menghentikan.`,
+      `⚠️ *ᴊᴀᴅɪʙᴏᴛ ʏᴀ ᴀᴄᴛɪᴠᴏ*\n\n` +
+        `> El número *@${cleanNum}* ya es un bot.\n` +
+        `> Escribe \`${m.prefix || "."}stopjadibot\` para detenerlo.`,
       { mentions: [targetJid] }
     );
   }
 
   if (useQR) {
     await m.reply(
-      `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴍᴏᴅᴇ*\n\n` +
-        `> 📱 Target: *@${cleanNum}*\n` +
-        `> ⏳ Menyiapkan koneksi...\n` +
-        `> Scan QR Code yang akan dikirim.`,
+      `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴍᴏᴅᴏ ǫʀ*\n\n` +
+        `> 📱 Objetivo: *@${cleanNum}*\n` +
+        `> ⏳ Preparando la conexión...\n` +
+        `> Escanea el código QR que se enviará.`,
       { mentions: [targetJid] }
     );
   } else {
     await m.reply(
-      `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ*\n\n` +
-        `> 📱 Target: *@${cleanNum}*\n` +
-        `> ⏳ Menyiapkan koneksi & meminta pairing code...`,
+      `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴄᴏ́ᴅɪɢᴏ ᴅᴇ ᴇᴍᴘᴀʀᴇᴊᴀᴍɪᴇɴᴛᴏ*\n\n` +
+        `> 📱 Objetivo: *@${cleanNum}*\n` +
+        `> ⏳ Preparando la conexión y solicitando el código...`,
       { mentions: [targetJid] }
     );
   }
@@ -79,11 +79,11 @@ async function handler(m, { sock }) {
   try {
     await startJadibot(sock, m, targetJid, !useQR);
   } catch (e) {
-    // Hindari pesan ganda jika startJadibot sudah mengirim notifikasi error ke chat
+    // Evita el mensaje duplicado si startJadibot ya avisó del error en el chat
     if (!e?.alreadyNotified) {
       await m.reply(
-        `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ*\n\n` +
-          `> ${e.message || "Terjadi kesalahan saat memulai jadibot."}`
+        `❌ *ᴊᴀᴅɪʙᴏᴛ ꜰᴀʟʟɪᴅᴏ*\n\n` +
+          `> ${e.message || "Ocurrió un error al iniciar jadibot."}`
       );
     }
   }

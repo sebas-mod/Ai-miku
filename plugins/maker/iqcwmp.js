@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
@@ -97,22 +97,22 @@ const pluginConfig = {
 
     if (!message) {
       return reply(
-        `🪟 *IQC WMP (Windows Media Player)*\n\n` +
-        `Meme jendela Windows Media Player XP.\n\n` +
-        `• ${p}iqcwmp <teks>\n` +
-        `• ${p}iqcwmp olive <teks> → tema hijau\n` +
-        `• ${p}iqcwmp silver <teks> → tema perak\n` +
-        `• ${p}iqcwmp <teks> | <judul> → ganti judul jendela\n` +
-        `• kirim/reply foto + ${p}iqcwmp <teks> → foto ganti tokoh 3D\n` +
-        `• reply pesan + ${p}iqcwmp → teks dari pesan itu\n\n` +
-        `Contoh: ${p}iqcwmp padahal cuma std kirian`
+        `🪟 *IQC WMP (Reproductor de Windows Media)*\n\n` +
+        `Meme de la ventana de Windows Media Player XP.\n\n` +
+        `• ${p}iqcwmp <texto>\n` +
+        `• ${p}iqcwmp olive <texto> → tema hijau\n` +
+        `• ${p}iqcwmp silver <texto> → tema perak\n` +
+        `• ${p}iqcwmp <texto> | <título> → cambia el título de la ventana\n` +
+        `• envía/responde a una foto + ${p}iqcwmp <texto> → la foto sustituye al personaje 3D\n` +
+        `• responde a un mensaje + ${p}iqcwmp → usa el texto de ese mensaje\n\n` +
+        `Ejemplo: ${p}iqcwmp padahal cuma std kirian`
       )
     }
-    if (message.length > 120) return reply('❌ Teks terlalu panjang (maksimal 120 huruf).')
+    if (message.length > 120) return reply('❌ Texto demasiado largo (máximo 120 caracteres).')
 
     let canvasLib
     try { canvasLib = await import('@napi-rs/canvas') } catch {
-      return reply('❌ Fitur ini butuh @napi-rs/canvas, belum terpasang di server.')
+      return reply('❌ Esta función necesita @napi-rs/canvas, que no está instalado en el servidor.')
     }
     const { createCanvas, loadImage, GlobalFonts } = canvasLib.default ?? canvasLib
 
@@ -348,10 +348,10 @@ const pluginConfig = {
       octx.scale(SCALE, SCALE)
       octx.save(); rrTB(octx, 0, 0, W, H, 26, 10); octx.clip(); octx.drawImage(canvas, 0, 0, W, H); octx.restore()
 
-      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Nih hasilnya' }, { quoted: m })
+      await sock.sendMessage(m.chat, { image: out.toBuffer('image/png'), caption: '🪟 Aquí tienes el resultado' }, { quoted: m })
     } catch (e) {
       console.error('[iqcwmp]', e?.stack || e)
-      return reply('❌ Gagal membuat gambar. Coba lagi beberapa saat.')
+      return reply('❌ No se pudo crear la imagen. Inténtalo de nuevo en un momento.')
     }
   }
 

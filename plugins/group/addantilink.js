@@ -1,6 +1,6 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
@@ -30,9 +30,9 @@ function handler(m) {
 
     if (!link) {
         return m.reply(
-            `🔗 *ᴀᴅᴅ ᴀɴᴛɪʟɪɴᴋ*\n\n` +
-            `> Masukkan domain/pattern link yang ingin diblokir\n\n` +
-            `\`Contoh:\`\n` +
+            `🔗 *AÑADIR ANTILINK*\n\n` +
+            `> Envía el dominio o patrón de enlace que quieres bloquear\n\n` +
+            `\`Ejemplo:\`\n` +
             `\`${m.prefix}addantilink tiktok.com\`\n` +
             `\`${m.prefix}addantilink chat.whatsapp.com\`\n` +
             `\`${m.prefix}addantilink instagram.com\``
@@ -43,17 +43,17 @@ function handler(m) {
     const antilinkList = groupData.antilinkList || []
 
     if (antilinkList.includes(link)) {
-        return m.reply(`⚠️ Link \`${link}\` sudah ada di daftar antilink!`)
+        return m.reply(`⚠️ Link \`${link}\` ¡ya está en la lista de antienlaces!`)
     }
 
     antilinkList.push(link)
     db.setGroup(m.chat, { antilinkList })
 
     m.reply(
-        `✅ *ᴀɴᴛɪʟɪɴᴋ ᴅɪᴛᴀᴍʙᴀʜ*\n\n` +
+        `✅ *ANTILINK AÑADIDO*\n\n` +
         `> Link: \`${link}\`\n` +
         `> Total: *${antilinkList.length}* link\n\n` +
-        `> Gunakan \`${m.prefix}listantilink\` untuk melihat daftar`
+        `> Usa \`${m.prefix}listantilink\` para ver la lista`
     )
 }
 

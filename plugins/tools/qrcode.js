@@ -1,12 +1,12 @@
 /**
 ———–·「 Information 」·–———
-✧ bot name: elysia assistant
+✧ bot name: Ai Miku
 ✧ getsc & website: arthazyspace.my.id
 ✧ creator/dev: arthazy
 ✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
 ————–· 「 YT: ARTHAZYY 」·–————
  */
-import { ElysiaRuntime } from '../../src/lib/system/bridge.js'
+import { MikuRuntime } from '../../src/lib/system/bridge.js'
 
 const pluginConfig = {
     name: "qrcode",
@@ -25,7 +25,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, text, reply, example }) {
-      if (!text) return example('<teks>')
+      if (!text) return example('<texto>')
 
       try {
           await sock.sendMessage(m.chat, {
@@ -33,7 +33,7 @@ const pluginConfig = {
               caption: '¯\\_(ツ)_/¯'
           }, { quoted: m })
       } catch (e) {
-          reply('Gagal membuat QR code.')
+          reply('No se pudo crear el código QR.')
       }
   }
 
