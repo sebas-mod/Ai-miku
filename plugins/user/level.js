@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
     `├─── ❖ 『 🧭 *MENÚ DE MÁS NIVELES* 』 ❖\n` +
     `│ ◦ \`${p}Claimlevel\` — Reclama recompensas de nivel de hito\n` +
     `│ ◦ \`${p}boostexp\` — Latihan astral (+EXP gratis)\n` +
-    `│ ◦ \`${p}rankinglist\` — Lista de todos los 21 rangos astrales\n` +
+    `│ ◦ \`${p}ranklist\` — Lista de todos los 21 rangos astrales\n` +
     `│ ◦ \`${p}toplevel\` — La calificación de nivel más alto\n` +
     `╰──────────────────────────❖\n` +
     `_✦ Ai Miku • by Arthazy_`;

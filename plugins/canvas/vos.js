@@ -371,7 +371,7 @@ async function handler(m, { sock, text }) {
       `VOS debe usar el formato:*\n` +
       `> ${m.prefix}vos nombres, palabras\n\n` +
       `*Ejemplo correcto:*\n` +
-      `> ${m.prefix}Vos Jack, simplemente me haces sentir inferior 🔥\n\n` +
+      `> ${m.prefix}vos Jack, simplemente me haces sentir inferior 🔥\n\n` +
       `_Si no utiliza una coma (,) después del nombre, VOS no se procesará._`
     );
   }
@@ -381,7 +381,7 @@ async function handler(m, { sock, text }) {
   const quote = input.slice(comma + 1).trim();
 
   if (!name || !quote) {
-    return m.reply(`❌ *¡Formato VOS incorrecto!*\n\nUsar:\n> ${m.prefix}vos nombres, palabras\n\nEjemplo:\n> ${m.prefix}Vos Jack, simplemente me haces sentir inferior 🔥`);
+    return m.reply(`❌ *¡Formato VOS incorrecto!*\n\nUsar:\n> ${m.prefix}vos nombres, palabras\n\nEjemplo:\n> ${m.prefix}vos Jack, simplemente me haces sentir inferior 🔥`);
   }
 
   if (quote.length > 420) {

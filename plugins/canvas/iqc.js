@@ -49,7 +49,7 @@ async function handler(m, { sock, text }) {
             return m.reply(
                 `🩷 *FUNCIÓN DE IOS DE CITA FALSA*\n\n` +
                 `Tipo: ${m.prefix}iqc tu texto\n` +
-                `O responda al mensaje y luego escriba ${m.prefix}CIQ`
+                `O responda al mensaje y luego escriba ${m.prefix}iqc`
             );
         }
 

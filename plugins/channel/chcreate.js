@@ -32,7 +32,7 @@ const pluginConfig = {
           need(sock, 'newsletterCreate')
           const [name, ...d] = raw.split('|')
           const desc = d.join('|').trim()
-          if (!name.trim()) return reply(`Formato: ${p}chcreate <nombre del canal> | <descripción>\nEjemplo: ${p}chcrear Información Ai Miku | Actualización de funciones bot`)
+          if (!name.trim()) return reply(`Formato: ${p}chcreate <nombre del canal> | <descripción>\nEjemplo: ${p}chcreate Información Ai Miku | Actualización de funciones bot`)
           if (name.trim().length > 100) return reply('El nombre máximo del canal es 100 caracteres.')
           const md = normalize(await sock.newsletterCreate(name.trim(), desc || undefined))
           if (!md.id) throw new ChannelError('Se crea el canal, pero WhatsApp no devuelve los datos. Consulta la aplicación.')

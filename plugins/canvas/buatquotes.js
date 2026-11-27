@@ -276,9 +276,9 @@ async function handler(m, { sock, text }) {
             `🎨 *FUNCIÓN PARA CITAS DE ANIME*\n\n` +
             `¡Esta función te ayudará a componer perlas de sabiduría con fondos realmente geniales de tus personajes de anime favoritos!\n\n` +
             `*CARA PENGGUNAAN:*\n` +
-            `- \`${m.prefix}crear citas <texto>\`\n` +
-            `- \`${m.prefix}crear citas <id_antecedentes> | <texto>\`\n` +
-            `- \`${m.prefix}crear citas <id_antecedentes> | <texto> | <tu nombre>\`\n\n` +
+            `- \`${m.prefix}buatquotes <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_antecedentes> | <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_antecedentes> | <texto> | <tu nombre>\`\n\n` +
             `*DAFTAR BACKGROUND PENDUKUNG (ID 1-8):*\n` +
             `- 1: L (Death Note)\n` +
             `- 2: Gojo Satoru\n` +
@@ -288,7 +288,7 @@ async function handler(m, { sock, text }) {
             `- 6: Naruto\n` +
             `- 7: Light Yagami\n` +
             `- 8: Higuruma\n\n` +
-            `_Ejemplo: ${m.prefix}crear citas 2 | Sigue viviendo aunque sea inútil | mamá_`
+            `_Ejemplo: ${m.prefix}buatquotes 2 | Sigue viviendo aunque sea inútil | mamá_`
         );
     }
 

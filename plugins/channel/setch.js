@@ -85,7 +85,7 @@ export async function pickTarget(sock, rawText, prefix = '.') {
         return { id: md.id, name: md.name, role: md.role, rest: m[2].trim(), serverId: ref.serverId, md }
     }
     const cur = getCurrent()
-    if (!cur) throw new ChannelError(`Aún no hay ningún canal de destino. Configúrelo primero de la siguiente manera: ${prefix}establecer <enlace de canal>\n(o escriba el enlace del canal al comienzo de este comando)`)
+    if (!cur) throw new ChannelError(`Aún no hay ningún canal de destino. Configúrelo primero de la siguiente manera: ${prefix}setch <enlace de canal>\n(o escriba el enlace del canal al comienzo de este comando)`)
     return { id: cur.id, name: cur.name, role: cur.role || '', rest: raw.trim(), serverId: null, md: null }
 }
 
@@ -111,7 +111,7 @@ async function handler(m, { sock, text, prefix, reply }) {
         return reply(
             `📌 *SALURAN TUJUAN*\n\n` +
             (cur ? `Nombre: ${cur.name}\nID: ${cur.id}\nRol bot: ${cur.role ? cur.role.toLowerCase() : 'tidak diketahui'}` : 'Aún no configurado') +
-            `\n\n📖 *CARA PAKAI*\n${p}establecer <enlace de canal>\n${p}desactivar (eliminar)\nDespués: ${p}interruptor, ${p}jugar, ${p}nombre, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
+            `\n\n📖 *CARA PAKAI*\n${p}setch <enlace de canal>\n${p}setch off  (eliminar)\nDespués: ${p}swch, ${p}playch, ${p}chname, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
         )
     }
     if (['off', 'hapus', 'reset'].includes(arg.toLowerCase())) {
@@ -120,7 +120,7 @@ async function handler(m, { sock, text, prefix, reply }) {
     }
 
     const ref = parseRef(arg)
-    if (!ref) return reply(`No es un enlace/canal ID.\nEjemplo: ${p}establecer https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
+    if (!ref) return reply(`No es un enlace/canal ID.\nEjemplo: ${p}setch https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
     try {
         const md = await metadata(sock, ref)
         setCurrent({ id: md.id, name: md.name, role: md.role })

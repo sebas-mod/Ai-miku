@@ -59,7 +59,7 @@ const pluginConfig = {
                       `Enviar/responder + fotos o vídeos ${p}swch <título>\n` +
                       `Responder audio + ${p}swch → publicar audio\n` +
                       `${p}swch <enlace de canal> <texto> → a otro canal\n\n` +
-                      (getCurrent() ? `💡 Metas actuales: ${getCurrent().name}` : `💡 Establezca objetivos primero: ${p}establecer <enlace de canal>`)
+                      (getCurrent() ? `💡 Metas actuales: ${getCurrent().name}` : `💡 Establezca objetivos primero: ${p}setch <enlace de canal>`)
                   )
               }
               if (body.length > 2000) return reply('El texto es demasiado largo (máximo 2000 caracteres).')

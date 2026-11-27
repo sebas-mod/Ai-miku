@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `╭─── ❖ 『 ⚠️ *NO REGISTRADO* 』 ❖\n` +
         `│ ✦ Tu cuenta aún no está registrada en el sistema.\n` +
-        `│ ✦ Tipo *${p}Regístrese Nombre.Edad* para registrarse.\n` +
+        `│ ✦ Tipo *${p}daftar Nombre.Edad* para registrarse.\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
         `│ ✦ ¡Para eliminar el registro, ingrese su *Número de serie (SN)*!\n` +
         `│\n` +
         `│ 📌 *Formato:* \`${p}unreg <SN>\`\n` +
-        `│ ✨ *Ejemplo:* \`${p}desregistrar ${expectedSn || "MIKU-76B1-A2C3"}\`\n` +
+        `│ ✨ *Ejemplo:* \`${p}unreg ${expectedSn || "MIKU-76B1-A2C3"}\`\n` +
         `│ 🔎 Lupa SN? Ketik *${p}ceksn*\n` +
         `╰──────────────────────────❖`
     );
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `╭─── ❖ 『 ❌ *NÚMERO DE SERIE INCORRECTO* 』 ❖\n` +
         `│ ✦ SN que ingresaste no coincide con tu cuenta.\n` +
-        `│ 🔎 Escribe *${p}marque* para ver su número de serie correcto.\n` +
+        `│ 🔎 Escribe *${p}ceksn* para ver su número de serie correcto.\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -104,7 +104,7 @@ async function handler(m, { sock }) {
       `│ ✦ Datos de registro *${oldName}* ha sido eliminado.\n` +
       `│ 🔑 *SN Terverifikasi:* \`${expectedSn}\`\n` +
       `│ ✦ Tu progreso de nivel y tus monedas se mantienen seguros.\n` +
-      `│ ✦ Tipo *${p}¡Regístrese Nombre.Edad* en cualquier momento para volver a registrarse!\n` +
+      `│ ✦ Tipo *${p}daftar Nombre.Edad* en cualquier momento para volver a registrarse!\n` +
       `╰──────────────────────────❖`
   );
 }

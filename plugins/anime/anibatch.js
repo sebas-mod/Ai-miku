@@ -815,7 +815,7 @@ const pluginConfig = {
         `Streaming  : ${p}anibatch stream <slug> <eps>\n` +
         `Download   : ${p}anibatch dl <slug> <eps> [480p]\n` +
         `Algunos pasos: ${p}anibatch dl <babosa> 1-5 [480p]\n\n` +
-        `Ejemplo:\n${p}trébol negro anibatch\n${p}anibatch dl trébol-negro-sub-indo 6 480p`
+        `Ejemplo:\n${p}anibatch black clover\n${p}anibatch dl black-clover-sub-indo 6 480p`
       )
     }
 
@@ -832,7 +832,7 @@ const pluginConfig = {
         const pm = raw.match(/\s-p\s*(\d+)\s*$/i)
         const page = pm ? Math.max(parseInt(pm[1]), 1) : 1
         const query = (pm ? raw.slice(0, pm.index) : raw).trim()
-        if (!query) return reply(`Escribe el título. Ejemplo: ${p}trébol negro anibatch`)
+        if (!query) return reply(`Escribe el título. Ejemplo: ${p}anibatch black clover`)
 
         const res = JSON.parse(await JHAniBatch('search', query, '', { page, sort: 'popular', all: false }))
         if (!res.status) return reply(`Fallar: ${res.error}`)
@@ -854,7 +854,7 @@ const pluginConfig = {
       }
 
       const target = rest[0]
-      if (!target) return reply(`Escribe el enlace de slug o anime. Ejemplo: ${p}anibabatch ${mode === 'download' ? 'dl' : mode} trébol-negro-sub-indo`)
+      if (!target) return reply(`Escribe el enlace de slug o anime. Ejemplo: ${p}anibatch ${mode === 'download' ? 'dl' : mode} trébol-negro-sub-indo`)
 
       if (mode === 'detail') {
         const res = JSON.parse(await JHAniBatch('detail', target, '', {}))

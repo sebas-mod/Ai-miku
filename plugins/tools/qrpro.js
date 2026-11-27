@@ -271,7 +271,7 @@ const pluginConfig = {
 
     if (cmd === 'qrwifi') {
       const [ssid, password = '', secRaw = 'WPA', ...rest] = raw.split('|').map((s) => s.trim())
-      if (!ssid) return reply(`Formato: ${p}nombre wifi qrwifi | contraseña | WPA\n(WPA / WEP / no aprobado, predeterminado WPA)`)
+      if (!ssid) return reply(`Formato: ${p}qrwifi nombre | contraseña | WPA\n(WPA / WEP / no aprobado, predeterminado WPA)`)
       const sec = /^(wep|nopass)$/i.test(secRaw) ? secRaw.toUpperCase().replace('NOPASS', 'nopass') : 'WPA'
       payload = `WIFI:S:${escapeWifi(ssid)};T:${sec};P:${sec === 'nopass' ? '' : escapeWifi(password)};H:false;;`
       opts = { logoType: 'wifi', ...parseOptions(rest) }

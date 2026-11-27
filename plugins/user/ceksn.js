@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
       `╭─── ❖ 『 🔒 *NO REGISTRADO* 』 ❖\n` +
         `│ ✦ Aún no tienes Tarjeta de Identidad de Aventurero.\n` +
         `│ ✦ Tipo *${p}regístrese Nombre.Edad* para registrarse!\n` +
-        `│ ✦ *Ejemplo:* \`${p}lista ${m.pushName || "Arthazy"}.19\`\n` +
+        `│ ✦ *Ejemplo:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
       `│ 🔑 *Serial Number:* \`${sn}\`\n` +
       `│ 📅 *Terdaftar Sejak:* ${regDate}\n` +
       `╰──────────────────────────❖\n` +
-      `_💡Usar*${p}desregistrar ${sn}*si deseas eliminar el registro._`
+      `_💡Usar*${p}unreg ${sn}*si deseas eliminar el registro._`
   );
 }
 

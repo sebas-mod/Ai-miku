@@ -90,7 +90,7 @@ const te = MikuRuntime.te;
   async function handler(m, { sock }) {
       const [nama,nominal] = m.text?.split(',')
       if (!nama || !nominal) {
-          return m.reply(`*BANCO FALSO*\n\n> Escribe el texto del chat\n\n\`Ejemplo: ${m.prefix}fakebank Ai Miku,10000\``)
+          return m.reply(`*BANCO FALSO*\n\n> Escribe el texto del chat\n\n\`Ejemplo: ${m.prefix}fakebankjago Ai Miku,10000\``)
       }
       if(isNaN(nominal)) return m.reply(`*INTRODUCE UN NÚMERO*`)
       m.react('🕕')

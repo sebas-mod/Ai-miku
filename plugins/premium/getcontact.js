@@ -230,7 +230,7 @@ async function initAuth(phoneNumber) {
 }
 
 async function checkAuth() {
-  if (!existsSync(PENDING_FILE)) throw new Error('Sesión no encontrada. Escriba.gc iniciar sesión <número> primero.')
+  if (!existsSync(PENDING_FILE)) throw new Error('Sesión no encontrada. Escriba .gc login <número> primero.')
   const session = JSON.parse(readFileSync(PENDING_FILE, 'utf-8'))
 
   const checkRes = await vfkCall('/v2.0/check', { reference: session.reference, bundleId: BUNDLE_ID }, session.clientDeviceId)
@@ -250,7 +250,7 @@ async function checkAuth() {
 
 async function search(phoneNumber) {
   const creds = loadSession()
-  if (!creds) throw new Error('Las credenciales aún no existen. Escriba.gc iniciar sesión <número> primero.')
+  if (!creds) throw new Error('Las credenciales aún no existen. Escriba .gc login <número> primero.')
 
   const phone = normalizePhone(phoneNumber)
   const res = await gtcCall('/v2.8/search', { countryCode: COUNTRY, phoneNumber: phone, source: 'search', token: creds.token }, creds)
@@ -293,7 +293,7 @@ async function handler(m, ctx = {}) {
     return m.reply(
       `📱 *GETCONTACT SCRAPER* 🕵️‍♂️\n\n` +
       `╭┈┈⬡「 📖 *PENGGUNAAN* 」\n` +
-      `┃ • ${prefix}iniciar sesión en gc <número>\n` +
+      `┃ • ${prefix}gc login <número>\n` +
       `┃ → Iniciar sesión (completamente obligatorio)\n` +
       `┃ • ${prefix}gc verify\n` +
       `┃ → Verificar verificación WA\n` +
@@ -309,7 +309,7 @@ async function handler(m, ctx = {}) {
   try {
     if (sub === 'login') {
       const targetPhone = args[1]
-      if (!targetPhone) return m.reply(`¡Ingresa el número HP que deseas verificar!\nEjemplo: ${prefix}iniciar sesión en gc 628xxx`)
+      if (!targetPhone) return m.reply(`¡Ingresa el número HP que deseas verificar!\nEjemplo: ${prefix}gc login 628xxx`)
 
       const session = await initAuth(targetPhone)
 

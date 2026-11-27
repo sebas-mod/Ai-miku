@@ -198,7 +198,7 @@ import * as cheerio from 'cheerio';
               `┃ ✦ *Cara Pakai*\n` +
               `┃\n` +
               `┃   ${m.prefix}kusonime latest\n` +
-              `┃   ${m.prefix}búsqueda de kusonime <título>\n` +
+              `┃   ${m.prefix}kusonime search <título>\n` +
               `┃   ${m.prefix}kusonime genre <genre>\n` +
               `┃   ${m.prefix}kusonime detail <url>\n` +
               `┃\n` +

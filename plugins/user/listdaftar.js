@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
   });
 
   if (totalPages > 1) {
-    text += `\n> Utilice \`${m.prefix}listapágina de lista ${page + 1 > totalPages ? totalPages : page + 1}\` para otras páginas`;
+    text += `\n> Utilice \`${m.prefix}listdaftar ${page + 1 > totalPages ? totalPages : page + 1}\` para otras páginas`;
   }
 
   const mentions = displayUsers.map((u) => u.jid + "@s.whatsapp.net");

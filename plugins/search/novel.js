@@ -258,10 +258,10 @@ const getDatabase = MikuRuntime.getDatabase;
         `📖 *ɴᴏᴠᴇʟ — ɪɴᴅᴏᴡᴇʙɴᴏᴠᴇʟ*\n\n` +
         `> ¡Busca y lee novelas web directamente en el chat!\n\n` +
         `╭┈┈⬡「 📘 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-        `┃ • ${m.prefix}novela <título> — buscar novela\n` +
+        `┃ • ${m.prefix}novel <título> — buscar novela\n` +
         `┃ • ${m.prefix}novel latest — update terbaru\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> *Ejemplo:* ${m.prefix}Novelas de esclavos de las sombras`
+        `> *Ejemplo:* ${m.prefix}novel esclavos de las sombras`
       );
     }
 

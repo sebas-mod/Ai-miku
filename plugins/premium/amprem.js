@@ -135,7 +135,7 @@ async function handler(m) {
         `│ 1. Ketik \`${p}amprem emailkamu@gmail.com\`\n` +
         `│ 2. Cek inbox/spam email & salin link *"Sign in to Alight Creative"*\n` +
         `│ 3. Enviar el enlace a este chat (límite 5 minuto)\n` +
-        `│ 4. Tipo \`${p}cancelar\` para cancelar la sesión\n` +
+        `│ 4. Tipo \`${p}batalkan\` para cancelar la sesión\n` +
         `╰──────────────────────────❖`
     );
   }

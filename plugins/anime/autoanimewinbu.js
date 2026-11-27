@@ -22,7 +22,7 @@ const isRunning = MikuRuntime.isRunning;
 
   const pluginConfig = {
       name: 'autoanimewinbu',
-      alias: [],
+      alias: ["aaw"],
       category: "anime",
       description: 'Auto upload ongoing anime & donghua dari winbu.net (720p Pixeldrain)',
       usage: '.autoanimewinbu <start|stop|status|cek|list|reset|addgrup|delgrup>',
@@ -191,7 +191,7 @@ const isRunning = MikuRuntime.isRunning;
               const rest = (typeof args === 'string' ? args : '').replace(/^interval\s*/i, '').trim()
               const mins = parseInt(rest)
               if (!mins || mins < 1 || mins > 60) {
-                  return m.reply(`❌ El intervalo debe ser de 1-60 minutos.\n\n> Ejemplo: \`${m.prefix}intervalo autoanimewinbu 10\``)
+                  return m.reply(`❌ El intervalo debe ser de 1-60 minutos.\n\n> Ejemplo: \`${m.prefix}autoanimewinbu interval 10\``)
               }
 
               saveState({ ...state, interval: mins })
@@ -217,7 +217,7 @@ const isRunning = MikuRuntime.isRunning;
                       `> \`${m.prefix}aaw list\` — Lista del anime más reciente\n` +
                       `> \`${m.prefix}aaw addgroup\` — Agregar grupo objetivo\n` +
                       `> \`${m.prefix}aaw delgroup\` — Eliminar grupo objetivo\n` +
-                      `> \`${m.prefix}intervalo aaw 10\` — Cambiar intervalo\n` +
+                      `> \`${m.prefix}autoanimewinbu interval 10\` — Cambiar intervalo\n` +
                       `> \`${m.prefix}aaw reset\` — Restablecer el historial enviado\n\n` +
                       `▢ ${m.prefix}autoanimewinbu ${running ? 'stop' : 'start'} — ${running ? '🛑 Stop' : '▶️ Start'}\n` +
                       `▢ ${m.prefix}autoanimewinbu status — 📊 Status`

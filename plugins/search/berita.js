@@ -24,7 +24,7 @@ const createMikuFeature = (module, exports, require) => {
           desc: 'Berita terbaru Antara: .berita [politik|ekonomi|hukum|olahraga|teknologi|dunia|hiburan|otomotif]',
           run: async ({ text, prefix, reply }) => {
             const k = String(text || 'terkini').trim().toLowerCase()
-            if (!FEED[k]) return reply(`Categoría desconocida.\nElegir: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nEjemplo: ${prefix}noticias económicas`)
+            if (!FEED[k]) return reply(`Categoría desconocida.\nElegir: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nEjemplo: ${prefix}berita ekonomi`)
             try {
               const { data } = await axios.get(`https://www.antaranews.com/rss/${FEED[k]}.xml`, { timeout: 15000, responseType: 'text', headers: { 'User-Agent': 'Mozilla/5.0' } })
               const items = parseRss(data); if (!items.length) return reply('No hay noticias leídas por el momento.')

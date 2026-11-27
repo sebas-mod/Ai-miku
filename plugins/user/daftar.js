@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
         `├─── ❖ 『 💡 *INFO* 』 ❖\n` +
         `│ ◦ Cek kartu ID: *${p}ceksn*\n` +
         `│ ◦ Cek profil: *${p}profile*\n` +
-        `│ ◦ Eliminar lista: *${p}desregistrar ${sn}*\n` +
+        `│ ◦ Eliminar lista: *${p}unreg ${sn}*\n` +
         `╰──────────────────────────❖`
     );
   }
@@ -131,8 +131,8 @@ async function handler(m, { sock }) {
         `│ ✦ ¡Ingrese su *Nombre* y *Edad*!\n` +
         `│\n` +
         `│ 📌 *Formato:* \`${p}${m.command || "daftar"} Nombre.Edad\`\n` +
-        `│ ✨ *Ejemplo 1:* \`${p}lista ${m.pushName || "Arthazy"}.19\`\n` +
-        `│ ✨ *Ejemplo 2:* \`${p}lista ${m.pushName || "Arthazy"} 19\`\n` +
+        `│ ✨ *Ejemplo 1:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
+        `│ ✨ *Ejemplo 2:* \`${p}daftar ${m.pushName || "Arthazy"} 19\`\n` +
         `├─── ❖ 『 🎁 *BONUS PENDAFTARAN* 』 ❖\n` +
         `│ 💰 *+Rp 25.000* Koin Awal\n` +
         `│ ✨ *+15.000* EXP Petualang\n` +
@@ -244,9 +244,9 @@ async function handler(m, { sock }) {
         `│ 🧪 *Item:* +5 Health Potion & +1 Common Crate\n`
       : "") +
     `├─── ❖ 『 🚀 *LANGKAH SELANJUTNYA* 』 ❖\n` +
-    `│ ◦ \`${p}perfil\` — Ver tu perfil completo\n` +
+    `│ ◦ \`${p}profile\` — Ver tu perfil completo\n` +
     `│ ◦ \`${p}ceksn\` — Cek kartu & Serial Number\n` +
-    `│ ◦ \`${p}desregistrar ${sn}\` — Eliminar registro\n` +
+    `│ ◦ \`${p}unreg ${sn}\` — Eliminar registro\n` +
     `╰──────────────────────────❖\n` +
     `_✦ Ai Miku • by Arthazy_`;
 
