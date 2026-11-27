@@ -424,8 +424,8 @@ async function handler(m, { sock, text }) {
         if (!targetText) {
             return m.reply(
                 `🔴 *FUNCIÓN DE COTIZACIÓN FALSA ROJA DE IOS*\n\n` +
-                `Tipo: ${m.prefix}Creí tus palabras\n` +
-                `O responda al mensaje y luego escriba ${m.prefix}iqcred\n\n` +
+                `Tipo: ${m.prefix}iqcmerah tus palabras\n` +
+                `O responda al mensaje y luego escriba ${m.prefix}iqcmerah\n\n` +
                 `✅ El texto largo cae automáticamente a una nueva línea\n` +
                 `✅ El tamaño de fuente permanece claro\n` +
                 `✅ Support WEmoji / emoji WhatsApp`

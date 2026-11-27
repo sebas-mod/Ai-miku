@@ -149,7 +149,7 @@ async function handler(m, ctx = {}) {
       })
 
       if (page < pages) {
-        txt += `💡 Escribe \`${usedPrefix}lista de amigos ${page + 1}\` para la página siguiente.`
+        txt += `💡 Escribe \`${usedPrefix}amlist ${page + 1}\` para la página siguiente.`
       }
 
       await m.react('✅')

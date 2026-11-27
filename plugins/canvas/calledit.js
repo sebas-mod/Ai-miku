@@ -115,8 +115,8 @@ async function handler(m, { sock }) {
         return m.reply(
             `⚠️ *CARA PAKAI*\n\n` +
             `Envia una foto con el titulo:\n` +
-            `> \`${m.prefix}llamado <hora>/<nombre>\`\n\n` +
-            `Ejemplo: \`${m.prefix}lo llamó 0.09/Jack\`\n\n` +
+            `> \`${m.prefix}calledit <hora>/<nombre>\`\n\n` +
+            `Ejemplo: \`${m.prefix}calledit 0.09/Jack\`\n\n` +
             `📷 La foto que envías se pegará inmediatamente en el círculo del perfil.`
         )
     }

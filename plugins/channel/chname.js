@@ -31,7 +31,7 @@ const pluginConfig = {
           const t = await pickTarget(sock, String(text || ''), p)
           assertCanPost(t)
           need(sock, 'newsletterUpdateName')
-          if (!t.rest) return reply(`Introduzca un nuevo nombre.\nEjemplo: ${p}cambiar nombre Información Ai Miku`)
+          if (!t.rest) return reply(`Introduzca un nuevo nombre.\nEjemplo: ${p}chname Información Ai Miku`)
           if (t.rest.length > 100) return reply('El nombre máximo del canal es 100 caracteres.')
           await sock.newsletterUpdateName(t.id, t.rest)
           if (getCurrent()?.id === t.id) setCurrent({ ...getCurrent(), name: t.rest })

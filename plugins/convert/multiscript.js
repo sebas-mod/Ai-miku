@@ -230,9 +230,9 @@ const getHelpMessage = (usedPrefix) =>
   `• \`${usedPrefix}jawa2indo\` / \`${usedPrefix}indo2jawa\`\n` +
   `• \`${usedPrefix}sunda2indo\` / \`${usedPrefix}indo2sunda\`\n\n` +
   `🏃 *EJECUTAR CÓDIGO:*\n` +
-  `• \`${usedPrefix}java <código>\`\n` +
-  `• \`${usedPrefix}Sundanés <código>\`\n` +
-  `• \`${usedPrefix}id <código>\`\n` +
+  `• \`${usedPrefix}jawa <código>\`\n` +
+  `• \`${usedPrefix}sunda <código>\`\n` +
+  `• \`${usedPrefix}indo <código>\`\n` +
   `• \`${usedPrefix}multiscript <código>\` (detección automática)\n\n` +
   `💡 *Ejemplo:*\n` +
   `\`${usedPrefix}js2jawa let x = 10; console.log(x);\``

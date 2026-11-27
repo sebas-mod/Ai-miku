@@ -190,7 +190,7 @@ import fetch from 'node-fetch';
     try {
       if (command === 'anilist') {
         if (!args[0]) {
-          return m.reply(`Ejemplo de uso: ${usedPrefix}búsqueda anilista <consulta>`);
+          return m.reply(`Ejemplo de uso: ${usedPrefix}anilist search <consulta>`);
         }
 
         const subCommand = args[0].toLowerCase();
@@ -284,7 +284,7 @@ ${populerResults.top.map((anime, index) => `${index + 1}. ${anime.title} (Rank: 
             break;
 
           default:
-            return m.reply(`Subcomando no válido. Usar ${usedPrefix}Búsqueda anilista, detallada o popular.`);
+            return m.reply(`Subcomando no válido. Usar ${usedPrefix}anilist search, detail o popular.`);
         }
       }
     } catch (error) {

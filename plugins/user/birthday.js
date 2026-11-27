@@ -35,8 +35,8 @@ async function handler(m, { sock }) {
         if (target === m.sender) {
             return m.reply(
                 `❌ ¡Aún no has cumplido años!\n\n` +
-                `> Uso: ${m.prefix}establecercumpleaños DD-MM\n` +
-                `> Ejemplo: ${m.prefix}establecercumpleaños 25-12`
+                `> Uso: ${m.prefix}birthday DD-MM\n` +
+                `> Ejemplo: ${m.prefix}birthday 25-12`
             )
         }
         return m.reply(`❌ ¡El usuario aún no ha fijado un cumpleaños!`)

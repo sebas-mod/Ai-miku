@@ -172,7 +172,7 @@ const pluginConfig = {
       const started = Date.now()
 
       if (!args.length) {
-          return reply(`Formato:\n${p}votech <enlace de publicación del canal> <mensaje>\n${p}estado de votación\n\nEjemplo:\n${p}votarch https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100 votar`)
+          return reply(`Formato:\n${p}votech <enlace de publicación del canal> <mensaje>\n${p}votech status\n\nEjemplo:\n${p}votech https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100 vote`)
       }
 
       if (args[0].toLowerCase() === 'status') {
@@ -189,7 +189,7 @@ const pluginConfig = {
       if (!POST_RE.test(url)) {
           return reply(`El enlace debe ser un enlace de canal *publicación* (hay un número de publicación en la parte posterior).\nEjemplo: https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100`)
       }
-      if (!pesan) return reply(`Se requiere mensaje de voto.\nEjemplo: ${p}votar ${url} votar`)
+      if (!pesan) return reply(`Se requiere mensaje de voto.\nEjemplo: ${p}votech ${url} vote`)
 
       try {
           const r = await vote(url, pesan)

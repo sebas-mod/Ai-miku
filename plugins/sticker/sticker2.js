@@ -479,9 +479,9 @@ async function handler(m, { sock, config: botConfig }) {
       `🎬 *STICKER VÍDEO AUDIO*\n\n` +
         `Características \`${m.prefix}${m.command}\` especialmente para *videos* ¡eh! Graba automáticamente el cuadro 1:1 e incluye inmediatamente el audio del vídeo.\n\n` +
         `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-        `> Enviar o responder *video* (máx. ${MAX_DURATION} segundos) con \`${m.prefix}s2\` o \`${m.prefix}pegatina2\`\n` +
+        `> Enviar o responder *video* (máx. ${MAX_DURATION} segundos) con \`${m.prefix}s2\` o \`${m.prefix}sticker2\`\n` +
         `> Custom watermark: \`${m.prefix}s2 PackName|Author\`\n\n` +
-        `_Si quieres pegatinas con imágenes o sonidos, utiliza \`${m.prefix}solo m\`._`
+        `_Si quieres pegatinas con imágenes o sonidos, utiliza \`${m.prefix}s\`._`
     );
   }
 

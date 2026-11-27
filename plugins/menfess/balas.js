@@ -41,7 +41,7 @@ async function handler(m, { sock, text, prefix }) {
   }
   if (!pesan) {
     return m.reply(
-      `Formato: *${prefix}Responde a tu mensaje*\n\nLa forma más sencilla: *responder* mensaje menfess, luego escribe tu mensaje de respuesta (sin un comando también es posible).\nSin respuesta, la respuesta se envía al menfess más nuevo.`,
+      `Formato: *${prefix}balas <tu mensaje>*\n\nLa forma más sencilla: *responder* mensaje menfess, luego escribe tu mensaje de respuesta (sin un comando también es posible).\nSin respuesta, la respuesta se envía al menfess más nuevo.`,
     );
   }
 

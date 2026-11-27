@@ -72,7 +72,7 @@ const createMikuFeature = (module, exports, require) => {
         const F = {
           async kabar({ text, prefix, reply }) {
             const k = String(text || '').trim().toLowerCase().split(/\s+/)[0]
-            if (!k || !FEEDS[k]) return reply(`${B('KABAR')}\nLas últimas novedades directamente de RSS medios.\nFuente: ${Object.keys(FEEDS).join(', ')}\nEjemplo: ${prefix}noticias cnn`)
+            if (!k || !FEEDS[k]) return reply(`${B('KABAR')}\nLas últimas novedades directamente de RSS medios.\nFuente: ${Object.keys(FEEDS).join(', ')}\nEjemplo: ${prefix}kabar cnn`)
             const { text: xml } = await get(FEEDS[k]), items = parseRss(xml)
             if (!items.length) throw new Error('RSS está vacío o el formato ha cambiado')
             return reply(`${B('KABAR ' + k.toUpperCase())}\n${LINE}\n` + items.map((x, i) => `${i + 1}. *${clip(x.title, 160)}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + `\n\n_Sumber: ${k}_`)

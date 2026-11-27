@@ -46,7 +46,7 @@ const pluginConfig = {
 
       const tanggal = new Date().toLocaleDateString('id-ID', { timeZone: 'Asia/Jakarta', day: '2-digit', month: 'long', year: 'numeric' })
       const botName = global.namebot || 'Ai Miku'
-      const pesan = `🚀 *UPDATE!! | ${version}*\n\n📅 *Fecha:* ${tanggal}\n\n*CHANGELOG:*\n${changelog.replace(/\\n/g, '\n')}\n\n*CATATAN TERBARU:*\n> 💡 Tipo *${prefix}menú* para ver estas funciones.\n> 📢 _Gracias por usar ${botName}_`
+      const pesan = `🚀 *UPDATE!! | ${version}*\n\n📅 *Fecha:* ${tanggal}\n\n*CHANGELOG:*\n${changelog.replace(/\\n/g, '\n')}\n\n*CATATAN TERBARU:*\n> 💡 Tipo *${prefix}menu* para ver estas funciones.\n> 📢 _Gracias por usar ${botName}_`
 
       const contextInfo = global.idSaluran
           ? { forwardingScore: 9999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: global.idSaluran, newsletterName: global.nameSaluran || botName, serverMessageId: 127 } }

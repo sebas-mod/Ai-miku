@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         const amount = parseInt(m.args[0])
 
         if (isNaN(amount) || amount <= 0) {
-            return m.reply(`⚠️ *CÓMO USAR*\n\n> Escribe la cantidad de límites que quieres añadir.\n\n\`Ejemplo: ${m.prefix}addlimitall 50\``)
+            return m.reply(`⚠️ *CÓMO USAR*\n\n> Escribe la cantidad de límites que quieres añadir.\n\n\`Ejemplo: ${m.prefix}addenergiall 50\``)
         }
 
         const groupMeta = m.groupMetadata

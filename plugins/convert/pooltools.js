@@ -497,7 +497,7 @@ const specs = {
       const f = await du.getFile(c.sock, c.msg).catch(() => null)
       if (!f) {
         const items = pool.list(c.sender)
-        return `📦 Contenido actual del carrito: *${items.length} archivos*.\n\nResponda imagen/video/audio/archivo con *\${c.prefix}gather* para agregar, luego procese con:\n\`.pdfbuat\` • \`.kolase\` • \`.slideshow\` • \`.zipkan\` • \`.gabungvideo\` • \`.gabungaudio\` • \`.mixav\``
+        return `📦 Contenido actual del carrito: *${items.length} archivos*.\n\nResponda imagen/video/audio/archivo con *\${c.prefix}kumpul* para agregar, luego procese con:\n\`.pdfbuat\` • \`.kolase\` • \`.slideshow\` • \`.zipkan\` • \`.gabungvideo\` • \`.gabungaudio\` • \`.mixav\``
       }
       const kind = ['image', 'pdf', 'video', 'audio'].includes(f.sniff.kind) ? f.sniff.kind : 'other'
       const n = pool.add(c.sender, { buffer: f.buffer, name: f.name, kind, mime: f.mime })

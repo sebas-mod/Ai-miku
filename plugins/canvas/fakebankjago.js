@@ -86,7 +86,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const [nama,nominal] = m.text?.split(',')
     if (!nama || !nominal) {
-        return m.reply(`*FAKE BANK*\n\n> Ingrese texto para chatear\n\n\`Ejemplo: ${m.prefix}banco falso Zann,10000\``)
+        return m.reply(`*FAKE BANK*\n\n> Ingrese texto para chatear\n\n\`Ejemplo: ${m.prefix}fakebankjago Zann,10000\``)
     }
     if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
     m.react('🕕')

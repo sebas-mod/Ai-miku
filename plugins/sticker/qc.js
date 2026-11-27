@@ -105,7 +105,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
       const list = COLOR_SECTIONS.map(sec => `*${sec.title}*\n${sec.names.join(', ')}`).join('\n\n')
       return (
           `💬 *Cita Sticker*\n\nTu texto: _${text}_\n\n` +
-          `Seleccione un color escribiendo:\n*${m.prefix}control de calidad <color> ${text}*\n\n${list}`
+          `Seleccione un color escribiendo:\n*${m.prefix}qc <color> ${text}*\n\n${list}`
       )
   }
 

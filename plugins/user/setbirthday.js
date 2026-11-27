@@ -55,7 +55,7 @@ async function handler(m) {
     const match = input.match(dateRegex)
 
     if (!match) {
-        return m.reply(`❌ ¡Formato incorrecto! Uso: DD-MM\n\n> Ejemplo: ${m.prefix}establecercumpleaños 25-12`)
+        return m.reply(`❌ ¡Formato incorrecto! Uso: DD-MM\n\n> Ejemplo: ${m.prefix}setbirthday 25-12`)
     }
 
     const day = parseInt(match[1])

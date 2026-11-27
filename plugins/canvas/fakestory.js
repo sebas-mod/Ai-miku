@@ -222,8 +222,8 @@ async function handler(m, { sock }) {
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n` +
           `> Responder 1 o 2 imagen!\n\n` +
-          `> Formato: \`${m.prefix}historia falsa <nombre>\`\n` +
-          `> Ejemplo: \`${m.prefix}historia falsa Misaki\``,
+          `> Formato: \`${m.prefix}fakestory <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory Misaki\``,
       );
     }
     if (m.isImage && m.download) {

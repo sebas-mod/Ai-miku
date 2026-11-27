@@ -25,7 +25,7 @@ const createMikuFeature = (module, exports, require) => {
             try {
               const { data } = await axios.get('https://api.coingecko.com/api/v3/simple/price', { timeout: 15000, params: { ids: ids.join(','), vs_currencies: 'idr,usd', include_24hr_change: true } })
               const rows = ids.filter(i => data[i]).map(i => `*${i.toUpperCase().replace(/-/g, ' ')}*\n   ${rp(data[i].idr)}  •  ${usd(data[i].usd)}  ${arrow(data[i].usd_24h_change)}`)
-              if (!rows.length) return reply(`Moneda desconocida.\nEjemplo: ${prefix}cripto btc eth sol`)
+              if (!rows.length) return reply(`Moneda desconocida.\nEjemplo: ${prefix}kripto btc eth sol`)
               return reply(`${B('PRECIO DE CRIPTO')}\n${LINE}\n${rows.join('\n')}\n\n_Fuente: CoinGecko • no es asesoramiento de inversión_`)
             } catch (e) { console.log('[kripto]', e.message); return reply('No se pudo recuperar el precio: ' + (e.response && e.response.status === 429 ? 'Se alcanzó el límite de solicitudes. Vuelva a intentarlo en un minuto.' : e.message)) }
           },

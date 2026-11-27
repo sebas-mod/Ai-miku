@@ -109,7 +109,7 @@ const pluginConfig = {
               else { const md = await metadata(sock, ref); channelId = md.id; channelLabel = md.name; assertCanPost(md) }
           } else {
               const cur = getCurrent()
-              if (!cur) return reply(`Aún no hay ningún canal de destino. Escribe el ID/enlace del canal, o configúralo primero: ${p}establecer <enlace de canal>`)
+              if (!cur) return reply(`Aún no hay ningún canal de destino. Escribe el ID/enlace del canal, o configúralo primero: ${p}setch <enlace de canal>`)
               channelId = cur.id; channelLabel = cur.name
               assertCanPost(cur)
           }

@@ -60,7 +60,7 @@ const config = MikuRuntime.config;
   async function handler(m, { sock }) {
       const text = m.args.join(' ')
       if (!text) {
-          return m.reply(`*BRATANIME4 sTICKER*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratanime4 Mañana lunes\``)
+          return m.reply(`*BRATANIME4 sTICKER*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratgura Mañana lunes\``)
       }
 
       m.react('🕕')
