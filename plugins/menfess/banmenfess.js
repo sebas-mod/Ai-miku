@@ -33,7 +33,7 @@ async function handler(m, { text, command, prefix }) {
     const hari = wibDay();
     const laporan = Object.values(k.menfessLapor).reduce((a, v) => a + (v.n || 0), 0);
     return m.reply(
-      `📊 *STATISTIK MENFESS*\n\nGuardado: ${semua.length}\nHoy: ${semua.filter((d) => wibDay(d.t) === hari).length}\nRetirado: ${semua.filter((d) => d.tutup).length}\nReportado: ${semua.filter((d) => d.dilapor).length} (informe total ${laporan})\nDibán: ${Object.keys(k.menfessBan).length}\nRechazar todo: ${Object.keys(k.menfessBlock).length} usuario`,
+      `📊 *ESTADÍSTICAS DE MENFESS*\n\nGuardado: ${semua.length}\nHoy: ${semua.filter((d) => wibDay(d.t) === hari).length}\nRetirado: ${semua.filter((d) => d.tutup).length}\nReportado: ${semua.filter((d) => d.dilapor).length} (informe total ${laporan})\nDibán: ${Object.keys(k.menfessBan).length}\nRechazar todo: ${Object.keys(k.menfessBlock).length} usuario`,
     );
   }
 

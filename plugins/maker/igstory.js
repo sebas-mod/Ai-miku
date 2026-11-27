@@ -274,7 +274,7 @@ const pluginConfig = {
           if (!targetImgBuffer) {
               return m.reply(
                   `📸 *FUNCIÓN DE PUBLICACIÓN DE HISTORIA IG*\n\n` +
-                  `Este sistema simula una publicación de historia de Instagram con la foto que envíes.\n\n` +
+                  `Este sistema simula una publicación de historia de Instagram con la foto que envía.\n\n` +
                   `*CÓMO USAR:*\n` +
                   `- Envía una imagen con el texto \`${m.prefix}igstory\`\n` +
                   `- O responde a una imagen existente con el comando \`${m.prefix}igstory\`\n\n` +

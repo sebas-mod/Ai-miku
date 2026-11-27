@@ -87,7 +87,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'tomp3
     if (asDoc) {
       await client.sendMessage(
         m.chat,
-        { document: mp3, fileName: `audio_${Date.now()}.mp3`, mimetype: 'audio/mpeg', caption: '🎵 *Konversi MP3 Selesai*' },
+        { document: mp3, fileName: `audio_${Date.now()}.mp3`, mimetype: 'audio/mpeg', caption: '🎵 *Conversión de MP3 completada*' },
         { quoted: m }
       )
     } else {

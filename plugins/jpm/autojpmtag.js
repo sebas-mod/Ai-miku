@@ -41,7 +41,7 @@ const pluginConfig = {
       if (interval < JPM_MIN_INTERVAL) return reply(`❌ Intervalo mínimo ${JPM_MIN_INTERVAL / 1000} segundo.`)
 
       const delay = jpmCfg().delayJpmTag
-      await reply(`*▢ AUTO JPM TAG AKTIF*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}EM\n\nDetener con *stopautojpmtag*`)
+      await reply(`*▢ AUTO JPM TAG ACTIVO*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}ms\n\nDetener con *stopautojpmtag*`)
 
       jpmStartJob('autoJpmTag', interval, async isStopped => {
           const groups = await jpmGroups(sock, { auto: true })

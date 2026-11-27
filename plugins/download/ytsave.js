@@ -82,7 +82,7 @@ const pluginConfig = {
   async function handler(m, { sock, text, prefix, command, reply }) {
       const { url, audio, quality } = parseArgs(text)
       if (!url || !YT_RE.test(url)) {
-          return reply(`Envía un enlace de YouTube / Shorts.\n\nEjemplo:\n${prefix}${command} https://youtu.be/dQw4w9WgXcQ\n${prefix}${command} https://youtu.be/dQw4w9WgXcQ 1080\n${prefix}${command} https://youtu.be/dQw4w9WgXcQ audio`)
+          return reply(`Envía un enlace de YouTube / Shorts.\n\nEjemplo:\n${prefix}${command} https://youtu.be/dQw4w9WgXcQ\n${prefix}${command} https://youtu.be/dQw4w9WgXcQ 1080\n${prefix}${command} https://youtu.be/dQw4w9WgXcQaudio`)
       }
       try {
           await reactTo(sock, m, '⏳')

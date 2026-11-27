@@ -439,7 +439,7 @@ async function textToPdfPure(text) {
 }
 
 const baseName = (n) => du.safeName(String(n).replace(/\.[^.]+$/, ''), 'dokumen')
-const pdfOut = (buffer, name) => ({ documents: [{ buffer: Buffer.from(buffer), name: `${name}.pdf`, mime: 'application/pdf', caption: '✅ Selesai diproses' }] })
+const pdfOut = (buffer, name) => ({ documents: [{ buffer: Buffer.from(buffer), name: `${name}.pdf`, mime: 'application/pdf', caption: '✅ Procesamiento completado' }] })
 
 const loadPdfLibDoc = async (buf) => {
   const pl = await tryRequirePdfLib()

@@ -142,7 +142,7 @@ const getAvatarBuffer = MikuRuntime.canvasGetAvatarBuffer;
         return m.reply(
           `📷 *HISTORIA FALSA 2*\n\n` +
             `> ¡Responde a una imagen!\n\n` +
-            `> Format: \`${m.prefix}fakestory2 <nombre>\`\n` +
+            `> Formato: \`${m.prefix}fakestory2 <nombre>\`\n` +
             `> Ejemplo: \`${m.prefix}fakestory2 Misaki\``,
         );
       }

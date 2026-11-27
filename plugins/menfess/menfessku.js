@@ -45,7 +45,7 @@ async function handler(m, { command, prefix }) {
       ([id, d]) => `• *#${id}* · ${waktu(d.last || d.t)} · ${(d.log || [1]).length} mensaje · ${status(d)}\n  “${potong(d.pesan)}”`,
     );
     return m.reply(
-      `💌 *${inbox ? "MENFESS MASUK" : "MENFESS TERKIRIM"}* (${list.length} terbaru)\n\n${baris.join("\n")}\n\n` +
+      `💌 *${inbox ? "MENFESS RECIBIDOS" : "MENFESS ENVIADOS"}* (${list.length} más recientes)\n\n${baris.join("\n")}\n\n` +
         (inbox
           ? `Responder: responder al mensaje menfess\nBloquear: ${prefix}blokmenfess ID · Informe: ${prefix}lapormenfess ID razones`
           : `Tarik: ${prefix}tarikmenfess ID · Ungkap diri: ${prefix}ungkapmenfess ID`),

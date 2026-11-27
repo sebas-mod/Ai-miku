@@ -269,7 +269,7 @@ const pluginConfig = {
       }
 
       await conn.sendMessage(m.chat, vn
-        ? { audio: vn, mimetype: 'audio/ogg; codecs=opus', ptt: true }
+        ? { audio: vn, mimetype: 'audio/ogg; códecs=opus', ptt: true }
         : { audio, mimetype: 'audio/mpeg', ptt: true },
       { quoted: m })
 
@@ -277,7 +277,7 @@ const pluginConfig = {
     } catch (e) {
       console.error('[PLAY2]', e)
       await m.react('❌')
-      return conn.reply(m.chat, `⚠️ Error al obtener el audio.\n${e?.message || ''}`.trim(), m)
+      return conn.reply(m.chat, `⚠️Error de audio.\n${e?.message || ''}`.trim(), m)
     }
   }
 

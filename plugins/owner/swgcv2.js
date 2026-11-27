@@ -246,7 +246,7 @@ async function handler(m, { sock, db }) {
   } else {
     await m.reply(
       `⚠️ *CÓMO USAR*\n\n` +
-      `> \`${m.prefix}swgcv2 teks\` - Story teks\n` +
+      `> \`${m.prefix}swgcv2 texto\` - Texto de la historia\n` +
       `> Responde con imagen/video/audio + \`${m.prefix}swgcv2\`\n` +
       `> Envía una imagen/vídeo con el texto \`${m.prefix}swgcv2\``,
     );
@@ -295,7 +295,7 @@ async function handler(m, { sock, db }) {
     await sock.sendMessage(m.chat, {
       text:
         `📋 *ELIGE UN GRUPO PARA PUBLICAR LA HISTORIA V2*\n\n` +
-        `> Media: *${mediaType}*\n` +
+        `> Medios: *${mediaType}*\n` +
         `> Total de grupos: *${groupList.length}*\n\n` +
         `_Elige un grupo de la lista de abajo:_`,
       contextInfo: {

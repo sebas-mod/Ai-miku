@@ -61,7 +61,7 @@ function handler(m) {
     m.reply(
         `✅ *ANTILINK ELIMINADO*\n\n` +
         `> Link: \`${link}\`\n` +
-        `> Sisa: *${antilinkList.length}* link`
+        `> Resto: *${antilinkList.length}* link`
     )
 }
 

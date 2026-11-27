@@ -41,7 +41,7 @@ const te = MikuRuntime.te;
     const status = parts[2]?.trim() || "Busy";
 
     if (!nama || !nomor) {
-      return m.reply(`⚠️ Se necesitan los parámetros 'nama' y 'nomor'`);
+      return m.reply(`⚠️ Se necesitan los parámetros 'nombre' y 'número'`);
     }
 
     if (nomor.startsWith("08")) nomor = "62" + nomor.slice(1);

@@ -67,7 +67,7 @@ async function processAmClaim(m, email, link) {
     if (data.status === "premium" || data.success === true) {
       await m.react("✅").catch(() => {});
       return m.reply(
-        `╭─── ❖ 『 🎉 *ALIGHT MOTION PREMIUM AKTIF* 』 ❖\n` +
+        `╭─── ❖ 『 🎉 *ALIGHT MOTION PREMIUM ACTIVO* 』 ❖\n` +
           `│ 📧 *Email:* \`${email}\`\n` +
           `│ 💎 *ESTADO:* PREMIUM ACTIVO\n` +
           `│ 📱 ¡Vuelva a abrir su aplicación Alight Motion!\n` +
@@ -77,12 +77,12 @@ async function processAmClaim(m, email, link) {
     }
     await m.react("❌").catch(() => {});
     return m.reply(
-      `⚠️ *El reclamo no ha tenido éxito.*\n> ${data.error || data.message || "Coba lagi beberapa saat."}`
+      `⚠️ *El reclamo no ha tenido éxito.*\n> ${data.error || data.message || "Inténtalo de nuevo en unos minutos."}`
     );
   } catch (err) {
     await m.react("❌").catch(() => {});
     return m.reply(
-      `❌ *No se pudo reclamar:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Coba lagi nanti."}`
+      `❌ *No se pudo reclamar:* ${err.response?.data?.error || err.response?.data?.message || err.message || "Inténtalo más tarde."}`
     );
   }
 }

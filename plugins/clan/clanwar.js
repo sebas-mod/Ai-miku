@@ -104,7 +104,7 @@ const getDatabase = MikuRuntime.getDatabase;
       if (!enemyClan) return m.reply(`❌ Clan oponente no encontrado`)
       if (user.clanId === targetClanId) return m.reply(`❌ No puedes hacer la guerra contra tu propio clan.`)
       if (myClan.members.length < 3) return m.reply(`❌ Tu clan necesita un mínimo de 3 miembros`)
-      if (enemyClan.members.length < 3) return m.reply(`❌ Clan lawan butuh minimal 3 member`)
+      if (enemyClan.members.length < 3) return m.reply(`❌ El clan contrario requiere un mínimo de 3 miembros`)
 
       const myPower = calculatePower(db, myClan)
       const enemyPower = calculatePower(db, enemyClan)

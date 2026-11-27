@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
             if (pipeIdx === -1) {
                 return m.reply(
                     `❌ *FORMATO INCORRECTO*\n\n` +
-                    `> Usa format: \`trigger|reply\`\n\n` +
+                    `> Formato EE.UU.: \`disparador|respuesta\`\n\n` +
                     `> Ejemplo:\n` +
                     `> \`${m.prefix}autoreply global add hola|¡Hola {name}!\``
                 )

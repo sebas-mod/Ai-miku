@@ -50,7 +50,7 @@ const fbdown = MikuRuntime.fbdown;
 
           if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
               await m.react('❌')
-              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace o comprueba que la publicación sea pública.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace o comprueba que la publicación sea pública.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
           }
 
           let video = data.result.medias.find(m => m.quality === "hd") ||
@@ -59,7 +59,7 @@ const fbdown = MikuRuntime.fbdown;
 
           if (!video || !video.url) {
               await m.react('❌')
-              return m.reply(`❌ Video no encontrado en ese enlace.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
+              return m.reply(`❌ Vídeo no encontrado en ese enlace.\n\n_Nota: Actualmente el sistema no admite descargar fotos de Facebook, solo videos._`)
           }
 
           let caption = `🎥 *FACEBOOK DOWNLOADER*\n\n`

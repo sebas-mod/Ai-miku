@@ -51,7 +51,7 @@ async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`🔢 *¿CUÁNTO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .berapa ¿cuántos años tiene mi media naranja?`);
+        return m.reply(`🔢 *¿CUÁNTO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n>.berapa ¿cuántos años tiene mi media naranja?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

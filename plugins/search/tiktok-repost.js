@@ -112,13 +112,13 @@ const pluginConfig = {
               const all = arg === 'semua' || arg === 'all'
               const { videos, hasMore } = all ? await fetchUntil(username, PER * MAX_PAGES) : await fetchUntil(username, 1, 1)
               if (!videos.length) throw new Error(`No hay reenvíos para @${username} (cuenta privada/no volver a publicar/nombre de usuario incorrecto).`)
-              const lines = videos.map((v, i) => `${i + 1}. ${clip(v.title, 70) || '(tanpa judul)'}\n   @${v.author.username || '-'} • ${v.duration || '?'}s • ▶️ ${nf(v.stats.plays)} • ❤️ ${nf(v.stats.likes)}`)
+              const lines = videos.map((v, i) => `${i + 1}. ${clip(v.title, 70) || '(sin título)'}\n   @${v.author.username || '-'} • ${v.duration || '?'}s • ▶️ ${nf(v.stats.plays)} • ❤️ ${nf(v.stats.likes)}`)
               await reply(`*🔁 REPOST @${username}* (${videos.length}${hasMore ? '+' : ''})\n${LINE}\n${lines.join('\n\n')}\n\nDescargar: *${prefix}${command} ${username} <número>*${!all && hasMore ? `\nLebih banyak: *${prefix}${command} ${username} semua*` : ''}`)
           }
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')
-          reply(`❌ ${e.message || 'Gagal memproses.'}`)
+          reply(`❌ ${e.message || 'No se pudo procesar.'}`)
       }
   }
 

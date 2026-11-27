@@ -48,11 +48,11 @@ const pluginConfig = {
 
       await conn.sendMessage(m.chat, {
         video: { url: videoUrl },
-        caption: data.title || 'Video descargado'
+        caption: data.title || 'video descargado'
       }, { quoted: m })
     } catch (e) {
       console.error(e)
-      conn.reply(m.chat, '⚠️ No se pudo obtener el video.', m)
+      conn.reply(m.chat, '⚠️ No se pudo obtener el vídeo.', m)
     }
   }
 

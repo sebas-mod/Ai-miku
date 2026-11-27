@@ -140,7 +140,7 @@ const getMedia = async (m) => downloadFromMsg(m)
       try {
           const img = await getImage(m, text)
           if (!img) {
-              return reply(`Enviar o responder a *imagen* con titulo ${prefix || '.'}${command}\nO utilice el enlace: ${prefix || '.'}${command} https://contoh.com/gambar.jpg`)
+              return reply(`Enviar o responder a *imagen* con el texto ${prefix || '.'}${command}\nO utilice el enlace: ${prefix || '.'}${command} https://contoh.com/gambar.jpg`)
           }
           if (img.buffer.length > MAX_SIZE) return reply('La imagen es demasiado grande (máx. 10 MB).')
 
@@ -150,7 +150,7 @@ const getMedia = async (m) => downloadFromMsg(m)
 
           return reply(`*IMG AL TEXTO*\n\n${result.length > 60000 ? result.slice(0, 60000) + '\n\n_...dipotong_' : result}`)
       } catch (e) {
-          return reply(`[ ! ] ${e.message || 'Terjadi kesalahan.'}`)
+          return reply(`[ ! ] ${e.message || 'Ocurrió un error.'}`)
       }
   }
 

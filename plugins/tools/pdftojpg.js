@@ -110,11 +110,11 @@ import FormData from 'form-data'
       if (isZip) {
         await sock.sendMessage(
           m.chat,
-          { document: result, mimetype: 'application/zip', fileName: `pdf-to-jpg-${Date.now()}.zip`, caption: `✅ Selesai (${dpi} DPI)` },
+          { document: result, mimetype: 'application/zip', fileName: `pdf-to-jpg-${Date.now()}.zip`, caption: `✅ Hecho (${dpi} DPI)` },
           { quoted: m }
         )
       } else {
-        await sock.sendMessage(m.chat, { image: result, caption: `✅ Selesai (${dpi} DPI)` }, { quoted: m })
+        await sock.sendMessage(m.chat, { image: result, caption: `✅ Hecho (${dpi} DPI)` }, { quoted: m })
       }
       m.react('✅')
     } catch (e) {

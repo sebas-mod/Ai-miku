@@ -69,7 +69,7 @@ async function handler(m, { sock, text, reply, example }) {
         } catch {
             return await sock.sendMessage(
                 m.chat,
-                { text: `${teks}\n\n📋 Salin ID Channel: ${channelId}\n\n_${botName}_` },
+                { text: `${teks}\n\n📋 Copiar ID del canal: ${channelId}\n\n_${botName}_` },
                 { quoted: m }
             )
         }

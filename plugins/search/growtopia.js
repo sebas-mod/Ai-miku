@@ -111,7 +111,7 @@ const pluginConfig = {
       const p = usedPrefix + command
       return m.reply(
         `*GROWTOPIA INFO*\n\n` +
-        `• ${p} status — pemain online & status server\n` +
+        `• ${p} estado: jugadores en línea y estado del servidor\n` +
         `• ${p} wotd — World of the Day\n` +
         `• ${p} mundo <nombre> — renderizar imagen del mundo\n` +
         `• ${p} leaderboard — Dungeons leaderboard\n` +
@@ -125,7 +125,7 @@ const pluginConfig = {
         const d = await getServerDetail()
         await m.reply(
           `*— GROWTOPIA STATUS —*\n\n` +
-          `❀ Pemain Online : ${fmt(d.online_user)}\n` +
+          `❀ Jugadores en línea: ${fmt(d.online_user)}\n` +
           `❀ WOTD : ${d.world_of_the_day.name || '-'}\n` +
           `❀ Trailer : ${d.trailer_url || '-'}`
         )
@@ -169,7 +169,7 @@ const pluginConfig = {
         await m.reply(
           `*— GROWTOPIA ITEM —*\n\n` +
           `❀ ${items[0].title}\n${items[0].page_url}\n\n` +
-          `${summary || '_Tidak ada deskripsi teks tambahan._'}` +
+          `${summary || '_Sin descripción adicional._'}` +
           (others ? `\n\n*Otros resultados:*\n${others}` : '')
         )
       }

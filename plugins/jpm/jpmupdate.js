@@ -52,10 +52,10 @@ const pluginConfig = {
           ? { forwardingScore: 9999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: global.idSaluran, newsletterName: global.nameSaluran || botName, serverMessageId: 127 } }
           : undefined
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM UPDATE*\n• Versión: ${version}\n• Objetivos: ${groups.length} grupo\n• Demora: ${delay}EM`)
+      await reply(`*▢ JPM UPDATE*\n• Versión: ${version}\n• Objetivos: ${groups.length} grupo\n• Retardo: ${delay}ms`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => sock.sendMessage(g.id, { text: pesan, ...(contextInfo ? { contextInfo } : {}) }))
-      return reply(`*▢ JPM UPDATE SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+      return reply(`*▢ JPM UPDATE TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

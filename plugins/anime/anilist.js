@@ -228,7 +228,7 @@ import fetch from 'node-fetch';
 - English: ${detailResults.title.english}
 - Native: ${detailResults.title.native}
 
-📝 *Deskripsi:*
+📝 *Descripción:*
 ${detailResults.description.translated}
 
 🎬 *Detalles:*

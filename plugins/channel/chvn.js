@@ -92,7 +92,7 @@ const pluginConfig = {
       if (!src) {
           return reply(
               `📢 *AUDIO AL CANAL (VN)*\n\n` +
-              `Contestador de audio:\n` +
+              `Concursantes de audio:\n` +
               `${p}${cmd} → ke saluran bawaan (.setch)\n` +
               `${p}${cmd} <id@newsletter / link saluran>\n\n` +
               `Ejemplo:\n${p}${cmd} 120363xxxxxxxxxxxxxxx@newsletter`

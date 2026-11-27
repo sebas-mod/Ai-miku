@@ -50,7 +50,7 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
       const input = m.text?.trim()
       if (!input) {
           return m.reply(
-              `❌ *GAGAL*\n\n` +
+              `❌ *ERROR*\n\n` +
               `> Masukkan packname\n\n` +
               `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +

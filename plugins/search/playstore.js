@@ -88,7 +88,7 @@ const pluginConfig = {
           if (a.icon) return sock.sendMessage(m.chat, { image: { url: a.icon }, caption }, { quoted: m }).catch(() => reply(caption))
           return reply(caption)
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil data'}`)
+          return reply(`❌ ${e.message || 'No se pudieron obtener los datos'}`)
       }
   }
 

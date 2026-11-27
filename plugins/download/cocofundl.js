@@ -49,14 +49,14 @@ const te = MikuRuntime.te;
           const data = await cocofun(url)
 
           if (!data?.status || !data?.result) {
-              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const result = data.result
           const videoUrl = result.no_watermark || result.watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video no encontrado.`)
+              return m.reply(`❌ Vídeo no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {

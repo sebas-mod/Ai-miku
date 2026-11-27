@@ -742,7 +742,7 @@ ${truncateText(parsed.customText, 180)}`);
       const taskId = args[1];
 
       if (!taskId) {
-        await m.reply("❌ Format: `.schedule edit <id> ...`");
+        await m.reply("❌ Formato: `.schedule editar <id>...`");
         return;
       }
 
@@ -846,7 +846,7 @@ ${truncateText(parsed.customText, 180)}`);
       const taskId = args[1];
 
       if (!taskId) {
-        await m.reply("❌ Format: `.schedule detail <id>`");
+        await m.reply("❌ Formato: `.schedule detalle <id>`");
         return;
       }
 
@@ -867,7 +867,7 @@ ${truncateText(parsed.customText, 180)}`);
       const taskId = args[1];
 
       if (!taskId) {
-        await m.reply("❌ Format: `.schedule del <id>`");
+        await m.reply("❌ Formato: `.schedule del <id>`");
         return;
       }
 

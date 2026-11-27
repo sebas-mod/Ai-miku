@@ -58,8 +58,8 @@ const pluginConfig = {
 
     if (!message) {
       return reply(
-        `🪟 *IQC WINDOWS (Media Player)*\n\n` +
-        `Meme jendela Windows Media Player XP.\n\n` +
+        `🪟 *IQC WINDOWS (Reproductor multimedia)*\n\n` +
+        `Meme de la ventana de Windows Media Player XP.\n\n` +
         `• ${p}iqcwin <texto>\n` +
         `• envía/responde a una foto + ${p}iqcwin <texto> → la foto sustituye al personaje 3D\n` +
         `• responde a un mensaje + ${p}iqcwin → usa el texto de ese mensaje\n\n` +
@@ -115,8 +115,8 @@ const pluginConfig = {
       ctx.fillStyle = '#e8fff0'; ctx.beginPath(); ctx.moveTo(ic.x - 3, ic.y - 6); ctx.lineTo(ic.x + 7, ic.y); ctx.lineTo(ic.x - 3, ic.y + 6); ctx.closePath(); ctx.fill()
 
       ctx.font = `700 46px ${TITLE}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'
-      ctx.fillStyle = 'rgba(0,20,100,0.65)'; ctx.fillText('Windows Media Player', 80 + 3, 62 + 3)
-      ctx.fillStyle = '#ffffff'; ctx.fillText('Windows Media Player', 80, 62)
+      ctx.fillStyle = 'rgba(0,20,100,0.65)'; ctx.fillText('Reproductor de Windows Media', 80 + 3, 62 + 3)
+      ctx.fillStyle = '#ffffff'; ctx.fillText('Reproductor de Windows Media', 80, 62)
 
       const winBtn = (x, kind) => {
         const y = 26, w = 72, h = 68

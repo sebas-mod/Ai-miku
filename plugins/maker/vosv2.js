@@ -211,7 +211,7 @@ async function handler(m, { sock, text }) {
   if (!quote) {
     return m.reply(
       `🖼️ *VOSV2 HD*\n\n` +
-      `Crea una imagen de texto con el tema de Windows Media Player.\n\n` +
+      `Cree una imagen de texto con un tema en Windows Media Player.\n\n` +
       `*Format:*\n> ${m.prefix}vosv2 tu texto\n\n` +
       `*Ejemplo:*\n> ${m.prefix}vosv2 ¡No te rindas, sigue adelante!\n\n` +
       `_No usa nombre ni foto de perfil._`

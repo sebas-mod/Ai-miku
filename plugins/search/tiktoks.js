@@ -278,7 +278,7 @@ async function handler(m, ctx = {}) {
       .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
       .catch(() => {});
     await m.reply(
-      `❌ *TikTok La búsqueda falló*\n> ${err.message || "Semua server sedang sibuk, coba lagi sebentar."}`
+      `❌ *TikTok La búsqueda falló*\n> ${err.message || "Todos los servidores están ocupados, inténtalo en un momento."}`
     );
   }
 }

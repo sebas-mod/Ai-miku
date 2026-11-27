@@ -45,7 +45,7 @@ async function handler(m) {
     user.settings.levelupNotif = true;
     await db.save();
     return m.reply(
-      `╭─── ❖ 『 🔔 *NOTIFIKASI LEVEL UP* 』 ❖\n` +
+      `╭─── ❖ 『 🔔 *NOTIFICACIÓN DE SUBIDA DE NIVEL* 』 ❖\n` +
       `│ ✦ *Estado:* *ACTIVO (ON)* ✅\n` +
       `│ ✦ Bot te enviará una tarjeta de celebración cada vez que subas de nivel.\n` +
       `╰──────────────────────────❖`
@@ -56,7 +56,7 @@ async function handler(m) {
     user.settings.levelupNotif = false;
     await db.save();
     return m.reply(
-      `╭─── ❖ 『 🔕 *NOTIFIKASI LEVEL UP* 』 ❖\n` +
+      `╭─── ❖ 『 🔕 *NOTIFICACIÓN DE SUBIDA DE NIVEL* 』 ❖\n` +
       `│ ✦ *ESTADO:* *DESACTIVADO (APAGADO)* ❌\n` +
       `│ ✦ Aún recibirás monedas y energía adicionales cuando subas de nivel sin mensajes emergentes.\n` +
       `╰──────────────────────────❖`
@@ -82,7 +82,7 @@ async function handler(m) {
 
     await m.react("🎊");
     return m.reply(
-      `╭─── ❖ 『 🎊 *SELAMAT NAIK LEVEL!* 』 ❖\n` +
+      `╭─── ❖ 『 🎊 *¡FELICIDADES, SUBISTE DE NIVEL!* 』 ❖\n` +
       `│ ✦ *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
       `│ 📈 *Level:* Lv.${recordedLevel} ➜ *Lv.${actualLevel}* (+${diff} Level!)\n` +
       `│ 🎖️ *Nuevo rango:* *${rank.title}* (${rank.starBar})\n` +
@@ -100,7 +100,7 @@ async function handler(m) {
   const notifState = user.settings.levelupNotif !== false ? "ON ✅" : "OFF ❌";
 
   return m.reply(
-    `╭─── ❖ 『 ⚡ *CEK KENAIKAN LEVEL* 』 ❖\n` +
+    `╭─── ❖ 『 ⚡ *COMPROBAR SUBIDA DE NIVEL* 』 ❖\n` +
     `│ ✦ EXP Actualmente estás en *Lv.${actualLevel}* (*${rank.title}*).\n` +
     `│ 🔋 *Progres:* [${bar}]\n` +
     `│ ✨ *Menos:* *${expToNextLevel(totalExp).toLocaleString("id-ID")} EXP* volver a *Lv.${actualLevel + 1}*!\n` +

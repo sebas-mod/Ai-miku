@@ -41,7 +41,7 @@ const pluginConfig = {
       if (!groups.length) return reply('❌ No hay grupos a los que enviar estados.')
 
       const delay = jpmCfg().delayJpm
-      const tipe = media ? ({ image: 'Foto', video: 'Video', audio: 'Audio' }[media.kind] || 'Media') : 'Teks'
+      const tipe = media ? ({ image: 'Foto', video: 'Video', audio: 'Audio' }[media.kind] || 'Media') : 'Texto'
       await reply(
           `*▢ PROCESAR SWGC TODOS*\n` +
           `• Grupo total: ${groups.length}\n` +
@@ -54,10 +54,10 @@ const pluginConfig = {
           sendGroupStatus(sock, g.id, { text: caption, media }))
 
       return reply(
-          `*▢ SWGC ALL SELESAI*\n` +
+          `*▢ SWGC ALL TERMINADO*\n` +
           `• Grupo total: ${groups.length}\n` +
-          `• Tener éxito: ${ok} grupo\n` +
-          `• Fallar: ${fail} grupo` +
+          `• Correctos: ${ok} grupo\n` +
+          `• Fallidos: ${fail} grupo` +
           (ok + fail < groups.length ? `\n• Saltado (detenido): ${groups.length - ok - fail} grupo` : '')
       )
   }

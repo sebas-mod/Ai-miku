@@ -401,7 +401,7 @@ const pluginConfig = {
     } catch (error) {
       console.error('[AntiColongPack] Error:', error);
       await m.react('❌');
-      await m.reply('❌ *GAGAL PROSES PACK*\n\n> ' + error.message);
+      await m.reply('❌ *NO SE PUDO PROCESAR EL PAQUETE*\n\n> ' + error.message);
     }
   }
 

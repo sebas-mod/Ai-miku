@@ -218,7 +218,7 @@ const pluginConfig = {
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')
-          reply(`❌ ${e.message || 'Gagal memproses.'}`)
+          reply(`❌ ${e.message || 'No se pudo procesar.'}`)
       }
   }
 

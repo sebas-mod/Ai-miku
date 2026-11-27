@@ -373,7 +373,7 @@ async function replyHandler(m, { sock }) {
   if (session.step === "action") {
     const action = normalizeAction(text, "");
     if (!action) {
-      await m.reply("❌ Responde con `hapus` o `kick`.");
+      await m.reply("❌ Responde con `delete` o `kick`.");
       return true;
     }
 

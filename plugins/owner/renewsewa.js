@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
   if (args.length < 2) {
     return m.reply(
       `📝 *RENOVAR ALQUILER*\n\n` +
-        `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
+        `Formato: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +

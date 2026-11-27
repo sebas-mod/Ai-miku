@@ -55,7 +55,7 @@ async function handler(m, { sock, config }) {
     const newName = input.slice(1).join(" ").trim();
     if (!newName) {
       return m.reply(
-        `👤 *CAMBIAR NOMBRE DEL OWNER PRINCIPAL*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner main <nombre nuevo>\``,
+        `👤 *CAMBIAR NOMBRE DEL OWNER PRINCIPAL*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner <nombre nuevo>\``,
       );
     }
     try {

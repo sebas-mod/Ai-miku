@@ -32,10 +32,10 @@ async function handler(m, { text }) {
   if (!d) return m.reply("ID menfess no encontrado.");
   const w = (t) => new Date(t).toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
   const log = (d.log || [{ by: "a", t: d.t, pesan: d.pesan }])
-    .map((x) => `[${w(x.t)}] ${x.by === "a" ? "Pengirim" : "Penerima"}: ${x.pesan}`)
+    .map((x) => `[${w(x.t)}] ${x.by === "a" ? "Remitente" : "Destinatario"}: ${x.pesan}`)
     .join("\n");
   return m.reply(
-    `🍰 *MENFESS ${id}*\n\nDe: ${numOf(d.from)}\nA: ${numOf(d.to)}\nTiempo: ${w(d.t)}\nEstado: ${d.tutup ? "ditarik" : "aktif"}${d.dilapor ? " · dilaporkan" : ""}${d.terungkap ? " · identitas diungkap" : ""}\n\n${log}`,
+    `🍰 *MENFESS ${id}*\n\nDe: ${numOf(d.from)}\nA: ${numOf(d.to)}\nTiempo: ${w(d.t)}\nEstado: ${d.tutup ? "retirado" : "activo"}${d.dilapor ? " · reportado" : ""}${d.terungkap ? " · identidad revelada" : ""}\n\n${log}`,
   );
 }
 

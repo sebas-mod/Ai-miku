@@ -97,8 +97,8 @@ const pluginConfig = {
 
     if (!message) {
       return reply(
-        `🪟 *IQC WMP (Windows Media Player)*\n\n` +
-        `Meme jendela Windows Media Player XP.\n\n` +
+        `🪟 *IQC WMP (Reproductor de Windows Media)*\n\n` +
+        `Meme de la ventana de Windows Media Player XP.\n\n` +
         `• ${p}iqcwmp <texto>\n` +
         `• ${p}iqcwmp olive <texto> → tema hijau\n` +
         `• ${p}iqcwmp silver <texto> → tema perak\n` +

@@ -77,7 +77,7 @@ const config = MikuRuntime.config;
 
       try {
           const imageBuffer = await generateFakeATM(nama, bank)
-          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA ATM FALSA* 💕\n\n✅ Nombre: ${nama}\n🏦 Bank: ${bank}\n\n💗 *Ai Miku:* ¡Qué saldo tan alto, darling~ 🗿` }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: imageBuffer, caption: `💕 *TARJETA ATM FALSA* 💕\n\n✅ Nombre: ${nama}\n🏦 Bank: ${bank}\n\n💗 *Ai Miku:* ¡Qué saldo tan alto, cariño~ 🗿` }, { quoted: m })
           m.react('✅')
       } catch (err) {
           m.react('💔')

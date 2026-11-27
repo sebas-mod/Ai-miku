@@ -22,7 +22,7 @@ async function handler(m) {
   await m.reply(
     `╭─❖「 🎭 *MIKU ROLEPLAY ACTIONS* 」\n` +
       `│ 🤗 \`${p}hug @user\` — Peluk hangat\n` +
-      `│ 🥰 \`${p}pat @user\` — Elus kepala\n` +
+      `│ 🥰 \`${p}pat @user\` — Acaricia la cabeza\n` +
       `│ 💋 \`${p}kiss @user\` — Cium manis\n` +
       `│ 🫶 \`${p}cuddle @user\` — Manja bareng\n` +
       `│ 👉 \`${p}poke @user\` — Colek jahil\n` +

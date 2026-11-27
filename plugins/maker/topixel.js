@@ -107,7 +107,7 @@ const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
     } else if (m.message) {
       const type = m.mtype;
       if (!type || type !== "imageMessage") {
-        return m.reply(`👾 *PIXEL ART MAKER*\n\nEnvía o responde a una foto con el comando \`${m.prefix}topixel [level]\` para convertir tu foto en estilo pixel art retro!\n\n_Nota: el nivel es opcional, de 1 a 40 (cuanto mayor, más pixelado)._`);
+        return m.reply(`👾 *PIXEL ART MAKER*\n\nEnvía o responde a una foto con el comando \`${m.prefix}topixel [nivel]\` para convertir tu foto en estilo pixel art retro!\n\n_Nota: el nivel es opcional, de 1 a 40 (cuanto mayor, más pixelado)._`);
       }
       media = await m.download();
     }
@@ -123,7 +123,7 @@ const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
         m.chat,
         {
           image: pixelatedBuffer,
-          caption: `👾 *¡PIXEL ART CREADO!*\n\nAquí tienes tu foto en estilo pixel art retro de 8 bits. ¿A que mola?`
+          caption: `👾 *¡PIXEL ART CREADO!*\n\nAquí tienes tu foto en estilo pixel art retro de 8 bits. ¿A qué mola?`
         },
         { quoted: m }
       );

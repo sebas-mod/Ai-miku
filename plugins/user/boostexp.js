@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   if (now - last < COOLDOWN_MS) {
     const rem = Math.ceil((COOLDOWN_MS - (now - last)) / 60000);
     return m.reply(
-      `╭─── ❖ 『 ⏳ *ISTIRAHAT LATIHAN* 』 ❖\n` +
+      `╭─── ❖ 『 ⏳ *DESCANSO DE ENTRENAMIENTO* 』 ❖\n` +
       `│ ✦ Tu energía espiritual aún se está recuperando.\n` +
       `│ ⏱️ *Espera:* *${rem} ¡Quedan minutos* para el siguiente ejercicio!\n` +
       `╰──────────────────────────❖`

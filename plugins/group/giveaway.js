@@ -511,7 +511,7 @@ async function handler(m, { sock }) {
   if (deleteCmds.includes(cmd)) {
     if (!m.isAdmin && !m.isOwner) return m.reply("⚠️ ¡Solo administradores!");
     const giveawayId = args[0];
-    if (!giveawayId) return m.reply(`⚠️ Format: ${prefix}${cmd} GA-XXXXXX`);
+    if (!giveawayId) return m.reply(`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
 
     const giveaways = db.setting("giveaways") || {};
     if (!giveaways[giveawayId]) return m.reply("⚠️ ¡Sorteo no encontrado!");
@@ -525,7 +525,7 @@ async function handler(m, { sock }) {
   if (rerollCmds.includes(cmd)) {
     if (!m.isAdmin && !m.isOwner) return m.reply("⚠️ ¡Solo administradores!");
     const giveawayId = args[0];
-    if (!giveawayId) return m.reply(`⚠️ Format: ${prefix}${cmd} GA-XXXXXX`);
+    if (!giveawayId) return m.reply(`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
 
     const giveaways = db.setting("giveaways") || {};
     const giveaway = giveaways[giveawayId];

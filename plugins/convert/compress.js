@@ -66,7 +66,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
       m.chat,
       {
         image: out,
-        caption: `🗜️ *KOMPRES GAMBAR SELESAI*\n• COMIENZO: ${fmtKB(media.buffer.length)}\n• FIN: ${fmtKB(out.length)} (ECONÓMICO ${saved}%)`
+        caption: `🗜️ *IMAGEN COMPRIMIDA*\n• Antes: ${fmtKB(media.buffer.length)}\n• Después: ${fmtKB(out.length)} (Ahorro ${saved}%)`
       },
       { quoted: m }
     )

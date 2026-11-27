@@ -50,7 +50,7 @@ async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`⏰ *¿CUÁNDO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .kapan ¿cuándo me casaré?`);
+        return m.reply(`⏰ *¿CUÁNDO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n>.kapan ¿cuándo me casaré?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

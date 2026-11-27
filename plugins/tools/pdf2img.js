@@ -89,7 +89,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
       try {
           const pdfBuffer = await extractMediaBuffer(qmsg, client);
           if (!pdfBuffer) {
-              return reply(`❌ *${toSmallCaps('Gagal mengunduh dokumen PDF!')}*`);
+              return reply(`❌ *${toSmallCaps('¡No se pudo descargar el documento PDF!')}*`);
           }
 
           fs.writeFileSync(tempPdfPath, pdfBuffer);
@@ -166,7 +166,7 @@ const { downloadMediaMessage } = (await import('@rexxhayanasi/elaina-baileys'))
       } catch (e) {
           console.error('[PDF2IMG ERROR]', e);
           if (fs.existsSync(tempPdfPath)) fs.unlinkSync(tempPdfPath);
-          reply(`❌ *${toSmallCaps('Terjadi kesalahan saat mengekstrak PDF:')}* ${e.message}`);
+          reply(`❌ *${toSmallCaps('Ocurrió un error al extraer el PDF:')}* ${e.message}`);
       }
   };
 

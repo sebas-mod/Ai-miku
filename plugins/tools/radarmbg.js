@@ -216,7 +216,7 @@ const pluginConfig = {
       try {
           return reply(await a.run(arg))
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil data'}`)
+          return reply(`❌ ${e.message || 'No se pudieron obtener los datos'}`)
       }
   }
 

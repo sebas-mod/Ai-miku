@@ -73,7 +73,7 @@ const pluginConfig = {
 
       await m.reply(
         `╭─── ୨୧ ESTIMASI JARAK ୨୧ ───╮\n` +
-        `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა rute perjalanan!\n` +
+        `│ ૮₍˶ᵔ ᵕ ᵔ˶₎ა ruta de viaje!\n` +
         `╰────────────────────────────╯\n\n` +
         `🚩 Asal     : *${res1.data[0].display_name.split(',')[0]}*\n` +
         `🏁 Tujuan   : *${res2.data[0].display_name.split(',')[0]}*\n` +

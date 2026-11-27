@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
       text:
         `╭─❖「 ❌⭕ *TIC-TAC-TOE — MIKU* 」\n` +
         `${renderTTTBoard(session.board)}\n` +
-        `├───〔 *PEMAIN* 〕\n` +
+        `├───〔 *JUGADORES* 〕\n` +
         `│ ❌ : @${m.sender.split("@")[0]}\n` +
         `│ ⭕ : ${isAI ? "🤖 Miku AI" : `@${opponent.split("@")[0]}`}\n` +
         `╰─────────────────────❖\n` +

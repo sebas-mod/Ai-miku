@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
         })
       : "-";
     return m.reply(
-      `╭─── ❖ 『 ✅ *SUDAH TERDAFTAR* 』 ❖\n` +
+      `╭─── ❖ 『 ✅ *YA REGISTRADO* 』 ❖\n` +
         `│ ✦ ¡Tu cuenta está registrada con *Ai Miku*!\n` +
         `│ 👤 *Nombre:* ${user.regName || user.name || m.pushName || "Petualang"}\n` +
         `│ 🎂 *Edad:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +

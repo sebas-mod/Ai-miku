@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
     if (!imageSource?.download) {
         return m.reply(
             `❌Hay que enviar fotos.\n\n` +
-            `Enviar foto + pie de foto \`${m.prefix}lo llamó ${waktu}/${nama}\` ` +
+            `Enviar foto + pie de foto \`${m.prefix}calledit ${waktu}/${nama}\` ` +
             `o responder a la foto y luego enviar el pedido.`
         )
     }

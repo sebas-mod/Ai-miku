@@ -50,7 +50,7 @@ async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`🤔 *¿POR QUÉ?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .mengapa ¿por qué el cielo es azul?`);
+        return m.reply(`🤔 *¿POR QUÉ?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n>.mengapa ¿por qué el cielo es azul?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

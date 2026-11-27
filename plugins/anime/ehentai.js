@@ -99,7 +99,7 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
           const extra = [first(g, 'category'), first(g, 'filecount', 'pages') && `${first(g, 'filecount', 'pages')}p`, first(g, 'rating')].filter(Boolean).join(' • ')
           return `${i + 1}. ${clip(title)}${extra ? `\n   ${extra}` : ''}\n   ${link}`
         })
-        return m.reply(`*HASIL: ${input}*\n━━━━━━━━━━━━━━━━\n${lines.join('\n\n')}\n\nEnvía el enlace de la galería con.ehentai <url> para ver la imagen.`)
+        return m.reply(`*RESULTADOS: ${input}*\n━━━━━━━━━━━━━━━━\n${lines.join('\n\n')}\n\nEnvía el enlace de la galería con.ehentai <url> para ver la imagen.`)
       }
 
       const data = await getEhentai({ url: input, max_images: n })

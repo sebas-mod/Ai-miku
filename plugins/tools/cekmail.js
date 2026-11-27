@@ -36,7 +36,7 @@ const pluginConfig = {
       if (!messages.length) return reply('📭 Todavía no hay mensajes recibidos.')
 
       let out = `📥 *Mensajes recibidos*\n📫 Correo: ${mailbox}\n\n`
-      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(Tanpa Subjek)'}\n📩 ID: ${v.id}`).join('\n\n')
+      out += messages.map((v, i) => `🔹 *${i + 1}*. ${v.subject || '(Sin asunto)'}\n📩 ID: ${v.id}`).join('\n\n')
       return reply(out + `\n\nPara leer un mensaje: *${prefix}pesanmail <id>*`)
   }
 

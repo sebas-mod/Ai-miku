@@ -63,7 +63,7 @@ async function handler(m, { sock, plugins }) {
     if (cleanArgs.length < 2) {
       return m.reply(
         `⚠️ *Formato incorrecto*\n\n` +
-          `Format: \`${m.prefix}addakses <command> <durasi> <target>\`\n\n` +
+          `Formato: \`${m.prefix}addakses <command> <durasi> <target>\`\n\n` +
           `*Ejemplo:*\n` +
           `> \`${m.prefix}addakses addowner 30d @user\` (30 días)\n` +
           `> \`${m.prefix}addakses unban permanent @user\` (Selamanya)\n\n` +

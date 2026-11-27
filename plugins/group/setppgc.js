@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
     try {
         await sock.updateProfilePicture(m.chat, buffer)
         await m.reply(
-            `✅ ¡La foto del grupo se ha actualizado!`
+            `✅ ¡La foto del Grupo se ha actualizado!`
         )
     } catch (error) {
         await m.reply(

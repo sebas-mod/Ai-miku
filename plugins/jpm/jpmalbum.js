@@ -65,7 +65,7 @@ const pluginConfig = {
 
       if (act === 'add') {
           const media = await getMedia(m)
-          if (!media) return reply(`❌ Respondedor de foto/vídeo *${prefix}jpmalbum agregar*.`)
+          if (!media) return reply(`❌ Respondió a fotos/vídeos *${prefix}jpmalbum agregar*.`)
           if (buf().length >= MAX) return reply(`❌ Album penuh (maks ${MAX} medios de comunicación).`)
           buf().push(media)
           return reply(`✅ Medios agregados. Cola de álbumes: ${buf().length}/${MAX}\nEnviar con *${prefix}jpmalbum <título>*`)
@@ -76,18 +76,18 @@ const pluginConfig = {
       const list = [...buf()]
       const quoted = await getMedia(m)
       if (quoted && !list.length) list.push(quoted)
-      if (!list.length) return reply(`*▢ JPM ALBUM*\n\n1. Lo último en respuesta de foto/vídeo *${prefix}jpmalbum add* (repetir por medio)\n2. Enviar: *${prefix}jpmalbum <título>*\n\nO responder a un medio directamente con *${prefix}jpmalbum <título>*.`)
+      if (!list.length) return reply(`*▢ JPM ALBUM*\n\n1. Lo más importante en respuesta a fotos/vídeos *${prefix}jpmalbum add* (repetir por medio)\n2. Enviar: *${prefix}jpmalbum <título>*\n\nO responder a un medio directamente con *${prefix}jpmalbum <título>*.`)
       if (global.__jpmRunning) return reply('❌ JPM se está ejecutando. Escriba *stopjpm* para detener.')
 
       const caption = [first, ...rest].join(' ').trim()
       const groups = await jpmGroups(sock)
       if (!groups.length) return reply('❌ No hay grupos a los que acudir.')
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM ALBUM*\n• Medios: ${list.length}\n• Objetivos: ${groups.length} grupo\n• Demora: ${delay}EM\n\nPara con *stopjpm*`)
+      await reply(`*▢ JPM ALBUM*\n• Medios: ${list.length}\n• Objetivos: ${groups.length} grupo\n• Retardo: ${delay}ms\n\nPara con *stopjpm*`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => sendAlbum(sock, g.id, list, caption))
       global.__jpmAlbum = []
-      return reply(`*▢ JPM ALBUM SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+      return reply(`*▢ JPM ÁLBUM TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

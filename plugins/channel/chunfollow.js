@@ -33,7 +33,7 @@ const pluginConfig = {
           return reply(`✅ Dejar de seguir canales: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chunfollow:', err.message)
-          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nContoh: ${prefix || '.'}chunfollow <link saluran>`}`)
+          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nEjemplo: ${prefix || '.'}chunfollow <link saluran>`}`)
       }
   }
 

@@ -62,11 +62,11 @@ const pluginConfig = {
       if (!channels.length) return reply('❌ No se encontraron canales / bot no ha seguido ningún canal.')
 
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM CHANNEL*\n• Objetivos: ${channels.length} canales\n• Tipo: ${media ? 'Media + Teks' : 'Teks'}\n• Demora: ${delay}EM\n\nPara con *stopjpm*`)
+      await reply(`*▢ JPM CHANNEL*\n• Objetivos: ${channels.length} canales\n• Tipo: ${media ? 'Media + Texto' : 'Texto'}\n• Retardo: ${delay}ms\n\nPara con *stopjpm*`)
 
       const { ok, fail } = await jpmLoop(channels, delay, ch =>
           sock.sendMessage(ch.id, media ? mediaContent(media, text) : { text }))
-      return reply(`*▢ JPM CHANNEL SELESAI*\n• Tener éxito: ${ok} canales\n• Fallar: ${fail} canales`)
+      return reply(`*▢ JPM CANAL TERMINADO*\n• Correctos: ${ok} canales\n• Fallidos: ${fail} canales`)
   }
 
 export { pluginConfig as config, handler }

@@ -71,7 +71,7 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
 
   if (!content || !content.trim()) {
     return m.reply(
-      `📄 *UBAH TEKS KE FILE DOKUMEN*\n\n` +
+      `📄 *CONVERTIR TEXTO EN DOCUMENTO*\n\n` +
       `• Responder mensajes de texto con \`${usedPrefix + command} nombre de archivo.js\`\n` +
       `• O escriba \`${usedPrefix + command} nombre de archivo.txt <texto del contenido>\``
     )

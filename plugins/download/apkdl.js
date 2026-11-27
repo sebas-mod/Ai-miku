@@ -89,7 +89,7 @@ const pluginConfig = {
           if (icon) await sock.sendMessage(m.chat, { image: { url: icon }, caption }, { quoted: m }).catch(() => reply(caption))
           else await reply(caption)
 
-          if (size && size > MAX_SEND) return reply(`⚠️ El archivo es demasiado grande para enviarlo por chat (${fmtBytes(size)}).\nDescarga manual:\n${meta.file.path}`)
+          if (size && size > MAX_SEND) return reply(`⚠️ El archivo es demasiado grande para enviarlo por chat (${fmtBytes(size)}).\nDescargar manualmente:\n${meta.file.path}`)
           return sock.sendMessage(m.chat, {
               document: { url: meta.file.path },
               fileName: `${(gp?.title || meta.name).replace(/[\\/:*?"<>|]/g, '')}_${meta.file.vername || ''}.apk`,

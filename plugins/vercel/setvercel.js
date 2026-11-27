@@ -38,7 +38,7 @@ async function handler(m) {
     await m.react("✅");
     await m.reply(
       `╭─❖「 ▲ *VERCEL TOKEN TERVERIFIKASI* 」\n` +
-      `│ 👤 Akun  : *${u.name || u.username || "-"}*\n` +
+      `│ 👤 Cuenta: *${u.name || u.username || "-"}*\n` +
       `│ 📧 Email : ${u.email || "-"}\n` +
       `│ ✅ Status: Tersimpan ke akunmu (\`.mytoken\`)\n` +
       `╰─────────────────────❖`

@@ -47,7 +47,7 @@ async function handler(m) {
   if (!unlockedMilestones.length) {
     const nextMilestone = (Math.floor(level / 5) + 1) * 5;
     return m.reply(
-      `╭─── ❖ 『 📦 *PETI MILESTONE LEVEL* 』 ❖\n` +
+      `╭─── ❖ 『 📦 *COFRE DE HITO DE NIVEL* 』 ❖\n` +
       `│ ✦ Tu nivel: *Lv.${level}*\n` +
       `│ ✦ ¡Has reclamado todos los cofres de hitos disponibles!\n` +
       `│ 🎯 *Próximo objetivo de cofre:* *Lv.${nextMilestone}* (No es suficiente ${nextMilestone - level} nivel de nuevo)\n` +
@@ -81,7 +81,7 @@ async function handler(m) {
 
   await m.react("🎁");
   return m.reply(
-    `╭─── ❖ 『 🎁 *KLAIM MILESTONE BERHASIL!* 』 ❖\n` +
+    `╭─── ❖ 『 🎁 *¡HITO RECLAMADO!* 』 ❖\n` +
     `│ 👤 *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
     `│ 🎖️ *Pangkat:* ${rank.title} (Lv.${level})\n` +
     `│ 🔓 *Milestone Diklaim:* Lv.${unlockedMilestones.join(", Lv.")}\n` +

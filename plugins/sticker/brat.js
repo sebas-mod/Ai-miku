@@ -134,7 +134,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
           buttons: [
             {
               type: "list",
-              text: "Pilih Brat",
+              text: "Seleccione Brat",
               sections: BRAT_SECTIONS.map((sec) => ({
                 title: sec.title,
                 rows: sec.rows.map((item) => ({

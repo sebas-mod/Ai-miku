@@ -37,7 +37,7 @@ async function handler(m) {
   const user = db.getUser(m.sender) || db.setUser(m.sender);
   const bet = Math.max(0, Math.min(50000, parseInt(args[1], 10) || 0));
   if (bet > 0 && (user?.koin || 0) < bet) {
-    return m.reply(`❌ ¡No tienes suficientes monedas! Saldo: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Balance: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   const botPick = CHOICES[Math.floor(Math.random() * CHOICES.length)];

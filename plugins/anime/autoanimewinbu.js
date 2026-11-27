@@ -108,7 +108,7 @@ const isRunning = MikuRuntime.isRunning;
               await m.reply('🔍 Mengecek anime terbaru...')
               try {
                   await runCheck()
-                  return m.reply('✅ Pengecekan selesai')
+                  return m.reply('✅ Comprobación completa')
               } catch (e) {
                   m.reply(te(m.prefix, m.command, m.pushName))
               }

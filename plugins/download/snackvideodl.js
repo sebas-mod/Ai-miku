@@ -49,7 +49,7 @@ const te = MikuRuntime.te;
           const data = await snackvideo(url)
 
           if (!data?.status || !data?.result?.videoUrl) {
-              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const result = data.result

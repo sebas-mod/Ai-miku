@@ -33,7 +33,7 @@ const pluginConfig = {
           return reply(`✅ Bisu saluran dibuka: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chunmute:', err.message)
-          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nContoh: ${prefix || '.'}chunmute <link saluran>`}`)
+          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nEjemplo: ${prefix || '.'}chunmute <link saluran>`}`)
       }
   }
 

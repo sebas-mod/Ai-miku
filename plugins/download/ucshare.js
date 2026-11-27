@@ -329,9 +329,9 @@ const pluginConfig = {
 
           const file = share.files.find(f => f.no === no)
           if (!file) return reply(`❌ El número ${no} no existe. Elige entre 1 y ${share.files.length}.`)
-          if (!file.is_video) return reply('❌ Ese archivo no es un video.')
+          if (!file.is_video) return reply('❌ Ese archivo no es un vídeo.')
           if (!file.fid) return reply('❌ No se puede obtener este video (faltan datos del archivo en la página).')
-          if (!share.stoken) return reply('❌ Token de la página no encontrado, no se puede obtener el video.')
+          if (!share.stoken) return reply('❌ Token de la página no encontrado, no se puede obtener el vídeo.')
 
           const pv = await getVideoPreview(share, file)
           const sizeBytes = pv.size_bytes || file.size || 0
@@ -353,7 +353,7 @@ const pluginConfig = {
 
           const streamInfo = `🔗 Link stream:\n${pv.video_url}`
           if (sizeBytes && sizeBytes > MAX_SEND) {
-              return reply(`📎 El video pesa ${formatSize(sizeBytes)}, es demasiado grande para enviarlo por WhatsApp.\n\n${streamInfo}`)
+              return reply(`📎 El video mensaje ${formatSize(sizeBytes)}, es demasiado grande para enviarlo por WhatsApp.\n\n${streamInfo}`)
           }
           if (/\.m3u8(\?|$)/i.test(pv.video_url)) {
               return reply(`📎 El video es un stream HLS y no se puede enviar directamente.\n\n${streamInfo}`)
@@ -375,7 +375,7 @@ const pluginConfig = {
               }, { quoted: m })
           } catch (e) {
               console.warn('[UCSHARE] kirim video gagal:', e.message)
-              return reply(`📎 El video no se puede enviar directamente.\n\n${streamInfo}`)
+              return reply(`📎 El vídeo no se puede enviar directamente.\n\n${streamInfo}`)
           }
       } catch (e) {
           console.error('[UCSHARE ERROR]', e)

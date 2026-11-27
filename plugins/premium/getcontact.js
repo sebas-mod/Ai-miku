@@ -330,7 +330,7 @@ async function handler(m, ctx = {}) {
       if (!result.verified) return m.reply(`❌ *No verificado*\n\n> ${result.message}`)
 
       return m.reply(
-        `✅ *BERHASIL VERIFIKASI!*\n\n` +
+        `✅ *¡VERIFICACIÓN CORRECTA!*\n\n` +
         `> 📱 Número: ${result.credentials.phoneNumber}\n` +
         `> 📅 Tanggal: ${result.credentials.validationDate}\n\n` +
         `Ahora puedes buscar datos de otras personas con el comando:\n` +

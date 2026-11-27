@@ -106,7 +106,7 @@ const te = MikuRuntime.te;
       if (!text.includes('/')) {
           return m.reply(
               `⚠️ *CÓMO USAR*\n\n` +
-              `Envía una foto con el texto:\n` +
+              `Envia una foto con el texto:\n` +
               `> \`${m.prefix}calledit <hora>/<nombre>\`\n\n` +
               `Ejemplo: \`${m.prefix}calledit 0.09/Jack\`\n\n` +
               `📷 La foto que envíes se colocará directamente en el círculo del perfil.`
@@ -124,7 +124,7 @@ const te = MikuRuntime.te;
       const imageSource = m.isImage ? m : (m.quoted?.isImage ? m.quoted : null)
       if (!imageSource?.download) {
           return m.reply(
-              `❌ Debes enviar una foto.\n\n` +
+              `❌Debes entorno para fotos.\n\n` +
               `Envía una foto con el texto \`${m.prefix}calledit ${waktu}/${nama}\` ` +
               `o responde a una foto y envía ese comando.`
           )

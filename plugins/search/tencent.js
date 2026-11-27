@@ -140,7 +140,7 @@ const pluginConfig = {
     } catch (e) {
       await reactTo(sock, m, '❌')
       const status = e.response?.status
-      return reply(`❌ ${status ? `Gagal mengambil data (HTTP ${status}).` : e.message}`)
+      return reply(`❌ ${status ? `No se pudieron obtener los datos (HTTP ${status}).` : e.message}`)
     }
   }
 

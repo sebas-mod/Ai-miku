@@ -38,7 +38,7 @@ const pluginConfig = {
           if (!targets.length) return reply('❌ Escribe JID grupo (que termina en @g.us), o usa este comando dentro de un grupo.')
           const baru = targets.filter(j => !list.includes(j))
           jpmSetBlacklist(false, [...list, ...baru])
-          return reply(`*▢ BLACKLIST JPM*\n• Agregado: ${baru.length} grupo\n• Ya disponible: ${targets.length - baru.length} grupo\n• Totales: ${list.length + baru.length} grupo`)
+          return reply(`*▢ BLACKLIST JPM*\n• Agregado: ${baru.length} grupo\n• Ya existían: ${targets.length - baru.length} grupo\n• Totales: ${list.length + baru.length} grupo`)
       }
       if (['del', 'remove', 'hapus'].includes(action)) {
           if (!targets.length) return reply('❌ Escribe JID grupo (que termina en @g.us), o usa este comando dentro de un grupo.')

@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
 
   if (!user?.isRegistered) {
     return m.reply(
-      `╭─── ❖ 『 🔒 *BELUM TERDAFTAR* 』 ❖\n` +
+      `╭─── ❖ 『 🔒 *NO REGISTRADO* 』 ❖\n` +
         `│ ✦ Aún no tienes Tarjeta de Identidad de Aventurero.\n` +
         `│ ✦ Tipo *${p}regístrese Nombre.Edad* para registrarse!\n` +
         `│ ✦ *Ejemplo:* \`${p}lista ${m.pushName || "Arthazy"}.19\`\n` +

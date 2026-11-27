@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
     const target = targetJid.split("@")[0];
     return m.reply(
       archive
-        ? `📁 *CHAT ARCHIVADO*\n\n > Objetivo: ${target}\n> Usa \`.arsip buka ${target}\` para abrirlo`
+        ? `📁 *CHAT ARCHIVADO*\n\n > Objetivo: ${target}\n> Estados Unidos \`.arsip abierto ${target}\` para abrirlo`
         : `📂 *CHAT DESARCHIVADO*\n\n> Target: ${target}`,
     );
   } catch (err) {

@@ -78,7 +78,7 @@ async function handler(m, { sock, text }) {
         console.error('[iqc error]:', error);
         await m.react('❌');
         await m.reply(
-            `❌ *GAGAL MEMPROSES QUOTE*\n\n` +
+            `❌ *NO SE PUDO PROCESAR LA CITA*\n\n` +
             `Se produjo un error al crear IQC. Intente ejecutar la instalación npm y luego reinicie bot.`
         );
     }

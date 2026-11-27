@@ -49,7 +49,7 @@ const te = MikuRuntime.te;
           const data = await capcut(url)
 
           if (!data?.status || !data?.originalVideoUrl) {
-              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           await sock.sendMedia(m.chat, data.originalVideoUrl, null, m, {

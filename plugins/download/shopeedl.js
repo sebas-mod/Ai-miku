@@ -55,7 +55,7 @@ import fetch from 'node-fetch'
     const url = m.args[0] || m.text?.trim();
 
     if (!url || !url.includes("shopee")) {
-      return m.reply("❌ Envía un enlace de video de Shopee válido.\n\nEjemplo: `.shopeedl https://shopee.co.id/...`");
+      return m.reply("❌ Envía un enlace de vídeo de Shopee válido.\n\nEjemplo: `.shopeedl https://shopee.co.id/...`");
     }
 
     await m.react("🕕");
@@ -64,7 +64,7 @@ import fetch from 'node-fetch'
       const data = await extract(url);
       if (!data || !data.streams_array || data.streams_array.length === 0) {
         await m.react("❌");
-        return m.reply("⚠️ No se pudo extraer el video. Comprueba que el enlace de Shopee sea correcto y público.");
+        return m.reply("⚠️ No se pudo extraer el vídeo. Comprueba que el enlace de Shopee sea correcto y público.");
       }
 
       const best = bestStream(data.streams_array);
@@ -84,7 +84,7 @@ import fetch from 'node-fetch'
     } catch (error) {
       console.error("[Shopee DL]", error.message);
       await m.react("☢");
-      m.reply("😔 Error al descargar el video de Shopee.");
+      m.reply("😔 Error al descargar el vídeo en Shopee.");
     }
   }
 

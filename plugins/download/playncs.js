@@ -119,7 +119,7 @@ const pluginConfig = {
           }, { quoted: m })
       } catch (e) {
           console.error('[NCS] kirim:', e)
-          await m.reply('🍬 Error al enviar el archivo de audio.\nEnlace manual:\n' + info.downloadUrl)
+          await m.reply('🍬 Error con el enlace y el archivo de audio.\nEnlace Manual:\n' + info.downloadUrl)
       }
   }
 

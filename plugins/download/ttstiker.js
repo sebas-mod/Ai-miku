@@ -310,7 +310,7 @@ const pluginConfig = {
 
       if (!stickers.length) {
         await m.react('❌')
-        return m.reply(`No se encontraron stickers en los comentarios analizados (${scanned} comentarios). Prueba con otro video.`)
+        return m.reply(`No se encontraron stickers en los comentarios analizados (${scanned} comentarios). Prueba con otro vídeo.`)
       }
 
       const bufs = []

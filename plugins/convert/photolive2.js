@@ -59,7 +59,7 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
       const sisa = Math.ceil((SESSION_TTL - (Date.now() - session.timestamp)) / 60000)
       return m.reply(
         `✅ *Paso 1 completado* — La imagen de portada se ha guardado.\n\n` +
-        `Ahora envía o responde un *video* con el comando *${p}*\n` +
+        `Ahora envia o responde un *video* con el comando *${p}*\n` +
         `_(La sesión termina en ${sisa} minuto)_`
       )
     }

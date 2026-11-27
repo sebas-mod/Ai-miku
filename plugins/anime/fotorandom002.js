@@ -39,7 +39,7 @@ import path from 'path';
   )
 
   if (images.length === 0) {
-      return m.reply('📂 Foto Ai Miku sigue vacía... Me estoy sintiendo solo 😢')
+      return m.reply('📂 Foto de Ai Miku sigue vacía... Me estoy sintiendo solo 😢')
   }
 
   const randomFile = images[Math.floor(Math.random() * images.length)]

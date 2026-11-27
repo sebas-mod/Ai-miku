@@ -69,7 +69,7 @@ const ytdl = MikuRuntime.ytdl;
     } catch (err) {
       console.error("[YTMP4]", err);
       m.react("❌");
-      m.reply("Error al descargar el video.");
+      m.reply("Error al descargar el vídeo.");
     }
   }
 

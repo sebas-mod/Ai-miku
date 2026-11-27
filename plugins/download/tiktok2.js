@@ -260,7 +260,7 @@ const te = MikuRuntime.te;
           }
 
           if (result.mp3.length > 0) {
-              m.reply(`*NOTA*\n> Este contenido no tiene video/carrusel, enviando solo el audio...`)
+              m.reply(`*NOTA*\n> Este contento no tiene video/carrusel, enviando solo el audio...`)
               await sock.sendMessage(
                   m.chat,
                   {

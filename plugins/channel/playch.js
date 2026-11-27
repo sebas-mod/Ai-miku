@@ -118,7 +118,7 @@ const pluginConfig = {
           })
 
           await reply(
-              '*AUDIO BERHASIL DIKIRIM KE SALURAN!*\n' +
+              '*¡AUDIO ENVIADO AL CANAL!*\n' +
               '----------------------------------------\n' +
               `*Título:* ${dl.title || first.title}\n` +
               `*Channel:* ${first.author?.name || channelName}\n` +

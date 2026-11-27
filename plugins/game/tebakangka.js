@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   });
 
   await m.reply(
-    `╭─❖「 🎯 *TEBAK ANGKA — MIKU* 」\n` +
+    `╭─❖「 🎯 *ADIVINA EL NÚMERO — MIKU* 」\n` +
       `│ 🔢 Rango    : *1 a 100*\n` +
       `│ 🎲 Kesempatan : *8 percobaan*\n` +
       `│ 💰 Premio   : Hasta *+5.000 monedas*\n` +

@@ -44,7 +44,7 @@ const JHICog = MikuRuntime.JHICog;
       return m.reply(
         `📸 *INSTAGRAM DESCARGADOR*\n\n` +
           `> \`${m.prefix}instagramdl <url>\`\n` +
-          `> \`${m.prefix}instagramdl <username> [mode]\`\n\n` +
+          `> \`${m.prefix}instagramdl <nombre de usuario> [modo]\`\n\n` +
           `*EJEMPLO:*\n` +
           `> \`${m.prefix}instagramdl https://www.instagram.com/reel/xxx\`\n` +
           `> \`${m.prefix}instagramdl jkt48.fiony stories\`\n\n` +

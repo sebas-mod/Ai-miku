@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
 
   if (!user?.isRegistered) {
     return m.reply(
-      `╭─── ❖ 『 ⚠️ *BELUM TERDAFTAR* 』 ❖\n` +
+      `╭─── ❖ 『 ⚠️ *NO REGISTRADO* 』 ❖\n` +
         `│ ✦ Tu cuenta aún no está registrada en el sistema.\n` +
         `│ ✦ Tipo *${p}Regístrese Nombre.Edad* para registrarse.\n` +
         `╰──────────────────────────❖`
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
   if (!expectedSn || inputSn.toUpperCase() !== expectedSn.toUpperCase()) {
     return m.reply(
-      `╭─── ❖ 『 ❌ *SERIAL NUMBER SALAH* 』 ❖\n` +
+      `╭─── ❖ 『 ❌ *NÚMERO DE SERIE INCORRECTO* 』 ❖\n` +
         `│ ✦ SN que ingresaste no coincide con tu cuenta.\n` +
         `│ 🔎 Escribe *${p}marque* para ver su número de serie correcto.\n` +
         `╰──────────────────────────❖`
@@ -100,7 +100,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `╭─── ❖ 『 🗑️ *UNREGISTER BERHASIL* 』 ❖\n` +
+    `╭─── ❖ 『 🗑️ *DESREGISTRO COMPLETADO* 』 ❖\n` +
       `│ ✦ Datos de registro *${oldName}* ha sido eliminado.\n` +
       `│ 🔑 *SN Terverifikasi:* \`${expectedSn}\`\n` +
       `│ ✦ Tu progreso de nivel y tus monedas se mantienen seguros.\n` +

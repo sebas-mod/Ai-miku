@@ -123,7 +123,7 @@ module.exports = {
       const html = await loadHtml()
       await sendHtmlCard(sock, m, html, 'Mini Chess Live', '♟️')
     } catch (e) {
-      reply(`❌ Gagal memuat rich: ${e.message}`)
+      reply(`❌ No se pudo cargar rico: ${e.message}`)
     }
   },
 }

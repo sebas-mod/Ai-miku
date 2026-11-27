@@ -928,7 +928,7 @@ const pluginConfig = {
         const avail = (d.available || []).map(o => o.quality).filter(Boolean)
         const link = r.direct_url || r.final_url || (r.links && r.links[0]) || ''
         if (!link) {
-          return reply(`El enlace de descarga aún no está disponible.${r.note ? `\n${r.note}` : ''}${avail.length ? `\nKualitas tersedia: ${avail.join(', ')}` : ''}`)
+          return reply(`El enlace de descarga aún no está disponible.${r.note ? `\n${r.note}` : ''}${avail.length ? `\nCalidades disponibles: ${avail.join(', ')}` : ''}`)
         }
 
         const info =

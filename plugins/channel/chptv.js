@@ -38,7 +38,7 @@ const pluginConfig = {
       if (!media || !/webp|image|video|gif|viewOnce/.test(media.mime)) {
           return reply(
               `⭕ *REDONDO VIDEO (PTV) AL CANAL*\n\n` +
-              `Contestador de foto/vídeo:\n` +
+              `Concursantes de fotografía/vídeo:\n` +
               `${p}${cmd} → ke saluran bawaan (.setch)\n` +
               `${p}${cmd} <id@newsletter / link saluran>\n\n` +
               `Ejemplo:\n${p}${cmd} 120363xxxxxxxxxxxxxxx@newsletter`

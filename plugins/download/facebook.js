@@ -96,7 +96,7 @@ const pluginConfig = {
 
       await conn.sendMessage(m.chat, { video: buffer, caption: `📥 Descarga de Facebook\nCalidad: ${results[0].quality}` }, { quoted: m });
     } catch (e) {
-      m.reply("❌ Error al descargar el video: " + e.message);
+      m.reply("❌ Error al descargar el vídeo: " + e.message);
     }
   };
 

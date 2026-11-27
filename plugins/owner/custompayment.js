@@ -46,11 +46,11 @@ async function handler(m) {
 
   if (input.toLowerCase() === 'reset') {
     db.setting('customPaymentText', '')
-    return m.reply('✅ Teks custom payment direset ke default.')
+    return m.reply('✅ El texto de pago personalizado se restablece a los valores predeterminados.')
   }
 
   db.setting('customPaymentText', input)
-  return m.reply(`✅ Teks custom payment disimpan!\n\nPreview:\n${input}`)
+  return m.reply(`✅ ¡Se guarda el texto de pago personalizado!\n\nPreview:\n${input}`)
 }
 
 export { pluginConfig as config, handler }

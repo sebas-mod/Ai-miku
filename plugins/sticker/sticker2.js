@@ -598,7 +598,7 @@ async function handler(m, { sock, config: botConfig }) {
       );
     }
     return m.reply(
-      `❌ No se pudo crear pegatinas de video con sonido.\n> _${msg || "Terjadi kesalahan saat memproses video."}_`
+      `❌ No se pudo crear pegatinas de video con sonido.\n> _${msg || "Ocurrió un error al procesar el vídeo."}_`
     );
   } finally {
     await fs.unlink(inPath).catch(() => {});

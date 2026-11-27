@@ -60,7 +60,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'blur'
 
     await client.sendMessage(
       m.chat,
-      { image: out, caption: `🌫️ *Efek Blur Selesai* (Intensitas: ${level})` },
+      { image: out, caption: `🌫️ *Efecto de desenfoque completado* (Intensidad: ${level})` },
       { quoted: m }
     )
     await m.react('✅')

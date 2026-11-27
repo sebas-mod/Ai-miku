@@ -223,7 +223,7 @@ async function handler(m, { sock, db }) {
   }
 
   if (action === "pesan") {
-    return m.reply(`⚠️ El comando \`pesan\` está obsoleto y se sustituyó por el sistema aleatorio.\nUsa \`${m.prefix}autosambut add <texto>\` para añadir un saludo, o \`${m.prefix}autosambut list\` para ver la lista de saludos.`);
+    return m.reply(`⚠️ El comando \`message\` está obsoleto y se sustituyó por el sistema aleatorio.\nUsa \`${m.prefix}autosambut add <texto>\` para añadir un saludo, o \`${m.prefix}autosambut list\` para ver la lista de saludos.`);
   }
 
   return m.reply(`Comando no válido. Prueba a escribir \`${m.prefix}autosambut\` sin nada más para ver la guía.`);

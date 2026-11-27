@@ -468,7 +468,7 @@ const pluginConfig = {
 
       if (!isOwner) {
           const left = (cooldowns.get(m.sender) || 0) - Date.now()
-          if (left > 0) return reply(`⏳ Tunggu ${Math.ceil(left / 1000)} detik lagi sebelum clone website berikutnya.`)
+          if (left > 0) return reply(`⏳ Espera ${Math.ceil(left / 1000)} Quedan segundos antes del próximo clon del sitio web.`)
       }
       if (running >= MAX_RUNNING) return reply('⏳ El bot está clonando otra web. Inténtalo de nuevo en un momento.')
 
@@ -529,7 +529,7 @@ const pluginConfig = {
           console.error('[CLONESITE ERROR]', e?.message || e)
           await reactTo(sock, m, '❌')
           cooldowns.delete(m.sender)
-          reply(`❌ Gagal clone website: ${e?.message || e}`)
+          reply(`❌ No se pudo clonar el sitio web: ${e?.message || e}`)
       } finally {
           running--
       }

@@ -321,7 +321,7 @@ async function handler(m, { sock }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nLo sentimos, se produjo un error al intentar crear una imagen de Historia IG. Asegúrate de que la imagen enviada sea válida y vuelve a intentarlo en unos momentos.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo sentimos, se produjo un error al intentar crear una imagen de Historia IG. Asegúrate de que la imagen enviada sea válida y vuelve a intentarlo en unos momentos.`);
     }
 }
 

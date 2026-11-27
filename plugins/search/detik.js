@@ -72,7 +72,7 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, prefix, command }) {
       const input = String(text || '').trim() || m.quoted?.text?.match(/https?:\/\/\S*detik\.com\S*/i)?.[0] || ''
       const p = prefix + command
-      if (!input) return reply(`📰 *DETIK.COM*\n\n${p} buscar <palabra>\n${p} el último\n${p} popular\n${p} <enlace del artículo>`)
+      if (!input) return reply(`📰 *DETIK.COM*\n\n${p} cari <palabra>\n${p} terkini\n${p} populer\n${p} <enlace del artículo>`)
 
       const [a, ...rest] = input.split(/\s+/)
       const al = a.toLowerCase()
@@ -94,11 +94,11 @@ const pluginConfig = {
               return reply(rows.length ? fmtList('🔥 *TERPOPULER*', rows) : 'Sin noticias.')
           }
           const q = ['cari', 'search'].includes(al) ? rest.join(' ') : input
-          if (!q) return reply(`Formato: ${p} buscar <palabra>`)
+          if (!q) return reply(`Formato: ${p} cari <palabra>`)
           const rows = parseList(await get(`https://www.detik.com/search/searchall?query=${encodeURIComponent(q)}`), '.list-content__item')
           return reply(rows.length ? fmtList(`🔎 *RESULTADO"${q}"*`, rows) : `Sin resultados para "${q}".`)
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil berita'}`)
+          return reply(`❌ ${e.message || 'No se pudieron obtener las noticias'}`)
       }
   }
 

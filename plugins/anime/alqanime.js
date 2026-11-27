@@ -332,7 +332,7 @@ const pluginConfig = {
   		await sock.sendMessage(m.chat, { react: { text: '\u2728', key: m.key } }).catch(() => null);
 
   		const text = [
-  			'*ALQANIME AUTO UPDATE AKTIF*',
+  			'*ACTUALIZACIÓN AUTOMÁTICA DE ALQANIME ACTIVADA*',
   			'----------------------------------------',
   			'Este grupo ahora recibirá actualizaciones automáticas de anime de AlqAnime.',
   			'',
@@ -355,7 +355,7 @@ const pluginConfig = {
   		await sock.sendMessage(m.chat, { react: { text: '\u2728', key: m.key } }).catch(() => null);
 
   		const text = [
-  			'*ALQANIME AUTO UPDATE NONAKTIF*',
+  			'*ACTUALIZACIÓN AUTOMÁTICA DE ALQANIME DESACTIVADA*',
   			'----------------------------------------',
   			'Este grupo ha dejado de recibir actualizaciones automáticas.',
   			'',

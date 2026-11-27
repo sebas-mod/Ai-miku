@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
   const bet = Math.max(100, Math.min(50000, parseInt(m.text, 10) || 1000));
 
   if ((user?.koin || 0) < bet) {
-    return m.reply(`❌ ¡No tienes suficientes monedas! Saldo: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
+    return m.reply(`❌ ¡No tienes suficientes monedas! Balance: *${(user?.koin || 0).toLocaleString("id-ID")} monedas*`);
   }
 
   db.updateKoin(m.sender, -bet);
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
 
   setActiveGame(m.chat, session, 90000, async (cur) => {
     db.updateKoin(cur.player, cur.bet);
-    await sock.sendMessage(m.chat, { text: `⏰ Sesi *Blackjack* timeout. Taruhan *${cur.bet.toLocaleString("id-ID")} Koin* dikembalikan.` });
+    await sock.sendMessage(m.chat, { text: `⏰ Sesi *Blackjack* timeout. Taruhan *${cur.bet.toLocaleString("id-ID")} Se devuelven las monedas*.` });
   });
 
   await m.reply(

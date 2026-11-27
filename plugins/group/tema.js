@@ -418,7 +418,7 @@ async function handler(m, extra = {}) {
         : "Fondo desde URL";
     } else {
       return reply(
-        `Formato no reconocido~ Usa un código hex (\`#ff69b4\`), un nombre de color (\`pink\`), responde con una foto o documento de imagen, o escribe \`${usedPrefix}${command} reset\``
+        `Formato no reconocido~ Usa un coded hex (\`#ff69b4\`), un nombre de color (\`pink\`), responde con una foto o documento de imagen, o escribe \`${usedPrefix}${command} reset\``
       );
     }
 

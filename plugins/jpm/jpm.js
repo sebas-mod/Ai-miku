@@ -36,12 +36,12 @@ const pluginConfig = {
 
       const groups = await jpmGroups(sock)
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ PROSES JPM*\n• Grupo total: ${groups.length}\n• Tipo: ${media ? 'Media + Teks' : 'Teks'}\n• Demora: ${delay}EM`)
+      await reply(`*▢ ENVIANDO JPM*\n• Grupo total: ${groups.length}\n• Tipo: ${media ? 'Media + Texto' : 'Texto'}\n• Retardo: ${delay}ms`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g =>
           sock.sendMessage(g.id, media ? mediaContent(media, text) : { text }))
 
-      return reply(`*▢ JPM SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+      return reply(`*▢ JPM TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

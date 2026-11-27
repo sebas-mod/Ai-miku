@@ -122,7 +122,7 @@ const pluginConfig = {
     } catch (error) {
       console.error('[SMEME ERROR]', error?.message || error)
       await reactTo(sock, m, '❌')
-      return reply(`❌ ${error?.message || global.mess?.error || 'Terjadi kesalahan.'}`)
+      return reply(`❌ ${error?.message || global.mess?.error || 'Ocurrió un error.'}`)
     }
   }
 

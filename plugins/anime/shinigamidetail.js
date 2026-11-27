@@ -244,7 +244,7 @@ import axios from "axios";
     } catch (error) {
       console.error('Shinigamidetail Plugin Error:', error);
       if (typeof m.react === 'function') await m.react('❌');
-      await m.reply('❌ *GAGAL*\n\n> ' + (error.message || String(error)));
+      await m.reply('❌ *ERROR*\n\n> ' + (error.message || String(error)));
     }
   }
 

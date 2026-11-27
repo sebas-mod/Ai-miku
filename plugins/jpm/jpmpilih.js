@@ -40,7 +40,7 @@ const pluginConfig = {
 
           sessions()[sender] = { step: 'nomor', chat: jid, groups: groups.map(g => ({ id: g.id, name: g.subject || g.id })), at: Date.now() }
           const rows = groups.map((g, i) => `*${i + 1}.* ${g.subject || g.id}`).join('\n')
-          return reply(`*▢ JPM PILIH GRUP*\n• Totales: ${groups.length} grupo\n• Número de grupo de respuesta, separados por dos puntos/coma. Ejemplo: *1.2.3* o *1,2,3*\n• Escriba *cancelar* para cancelar\n\n${rows}`)
+          return reply(`*▢ ELEGIR GRUPO DE JPM*\n• Totales: ${groups.length} grupo\n• Número de grupo de respuesta, separados por dos puntos/coma. Ejemplo: *1.2.3* o *1,2,3*\n• Escriba *cancelar* para cancelar\n\n${rows}`)
       }
 
       if (!isOwner) return false
@@ -70,12 +70,12 @@ const pluginConfig = {
           delete sessions()[sender]
           const media = await getMedia(m)
           const delay = jpmCfg().delayJpm
-          await reply(`*▢ JPM DIMULAI*\n• Objetivos: ${st.picked.length} grupo\n• Demora: ${delay}EM`)
+          await reply(`*▢ JPM DIMULAI*\n• Objetivos: ${st.picked.length} grupo\n• Retardo: ${delay}ms`)
 
           const { ok, fail } = await jpmLoop(st.picked, delay, g =>
               sock.sendMessage(g.id, media ? mediaContent(media, input) : { text: input }))
 
-          return reply(`*▢ JPM SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+          return reply(`*▢ JPM TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
       }
 
       return false

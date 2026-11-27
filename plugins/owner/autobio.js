@@ -71,13 +71,13 @@ async function handler(m, { sock, db }) {
   if (option.startsWith("ganti_setiap")) {
     const timeStr = arg.replace(/ganti_setiap/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio ganti_setiap 30 segundos` o `1 hora`");
+      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio reemplazar_cada 30 segundos` o `1 hora`");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("❌ *Formato incorrecto*\n\nEscribe un número válido. Ejemplo: `.autobio ganti_setiap 30 segundos`");
+      return m.reply("❌ *Formato incorrecto*\n\nEscribe un número válido. Ejemplo: `.autobio reemplazar_cada 30 segundos`");
     }
 
     if (timeStr.includes("d") || timeStr.includes("detik")) ms = value * 1000;

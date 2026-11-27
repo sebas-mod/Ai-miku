@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
         await sock.removeProfilePicture(m.chat)
 
         await m.reply(
-            `✅ La foto del grupo ahora está vacía`
+            `✅ La foto del Grupo ahora está vacía`
         )
     } catch (error) {
         await m.reply(

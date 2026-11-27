@@ -37,7 +37,7 @@ const pluginConfig = {
 
       const groups = await jpmGroups(sock)
       const delay = jpmCfg().delayJpmTag
-      await reply(`*▢ PROSES JPM TAG*\n• Grupo total: ${groups.length}\n• Demora: ${delay}EM`)
+      await reply(`*▢ ENVIANDO JPM TAG*\n• Grupo total: ${groups.length}\n• Retardo: ${delay}ms`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => {
           const tag = tagList(g)
@@ -45,7 +45,7 @@ const pluginConfig = {
           return sock.sendMessage(g.id, media ? mediaContent(media, caption, tag.mentions) : { text: caption, mentions: tag.mentions })
       })
 
-      return reply(`*▢ JPM TAG SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+      return reply(`*▢ JPM TAG TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

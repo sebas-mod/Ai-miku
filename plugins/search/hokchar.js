@@ -193,7 +193,7 @@ const pluginConfig = {
       return reply(caption.trim())
     } catch (e) {
       await m.react('❌')
-      return reply(`❌ ${e.message || 'Terjadi kesalahan saat mencari karakter.'}`)
+      return reply(`❌ ${e.message || 'Ocurrió un error al buscar el personaje.'}`)
     }
   }
 

@@ -39,7 +39,7 @@ const pluginConfig = {
       const groups = await jpmGroups(sock)
       if (!groups.length) return reply('❌ No hay grupos a los que acudir.')
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM BASIC*\n• Objetivos: ${groups.length} grupo\n• Tipo: ${media ? 'Media + Teks' : 'Teks'}\n• Demora: ${delay}EM\n\nPara con *stopjpmbasic*`)
+      await reply(`*▢ JPM BASIC*\n• Objetivos: ${groups.length} grupo\n• Tipo: ${media ? 'Media + Texto' : 'Texto'}\n• Retardo: ${delay}ms\n\nPara con *stopjpmbasic*`)
 
       global.__jpmBasicRunning = true
       global.__jpmBasicStop = false
@@ -51,7 +51,7 @@ const pluginConfig = {
           global.__jpmBasicRunning = false
           global.__jpmBasicStop = false
       }
-      return reply(`*▢ JPM BASIC SELESAI*\n• Tener éxito: ${res.ok} grupo\n• Fallar: ${res.fail} grupo`)
+      return reply(`*▢ JPM BASIC TERMINADO*\n• Correctos: ${res.ok} grupo\n• Fallidos: ${res.fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

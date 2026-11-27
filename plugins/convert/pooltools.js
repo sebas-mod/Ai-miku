@@ -518,7 +518,7 @@ const specs = {
         jpegPages.push({ jpg, width: meta.width || 800, height: meta.height || 1000 })
       }
       const out = await buildPdfFromJpegsPure(jpegPages)
-      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF selesai dibuat: ${jpegPages.length} halaman • ${kit.fmtSize(out.length)}` }] }
+      return { documents: [{ buffer: out, name: `${nameArg(c, 'dokumen')}.pdf`, mime: 'application/pdf', caption: `✅ PDF completado: ${jpegPages.length} halaman • ${kit.fmtSize(out.length)}` }] }
     }
   },
   kolase: {
@@ -656,7 +656,7 @@ const specs = {
         (ins, o) => ['-i', ins[0], '-i', ins[1], '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart', o],
         240000
       )
-      return { video: out, caption: '🎧 Instalación de audio correctamente en vídeo.' }
+      return { video: out, caption: '🎧 Instalación de corrección de audio en video.' }
     }
   }
 }

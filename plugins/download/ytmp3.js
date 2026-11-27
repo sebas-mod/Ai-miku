@@ -80,7 +80,7 @@ const ytdl = MikuRuntime.ytdl;
     } catch (err) {
       console.error("[YTMP3]", err);
       m.react("❌");
-      m.reply("Error al descargar el audio.");
+      m.reply("Error al descargar audio.");
     }
   }
 

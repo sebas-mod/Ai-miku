@@ -25,7 +25,7 @@ async function handler(m) {
 
   const proj = sanitizeProjectName(m.text);
   if (!proj) {
-    return m.reply(`🗑️ ¡Escribe el nombre del proyecto de Vercel que quieres borrar!\n> Ejemplo: \`${m.prefix}vdelete web-lama\``);
+    return m.reply(`🗑️ ¡Escribe el nombre del proyecto de Vercel que quieres borrar!\n> Ejemplo: \`${m.prefix}vdelete web-antigua\``);
   }
 
   await m.react("🕕");

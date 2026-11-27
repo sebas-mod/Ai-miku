@@ -120,7 +120,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'hd' }) {
 
     await client.sendMessage(
       m.chat,
-      { image: outBuffer, caption: `✨ *PENINGKATAN KUALITAS GAMBAR*\n• MODO: ${modeLabel}\n_AI MIKU_` },
+      { image: outBuffer, caption: `✨ *MEJORA DE CALIDAD DE IMAGEN*\n• MODO: ${modeLabel}\n_AI MIKU_` },
       { quoted: m }
     )
     await m.react('✅')

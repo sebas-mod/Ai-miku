@@ -550,7 +550,7 @@ const specs = {
       if (rows.length < 2) throw fail('CSV minimal memiliki baris header dan 1 baris data.')
       const head = rows[0].map((h, i) => h.trim() || `kolom${i + 1}`)
       const data = rows.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ''])))
-      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} baris • ${head.length} kolom` }] }
+      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} filas • ${head.length} kolom` }] }
     }
   },
   json2csv: {
@@ -564,7 +564,7 @@ const specs = {
       const head = [...new Set(data.flatMap((o) => (o && typeof o === 'object' ? Object.keys(o) : [])))]
       if (!head.length) throw fail('El contenido de JSON debe ser un objeto.')
       const csv = [head.map(csvCell).join(','), ...data.map((o) => head.map((h) => csvCell(o?.[h])).join(','))].join('\r\n')
-      return { documents: [{ buffer: Buffer.from('\uFEFF' + csv), name: `${base(f.name)}.csv`, mime: 'text/csv', caption: `✅ ${data.length} baris • ${head.length} kolom (UTF-8 BOM)` }] }
+      return { documents: [{ buffer: Buffer.from('\uFEFF' + csv), name: `${base(f.name)}.csv`, mime: 'text/csv', caption: `✅ ${data.length} filas • ${head.length} columna (UTF-8 BOM)` }] }
     }
   },
   todoc: {

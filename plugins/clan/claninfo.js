@@ -74,7 +74,7 @@ const getDatabase = MikuRuntime.getDatabase;
 
       await m.reply(
           `${emblem} *${clan.name}*\n` +
-          `${rank} · Level ${clan.level || 1}\n\n` +
+          `${rank} · Niveles ${clan.level || 1}\n\n` +
           `EXP  ${bar}\n\n` +
           `┌ 👑 Leader · @${clan.leader.split('@')[0]}\n` +
           `├ 👥 Members · ${clan.members.length}/50\n` +

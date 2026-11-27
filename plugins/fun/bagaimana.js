@@ -50,7 +50,7 @@ async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`📋 *¿CÓMO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .bagaimana ¿cómo tener éxito?`);
+        return m.reply(`📋 *¿CÓMO?*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n>.bagaimana ¿cómo tener éxito?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

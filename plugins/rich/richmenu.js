@@ -561,7 +561,7 @@ async function handler(m, { sock }) {
     const fallback =
       `╭─── ❖ 『 🕹️ *MIKU RICH MENU* 』 ❖\n` +
       catList
-        .map((c) => `│ ${c.icon} *${c.name}* (${c.count} fitur)`)
+        .map((c) => `│ ${c.icon} *${c.name}* (${c.count} funciones)`)
         .join("\n") +
       `\n╰──────────────────────────❖`;
     await m.reply(fallback);

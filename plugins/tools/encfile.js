@@ -107,7 +107,7 @@ const pluginConfig = {
               document: output,
               mimetype: 'application/javascript',
               fileName: newName,
-              caption: `⚡ *HARD ENCRYPT ANTI-BYPASS BERHASIL* ⚡\n\n📁 Nombre del archivo: *${newName}*\n🔒 Estado: Reunión bloqueada\n\n— ${global.namebot || 'Ai Miku MD'}`
+              caption: `⚡ *CIFRADO FUERTE ANTI-BYPASS COMPLETADO* ⚡\n\n📁 Nombre del archivo: *${newName}*\n🔒 Estado: Bloqueo activado\n\n— ${global.namebot || 'Ai Miku MD'}`
           }, { quoted: m })
           await reactTo(sock, m, '✅')
       } catch (e) {

@@ -30,7 +30,7 @@ const pluginConfig = {
       const ms = parseInt(text)
       if (isNaN(ms) || ms < 500) return example('<ms> (mínimo 500, ejemplo: 3000)')
       jpmSetCfg('delayJpmTag', ms)
-      return reply(`*▢ DELAY JPM TAG*\n• Demora: ${ms}EM\n• Estado: cambiado correctamente`)
+      return reply(`*▢ DELAY JPM TAG*\n• Retardo: ${ms}ms\n• Estado: cambiado correctamente`)
   }
 
 export { pluginConfig as config, handler }

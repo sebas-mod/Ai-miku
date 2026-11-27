@@ -97,7 +97,7 @@ const pluginConfig = {
           }
           return reply(`Comando desconocido. Tipo *${p}* para ayudar.`)
       } catch (e) {
-          return reply(`❌ ${e.message || 'Gagal mengambil data'}`)
+          return reply(`❌ ${e.message || 'No se pudieron obtener los datos'}`)
       }
   }
 

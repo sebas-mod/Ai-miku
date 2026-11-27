@@ -460,8 +460,8 @@ async function handler(m, { sock, text }) {
         console.error('[iqcmerah error]:', error);
         await m.react('❌');
         await m.reply(
-            `❌ *GAGAL MEMPROSES QUOTE*\n\n` +
-            `${error?.message === 'Teks terlalu panjang. Maksimal 1500 karakter.'
+            `❌ *NO SE PUDO PROCESAR LA CITA*\n\n` +
+            `${error?.message === 'El texto es demasiado largo. Máximo 1500 caracteres.'
                 ? error.message
                 : 'Terjadi kesalahan saat membuat IQC merah. Coba lagi.'}`
         );

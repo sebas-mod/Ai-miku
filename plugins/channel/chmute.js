@@ -33,7 +33,7 @@ const pluginConfig = {
           return reply(`✅ Saluran dibisukan: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chmute:', err.message)
-          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nContoh: ${prefix || '.'}chmute <link saluran>`}`)
+          return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nEjemplo: ${prefix || '.'}chmute <link saluran>`}`)
       }
   }
 

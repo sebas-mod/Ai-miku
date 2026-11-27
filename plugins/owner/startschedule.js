@@ -55,7 +55,7 @@ async function handler(m, { sock, args }) {
             await m.reply(`▶️ *PROGRAMADOR INICIADO*
 
 > Scheduler: *${result.name}*
-> Status: ✅ Aktif
+> Estado: ✅ Activo
 
 _El programador se ha reiniciado_`);
         } else {

@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
 
     if (!isUnlimited && effectiveUnlimited) {
         return m.reply(
-            `⚡ *INFORMASI*\n` +
+            `⚡ *INFORMACIÓN*\n` +
             `@${targetJid.split('@')[0]} ya tiene energía *∞ Ilimitada*\n` +
             `No hace falta añadir más energía`,
             { mentions: [targetJid] }

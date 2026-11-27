@@ -132,12 +132,12 @@ const createMikuFeature = (module, exports, require) => {
 
           async artikel({ text, prefix, reply }) {
             const u = String(text || '').trim().split(/\s+/)[0]
-            if (!u) return reply(`${B('BACA ARTIKEL')}\nEjemplo: ${prefix}artículo https://contoh.com/berita/123`)
+            if (!u) return reply(`${B('LEER ARTÍCULO')}\nEjemplo: ${prefix}artikel https://contoh.com/berita/123`)
             const r = await get(u, { maxBytes: 2 * 1024 * 1024 }), meta = parseMeta(r.text), paras = parseArticle(r.text)
             if (!paras.length) throw new Error('el contenido del artículo es ilegible (puede ser JavaScript renderizado o pago)')
             let body = '', n = 0; for (const p of paras) { if (body.length + p.length > 1800) break; body += p + '\n\n'; n++ }
             if (!body) body = clip(paras[0], 1800)
-            return reply(`${B('ARTIKEL')}\n${LINE}\n*${clip(meta.title, 200) || 'Tanpa judul'}*\n\n${body.trim()}${n < paras.length ? '\n\n_…dipotong_' : ''}\n\n${r.url}`)
+            return reply(`${B('ARTÍCULO')}\n${LINE}\n*${clip(meta.title, 200) || 'Sin título'}*\n\n${body.trim()}${n < paras.length ? '\n\n_…recortado_' : ''}\n\n${r.url}`)
           },
         }
 

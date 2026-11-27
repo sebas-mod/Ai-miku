@@ -138,7 +138,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
               mentions: [m.sender],
               buttons: [{
                   type: 'list',
-                  text: 'Pilih Warna',
+                  text: 'Seleccionar color',
                   sections: COLOR_SECTIONS.map(sec => ({
                       title: sec.title,
                       rows: sec.names.map(name => ({

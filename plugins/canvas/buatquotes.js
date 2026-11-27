@@ -342,7 +342,7 @@ async function handler(m, { sock, text }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\nLo sentimos, el sistema experimentó un problema al intentar crear una imagen de cotización. Inténtelo de nuevo más tarde.`);
+        m.reply(`❌ *NO SE PUDO CREAR LA CITA*\n\nLo sentimos, el sistema experimentó un problema al intentar crear una imagen de cotización. Inténtelo de nuevo más tarde.`);
     }
 }
 

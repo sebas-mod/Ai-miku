@@ -49,7 +49,7 @@ const pluginConfig = {
       let video = medias.find(v => v.type === 'video')
 
       if (!video?.url) {
-        return m.reply('Video no encontrado')
+        return m.reply('Vídeo no encontrado')
       }
 
       let caption = `
@@ -71,7 +71,7 @@ const pluginConfig = {
       }, { quoted: m })
     } catch (e) {
       console.error(e)
-      m.reply('Ocurrió un error al obtener el video')
+      m.reply('Ocurrió un error al obtener el vídeo.')
     }
   }
 

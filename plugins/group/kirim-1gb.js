@@ -42,7 +42,7 @@ function filePath() {
 async function handler(m, { sock }) {
   if (!m.isGroup) return m.reply("❌ Esta función solo se puede usar en grupos.");
   if (!m.isAdmin && !m.isOwner) return m.reply("❌ Esta función es exclusiva de los administradores del grupo.");
-  if (busy) return m.reply("⏳ .kirim sigue en proceso. Espera a que termine.");
+  if (busy) return m.reply("⏳.kirim sigue en proceso. Espera a que termine.");
 
   busy = true;
   try {

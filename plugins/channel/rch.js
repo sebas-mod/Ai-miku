@@ -59,7 +59,7 @@ const pluginConfig = {
           )
       } catch (error) {
           console.error('[RCH ERROR]', error)
-          return reply('❌ *GAGAL*\n\n> ' + (error.message || error))
+          return reply('❌ *ERROR*\n\n> ' + (error.message || error))
       }
   }
 

@@ -228,7 +228,7 @@ const pluginConfig = {
               return m.reply('❌ *Error:* YouTube se está actualizando, inténtalo más tarde, darling~ 🦋')
           }
           if (/Command failed|ffmpeg/i.test(msg)) {
-              return m.reply('❌ *Error:* no se pudo procesar el audio (la fuente de descarga está fallando), inténtalo más tarde, darling~ 🦋')
+              return m.reply('❌ *Error:* no se pudo procesar el audio (la fuente de descarga está fallando), inténtalo más tarde, cariño~ 🦋')
           }
           return m.reply(`❌ *Error:* ${msg.substring(0, 150)}\n\n> Inténtalo más tarde, darling~`)
       }

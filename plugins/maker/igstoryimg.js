@@ -242,7 +242,7 @@ const drawAvatar = MikuRuntime.canvasDrawAvatar;
           if (!targetImgBuffer) {
               return m.reply(
                   `📸 *FUNCIÓN DE IMAGEN DE HISTORIA IG*\n\n` +
-                  `Esta función convierte una foto normal en una estética historia de Instagram.\n\n` +
+                  `Esta función convierte una foto normal en una historia estética de Instagram.\n\n` +
                   `*CÓMO USAR:*\n` +
                   `- Envía una imagen con el texto \`${m.prefix}igstoryimg\`\n` +
                   `- O responde a una imagen existente con el comando \`${m.prefix}igstoryimg\`\n\n` +

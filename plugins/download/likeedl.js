@@ -49,13 +49,13 @@ const likee = MikuRuntime.likee;
           const data = await likee(url)
 
           if (!data) {
-              return m.reply(`❌ No se pudo obtener el video. Prueba con otro enlace.`)
+              return m.reply(`❌ No se pudo obtener el vídeo. Prueba con otro enlace.`)
           }
 
           const videoUrl = data.without_watermark || data.with_watermark
 
           if (!videoUrl) {
-              return m.reply(`❌ Video no encontrado.`)
+              return m.reply(`❌ Vídeo no encontrado.`)
           }
 
           await sock.sendMedia(m.chat, videoUrl, null, m, {

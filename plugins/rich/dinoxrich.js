@@ -125,7 +125,7 @@ module.exports = {
       html = /<\/head>/i.test(html) ? html.replace(/<\/head>/i, wideCss + '</head>') : wideCss + html
       await sendHtmlCard(sock, m, html, 'Dino Run X', '🦖')
     } catch (e) {
-      reply(`❌ Gagal memuat rich: ${e.message}`)
+      reply(`❌ No se pudo cargar rico: ${e.message}`)
     }
   },
 }

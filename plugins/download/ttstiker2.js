@@ -476,7 +476,7 @@ const pluginConfig = {
 
       if (!chosen.length) {
         await reactTo(sock, m, '❌')
-        return reply(`❌ No hay stickers ${mode === 'anim' ? 'animados' : 'estáticos'} en este video.\n\n> Encontrados: ${anim.length} animados, ${stat.length} estáticos`)
+        return reply(`❌ No hay stickers ${mode === 'anim' ? 'animados' : 'estáticos'} en este vídeo.\n\n> Encontrados: ${anim.length} animados, ${stat.length} estáticos`)
       }
       const isAnim = chosen === anim
       const final = chosen.slice(0, limit)

@@ -35,7 +35,7 @@ const pluginConfig = {
       if (!caption && !media) return example('texto (o foto/vídeo/audio contestador)')
 
       const delay = jpmCfg().delayAutoSwgc
-      await reply(`*▢ AUTO SWGC AKTIF*\n• Grupo: ${jid}\n• Intervalo: cada ${delay / 1000} segundo\n\nPara con *stopswgc*`)
+      await reply(`*▢ AUTO SWGC ACTIVO*\n• Grupo: ${jid}\n• Intervalo: cada ${delay / 1000} segundo\n\nDetener con *stopswgc*`)
 
       jpmStartJob('autoSwgc', delay, async () => {
           await sendGroupStatus(sock, jid, { text: caption, media })

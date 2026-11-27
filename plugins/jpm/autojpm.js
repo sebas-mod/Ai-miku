@@ -40,7 +40,7 @@ const pluginConfig = {
       if (interval < JPM_MIN_INTERVAL) return reply(`❌ Intervalo mínimo ${JPM_MIN_INTERVAL / 1000} segundo.`)
 
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ AUTO JPM AKTIF*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}EM\n• Mensaje: ${teks || '[Media]'}\n\nParar con *stopautojpm*`)
+      await reply(`*▢ AUTO JPM ACTIVO*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}ms\n• Mensaje: ${teks || '[Media]'}\n\nParar con *stopautojpm*`)
 
       jpmStartJob('autoJpm', interval, async isStopped => {
           const groups = await jpmGroups(sock, { auto: true })

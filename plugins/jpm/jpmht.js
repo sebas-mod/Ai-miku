@@ -40,14 +40,14 @@ const pluginConfig = {
       const cfg = jpmCfg()
       const delay = cfg.delayJpmTag
       const tipe = media ? media.kind.toUpperCase() + (caption ? ' + Texto' : '') : 'Texto (Ocultar etiqueta)'
-      await reply(`*▢ PROSES JPM HIDETAG*\n• Grupo total: ${groups.length}\n• Tipo: ${tipe}\n• Demora: ${delay}EM`)
+      await reply(`*▢ ENVIANDO JPM HIDETAG*\n• Grupo total: ${groups.length}\n• Tipo: ${tipe}\n• Retardo: ${delay}ms`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => {
           const { mentions } = tagList(g)
           return sock.sendMessage(g.id, media ? mediaContent(media, caption, mentions) : { text: caption, mentions })
       })
 
-      return reply(`*▢ JPM HIDETAG SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
+      return reply(`*▢ JPM HIDETAG TERMINADO*\n• Correctos: ${ok} grupo\n• Fallidos: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

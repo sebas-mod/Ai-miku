@@ -77,7 +77,7 @@ const pluginConfig = {
               : 'Todavía no se puede concluir el resultado.'
 
           await reply(
-              `*🔍 DETEKSI GAMBAR AI*\n\n` +
+              `*🔍 DETECCIÓN DE IMAGEN IA*\n\n` +
               `Estado: ${hasil}\n\n` +
               `AI Generated: ${persen(ai)}\n` +
               `Not AI Generated: ${persen(human)}\n` +

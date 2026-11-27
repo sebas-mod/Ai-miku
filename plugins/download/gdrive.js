@@ -100,7 +100,7 @@ import axios from 'axios'
       if (!url.match(/drive\.google/i)) {
           return m.reply(
               `💔 *ERROR*\n\n` +
-              `> URL no válida. Envía un enlace de Google Drive correcto, cariño~ 🥺`
+              `> URL sin validez. Envía un enlace de Google Drive correcto, cariño~ 🥺`
           )
       }
 
@@ -114,7 +114,7 @@ import axios from 'axios'
               m.react('💔')
               return m.reply(
                   `💔 *ERROR*\n\n` +
-                  `> No se puede acceder al archivo o el enlace alcanzó su límite, cariño~ 🥺`
+                  `> No se puede acceder al archivo o el enlace alcanzado su límite, cariño~ 🥺`
               )
           }
 

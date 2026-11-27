@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     if (parts.length < 2) {
         await m.reply(
             `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
-            `> Format: \`pertanyaan | opsi1, opsi2, ...\``
+            `> Formato: \`preguntas | opción1, opción2,...\``
         );
         return;
     }

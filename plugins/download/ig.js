@@ -104,7 +104,7 @@ const pluginConfig = {
   			await sendAlbum(sock, m.chat, items.map((it, i) => ({
   				type: it.type === 'video' ? 'video' : 'image',
   				url: it.url,
-  				caption: i === 0 ? `📸 *Instagram Media* (${items.length} item)\n\n© ${botName}` : ''
+  				caption: i === 0 ? `📸 *Instagram Medios* (${items.length} item)\n\n© ${botName}` : ''
   			})), { quoted: m })
   			await sock.sendMessage(m.chat, { react: { text: '✨', key: m.key } }).catch(() => null)
   			return

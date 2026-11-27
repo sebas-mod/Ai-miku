@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
             const waveform = generateWaveform(opusBuf)
             await sock.sendMessage(chId, {
                 audio: opusBuf,
-                mimetype: "audio/ogg; codecs=opus",
+                mimetype: "audio/ogg; códecs=opus",
                 ptt: true,
                 waveform: Array.from(waveform)
             })

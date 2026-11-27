@@ -165,7 +165,7 @@ async function handler(m, { sock, db }) {
   } else {
     return m.reply(
       `⚠️ *CÓMO USAR*\n\n` +
-        `> \`${m.prefix}swgcall teks\` - Historia de texto a todos los grupos\n` +
+        `> \`${m.prefix}swgcall text\` - Historia de texto a todos los Grupos\n` +
         `> Responde con imagen/video/audio + \`${m.prefix}swgcall\`\n` +
         `> Envía una imagen/vídeo con el texto \`${m.prefix}swgcall\`\n\n` +
         `⚠️ _¡Esta función enviará la historia a TODOS los grupos!_`,
@@ -212,7 +212,7 @@ async function handler(m, { sock, db }) {
     await sock.sendMessage(m.chat, {
       text:
         `📢 *CONFIRMACIÓN DE DIFUSIÓN SWGC*\n\n` +
-        `> Media: *${mediaType}*\n` +
+        `> Medios: *${mediaType}*\n` +
         `> Total de grupos: *${groupList.length}*\n` +
         `> Estimasi: *~${estimatedTime} segundos*\n\n` +
         `⚠️ _¡La historia se publicará en TODOS los grupos!_\n` +
