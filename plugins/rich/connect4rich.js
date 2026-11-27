@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "connect4rich",
   alias: ["connect4"],
   category: "rich",
-  description: "Susun 4 koin kristal sejajar lawan Miku AI",
+  description: "Alinea 4 fichas de cristal contra la IA de Miku",
   usage: ".connect4rich",
   example: ".connect4rich",
   isOwner: false,

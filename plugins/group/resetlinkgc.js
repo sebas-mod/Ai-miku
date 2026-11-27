@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'resetlinkgc',
     alias: ['resetlink', 'revokelink', 'newlink'],
     category: 'group',
-    description: 'Reset link invite grup',
+    description: 'Restablece el enlace de invitación del grupo',
     usage: '.resetlinkgc',
     example: '.resetlinkgc',
     isOwner: false,

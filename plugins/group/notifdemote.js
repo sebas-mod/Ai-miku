@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'notifdemote',
     alias: [],
     category: 'group',
-    description: 'Toggle notifikasi saat ada yang dicopot dari admin',
+    description: 'Activa o desactiva el aviso cuando alguien pierde el admin',
     usage: '.notifdemote on/off',
     example: '.notifdemote on',
     isOwner: false,

@@ -13,7 +13,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Programa la apertura y el cierre automáticos del grupo',
     usage: '.jadwalgroup <open/close> <HH:MM> [mensaje]',
-    example: '.jadwalgroup open 06:00 Selamat pagi {group}! Grup dibuka.',
+    example: '.jadwalgroup open 06:00 ¡Buenos días {group}! Grupo abierto.',
     isOwner: false,
     isPremium: false,
     isGroup: true,

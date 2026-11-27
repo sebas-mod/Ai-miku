@@ -24,7 +24,7 @@ const te = MikuRuntime.te;
       name: "iqc2",
       alias: [],
       category: "maker",
-      description: "Membuat Fake Quote iOS style dengan informasi baterai dan provider.",
+      description: "Crea una cita falsa estilo iOS con información de batería y operador.",
       usage: ".iqc2 [text/reply]",
       isOwner: false,
       isPremium: false,

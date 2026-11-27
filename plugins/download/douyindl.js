@@ -13,7 +13,7 @@ import axios from 'axios'
     name: "douyindl",
     alias: [],
     category: "download",
-    description: "Download video/audio dari Douyin (TikTok China)",
+    description: "Descarga video/audio de Douyin (TikTok China)",
     usage: ".douyindl <url>",
     example: ".douyindl https://v.douyin.com/xxx",
     isOwner: false,

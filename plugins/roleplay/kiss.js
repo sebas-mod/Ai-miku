@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "kiss",
   alias: ['cium'],
   category: "roleplay",
-  description: "Aksi roleplay cium dengan animasi anime",
+  description: "Acción de rol de beso con animación anime",
   usage: ".kiss @user",
   example: ".kiss @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

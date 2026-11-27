@@ -13,7 +13,7 @@ const pluginConfig = {
   alias: ['delaybcpc', 'jedabcpc', 'setjedabcpc'],
   category: 'owner',
   description: 'Atur jeda broadcast private chat',
-  usage: '.bcpcjeda <waktu> (contoh: 5s, 2m, 1h)',
+  usage: '.bcpcjeda <tiempo> (contoh: 5s, 2m, 1h)',
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -55,7 +55,7 @@ async function handler(m) {
       `⏱️ *JEDA BROADCAST PRIVATE*\n\n` +
       `Pausa actual: *${formatDelay(current)}* (${current}ms)\n\n` +
       `*CÓMO USAR:*\n` +
-      `> \`${m.prefix}bcpcjeda <angka><satuan>\`\n\n` +
+      `> \`${m.prefix}bcpcjeda <número><unidad>\`\n\n` +
       `*SATUAN:*\n` +
       `• \`s\` — segundos\n• \`m\` — minutos\n• \`h\` — horas\n• \`d\` — días\n\n` +
       `*EJEMPLO:*\n` +

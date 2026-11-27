@@ -27,7 +27,7 @@ const pluginConfig = {
   ],
   alias: [],
   category: "fun",
-  description: "Random pilih member untuk kategori tertentu",
+  description: "Elige al azar a un miembro para cierta categoría",
   usage: ".<kategori>",
   example: ".ganteng",
   isOwner: false,

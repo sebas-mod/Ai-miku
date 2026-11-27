@@ -13,7 +13,7 @@ import fetch from 'node-fetch'
     name: "shopeedl",
     alias: [],
     category: "download",
-    description: "Download video dari Shopee",
+    description: "Descarga videos de Shopee",
     usage: ".shopeedl <url>",
     example: ".shopeedl https://shopee.co.id/universal-link/video/...",
     isOwner: false,

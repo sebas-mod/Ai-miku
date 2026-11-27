@@ -10,7 +10,7 @@ const config = {
     name: 'shindaratensei',
     alias: ['shindaratensei'],
     category: 'group',
-    description: 'Keluarkan semua member biasa; admin dan bot tetap aman',
+    description: 'Expulsa a todos los miembros normales; los admins y el bot quedan a salvo',
     usage: '.shindaratensei',
     isGroup: true,
     isBotAdmin: true,

@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'birthday',
     alias: ['bday', 'ultah', 'ulangtahun'],
     category: 'user',
-    description: 'Lihat ulang tahun member',
+    description: 'Muestra el cumpleaños de un miembro',
     usage: '.birthday [@user]',
     example: '.birthday @user',
     isOwner: false,

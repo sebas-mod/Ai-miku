@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'resetgoodbye',
     alias: ['delgoodbye', 'cleargoodbye'],
     category: 'group',
-    description: 'Reset goodbye message ke default',
+    description: 'Restablece el mensaje de despedida al valor predeterminado',
     usage: '.resetgoodbye',
     example: '.resetgoodbye',
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "pongrich",
   alias: ["pingpongrich"],
   category: "rich",
-  description: "Duel ping-pong kristal lawan AI (pertama mencapai 7 poin menang)",
+  description: "Duelo de ping-pong de cristal contra la IA (gana quien llegue a 7 puntos)",
   usage: ".pongrich",
   example: ".pongrich",
   isOwner: false,
@@ -67,9 +67,9 @@ canvas{display:block;width:100%;border-radius:13px;background:#070f1d;border:1px
   </div>
   <canvas id="cv" width="320" height="340"></canvas>
   <div class="ctrl">
-    <button class="cbtn" id="btnL" type="button">◀ Kiri</button>
+    <button class="cbtn" id="btnL" type="button">◀ Izquierda</button>
     <button class="rbtn" id="btnRst" type="button" onclick="reset()">↻</button>
-    <button class="cbtn" id="btnR" type="button">Kanan ▶</button>
+    <button class="cbtn" id="btnR" type="button">Derecha ▶</button>
   </div>
 </div></div>
 <script>

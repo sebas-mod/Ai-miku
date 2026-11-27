@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "monopolirich",
   alias: [],
   category: "rich",
-  description: 'Monopoli lawan bot: 40 petak kota Indonesia, beli, sewa, naikkan level, penjara',
+  description: 'Monopolio contra el bot: 40 casillas de ciudades de Indonesia, compra, alquiler, mejoras y cárcel',
   usage: ".monopolirich",
   example: ".monopolirich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'monopolirich',
   alias: [],
   category: 'rich',
-  desc: 'Monopoli lawan bot: 40 petak kota Indonesia, beli, sewa, naikkan level, penjara',
+  desc: 'Monopolio contra el bot: 40 casillas de ciudades de Indonesia, compra, alquila, mejora y cárcel',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

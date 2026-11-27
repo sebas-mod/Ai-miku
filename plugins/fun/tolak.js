@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tolak",
   alias: ["reject", "no", "gaktau"],
   category: "fun",
-  description: "Menolak tembakan dari seseorang",
+  description: "Rechaza la declaración de alguien",
   usage: ".tolak @tag",
   example: ".tolak @628xxx",
   isOwner: false,
@@ -28,7 +28,7 @@ const pluginConfig = {
 const rejectionQuotes = [
   "¡Ten paciencia, seguro que llega alguien mejor! 🌟",
   "No ser el destino de alguien no significa que no tengas destino 💪",
-  "Move on! Banyak ikan di laut! 🐟",
+  "¡Supera! ¡Hay muchos peces en el mar! 🐟",
   "Ten paciencia, el amor verdadero llegará 💕",
   "¡No pierdas el ánimo, sigue adelante! 🔥",
   "Un rechazo es el principio del éxito 💪",

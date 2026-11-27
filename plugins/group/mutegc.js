@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "mutegc",
   alias: ["mutegrup", "mutebot", "blockbot", "lockbot"],
   category: "group",
-  description: "Blokir command bot untuk member, hanya admin/owner yang bisa pakai",
+  description: "Bloquea los comandos del bot para miembros; solo admin/dueño pueden usarlos",
   usage: ".mutegc",
   example: ".mutegc",
   isOwner: false,

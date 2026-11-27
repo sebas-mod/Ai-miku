@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "unorich",
   alias: [],
   category: "rich",
-  description: 'UNO lawan 1-3 bot: 108 kartu, skip, reverse, +2, wild, tombol UNO',
+  description: 'UNO contra 1-3 bots: 108 cartas, salto, reversa, +2, comodín y botón UNO',
   usage: ".unorich",
   example: ".unorich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'unorich',
   alias: [],
   category: 'rich',
-  desc: "UNO lawan 1-3 bot: 108 kartu, skip, reverse, +2, wild, tombol UNO",
+  desc: "UNO contra 1-3 bots: 108 cartas, salto, reverso, +2, comodín y botón UNO",
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

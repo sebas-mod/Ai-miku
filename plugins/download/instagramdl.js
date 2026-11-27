@@ -16,7 +16,7 @@ const JHICog = MikuRuntime.JHICog;
     name: "instagramdl",
     alias: [],
     category: "download",
-    description: "Download video/foto Instagram (URL, story, posts, reels, highlights)",
+    description: "Descarga videos/fotos de Instagram (URL, historias, publicaciones, reels, destacadas)",
     usage: ".instagramdl <url | username [mode]>",
     example: ".instagramdl https://www.instagram.com/reel/xxx",
     isOwner: false,

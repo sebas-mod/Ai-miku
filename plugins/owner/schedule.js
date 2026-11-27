@@ -29,7 +29,7 @@ const pluginConfig = {
   name: "schedule",
   alias: ["sched", "jadwal", "timer"],
   category: "owner",
-  description: "Bikin reminder atau jadwal bebas dengan text custom",
+  description: "Crea recordatorios o programaciones libres con texto personalizado",
   usage:
     ".schedule <add/edit/list/kategori/preset/detail/del/status> [options]",
   example: ".schedule preset sekolah 06:30",

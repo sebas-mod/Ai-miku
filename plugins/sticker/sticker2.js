@@ -27,7 +27,7 @@ const pluginConfig = {
   alias: ["s2", "stiker2"],
   category: "sticker",
   description:
-    "Membuat stiker video kotak 1:1 langsung bersuara (khusus video maks 25 detik)",
+    "Crea un sticker de video cuadrado 1:1 con sonido (solo videos de máximo 25 segundos)",
   usage: ".s2 [pack|author]",
   example: ".s2\n.sticker2\n.s2 Miku|Arthazy",
   isOwner: false,

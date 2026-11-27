@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "dinorunrich",
   alias: [],
   category: "rich",
-  description: 'Dino Run: lompati kaktus dan burung, makin lama makin cepat',
+  description: 'Dino Run: salta cactus y pájaros, cada vez más rápido',
   usage: ".dinorunrich",
   example: ".dinorunrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -156,7 +156,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildDinoHtml({ playerName = "Kamu" } = {}) {
+    function buildDinoHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -172,7 +172,7 @@ module.exports = {
   name: 'dinorunrich',
   alias: [],
   category: 'rich',
-  desc: "Dino Run: lompati kaktus dan burung, makin lama makin cepat",
+  desc: "Dino Run: salta cactus y pájaros, cada vez más rápido",
   run: async ({ sock, m, pushname }) => {
     const html = buildDinoHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Dino Run Live', '🦖')

@@ -18,7 +18,7 @@ const MODES = {
     excludeCategories: null,
   },
   pushkontak: {
-    name: "Push Kontak",
+    name: "Envío de contactos",
     desc: "Modo especial para enviar contactos a los miembros",
     allowedCategories: ["owner", "main", "group", "sticker", "pushkontak"],
     excludeCategories: null,

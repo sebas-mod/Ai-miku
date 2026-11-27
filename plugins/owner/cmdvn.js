@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'cmdvn',
     alias: ['voicecommand', 'vncmd'],
     category: 'owner',
-    description: 'Aktifkan command via voice note',
+    description: 'Activa comandos por nota de voz',
     usage: '.cmdvn <on/off>',
     example: '.cmdvn on',
     isOwner: true,

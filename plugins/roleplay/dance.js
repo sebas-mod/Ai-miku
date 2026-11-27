@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "dance",
   alias: ['joget'],
   category: "roleplay",
-  description: "Aksi roleplay dance dengan animasi anime",
+  description: "Acción de rol de baile con animación anime",
   usage: ".dance [@user]",
   example: ".dance @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

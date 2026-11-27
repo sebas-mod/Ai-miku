@@ -15,7 +15,7 @@ const searchKonachan = MikuRuntime.searchKonachan;
     name: "konachan",
     alias: [],
     category: "anime",
-    description: "Cari gambar anime dari konachan",
+    description: "Busca imágenes de anime en konachan",
     usage: ".konachan <tags>",
     example: ".konachan long_hair blue_eyes",
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "minesrich",
   alias: [],
   category: "rich",
-  description: 'Minesweeper 3 level, mode bendera, timer & rekor',
+  description: 'Buscaminas con 3 niveles, modo bandera, cronómetro y récord',
   usage: ".minesrich",
   example: ".minesrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -111,7 +111,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </style>
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">💣</div><div class="meta"><div class="title">Minesweeper Live</div><div class="sub" id="who"></div></div></div>
-     <div class="chips" id="lv"><button class="chip on" data-k="0">Mudah</button><button class="chip" data-k="1">Sedang</button><button class="chip" data-k="2">Sulit</button></div>
+     <div class="chips" id="lv"><button class="chip on" data-k="0">Fácil</button><button class="chip" data-k="1">Medio</button><button class="chip" data-k="2">Difícil</button></div>
      <div class="st"><span class="pill">Minas <b id="mc">0</b></span><span class="pill">Tiempo <b id="tm">0</b>d</span><span class="pill">Mejor <b id="bs">-</b></span></div>
      <div class="bd" id="bd"></div>
      <div class="msg" id="ms"></div>
@@ -150,7 +150,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildMinesHtml({ playerName = "Kamu" } = {}) {
+    function buildMinesHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -166,7 +166,7 @@ module.exports = {
   name: 'minesrich',
   alias: [],
   category: 'rich',
-  desc: "Minesweeper 3 level, mode bendera, timer & rekor",
+  desc: "Buscaminas, 3 niveles, modo bandera, temporizador y récord",
   run: async ({ sock, m, pushname }) => {
     const html = buildMinesHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Minesweeper Live', '💣')

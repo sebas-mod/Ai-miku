@@ -14,8 +14,8 @@ const pluginConfig = {
     alias: ["batchanime"],
     category: "anime",
     description: "anibatch <judul | detail | eps | stream | dl>",
-    usage: ".anibatch <judul | detail | eps | stream | dl>",
-    example: ".anibatch <judul | detail | eps | stream | dl>",
+    usage: ".anibatch <título | detail | eps | stream | dl>",
+    example: ".anibatch <título | detail | eps | stream | dl>",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -760,7 +760,7 @@ const pluginConfig = {
             for (let i = 0; i < options.length; i++) {
               if (options[i].quality === qFlag) { chosen = options[i]; break; }
             }
-            if (chosen === null) throw new Error('Kualitas ' + qFlag + ' No disponible');
+            if (chosen === null) throw new Error('Calidad ' + qFlag + ' No disponible');
           }
 
           if (chosen === null) {
@@ -841,7 +841,7 @@ const pluginConfig = {
         if (!items.length) return reply(`animado"${query}" extraviado.`)
 
         const lines = items.slice(0, 10).map((a, i) => {
-          const meta = [a.format, a.status, a.year, a.episodes ? `${a.episodes} eps` : '', a.score ? `skor ${a.score}` : '']
+          const meta = [a.format, a.status, a.year, a.episodes ? `${a.episodes} eps` : '', a.score ? `puntuación ${a.score}` : '']
             .filter(Boolean).join(' | ')
           return `${i + 1}. *${a.title}*\n   ${meta}\n   slug: ${a.slug}`
         })

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "whackrich",
   alias: ["pukulslime"],
   category: "rich",
-  description: "Ketuk slime kristal secepat mungkin selama 30 detik, hindari bom!",
+  description: "Golpea al slime de cristal lo más rápido posible durante 30 segundos, ¡esquiva las bombas!",
   usage: ".whackrich",
   example: ".whackrich",
   isOwner: false,

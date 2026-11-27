@@ -20,7 +20,7 @@ const pluginConfig = {
     name: "levelcard",
     alias: [],
     category: "maker",
-    description: "Fitur maker levelcard",
+    description: "Función de tarjeta de nivel (levelcard)",
     usage: ".levelcard",
     example: ".levelcard",
     isOwner: false,

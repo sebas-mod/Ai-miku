@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "autosambut",
   alias: ["sambutowner"],
   category: "group",
-  description: "Mengatur fitur sambutan otomatis saat owner muncul setelah lama idle",
+  description: "Configura el saludo automático cuando el owner vuelve tras estar inactivo",
   usage: ".autosambut on/off/delay/add/del/list",
   example: ".autosambut on",
   isOwner: true,
@@ -85,11 +85,11 @@ async function handler(m, { sock, db }) {
       `Mensajes aleatorios: *${totalPesan} saludos*\n\n` +
       `*USO PRINCIPAL:*\n` +
       `• *${m.prefix}autosambut on/off* — Activa/desactiva la función en este grupo\n` +
-      `• *${m.prefix}autosambut delay <waktu>* — Cambia el límite de inactividad\n\n` +
+      `• *${m.prefix}autosambut delay <tiempo>* — Cambia el límite de inactividad\n\n` +
       `*AJUSTES DE MENSAJES ALEATORIOS (LISTA):*\n` +
       `• *${m.prefix}autosambut list* — Ver todos los saludos registrados\n` +
       `• *${m.prefix}autosambut add <texto>* — Añadir un nuevo saludo a la lista\n` +
-      `• *${m.prefix}autosambut del <angka>* — Eliminar el mensaje de un número de la lista\n\n` +
+      `• *${m.prefix}autosambut del <número>* — Eliminar el mensaje de un número de la lista\n\n` +
       `*PENJELASAN KHUSUS:*\n` +
       `1. Usa el formato de tiempo: *s* (segundos), *m* (minutos), *h* (horas), *d* (días). Ejemplo: *${m.prefix}autosambut delay 30m*\n` +
       `2. Usa *{name}* para nombrar al owner y *{user}* para mencionarlo.\n` +

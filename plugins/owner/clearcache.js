@@ -18,7 +18,7 @@ const pluginConfig = {
   name: "clearcache",
   alias: ["autoclearcache", "delcache", "cleandbcache"],
   category: "owner",
-  description: "Bersihkan atau atur auto-clear folder database/cache",
+  description: "Limpia o configura la autolimpieza de la carpeta database/cache",
   usage: ".clearcache [status|on|off]",
   example: ".clearcache",
   isOwner: true,

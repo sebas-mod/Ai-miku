@@ -12,9 +12,9 @@ const pluginConfig = {
   name: "balas",
   alias: ["balasmenfess", "bm"],
   category: "menfess",
-  description: "Balas menfess secara anonim",
-  usage: ".balas pesan",
-  example: ".balas makasih ya!",
+  description: "Responde a un menfess de forma anónima",
+  usage: ".balas mensaje",
+  example: ".balas ¡gracias!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -41,7 +41,7 @@ async function handler(m, { sock, text, prefix }) {
   }
   if (!pesan) {
     return m.reply(
-      `Formato: *${prefix}balas <tu mensaje>*\n\nLa forma más sencilla: *responder* mensaje menfess, luego escribe tu mensaje de respuesta (sin un comando también es posible).\nSin respuesta, la respuesta se envía al menfess más nuevo.`,
+      `Formato: *${prefix}balas <tu mensaje>*\n\nLa forma más sencilla: *responder* mensaje menfess, y luego escribe tu mensaje de respuesta (sin un comando también es posible).\nSin respuesta, la respuesta se envía al menfess más nuevo.`,
     );
   }
 

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "stopgame",
   alias: ["gamenyerah", "endgame"],
   category: "game",
-  description: "Menghentikan sesi game yang sedang berjalan di chat ini",
+  description: "Detiene la partida que está en curso en este chat",
   usage: ".stopgame",
   example: ".stopgame",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

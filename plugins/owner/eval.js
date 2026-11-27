@@ -18,7 +18,7 @@ const pluginConfig = {
     alias: ['$', 'ev', 'evaluate', '=>'],
     category: 'owner',
     description: 'Jalankan kode JavaScript (Owner Only)',
-    usage: '=> <code> atau .$ <code>',
+    usage: '=> <code> o .$ <code>',
     example: '=> m.chat',
     isOwner: true,
     isPremium: false,

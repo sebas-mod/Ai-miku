@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'sulap',
     alias: ['magic', 'magictrick'],
     category: 'fun',
-    description: 'Pertunjukan sulap - kick member secara dramatis',
+    description: 'Espectáculo de magia: expulsa a un miembro de forma dramática',
     usage: '.sulap',
     example: '.sulap',
     isOwner: false,

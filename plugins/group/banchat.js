@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'banchat',
     alias: ['bangroup', 'bangrup', 'unbanchat', 'unbangroup'],
     category: 'group',
-    description: 'Ban grup dari penggunaan bot (hanya owner yang bisa akses)',
+    description: 'Banea al grupo del uso del bot (solo el dueño puede acceder)',
     usage: '.banchat',
     example: '.banchat',
     isOwner: true,

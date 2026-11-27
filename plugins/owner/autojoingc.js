@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "autojoingc",
   alias: ["autojoin", "autojoingroup"],
   category: "owner",
-  description: "Auto join grup dari link yang terdeteksi di chat",
+  description: "Entra automáticamente a los grupos cuyos enlaces se detecten en el chat",
   usage: ".autojoingc on/off",
   example: ".autojoingc on",
   isOwner: true,

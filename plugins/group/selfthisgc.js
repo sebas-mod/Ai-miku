@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "selfthisgc",
   alias: ["selfgc", "selfgroup", "selfthisgroup"],
   category: "group",
-  description: "Aktifkan mode self hanya di grup ini",
+  description: "Activa el modo self solo en este grupo",
   usage: ".selfthisgc",
   example: ".selfthisgc",
   isOwner: true,

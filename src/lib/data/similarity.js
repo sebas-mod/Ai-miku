@@ -299,7 +299,7 @@ function formatSuggestionMessage(inputCommand, suggestions, prefix = '.', m) {
     const topPercent = Math.round(topMatch.similarity * 100)
 
     const getConfidenceLevel = (percent) => {
-        if (percent >= 85) return { text: 'Sangat Tinggi', emoji: '🟢' }
+        if (percent >= 85) return { text: 'Muy alta', emoji: '🟢' }
         if (percent >= 70) return { text: 'Tinggi', emoji: '🟡' }
         if (percent >= 50) return { text: 'Medio', emoji: '🟠' }
         return { text: 'Rendah', emoji: '🔴' }
@@ -307,12 +307,12 @@ function formatSuggestionMessage(inputCommand, suggestions, prefix = '.', m) {
 
     const confidence = getConfidenceLevel(topPercent)
 
-    let msg2 = `👋 Halo kak *${m.pushName}*!
+    let msg2 = `👋 ¡Hola *${m.pushName}*!
 
-Sepertinya kakak sedang mencari command \`${inputCommand}\` ya? 🤔
+Parece que estás buscando el comando \`${inputCommand}\`, ¿verdad? 🤔
 
-Mohon maaf banget, tapi command \`${inputCommand}\` belum tersedia di sistem kami saat ini. 🥺
-Mungkin kakaknya sedikit typo atau salah ketik? 😅👇`
+Lo siento mucho, pero el comando \`${inputCommand}\` todavía no está disponible en el sistema. 🥺
+¿Quizás hay un pequeño error de escritura? 😅👇`
     return {
         message: msg2,
         interactiveButtons: suggestions.slice(0, 2).map((s, i) => {

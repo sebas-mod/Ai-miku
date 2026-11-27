@@ -13,8 +13,8 @@ const pluginConfig = {
   name: "autobio",
   alias: ["autostatus"],
   category: "owner",
-  description: "Mengatur pembaruan bio WhatsApp bot secara otomatis",
-  usage: ".autobio on/off\n.autobio <teks>",
+  description: "Configura la actualización automática de la bio de WhatsApp del bot",
+  usage: ".autobio on/off\n.autobio <texto>",
   example: ".autobio on\n.autobio Bot by Owner | 🕒 {clock} | ⏳ {runtime}",
   isOwner: true,
   isPremium: false,
@@ -37,11 +37,11 @@ async function handler(m, { sock, db }) {
       `📝 *AUTO BIO SETTINGS*\n\n` +
       `> Estado: *${status ? "Activo ✅" : "Inactivo ❌"}*\n` +
       `> Intervalo: *${intervalMs / 1000} segundos*\n` +
-      `> Teks Bio: ${text}\n\n` +
+      `> Texto de la bio: ${text}\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}autobio on/off* — Activa/desactiva la función\n` +
       `- *${m.prefix}autobio ganti_setiap <tiempo>* — Ajusta el intervalo. Ejemplo: \`.autobio ganti_setiap 30 segundos\` o \`1 hora\`\n` +
-      `- *${m.prefix}autobio <teks>* — Ajusta el texto de la biografía\n\n` +
+      `- *${m.prefix}autobio <texto>* — Ajusta el texto de la biografía\n\n` +
       `*PLACEHOLDERS DISPONIBLES:*\n` +
       `- \`{clock}\` — Muestra la hora actual\n` +
       `- \`{runtime}\` — Muestra cuánto tiempo lleva el bot encendido\n` +

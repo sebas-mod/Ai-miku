@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "bjrich",
   alias: [],
   category: "rich",
-  description: 'Blackjack lawan bandar bot, taruhan koin, double down',
+  description: 'Blackjack contra el crupier del bot: apuesta monedas y dobla',
   usage: ".bjrich",
   example: ".bjrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'bjrich',
   alias: [],
   category: 'rich',
-  desc: 'Blackjack lawan bandar bot, taruhan koin, double down',
+  desc: 'Blackjack contra el crupier del bot: apuesta monedas y dobla',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

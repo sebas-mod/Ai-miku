@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tebakangka",
   alias: ["guessnum", "tangka"],
   category: "game",
-  description: "Tebak angka rahasia 1–100 dengan radar panas/dingin",
+  description: "Adivina el número secreto del 1 al 100 con radar frío/caliente",
   usage: ".tebakangka",
   example: ".tebakangka",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
   await m.reply(
     `╭─❖「 🎯 *ADIVINA EL NÚMERO — MIKU* 」\n` +
       `│ 🔢 Rango    : *1 a 100*\n` +
-      `│ 🎲 Kesempatan : *8 percobaan*\n` +
+      `│ 🎲 Oportunidad : *8 percobaan*\n` +
       `│ 💰 Premio   : Hasta *+5.000 monedas*\n` +
       `╰─────────────────────❖\n` +
       `_¡Escribe tu número directamente en este chat!_`

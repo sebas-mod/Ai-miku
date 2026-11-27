@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'open',
     alias: ['buka', 'opengroup', 'bukagroup'],
     category: 'group',
-    description: 'Membuka grup agar semua member bisa chat',
+    description: 'Abre el grupo para que todos los miembros puedan escribir',
     usage: '.open',
     example: '.open',
     isOwner: false,

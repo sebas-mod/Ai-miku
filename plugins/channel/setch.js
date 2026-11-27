@@ -13,8 +13,8 @@ const pluginConfig = {
     alias: [],
     category: "channel",
     description: "setch <link saluran> | off",
-    usage: ".setch <link saluran> | off",
-    example: ".setch <link saluran> | off",
+    usage: ".setch <link canal> | off",
+    example: ".setch <link canal> | off",
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -111,12 +111,12 @@ async function handler(m, { sock, text, prefix, reply }) {
         return reply(
             `📌 *SALURAN TUJUAN*\n\n` +
             (cur ? `Nombre: ${cur.name}\nID: ${cur.id}\nRol bot: ${cur.role ? cur.role.toLowerCase() : 'desconocido'}` : 'Aún no configurado') +
-            `\n\n📖 *CARA PAKAI*\n${p}setch <enlace de canal>\n${p}setch off  (eliminar)\nDespués: ${p}swch, ${p}playch, ${p}chname, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
+            `\n\n📖 *CÓMO USARLO*\n${p}setch <enlace de canal>\n${p}setch off  (eliminar)\nDespués: ${p}swch, ${p}playch, ${p}chname, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
         )
     }
     if (['off', 'hapus', 'reset'].includes(arg.toLowerCase())) {
         setCurrent(null)
-        return reply('Saluran bawaan dihapus.')
+        return reply('Canal predeterminado eliminado.')
     }
 
     const ref = parseRef(arg)

@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'delantilink',
     alias: ['delalink', 'delblocklink', 'remantilink'],
     category: 'group',
-    description: 'Menghapus link dari daftar antilink',
+    description: 'Elimina un enlace de la lista de antilinks',
     usage: '.delantilink <domain/pattern>',
     example: '.delantilink tiktok.com',
     isOwner: false,

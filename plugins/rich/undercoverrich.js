@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "undercoverrich",
   alias: [],
   category: "rich",
-  description: 'Undercover lawan bot: beri petunjuk, voting, cari pemain yang katanya beda',
+  description: 'Undercover contra el bot: da pistas, vota y descubre al jugador cuya palabra es distinta',
   usage: ".undercoverrich",
   example: ".undercoverrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'undercoverrich',
   alias: [],
   category: 'rich',
-  desc: "Undercover lawan bot: beri petunjuk, voting, cari pemain yang katanya beda",
+  desc: "Undercover contra el bot: da pistas, vota y descubre al jugador cuya palabra es distinta",
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

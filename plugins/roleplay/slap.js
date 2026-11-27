@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "slap",
   alias: ['tampar'],
   category: "roleplay",
-  description: "Aksi roleplay tampar dengan animasi anime",
+  description: "Acción de rol de bofetada con animación anime",
   usage: ".slap @user",
   example: ".slap @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

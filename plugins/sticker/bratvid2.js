@@ -15,7 +15,7 @@ const te = MikuRuntime.te;
       name: 'bratvid2',
       alias: ["bvid2"],
       category: "sticker",
-      description: 'Generate brat video v2',
+      description: 'Genera un video brat v2',
       usage: '.bratvid2 <text>',
       example: '.bratvid2 hello world',
       isOwner: false,

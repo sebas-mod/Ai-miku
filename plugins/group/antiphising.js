@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'antiphising',
     alias: ['antiphishing', 'antiscamlink', 'nophising'],
     category: 'group',
-    description: 'Deteksi konten phising di grup',
+    description: 'Detecta contenido de phishing en el grupo',
     usage: '.antiphising <on/off/metode> [kick/remove]',
     example: '.antiphising on',
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "birdrich",
   alias: [],
   category: "rich",
-  description: 'Flappy bird: tap layar buat terbang, hindari pipa',
+  description: 'Flappy Bird: toca la pantalla para volar y esquiva las tuberías',
   usage: ".birdrich",
   example: ".birdrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'birdrich',
   alias: [],
   category: 'rich',
-  desc: 'Flappy bird: tap layar buat terbang, hindari pipa',
+  desc: 'Flappy Bird: toca la pantalla para volar y esquiva las tuberías',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

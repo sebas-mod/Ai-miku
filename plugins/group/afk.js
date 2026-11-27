@@ -14,7 +14,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Activa el estado AFK con un motivo',
     usage: '.afk <alasan>',
-    example: '.afk lagi makan',
+    example: '.afk comiendo',
     isOwner: false,
     isPremium: false,
     isGroup: false,

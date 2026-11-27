@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "breakoutrich",
   alias: [],
   category: "rich",
-  description: 'Breakout: pecahkan bata, 3 nyawa, level makin sulit',
+  description: 'Breakout: rompe ladrillos, 3 vidas y niveles cada vez más difíciles',
   usage: ".breakoutrich",
   example: ".breakoutrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -156,7 +156,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildBreakoutHtml({ playerName = "Kamu" } = {}) {
+    function buildBreakoutHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -172,7 +172,7 @@ module.exports = {
   name: 'breakoutrich',
   alias: [],
   category: 'rich',
-  desc: "Breakout: pecahkan bata, 3 nyawa, level makin sulit",
+  desc: "Breakout: rompe ladrillos, 3 vidas y niveles cada vez más difíciles",
   run: async ({ sock, m, pushname }) => {
     const html = buildBreakoutHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Breakout Live', '🧱')

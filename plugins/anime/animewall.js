@@ -15,7 +15,7 @@ import { createCanvas } from '@napi-rs/canvas';
       name: 'animewall',
       alias: [],
       category: "anime",
-      description: 'Dapatkan random wallpaper anime HD dari berbagai series',
+      description: 'Wallpaper de anime HD aleatorio de varias series',
       usage: '.animewall [series]',
       example: '.animewall\n.animewall naruto\n.animewall zero two',
       isOwner: false,
@@ -152,7 +152,7 @@ import { createCanvas } from '@napi-rs/canvas';
       if (wallpaper.isFallback) {
           ctx.fillText('⚠️ Using fallback (API might be down)', w/2, 175)
       } else {
-          ctx.fillText('✨ Wallpaper siap di download darling~ ✨', w/2, 175)
+          ctx.fillText('✨ ¡Wallpaper listo para descargar, darling~! ✨', w/2, 175)
       }
 
       ctx.fillStyle = '#00000050'
@@ -199,7 +199,7 @@ import { createCanvas } from '@napi-rs/canvas';
       caption += `\n`
       caption += `📌 *Cara download:*\n`
       caption += `1. Haga clic en la imagen de arriba\n`
-      caption += `2. Tekan "...", pilih "Save as image"\n`
+      caption += `2. Pulsa "...", elige "Guardar como imagen"\n`
       caption += `\n`
 
       if (wallpaper.isFallback) {

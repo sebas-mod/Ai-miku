@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'notifopengroup',
     alias: ['notifopen'],
     category: 'group',
-    description: 'Toggle notifikasi saat grup dibuka',
+    description: 'Activa o desactiva el aviso cuando se abre el grupo',
     usage: '.notifopengroup on/off',
     example: '.notifopengroup on',
     isOwner: false,

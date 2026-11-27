@@ -14,7 +14,7 @@ const pluginConfig = {
     name: "multiscript",
     alias: ["js2jawa", "js2sunda", "js2indo", "jawa2js", "jawa2sunda", "jawa2indo", "sunda2js", "sunda2jawa", "sunda2indo", "indo2js", "indo2jawa", "indo2sunda", "msconvert", "multiconvert", "convertscript", "jawa", "sunda", "indo", "runjawa", "runsunda", "runindo", "multi"],
     category: "convert",
-    description: "Transpiler dan eksekutor kode multi-bahasa daerah (Jawa, Sunda, Indo, JS)",
+    description: "Transpilador y ejecutor de código en varios idiomas regionales (javanés, sondanés, indonesio, JS)",
     usage: ".js2jawa <kode>",
     example: ".js2jawa console.log('halo')",
     isOwner: false,

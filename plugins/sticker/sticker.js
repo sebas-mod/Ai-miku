@@ -22,7 +22,7 @@ const ffmpeg = MikuRuntime.ffmpeg;
       name: 'sticker',
       alias: ['s', 'stiker'],
       category: "sticker",
-      description: 'Membuat sticker dari gambar/video dengan opsi crop/resize',
+      description: 'Crea un sticker desde imagen/video con opciones de recorte y tamaño',
       usage: '.sticker [--crop] [--resize WxH] [--circle] [--rounded]',
       example: '.sticker --crop\n.s --resize 256x256\n.stiker --circle',
       isOwner: false,

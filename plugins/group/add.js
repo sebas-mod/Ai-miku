@@ -12,7 +12,7 @@ const pluginConfig = {
     alias: ['addmember', 'invite'],
     category: 'group',
     description: 'Añade miembros al grupo (admite varios a la vez)',
-    usage: '.add <nomor1> [nomor2] [nomor3]... [link_grup]',
+    usage: '.add <número1> [número2] [número3]... [link_grup]',
     example: '.add 6281234567890 6281234567890',
     isOwner: false,
     isPremium: false,

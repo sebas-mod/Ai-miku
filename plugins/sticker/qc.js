@@ -19,9 +19,9 @@ const chatIsIos = MikuRuntime.chatIsIos;
       name: 'qc',
       alias: ["quotely", "quotechat"],
       category: "sticker",
-      description: 'Membuat sticker quote chat, ketik teks lalu pilih warna lewat tombol',
-      usage: '.qc <text> (lalu pilih warna lewat tombol) | .qc <warna> <text>',
-      example: '.qc Hai semuanya!',
+      description: 'Crea un sticker de cita: escribe el texto y elige el color con los botones',
+      usage: '.qc <texto> (y luego elige el color con los botones) | .qc <color> <texto>',
+      example: '.qc ¡Hola a todos!',
       isOwner: false,
       isPremium: false,
       isGroup: false,
@@ -92,8 +92,8 @@ const chatIsIos = MikuRuntime.chatIsIos;
 
   const COLOR_SECTIONS = [
       { title: 'Populer', names: ['pink', 'blue', 'red', 'green', 'yellow', 'purple', 'orange', 'black', 'white'] },
-      { title: 'Pastel & Terang', names: ['lightpink', 'hotpink', 'deeppink', 'salmon', 'peachpuff', 'wheat', 'tan', 'lightblue', 'lightskyblue', 'skyblue', 'cyan', 'seagreen', 'mossgreen', 'violet', 'gold', 'silver'] },
-      { title: 'Gelap & Tegas', names: ['darkblue', 'brightskyblue', 'navyblue', 'darkgreen', 'darkishgreen', 'darkred', 'darkishred', 'fire', 'orangered', 'darkorange', 'goldenrod', 'chocolate', 'darkpurple', 'darkishpurple', 'darkmagenta', 'magenta', 'fuchsia', 'teal', 'ash', 'darkgray', 'darkishgray'] }
+      { title: 'Pastel y Claros', names: ['lightpink', 'hotpink', 'deeppink', 'salmon', 'peachpuff', 'wheat', 'tan', 'lightblue', 'lightskyblue', 'skyblue', 'cyan', 'seagreen', 'mossgreen', 'violet', 'gold', 'silver'] },
+      { title: 'Oscuros y Fuertes', names: ['darkblue', 'brightskyblue', 'navyblue', 'darkgreen', 'darkishgreen', 'darkred', 'darkishred', 'fire', 'orangered', 'darkorange', 'goldenrod', 'chocolate', 'darkpurple', 'darkishpurple', 'darkmagenta', 'magenta', 'fuchsia', 'teal', 'ash', 'darkgray', 'darkishgray'] }
   ]
 
   const titleCase = (name) => name.replace(/^./, c => c.toUpperCase())

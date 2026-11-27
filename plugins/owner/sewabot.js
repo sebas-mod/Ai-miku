@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "sewabot",
   alias: [],
   category: "owner",
-  description: "Toggle dan kelola sistem sewa bot",
+  description: "Activa y gestiona el sistema de alquiler del bot",
   usage: ".sewabot <on/off/leave/status>",
   example: ".sewabot on",
   isOwner: true,
@@ -45,14 +45,14 @@ async function handler(m, { sock }) {
         `• *${m.prefix}sewabot off* — Nonaktifkan sistem sewa\n` +
         `• *${m.prefix}sewabot leave* — Sal de todos los grupos fuera de la lista de alquiler\n\n` +
         `*GESTIÓN DEL ALQUILER:*\n` +
-        `• *${m.prefix}addsewa <link> <durasi>* — Añadir grupo + unirse automáticamente\n` +
+        `• *${m.prefix}addsewa <enlace> <duración>* — Añadir grupo + unirse automáticamente\n` +
         `• *${m.prefix}delsewa <link/id>* — Elimina el grupo de la lista de alquiler\n` +
-        `• *${m.prefix}renewsewa <link/id> <durasi>* — Perpanjang sewa\n` +
+        `• *${m.prefix}renewsewa <enlace/id> <duración>* — Amplía sewa\n` +
         `• *${m.prefix}listsewa* — Ver todos los grupos registrados\n` +
         `• *${m.prefix}checksewa* — Comprueba el alquiler restante (en el grupo)\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
         `30i (minutos) \u2022 12h (horas) \u2022 7d (días) \u2022 1m (meses) \u2022 1y (años) \u2022 lifetime\n\n` +
-        `*CARA KERJA:*\n` +
+        `*CÓMO FUNCIONA:*\n` +
         `1. Añade el grupo con *${m.prefix}addsewa*\n` +
         `2. El bot se une automáticamente si usas un enlace\n` +
         `3. Actívalo con *${m.prefix}sewabot on*\n` +

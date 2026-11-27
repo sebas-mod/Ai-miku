@@ -16,7 +16,7 @@ const pluginConfig = {
   alias: ["gp", "getcode", "plugincode", "sourcecode"],
   category: "owner",
   description: "Dapatkan source code plugin",
-  usage: ".getplugin <nama plugin>",
+  usage: ".getplugin <nombre plugin>",
   example: ".getplugin menu",
   isOwner: true,
   isPremium: false,

@@ -16,8 +16,8 @@ const ImageUploadService = MikuRuntime.ImageUploadService;
     name: "fake-tweet",
     alias: ["ftweet", "tweetfake"],
     category: "maker",
-    description: "Buat tweet palsu untuk hiburan",
-    usage: ".fake-tweet | nama | username | teks",
+    description: "Crea un tuit falso para entretenerte",
+    usage: ".fake-tweet | nombre | usuario | texto",
     example:
       ".fake-tweet | Penguin Torvalds | linux_enjoyer | Just setting up my twttr",
     cooldown: 15,

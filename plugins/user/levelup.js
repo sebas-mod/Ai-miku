@@ -19,7 +19,7 @@ const pluginConfig = {
   name: "levelup",
   alias: ["lvlup", "naiklevel", "levelnotif"],
   category: "user",
-  description: "Cek kenaikan level manual & atur notifikasi level up",
+  description: "Comprueba la subida de nivel manualmente y ajusta el aviso de subida",
   usage: ".levelup [on/off]",
   example: ".levelup",
   isOwner: false,
@@ -83,11 +83,11 @@ async function handler(m) {
     await m.react("🎊");
     return m.reply(
       `╭─── ❖ 『 🎊 *¡FELICIDADES, SUBISTE DE NIVEL!* 』 ❖\n` +
-      `│ ✦ *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
+      `│ ✦ *Aventurero:* *${user.regName || user.name || m.pushName}*\n` +
       `│ 📈 *Level:* Lv.${recordedLevel} ➜ *Lv.${actualLevel}* (+${diff} Level!)\n` +
       `│ 🎖️ *Nuevo rango:* *${rank.title}* (${rank.starBar})\n` +
       `├─── ❖ 『 🎁 *REGALO RECIBIDO* 』 ❖\n` +
-      `│ 💰 *Bonus Koin:* +Rp ${koinReward.toLocaleString("id-ID")}\n` +
+      `│ 💰 *Bono de monedas:* +Rp ${koinReward.toLocaleString("id-ID")}\n` +
       `│ ⚡ *Bonus Energi:* +${energiReward} Energi\n` +
       `╰──────────────────────────❖\n` +
       `_💡 Tipo *${p}Claimlevel* para abrir cofres de premios de nivel de hito!_`
@@ -105,7 +105,7 @@ async function handler(m) {
     `│ 🔋 *Progres:* [${bar}]\n` +
     `│ ✨ *Menos:* *${expToNextLevel(totalExp).toLocaleString("id-ID")} EXP* volver a *Lv.${actualLevel + 1}*!\n` +
     `│ 🔔 *Notificación automática:* ${notifState} (\`${p}levelup on/off\`)\n` +
-    `├─── ❖ 『 💡 *TIPS CEPAT NAIK LEVEL* 』 ❖\n` +
+    `├─── ❖ 『 💡 *CONSEJOS PARA SUBIR DE NIVEL RÁPIDO* 』 ❖\n` +
     `│ ◦ Utilice \`${p}boostexp\` cada 30 minutos\n` +
     `│ ◦ Mainkan misi di \`${p}adventure\`, \`${p}dungeon\`, & \`${p}daily\`\n` +
     `╰──────────────────────────❖`

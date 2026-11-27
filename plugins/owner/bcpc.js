@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "bcpc",
   alias: ["broadcastpc", "bcprivate"],
   category: "owner",
-  description: "Broadcast pesan ke semua kontak private chat",
+  description: "Difunde un mensaje a todos los contactos del chat privado",
   usage: ".bcpc <mensaje>",
   isOwner: true,
   isPremium: false,
@@ -140,7 +140,7 @@ async function handler(m, { sock }) {
           `╭┈┈⬡「 📋 *DETALLE* 」\n` +
           `┃ 📝 MENSAJE: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
           `┃ 📷 MULTIMEDIA: \`${mediaBuffer ? mediaType : "Ninguna"}\`\n` +
-          `┃ 👥 OBJETIVO: \`${filtered.length}\` kontak\n` +
+          `┃ 👥 OBJETIVO: \`${filtered.length}\` contacto\n` +
           `┃ ⏱️ INTERVALO: \`${jeda}ms\`\n` +
           `┃ 📊 ESTIMACIÓN: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
           `╰┈┈⬡\n\n` +

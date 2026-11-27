@@ -151,7 +151,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
           caption += `╭─── 📊 *STATUS KONEKSI SERVER* ───╮\n`
           caption += `│ • Servidor Activo: *${activeCount}/${allServers.length} Servidores*\n`
           caption += `│ • Rata-rata    : *${activeCount > 0 ? `${avg.toFixed(1)} ms` : '-'}*\n`
-          caption += `│ • Kualitas     : ${getQuality(avg, activeCount, allServers.length)}\n`
+          caption += `│ • Calidad     : ${getQuality(avg, activeCount, allServers.length)}\n`
           caption += `╰──────────────────────────────────╯\n`
           caption += `\n_꒰ © ${global.namebot} • Network Diagnostics ꒱_`
 

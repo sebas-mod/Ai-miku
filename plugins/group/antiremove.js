@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'antiremove',
     alias: ['antidelete', 'antihapus', 'ar'],
     category: 'group',
-    description: 'Mengaktifkan/menonaktifkan anti hapus pesan di grup',
+    description: 'Activa o desactiva el antinborrado de mensajes en el grupo',
     usage: '.antiremove <on/off>',
     example: '.antiremove on',
     isOwner: false,

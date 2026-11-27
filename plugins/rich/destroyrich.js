@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "destroyrich",
   alias: [],
   category: "rich",
-  description: 'Destroy Any Website: demo hancurkan situs pixel di chat (pistol, shotgun, granat) + tombol buka game aslinya',
+  description: 'Destroy Any Website: destroza un sitio en pixel art dentro del chat (pistola, escopeta, granada) con botón al juego original',
   usage: ".destroyrich",
   example: ".destroyrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -272,7 +272,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildDestroyHtml({ playerName = "Kamu", url = "https://destroy.spritefusion.com/" } = {}) {
+    function buildDestroyHtml({ playerName = "Jugador", url = "https://destroy.spritefusion.com/" } = {}) {
       let host = "destroy.spritefusion.com";
       try { host = new URL(url).host; } catch {}
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName).slice(0, 30), url, host }));
@@ -292,7 +292,7 @@ module.exports = {
   name: 'destroyrich',
   alias: [],
   category: 'rich',
-  desc: 'Destroy Any Website: demo hancurkan situs pixel di chat (pistol, shotgun, granat) + tombol buka game aslinya',
+  desc: 'Destroy Any Website: destroza un sitio en pixel art dentro del chat (pistola, escopeta, granada) con botón al juego original',
   run: async ({ sock, m, pushname, reply }) => {
     const html = buildDestroyHtml({ playerName: pushname || String(m.sender).split('@')[0], url: URL_GAME })
     const ok = await sendHtmlCard(sock, m, html, 'Destroy Any Website', '💥', { quoted: m })

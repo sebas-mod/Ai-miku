@@ -1776,7 +1776,7 @@ async function messageHandler(msg, sock, options = {}) {
         },
         pushkontak: {
           allowed: [...baseAllowed, "pushkontak"],
-          name: "Push Kontak",
+          name: "Envío de contactos",
         },
         store: { allowed: [...baseAllowed, "store"], name: "Store" },
         otp: { allowed: [...baseAllowed, "otp"], name: "OTP" },

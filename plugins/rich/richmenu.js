@@ -441,12 +441,12 @@ function render() {
     return;
   }
 
-  // Mode 2: Daftar Fitur dalam Kategori atau Hasil Pencarian
+  // Mode 2: Lista de funciones dalam Kategori atau Hasil Pencarian
   backBtn.style.display = activeCat ? "inline-block" : "none";
   const catObj = CATEGORIES.find((c) => c.id === activeCat);
   heroTitleEl.textContent = kw
-    ? "🔍 Hasil Pencarian"
-    : (catObj ? catObj.icon + " Kategori " + catObj.name : "Daftar Fitur");
+    ? "🔍 Resultados de la búsqueda"
+    : (catObj ? catObj.icon + " Kategori " + catObj.name : "Lista de funciones");
 
   const filtered = COMMANDS.filter((c) => {
     if (activeCat && c.cat !== activeCat) return false;

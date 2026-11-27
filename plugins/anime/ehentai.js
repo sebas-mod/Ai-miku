@@ -61,7 +61,7 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
     name: 'ehentai',
     alias: [],
     category: "anime",
-    usage: '<query | url> [-n jumlah]',
+    usage: '<query | url> [-n cantidad]',
     example: '.ehentai parody:naruto',
     isOwner: false,
     isPremium: false,

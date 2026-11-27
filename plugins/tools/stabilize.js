@@ -202,7 +202,7 @@ const { promisify } = (await import('node:util'))
               `• ⚙️ *Modo:* \`${presetName}\`\n` +
               `• 🔄 *Smoothing:* \`${isTripod ? 'Tripod' : smoothing}\`\n` +
               `• 📐 *Zoom Pangkas:* \`${zoom}%\`\n` +
-              `• ⏱️ *Durasi:* \`${formatDuration(duration)}${durText}\`\n` +
+              `• ⏱️ *Duración:* \`${formatDuration(duration)}${durText}\`\n` +
               `• 📦 *Tamaño:* \`${sizeBefore} ➔ ${sizeAfter}\`\n` +
               `• 🛠️ *Metode:* \`Natural Gaussian (No Distortion)\`\n\n` +
               `_¡El vídeo es más estable y está libre de extraños efectos de vibración/zoom!_ 🌿`;

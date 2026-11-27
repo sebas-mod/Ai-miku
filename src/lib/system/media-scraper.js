@@ -1594,7 +1594,7 @@ const _tools = (() => {
     async function tempMailInbox(email) {
         const token = activeMails.get(email)
         if (!token) throw friendly('❌ El correo no está en la base del bot (quizá el bot se reinició o el correo venció). Crea uno nuevo con tempmail')
-        if (tempailExpired()) throw friendly('Email Tempnya udah expired bree..')
+        if (tempailExpired()) throw friendly('El correo temporal ya caducó, colega..')
 
         let res
         try {
@@ -1608,7 +1608,7 @@ const _tools = (() => {
     }
 
     async function tempMailRead(messageId) {
-        if (tempailExpired()) throw friendly('Email Tempnya udah expired bree..')
+        if (tempailExpired()) throw friendly('El correo temporal ya caducó, colega..')
 
         let res
         try {
@@ -2855,7 +2855,7 @@ export async function JHICog(mode, username, extraId) {
 
     const uData = profileRes.u ? profileRes.u : null
     if (uData === null) throw new Error('Profile error: datos de usuario vacíos')
-    if (uData.ip) throw new Error('Profile error: Akun Private lek')
+    if (uData.ip) throw new Error('Error de perfil: cuenta privada, amigo')
 
     const uId = pick(uData.id, '')
     const reqBodyMain = { _ei: uId, _u: cleanUser }
@@ -3037,7 +3037,7 @@ export const premku = {
 
     const lines = accounts.map((a) => `${a.username} | ${a.password}`)
     if (lines.length && lines.length <= _PK_MAX_INLINE) {
-      body += `\n\n*🔐 AKUN*\n` + accounts.map((a, i) => `${i + 1}. ${a.username}\n    🔑 ${a.password}`).join('\n')
+      body += `\n\n*🔐 CUENTA*\n` + accounts.map((a, i) => `${i + 1}. ${a.username}\n    🔑 ${a.password}`).join('\n')
     } else if (lines.length) {
       body += `\n\n*🔐 ${lines.length} cuentas* enviadas como archivo .txt`
       try {
@@ -3352,7 +3352,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
         `*ANIME UPDATE! ✨*\n\n` +
         `📺 Judul: *${meta.title}*\n` +
         `🎞️ Episode: ${meta.episode}\n` +
-        `📊 Kualitas: *${linkObj.quality}*`
+        `📊 Calidad: *${linkObj.quality}*`
 
     for (const gid of groupIds) {
         try {

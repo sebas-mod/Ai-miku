@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "boostexp",
   alias: ["meditasiexp", "latihanlevel", "trainexp"],
   category: "user",
-  description: "Latihan fokus Astral setiap 30 menit untuk memperoleh bonus EXP instan",
+  description: "Entrenamiento de concentración Astral cada 30 minutos para ganar EXP al instante",
   usage: ".boostexp",
   example: ".boostexp",
   isOwner: false,
@@ -32,8 +32,8 @@ const COOLDOWN_MS = 30 * 60 * 1000;
 
 const SCENARIOS = [
   "Medita bajo el cristal Astral de Miku y absorbe energía cósmica.",
-  "Berlatih kombo pedang bayangan bersama instruktur Guild",
-  "Memecahkan gulungan rune kuno di Perpustakaan Bintang",
+  "Entrena el combo de la espada de las sombras con el instructor del Gremio",
+  "Resolver un rollo de runas antiguo en la Biblioteca Estelar",
   "Canaliza maná puro hacia el núcleo del alma del aventurero.",
   "Has completado una simulación de batalla de alto nivel en la Torre Miku.",
 ];
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
   try {
     const totalExp = Number(user.exp) || 0;
     const image = await renderBoostExp({
-      name: user.regName || user.name || m.pushName || "Petualang",
+      name: user.regName || user.name || m.pushName || "Aventurero",
       avatar: await getUserAvatar(sock, m.sender),
       expGain: finalExp,
       isCrit,

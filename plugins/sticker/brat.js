@@ -18,9 +18,9 @@ const chatIsIos = MikuRuntime.chatIsIos;
     name: "brat",
     alias: ["bratimg"],
     category: "sticker",
-    description: "Menu variant brat dan generator sticker brat",
+    description: "Menú de variantes brat y generador de stickers brat",
     usage: ".brat | .bratimg <text>",
-    example: ".bratimg Hai semua",
+    example: ".bratimg Hola a todos",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -35,7 +35,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
       title: "Imagen brat",
       rows: [
         { command: "bratimg", title: "Brat Default", description: "Sticker brat versi biasa" },
-        { command: "bratgreen", title: "Brat Green", description: "Variant brat warna hijau" },
+        { command: "bratgreen", title: "Brat Green", description: "Variante brat de color verde" },
         { command: "bratcewek", title: "Brat Cewek", description: "Variant brat cewek" },
         { command: "brathd", title: "Brat HD", description: "Variant brat HD" },
       ],
@@ -44,9 +44,9 @@ const chatIsIos = MikuRuntime.chatIsIos;
       title: "Vídeo de brat",
       rows: [
         { command: "bratvid", title: "Vídeo de brat", description: "Sticker brat animated" },
-        { command: "bratvid2", title: "Vídeo de brat V2", description: "Sticker brat video v2" },
-        { command: "bratgojovid", title: "Vídeo de Brat Gojo", description: "Variant brat Gojo video" },
-        { command: "bratvermeilvid", title: "Vídeo de Brat Vermeil", description: "Variant brat Vermeil video" },
+        { command: "bratvid2", title: "Vídeo de brat V2", description: "Sticker de vídeo brat v2" },
+        { command: "bratgojovid", title: "Vídeo de Brat Gojo", description: "Variante de vídeo brat Gojo" },
+        { command: "bratvermeilvid", title: "Vídeo de Brat Vermeil", description: "Variante de vídeo brat Vermeil" },
       ],
     },
     {
@@ -84,7 +84,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
     return (
       "🌿 *si quieres hacer brat, selecciona la variante de brat a continuación*\n\n" +
       list +
-      `\n\nEjemplo: ${m.prefix}bratimg ${text || "Hai semua"}`
+      `\n\nEjemplo: ${m.prefix}bratimg ${text || "Hola a todos"}`
     );
   }
 

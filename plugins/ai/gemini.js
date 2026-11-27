@@ -16,9 +16,9 @@ const pluginConfig = {
   name: "gemini",
   alias: ["g", "miku"],
   category: "ai",
-  description: "Ngobrol dengan Gemini (sesi tersimpan, bisa lanjut dengan reply)",
-  usage: ".gemini <pertanyaan>",
-  example: ".gemini apa itu black hole?",
+  description: "Chatea con Gemini (sesión guardada, puedes seguir respondiendo)",
+  usage: ".gemini <pregunta>",
+  example: ".gemini ¿qué es un agujero negro?",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -214,7 +214,7 @@ const rapikan = (t) =>
 
 const menuBantuan = (p) =>
   `GEMINI\n${GARIS}\n` +
-  `• ${p}gemini <pertanyaan>\n` +
+  `• ${p}gemini <pregunta>\n` +
   `• ${p}gemini -e [nombre]  exportar sesión\n` +
   `• ${p}gemini -r  import sesi (reply file)\n` +
   `• ${p}gemini reset  borrar sesión\n` +

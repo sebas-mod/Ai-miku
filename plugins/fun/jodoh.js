@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "jodoh",
   alias: ["match", "shipcouple", "ship"],
   category: "fun",
-  description: "Jodohkan 2 member random dengan kecocokan",
+  description: "Empareja a 2 miembros al azar con su compatibilidad",
   usage: ".jodoh",
   example: ".jodoh",
   isOwner: false,

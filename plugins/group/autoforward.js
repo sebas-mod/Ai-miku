@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'autoforward',
     alias: ['autofw', 'autofwd'],
     category: 'group',
-    description: 'Auto forward pesan yang masuk ke grup ke grup ini',
+    description: 'Reenvía automáticamente a este grupo los mensajes que llegan al grupo',
     usage: '.autoforward <on/off>',
     example: '.autoforward on',
     isOwner: false,

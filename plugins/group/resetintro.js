@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'resetintro',
     alias: ['introdel', 'delintro', 'deleteintro'],
     category: 'group',
-    description: 'Reset intro grup ke default (admin only)',
+    description: 'Restablece la presentación del grupo a la de por defecto (solo admin)',
     usage: '.resetintro',
     example: '.resetintro',
     isOwner: false,

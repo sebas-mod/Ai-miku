@@ -15,7 +15,7 @@ const te = MikuRuntime.te;
       name: 'capcutdl',
       alias: [],
       category: "download",
-      description: 'Download video CapCut',
+      description: 'Descarga videos de CapCut',
       usage: '.capcutdl <url>',
       example: '.capcutdl https://www.capcut.com/t/xxx',
       isOwner: false,

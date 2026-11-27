@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "cemerich",
   alias: [],
   category: "rich",
-  description: 'Ceme lawan bandar bot, kartu mati bayar 2x',
+  description: 'Ceme contra el crupier del bot: la carta muerta paga doble',
   usage: ".cemerich",
   example: ".cemerich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'cemerich',
   alias: [],
   category: 'rich',
-  desc: 'Ceme lawan bandar bot, kartu mati bayar 2x',
+  desc: 'Ceme contra el banquero bot, carta muerta paga 2x',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

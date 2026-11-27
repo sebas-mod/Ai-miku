@@ -117,7 +117,7 @@ const pluginConfig = {
   category: "user",
   description:
     "Ver la lista de usuarios registrados con filtros y paginación",
-  usage: ".listdaftar [page <nomor>] [search <nama>] [sort terbaru]",
+  usage: ".listdaftar [page <número>] [search <nombre>] [sort terbaru]",
   example: ".listdaftar search zann sort terbaru page 2",
   isOwner: true,
   isPremium: false,

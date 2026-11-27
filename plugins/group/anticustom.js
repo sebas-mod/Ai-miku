@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "anticustom",
   alias: ["antiaddcustom", "customanti"],
   category: "group",
-  description: "Bikin AntiCustom lewat sesi tanya jawab per langkah",
+  description: "Crea AntiCustom con una sesión de preguntas paso a paso",
   usage: ".anticustom <on/off/list/add/del/metode/cancel>",
   example: ".anticustom",
   isOwner: false,

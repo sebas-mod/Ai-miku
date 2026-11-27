@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "lapormenfess",
   alias: ["reportmenfess"],
   category: "menfess",
-  description: "Laporkan menfess yang melecehkan / spam ke owner",
+  description: "Reporta al dueño los menfess ofensivos o spam",
   usage: ".lapormenfess [ID] alasan",
   example: ".lapormenfess AB12C isinya melecehkan",
   isOwner: false,

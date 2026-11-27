@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'automedia',
     alias: ['automedi', 'am'],
     category: 'group',
-    description: 'Toggle auto media - otomatis jadikan sticker jadi gambar/video',
+    description: 'Activa o desactiva auto media: convierte stickers en imagen/video automáticamente',
     usage: '.automedia on/off',
     example: '.automedia on',
     isOwner: false,

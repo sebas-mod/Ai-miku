@@ -15,8 +15,8 @@ const pluginConfig = {
     name: 'soulmatch',
     alias: [],
     category: 'fun',
-    description: 'Cek kecocokan jiwa dengan seseorang',
-    usage: '.soulmatch nama1|nama2',
+    description: 'Consulta la compatibilidad de almas con alguien',
+    usage: '.soulmatch nombre1|nombre2',
     example: '.soulmatch Raiden|Mei',
     isOwner: false,
     isPremium: false,
@@ -28,12 +28,12 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const ELEMENTS = ['Api 🔥', 'Air 💧', 'Tanah 🌍', 'Angin 🌪️', 'Petir ⚡', 'Es ❄️', 'Cahaya ✨', 'Bayangan 🌑']
+const ELEMENTS = ['Fuego 🔥', 'Agua 💧', 'Tierra 🌍', 'Aire 🌪️', 'Rayo ⚡', 'Hielo ❄️', 'Luz ✨', 'Sombra 🌑']
 const ZODIAC = ['♈ Aries', '♉ Taurus', '♊ Gemini', '♋ Cancer', '♌ Leo', '♍ Virgo',
                '♎ Libra', '♏ Scorpio', '♐ Sagittarius', '♑ Capricorn', '♒ Aquarius', '♓ Pisces']
 const SOUL_TYPES = [
-    "Líder Valiente", "Penyeimbang Bijaksana", "Kreator Ekspresif", "Pembangun Solid",
-    "Petualang Bebas", "Pelindung Setia", "Pemikir Mistis", "Penakluk Kuat", "Humanitarian Murni"
+    "Líder Valiente", "Equilibrador Sabio", "Creador Expresivo", "Constructor Sólido",
+    "Aventurero libre", "Protector Leal", "Pensador Místico", "Conquistador Fuerte", "Humanitario Puro"
 ]
 
 function generateSoulData(name, seed) {
@@ -46,12 +46,12 @@ function generateSoulData(name, seed) {
 }
 
 function getMatchDescription(score) {
-    if (score >= 90) return "💫 Takdir Sejati"
-    if (score >= 80) return "✨ Harmoni Sempurna"
-    if (score >= 70) return "🌟 Koneksi Kuat"
+    if (score >= 90) return "💫 Destino Verdadero"
+    if (score >= 80) return "✨ Armonía Perfecta"
+    if (score >= 70) return "🌟 Conexión Fuerte"
     if (score >= 60) return "⭐ Buen Potencial"
-    if (score >= 50) return "🌙 Perlu Perjuangan"
-    return "🌑 Tantangan Berat"
+    if (score >= 50) return "🌙 Requiere Esfuerzo"
+    return "🌑 Desafío Difícil"
 }
 
 function getReading(score) {

@@ -324,7 +324,7 @@ const pluginConfig = {
       await sendStickerPack(conn, m.chat, bufs, m, {
         name: 'TikTok Stiker',
         publisher: global.namebot || 'Bot',
-        description: `Stiker komentar TikTok (${sent})`,
+        description: `Sticker de comentarios de TikTok (${sent})`,
         emojis: ['😀']
       })
       await m.reply(`✅ ${sent} stickers de ${scanned} comentarios analizados.`)

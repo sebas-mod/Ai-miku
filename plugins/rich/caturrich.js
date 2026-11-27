@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "caturrich",
   alias: [],
   category: "rich",
-  description: 'Catur lawan bot: rokade, en passant, promosi, 3 level',
+  description: 'Ajedrez contra el bot: enroque, al paso, coronación y 3 niveles',
   usage: ".caturrich",
   example: ".caturrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'caturrich',
   alias: [],
   category: 'rich',
-  desc: 'Catur lawan bot: rokade, en passant, promosi, 3 level',
+  desc: 'Ajedrez contra el bot: enroque, al paso, promoción, 3 niveles',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

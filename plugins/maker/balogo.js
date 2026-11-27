@@ -20,7 +20,7 @@ const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
       name: 'balogo',
       alias: [],
       category: "maker",
-      description: 'Membuat logo Blue Archive style',
+      description: 'Crea un logo estilo Blue Archive',
       usage: '.balogo <textL> & <textR>',
       example: '.balogo Blue & Archive',
       isOwner: false,

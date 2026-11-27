@@ -12,9 +12,9 @@ const pluginConfig = {
   name: "rpmood",
   alias: ["setmood"],
   category: "roleplay",
-  description: "Atur status mood Roleplay di kartu profilmu",
-  usage: ".rpmood <teks mood>",
-  example: ".rpmood 🌸 Lagi bahagia",
+  description: "Configura el estado de ánimo del rol en tu tarjeta de perfil",
+  usage: ".rpmood <texto del estado de ánimo>",
+  example: ".rpmood 🌸 feliz ahora",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 5, energi: 0, isEnabled: true,
 };

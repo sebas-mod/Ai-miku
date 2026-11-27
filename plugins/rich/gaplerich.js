@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "gaplerich",
   alias: [],
   category: "rich",
-  description: 'Gaple lawan bot: domino 28 kartu, tarik kartu, kartu mati, skor per ronde',
+  description: 'Gaple contra el bot: dominó de 28 cartas, robar, carta muerta y puntos por ronda',
   usage: ".gaplerich",
   example: ".gaplerich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'gaplerich',
   alias: [],
   category: 'rich',
-  desc: 'Gaple lawan bot: domino 28 kartu, tarik kartu, kartu mati, skor per ronde',
+  desc: 'Gaple contra el bot: dominó de 28 cartas, robar carta, carta muerta, puntuación por ronda',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

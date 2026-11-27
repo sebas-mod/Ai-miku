@@ -140,7 +140,7 @@ const getMedia = async (m) => downloadFromMsg(m)
       try {
           const img = await getImage(m, text)
           if (!img) {
-              return reply(`Enviar o responder a *imagen* con el texto ${prefix || '.'}${command}\nO utilice el enlace: ${prefix || '.'}${command} https://contoh.com/gambar.jpg`)
+              return reply(`Enviar o responder a *imagen* con el texto ${prefix || '.'}${command}\nO utilice el enlace: ${prefix || '.'}${command} https://ejemplo.com/imagen.jpg`)
           }
           if (img.buffer.length > MAX_SIZE) return reply('La imagen es demasiado grande (máx. 10 MB).')
 

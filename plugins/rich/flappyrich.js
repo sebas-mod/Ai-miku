@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "flappyrich",
   alias: [],
   category: "rich",
-  description: 'Flappy Bird: tap untuk lompat, skor terbaik tersimpan',
+  description: 'Flappy Bird: toca para saltar y guarda tu mejor puntuación',
   usage: ".flappyrich",
   example: ".flappyrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -141,7 +141,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.textAlign='center';c.fillStyle='#fff';c.strokeStyle='#0008';c.lineWidth=4;c.font='bold 38px sans-serif';
      if(state>0){c.strokeText(score,W/2,70);c.fillText(score,W/2,70);}
      if(state===0){c.font='bold 18px sans-serif';c.strokeText('TOCA PARA EMPEZAR',W/2,H/2+60);c.fillText('TOCA PARA EMPEZAR',W/2,H/2+60);}
-     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,130);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,195);c.font='16px sans-serif';c.fillText('Puntos '+score+'  •  Récord '+best,W/2,225);c.fillText(score>=20?'🏆 Emas':score>=10?'🥈 Perak':score>=5?'🥉 Perunggu':'Coba lagi!',W/2,253);}
+     if(state===2){c.fillStyle='#000a';c.fillRect(40,150,240,130);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,195);c.font='16px sans-serif';c.fillText('Puntos '+score+'  •  Récord '+best,W/2,225);c.fillText(score>=20?'🏆 Oro':score>=10?'🥈 Plata':score>=5?'🥉 Bronce':'¡Inténtalo otra vez!',W/2,253);}
     }
     cv.addEventListener('pointerdown',function(e){e.preventDefault();flap();});
     document.addEventListener('keydown',function(e){if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();flap();}});
@@ -151,7 +151,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildFlappyHtml({ playerName = "Kamu" } = {}) {
+    function buildFlappyHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -167,7 +167,7 @@ module.exports = {
   name: 'flappyrich',
   alias: [],
   category: 'rich',
-  desc: "Flappy Bird: tap untuk lompat, skor terbaik tersimpan",
+  desc: "Flappy Bird: toca para saltar y se guarda tu mejor puntuación",
   run: async ({ sock, m, pushname }) => {
     const html = buildFlappyHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Flappy Live', '🐤')

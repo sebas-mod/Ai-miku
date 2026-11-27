@@ -16,7 +16,7 @@ const uploadToTmpFiles = MikuRuntime.uploadToTmpFiles;
       name: 'fakeimgios',
       alias: ['imgios'],
       category: "maker",
-      description: 'Membuat gambar ss ios',
+      description: 'Crea una imagen de captura estilo iOS',
       usage: '.fakeimgios',
       example: '.fakeimgios',
       isOwner: false,

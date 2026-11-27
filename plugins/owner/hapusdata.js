@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'hapusdata',
     alias: ['resetdata', 'cleardata', 'wipedata'],
     category: 'owner',
-    description: 'Reset semua data database ke default',
+    description: 'Restablece todos los datos de la base a los valores por defecto',
     usage: '.hapusdata',
     example: '.hapusdata',
     isOwner: true,
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '❌ Batalkan',
+                    display_text: '❌ Cancelarkan',
                     id: `${m.prefix}menu`
                 })
             }

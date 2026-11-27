@@ -16,7 +16,7 @@ const ytdl = MikuRuntime.ytdl;
     name: "ytmp3",
     alias: ["ytm3", "musikyt"],
     category: "download",
-    description: "Download audio YouTube",
+    description: "Descarga audio de YouTube",
     usage: ".ytmp3 <url>",
     example: ".ytmp3 https://youtube.com/watch?v=xxx",
     cooldown: 20,

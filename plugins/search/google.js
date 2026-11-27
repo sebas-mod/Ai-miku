@@ -139,7 +139,7 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, usedPrefix, command }) {
     if (!text) {
-      return reply(`🔍 *GOOGLE SEARCH*\n\nBúsqueda de información y noticias en Google.\n\nEjemplo:\n${usedPrefix}${command} Berita teknologi terbaru\n${usedPrefix}${command} AI Gemini`)
+      return reply(`🔍 *GOOGLE SEARCH*\n\nBúsqueda de información y noticias en Google.\n\nEjemplo:\n${usedPrefix}${command} noticias recientes de tecnología\n${usedPrefix}${command} AI Gemini`)
     }
 
     await m.react('⏳')

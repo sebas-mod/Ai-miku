@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'botafk',
     alias: ['afkbot', 'afkmode'],
     category: 'owner',
-    description: 'Mode AFK untuk bot - bot tidak merespon command, hanya reply pesan AFK',
+    description: 'Modo AFK del bot: no responde comandos, solo avisa que está ausente',
     usage: '.botafk <alasan>',
     example: '.botafk Lagi istirahat',
     isOwner: true,

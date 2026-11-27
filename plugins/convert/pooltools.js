@@ -475,7 +475,7 @@ const nameArg = (c, def) => du.safeName(kit.rest(c.body).trim().replace(/\.[a-z0
 const specs = {
   kumpul: {
     desc: 'Cesta de medios: recopile imágenes/videos/audio/archivos para procesarlos juntos',
-    usage: '[list|reset|hapus <no>]',
+    usage: '[list|reset|hapus <nº>]',
     run: async (c) => {
       const a = (c.args[0] || '').toLowerCase()
       if (a === 'reset' || a === 'kosong') {
@@ -490,7 +490,7 @@ const specs = {
         const items = pool.list(c.sender)
         if (!items.length) return '📦 El carrito aún está vacío. Responda el archivo/medio con `.kumpul` para agregar.'
         return uitext.panel('CESTA DE MEDIOS', [
-          { head: `📦 *${items.length} BERKAS TERSIMPAN*`, lines: items.map((i, n) => `${n + 1}. ${ICON[i.kind]} ${i.name} (${kit.fmtSize(i.buffer.length)})`) },
+          { head: `📦 *${items.length} ARCHIVOS GUARDADOS*`, lines: items.map((i, n) => `${n + 1}. ${ICON[i.kind]} ${i.name} (${kit.fmtSize(i.buffer.length)})`) },
           { head: '🛠️ *COMANDOS DE PROCESAMIENTO*', lines: ['.pdfbuat • .kolase • .slideshow • .zipkan', '.gabungvideo • .gabungaudio • .mixav', '.kumpul eliminar <no> •.kumpul restablecer'] }
         ])
       }
@@ -506,7 +506,7 @@ const specs = {
   },
   pdfbuat: {
     desc: 'Combina todas las imágenes de la cesta en un solo documento PDF',
-    usage: '[nama file]',
+    usage: '[nombre del archivo]',
     heavy: true,
     run: async (c) => {
       const items = mine(c, 'image')
@@ -523,7 +523,7 @@ const specs = {
   },
   kolase: {
     desc: 'Organiza todas las imágenes de la cesta en un bonito collage.',
-    usage: '[jumlah kolom]',
+    usage: '[número de columnas]',
     heavy: true,
     run: async (c) => {
       const items = mine(c, 'image')
@@ -546,7 +546,7 @@ const specs = {
   },
   slideshow: {
     desc: 'Convierta las imágenes de la cesta en un vídeo de presentación de diapositivas (+ música si hay audio en la cesta)',
-    usage: '[detik per foto 1-8]',
+    usage: '[segundos por foto 1-8]',
     heavy: true,
     run: async (c) => {
       const items = mine(c, 'image').slice(0, 15)
@@ -580,7 +580,7 @@ const specs = {
   },
   zipkan: {
     desc: 'Comprime todos los archivos de la cesta en un solo archivo ZIP',
-    usage: '[nama arsip]',
+    usage: '[nombre arsip]',
     heavy: true,
     run: async (c) => {
       const items = pool.list(c.sender)

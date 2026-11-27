@@ -21,14 +21,14 @@ const createMikuFeature = (module, exports, require) => {
         const ago = (d) => { const t = Date.parse(d); if (!t) return ''; const m = Math.round((Date.now() - t) / 60000); return m < 1 ? 'hace un momento' : m < 60 ? `${m} hace minutos` : m < 1440 ? `${Math.round(m / 60)} hace horas` : `${Math.round(m / 1440)} día último` }
         module.exports = {
           name: 'berita', alias: ['news', 'beritaterkini', 'headline'], category: 'search', cmds: ['berita'], noLimit: false,
-          desc: 'Berita terbaru Antara: .berita [politik|ekonomi|hukum|olahraga|teknologi|dunia|hiburan|otomotif]',
+          desc: 'Noticias recientes de Antara: .berita [politik|ekonomi|hukum|olahraga|teknologi|dunia|hiburan|otomotif]',
           run: async ({ text, prefix, reply }) => {
             const k = String(text || 'terkini').trim().toLowerCase()
-            if (!FEED[k]) return reply(`Categoría desconocida.\nElegir: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nEjemplo: ${prefix}berita ekonomi`)
+            if (!FEED[k]) return reply(`Categoría desconocida.\nElige: ${Object.keys(FEED).filter(x => x !== 'tekno').join(', ')}\nEjemplo: ${prefix}berita ekonomi`)
             try {
               const { data } = await axios.get(`https://www.antaranews.com/rss/${FEED[k]}.xml`, { timeout: 15000, responseType: 'text', headers: { 'User-Agent': 'Mozilla/5.0' } })
               const items = parseRss(data); if (!items.length) return reply('No hay noticias leídas por el momento.')
-              return reply(`${B('BERITA ' + k.toUpperCase())}\n━━━━━━━━━━━━━━━━━━━━\n` + items.map((x, i) => `${i + 1}. *${x.title}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + '\n\n_Sumber: Antara News_')
+              return reply(`${B('NOTICIAS ' + k.toUpperCase())}\n━━━━━━━━━━━━━━━━━━━━\n` + items.map((x, i) => `${i + 1}. *${x.title}*\n   ${ago(x.date)}\n   ${x.link}`).join('\n\n') + '\n\n_Sumber: Antara News_')
             } catch (e) { console.log('[berita]', e.message); return reply('No se pudieron recuperar las noticias: ' + e.message) }
           },
         }

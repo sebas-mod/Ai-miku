@@ -17,8 +17,8 @@ import { join, dirname } from 'node:path'
       name: 'iqcpinkv2',
       alias: [],
       category: "maker",
-      description: 'Membuat fake chat iPhone versi pink dengan menu konteks (versi 2).',
-      usage: '.iqcpinkv2 [teks] (boleh reply / kirim gambar)',
+      description: 'Crea un chat falso de iPhone en rosa con menú contextual (versión 2).',
+      usage: '.iqcpinkv2 [texto] (puedes responder o enviar una imagen)',
       example: '.iqcpinkv2 shui yun shen chu 🌸',
       isOwner: false,
       isPremium: false,
@@ -60,12 +60,12 @@ import { join, dirname } from 'node:path'
       menu: { x: 22, y: 691, w: 342, h: 385, r: 40, iconCx: 71, labelX: 105, fontSize: 23, red: '#c10b27',
           rows: [
               { y: 732, label: 'Responder', icon: 'reply' },
-              { y: 787, label: 'Teruskan', icon: 'forward' },
-              { y: 842, label: 'Salin', icon: 'copy' },
-              { y: 898, label: 'Beri bintang', icon: 'star' },
+              { y: 787, label: 'Reenviar', icon: 'forward' },
+              { y: 842, label: 'Copiar', icon: 'copy' },
+              { y: 898, label: 'Destacar', icon: 'star' },
               { y: 954, label: 'Eliminar', icon: 'trash', red: true },
               { divider: 994, x1: 55, x2: 332 },
-              { y: 1035, label: 'Lainnya...', icon: 'more' },
+              { y: 1035, label: 'Más...', icon: 'more' },
           ] },
   }
 
@@ -500,7 +500,7 @@ import { join, dirname } from 'node:path'
                   `Convierte texto o imágenes en una vista de chat de iPhone con tema rosa, con barra de reacciones y menú contextual.\n\n` +
                   `*CÓMO USAR:*\n` +
                   `- Escribe \`${m.prefix}${m.command} <tu texto>\`\n` +
-                  `- Envía o responde a una imagen con \`${m.prefix}${m.command} [teks]\`\n` +
+                  `- Envía o responde a una imagen con \`${m.prefix}${m.command} [texto]\`\n` +
                   `- O responde a un mensaje de texto con \`${m.prefix}${m.command}\``
               )
           }

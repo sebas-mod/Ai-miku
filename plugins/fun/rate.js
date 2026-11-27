@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'rate',
     alias: ['nilai', 'rating'],
     category: 'fun',
-    description: 'Minta bot memberi rating sesuatu',
+    description: 'Pídale al bot que puntúe algo',
     usage: '.rate <sesuatu>',
     example: '.rate wajahku',
     isOwner: false,

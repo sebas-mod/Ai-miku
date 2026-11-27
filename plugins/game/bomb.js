@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "bomb",
   alias: ["tebakbom", "mines"],
   category: "game",
-  description: "Buka kotak harta karun 3x3 tanpa terkena bom tersembunyi",
+  description: "Abre un cofre 3x3 sin pisar las bombas escondidas",
   usage: ".bomb",
   example: ".bomb",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

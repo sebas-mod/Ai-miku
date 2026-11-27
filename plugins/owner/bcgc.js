@@ -315,7 +315,7 @@ async function handleSetDelay(m, db, input) {
         `Cuanto mayor sea la pausa, más seguro frente a la detección de spam.\n\n` +
         `> Pausa actual: *${formatDelay(current)}* (*${current}ms*)\n\n` +
         `*CÓMO USAR:*\n` +
-        `> *${m.prefix}jedabcgc <angka><satuan>*\n\n` +
+        `> *${m.prefix}jedabcgc <número><unidad>*\n\n` +
         `*SATUAN:*\n` +
         `> *s* — segundos • *m* — minutos • *h* — horas • *d* — días\n\n` +
         `*EJEMPLO:*\n` +

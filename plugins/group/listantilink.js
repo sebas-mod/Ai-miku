@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'listantilink',
     alias: ['antilinklist', 'cekantilink'],
     category: 'group',
-    description: 'Melihat daftar link yang diblokir',
+    description: 'Muestra la lista de enlaces bloqueados',
     usage: '.listantilink',
     example: '.listantilink',
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "colorrich",
   alias: ["tebakwarna"],
   category: "rich",
-  description: "Tes refleks otak: pilih WARNA TINTA teksnya, bukan tulisan katanya!",
+  description: "Prueba de reflejos: ¡elige el COLOR DE LA TINTA del texto, no la palabra escrita!",
   usage: ".colorrich",
   example: ".colorrich",
   isOwner: false,

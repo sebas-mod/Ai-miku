@@ -183,7 +183,7 @@ import { promisify } from 'node:util'
       const caption =
         `🎞️ *VÍDEO HD*\n\n` +
         `• 📐 *Resolusi:* \`${meta.width}x${meta.height} ➔ ${out.width}x${out.height}\`\n` +
-        `• ⏱️ *Durasi:* \`${formatDuration(out.duration)}\`${out.fps ? `  • 🎬 *FPS:* \`${out.fps}\`` : ''}\n` +
+        `• ⏱️ *Duración:* \`${formatDuration(out.duration)}\`${out.fps ? `  • 🎬 *FPS:* \`${out.fps}\`` : ''}\n` +
         `• 📦 *Tamaño:* \`${formatBytes(media.length)} ➔ ${formatBytes(outBuffer.length)}\`\n` +
         `• ⚙️ *Proceso:* \`${took}s\`` +
         (t.scaled ? '' : `\n\n_El vídeo ya es Full HD o más, así que solo se enfoca sin ampliarlo._`)

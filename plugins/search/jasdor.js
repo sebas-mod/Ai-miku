@@ -77,7 +77,7 @@ const pluginConfig = {
               return reply(`☕ *MENU ${brand.toUpperCase()} — ${code}* (${list.length})\n\n` + list.slice(0, 30).map(x => {
                   const price = x.price ?? x.promo_price, orig = x.original_price ?? x.normal_price
                   return `• ${x.name}${x.sold_out || x.is_sold_out ? ' _(habis)_' : ''}\n  ${rp(price)}${orig && orig !== price ? ` ~${rp(orig)}~` : ''} • id ${x.id ?? x.product_id ?? '-'}`
-              }).join('\n') + (list.length > 30 ? `\n… dan ${list.length - 30} otro` : ''))
+              }).join('\n') + (list.length > 30 ? `\n… y ${list.length - 30} más` : ''))
           }
           if (['opsi', 'option', 'options'].includes(a)) {
               const [b, code, id] = rest

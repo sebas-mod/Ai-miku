@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: ['kenapa', 'why'],
     category: 'fun',
     description: 'Tanya bot mengapa sesuatu',
-    usage: '.mengapa <pertanyaan>',
+    usage: '.mengapa <pregunta>',
     example: '.mengapa langit biru?',
     isOwner: false,
     isPremium: false,

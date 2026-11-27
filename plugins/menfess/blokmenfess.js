@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "blokmenfess",
   alias: [],
   category: "menfess",
-  description: "Blok / buka blokir satu pengirim anonim",
+  description: "Bloquea o desbloquea a un remitente anónimo",
   usage: ".blokmenfess [ID]",
   example: ".blokmenfess AB12C",
   isOwner: false,

@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "ranklist",
   alias: ["daftarrank", "tierlevel", "listrank", "infopangkat"],
   category: "user",
-  description: "Melihat daftar lengkap 21 pangkat Astral beserta syarat level dan bonusnya",
+  description: "Muestra la lista completa de los 21 rangos Astral con su nivel requerido y sus bonos",
   usage: ".ranklist",
   example: ".ranklist",
   isOwner: false,
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
   try {
     const image = await renderRankList({
-      name: user.regName || user.name || m.pushName || "Petualang",
+      name: user.regName || user.name || m.pushName || "Aventurero",
       avatar: await getUserAvatar(sock, m.sender),
       myLevel,
       ranks: ascending,

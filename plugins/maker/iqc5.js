@@ -15,7 +15,7 @@ import { createCanvas } from '@napi-rs/canvas';
       name: 'iqc5',
       alias: ['qc5'],
       category: "maker",
-      description: 'Membuat Fake Quote iOS style tanpa API eksternal.',
+      description: 'Crea una cita falsa estilo iOS sin API externa.',
       usage: '.iqc5 [text/reply]',
       isOwner: false,
       isPremium: false,

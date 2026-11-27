@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "cekmenfess",
   alias: [],
   category: "menfess",
-  description: "(Owner) lihat pengirim & isi percakapan menfess",
+  description: "(Dueño) ve el remitente y el contenido de la conversación de menfess",
   usage: ".cekmenfess ID",
   example: ".cekmenfess AB12C",
   isOwner: true,

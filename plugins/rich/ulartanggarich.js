@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "ulartanggarich",
   alias: [],
   category: "rich",
-  description: 'Ular Tangga lawan 1-3 bot: dadu animasi, ular & tangga, dadu 6 jalan lagi',
+  description: 'Serpientes y escaleras contra 1-3 bots: dado animado, serpientes y escaleras, con el 6 vuelves a tirar',
   usage: ".ulartanggarich",
   example: ".ulartanggarich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,11 +117,11 @@ module.exports = {
   name: 'ulartanggarich',
   alias: [],
   category: 'rich',
-  desc: "Ular Tangga lawan 1-3 bot: dadu animasi, ular & tangga, dadu 6 jalan lagi",
+  desc: "Serpientes y escaleras contra 1-3 bots: dado animado, serpientes y escaleras, con el 6 vuelves a tirar",
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()
-      await sendHtmlCard(sock, m, html, 'Ular Tangga Live', '🐍')
+      await sendHtmlCard(sock, m, html, 'Serpientes y Escaleras Live', '🐍')
     } catch (e) {
       reply(`❌ No se pudo cargar la tarjeta: ${e.message}`)
     }

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "bonk",
   alias: ['getok'],
   category: "roleplay",
-  description: "Aksi roleplay bonk dengan animasi anime",
+  description: "Acción de rol de golpe en la cabeza con animación anime",
   usage: ".bonk @user",
   example: ".bonk @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

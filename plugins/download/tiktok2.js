@@ -114,7 +114,7 @@ const te = MikuRuntime.te;
       name: 'tiktok2',
       alias: [],
       category: "download",
-      description: 'Download video/slide TikTok tanpa watermark',
+      description: 'Descarga videos/slides de TikTok sin marca de agua',
       usage: '.tiktok2 <url>',
       example: '.tiktok2 https://vt.tiktok.com/xxx',
       isOwner: false,

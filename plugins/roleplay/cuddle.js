@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "cuddle",
   alias: ['manja'],
   category: "roleplay",
-  description: "Aksi roleplay cuddle dengan animasi anime",
+  description: "Acción de rol de mimos con animación anime",
   usage: ".cuddle @user",
   example: ".cuddle @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "ceksn",
   alias: ["sn", "kartudaftar", "idcard"],
   category: "user",
-  description: "Cek Serial Number (SN) dan kartu pendaftaran kamu",
+  description: "Consulta tu número de serie (SN) y tu tarjeta de registro",
   usage: ".ceksn",
   example: ".ceksn",
   isOwner: false,

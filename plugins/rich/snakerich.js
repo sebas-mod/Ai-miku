@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "snakerich",
   alias: ["ularkristal"],
   category: "rich",
-  description: "Game ular neon khas Miku dengan kontrol swipe/D-pad & rekor skor",
+  description: "El juego de la serpiente neón de Miku con controles de deslizamiento/D-pad y récord",
   usage: ".snakerich",
   example: ".snakerich",
   isOwner: false,

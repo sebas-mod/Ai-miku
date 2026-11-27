@@ -16,7 +16,7 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Pin/unpin chat',
-    usage: '.pinchat <nomor/reply> atau .pinchat buka <nomor>',
+    usage: '.pinchat <número/reply> o .pinchat buka <número>',
     example: '.pinchat 628xxx',
     isOwner: true,
     cooldown: 3,

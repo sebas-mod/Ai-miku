@@ -56,7 +56,7 @@ const sendAlbum = MikuRuntime.sendAlbum;
     name: "threaddl",
     alias: [],
     category: "download",
-    description: "Download foto dan video dari postingan Threads tanpa repot!",
+    description: "¡Descarga fotos y videos de las publicaciones de Threads sin complicarte!",
     usage: ".threaddl <url>",
     example: ".threaddl https://www.threads.net/@xxx/post/xxx",
     cooldown: 10,

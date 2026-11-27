@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'unmute',
     alias: ['unbisukan'],
     category: 'group',
-    description: 'Membuka mute grup',
+    description: 'Quita el silencio del grupo',
     usage: '.unmute',
     example: '.unmute',
     isOwner: false,

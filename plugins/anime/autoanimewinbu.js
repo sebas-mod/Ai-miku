@@ -24,7 +24,7 @@ const isRunning = MikuRuntime.isRunning;
       name: 'autoanimewinbu',
       alias: ["aaw"],
       category: "anime",
-      description: 'Auto upload ongoing anime & donghua dari winbu.net (720p Pixeldrain)',
+      description: 'Sube automáticamente anime y donghua en emisión desde winbu.net (720p Pixeldrain)',
       usage: '.autoanimewinbu <start|stop|status|cek|list|reset|addgrup|delgrup>',
       example: '.autoanimewinbu start',
       isOwner: true,
@@ -105,7 +105,7 @@ const isRunning = MikuRuntime.isRunning;
               if (!isRunning()) {
                   startAutoCheck(sock, state.interval || 5)
               }
-              await m.reply('🔍 Mengecek anime terbaru...')
+              await m.reply('🔍 Comprobando animes nuevos...')
               try {
                   await runCheck()
                   return m.reply('✅ Comprobación completa')
@@ -125,7 +125,7 @@ const isRunning = MikuRuntime.isRunning;
                   list.slice(0, 15).forEach((a, i) => {
                       txt += `*${i + 1}.* ${a.title}\n`
                   })
-                  if (list.length > 15) txt += `\n> ...dan ${list.length - 15} otro`
+                  if (list.length > 15) txt += `\n> ...y ${list.length - 15} más`
 
                   return sock.sendMessage(m.chat, { text: txt }, { quoted: m })
               } catch (e) {

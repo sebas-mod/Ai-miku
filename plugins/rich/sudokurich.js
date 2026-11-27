@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "sudokurich",
   alias: ["sudoku"],
   category: "rich",
-  description: "Sudoku 9x9 interaktif dengan cek otomatis & tombol petunjuk",
+  description: "Sudoku 9x9 interactivo con comprobación automática y botón de pista",
   usage: ".sudokurich",
   example: ".sudokurich",
   isOwner: false,
@@ -83,7 +83,7 @@ function render(){
     const bad=v&&v!==sol[i];
     return \`<div class="sc \${fix[i]?'fix':''} \${i===sel?'sel':''} \${bad?'bad':''}" onclick="pick(\${i})">\${v||''}</div>\`;
   }).join('');
-  if(cur.every((v,i)=>v===sol[i])){document.getElementById('st').textContent='SELESAI! 🎉';clearInterval(tmr);}
+  if(cur.every((v,i)=>v===sol[i])){document.getElementById('st').textContent='¡COMPLETADO! 🎉';clearInterval(tmr);}
 }
 function pick(i){if(!fix[i]){sel=i;render();}}
 function put(n){if(sel<0||fix[sel])return;cur[sel]=n;render();}

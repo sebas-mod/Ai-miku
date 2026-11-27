@@ -22,7 +22,7 @@ const pluginConfig = {
   name: "profile",
   alias: [],
   category: "user",
-  description: "Melihat kartu profil lengkap, level, aset, dan status RPG",
+  description: "Muestra la tarjeta de perfil completa: nivel, bienes y estado del RPG",
   usage: ".profile [@user]",
   example: ".profile",
   isOwner: false,
@@ -126,8 +126,8 @@ async function handler(m, { sock }) {
       : `${user.energi ?? 10} ⚡`;
 
   const displayName = isReg
-    ? user.regName || user.name || m.pushName || "Petualang"
-    : m.pushName || user.name || "Petualang";
+    ? user.regName || user.name || m.pushName || "Aventurero"
+    : m.pushName || user.name || "Aventurero";
   const regStatus = isReg
     ? `✅ Terdaftar (${user.regAge ?? "-"} thn)`
     : `⚠️ No registrado (${m.prefix || "."}lista)`;
@@ -165,11 +165,11 @@ async function handler(m, { sock }) {
     `│ 🔋 *Progres:* [${getLevelBar(expInLevel, expNeeded, 10)}] *${expPct}%*\n` +
     `│ ◦ _${fmt(expInLevel)} / ${fmt(expNeeded)} XP menuju Lv.${userLevel + 1}_\n` +
     `├─── ❖ 『 💰 *KEKAYAAN & ENERGI* 』 ❖\n` +
-    `│ 💵 *Koin Dompet:* Rp ${fmt(koin)}\n` +
+    `│ 💵 *Monedas en cartera:* Rp ${fmt(koin)}\n` +
     `│ 🏦 *Saldo bancario:* Rp ${fmt(bank)}\n` +
-    `│ 🪙 *Emas & Berlian:* ${fmt(gold)} Gold • ${fmt(diamond)} Diamond\n` +
+    `│ 🪙 *Oro y diamantes:* ${fmt(gold)} Gold • ${fmt(diamond)} Diamond\n` +
     `│ ⚡ *Energi Akses:* ${energiDisplay}\n` +
-    `├─── ❖ 『 ⚔️ *ATRIBUT PETUALANG* 』 ❖\n` +
+    `├─── ❖ 『 ⚔️ *ATRIBUTOS DEL AVENTURERO* 』 ❖\n` +
     `│ ❤️ *HP:* [${statBar(hp, maxHp)}] ${hp}/${maxHp}\n` +
     `│ 💙 *MP:* [${statBar(mp, maxMp)}] ${mp}/${maxMp}\n` +
     `│ ⚡ *STA:* [${statBar(sta, maxSta)}] ${sta}/${maxSta}\n` +

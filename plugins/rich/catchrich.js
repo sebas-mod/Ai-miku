@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "catchrich",
   alias: ["tangkapbintang"],
   category: "rich",
-  description: "Tangkap bintang sakura yang jatuh & hindari meteor gelap!",
+  description: "¡Atrapa las estrellas de sakura que caen y esquiva los meteoros oscuros!",
   usage: ".catchrich",
   example: ".catchrich",
   isOwner: false,
@@ -95,7 +95,7 @@ upd();drawIdle();
 }
 
 async function handler(m, { sock }) {
-  await sendHtmlCard(sock, m, buildHtml(), "Tangkap Bintang", "🌠", { quoted: m });
+  await sendHtmlCard(sock, m, buildHtml(), "Atrapa la Estrella", "🌠", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

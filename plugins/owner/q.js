@@ -12,8 +12,8 @@ const pluginConfig = {
     name: 'q',
     alias: ['quoted', 'inspect'],
     category: 'tools',
-    description: 'Ambil JSON message dari pesan yang direply',
-    usage: '.q (reply pesan)',
+    description: 'Obtiene el JSON del mensaje que respondas',
+    usage: '.q (responde al mensaje)',
     isOwner: true,
     cooldown: 3,
     isEnabled: true

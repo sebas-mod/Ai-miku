@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "menfessku",
   alias: ["inboxmenfess", "outboxmenfess"],
   category: "menfess",
-  description: "Ringkasan menfess, kuota, kotak masuk & terkirim",
+  description: "Resumen de menfess, cupo, recibidos y enviados",
   usage: ".menfessku",
   example: ".menfessku",
   isOwner: false,

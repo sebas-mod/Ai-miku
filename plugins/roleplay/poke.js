@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "poke",
   alias: ['colek'],
   category: "roleplay",
-  description: "Aksi roleplay colek dengan animasi anime",
+  description: "Acción de rol de toque con animación anime",
   usage: ".poke @user",
   example: ".poke @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     needTarget: true,
     affectionDelta: 4,
     templateTarget: '¡{sender} le pellizca la mejilla a {target} con picardía! 👉✨',
-    templateSelf: '{sender} mencolek angin.',
+    templateSelf: '{sender} toca el aire.',
   });
 }
 

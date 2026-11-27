@@ -15,7 +15,7 @@ const pluginConfig = {
     name: 'backupsession',
     alias: ['backupsesi', 'bckpsession', 'sessionbackup'],
     category: 'owner',
-    description: 'Backup manual folder session (tidak ada backup otomatis)',
+    description: 'Respalda manualmente la carpeta session (no hay respaldo automático)',
     usage: '.backupsession',
     example: '.backupsession',
     isOwner: true,

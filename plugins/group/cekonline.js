@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
             let count = 0
             for (const jid of onlineMembers) {
                 if (count >= 50) {
-                    text += `┃ ... dan ${onlineMembers.length - 50} miembros más\n`
+                    text += `┃ ... y ${onlineMembers.length - 50} miembros más\n`
                     break
                 }
                 const number = jid.split('@')[0]

@@ -11,7 +11,7 @@ const pluginConfig = {
     name: ['clearchat', 'cc', 'cleangc', 'deletechat', 'delchat'],
     alias: [],
     category: 'group',
-    description: 'Membersihkan chat grup',
+    description: 'Limpia el chat del grupo',
     usage: '.clearchat',
     example: '.clearchat',
     isOwner: false,

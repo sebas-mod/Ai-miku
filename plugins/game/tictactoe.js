@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tictactoe",
   alias: ["ttt"],
   category: "game",
-  description: "Main Tic-Tac-Toe lawan Miku AI atau PvP (@tag)",
+  description: "Juega al tres en línea contra la IA de Miku o PvP (@tag)",
   usage: ".ttt [@lawan]",
   example: ".ttt | .ttt @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

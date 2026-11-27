@@ -13,9 +13,9 @@ const pluginConfig = {
     name: "detik",
     alias: [],
     category: "search",
-    description: "detik cari <kata>",
-    usage: ".detik cari <kata>",
-    example: ".detik cari <kata>",
+    description: "detik cari <palabra>",
+    usage: ".detik cari <palabra>",
+    example: ".detik cari <palabra>",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -81,13 +81,13 @@ const pluginConfig = {
               if (!/detik\.com/i.test(new URL(input).hostname)) return reply('❌ Solo se admiten enlaces detik.com.')
               const d = await detail(input.split(/\s+/)[0])
               if (!d.title && !d.content) return reply('❌ El contenido del artículo es ilegible.')
-              const body = `📰 *${d.title}*\n${d.author ? `✍️ ${d.author}\n` : ''}${d.date ? `🕒 ${d.date}\n` : ''}\n${d.content.slice(0, 3000)}${d.content.length > 3000 ? '…\n\n_(dipotong, buka link untuk lengkap)_' : ''}`
+              const body = `📰 *${d.title}*\n${d.author ? `✍️ ${d.author}\n` : ''}${d.date ? `🕒 ${d.date}\n` : ''}\n${d.content.slice(0, 3000)}${d.content.length > 3000 ? '…\n\n_(recortado, abre el enlace para verlo completo)_' : ''}`
               if (d.image) return sock.sendMessage(m.chat, { image: { url: d.image }, caption: body.slice(0, 1000) }, { quoted: m }).then(() => body.length > 1000 && reply(body.slice(0, 3500))).catch(() => reply(body))
               return reply(body)
           }
           if (['terkini', 'latest', 'new'].includes(al)) {
               const rows = parseList(await get('https://news.detik.com/indeks'), '.list-content__item,.media')
-              return reply(rows.length ? fmtList('🆕 *BERITA TERKINI*', rows) : 'Sin noticias.')
+              return reply(rows.length ? fmtList('🆕 *NOTICIAS DE ÚLTIMA HORA*', rows) : 'Sin noticias.')
           }
           if (['populer', 'popular', 'terpopuler'].includes(al)) {
               const rows = parseList(await get('https://www.detik.com/terpopuler'), '.list-content__item')

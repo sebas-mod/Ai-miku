@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "hangman",
   alias: ["gantung"],
   category: "game",
-  description: "Tebak kata huruf demi huruf sebelum nyawa habis",
+  description: "Adivina la palabra letra a letra antes de quedarte sin vidas",
   usage: ".hangman",
   example: ".hangman",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

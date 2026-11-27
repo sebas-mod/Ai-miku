@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "publicthisgc",
   alias: ["publicgc", "publicgroup", "publicthisgroup"],
   category: "group",
-  description: "Aktifkan mode public hanya di grup ini",
+  description: "Activa el modo público solo en este grupo",
   usage: ".publicthisgc",
   example: ".publicthisgc",
   isOwner: true,

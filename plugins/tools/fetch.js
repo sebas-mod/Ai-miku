@@ -71,7 +71,7 @@ const pluginConfig = {
           }
           return { res, url }
       }
-      throw new Error('Terlalu banyak redirect.')
+      throw new Error('Demasiadas redirecciones.')
   }
 
   async function readBody(res) {

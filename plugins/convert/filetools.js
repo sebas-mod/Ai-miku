@@ -501,7 +501,7 @@ const specs = {
     run: async (c, f) => {
       const h = (a) => crypto.createHash(a).update(f.buffer).digest('hex')
       return uitext.panel('ANALISIS FILE', [
-        { head: '📄 *INFORMASI BERKAS*', lines: [`Nombre: ${f.name}`, `Tamaño: ${kit.fmtSize(f.buffer.length)} (${f.buffer.length.toLocaleString('id-ID')} bytes)`] },
+        { head: '📄 *INFORMACIÓN DEL ARCHIVO*', lines: [`Nombre: ${f.name}`, `Tamaño: ${kit.fmtSize(f.buffer.length)} (${f.buffer.length.toLocaleString('id-ID')} bytes)`] },
         { head: '🔍 *DETECTAR FORMATO*', lines: [`Detectado: ${f.sniff.label}`, `Extensión original:.${f.sniff.ext}`, `MIME : ${f.mime}`, path.extname(f.name).slice(1).toLowerCase() && path.extname(f.name).slice(1).toLowerCase() !== f.sniff.ext ? `⚠️ Extensión de nombre (.${path.extname(f.name).slice(1)}) es diferente del contenido del archivo` : ''].filter(Boolean) },
         { head: '🔐 *HASH CHECKSUM*', lines: [`MD5 : ${h('md5')}`, `SHA-1 : ${h('sha1')}`, `SHA-256 : ${h('sha256')}`] }
       ])
@@ -509,7 +509,7 @@ const specs = {
   },
   rename: {
     desc: 'Reenviar el archivo con un nuevo nombre (la extensión se conserva si no se escribe)',
-    usage: '<nama baru>',
+    usage: '<nombre nuevo>',
     example: 'laporan-final',
     needs: 'file',
     args: true,
@@ -547,10 +547,10 @@ const specs = {
     run: async (c, f) => {
       if (f.sniff.kind !== 'text') throw fail('Enviar o responder al archivo CSV (texto).')
       const rows = parseCsv(asText(f))
-      if (rows.length < 2) throw fail('CSV minimal memiliki baris header dan 1 baris data.')
-      const head = rows[0].map((h, i) => h.trim() || `kolom${i + 1}`)
+      if (rows.length < 2) throw fail('El CSV debe tener una fila de encabezado y al menos 1 fila de datos.')
+      const head = rows[0].map((h, i) => h.trim() || `columna${i + 1}`)
       const data = rows.slice(1).map((r) => Object.fromEntries(head.map((h, i) => [h, r[i] ?? ''])))
-      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} filas • ${head.length} kolom` }] }
+      return { documents: [{ buffer: Buffer.from(JSON.stringify(data, null, 2)), name: `${base(f.name)}.json`, mime: 'application/json', caption: `✅ ${data.length} filas • ${head.length} columnas` }] }
     }
   },
   json2csv: {

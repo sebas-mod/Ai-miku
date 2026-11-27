@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "viuprem",
   alias: ["viu"],
   category: "premium",
-  description: "Generate akun VIU Premium gratis berdasarkan Device ID",
+  description: "Genera cuentas gratis de VIU Premium según el Device ID",
   usage: ".viuprem [device_id]",
   example: ".viuprem",
   isOwner: false,

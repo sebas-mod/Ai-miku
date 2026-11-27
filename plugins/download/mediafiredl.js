@@ -15,7 +15,7 @@ const mediafire = MikuRuntime.mediafire;
     name: "mediafiredl",
     alias: [],
     category: "download",
-    description: "Download file dari MediaFire",
+    description: "Descarga archivos de MediaFire",
     usage: ".mediafiredl <url>",
     example: ".mediafiredl https://www.mediafire.com/file/xxx",
     isOwner: false,

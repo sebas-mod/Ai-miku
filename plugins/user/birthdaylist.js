@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'birthdaylist',
     alias: ['bdaylist', 'listultah', 'ultahlist'],
     category: 'user',
-    description: 'Lihat daftar ulang tahun member',
+    description: 'Muestra la lista de cumpleaños de los miembros',
     usage: '.birthdaylist',
     example: '.birthdaylist',
     isOwner: false,
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
     }
 
     if (birthdays.length > 15) {
-        text += `┃ ... dan ${birthdays.length - 15} otro\n`
+        text += `┃ ... y ${birthdays.length - 15} más\n`
     }
 
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`

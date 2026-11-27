@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "cekabsen",
   alias: ["listabsen", "daftarabsen", "lihathadir"],
   category: "group",
-  description: "Lihat daftar peserta yang sudah absen",
+  description: "Muestra la lista de quienes ya marcaron asistencia",
   usage: ".cekabsen",
   example: ".cekabsen",
   isOwner: false,

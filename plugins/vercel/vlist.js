@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "vlist",
   alias: ["vercellist", "vprojects"],
   category: "vercel",
-  description: "Tampilkan daftar semua proyek website di akun Vercel kamu",
+  description: "Muestra todos los proyectos web de tu cuenta de Vercel",
   usage: ".vlist",
   example: ".vlist",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

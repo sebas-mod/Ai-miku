@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "damrich",
   alias: [],
   category: "rich",
-  description: 'Dam lawan bot: makan wajib, lompat beruntun, 3 level',
+  description: 'Damas contra el bot: captura obligatoria, saltos en cadena y 3 niveles',
   usage: ".damrich",
   example: ".damrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'damrich',
   alias: [],
   category: 'rich',
-  desc: 'Dam lawan bot: makan wajib, lompat beruntun, 3 level',
+  desc: 'Damas contra el bot: captura obligatoria, saltos en cadena y 3 niveles',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

@@ -20,8 +20,8 @@ const pluginConfig = {
   name: "swgcall",
   alias: ["swgcsemua", "swgcbroadcast", "swgcbc", "groupstoryall"],
   category: "owner",
-  description: "Post Group Status/Story ke SEMUA grup sekaligus (border hijau)",
-  usage: ".swgcall <teks> atau reply media",
+  description: "Publica un estado/historia en TODOS los grupos a la vez (borde verde)",
+  usage: ".swgcall <texto> o responde a un media",
   example: ".swgcall Pengumuman penting!",
   isOwner: true,
   isPremium: false,
@@ -232,7 +232,7 @@ async function handler(m, { sock, db }) {
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${m.prefix}cancelswgcall`,
           }),
         },

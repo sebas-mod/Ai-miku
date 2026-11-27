@@ -19,7 +19,7 @@ const pluginConfig = {
   name: "top5",
   alias: ["toplist"],
   category: "fun",
-  description: "Random top 5 member untuk kategori tertentu",
+  description: "Top 5 de miembros al azar para cierta categoría",
   usage: ".top5 <kategori>",
   example: ".top5 orang pintar",
   isOwner: false,

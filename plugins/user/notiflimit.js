@@ -12,7 +12,7 @@ const pluginConfig = {
     name: "notiflimit",
     alias: ["notifenergi"],
     category: "owner",
-    description: "Mengaktifkan atau mematikan notifikasi potong limit secara global.",
+    description: "Activa o desactiva globalmente el aviso de descuento de límite.",
     usage: ".notiflimit",
     example: ".notiflimit",
     isOwner: true,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "ghstalk",
   alias: ["stalkgh", "githubstalk"],
   category: "stalker",
-  description: "Cek profil dan repositori populer pengguna GitHub",
+  description: "Consulta el perfil y los repositorios populares de un usuario de GitHub",
   usage: ".ghstalk <username>",
   example: ".ghstalk torvalds",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'setbirthday',
     alias: ['setbday', 'setultah', 'settgl'],
     category: 'user',
-    description: 'Set tanggal ulang tahun',
+    description: 'Establece la fecha de cumpleaños',
     usage: '.setbirthday <DD-MM>',
     example: '.setbirthday 25-12',
     isOwner: false,

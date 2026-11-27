@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "onlygc",
   alias: ["onlygroup", "grouponly"],
   category: "owner",
-  description: "Toggle mode bot hanya di grup",
+  description: "Activa o desactiva el modo solo grupos",
   usage: ".onlygc on/off",
   example: ".onlygc on",
   isOwner: true,

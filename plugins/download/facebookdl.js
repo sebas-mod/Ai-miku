@@ -15,7 +15,7 @@ const fbdown = MikuRuntime.fbdown;
       name: 'facebookdl',
       alias: [],
       category: "download",
-      description: 'Download video Facebook',
+      description: 'Descarga videos de Facebook',
       usage: '.facebookdl <url>',
       example: '.facebookdl https://www.facebook.com/watch?v=xxx',
       isOwner: false,

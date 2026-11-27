@@ -23,7 +23,7 @@ const ttdown = MikuRuntime.ttdown;
     name: ["ttmp3"],
     alias: [],
     category: "download",
-    description: "Download audio TikTok",
+    description: "Descarga audio de TikTok",
     usage: ".ttmp3 <url>",
     example: ".ttmp3 https://vt.tiktok.com/xxx",
     isOwner: false,

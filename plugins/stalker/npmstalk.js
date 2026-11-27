@@ -13,7 +13,7 @@ const pluginConfig = {
   alias: ["stalknpm", "npminfo"],
   category: "stalker",
   description: "Cek informasi paket NPM (versi, author, download mingguan)",
-  usage: ".npmstalk <nama-paket>",
+  usage: ".npmstalk <nombre-paket>",
   example: ".npmstalk axios",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 5, energi: 1, isEnabled: true,

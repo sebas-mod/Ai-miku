@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'cekpacar',
     alias: ['pacar', 'pasangan', 'gebetan'],
     category: 'fun',
-    description: 'Cek status hubungan seseorang',
+    description: 'Consulta el estado de la relación de alguien',
     usage: '.cekpacar atau .cekpacar @tag',
     example: '.cekpacar',
     isOwner: false,

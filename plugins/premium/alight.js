@@ -10,8 +10,8 @@ const pluginConfig = {
     name: "alight",
     alias: ["amlist", "amdrive", "amlink", "ampreset", "amtiktok"],
     category: "premium",
-    description: "Katalog dan pengunduh preset Alight Motion XML",
-    usage: ".alight | .amlist | .ampreset <nama>",
+    description: "Catálogo y descargador de presets XML de Alight Motion",
+    usage: ".alight | .amlist | .ampreset <nombre>",
     example: ".amlist 1",
     isOwner: false,
     isPremium: true,
@@ -145,7 +145,7 @@ async function handler(m, ctx = {}) {
         txt += `*${idx}. ${p.name}*\n`
         if (p.author) txt += `   ∘ Kreator : ${p.author}\n`
         if (p.tiktokUrl) txt += `   ∘ TikTok : ${p.tiktokUrl}\n`
-        txt += `   ∘ Ambil : \`${usedPrefix}ampreset ${p.name}\`\n\n`
+        txt += `   ∘ Tomar : \`${usedPrefix}ampreset ${p.name}\`\n\n`
       })
 
       if (page < pages) {

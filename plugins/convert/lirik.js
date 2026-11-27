@@ -12,9 +12,9 @@ const pluginConfig = {
     name: "lirik",
     alias: ["lyrics"],
     category: "convert",
-    description: "lirik <judul lagu>",
-    usage: ".lirik <judul lagu>",
-    example: ".lirik <judul lagu>",
+    description: "lirik <título de la canción>",
+    usage: ".lirik <título canción>",
+    example: ".lirik <título canción>",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -27,7 +27,7 @@ const pluginConfig = {
 async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
   const query = (text || (args || []).join(' ') || m.quoted?.text || '').trim()
   if (!query) {
-    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nEscribe el título de la canción o el cantante:\nEjemplo: \`${usedPrefix + command} Coldplay Amarillo\``)
+    return m.reply(`🎵 *BÚSQUEDA DE LETRAS DE CANCIONES*\n\nEscribe el título de la canción o el cantante:\nEjemplo: \`${usedPrefix + command} Coldplay Amarillo\``)
   }
 
   await m.react('⏳')

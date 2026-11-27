@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "memoryrich",
   alias: [],
   category: "rich",
-  description: 'Game cocokkan kartu 3 level + rekor',
+  description: 'Juego de emparejar cartas con 3 niveles y récord',
   usage: ".memoryrich",
   example: ".memoryrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -114,7 +114,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </style>
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">🧠</div><div class="meta"><div class="title">Memory Live</div><div class="sub" id="who"></div></div></div>
-     <div class="chips" id="lv"><button class="chip on" data-n="6">Mudah 4×3</button><button class="chip" data-n="8">Sedang 4×4</button><button class="chip" data-n="10">Susah 4×5</button></div>
+     <div class="chips" id="lv"><button class="chip on" data-n="6">Fácil 4×3</button><button class="chip" data-n="8">Medio 4×4</button><button class="chip" data-n="10">Difícil 4×5</button></div>
      <div class="st"><span class="pill">Movimientos <b id="mv">0</b></span><span class="pill">Tiempo <b id="tm">0</b>d</span><span class="pill">Récord <b id="bs">-</b></span></div>
      <div class="grid" id="g"></div>
      <div class="win" id="win"></div>
@@ -143,7 +143,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildMemoryHtml({ playerName = "Kamu" } = {}) {
+    function buildMemoryHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -159,7 +159,7 @@ module.exports = {
   name: 'memoryrich',
   alias: [],
   category: 'rich',
-  desc: "Game cocokkan kartu 3 level + rekor",
+  desc: "Juego de emparejar cartas, 3 niveles + récord",
   run: async ({ sock, m, pushname }) => {
     const html = buildMemoryHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Memory Live', '🧠')

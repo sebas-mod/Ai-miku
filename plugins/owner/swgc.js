@@ -89,9 +89,9 @@ const pluginConfig = {
   name: "swgc",
   alias: ["statusgrup", "swgroup", "groupstory", "toswgc"],
   category: "owner",
-  description: "Post Group Status/Story ke grup pilihan (border hijau)",
-  usage: ".swgc <teks> atau reply media",
-  example: ".swgc Halo semua!",
+  description: "Publica un estado/historia en un grupo elegido (borde verde)",
+  usage: ".swgc <texto> o responde a un media",
+  example: ".swgc ¡Hola a todos!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -345,7 +345,7 @@ async function handler(m, { sock, db }) {
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${prefix}cancelswgc`,
           }),
         },

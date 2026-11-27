@@ -54,7 +54,7 @@ const pluginConfig = {
   🔍 *\`INFORMASI IP: ${ipTarget}\`*
 
   📟 *IP Dirección: ${safe(ipData.ip)}*
-  📞 *Estado: ${ipData.success ? 'Berhasil' : 'Gagal'}*
+  📞 *Estado: ${ipData.success ? 'Correcto' : 'Fallido'}*
   📡 *Tipo IP: ${safe(ipData.type)}*
   📖 *Continente: ${safe(ipData.continent)} ${safe(ipData.continent_code)}*
   📀 *País: ${safe(ipData.country)} ${safe(ipData.country_code)}*

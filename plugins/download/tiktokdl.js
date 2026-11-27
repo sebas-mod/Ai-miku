@@ -117,7 +117,7 @@ const sendAlbum = MikuRuntime.sendAlbum;
     name: "tiktokdl",
     alias: [],
     category: "download",
-    description: "Download video/slide TikTok tanpa watermark",
+    description: "Descarga videos/slides de TikTok sin marca de agua",
     usage: ".tiktok <url>",
     example: ".tiktok https://vt.tiktok.com/xxx",
     isOwner: false,

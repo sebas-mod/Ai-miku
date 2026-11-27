@@ -15,7 +15,7 @@ const te = MikuRuntime.te;
       name: 'snackvideodl',
       alias: [],
       category: "download",
-      description: 'Download video SnackVideo',
+      description: 'Descarga videos de SnackVideo',
       usage: '.snackvideodl <url>',
       example: '.snackvideodl https://www.snackvideo.com/@xxx/video/xxx',
       isOwner: false,

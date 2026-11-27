@@ -15,7 +15,7 @@ const ytdl = MikuRuntime.ytdl;
     name: "ytmp4",
     alias: ["ytm4", "videoyt"],
     category: "download",
-    description: "Download video YouTube",
+    description: "Descarga videos de YouTube",
     usage: ".ytmp4 <url>",
     example: ".ytmp4 https://youtube.com/watch?v=xxx",
     cooldown: 20,

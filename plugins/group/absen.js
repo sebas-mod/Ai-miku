@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'absen',
     alias: ['hadir', 'present'],
     category: 'group',
-    description: 'Tandai kehadiran di sesi absen',
+    description: 'Marca tu asistencia en la sesión de lista',
     usage: '.absen',
     example: '.absen',
     isOwner: false,

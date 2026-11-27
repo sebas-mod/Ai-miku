@@ -27,7 +27,7 @@ const pluginConfig = {
   alias: ["addown", "setowner", "delowner", "dedown", "ownerlist", "listowner"],
   category: "owner",
   description: "Kelola owner bot (mode-aware)",
-  usage: ".addowner <nomor/@tag/reply>",
+  usage: ".addowner <número/@tag/responde>",
   example: ".addowner 6281234567890",
   isOwner: true,
   isPremium: false,

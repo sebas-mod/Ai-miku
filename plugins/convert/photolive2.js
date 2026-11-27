@@ -12,9 +12,9 @@ const pluginConfig = {
     name: "photolive2",
     alias: [],
     category: "convert",
-    description: "photolive2 (foto lalu video)",
-    usage: ".photolive2 (foto lalu video)",
-    example: ".photolive2 (foto lalu video)",
+    description: "photolive2 (foto y luego video)",
+    usage: ".photolive2 (foto y luego video)",
+    example: ".photolive2 (foto y luego video)",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -66,7 +66,7 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
     return m.reply(
       `📸 *CUSTOM LIVE PHOTO BUILDER*\n\n` +
       `Combina la foto de portada y el vídeo que hayas elegido en una *Live Photo* WhatsApp.\n\n` +
-      `📌 *Langkah Penggunaan:*\n` +
+      `📌 *Pasos de uso:*\n` +
       `1. Enviar/responder *foto* con el comando \`${p}\`\n` +
       `2. Enviar/responder *video* con el comando \`${p}\``
     )

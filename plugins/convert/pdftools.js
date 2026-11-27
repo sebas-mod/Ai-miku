@@ -450,7 +450,7 @@ const loadPdfLibDoc = async (buf) => {
 const specs = {
   pdftoimg: {
     desc: 'Convierta PDF páginas en imágenes (máximo 10 páginas por comando)',
-    usage: '[halaman|1-3|semua] [hd]',
+    usage: '[página|1-3|todas] [hd]',
     example: '1-3',
     needs: 'pdf',
     heavy: true,
@@ -482,7 +482,7 @@ const specs = {
   },
   pdfsplit: {
     desc: 'Llevar una página específica de PDF a una nueva PDF',
-    usage: '<halaman, mis. 1-3,5>',
+    usage: '<página, mis. 1-3,5>',
     example: '2-4',
     needs: 'pdf',
     heavy: true,
@@ -499,7 +499,7 @@ const specs = {
   },
   pdfhapus: {
     desc: 'Eliminar páginas específicas de PDF',
-    usage: '<halaman, mis. 2,5-6>',
+    usage: '<página, mis. 2,5-6>',
     example: '2',
     needs: 'pdf',
     heavy: true,
@@ -514,7 +514,7 @@ const specs = {
   },
   pdfrotate: {
     desc: 'Putar halaman PDF (90, 180, 270)',
-    usage: '[derajat] [halaman]',
+    usage: '[derajat] [página]',
     example: '90 1-2',
     needs: 'pdf',
     heavy: true,
@@ -548,7 +548,7 @@ const specs = {
   },
   pdftext: {
     desc: 'Extraer texto del documento PDF',
-    usage: '[halaman]',
+    usage: '[página]',
     example: '1-2',
     needs: 'pdf',
     heavy: true,
@@ -576,13 +576,13 @@ const specs = {
   },
   pdfwm: {
     desc: 'Agregue marcas de agua de texto en cursiva en las páginas PDF',
-    usage: '<teks>',
-    example: 'RAHASIA',
+    usage: '<texto>',
+    example: 'SECRETO',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
       const t = kit.rest(c.body).trim()
-      if (!t || t.length > 40) throw fail('Escribir texto de marca de agua (máximo 40 caracteres). Ejemplo:.pdfwm RAHASIA')
+      if (!t || t.length > 40) throw fail('Escribir texto de marca de agua (máximo 40 caracteres). Ejemplo:.pdfwm SECRETO')
       const pl = await tryRequirePdfLib()
       if (!pl) throw fail('La característica `.pdfwm` requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
       const d = await loadPdfLibDoc(f.buffer)
@@ -669,7 +669,7 @@ const specs = {
   },
   teks2pdf: {
     desc: 'Convertir texto (o responder a mensaje/archivo.txt) en documento PDF',
-    usage: '<teks>',
+    usage: '<texto>',
     example: 'Halo dunia',
     run: async (c) => {
       let t = kit.rest(c.body).trim()

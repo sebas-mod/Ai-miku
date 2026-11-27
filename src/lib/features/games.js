@@ -41,10 +41,10 @@ try {
 const WIN_MESSAGES = [
   "🌟 *GG WP! Otakmu encer!*",
   "✨ *¡INCREÍBLE! ¡Eres muy listo!*",
-  "🎉 *MANTAPPPP! Jawaban sempurna!*",
+  "🎉 *¡GENIAL! ¡Respuesta perfecta!*",
   "💫 *¡ÉPICO! ¡No tienes rival!*",
   "🏆 *¡BRUTAL! ¡Tu cerebro es como Google!*",
-  "🔥 *LEGEND! Jawab kek gak ada beban!*",
+  "🔥 *¡LEYENDA! ¡Respondes sin esfuerzo!*",
 ];
 
 const TIMEOUT_MESSAGES = [

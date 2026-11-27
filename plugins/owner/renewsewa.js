@@ -15,8 +15,8 @@ const pluginConfig = {
   name: "renewsewa",
   alias: ["perpanjangsewa", "extendsewa"],
   category: "owner",
-  description: "Perpanjang durasi sewa grup",
-  usage: ".renewsewa <link/id grup> <durasi>",
+  description: "Amplía la duración del alquiler del grupo",
+  usage: ".renewsewa <enlace/id del grupo> <duración>",
   example: ".renewsewa https://chat.whatsapp.com/xxx 30d",
   isOwner: true,
   isPremium: false,
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
   if (args.length < 2) {
     return m.reply(
       `📝 *RENOVAR ALQUILER*\n\n` +
-        `Formato: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
+        `Formato: *${m.prefix}renewsewa <enlace/id> <duración>*\n\n` +
         `*FORMATOS DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +

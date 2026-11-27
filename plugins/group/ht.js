@@ -11,9 +11,9 @@ import te from '../../src/lib/core/error.js'
 const pluginConfig = {
     name: ['ht', 'hidetag'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
-    usage: '.ht [pesan] atau reply pesan',
-    example: '.ht atau reply pesan lalu .ht',
+    description: 'Menciona a todos respondiendo a un mensaje (texto/archivo)',
+    usage: '.ht [mensaje] o responde a un mensaje',
+    example: '.ht atau responde a un mensaje y luego .ht',
     isOwner: false,
     isPremium: false,
     isGroup: true,

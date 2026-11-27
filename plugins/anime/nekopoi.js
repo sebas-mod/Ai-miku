@@ -244,7 +244,7 @@ import { promisify } from 'node:util'
       name: 'nekopoi',
       alias: [],
       category: "anime",
-      usage: '<kata kunci | latest | url | dl url>',
+      usage: '<palabra clave | latest | url | dl url>',
       example: '.nekopoi latest',
       isOwner: false,
       isPremium: false,
@@ -329,7 +329,7 @@ import { promisify } from 'node:util'
                   d.series && `📺 Series : ${d.series}`,
                   d.originalTitle && `🈶 Título original: ${d.originalTitle}`,
                   d.producers && `🏢 Producer : ${d.producers}`,
-                  d.duration && `⏱️ Durasi : ${d.duration}`,
+                  d.duration && `⏱️ Duración : ${d.duration}`,
                   d.genre && `🏷️ Genre : ${clip(d.genre, 200)}`,
                   d.actress && `👤 Pemeran : ${d.actress}`
               ].filter(Boolean).join('\n')

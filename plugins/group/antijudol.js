@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'antijudol',
     alias: ['antijudi', 'nojudi', 'antislot'],
     category: 'group',
-    description: 'Deteksi konten judol di grup',
+    description: 'Detecta contenido de apuestas en el grupo',
     usage: '.antijudol <on/off/metode> [kick/remove]',
     example: '.antijudol on',
     isOwner: false,

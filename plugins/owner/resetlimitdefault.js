@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'resetlimitdefault',
     alias: ['defaultlimitreset'],
     category: 'owner',
-    description: 'Reset default limit ke config asli',
+    description: 'Restablece el límite predeterminado a la configuración original',
     usage: '.resetlimitdefault',
     example: '.resetlimitdefault',
     isOwner: true,

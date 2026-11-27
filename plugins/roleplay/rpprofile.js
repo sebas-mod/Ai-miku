@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "rpprofile",
   alias: ["rpcard", "rpstatus"],
   category: "roleplay",
-  description: "Lihat kartu profil Roleplay, mood, dan poin affection kamu",
+  description: "Mira tu tarjeta de perfil de rol, tu ánimo y tus puntos de afecto",
   usage: ".rpprofile [@user]",
   example: ".rpprofile",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

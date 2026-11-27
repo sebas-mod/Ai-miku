@@ -15,7 +15,7 @@ const te = MikuRuntime.te;
       name: 'cocofundl',
       alias: [],
       category: "download",
-      description: 'Download video CocoFun',
+      description: 'Descarga videos de CocoFun',
       usage: '.cocofundl <url>',
       example: '.cocofundl https://www.cocofun.com/share/post/xxx',
       isOwner: false,

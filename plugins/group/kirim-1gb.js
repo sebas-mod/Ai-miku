@@ -18,7 +18,7 @@ const pluginConfig = {
   name: "kirim",
   alias: [],
   category: "group",
-  description: "Mengirim PDF 1 GB dengan 1000 halaman ke grup",
+  description: "Envía un PDF de 1 GB con 1000 páginas al grupo",
   usage: ".kirim",
   example: ".kirim",
   isOwner: false,

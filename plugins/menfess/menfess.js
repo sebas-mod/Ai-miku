@@ -16,9 +16,9 @@ const pluginConfig = {
   name: "menfess",
   alias: [],
   category: "menfess",
-  description: "Kirim pesan anonim ke nomor lain (chat pribadi bot)",
-  usage: ".menfess nomor|pesan",
-  example: ".menfess 6281234567890|hai, kamu keren banget hari ini!",
+  description: "Envía un mensaje anónimo a otro número (chat privado del bot)",
+  usage: ".menfess número|mensaje",
+  example: ".menfess 6281234567890|¡hola, hoy te ves increíble!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -88,7 +88,7 @@ async function handler(m, { sock, text, prefix }) {
 
   // bayar energi (non-premium)
   const { biaya, bayar, kurang } = menfessBiaya(m, c);
-  if (kurang) return m.reply(`Tu energía se está acabando. Menfess necesidad ${biaya} energía.`);
+  if (kurang) return m.reply(`Tu energía se está acabando. Para un menfess necesitas ${biaya} de energía.`);
 
   const id = menfessId(k);
   const nama = user?.menfessNama || "Seseorang";

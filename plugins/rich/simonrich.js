@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "simonrich",
   alias: ["simon"],
   category: "rich",
-  description: "Ikuti urutan cahaya kristal yang makin panjang di tiap level",
+  description: "Sigue la secuencia de luces de cristal, cada vez más larga en cada nivel",
   usage: ".simonrich",
   example: ".simonrich",
   isOwner: false,
@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Ingat Pola Warna — Ai Miku</title>
+<title>Recuerda el patrón de colores — Ai Miku</title>
 <style>
 ${buildGameBaseCss("studio")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -51,7 +51,7 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
   <div class="top">
     <div class="logo">💡</div>
     <div class="meta">
-      <div class="title">Ingat Pola Warna</div>
+      <div class="title">Recuerda el patrón de colores</div>
       <div class="sub">Ingat lalu ulangi urutan warnanya</div>
     </div>
   </div>
@@ -127,7 +127,7 @@ function start(){
 }
 
 async function handler(m, { sock }) {
-  await sendHtmlCard(sock, m, buildHtml(), "Ingat Pola Warna", "💡", { quoted: m });
+  await sendHtmlCard(sock, m, buildHtml(), "Recuerda el patrón de colores", "💡", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

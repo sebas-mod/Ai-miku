@@ -21,7 +21,7 @@ const DailymotionDL = MikuRuntime.DailymotionDL;
     name: "dailymotiondl",
     alias: [],
     category: "download",
-    description: "Download video dari Dailymotion",
+    description: "Descarga videos de Dailymotion",
     usage: ".dailymotiondl <url>",
     example: ".dailymotiondl https://www.dailymotion.com/video/xxx",
     isOwner: false,

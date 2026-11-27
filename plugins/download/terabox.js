@@ -22,7 +22,7 @@ const TeraBoxDL = MikuRuntime.TeraBoxDL;
     name: "terabox",
     alias: [],
     category: "download",
-    description: "Download video/file dari TeraBox",
+    description: "Descarga videos/archivos de TeraBox",
     usage: ".terabox <url>",
     example: ".terabox https://terabox.com/s/xxx",
     isOwner: false,

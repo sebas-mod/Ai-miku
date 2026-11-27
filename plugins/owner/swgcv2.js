@@ -40,9 +40,9 @@ const pluginConfig = {
   name: "swgcv2",
   alias: ["statusgrupv2"],
   category: "owner",
-  description: "Post Group Status V2 ke grup pilihan",
-  usage: ".swgcv2 <teks> atau reply media",
-  example: ".swgcv2 Halo semua!",
+  description: "Publica un estado de grupo V2 en un grupo elegido",
+  usage: ".swgcv2 <texto> o responde a un media",
+  example: ".swgcv2 ¡Hola a todos!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -318,7 +318,7 @@ async function handler(m, { sock, db }) {
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${prefix}cancelswgcv2`,
           }),
         },

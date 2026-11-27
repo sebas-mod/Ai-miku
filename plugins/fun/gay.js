@@ -18,7 +18,7 @@ const pluginConfig = {
   name: "gay",
   alias: ["howgay"],
   category: "fun",
-  description: "Menunjuk member paling gay di grup",
+  description: "Señala al miembro más gay del grupo",
   usage: ".gay",
   isGroup: true,
   isBotAdmin: false,
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   const n1 = String(orang1).split("@")[0].split(":")[0];
   const n2 = String(orang2).split("@")[0].split(":")[0];
-  const text = `@${n1} *Nge gay sama* @${n2}`;
+  const text = `@${n1} *es gay con* @${n2}`;
   await m.reply(text, { mentions: [orang1, orang2] });
 }
 

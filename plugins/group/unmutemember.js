@@ -13,7 +13,7 @@ const pluginConfig = {
     name: 'unmutemember',
     alias: ['unmutmember', 'unsilentmember', 'unbisukanmember', 'listmutemember', 'listmute'],
     category: 'group',
-    description: 'Membuka mute member tertentu',
+    description: 'Quita el silencio a un miembro concreto',
     usage: '.unmutemember <@mención/respuesta/número>',
     example: '.unmutemember @user',
     isOwner: false,

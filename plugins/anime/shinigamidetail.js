@@ -14,7 +14,7 @@ import axios from "axios";
       name: 'shinigamidetail',
       alias: [],
       category: "anime",
-      description: 'Melihat detail manga dan daftar 24 chapter terbaru dari Shinigami',
+      description: 'Muestra el detalle del manga y sus 24 capítulos más recientes en Shinigami',
       usage: '.shinigamidetail <url/manga_id>',
       example: '.shinigamidetail https://g.shinigami.asia/series/fc727dec-d1f5-43e8-a77d-37382f636659',
       isOwner: false,

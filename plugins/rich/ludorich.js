@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "ludorich",
   alias: [],
   category: "rich",
-  description: 'Ludo lawan bot: dadu, makan bidak, petak aman, jalur rumah',
+  description: 'Ludo contra el bot: dados, comer fichas, casillas seguras y camino a casa',
   usage: ".ludorich",
   example: ".ludorich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'ludorich',
   alias: [],
   category: 'rich',
-  desc: 'Ludo lawan bot: dadu, makan bidak, petak aman, jalur rumah',
+  desc: 'Ludo contra el bot: dados, comer fichas, casillas seguras y camino a casa',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

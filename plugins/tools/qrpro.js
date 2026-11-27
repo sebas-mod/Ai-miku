@@ -15,9 +15,9 @@ const pluginConfig = {
     name: "qr",
     alias: ["qrpro", "qrwifi", "qrwa", "qrlist"],
     category: "tools",
-    description: "qr <teks/link> | preset | logo",
-    usage: ".qr <teks/link> | preset | logo",
-    example: ".qr <teks/link> | preset | logo",
+    description: "qr <texto/enlace> | preset | logo",
+    usage: ".qr <texto/enlace> | preset | logo",
+    example: ".qr <texto/enlace> | preset | logo",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -261,7 +261,7 @@ const pluginConfig = {
       return reply(
         `*▢ QR GENERATOR PRO*\n\n*Preset:*\n${Object.keys(PRESETS).join(', ')}\n\n` +
         `*Logo:*\n${Object.keys(ICONS).filter((k) => k !== 'none').join(', ')}\n\n` +
-        `*Frame:* card, ticket, scan-me\n*Warna:* #RRGGBB\n\n` +
+        `*Frame:* card, ticket, scan-me\n*Color:* #RRGGBB\n\n` +
         `Ejemplo: ${p}qr https://google.com | neopop | Google`
       )
     }

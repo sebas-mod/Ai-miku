@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tembak",
   alias: ["nembak", "propose"],
   category: "fun",
-  description: "Menembak seseorang untuk pacaran",
+  description: "Declárate a alguien para salir",
   usage: ".tembak @tag",
   example: ".tembak @628xxx",
   isOwner: false,
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
     await m.react("💕");
     return m.reply(
       `💕 *CIE CIEE :3*\n\n` +
-        `@${m.sender.split("@")[0]} dan @${targetJid.split("@")[0]} resmi pacaran !\n\n` +
+        `@${m.sender.split("@")[0]} dan @${targetJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
         `Semoga langgeng yak! 💍`,
       { mentions: [m.sender, targetJid] },
     );
@@ -196,8 +196,8 @@ async function answerHandler(m, sock) {
     await m.react("💕");
     await m.reply(
       `💕 *WIDIHHHH, CIE CIE DITERIMA* @${sessData.shooter.split("@")[0]}\n\n` +
-        `@${m.sender.split("@")[0]} dan @${sessData.shooter.split("@")[0]} resmi pacaran\n\n` +
-        `Semoga langgeng dan bahagia 💍`,
+        `@${m.sender.split("@")[0]} dan @${sessData.shooter.split("@")[0]} ¡oficialmente son novios!\n\n` +
+        `Que duren y sean muy felices 💍`,
       { mentions: [m.sender, sessData.shooter] },
     );
 

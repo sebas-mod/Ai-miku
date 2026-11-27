@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "bite",
   alias: ['gigit'],
   category: "roleplay",
-  description: "Aksi roleplay gigit dengan animasi anime",
+  description: "Acción de rol de morder con animación anime",
   usage: ".bite @user",
   example: ".bite @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

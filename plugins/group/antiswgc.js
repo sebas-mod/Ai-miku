@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'antiswgc',
     alias: ['antiswgroup', 'antiswmentiongc', 'antiswtaggc'],
     category: 'group',
-    description: 'Deteksi tipe SW group mention atau status mention yang masuk ke grup',
+    description: 'Detecta menciones de estado o de grupo tipo SW que llegan al grupo',
     usage: '.antiswgc <on/off>',
     example: '.antiswgc on',
     isOwner: false,

@@ -21,8 +21,8 @@ const pluginConfig = {
     name: "upch",
     alias: ["uploadch", "uploadsaluran", "uch"],
     category: "owner",
-    description: "Upload gambar, audio, video, atau teks ke saluran",
-    usage: ".upch <id saluran> <teks opsional>",
+    description: "Sube imagen, audio, video o texto a un canal",
+    usage: ".upch <id del canal> <texto opcional>",
     example: ".upch 12xxx@newsletter Halo!",
     cooldown: 10,
     energi: 0,
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `📤 *UPLOAD SALURAN*\n\n` +
             `Envía o responde a un multimedia con el texto:\n` +
-            `  \`${m.prefix}upch 12xxx@newsletter <teks opsional>\`\n\n` +
+            `  \`${m.prefix}upch 12xxx@newsletter <texto opcional>\`\n\n` +
             `*Support:*\n` +
             `  🖼️ Imagen\n` +
             `  🎥 Video\n` +

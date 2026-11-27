@@ -13,7 +13,7 @@ const pluginConfig = {
     name: 'sampah',
     alias: ['clearsampah', 'cleartemp', 'deltemp'],
     category: 'owner',
-    description: 'Menghapus semua sampah di temp',
+    description: 'Elimina toda la basura de la carpeta temp',
     usage: '.sampah',
     example: '.sampah',
     isOwner: true,

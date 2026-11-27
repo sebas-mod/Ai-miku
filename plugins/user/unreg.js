@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "unreg",
   alias: ["unregister", "hapusdaftar"],
   category: "user",
-  description: "Hapus status pendaftaran akun kamu menggunakan Serial Number (SN)",
+  description: "Borra el registro de tu cuenta usando tu número de serie (SN)",
   usage: ".unreg <SN>",
   example: ".unreg MIKU-76B1-A2C3",
   isOwner: false,
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
     );
   }
 
-  const oldName = user.regName || user.name || m.pushName || "Petualang";
+  const oldName = user.regName || user.name || m.pushName || "Aventurero";
   const unregisteredAt = new Date().toISOString();
 
   db.setUser(targetJid, {
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
       const gu = global.db.data.users[k];
       if (gu) {
         gu.registered = false;
-        gu.name = m.pushName || "Petualang";
+        gu.name = m.pushName || "Aventurero";
         gu.age = null;
         gu.regTime = null;
         gu.sn = null;

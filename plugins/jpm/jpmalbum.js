@@ -66,7 +66,7 @@ const pluginConfig = {
       if (act === 'add') {
           const media = await getMedia(m)
           if (!media) return reply(`❌ Respondió a fotos/vídeos *${prefix}jpmalbum agregar*.`)
-          if (buf().length >= MAX) return reply(`❌ Album penuh (maks ${MAX} medios de comunicación).`)
+          if (buf().length >= MAX) return reply(`❌ Álbum lleno (máx ${MAX} medios de comunicación).`)
           buf().push(media)
           return reply(`✅ Medios agregados. Cola de álbumes: ${buf().length}/${MAX}\nEnviar con *${prefix}jpmalbum <título>*`)
       }

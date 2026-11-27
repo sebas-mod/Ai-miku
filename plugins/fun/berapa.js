@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: ['howmuch', 'howmany'],
     category: 'fun',
     description: 'Tanya bot berapa sesuatu',
-    usage: '.berapa <pertanyaan>',
+    usage: '.berapa <pregunta>',
     example: '.berapa umur jodohku?',
     isOwner: false,
     isPremium: false,

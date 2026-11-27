@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { reply }) {
       if (!jpmStopJob('autoJpm')) return reply('❌ Auto JPM no está funcionando.')
-      return reply('*▢ AUTO JPM*\n• Status : Dihentikan')
+      return reply('*▢ AUTO JPM*\n• Estado : Detenido')
   }
 
 export { pluginConfig as config, handler }

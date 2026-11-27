@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "amprem",
   alias: ["batalkan"],
   category: "premium",
-  description: "Aktivasi akun Alight Motion Premium via Magic Link",
+  description: "Activa cuentas de Alight Motion Premium por Magic Link",
   usage: ".amprem <email>",
   example: ".amprem emailkamu@gmail.com",
   isOwner: false,
@@ -114,7 +114,7 @@ async function handler(m) {
     clearAmSession(userId);
     await m.react("🛑").catch(() => {});
     return m.reply(
-      `✅Sesión de activación cancelada.\n> Escribe \`${p}amprem email@kamu.com\` en cualquier momento para reiniciar.`
+      `✅Sesión de activación cancelada.\n> Escribe \`${p}amprem email@ejemplo.com\` en cualquier momento para reiniciar.`
     );
   }
 
@@ -133,7 +133,7 @@ async function handler(m) {
       `╭─── ❖ 『 💎 *ALIGHT MOTION PREMIUM* 』 ❖\n` +
         `│ 📌 *Cómo usarlo:*\n` +
         `│ 1. Ketik \`${p}amprem emailkamu@gmail.com\`\n` +
-        `│ 2. Cek inbox/spam email & salin link *"Sign in to Alight Creative"*\n` +
+        `│ 2. Revisa la bandeja de entrada/spam y copia el enlace *"Sign in to Alight Creative"*\n` +
         `│ 3. Enviar el enlace a este chat (límite 5 minuto)\n` +
         `│ 4. Tipo \`${p}batalkan\` para cancelar la sesión\n` +
         `╰──────────────────────────❖`

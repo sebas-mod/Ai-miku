@@ -80,7 +80,7 @@ const createMikuFeature = (module, exports, require) => {
 
           async trending({ reply }) {
             const { text: xml } = await get('https://trends.google.com/trending/rss?geo=ID'), items = parseRss(xml, 12)
-            if (!items.length) throw new Error('data Google Trends kosong')
+            if (!items.length) throw new Error('datos de Google Trends vacíos')
             return reply(`${B('TRENDING INDONESIA')}\n${LINE}\n` + items.map((x, i) => `${i + 1}. ${x.title}${x.traffic ? ` — ${x.traffic} pencarian` : ''}`).join('\n') + '\n\n_Sumber: Google Trends_')
           },
 
@@ -96,7 +96,7 @@ const createMikuFeature = (module, exports, require) => {
 
           async resep({ text, prefix, reply }) {
             const q = String(text || '').trim()
-            if (!q || q.length > 60) return reply(`${B('RESEP')}\nContoh: ${prefix}resep ayam geprek`)
+            if (!q || q.length > 60) return reply(`${B('RECETA')}\nEjemplo: ${prefix}resep pollo crujiente`)
             const base = 'https://cookpad.com/id/cari/' + encodeURIComponent(q)
             const { text: html, url } = await get(base)
             const $ = cheerio().load(html), seen = new Set(), out = []
@@ -106,7 +106,7 @@ const createMikuFeature = (module, exports, require) => {
               seen.add(href); out.push({ t, href })
             })
             if (!out.length) return reply(`Receta para *${q}* extraviado.`)
-            return reply(`${B('RESEP')} — ${q}\n${LINE}\n` + out.slice(0, 8).map((x, i) => `${i + 1}. *${clip(x.t, 90)}*\n   ${x.href}`).join('\n\n') + '\n\n_Sumber: Cookpad_')
+            return reply(`${B('RECETA')} — ${q}\n${LINE}\n` + out.slice(0, 8).map((x, i) => `${i + 1}. *${clip(x.t, 90)}*\n   ${x.href}`).join('\n\n') + '\n\n_Sumber: Cookpad_')
           },
 
           async emas({ reply }) {
@@ -121,7 +121,7 @@ const createMikuFeature = (module, exports, require) => {
 
           async og({ sock, m, text, prefix, reply }) {
             const u = String(text || '').trim().split(/\s+/)[0]
-            if (!u) return reply(`${B('VISTA PREVIA DEL ENLACE')}\nEjemplo: ${prefix}og https://contoh.com/artikel`)
+            if (!u) return reply(`${B('VISTA PREVIA DEL ENLACE')}\nEjemplo: ${prefix}og https://ejemplo.com/articulo`)
             const r = await get(u), meta = parseMeta(r.text)
             if (!meta.title && !meta.desc) throw new Error('la página no tiene metadatos')
             const cap = [B('VISTA PREVIA'), LINE, `Título: ${clip(meta.title, 200) || '-'}`, meta.site && `Sitio   : ${meta.site}`, meta.author && `Autor   : ${clip(meta.author, 80)}`, meta.time && `Publicado: ${meta.time.slice(0, 16).replace('T', ' ')}`, `Descripción: ${clip(meta.desc, 400) || '-'}`, '', r.url].filter(x => x !== '' ? x : true).filter(Boolean).join('\n')
@@ -132,7 +132,7 @@ const createMikuFeature = (module, exports, require) => {
 
           async artikel({ text, prefix, reply }) {
             const u = String(text || '').trim().split(/\s+/)[0]
-            if (!u) return reply(`${B('LEER ARTÍCULO')}\nEjemplo: ${prefix}artikel https://contoh.com/berita/123`)
+            if (!u) return reply(`${B('LEER ARTÍCULO')}\nEjemplo: ${prefix}artikel https://ejemplo.com/noticia/123`)
             const r = await get(u, { maxBytes: 2 * 1024 * 1024 }), meta = parseMeta(r.text), paras = parseArticle(r.text)
             if (!paras.length) throw new Error('el contenido del artículo es ilegible (puede ser JavaScript renderizado o pago)')
             let body = '', n = 0; for (const p of paras) { if (body.length + p.length > 1800) break; body += p + '\n\n'; n++ }

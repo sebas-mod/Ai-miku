@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "wordlerich",
   alias: [],
   category: "rich",
-  description: 'Tebak kata 5 huruf bahasa Indonesia, kata harian & acak',
+  description: 'Adivina palabras de 5 letras en indonesio: palabra diaria y aleatoria',
   usage: ".wordlerich",
   example: ".wordlerich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -158,7 +158,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildWordleHtml({ playerName = "Kamu" } = {}) {
+    function buildWordleHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -174,10 +174,10 @@ module.exports = {
   name: 'wordlerich',
   alias: [],
   category: 'rich',
-  desc: "Tebak kata 5 huruf bahasa Indonesia, kata harian & acak",
+  desc: "Adivina palabras de 5 letras en indonesio: palabra diaria y aleatoria",
   run: async ({ sock, m, pushname }) => {
     const html = buildWordleHtml({ playerName: pushname || String(m.sender).split('@')[0] })
-    await sendHtmlCard(sock, m, html, 'Tebak Kata Live', '🔤')
+    await sendHtmlCard(sock, m, html, 'Adivina la palabra en vivo', '🔤')
   },
 }
     }

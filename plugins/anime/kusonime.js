@@ -15,7 +15,7 @@ import * as cheerio from 'cheerio';
       name: 'kusonime',
       alias: [],
       category: "anime",
-      description: 'Cari anime dari kusonime.com (batch download)',
+      description: 'Busca anime en kusonime.com (descarga por lote)',
       usage: '.kusonime <search|latest|genre>',
       example: '.kusonime search naruto\n.kusonime latest\n.kusonime genre action',
       isOwner: false,
@@ -296,7 +296,7 @@ import * as cheerio from 'cheerio';
                   if (meta.info.season) txt += `┃ 📅 Season: ${meta.info.season}\n`;
                   if (meta.info.episode) txt += `┃ 📀 Episode: ${meta.info.episode}\n`;
                   if (meta.info.status) txt += `┃ 📌 Status: ${meta.info.status}\n`;
-                  if (meta.info.duration) txt += `┃ ⏱️ Durasi: ${meta.info.duration}\n`;
+                  if (meta.info.duration) txt += `┃ ⏱️ Duración: ${meta.info.duration}\n`;
                   if (meta.info.genres && meta.info.genres.length) txt += `┃ 🏷️ Genre: ${meta.info.genres.join(', ')}\n`;
                   if (meta.info.producers) txt += `┃ 🎬 Produser: ${meta.info.producers}\n`;
               }

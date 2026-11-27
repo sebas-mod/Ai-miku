@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "gamesrich",
   alias: [],
   category: "rich",
-  description: 'Arcade mini: Dino Runner, Tic Tac Toe, Doom, Flappy, Slot dalam satu kartu',
+  description: 'Arcade mini en una sola tarjeta: Dino Runner, tres en línea, Doom, Flappy y tragamonedas',
   usage: ".gamesrich",
   example: ".gamesrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -149,7 +149,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     (function(){
     var CFG=__CFG__,$=function(i){return document.getElementById(i)};
     var NAMES=['Dino Runner','Tic Tac Toe','Doom','Flappy','Slot'];
-    var FOOT=['Tap layar untuk lompat','YOU = X \u2022 CPU = O','Panah untuk gerak \u2022 TEMBAK untuk menembak demon','Tap layar untuk terbang, lewati pipa','Modal 100 koin \u2022 tiga sama = jackpot'];
+    var FOOT=['Toca la pantalla para saltar','YOU = X \u2022 CPU = O','Flechas para moverte \u2022 DISPARA para matar demonios','Toca la pantalla para volar y pasa las tuberías','Apuesta 100 monedas \u2022 tres iguales = jackpot'];
     var KEYS=['dino','ttt','doom','flappy','slot'];
     function lsGet(k){try{return +localStorage.getItem('dio_arc_'+k)||0}catch(e){return 0}}
     function lsSet(k,v){try{localStorage.setItem('dio_arc_'+k,v)}catch(e){}}
@@ -252,7 +252,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.fillStyle='rgba(255,255,255,.7)';c.fillRect(W/2-1,H/2-6,2,12);c.fillRect(W/2-6,H/2-1,12,2);
      if(hurt>0){c.fillStyle='rgba(220,0,0,.3)';c.fillRect(0,0,W,H)}
      c.fillStyle='#0009';c.fillRect(6,6,104,14);c.fillStyle=hp>40?'#22c55e':'#ef4444';c.fillRect(8,8,Math.max(0,hp),10);
-     if(over){c.fillStyle='rgba(0,0,0,.6)';c.fillRect(0,0,W,H);c.fillStyle='#ef4444';c.textAlign='center';c.font='bold 28px sans-serif';c.fillText('¡HAS MUERTO!',W/2,H/2-6);c.fillStyle='#fff';c.font='14px sans-serif';c.fillText('Kill: '+kills+' \u2022 tekan TEMBAK untuk ulang',W/2,H/2+20)}}
+     if(over){c.fillStyle='rgba(0,0,0,.6)';c.fillRect(0,0,W,H);c.fillStyle='#ef4444';c.textAlign='center';c.font='bold 28px sans-serif';c.fillText('¡HAS MUERTO!',W/2,H/2-6);c.fillStyle='#fff';c.font='14px sans-serif';c.fillText('Kill: '+kills+' \u2022 pulsa DISPARAR para reintentar',W/2,H/2+20)}}
     function bind(id,k){var el=$(id),on=function(e){e.preventDefault();keys[k]=1},off=function(e){e.preventDefault();keys[k]=0};
      el.addEventListener('pointerdown',on);el.addEventListener('pointerup',off);el.addEventListener('pointerleave',off);el.addEventListener('pointercancel',off)}
     bind('dl','l');bind('dr','r');bind('du','u');bind('dd','d');
@@ -319,7 +319,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildArcadeHtml({ playerName = "Kamu" } = {}) {
+    function buildArcadeHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -335,7 +335,7 @@ module.exports = {
   name: 'gamesrich',
   alias: [],
   category: 'rich',
-  desc: 'Arcade mini: Dino Runner, Tic Tac Toe, Doom, Flappy, Slot dalam satu kartu',
+  desc: 'Arcade mini: Dino Runner, Tic Tac Toe, Doom, Flappy y Slot en una sola tarjeta',
   run: async ({ sock, m, pushname }) => {
     const html = buildArcadeHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, (global.namebot || 'Ai Miku') + ' Arcade', '🎮')

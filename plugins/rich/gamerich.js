@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "gamerich",
   alias: [],
   category: "rich",
-  description: '2048, Snake, XO lawan bot, Tebak Angka',
+  description: '2048, Snake, tres en línea contra el bot y adivina el número',
   usage: ".gamerich",
   example: ".gamerich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -210,14 +210,14 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     var sec,lv,gend;
     function greset(){sec=1+Math.floor(Math.random()*100);lv=7;gend=false;$('lv').textContent=lv;$('m3').textContent='Ya he elegido los números...';$('gn').value='';}
     $('gb').onclick=function(){if(gend)return;var g=parseInt($('gn').value,10);if(!(g>=1&&g<=100)){$('m3').textContent='Masukkan angka 1 - 100';return;}
-     lv--;$('lv').textContent=lv;if(g===sec){gend=true;$('m3').textContent='🎉¡Así es! los numeros'+sec+' (sisa nyawa '+lv+')';}
+     lv--;$('lv').textContent=lv;if(g===sec){gend=true;$('m3').textContent='🎉¡Así es! los numeros'+sec+' (vidas restantes '+lv+')';}
      else if(lv<=0){gend=true;$('m3').textContent='¡Perdido! los numeros'+sec;}else $('m3').textContent=g<sec?'Terlalu kecil ⬆️':'Terlalu besar ⬇️';$('gn').value='';};
     $('n3').onclick=greset;greset();
     })();
     </script>
     `;
 
-    function buildGameHtml({ playerName = "Pemain" } = {}) {
+    function buildGameHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -233,7 +233,7 @@ module.exports = {
   name: 'gamerich',
   alias: [],
   category: 'rich',
-  desc: "2048, Snake, XO lawan bot, Tebak Angka",
+  desc: "2048, Snake, tres en línea contra el bot y adivina el número",
   run: async ({ sock, m, pushname }) => {
     const html = buildGameHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Game Live', '🎮')

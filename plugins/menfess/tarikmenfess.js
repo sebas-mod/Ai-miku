@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tarikmenfess",
   alias: ["hapusmenfess"],
   category: "menfess",
-  description: "Tarik (hapus) menfess yang sudah terkirim",
+  description: "Retira (borra) un menfess ya enviado",
   usage: ".tarikmenfess ID",
   example: ".tarikmenfess AB12C",
   isOwner: false,

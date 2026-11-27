@@ -12,7 +12,7 @@ const pluginConfig = {
     name: "sekolah",
     alias: [],
     category: "tools",
-    description: "Fitur tools sekolah",
+    description: "Herramienta de consulta de escuelas",
     usage: ".sekolah",
     example: ".sekolah",
     isOwner: false,

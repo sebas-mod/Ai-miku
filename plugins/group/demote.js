@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'demote',
     alias: ['unadmin', 'turunkan'],
     category: 'group',
-    description: 'Turunkan admin menjadi member biasa',
+    description: 'Degrada a un admin a miembro normal',
     usage: '.demote @user',
     example: '.demote @user',
     isOwner: false,

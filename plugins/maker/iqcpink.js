@@ -26,7 +26,7 @@ const te = MikuRuntime.te;
       name: "iqcpink",
       alias: [],
       category: "maker",
-      description: "Membuat Fake Quote iOS style versi pink.",
+      description: "Crea una cita falsa estilo iOS en versión rosa.",
       usage: ".iqcpink [text/reply]",
       isOwner: false,
       isPremium: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'listadmin',
     alias: ['admins', 'adminlist'],
     category: 'group',
-    description: 'Menampilkan daftar admin grup',
+    description: 'Muestra la lista de admins del grupo',
     usage: '.listadmin',
     example: '.listadmin',
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "mlstalk",
   alias: ["stalkml", "cekml"],
   category: "stalker",
-  description: "Cek nickname akun Mobile Legends dari User ID & Zone ID",
+  description: "Consulta el apodo de la cuenta de Mobile Legends por User ID y Zone ID",
   usage: ".mlstalk <id> <zone>",
   example: ".mlstalk 12345678 1234",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

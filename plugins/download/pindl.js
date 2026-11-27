@@ -19,7 +19,7 @@ const f = MikuRuntime.f;
     name: "pindl",
     alias: [],
     category: "download",
-    description: "Download gambar/video dari Pinterest",
+    description: "Descarga imágenes/videos de Pinterest",
     usage: ".pindl <url>",
     example: ".pindl https://pin.it/xxx",
     isOwner: false,

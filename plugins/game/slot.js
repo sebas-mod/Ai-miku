@@ -12,8 +12,8 @@ const pluginConfig = {
   name: "slot",
   alias: ["slots", "spin"],
   category: "game",
-  description: "Putar mesin slot kristal Miku berhadiah hingga 10x taruhan",
-  usage: ".slot [taruhan]",
+  description: "Gira la máquina de tragamonedas de cristal de Miku y gana hasta 10x tu apuesta",
+  usage: ".slot [apuesta]",
   example: ".slot 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 5, energi: 0, isEnabled: true,
@@ -61,10 +61,10 @@ async function handler(m) {
       `│     ${row1.join(" │ ")}\n` +
       `│ ▶  ${mid.join(" │ ")}  ◀\n` +
       `│     ${row3.join(" │ ")}\n` +
-      `├───〔 *HASIL* 〕\n` +
+      `├───〔 *RESULTADO* 〕\n` +
       `│ ${badge}\n` +
-      `│ 💰 Taruhan : ${bet.toLocaleString("id-ID")} Koin\n` +
-      `│ 🎁 Hadiah  : *${win > 0 ? `+${win.toLocaleString("id-ID")}` : "0"} Koin*\n` +
+      `│ 💰 Apuesta : ${bet.toLocaleString("id-ID")} monedas\n` +
+      `│ 🎁 Premio  : *${win > 0 ? `+${win.toLocaleString("id-ID")}` : "0"} Koin*\n` +
       `╰─────────────────────❖`
   );
 }

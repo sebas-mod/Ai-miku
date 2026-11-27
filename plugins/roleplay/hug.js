@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "hug",
   alias: ['peluk'],
   category: "roleplay",
-  description: "Aksi roleplay peluk dengan animasi anime",
+  description: "Acción de rol de abrazo con animación anime",
   usage: ".hug @user",
   example: ".hug @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

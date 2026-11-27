@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "terima",
   alias: ["accept", "yes"],
   category: "fun",
-  description: "Menerima tembakan dari seseorang",
+  description: "Acepta la declaración de alguien",
   usage: ".terima @tag",
   example: ".terima @628xxx",
   isOwner: false,
@@ -119,8 +119,8 @@ async function handler(m, { sock }) {
 
   await m.reply(
     `💕 *WIDIHHHH, CIE CIE DITERIMA* @${shooterJid.split("@")[0]}\n\n` +
-      `@${m.sender.split("@")[0]} dan @${shooterJid.split("@")[0]} resmi pacaran\n\n` +
-      `Semoga langgeng dan bahagia 💍`,
+      `@${m.sender.split("@")[0]} dan @${shooterJid.split("@")[0]} ¡oficialmente son novios!\n\n` +
+      `Que duren y sean muy felices 💍`,
     { contextInfo: ctx },
   );
 }

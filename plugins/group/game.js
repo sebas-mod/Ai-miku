@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "game",
   alias: ["togglegame"],
   category: "group",
-  description: "Mengaktifkan atau menonaktifkan fitur game di grup",
+  description: "Activa o desactiva los juegos en el grupo",
   usage: ".game <on/off>",
   example: ".game on",
   isOwner: false,

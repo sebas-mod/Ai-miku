@@ -57,7 +57,7 @@ const pluginConfig = {
       let d
       try { d = JSON.parse(raw) } catch {
           const hint = /cloudflare|just a moment|attention required/i.test(raw) ? ' (diblokir Cloudflare)' : ''
-          throw new Error(`Respuesta del servidor no válida${hint}${raw ? ': ' + raw.replace(/\s+/g, ' ').slice(0, 120) : ' (kosong)'}`)
+          throw new Error(`Respuesta del servidor no válida${hint}${raw ? ': ' + raw.replace(/\s+/g, ' ').slice(0, 120) : ' (vacío)'}`)
       }
       if (d.code !== 0) throw new Error(d.msg || 'No se pudieron recuperar los datos de volver a publicar.')
       const { videos = [], cursor: next, hasMore } = d.data || {}

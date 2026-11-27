@@ -10,7 +10,7 @@ const pluginConfig = {
   name: "rpact",
   alias: ["rplist"],
   category: "roleplay",
-  description: "Daftar lengkap aksi interaksi Roleplay Miku",
+  description: "Lista completa de acciones de rol de Miku",
   usage: ".rpact",
   example: ".rpact",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -21,9 +21,9 @@ async function handler(m) {
   const p = m.prefix || ".";
   await m.reply(
     `╭─❖「 🎭 *MIKU ROLEPLAY ACTIONS* 」\n` +
-      `│ 🤗 \`${p}hug @user\` — Peluk hangat\n` +
+      `│ 🤗 \`${p}hug @user\` — Abrazo cálido\n` +
       `│ 🥰 \`${p}pat @user\` — Acaricia la cabeza\n` +
-      `│ 💋 \`${p}kiss @user\` — Cium manis\n` +
+      `│ 💋 \`${p}kiss @user\` — Beso dulce\n` +
       `│ 🫶 \`${p}cuddle @user\` — Manja bareng\n` +
       `│ 👉 \`${p}poke @user\` — Colek jahil\n` +
       `│ 🔨 \`${p}bonk @user\` — Getok becanda\n` +
@@ -32,7 +32,7 @@ async function handler(m) {
       `│ 💃 \`${p}dance [@user]\` — Joget ceria\n` +
       `│ 😊 \`${p}blush [@user]\` — Malu-malu\n` +
       `├───〔 *PROFIL RP* 〕\n` +
-      `│ 🪪 \`${p}rpprofile\`  |  💭 \`${p}rpmood <teks>\`\n` +
+      `│ 🪪 \`${p}rpprofile\`  |  💭 \`${p}rpmood <texto>\`\n` +
       `╰─────────────────────❖`
   );
 }

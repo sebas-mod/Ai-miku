@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'notifpromote',
     alias: [],
     category: 'group',
-    description: 'Toggle notifikasi saat ada yang dijadikan admin',
+    description: 'Activa o desactiva el aviso cuando alguien es nombrado admin',
     usage: '.notifpromote on/off',
     example: '.notifpromote on',
     isOwner: false,

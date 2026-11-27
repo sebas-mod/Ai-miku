@@ -136,7 +136,7 @@ const pluginConfig = {
       let result = await bilibilidl(args[0], '480P')
       await conn.sendMessage(m.chat, {
         video: result.videoBuffer,
-        caption: `🎬 *${result.title}*\n📝 ${result.description}\n👀 ${result.views} tayangan | ❤️ ${result.like}`
+        caption: `🎬 *${result.title}*\n📝 ${result.description}\n👀 ${result.views} visualizaciones | ❤️ ${result.like}`
       }, { quoted: m })
     } catch (e) {
       throw `uy, error: ${e.message}`

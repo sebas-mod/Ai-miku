@@ -17,7 +17,7 @@ const getDatabase = MikuRuntime.getDatabase;
       name: "stickerly",
       alias: [],
       category: "sticker",
-      description: "Cari dan download sticker pack dari Sticker.ly",
+      description: "Busca y descarga packs de stickers de Sticker.ly",
       usage: ".stickerly <query / url>",
       example: ".stickerly anime",
       cooldown: 10,
@@ -159,7 +159,7 @@ const getDatabase = MikuRuntime.getDatabase;
                   packname: packname,
                   publisher: author,
                   author: author,
-                  description: `Sticker pack dari Sticker.ly`,
+                  description: `Pack de stickers de Sticker.ly`,
                   emojis: ["✨"]
               });
               await m.react("✅");

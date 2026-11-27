@@ -17,7 +17,7 @@ const pluginConfig = {
     name: 'self',
     alias: ['selfmode', 'private-mode'],
     category: 'owner',
-    description: 'Mengaktifkan mode self (hanya owner & bot yang bisa akses)',
+    description: 'Activa el modo self (solo el dueño y el bot tienen acceso)',
     usage: '.self',
     example: '.self',
     isOwner: true,

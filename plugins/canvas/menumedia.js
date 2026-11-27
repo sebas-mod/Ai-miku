@@ -14,7 +14,7 @@ const pluginConfig = {
   name: "menumedia",
   alias: ["mediamenu", "listmenumedia"],
   category: "canvas",
-  description: "Menu fitur media: IQC, VOS, dan VOSV2.",
+  description: "Menú de funciones multimedia: IQC, VOS y VOSV2.",
   usage: ".menumedia",
   example: ".menumedia",
   isOwner: false,
@@ -35,12 +35,12 @@ function makeRows(prefix) {
     },
     {
       title: "VOS",
-      description: "Buat gambar quote dengan nama • .vos Jack,Vemzo Gamink",
+      description: "Crea una imagen de cita con nombre • .vos Jack,Vemzo Gamink",
       id: `${prefix}vos Jack,Vemzo Gamink`,
     },
     {
       title: "VOSV2",
-      description: "Buat quote gaya Windows Media Player • .vosv2 VEMZO GAMINK",
+      description: "Crea una cita con estilo Windows Media Player • .vosv2 VEMZO GAMINK",
       id: `${prefix}vosv2 VEMZO GAMINK`,
     },
   ];

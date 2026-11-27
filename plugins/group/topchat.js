@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "topchat",
   alias: ["chatstat", "chatstats", "totalchat", "leaderboard"],
   category: "group",
-  description: "Lihat statistik chat member di grup",
+  description: "Muestra las estadísticas de chat de los miembros del grupo",
   usage: ".topchat",
   example: ".topchat",
   isOwner: false,

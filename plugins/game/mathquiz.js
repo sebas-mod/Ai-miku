@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "mathquiz",
   alias: ["hitungcepat", "math"],
   category: "game",
-  description: "Duel hitung cepat matematika (easy / medium / hard)",
+  description: "Duelo de cálculo mental rápido (fácil / medio / difícil)",
   usage: ".mathquiz [easy|medium|hard]",
   example: ".mathquiz medium",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

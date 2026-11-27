@@ -75,7 +75,7 @@ const te = MikuRuntime.te;
       name: 'fakebankjago',
       alias: ['fakebankjago'],
       category: "maker",
-      description: 'Membuat gambar chat iPhone style',
+      description: 'Crea una imagen de chat estilo iPhone',
       usage: '.fakebankjago <text>',
       example: '.fakebankjago Hai cantik',
       isOwner: false,

@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: ['where', 'mana'],
     category: 'fun',
     description: 'Tanya bot dimana sesuatu',
-    usage: '.dimana <pertanyaan>',
+    usage: '.dimana <pregunta>',
     example: '.dimana jodohku berada?',
     isOwner: false,
     isPremium: false,
@@ -41,7 +41,7 @@ const answers = [
     '¡En todas partes!',
     'Di dunia maya.',
     'Di alam mimpi.',
-    'Di tempat rahasia.',
+    'En un lugar secreto.',
     'Hmm, susah dijelaskan lokasinya.',
     'En un lugar que te hará feliz.'
 ];
@@ -50,7 +50,7 @@ async function handler(m) {
     const text = m.text?.trim();
 
     if (!text) {
-        return m.reply(`📍 *ᴅɪᴍᴀɴᴀ*\n\n> Masukkan pertanyaan!\n\n*Ejemplo:*\n> .dimana jodohku berada?`);
+        return m.reply(`📍 *ᴅɪᴍᴀɴᴀ*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .dimana ¿dónde está mi media naranja?`);
     }
 
     const answer = answers[Math.floor(Math.random() * answers.length)];

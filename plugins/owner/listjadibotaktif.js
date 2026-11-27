@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'listjadibotaktif',
     alias: ['jadibotaktif', 'activejadibots'],
     category: 'owner',
-    description: 'Lihat jadibot yang sedang aktif dengan detail',
+    description: 'Muestra los jadibot activos con detalle',
     usage: '.listjadibotaktif',
     example: '.listjadibotaktif',
     isOwner: true,

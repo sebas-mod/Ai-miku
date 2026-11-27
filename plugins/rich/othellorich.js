@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "othellorich",
   alias: [],
   category: "rich",
-  description: 'Othello lawan bot: papan 8x8, petunjuk langkah, 3 level, bot minimax',
+  description: 'Othello contra el bot: tablero 8x8, pistas de jugadas, 3 niveles y bot minimax',
   usage: ".othellorich",
   example: ".othellorich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'othellorich',
   alias: [],
   category: 'rich',
-  desc: "Othello lawan bot: papan 8x8, petunjuk langkah, 3 level, bot minimax",
+  desc: "Othello contra el bot: tablero 8x8, pistas de jugadas, 3 niveles y bot minimax",
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

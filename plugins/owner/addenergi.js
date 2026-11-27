@@ -13,7 +13,7 @@ const pluginConfig = {
     alias: ['tambahenergi', 'giveenergi', 'addenergy'],
     category: 'owner',
     description: 'Tambah energi user',
-    usage: '.addenergi <jumlah> @user',
+    usage: '.addenergi <cantidad> @user',
     example: '.addenergi 100 @user',
     isOwner: true,
     isPremium: false,

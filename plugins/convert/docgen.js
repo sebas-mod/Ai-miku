@@ -374,7 +374,7 @@ const { create, Pen, hex } = pdfdoc
     const items = []
     for (const raw of str.split(/\s*;\s*|\n|,\s+/).map((s) => s.trim()).filter(Boolean)) {
       const m = raw.match(/^(.+?)\s*(?:x\s*(\d+(?:[.,]\d+)?))?\s*@\s*([\d.,]+\s*[a-zA-Z]*)$/i)
-      if (!m) throw bad(`Elementos"${raw}"desconocido.\nEscribe: nombre x cantidad @harga, ejemplo: Diseño de logotipo x1 @500rb`)
+      if (!m) throw bad(`Elementos"${raw}"desconocido.\nEscribe: nombre x cantidad @precio, ejemplo: Diseño de logotipo x1 @500rb`)
       const price = parseMoney(m[3])
       if (price == null) throw bad(`Precio "${m[3]}" inválido.`)
       items.push({ name: m[1].trim(), qty: m[2] ? Number(m[2].replace(',', '.')) : 1, price })
@@ -513,28 +513,28 @@ const { create, Pen, hex } = pdfdoc
   const list = (s) => (s || '').split(/[,;]\s*/).map((x) => x.trim()).filter(Boolean).slice(0, 14)
 
   const specs = {
-    kwitansi: { desc: 'Buat kwitansi PDF lengkap dengan terbilang otomatis', usage: '<dari siapa> | <jumlah> | <untuk pembayaran> | [nama penerima] | [kota]', example: 'Budi Santoso | 2,5jt | Pembayaran jasa desain logo | Andi | Bandung', args: true, heavy: true, run: async (c) => {
+    kwitansi: { desc: 'Crea un recibo PDF completo con el monto escrito en letras automáticamente', usage: '<de quién> | <cantidad> | <por el pago> | [nombre del destinatario] | [ciudad]', example: 'Budi Santoso | 2,5jt | Pembayaran jasa desain logo | Andi | Bandung', args: true, heavy: true, run: async (c) => {
       const [dari, jml, untuk, penerima, kota] = parts(c, 3, '<de quién> | <cantidad> | <para pago> | [destinatario] | [ciudad]')
       const jumlah = parseMoney(jml)
       if (!jumlah || jumlah <= 0 || jumlah >= 1e12) throw bad('Cantidad no válida. Ejemplo: 2,5 millones, 750 mil, 1.500,000')
       return out(await kwitansi({ dari: dari.slice(0, 80), jumlah, untuk: untuk.slice(0, 220), penerima: (penerima || '').slice(0, 40), kota: (kota || '').slice(0, 30) }), `recibo-${fileName(dari)}`, `🧾Recibo ${rp(jumlah)}\n_${cap(terbilang(jumlah))} rupia_`)
     } },
-    invoice: { desc: 'Buat invoice/tagihan PDF dengan tabel item, diskon, PPN, dan terbilang', usage: '<klien> | <item x jml @harga; item2 @harga> | [diskon%] | [PPN%] | [nama usahamu]', example: 'Budi | Desain logo x1 @500rb; Revisi x2 @100rb | 0 | 11 | Studio Kreatif', args: true, heavy: true, run: async (c) => {
-      const [klien, its, dsk, ppn, dari] = parts(c, 2, '<cliente> | <artículo x cantidad @harga; …> | [% descuento] | [IVA%] | [tu negocio]')
+    invoice: { desc: 'Crea una factura PDF con tabla de artículos, descuento, IVA y el monto en letras', usage: '<cliente> | <artículo x cantidad @precio; artículo2 @precio> | [% descuento] | [% IVA] | [nombre de tu negocio]', example: 'Budi | Desain logo x1 @500rb; Revisi x2 @100rb | 0 | 11 | Studio Kreatif', args: true, heavy: true, run: async (c) => {
+      const [klien, its, dsk, ppn, dari] = parts(c, 2, '<cliente> | <artículo x cantidad @precio; …> | [% descuento] | [IVA%] | [tu negocio]')
       const diskon = Math.min(100, Math.max(0, Number(String(dsk || 0).replace(',', '.')) || 0))
       const pajak = Math.min(100, Math.max(0, Number(String(ppn || 0).replace(',', '.')) || 0))
       const r = await invoice({ klien: klien.slice(0, 60), items: parseItems(its), diskon, pajak, dari: (dari || '').slice(0, 60) })
       return out(r.buffer, `invoice-${fileName(klien)}`, `🧾 Factura por ${klien}\nTotal: *${rp(r.total)}*`)
     } },
-    suratizin: { desc: 'Surat izin tidak masuk (sekolah/kerja) siap cetak', usage: '<nama> | <kelas/jabatan> | <alasan> | <tanggal izin> | [ditujukan ke] | [kota]', example: 'Rina Putri | Kelas XI IPA 2 | sakit demam | Senin, 12 Oktober 2026 | Wali Kelas | Bandung', args: true, heavy: true, run: async (c) => {
+    suratizin: { desc: 'Permiso de ausencia (colegio/trabajo) listo para imprimir', usage: '<nombre> | <clase/cargo> | <motivo> | <fecha del permiso> | [dirigido a] | [ciudad]', example: 'Rina Putri | Kelas XI IPA 2 | sakit demam | Senin, 12 Oktober 2026 | Wali Kelas | Bandung', args: true, heavy: true, run: async (c) => {
       const [nama, kelas, alasan, tanggal, tujuan, kota] = parts(c, 4, '<nombre> | <clase/posición> | <razón> | <fecha> | [objetivo] | [ciudad]')
-      return out(await suratIzin({ nama: nama.slice(0, 50), kelas: kelas.slice(0, 40), alasan: alasan.slice(0, 160), tanggal: tanggal.slice(0, 60), tujuan: tujuan || 'Bapak/Ibu Guru', kota: (kota || '').slice(0, 30) }), `licencia-${fileName(nama)}`, '✉️ Surat izin siap dicetak & ditandatangani.')
+      return out(await suratIzin({ nama: nama.slice(0, 50), kelas: kelas.slice(0, 40), alasan: alasan.slice(0, 160), tanggal: tanggal.slice(0, 60), tujuan: tujuan || 'Estimado/a profesor/a', kota: (kota || '').slice(0, 30) }), `licencia-${fileName(nama)}`, '✉️ Surat izin siap dicetak & ditandatangani.')
     } },
-    suratlamaran: { desc: 'Surat lamaran kerja formal siap cetak (lengkap daftar lampiran)', usage: '<nama> | <posisi> | <perusahaan> | <pendidikan> | <keahlian> | [kota]', example: 'Rina Putri | Staf Administrasi | PT Maju Jaya | S1 Manajemen | Microsoft Office, komunikasi | Jakarta', args: true, heavy: true, run: async (c) => {
+    suratlamaran: { desc: 'Carta de solicitud de empleo formal lista para imprimir (con lista de anexos)', usage: '<nombre> | <puesto> | <empresa> | <educación> | <habilidades> | [ciudad]', example: 'Rina Putri | Staf Administrasi | PT Maju Jaya | S1 Manajemen | Microsoft Office, komunikasi | Jakarta', args: true, heavy: true, run: async (c) => {
       const [nama, posisi, perusahaan, pendidikan, skill, kota] = parts(c, 5, '<nombre> | <posición> | <empresa> | <educación> | <habilidad> | [ciudad]')
       return out(await suratLamaran({ nama: nama.slice(0, 50), posisi: posisi.slice(0, 60), perusahaan: perusahaan.slice(0, 60), pendidikan: pendidikan.slice(0, 80), skill: skill.slice(0, 120), kota: (kota || '').slice(0, 30) }), `carta de solicitud-${fileName(nama)}`, '📄 Carta de solicitud lista para imprimir. Ajuste el contenido si es necesario (esta es una plantilla general).')
     } },
-    cv: { desc: 'Buat CV 1-2 halaman rapi (sidebar kontak & keahlian). Pisahkan entri dengan titik koma', usage: '<nama> | <jabatan> | <telp, email, kota> | <ringkasan> | <skill1, skill2> | <2022-2024 Posisi @ Perusahaan: tugas; …> | <2018-2022 S1 Jurusan @ Kampus>', example: 'Rina Putri | Desainer Grafis | 0812-1111-2222, rina@mail.com, Bandung | Desainer 3 tahun pengalaman branding | Photoshop, Illustrator, Figma | 2023-sekarang Desainer @ Studio Maju: membuat identitas visual klien; 2021-2023 Junior Desainer @ Agensi Kreasi: desain konten sosial media | 2017-2021 S1 DKV @ Universitas Pasundan', args: true, heavy: true, run: async (c) => {
+    cv: { desc: 'Crea un CV ordenado de 1-2 páginas (barra lateral con contacto y habilidades). Separa las entradas con punto y coma', usage: '<nombre> | <cargo> | <tel, email, ciudad> | <resumen> | <habilidad1, habilidad2> | <2022-2024 Puesto @ Empresa: tareas; …> | <2018-2022 Grado en Carrera @ Universidad>', example: 'Rina Putri | Diseñadora Gráfica | 0812-1111-2222, rina@mail.com, Bandung | Diseñadora con 3 años de experiencia en branding | Photoshop, Illustrator, Figma | 2023-actual Diseñadora @ Studio Maju: identidad visual de clientes; 2021-2023 Diseñadora Junior @ Agencia Kreasi: diseño de contenido para redes | 2017-2021 Grado en Diseño @ Universidad Pasundan', args: true, heavy: true, run: async (c) => {
       const [nama, jabatan, kontak, ringkasan, skill, kerja, sekolah] = parts(c, 2, '<nombre> | <título> | <contacto> | <resumen> | <habilidades> | <experiencia> | <educación>')
       return out(await cv({ nama: nama.slice(0, 40), jabatan: jabatan.slice(0, 50), kontak: list(kontak), ringkasan: (ringkasan || '').slice(0, 500), skill: list(skill), kerja: parseEntries(kerja || ''), sekolah: parseEntries(sekolah || '') }), `cv-${fileName(nama)}`, '📇 CV listo. Consejo: rellena cada apartado de forma más completa utilizando el mismo comando, separando varias experiencias con punto y coma (;).')
     } }

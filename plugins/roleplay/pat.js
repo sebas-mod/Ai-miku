@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "pat",
   alias: ['elus'],
   category: "roleplay",
-  description: "Aksi roleplay elus kepala dengan animasi anime",
+  description: "Acción de rol de acariciar la cabeza con animación anime",
   usage: ".pat @user",
   example: ".pat @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

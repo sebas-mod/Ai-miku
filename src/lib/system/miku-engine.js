@@ -1097,7 +1097,7 @@ const MikuEngine = (() => {
       clan: '🏰 MIKU CLAN',
       audio: '🎧 MIKU AUDIO',
       download: '📥 MIKU DOWNLOAD',
-      pushkontak: '📲 MIKU KONTAK',
+      pushkontak: '📲 CONTACTOS DE MIKU',
       sticker: '🎨 MIKU STICKER',
       tools: '🛠️ MIKU TOOLS',
       search: '🔎 MIKU SEARCH',

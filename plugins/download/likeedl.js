@@ -15,7 +15,7 @@ const likee = MikuRuntime.likee;
       name: 'likeedl',
       alias: [],
       category: "download",
-      description: 'Download video Likee',
+      description: 'Descarga videos de Likee',
       usage: '.likeedl <url>',
       example: '.likeedl https://likee.video/@xxx',
       isOwner: false,

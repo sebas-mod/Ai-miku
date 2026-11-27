@@ -12,8 +12,8 @@ const pluginConfig = {
   name: "tiktoks",
   alias: ["ttsearch", "tiktoksearch"],
   category: "search",
-  description: "Cari dan kirim video TikTok berdasarkan kata kunci",
-  usage: ".tiktoksearch <kata kunci>",
+  description: "Busca y envía videos de TikTok por palabra clave",
+  usage: ".tiktoksearch <palabra clave>",
   example: ".tiktoksearch stecu stecu 20 detik",
   isOwner: false,
   isPremium: false,
@@ -123,7 +123,7 @@ async function searchTikwmGotScraping(query) {
       if (list.length) return list;
     } catch {}
   }
-  throw new Error("TikWM (TLS) kosong");
+  throw new Error("TikWM (TLS) vacío");
 }
 
 // Provider 2: TikWM via axios
@@ -153,7 +153,7 @@ async function searchTikwmAxios(query) {
     const list = pickArray(res.data).map(normalizeVideo).filter(Boolean);
     if (list.length) return list;
   }
-  throw new Error("TikWM (axios) kosong");
+  throw new Error("TikWM (axios) vacío");
 }
 
 // Provider 3+: Public fallback APIs

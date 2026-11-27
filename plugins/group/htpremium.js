@@ -11,9 +11,9 @@ import te from '../../src/lib/core/error.js'
 const pluginConfig = {
     name: ['htpremium', 'hidetagpremium', 'htprem'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
-    usage: '.htprem [pesan] atau reply pesan',
-    example: '.htprem atau reply pesan lalu .htprem',
+    description: 'Menciona a todos respondiendo a un mensaje (texto/archivo)',
+    usage: '.htprem [mensaje] o responde a un mensaje',
+    example: '.htprem atau responde a un mensaje y luego .htprem',
     isOwner: false,
     isPremium: false,
     isGroup: true,

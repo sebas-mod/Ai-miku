@@ -15,8 +15,8 @@ const pluginConfig = {
   name: "daftar",
   alias: ["reg", "register", "verifikasi", "verify"],
   category: "user",
-  description: "Daftar sebagai petualang resmi di Ai Miku",
-  usage: ".daftar <nama>.<umur>",
+  description: "Regístrate como aventurero oficial en Ai Miku",
+  usage: ".daftar <nombre>.<umur>",
   example: ".daftar Arthazy.19",
   isOwner: false,
   isPremium: false,
@@ -65,7 +65,7 @@ function parseRegInput(rawText, fallbackName) {
   // Hanya angka umur -> gunakan pushName
   if (/^\d{1,3}$/.test(text)) {
     return {
-      name: fallbackName || "Petualang",
+      name: fallbackName || "Aventurero",
       age: parseInt(text, 10),
       gender: "Rahasia",
     };
@@ -112,7 +112,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `╭─── ❖ 『 ✅ *YA REGISTRADO* 』 ❖\n` +
         `│ ✦ ¡Tu cuenta está registrada con *Ai Miku*!\n` +
-        `│ 👤 *Nombre:* ${user.regName || user.name || m.pushName || "Petualang"}\n` +
+        `│ 👤 *Nombre:* ${user.regName || user.name || m.pushName || "Aventurero"}\n` +
         `│ 🎂 *Edad:* ${user.regAge ? `${user.regAge} Tahun` : "-"}\n` +
         `│ 🔑 *Serial ID:* \`${sn}\`\n` +
         `│ 📅 *Terdaftar:* ${regDate}\n` +
@@ -127,15 +127,15 @@ async function handler(m, { sock }) {
   const parsed = parseRegInput(m.text, m.pushName);
   if (!parsed) {
     return m.reply(
-      `╭─── ❖ 『 📜 *PENDAFTARAN PETUALANG* 』 ❖\n` +
+      `╭─── ❖ 『 📜 *REGISTRO DE AVENTURERO* 』 ❖\n` +
         `│ ✦ ¡Ingrese su *Nombre* y *Edad*!\n` +
         `│\n` +
         `│ 📌 *Formato:* \`${p}${m.command || "daftar"} Nombre.Edad\`\n` +
         `│ ✨ *Ejemplo 1:* \`${p}daftar ${m.pushName || "Arthazy"}.19\`\n` +
         `│ ✨ *Ejemplo 2:* \`${p}daftar ${m.pushName || "Arthazy"} 19\`\n` +
         `├─── ❖ 『 🎁 *BONUS PENDAFTARAN* 』 ❖\n` +
-        `│ 💰 *+Rp 25.000* Koin Awal\n` +
-        `│ ✨ *+15.000* EXP Petualang\n` +
+        `│ 💰 *+Rp 25.000* monedas iniciales\n` +
+        `│ ✨ *+15.000* EXP de aventurero\n` +
         `│ ⚡ *+15* Energi Tambahan\n` +
         `│ 🧪 *+5* Health Potion & *1* Common Crate\n` +
         `╰──────────────────────────❖\n` +
@@ -238,7 +238,7 @@ async function handler(m, { sock }) {
     `│ 📅 *Terdaftar:* ${dateFmt}\n` +
     (isFirstReg
       ? `├─── ❖ 『 🎁 *STARTER PACK DITERIMA* 』 ❖\n` +
-        `│ 💰 *Koin:* +Rp ${bonusKoin.toLocaleString("id-ID")}\n` +
+        `│ 💰 *Monedas:* +Rp ${bonusKoin.toLocaleString("id-ID")}\n` +
         `│ ✨ *EXP:* +${bonusExp.toLocaleString("id-ID")} EXP\n` +
         `│ ⚡ *Energi:* +${bonusEnergi} Energi\n` +
         `│ 🧪 *Item:* +5 Health Potion & +1 Common Crate\n`

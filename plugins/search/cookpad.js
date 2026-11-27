@@ -14,9 +14,9 @@ const pluginConfig = {
     name: "cookpad",
     alias: [],
     category: "search",
-    description: "cookpad <resep>",
-    usage: ".cookpad <resep>",
-    example: ".cookpad <resep>",
+    description: "cookpad <receta>",
+    usage: ".cookpad <receta>",
+    example: ".cookpad <receta>",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -130,7 +130,7 @@ const pluginConfig = {
           `🍲 *COOKPAD: ${body}*\n\n` +
           top.map((r, i) => `${i + 1}. *${r.title}*\n   👩‍🍳 ${r.author || '-'} | ⏱️ ${r.duration || '-'} | 🍽️ ${r.servings || '-'}\n   🆔 ${r.id}` +
               (r.ingredientsPreview.length ? `\n   🧂 ${clip(r.ingredientsPreview.join(', '), 90)}` : '')).join('\n\n') +
-          `\n\nLihat resep lengkap: ${p}cookpad detail <id>`
+          `\n\nVer la receta completa: ${p}cookpad detail <id>`
 
       try {
           const pilih = top.map(r => `▢ ${p}cookpad detail ${r.id} — ${clip(r.title, 24)} (${clip(`${r.author || '-'} • ${r.duration || '-'}`, 72)})`).join('\n')

@@ -67,7 +67,7 @@ const MikuRpgKernel = (() => {
         class: u.class || 'Warrior',
         element: u.element || 'Netral',
         skill: u.skill || 'Slash',
-        location: u.location || 'Kota Awal Miku',
+        location: u.location || 'Ciudad inicial de Miku',
         quest: { dailyDone: false }
       }
     }
@@ -268,15 +268,15 @@ const MikuRpgKernel = (() => {
 
   // Database Shop & Recipes
   const SHOP = {
-    weapon: { title: 'Weapon ⚔️', items: { 'pedang kayu': 500, 'belati baja': 1000, 'busur elven': 1200, 'pedang naga': 3500 } },
-    armor: { title: 'Armor 🛡️', items: { 'tameng kayu': 600, 'armor kulit': 900, 'zirah ksatria': 2500 } },
+    weapon: { title: 'Weapon ⚔️', items: { 'pedang kayu': 500, 'belati baja': 1000, 'busur elven': 1200, 'espada de dragón': 3500 } },
+    armor: { title: 'Armor 🛡️', items: { 'tameng kayu': 600, 'armor kulit': 900, 'armadura de caballero': 2500 } },
     potion: { title: 'Potion 🧪', items: { ramuan: 150, elixirlife: 750 } },
     material: { title: 'Material 🧱', items: { tulang: 80, kulit: 80, daging: 60 } },
     key: { title: 'Key Item 🔑', items: { kunci: 300 } },
     mystic: { title: 'Mystic ✨', items: { scrollclass: 500, stonebless: 350, essencexp: 400, spiritcore: 1000 } },
     mount: { title: 'Pet & Mount 🐾', items: { kuda: 2000, serigala: 4500, naga: 12000 } }
   }
-  const SHOP_ALIAS = { weapon: 'weapon', senjata: 'weapon', armor: 'armor', potion: 'potion', ramuan: 'potion', material: 'material', bahan: 'material', key: 'key', keyitem: 'key', kunci: 'key', mystic: 'mystic', mount: 'mount', pet: 'mount', petmount: 'mount' }
+  const SHOP_ALIAS = { weapon: 'weapon', senjata: 'weapon', armor: 'armor', potion: 'potion', ramuan: 'potion', material: 'material', bahan: 'material', key: 'key', keyitem: 'key', clave: 'key', mystic: 'mystic', mount: 'mount', pet: 'mount', petmount: 'mount' }
   const priceOf = (name) => {
     for (const cat of Object.values(SHOP)) if (cat.items[name] !== undefined) return cat.items[name]
     return undefined
@@ -291,7 +291,7 @@ const MikuRpgKernel = (() => {
       default: u.inv.push(item); return ''
     }
   }
-  const SELL_PRICE = { daging: 40, kulit: 40, tulang: 40, gandum: 30, apel: 30, armor: 250, ramuan: 60, kunci: 120, fragmen: 50 }
+  const SELL_PRICE = { daging: 40, kulit: 40, tulang: 40, gandum: 30, apel: 30, armor: 250, ramuan: 60, clave: 120, fragmen: 50 }
   const sellPrice = (item) => {
     const k = String(item).toLowerCase()
     if (SELL_PRICE[k] !== undefined) return SELL_PRICE[k]

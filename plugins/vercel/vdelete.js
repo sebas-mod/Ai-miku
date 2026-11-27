@@ -12,9 +12,9 @@ const pluginConfig = {
   name: "vdelete",
   alias: ["verceldelete", "vdel"],
   category: "vercel",
-  description: "Hapus proyek dari akun Vercel kamu",
-  usage: ".vdelete <nama-proyek>",
-  example: ".vdelete web-lama",
+  description: "Elimina un proyecto de tu cuenta de Vercel",
+  usage: ".vdelete <nombre-proyek>",
+  example: ".vdelete web-vieja",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 5, energi: 0, isEnabled: true,
 };

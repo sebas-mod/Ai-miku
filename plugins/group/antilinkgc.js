@@ -43,7 +43,7 @@ function handler(m, { sock }) {
             `╰┈┈⬡\n\n` +
             `*DETECCIÓN:*\n` +
             `> • chat.whatsapp.com (grupos)\n` +
-            `> • wa.me (kontak)\n` +
+            `> • wa.me (contacto)\n` +
             `> • whatsapp.com/channel (saluran)\n\n` +
             `*CÓMO USAR:*\n` +
             `> \`${m.prefix}antilinkgc on\` - Activar\n` +

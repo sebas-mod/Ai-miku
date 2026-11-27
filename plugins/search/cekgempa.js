@@ -32,8 +32,8 @@ const pluginConfig = {
   const SHAKEMAP = 'https://static.bmkg.go.id'
 
   const LISTS = {
-      m5: { file: 'gempaterkini.json', title: 'GEMPA M 5.0+ (15 TERAKHIR)' },
-      dirasakan: { file: 'gempadirasakan.json', title: 'GEMPA DIRASAKAN (15 TERAKHIR)' }
+      m5: { file: 'gempaterkini.json', title: 'TERREMOTOS M 5.0+ (ÚLTIMOS 15)' },
+      dirasakan: { file: 'gempadirasakan.json', title: 'TERREMOTOS SENTIDOS (ÚLTIMOS 15)' }
   }
 
   const show = (v, fallback = '-') => (v === undefined || v === null || String(v).trim() === '' ? fallback : String(v).trim())

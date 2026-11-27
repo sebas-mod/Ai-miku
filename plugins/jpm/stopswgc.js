@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { reply }) {
       if (!jpmStopJob('autoSwgc')) return reply('❌ Auto SWGC no está funcionando.')
-      return reply('*▢ AUTO SWGC*\n• Status : Dihentikan')
+      return reply('*▢ AUTO SWGC*\n• Estado : Detenido')
   }
 
 export { pluginConfig as config, handler }

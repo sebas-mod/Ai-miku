@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'promote',
     alias: ['jadiadmin', 'admin'],
     category: 'group',
-    description: 'Jadikan member sebagai admin',
+    description: 'Nombra admin a un miembro',
     usage: '.promote @user',
     example: '.promote @user',
     isOwner: false,

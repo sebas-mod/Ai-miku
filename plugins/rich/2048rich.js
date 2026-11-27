@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "2048rich",
   alias: ["game2048"],
   category: "rich",
-  description: "Gabungkan ubin kristal hingga 2048 dengan swipe atau tombol arah",
+  description: "Une las fichas de cristal hasta 2048 deslizando o con las flechas",
   usage: ".2048rich",
   example: ".2048rich",
   isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "geodashrich",
   alias: [],
   category: "rich",
-  description: 'Geo Dash v2: portal pesawat/bola/UFO/wave, 3 level + musik',
+  description: 'Geo Dash v2: portales de nave/bola/OVNI/onda, 3 niveles y música',
   usage: ".geodashrich",
   example: ".geodashrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       <div class="bar"><i id="pg"></i></div>
       <div class="st3"><div><b id="sp">0%</b>Progreso</div><div><b id="sa">1</b>Intentos</div><div><b id="sb">0%</b>Mejor</div><div><b id="sm">Cube</b>Modo</div></div>
       <button class="btn jump" id="jb">⬆ TAP / TAHAN</button>
-      <div class="lg"><span><i style="background:#22c55e"></i>Cube</span><span><i style="background:#ec4899"></i>Pesawat</span><span><i style="background:#f97316"></i>Bola</span><span><i style="background:#ef4444"></i>UFO</span><span><i style="background:#a855f7"></i>Wave</span><span><i style="background:#38bdf8"></i>Gravitasi ↑</span><span><i style="background:#facc15"></i>Gravitasi ↓</span></div>
+      <div class="lg"><span><i style="background:#22c55e"></i>Cube</span><span><i style="background:#ec4899"></i>Avión</span><span><i style="background:#f97316"></i>Bola</span><span><i style="background:#ef4444"></i>UFO</span><span><i style="background:#a855f7"></i>Wave</span><span><i style="background:#38bdf8"></i>Gravitasi ↑</span><span><i style="background:#facc15"></i>Gravitasi ↓</span></div>
     </div></div>
     <script>
     (function(){
@@ -126,9 +126,9 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     /*CORE*/
     var T=30,P=30,G=165,CE=30,GR=1700,JV=560,SA=1000,VM=230,UG=1150,UJ=340;
     var LV=[
-     {n:'Mudah',v:190,gap:7,hue:140,bpm:124,pat:[0,1,2,3,4],plan:[['c',8],['ship',4],['c',5],['ball',4],['c',5]]},
+     {n:'Fácil',v:190,gap:7,hue:140,bpm:124,pat:[0,1,2,3,4],plan:[['c',8],['ship',4],['c',5],['ball',4],['c',5]]},
      {n:'Normal',v:230,gap:6,hue:210,bpm:136,pat:[0,1,2,3,4,5,6,7],plan:[['c',8],['ship',5],['c',5],['ball',5],['c',5],['ufo',5],['c',5],['grav',3],['c',5]]},
-     {n:'Sulit',v:265,gap:5,hue:330,bpm:148,pat:[0,1,2,3,4,5,6,7],plan:[['c',9],['ship',6],['c',6],['ball',6],['c',6],['ufo',6],['c',6],['wave',6],['c',6],['grav',4],['c',6]]}
+     {n:'Difícil',v:265,gap:5,hue:330,bpm:148,pat:[0,1,2,3,4,5,6,7],plan:[['c',9],['ship',6],['c',6],['ball',6],['c',6],['ufo',6],['c',6],['wave',6],['c',6],['grav',4],['c',6]]}
     ];
     var COMBO=[[2,0],[0,2],[1,1],[1,0],[0,1]];
     function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -373,7 +373,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildGeoDashHtml({ playerName = "Kamu" } = {}) {
+    function buildGeoDashHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -389,7 +389,7 @@ module.exports = {
   name: 'geodashrich',
   alias: [],
   category: 'rich',
-  desc: "Geo Dash v2: portal pesawat/bola/UFO/wave, 3 level + musik",
+  desc: "Geo Dash v2: portales de avión/bola/UFO/onda, 3 niveles + música",
   run: async ({ sock, m, pushname }) => {
     const html = buildGeoDashHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Geo Dash Live', '🟩')

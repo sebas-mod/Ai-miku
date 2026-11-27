@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "robloxstalk",
   alias: ["stalkroblox", "rbstalk"],
   category: "stalker",
-  description: "Cek profil, bio, dan avatar pengguna Roblox",
+  description: "Consulta el perfil, la bio y el avatar de un usuario de Roblox",
   usage: ".robloxstalk <username>",
   example: ".robloxstalk Builderman",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

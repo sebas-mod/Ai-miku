@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "ungkapmenfess",
   alias: ["reveal"],
   category: "menfess",
-  description: "Pengirim membuka identitasnya ke penerima (pilihan sendiri)",
+  description: "El remitente revela su identidad al destinatario (por decisión propia)",
   usage: ".ungkapmenfess ID ya",
   example: ".ungkapmenfess AB12C ya",
   isOwner: false,

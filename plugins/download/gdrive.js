@@ -14,7 +14,7 @@ import axios from 'axios'
       name: 'gdrive',
       alias: ["gd", "drivedl2"],
       category: "download",
-      description: 'Download file dari Google Drive',
+      description: 'Descarga archivos de Google Drive',
       usage: '.gdrive <url>',
       example: '.gdrive https://drive.google.com/file/d/xxx/view',
       isOwner: false,

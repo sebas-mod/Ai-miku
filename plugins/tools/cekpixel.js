@@ -61,7 +61,7 @@ const pluginConfig = {
           const channels = metadata.channels || 3;
 
           const teks = `🖼️ *IMAGE PIXEL IDENTIFIER*\n\n` +
-              `• 📐 *Lebar (Width):* ${width} px\n` +
+              `• 📐 *Ancho (Width):* ${width} px\n` +
               `• 📏 *Altura:* ${height} píxeles\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect} (${width}:${height})\n` +

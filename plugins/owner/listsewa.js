@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'listsewa',
     alias: ['sewalist', 'daftarsewa'],
     category: 'owner',
-    description: 'Lihat daftar grup yang terdaftar sewa',
+    description: 'Muestra los grupos registrados en el alquiler',
     usage: '.listsewa',
     example: '.listsewa',
     isOwner: true,
@@ -61,7 +61,7 @@ function handler(m) {
             `📋 *LISTA DE ALQUILER*\n\n` +
             `Estado: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n` +
             `Aún no hay grupos registrados\n\n` +
-            `Añade con: *${m.prefix}addsewa <link> <durasi>*`
+            `Añade con: *${m.prefix}addsewa <enlace> <duración>*`
         )
     }
 
@@ -94,7 +94,7 @@ function handler(m) {
     }
 
     text += `*AKSI:*\n`
-    text += `• *${m.prefix}renewsewa <id> <durasi>* — Perpanjang\n`
+    text += `• *${m.prefix}renewsewa <id> <duración>* — Amplía\n`
     text += `• *${m.prefix}delsewa <id>* — Elimina de la lista de alquiler`
 
     return m.reply(text)

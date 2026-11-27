@@ -49,7 +49,7 @@ const pluginConfig = {
     name: 'fakedana',
     alias: ['danafake'],
     category: "maker",
-    description: 'Membuat gambar fake dana',
+    description: 'Crea una imagen falsa de DANA',
     usage: '.fakedana <text>',
     example: '.fakedana Hai cantik',
     isOwner: false,

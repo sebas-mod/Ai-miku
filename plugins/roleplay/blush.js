@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "blush",
   alias: ['malu'],
   category: "roleplay",
-  description: "Aksi roleplay blush dengan animasi anime",
+  description: "Acción de rol de sonrojarse con animación anime",
   usage: ".blush [@user]",
   example: ".blush @user",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

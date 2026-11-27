@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "ffstalk",
   alias: ["stalkff", "cekff"],
   category: "stalker",
-  description: "Cek nickname & info akun Free Fire dari UID",
+  description: "Consulta el apodo y la info de la cuenta de Free Fire por UID",
   usage: ".ffstalk <uid>",
   example: ".ffstalk 123456789",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

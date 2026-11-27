@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "claimlevel",
   alias: ["rewardlevel", "hadiahlevel", "petilevel"],
   category: "user",
-  description: "Klaim peti hadiah milestone setiap kenaikan 5 level",
+  description: "Reclama el cofre de recompensa cada 5 niveles",
   usage: ".claimlevel",
   example: ".claimlevel",
   isOwner: false,
@@ -82,11 +82,11 @@ async function handler(m) {
   await m.react("🎁");
   return m.reply(
     `╭─── ❖ 『 🎁 *¡HITO RECLAMADO!* 』 ❖\n` +
-    `│ 👤 *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
+    `│ 👤 *Aventurero:* *${user.regName || user.name || m.pushName}*\n` +
     `│ 🎖️ *Pangkat:* ${rank.title} (Lv.${level})\n` +
     `│ 🔓 *Milestone Diklaim:* Lv.${unlockedMilestones.join(", Lv.")}\n` +
     `├─── ❖ 『 💎 *LLENA COFRE ASTRAL* 』 ❖\n` +
-    `│ 💰 *Koin:* +Rp ${totalKoin.toLocaleString("id-ID")}\n` +
+    `│ 💰 *Monedas:* +Rp ${totalKoin.toLocaleString("id-ID")}\n` +
     `│ ⚡ *Energi:* +${totalEnergi} Energi\n` +
     `│ 📦 *Mythic Crate:* +${totalCrate} Peti\n` +
     `╰──────────────────────────❖\n` +

@@ -227,7 +227,7 @@ const schedulerRegistry = {
   dailyLimitReset: {
     name: "Daily Limit Reset",
     key: "dailyLimitReset",
-    description: "Reset limit user jam 00:00",
+    description: "Restablece el límite del usuario a las 00:00",
   },
   groupSchedule: {
     name: "Group Schedule",
@@ -267,7 +267,7 @@ function getFullSchedulerStatus() {
         name: "Daily Limit Reset",
         key: "limitreset",
         running: activeCronJobs.has("dailyLimitReset"),
-        description: "Reset limit user jam 00:00",
+        description: "Restablece el límite del usuario a las 00:00",
         lastRun: db.setting("lastLimitReset") || "Never",
         stats: { totalResets: db.getStats("dailyResets") || 0 },
       },

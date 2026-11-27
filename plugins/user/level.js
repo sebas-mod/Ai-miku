@@ -22,7 +22,7 @@ const pluginConfig = {
   name: "level",
   alias: ["lvl", "ceklevel", "rank", "pangkat"],
   category: "user",
-  description: "Cek detail level, pangkat Astral, bintang, dan progres EXP",
+  description: "Consulta el detalle de nivel, rango Astral, estrellas y progreso de EXP",
   usage: ".level [@user]",
   example: ".level",
   isOwner: false,
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
   const p = m.prefix || ".";
 
   let targetJid = m.sender;
-  let targetName = m.pushName || "Petualang";
+  let targetName = m.pushName || "Aventurero";
 
   if (m.quoted) {
     targetJid = m.quoted.sender;
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
 
   const txt =
     `╭─── ❖ 『 📊 *ASTRAL LEVEL & RANK* 』 ❖\n` +
-    `│ 👤 *Petualang:* *${user.regName || user.name || targetName}*\n` +
+    `│ 👤 *Aventurero:* *${user.regName || user.name || targetName}*\n` +
     `│ 🏷️ *Tag:* @${targetJid.split("@")[0]}\n` +
     `├─── ❖ 『 🎖️ *STATUS PANGKAT* 』 ❖\n` +
     `│ 🏆 *Pangkat:* *${rank.title}*\n` +
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     `│ [${bar}] *${pct}%*\n` +
     `│ ◦ _${expInLevel.toLocaleString("id-ID")} / ${expNeeded.toLocaleString("id-ID")} XP (Menos ${expToNextLevel(exp).toLocaleString("id-ID")} XP)_\n` +
     `├─── ❖ 『 🎁 *PRIVILEGE & REWARD* 』 ❖\n` +
-    `│ 💰 *Bonus Naik Level:* +Rp ${rank.bonusKoin.toLocaleString("id-ID")} / level\n` +
+    `│ 💰 *Bonus por subir de nivel:* +Rp ${rank.bonusKoin.toLocaleString("id-ID")} / level\n` +
     `│ ⚡ *Bonus Energi:* +${rank.bonusEnergi} Energi / level\n` +
     (rank.nextRank
       ? `│ 🚀 *Rank Berikutnya:* ${rank.nextRank.title} (Lv.${rank.nextRank.min})\n`
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
       : `│ 📦 *Cofre de hitos:* Abre cada nivel múltiplo de 5\n`) +
     `├─── ❖ 『 🧭 *MENÚ DE MÁS NIVELES* 』 ❖\n` +
     `│ ◦ \`${p}Claimlevel\` — Reclama recompensas de nivel de hito\n` +
-    `│ ◦ \`${p}boostexp\` — Latihan astral (+EXP gratis)\n` +
+    `│ ◦ \`${p}boostexp\` — Entrenamiento astral (+EXP gratis)\n` +
     `│ ◦ \`${p}ranklist\` — Lista de todos los 21 rangos astrales\n` +
     `│ ◦ \`${p}toplevel\` — La calificación de nivel más alto\n` +
     `╰──────────────────────────❖\n` +

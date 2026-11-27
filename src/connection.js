@@ -85,7 +85,7 @@ function getIncomingMessagePreview(message) {
     buttonsResponseMessage: "RESPONS TOMBOL",
     listResponseMessage: "RESPUESTA DE LISTA",
     reactionMessage: "REAKSI",
-    pollUpdateMessage: "JAWABAN POLLING",
+    pollUpdateMessage: "RESPUESTA DE ENCUESTA",
   };
   return `[${labels[type] || (type ? type.replace(/Message$/, "").toUpperCase() : "MENSAJE NO TEXTO")}]`;
 }
@@ -776,7 +776,7 @@ async function startConnection(options = {}) {
 
           const welcomeText =
             `👋 *ʜᴀɪ, sᴀʟᴀᴍ ᴋᴇɴᴀʟ!*\n\n` +
-            `Aku *${config.bot?.name || "Ai Miku"}* 🤖\n\n` +
+            `Soy *${config.bot?.name || "Ai Miku"}* 🤖\n\n` +
             `¡Gracias por invitarme a *${groupName}*!\n` +
             `Me invitó ${inviterMention} ✨\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +

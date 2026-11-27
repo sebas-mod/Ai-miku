@@ -99,8 +99,8 @@ export function renderHangman(s) {
     `${HANGMAN_STAGES[Math.min(6, s.wrong)]}\n` +
     `│ 🏷️ Kategori : *${s.category}*\n` +
     `│ 🔤 Kata     : \`${masked}\`\n` +
-    `│ ❤️ Nyawa    : ${hearts}\n` +
-    `│ 📝 Huruf    : ${used}\n` +
+    `│ ❤️ Vidas    : ${hearts}\n` +
+    `│ 📝 Letras   : ${used}\n` +
     `╰─────────────────────❖\n` +
     `_¡Escribe 1 letra (a-z) o adivina la palabra directamente! Escribe \`.stopgame\` para detener._`
   );

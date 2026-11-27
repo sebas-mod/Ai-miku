@@ -15,8 +15,8 @@ const pluginConfig = {
     name: 'mimpi',
     alias: ['dream', 'dreamworld'],
     category: 'fun',
-    description: 'Jelajahi dunia mimpimu berdasarkan nama',
-    usage: '.mimpi <nama>',
+    description: 'Explora el mundo de tus sueños según tu nombre',
+    usage: '.mimpi <nombre>',
     example: '.mimpi Keisya',
     isOwner: false,
     isPremium: false,
@@ -37,7 +37,7 @@ const ELEMENTS = [
     '🌺 Jardín Flotante',
     '⭐ Constelación Viva',
     '🌙 Luna Doble',
-    '🏰 Kastil Awan',
+    '🏰 Castillo en las Nubes',
     '🌋 Montaña Prisma',
     '🎭 Teatro de Sombras'
 ]

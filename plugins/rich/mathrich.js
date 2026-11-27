@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "mathrich",
   alias: ["hitungcepat"],
   category: "rich",
-  description: "Kuis hitung cepat 60 detik dengan combo skor & rekor",
+  description: "Concurso de cálculo rápido de 60 segundos con combos y récord",
   usage: ".mathrich",
   example: ".mathrich",
   isOwner: false,

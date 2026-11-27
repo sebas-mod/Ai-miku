@@ -28,7 +28,7 @@ const pluginConfig = {
 
   async function handler(m, { reply }) {
       if (!jpmStopJob('autoJpmTag')) return reply('❌ La etiqueta automática JPM no se está ejecutando.')
-      return reply('*▢ AUTO JPM TAG*\n• Status : Dihentikan')
+      return reply('*▢ AUTO JPM TAG*\n• Estado : Detenido')
   }
 
 export { pluginConfig as config, handler }

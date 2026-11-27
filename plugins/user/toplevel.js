@@ -16,7 +16,7 @@ const pluginConfig = {
   name: "toplevel",
   alias: ["lblevel", "topxp", "leaderboardlevel", "rankglobal"],
   category: "user",
-  description: "Papan peringkat 10 petualang dengan Level & EXP tertinggi (gambar)",
+  description: "Clasificación de los 10 aventureros con más nivel y EXP (imagen)",
   usage: ".toplevel",
   example: ".toplevel",
   isOwner: false,
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
   const image = await renderTop10({
     key: "toplevel",
     title: "TOP 10 LEVEL",
-    subtitle: "Hall of Fame petualang Astral",
+    subtitle: "Salón de la fama de aventureros Astral",
     accent: "#a78bfa",
     rows: top.map((u, i) => ({
       name: u.name,

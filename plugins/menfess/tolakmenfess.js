@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "tolakmenfess",
   alias: [],
   category: "menfess",
-  description: "Tolak semua menfess / buka kembali",
+  description: "Rechaza todos los menfess o vuelve a abrirlos",
   usage: ".tolakmenfess",
   example: ".tolakmenfess",
   isOwner: false,

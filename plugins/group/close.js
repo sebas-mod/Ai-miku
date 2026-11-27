@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'close',
     alias: ['tutup', 'closegroup', 'tutupgroup'],
     category: 'group',
-    description: 'Menutup grup agar hanya admin yang bisa chat',
+    description: 'Cierra el grupo para que solo los admins puedan escribir',
     usage: '.close',
     example: '.close',
     isOwner: false,

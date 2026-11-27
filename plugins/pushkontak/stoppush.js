@@ -30,7 +30,7 @@ const pluginConfig = {
       const jobs = jpmJobs()
       if (!jobs.pushRunning) return reply('❌ El envío de contactos no está en marcha.')
       jobs.pushRunning = false
-      return reply('*▢ PUSH KONTAK*\n• Status : Dihentikan')
+      return reply('*▢ ENVÍO DE CONTACTOS*\n• Estado : Detenido')
   }
 
 export { pluginConfig as config, handler }

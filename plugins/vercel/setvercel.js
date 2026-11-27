@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "setvercel",
   alias: ["vercelset", "verceltoken"],
   category: "vercel",
-  description: "Simpan dan verifikasi Vercel API Token milikmu",
+  description: "Guarda y verifica tu token de API de Vercel",
   usage: ".setvercel <token>",
   example: ".setvercel xxxxxxxxxxxxxxxxxxxx",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
@@ -24,7 +24,7 @@ async function handler(m) {
   if (!token) {
     return m.reply(
       `▲ *SET VERCEL TOKEN*\n` +
-      `> Ambil token di: https://vercel.com/account/tokens\n` +
+      `> Consigue el token en: https://vercel.com/account/tokens\n` +
       `> Luego escribe: \`${m.prefix}setvercel <tu_token>\`\n` +
       `_Se recomienda enviarlo en el chat privado para que el token esté seguro._`
     );

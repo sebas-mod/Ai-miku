@@ -46,11 +46,11 @@ const pluginConfig = {
           `• Auto JPM : ${onoff(jobs.autoJpm)}\n` +
           `• Auto JPM Tag : ${onoff(jobs.autoJpmTag)}\n` +
           `• Auto SWGC : ${onoff(jobs.autoSwgc)}\n` +
-          `• Push Kontak : ${onoff(jobs.pushRunning)}\n` +
+          `• Envío de contactos : ${onoff(jobs.pushRunning)}\n` +
           `• Delay JPM : ${cfg.delayJpm}ms\n` +
           `• Delay JPM Tag : ${cfg.delayJpmTag}ms\n` +
           `• Delay Auto SWGC : ${cfg.delayAutoSwgc}ms\n` +
-          `• Delay Push Kontak : ${cfg.delayPushKontak}ms\n` +
+          `• Delay Envío de contactos : ${cfg.delayPushKontak}ms\n` +
           `• Grupo total: ${total} grupo\n` +
           `• Grupo Banchat (omitido): ${banned} grupo`
       )

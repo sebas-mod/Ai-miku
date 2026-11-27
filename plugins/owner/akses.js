@@ -188,7 +188,7 @@ async function handler(m, { sock, plugins }) {
       const exp = acc.expired ? ms(acc.expired - now) : "Permanent";
       return {
         title: `Eliminar: ${acc.cmd}`,
-        description: `Sisa durasi: ${exp}`,
+        description: `Duración restante: ${exp}`,
         id: `${m.prefix}delakses ${acc.cmd} ${target}`,
       };
     });

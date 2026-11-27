@@ -201,7 +201,7 @@ function logMessage(info) {
   const chatBadge = isNewsletter || chatType === "newsletter"
     ? cYellow.bold("📢 SALURAN")
     : isGroup
-    ? cPink.bold(`👥 GRUP (${clean(groupName || "Grupo de WhatsApp", 40)})`)
+    ? cPink.bold(`👥 GRUPO (${clean(groupName || "Grupo de WhatsApp", 40)})`)
     : cCyan.bold("👤 CHAT PRIBADI");
   const text = clean(message, 500) || `[${typeTag} sin texto]`;
   const time = timeHelper.formatTime("HH:mm:ss");

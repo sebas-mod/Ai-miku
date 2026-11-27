@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'delppgc',
     alias: ['delprofilegc', 'delppgroup', 'hapusppgc'],
     category: 'group',
-    description: 'Menghapus foto profil grup',
+    description: 'Elimina la foto de perfil del grupo',
     usage: '.delppgc',
     example: '.delppgc',
     isOwner: false,

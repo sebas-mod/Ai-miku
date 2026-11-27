@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'pokerrich',
   alias: [],
   category: 'rich',
-  desc: "Poker Texas Hold'em lawan 1-3 bot: blind, raise, all-in, side pot, showdown",
+  desc: "Póker Texas Hold'em contra 1-3 bots: ciega, subida, all-in, bote lateral, showdown",
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'autosticker',
     alias: ['autostiker', 'as'],
     category: 'group',
-    description: 'Toggle auto sticker - otomatis jadikan gambar/video jadi sticker',
+    description: 'Activa o desactiva auto sticker: convierte imagen/video en sticker automáticamente',
     usage: '.autosticker on/off',
     example: '.autosticker on',
     isOwner: false,

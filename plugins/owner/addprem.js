@@ -25,9 +25,9 @@ const pluginConfig = {
     "premlist",
   ],
   category: "owner",
-  description: "Kelola premium users dengan durasi fleksibel (day / m / jam)",
+  description: "Gestiona usuarios premium con duración flexible (días / meses / horas)",
   usage:
-    ".addprem <número/@tag> [tiempo: 30day / 15m / 2day 30m]\n.delprem <nomor/@tag>\n.listprem",
+    ".addprem <número/@tag> [tiempo: 30day / 15m / 2day 30m]\n.delprem <número/@tag>\n.listprem",
   example: ".addprem 6281234567890 30day",
   isOwner: true,
   isPremium: false,

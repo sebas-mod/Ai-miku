@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "chessrich",
   alias: [],
   category: "rich",
-  description: 'Main catur mini langsung di chat',
+  description: 'Juega al ajedrez mini directamente en el chat',
   usage: ".chessrich",
   example: ".chessrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -106,7 +106,7 @@ let cache = null, cacheAt = 0
 async function loadHtml() {
   if (cache && Date.now() - cacheAt < TTL_MS) return cache
   const res = await fetch(SOURCE_URL, { signal: AbortSignal.timeout(20000) })
-  if (!res.ok) throw new Error(`Gagal ambil rich (status ${res.status})`)
+  if (!res.ok) throw new Error(`No se pudo cargar el rich (estado ${res.status})`)
   const html = await res.text()
   cache = html
   cacheAt = Date.now()
@@ -117,7 +117,7 @@ module.exports = {
   name: 'chessrich',
   alias: [],
   category: 'rich',
-  desc: 'Main catur mini langsung di chat',
+  desc: 'Juega al ajedrez mini directamente en el chat',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

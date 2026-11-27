@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'linkgc',
     alias: ['linkgrup', 'getlink', 'gclink'],
     category: 'group',
-    description: 'Dapatkan link invite grup',
+    description: 'Obtén el enlace de invitación del grupo',
     usage: '.linkgc',
     example: '.linkgc',
     isOwner: false,

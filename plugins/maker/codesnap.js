@@ -16,7 +16,7 @@ const te = MikuRuntime.te;
     name: "codesnap",
     alias: [],
     category: "maker",
-    description: "Bikin gambar cuplikan code",
+    description: "Crea una imagen de fragmento de código",
     usage: ".codesnap <code>",
     example: ".codesnap console.log('hello')",
     isOwner: false,

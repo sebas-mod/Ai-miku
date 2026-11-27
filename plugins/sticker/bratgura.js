@@ -17,7 +17,7 @@ const config = MikuRuntime.config;
       name: 'bratgura',
       alias: ["bgura"],
       category: "sticker",
-      description: 'Membuat sticker anime chibi dengan teks brat style',
+      description: 'Crea un sticker de anime chibi con texto estilo brat',
       usage: '.bratanime4 <text>',
       example: '.bratanime4 Besok cenin',
       cooldown: 10,

@@ -14,7 +14,7 @@ import axios from "axios";
     name: "topanime",
     alias: ["rankanime"],
     category: "anime",
-    description: "Melihat daftar karakter anime / waifu terpopuler",
+    description: "Muestra la lista de personajes de anime / waifus más populares",
     usage: ".topanime",
     isOwner: false,
     isPremium: false,

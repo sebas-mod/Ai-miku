@@ -13,8 +13,8 @@ const pluginConfig = {
   name: "blackjack",
   alias: ["bj"],
   category: "game",
-  description: "Main kartu Blackjack 21 (hit / stand / double) dengan taruhan koin",
-  usage: ".blackjack [taruhan]",
+  description: "Juega al Blackjack 21 (pedir / plantarse / doblar) apostando monedas",
+  usage: ".blackjack [apuesta]",
   example: ".bj 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 5, energi: 0, isEnabled: true,
@@ -63,14 +63,14 @@ async function handler(m, { sock }) {
 
   setActiveGame(m.chat, session, 90000, async (cur) => {
     db.updateKoin(cur.player, cur.bet);
-    await sock.sendMessage(m.chat, { text: `⏰ Sesi *Blackjack* timeout. Taruhan *${cur.bet.toLocaleString("id-ID")} Se devuelven las monedas*.` });
+    await sock.sendMessage(m.chat, { text: `⏰ Sesión de *Blackjack* agotada. Se devuelve la apuesta de *${cur.bet.toLocaleString("es-ES")} monedas*.` });
   });
 
   await m.reply(
     `╭─❖「 🃏 *BLACKJACK — MIKU* 」\n` +
       `│ 🤵 Dealer : ${formatHand(dealer, true)}\n` +
       `│ 👤 Tú     : ${formatHand(hand)} (*${score}*)\n` +
-      `│ 💰 Taruhan: *${bet.toLocaleString("id-ID")} Koin*\n` +
+      `│ 💰 Apuesta: *${bet.toLocaleString("id-ID")} monedas*\n` +
       `╰─────────────────────❖\n` +
       `_Escribe *hit* (pedir carta), *stand* (plantarse) o *double* (doblar la apuesta)._`
   );

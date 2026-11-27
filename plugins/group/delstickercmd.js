@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'delstickercmd',
     alias: ['delcmdsticker', 'removesticker', 'unsticker'],
     category: 'group',
-    description: 'Hapus sticker command',
+    description: 'Borra el comando de stickers',
     usage: '.delstickercmd <comando> o responde a un sticker',
     example: '.delstickercmd menu',
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'cekschedule',
     alias: ['cekscheduler', 'schedulerstatus', 'schedstatus'],
     category: 'owner',
-    description: 'Melihat status semua scheduler bot',
+    description: 'Muestra el estado de todos los programadores del bot',
     usage: '.cekschedule',
     example: '.cekschedule',
     isOwner: true,

@@ -69,7 +69,7 @@ const pluginConfig = {
           return reply(
               `📁 *INFO FILE DRIVE*\n\n` +
               `• Nombre: ${name || '-'}\n• Tamaño: ${fmtBytes(size) || size || '-'}\n• Tipo: ${mime || '-'}\n` +
-              (duration ? `• Durasi : ${duration}\n` : '') + (thumb ? `• Thumbnail : ${thumb}\n` : '') + `\n🔗 ${url}`
+              (duration ? `• Duración : ${duration}\n` : '') + (thumb ? `• Thumbnail : ${thumb}\n` : '') + `\n🔗 ${url}`
           )
       } catch (e) {
           return reply(`❌ ${e.message || 'No se pudo obtener la información del archivo'}`)

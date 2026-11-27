@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Mute/unmute chat',
-    usage: '.mutechat <nomor/reply> atau .mutechat buka <nomor>',
+    usage: '.mutechat <número/reply> o .mutechat buka <número>',
     example: '.mutechat 628xxx',
     isOwner: true,
     cooldown: 3,

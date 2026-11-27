@@ -14,7 +14,7 @@ const RedNoteDL = MikuRuntime.RedNoteDL;
     name: "rednotedl",
     alias: [],
     category: "download",
-    description: "Download video/foto dari RedNote (XiaoHongShu)",
+    description: "Descarga videos/fotos de RedNote (XiaoHongShu)",
     usage: ".rednotedl <url>",
     example: ".rednotedl https://www.xiaohongshu.com/xxx",
     isOwner: false,

@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "vinfo",
   alias: ["vercelinfo", "vercelme"],
   category: "vercel",
-  description: "Cek informasi akun Vercel yang terhubung",
+  description: "Consulta la información de la cuenta de Vercel conectada",
   usage: ".vinfo",
   example: ".vinfo",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,

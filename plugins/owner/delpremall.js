@@ -13,7 +13,7 @@ const pluginConfig = {
     name: 'delpremall',
     alias: ['delpremiumall', 'removepremall'],
     category: 'owner',
-    description: 'Menghapus semua member grup dari premium',
+    description: 'Quita del premium a todos los miembros del grupo',
     usage: '.delprem all',
     example: '.delprem all',
     isOwner: true,

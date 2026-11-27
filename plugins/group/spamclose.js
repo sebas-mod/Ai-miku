@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'spamclose',
     alias: ['spam-close'],
     category: 'group',
-    description: 'Otomatis menutup grup saat member mengirim 5 pesan beruntun',
+    description: 'Cierra el grupo automáticamente cuando un miembro manda 5 mensajes seguidos',
     usage: '.spamclose on/off',
     example: '.spamclose on',
     isOwner: false,

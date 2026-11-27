@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "mafiarich",
   alias: [],
   category: "rich",
-  description: 'Mafia lawan bot: 7 pemain, malam & siang, detektif, dokter, voting',
+  description: 'Mafia contra el bot: 7 jugadores, noche y día, detective, médico y votación',
   usage: ".mafiarich",
   example: ".mafiarich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -117,7 +117,7 @@ module.exports = {
   name: 'mafiarich',
   alias: [],
   category: 'rich',
-  desc: 'Mafia lawan bot: 7 pemain, malam & siang, detektif, dokter, voting',
+  desc: 'Mafia contra el bot: 7 jugadores, noche y día, detective, médico y votación',
   run: async ({ sock, m, reply }) => {
     try {
       const html = await loadHtml()

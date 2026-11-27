@@ -11,7 +11,7 @@ const pluginConfig = {
     alias: ['voting', 'vote', 'survei'],
     category: 'group',
     description: 'Crea una encuesta/votación en el grupo',
-    usage: '.poll <pertanyaan> | <opsi1>, <opsi2>, ...',
+    usage: '.poll <pregunta> | <opsi1>, <opsi2>, ...',
     example: '.poll ¿Qué comemos? | Arroz frito, Fideos, Albóndigas',
     isOwner: false,
     isPremium: false,
@@ -30,11 +30,11 @@ async function handler(m, { sock }) {
             `⚠️ *VALIDACIÓN FALLIDA*\n\n` +
             `> ¡Formato no válido!\n\n` +
             `*Format:*\n` +
-            `> \`.poll pertanyaan | opsi1, opsi2\`\n\n` +
+            `> \`.poll pregunta | opción1, opción2\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`.poll ¿Qué comemos? | Arroz frito, Fideos\`\n\n` +
             `*Opsi tambahan:*\n` +
-            `> \`.poll multi | pertanyaan | opsi1, opsi2, opsi3, dst\`\n` +
+            `> \`.poll multi | pregunta | opción1, opción2, opción3, etc.\`\n` +
             `> (para opciones múltiples)`
         );
         return;

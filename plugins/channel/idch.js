@@ -14,7 +14,7 @@ const pluginConfig = {
     name: "idch",
     alias: ["cekidch", "channelid"],
     category: "channel",
-    description: "Mengambil ID WhatsApp Channel dengan tombol salin",
+    description: "Obtiene el ID de un canal de WhatsApp con botón de copiar",
     usage: ".idch <link channel>",
     example: ".idch https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O",
     isOwner: false,

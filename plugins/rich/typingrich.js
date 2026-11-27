@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "typingrich",
   alias: [],
   category: "rich",
-  description: 'Tes kecepatan mengetik (WPM & akurasi), mode 30/60 detik',
+  description: 'Prueba de velocidad al escribir (PPM y precisión), modo 30/60 segundos',
   usage: ".typingrich",
   example: ".typingrich",
   isOwner: false,
@@ -53,7 +53,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     try { await sock.sendMessage(m.chat, { react: { text: emoji, key: m.key } }) } catch {}
     return true
   } catch (err) {
-    console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
+    console.error(`[HTMLCARD:${title}] error al enviar:`, err.message)
     await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
@@ -128,7 +128,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     function stats(){var ok=0;for(var i=0;i<typed.length;i++)if(typed[i]===T[i])ok++;var el=Math.max(1,sec-left),w=Math.round((ok/5)/(el/60)),a=typed.length?Math.round(ok*100/typed.length):100;return {w:w,a:a};}
     function end(){clearInterval(iv);done=true;$('in').disabled=true;var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';
      var nb=s.w>(best[sec]||0);if(nb){best[sec]=s.w;try{localStorage.setItem('pix_typing',JSON.stringify(best));}catch(e){}$('bs').textContent=s.w;}
-     var rank=s.w>=80?'Dewa Ketik':s.w>=60?'Jago':s.w>=40?'Lumayan':s.w>=25?'Pemula':'Santai dulu';
+     var rank=s.w>=80?'Dewa Ketik':s.w>=60?'Jago':s.w>=40?'Lumayan':s.w>=25?'Pemula':'Tranquilo, espera';
      $('rs').textContent=s.w+' WPM • akurasi '+s.a+'% • '+rank+(nb?' • REKOR BARU!':'');}
     $('in').addEventListener('input',function(){if(done)return;typed=this.value;if(!started){started=true;iv=setInterval(function(){left--;$('tm').textContent=left;var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';if(left<=0)end();},1000);}
      if(typed.length>=T.length)end();else{var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';}render();});
@@ -139,7 +139,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </script>
     `;
 
-    function buildTypingHtml({ playerName = "Kamu" } = {}) {
+    function buildTypingHtml({ playerName = "Jugador" } = {}) {
       return BODY.replace("__BASECSS__", () => BASE_CSS).replace("__CFG__", () => safeJson({ nama: String(playerName) }));
     }
 
@@ -155,7 +155,7 @@ module.exports = {
   name: 'typingrich',
   alias: [],
   category: 'rich',
-  desc: "Tes kecepatan mengetik (WPM & akurasi), mode 30/60 detik",
+  desc: "Prueba de velocidad al escribir (PPM y precisión), modo 30/60 segundos",
   run: async ({ sock, m, pushname }) => {
     const html = buildTypingHtml({ playerName: pushname || String(m.sender).split('@')[0] })
     await sendHtmlCard(sock, m, html, 'Typing Test Live', '⌨️')

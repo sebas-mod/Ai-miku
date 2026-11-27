@@ -13,7 +13,7 @@ const pluginConfig = {
     name: 'clearsessions',
     alias: ['clearsession', 'cleansession', 'clean-session', 'delsession', 'delsessions'],
     category: 'owner',
-    description: 'Membersihkan sesi chat & kunci grup (creds.json aman, bot tidak logout)',
+    description: 'Limpia la sesión de chat y los bloqueos de grupo (creds.json queda intacto, el bot no se desloguea)',
     usage: '.clearsession',
     example: '.clearsession',
     isOwner: true,

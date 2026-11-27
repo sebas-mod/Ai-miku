@@ -199,7 +199,7 @@ export async function sendButtons(sock, jid, o = {}, extra = {}) {
     const sections = listBtn.sections || [
       { title: listBtn.sectionTitle || listBtn.text || "Pilihan", rows: listBtn.rows || [] },
     ];
-    const btnTitle = listBtn.title || listBtn.text || "☰ Pilih";
+    const btnTitle = listBtn.title || listBtn.text || "☰ Elegir";
     const paramsJson = JSON.stringify({ title: btnTitle, sections });
 
     return await sock.relayMessage(

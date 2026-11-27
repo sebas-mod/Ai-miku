@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'resetwelcome',
     alias: ['delwelcome', 'clearwelcome'],
     category: 'group',
-    description: 'Reset welcome message ke default',
+    description: 'Restablece el mensaje de bienvenida al valor predeterminado',
     usage: '.resetwelcome',
     example: '.resetwelcome',
     isOwner: false,

@@ -16,7 +16,7 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
       name: 'swm',
       alias: [],
       category: "sticker",
-      description: 'Mengganti packname dan author pada sticker',
+      description: 'Cambia el nombre del pack y el autor de un sticker',
       usage: '.swm <packname> atau .swm <packname>|<author>',
       example: '.swm BotName',
       isOwner: false,

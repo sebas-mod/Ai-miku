@@ -13,7 +13,7 @@ const pluginConfig = {
     name: 'intro',
     alias: ['perkenalan', 'selamatdatang'],
     category: 'group',
-    description: 'Tampilkan pesan intro grup',
+    description: 'Muestra el mensaje de presentación del grupo',
     usage: '.intro',
     example: '.intro',
     isOwner: false,

@@ -11,7 +11,7 @@ const pluginConfig = {
     name: 'truth',
     alias: ['truthq'],
     category: 'fun',
-    description: 'Random pertanyaan truth',
+    description: 'Pregunta aleatoria de truth',
     usage: '.truth',
     example: '.truth',
     isOwner: false,

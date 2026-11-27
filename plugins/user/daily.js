@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "daily",
   alias: ["claim", "harian", "bonus"],
   category: "user",
-  description: "Claim hadiah harian (Exp dan Potion)",
+  description: "Reclama la recompensa diaria (EXP y poción)",
   usage: ".daily",
   example: ".daily",
   isOwner: false,

@@ -12,14 +12,14 @@ const pluginConfig = {
   name: "suit",
   alias: ["rps", "janken"],
   category: "game",
-  description: "Main Batu-Gunting-Kertas melawan Miku (bisa taruhan koin)",
-  usage: ".suit <batu|gunting|kertas> [taruhan]",
+  description: "Juega a piedra, papel o tijera contra Miku (puedes apostar monedas)",
+  usage: ".suit <batu|gunting|kertas> [apuesta]",
   example: ".suit batu 1000",
   isOwner: false, isPremium: false, isGroup: false, isPrivate: false,
   cooldown: 4, energi: 0, isEnabled: true,
 };
 
-const ICON = { batu: "✊ Batu", gunting: "✌️ Gunting", kertas: "🖐️ Kertas" };
+const ICON = { batu: "✊ Piedra", gunting: "✌️ Tijera", kertas: "🖐️ Papel" };
 const CHOICES = ["batu", "gunting", "kertas"];
 
 async function handler(m) {

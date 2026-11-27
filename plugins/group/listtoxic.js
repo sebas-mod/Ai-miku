@@ -12,7 +12,7 @@ const pluginConfig = {
     name: 'listtoxic',
     alias: ['toxiclist', 'katatoxic', 'lihatkata'],
     category: 'group',
-    description: 'Lihat daftar kata toxic',
+    description: 'Muestra la lista de palabras tóxicas',
     usage: '.listtoxic',
     example: '.listtoxic',
     isOwner: false,

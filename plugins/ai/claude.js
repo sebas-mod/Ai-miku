@@ -10,8 +10,8 @@ const pluginConfig = {
   name: "claude",
   alias: [],
   category: "ai",
-  description: "Tanya jawab dengan Claude AI",
-  usage: ".claude <pertanyaan>",
+  description: "Preguntas y respuestas con Claude AI",
+  usage: ".claude <pregunta>",
   example: ".claude jelaskan cara kerja blockchain",
   isOwner: false,
   isPremium: false,
@@ -71,7 +71,7 @@ function extractAnswer(data) {
 async function handler(m, { text, prefix, command }) {
   const question = String(text || m.quoted?.text || "").trim();
   if (!question) {
-    return m.reply(`*Ejemplo:*\n${prefix || "."}${command || "claude"} jelaskan cara kerja blockchain`);
+    return m.reply(`*Ejemplo:*\n${prefix || "."}${command || "claude"} explica cómo funciona blockchain`);
   }
 
   try {

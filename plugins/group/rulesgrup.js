@@ -12,7 +12,7 @@ const pluginConfig = {
     name: "rulesgrup",
     alias: ["grouprules", "aturangrup", "grules"],
     category: "group",
-    description: "Menampilkan rules dan aturan grup secara lengkap",
+    description: "Muestra las reglas del grupo completas",
     usage: ".rulesgrup",
     example: ".rulesgrup",
     isOwner: false,

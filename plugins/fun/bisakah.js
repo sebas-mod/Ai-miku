@@ -10,9 +10,9 @@ const pluginConfig = {
     name: 'bisakah',
     alias: ['bisa'],
     category: 'fun',
-    description: 'Tanya bot bisakah sesuatu',
-    usage: '.bisakah <pertanyaan>',
-    example: '.bisakah aku lulus ujian?',
+    description: 'Pregúntale al bot si puedes lograr algo',
+    usage: '.bisakah <pregunta>',
+    example: '.bisakah ¿aprobaré el examen?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -25,7 +25,7 @@ const pluginConfig = {
 
 const answers = [
     '¡Claro que sí! ¡Ten confianza!',
-    'Hmm, kayaknya susah deh.',
+    'Mmm, parece difícil.',
     '¡Claro que puedes! ¡Ánimo!',
     'No puedes, lo siento.',
     'Puede que sí, si te esfuerzas mucho.',

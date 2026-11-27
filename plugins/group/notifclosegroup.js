@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'notifclosegroup',
     alias: ['notifclose'],
     category: 'group',
-    description: 'Toggle notifikasi saat grup ditutup',
+    description: 'Activa o desactiva el aviso cuando se cierra el grupo',
     usage: '.notifclosegroup on/off',
     example: '.notifclosegroup on',
     isOwner: false,

@@ -14,7 +14,7 @@ import axios from 'axios';
       name: 'waifu',
       alias: [],
       category: "anime",
-      description: 'Random gambar waifu dari berbagai sumber',
+      description: 'Imagen de waifu aleatoria de varias fuentes',
       usage: '.waifu',
       example: '.waifu',
       isOwner: false,

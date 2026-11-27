@@ -12,7 +12,7 @@ const pluginConfig = {
     name: "setaudioallmenu",
     alias: ["setaudioam", "audioallmenu"],
     category: "owner",
-    description: "Mengatur gaya audio untuk All Menu",
+    description: "Configura el estilo de audio del menú completo",
     usage: ".setaudioallmenu <1-4>",
     example: ".setaudioallmenu 1",
     isOwner: true,
