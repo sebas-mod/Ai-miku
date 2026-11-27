@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Tebak Warna — Ai Miku</title>
+<title>Adivina el Color — Ai Miku</title>
 <style>
 ${buildGameBaseCss("studio")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -50,18 +50,18 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
   <div class="top">
     <div class="logo">🎨</div>
     <div class="meta">
-      <div class="title">Tebak Warna</div>
-      <div class="sub">Pilih warna tulisan, bukan katanya!</div>
+      <div class="title">Adivina el Color</div>
+      <div class="sub">¡Elige el color de la tinta, no la palabra!</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="tm">30</b><span>Detik</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="tm">30</b><span>Segundos</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
   </div>
-  <div class="wbox" id="wb">PILIH WARNA TINTA!</div>
+  <div class="wbox" id="wb">¡ELIGE EL COLOR DE LA TINTA!</div>
   <div class="cgrid" id="cg"></div>
-  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Mulai 30 Detik</button></div>
+  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Empezar (30 s)</button></div>
 </div></div>
 <script>
 function lsGet(k,d){try{return localStorage.getItem(k)??d}catch{return d}}function lsSet(k,v){try{localStorage.setItem(k,v)}catch{}}
@@ -81,14 +81,14 @@ function start(){
   if(on)return;
   clearInterval(tmr);
   on=true;sc=0;tm=30;
-  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Sedang Bermain...';
+  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Jugando...';
   upd();setBtns(true);next();
   tmr=setInterval(()=>{
     tm--;upd();
     if(tm<=0){
       on=false;clearInterval(tmr);setBtns(false);
-      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Main Lagi';
-      const w=document.getElementById('word');w.textContent='SELESAI! '+sc;w.style.color='#fff';
+      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Jugar otra vez';
+      const w=document.getElementById('word');w.textContent='¡FIN! '+sc;w.style.color='#fff';
     }
   },1000);
 }
@@ -99,7 +99,7 @@ upd();setBtns(false);
 }
 
 async function handler(m, { sock }) {
-  await sendHtmlCard(sock, m, buildHtml(), "Tebak Warna", "🎨", { quoted: m });
+  await sendHtmlCard(sock, m, buildHtml(), "Adivina el Color", "🎨", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -120,36 +120,36 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       <div class="chips" id="tabs"></div>
 
       <div class="pane on" id="p0">
-        <div class="hd"><span>Skor <b id="s0">0</b></span><span>Terbaik <b id="b0">0</b></span><button class="btn alt" id="n0" style="padding:6px 10px">Baru</button></div>
+        <div class="hd"><span>Puntos <b id="s0">0</b></span><span>Mejor <b id="b0">0</b></span><button class="btn alt" id="n0" style="padding:6px 10px">Nuevo</button></div>
         <div class="g2048" id="bd"></div>
         <div class="dp"><button class="u" data-m="u">&uarr;</button><button class="l" data-m="l">&larr;</button><button class="d" data-m="d">&darr;</button><button class="r" data-m="r">&rarr;</button></div>
-        <div class="msg" id="m0">Geser papan atau tekan panah</div>
+        <div class="msg" id="m0">Desliza el tablero o pulsa las flechas</div>
       </div>
 
       <div class="pane" id="p1">
-        <div class="hd"><span>Skor <b id="s1">0</b></span><span>Terbaik <b id="b1">0</b></span><button class="btn alt" id="n1" style="padding:6px 10px">Main</button></div>
+        <div class="hd"><span>Puntos <b id="s1">0</b></span><span>Mejor <b id="b1">0</b></span><button class="btn alt" id="n1" style="padding:6px 10px">Jugar</button></div>
         <canvas id="cv" width="300" height="300"></canvas>
         <div class="dp"><button class="u" data-s="u">&uarr;</button><button class="l" data-s="l">&larr;</button><button class="d" data-s="d">&darr;</button><button class="r" data-s="r">&rarr;</button></div>
-        <div class="msg" id="m1">Tekan Main</div>
+        <div class="msg" id="m1">Pulsa Jugar</div>
       </div>
 
       <div class="pane" id="p2">
-        <div class="hd"><span>Kamu <b>X</b> · Bot <b>O</b></span><span>Menang <b id="w2">0</b> · Seri <b id="d2">0</b> · Kalah <b id="l2">0</b></span></div>
+        <div class="hd"><span>Tú <b>X</b> · Bot <b>O</b></span><span>Ganadas <b id="w2">0</b> · Empates <b id="d2">0</b> · Perdidas <b id="l2">0</b></span></div>
         <div class="xo" id="xo"></div>
-        <div class="msg" id="m2">Giliranmu</div>
-        <div class="center" style="margin-top:8px"><button class="btn alt" id="n2">Ulang</button></div>
+        <div class="msg" id="m2">Tu turno</div>
+        <div class="center" style="margin-top:8px"><button class="btn alt" id="n2">Reiniciar</button></div>
       </div>
 
       <div class="pane" id="p3">
-        <div class="box center"><div class="muted">Tebak angka 1 - 100</div><div style="font-size:13px;margin:6px 0">Sisa nyawa: <b id="lv">7</b></div>
-        <div class="row"><input class="inp" id="gn" type="number" inputmode="numeric" placeholder="Angka..."><button class="btn" id="gb">Tebak</button></div>
-        <div class="msg" id="m3">Aku sudah memilih angka...</div><button class="btn alt" id="n3" style="margin-top:8px">Main lagi</button></div>
+        <div class="box center"><div class="muted">Adivina el número del 1 al 100</div><div style="font-size:13px;margin:6px 0">Vidas restantes: <b id="lv">7</b></div>
+        <div class="row"><input class="inp" id="gn" type="number" inputmode="numeric" placeholder="Número..."><button class="btn" id="gb">Adivinar</button></div>
+        <div class="msg" id="m3">Ya he elegido los números...</div><button class="btn alt" id="n3" style="margin-top:8px">Jugar de nuevo</button></div>
       </div>
     </div></div>
     <script>
     (function(){
     var C=__CFG__;var $=function(i){return document.getElementById(i);};
-    $('who').textContent='Pemain: '+C.nama;
+    $('who').textContent='Jugador:'+C.nama;
     var names=['2048','Snake','XO','Tebak'],cur=0;
     function tabs(){var h='';names.forEach(function(n,i){h+='<button class="chip'+(i===cur?' on':'')+'" data-i="'+i+'">'+n+'</button>';});$('tabs').innerHTML=h;
      var b=$('tabs').children;for(var j=0;j<b.length;j++){b[j].onclick=function(){cur=+this.getAttribute('data-i');for(var k=0;k<4;k++)$('p'+k).classList.toggle('on',k===cur);if(cur!==1)snakeStop();tabs();};}}
@@ -160,7 +160,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     var COL={0:'#3a404d',2:'#eee4da;color:#776e65',4:'#ede0c8;color:#776e65',8:'#f2b179',16:'#f59563',32:'#f67c5f',64:'#f65e3b',128:'#edcf72',256:'#edcc61',512:'#edc850',1024:'#edc53f',2048:'#edc22e'};
     function rnd(a){return a[Math.floor(Math.random()*a.length)];}
     function add(){var e=[];for(var i=0;i<16;i++)if(!B[i])e.push(i);if(e.length)B[rnd(e)]=Math.random()<0.9?2:4;}
-    function reset(){B=[];for(var i=0;i<16;i++)B.push(0);S=0;over=false;add();add();draw();$('m0').textContent='Geser papan atau tekan panah';}
+    function reset(){B=[];for(var i=0;i<16;i++)B.push(0);S=0;over=false;add();add();draw();$('m0').textContent='Desliza el tablero o pulsa las flechas';}
     function draw(){var h='';B.forEach(function(v){var st=COL[v]||'#3c3a32;color:#fff';var fs=v>=1024?16:v>=128?19:22;h+='<div class="t" style="background:'+st+';font-size:'+fs+'px">'+(v||'')+'</div>';});$('bd').innerHTML=h;$('s0').textContent=S;if(S>BEST)BEST=S;$('b0').textContent=BEST;}
     function line(a){var r=a.filter(function(x){return x;}),o=[];for(var i=0;i<r.length;i++){if(r[i]===r[i+1]){o.push(r[i]*2);S+=r[i]*2;i++;}else o.push(r[i]);}while(o.length<4)o.push(0);return o;}
     function move(d){if(over)return;var nb=B.slice(),i,j,l;
@@ -168,7 +168,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       l=line(idx.map(function(k){return B[k];}));idx.forEach(function(k,n){nb[k]=l[n];});}
      if(nb.join()===B.join())return;B=nb;add();draw();
      if(B.indexOf(2048)>-1)$('m0').textContent='🎉 2048! Lanjut terus?';
-     if(!can()){over=true;$('m0').textContent='Game over! Skor '+S;}}
+     if(!can()){over=true;$('m0').textContent='¡Juego terminado! Puntos '+S;}}
     function can(){for(var i=0;i<16;i++){if(!B[i])return true;var r=i%4,c=(i-r)/4;if(r<3&&B[i]===B[i+1])return true;if(c<3&&B[i]===B[i+4])return true;}return false;}
     var ds=$('p0').querySelectorAll('[data-m]');for(var i=0;i<ds.length;i++)ds[i].onclick=function(){move(this.getAttribute('data-m'));};
     $('n0').onclick=reset;
@@ -183,9 +183,9 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     function sdraw(){if(!cx)return;cx.fillStyle='#12151b';cx.fillRect(0,0,300,300);cx.fillStyle='#ef4444';cx.fillRect(food.x*CS+2,food.y*CS+2,CS-4,CS-4);
      sn.forEach(function(s,i){cx.fillStyle=i?'#22c55e':'#86efac';cx.fillRect(s.x*CS+1,s.y*CS+1,CS-2,CS-2);});}
     function snakeStop(){alive=false;clearInterval(siv);}
-    function sstart(){if(!cx){$('m1').textContent='Canvas tidak didukung di sini';return;}sn=[{x:7,y:7},{x:6,y:7},{x:5,y:7}];dir='r';nd='r';food=sfood();ss=0;$('s1').textContent=0;alive=true;$('m1').textContent='Ayo!';sdraw();clearInterval(siv);siv=setInterval(stick,130);}
+    function sstart(){if(!cx){$('m1').textContent='Canvas no es compatible aquí';return;}sn=[{x:7,y:7},{x:6,y:7},{x:5,y:7}];dir='r';nd='r';food=sfood();ss=0;$('s1').textContent=0;alive=true;$('m1').textContent='Ayo!';sdraw();clearInterval(siv);siv=setInterval(stick,130);}
     function stick(){if(!alive)return;dir=nd;var h={x:sn[0].x+(dir==='r'?1:dir==='l'?-1:0),y:sn[0].y+(dir==='d'?1:dir==='u'?-1:0)};
-     if(h.x<0||h.y<0||h.x>=N||h.y>=N||sn.some(function(s){return s.x===h.x&&s.y===h.y;})){snakeStop();$('m1').textContent='Game over! Skor '+ss;return;}
+     if(h.x<0||h.y<0||h.x>=N||h.y>=N||sn.some(function(s){return s.x===h.x&&s.y===h.y;})){snakeStop();$('m1').textContent='¡Juego terminado! Puntos '+ss;return;}
      sn.unshift(h);if(h.x===food.x&&h.y===food.y){ss+=10;if(ss>sb)sb=ss;$('s1').textContent=ss;$('b1').textContent=sb;food=sfood();}else sn.pop();sdraw();}
     var opp={u:'d',d:'u',l:'r',r:'l'};
     var sb2=$('p1').querySelectorAll('[data-s]');for(var k=0;k<sb2.length;k++)sb2[k].onclick=function(){var d=this.getAttribute('data-s');if(d!==opp[dir])nd=d;};
@@ -201,17 +201,17 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      return Math.random()<0.15?rnd(X.map(function(v,i){return v?-1:i;}).filter(function(i){return i>=0;})):rnd(mv);}
     function xdraw(){var h='';X.forEach(function(v,i){h+='<button class="'+(v==='X'?'x':v==='O'?'o':'')+'" data-i="'+i+'">'+v+'</button>';});$('xo').innerHTML=h;
      var bs=$('xo').children;for(var j=0;j<9;j++)bs[j].onclick=function(){tap(+this.getAttribute('data-i'));};}
-    function xend(w){fin=true;if(w==='X'){wn++;$('m2').textContent='🎉 Kamu menang!';}else if(w==='O'){ls++;$('m2').textContent='Bot menang 🤖';}else{dr++;$('m2').textContent='Seri!';}$('w2').textContent=wn;$('d2').textContent=dr;$('l2').textContent=ls;}
-    function tap(i){if(fin||X[i])return;X[i]='X';xdraw();var w=win(X);if(w){xend(w);return;}X[bot()]='O';xdraw();w=win(X);if(w){xend(w);return;}$('m2').textContent='Giliranmu';}
-    function xreset(){X=['','','','','','','','',''];fin=false;$('m2').textContent='Giliranmu';xdraw();}
+    function xend(w){fin=true;if(w==='X'){wn++;$('m2').textContent='🎉 ¡Tú ganas!';}else if(w==='O'){ls++;$('m2').textContent='Gana el bot 🤖';}else{dr++;$('m2').textContent='¡Empate!';}$('w2').textContent=wn;$('d2').textContent=dr;$('l2').textContent=ls;}
+    function tap(i){if(fin||X[i])return;X[i]='X';xdraw();var w=win(X);if(w){xend(w);return;}X[bot()]='O';xdraw();w=win(X);if(w){xend(w);return;}$('m2').textContent='Tu turno';}
+    function xreset(){X=['','','','','','','','',''];fin=false;$('m2').textContent='Tu turno';xdraw();}
     $('n2').onclick=xreset;xreset();
 
     /* ================= TEBAK ANGKA ================= */
     var sec,lv,gend;
-    function greset(){sec=1+Math.floor(Math.random()*100);lv=7;gend=false;$('lv').textContent=lv;$('m3').textContent='Aku sudah memilih angka...';$('gn').value='';}
+    function greset(){sec=1+Math.floor(Math.random()*100);lv=7;gend=false;$('lv').textContent=lv;$('m3').textContent='Ya he elegido los números...';$('gn').value='';}
     $('gb').onclick=function(){if(gend)return;var g=parseInt($('gn').value,10);if(!(g>=1&&g<=100)){$('m3').textContent='Masukkan angka 1 - 100';return;}
-     lv--;$('lv').textContent=lv;if(g===sec){gend=true;$('m3').textContent='🎉 Benar! Angkanya '+sec+' (sisa nyawa '+lv+')';}
-     else if(lv<=0){gend=true;$('m3').textContent='Kalah! Angkanya '+sec;}else $('m3').textContent=g<sec?'Terlalu kecil ⬆️':'Terlalu besar ⬇️';$('gn').value='';};
+     lv--;$('lv').textContent=lv;if(g===sec){gend=true;$('m3').textContent='🎉¡Así es! los numeros'+sec+' (sisa nyawa '+lv+')';}
+     else if(lv<=0){gend=true;$('m3').textContent='¡Perdido! los numeros'+sec;}else $('m3').textContent=g<sec?'Terlalu kecil ⬆️':'Terlalu besar ⬇️';$('gn').value='';};
     $('n3').onclick=greset;greset();
     })();
     </script>

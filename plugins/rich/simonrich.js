@@ -56,8 +56,8 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="lv">0</b><span>Level</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
+    <div class="stat"><b id="lv">0</b><span>Nivel</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
     <div class="stat"><b id="st">Siap</b><span>Status</span></div>
   </div>
   <div class="pads">
@@ -66,7 +66,7 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     <div class="pad p2" id="p2" onclick="tap(2)">💎</div>
     <div class="pad p3" id="p3" onclick="tap(3)">⭐</div>
   </div>
-  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Mulai</button></div>
+  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Empezar</button></div>
 </div></div>
 <script>
 function lsGet(k,d){try{return localStorage.getItem(k)??d}catch{return d}}function lsSet(k,v){try{localStorage.setItem(k,v)}catch{}}
@@ -105,8 +105,8 @@ async function tap(i){
   await flash(i,180);
   if(i!==seq[idx]){
     lock=true;on=false;setPads(false);
-    document.getElementById('st').textContent='Salah! 💀';
-    sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Main Lagi';
+    document.getElementById('st').textContent='¡Fallaste! 💀';
+    sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Jugar otra vez';
     return;
   }
   idx++;
@@ -118,7 +118,7 @@ async function tap(i){
 }
 function start(){
   if(on)return;
-  on=true;sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='🎮 Sedang Main...';
+  on=true;sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='🎮 Jugando...';
   seq=[];nextRound();
 }
 </script>

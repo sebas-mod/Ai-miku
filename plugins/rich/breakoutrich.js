@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -107,13 +107,13 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">🧱</div><div class="meta"><div class="title">Breakout Live</div><div class="sub" id="who"></div></div></div>
      <canvas id="cv" class="cv" width="320" height="440"></canvas>
-     <div class="bar"><span class="pill">Skor <b id="sc">0</b></span><span class="pill">Nyawa <b id="lf">3</b></span><span class="pill">Level <b id="lv">1</b></span><span class="pill">Rekor <b id="bs">0</b></span></div>
-     <button class="btn alt" id="rs" style="width:100%">⟳ Ulang</button>
-     <div class="muted" style="text-align:center;margin-top:6px">Geser jari / mouse untuk menggerakkan papan. Tap untuk meluncurkan bola.</div>
+     <div class="bar"><span class="pill">Puntos <b id="sc">0</b></span><span class="pill">Vidas <b id="lf">3</b></span><span class="pill">Nivel <b id="lv">1</b></span><span class="pill">Récord <b id="bs">0</b></span></div>
+     <button class="btn alt" id="rs" style="width:100%">⟳ Reiniciar</button>
+     <div class="muted" style="text-align:center;margin-top:6px">Desliza el dedo o el ratón para mover la pala. Toca para lanzar la bola.</div>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var cv=$('cv'),c=cv.getContext('2d'),W=320,H=440,PW=64,PH=10;
     var best=0;try{best=+localStorage.getItem('pix_breakout')||0;}catch(e){}
@@ -143,9 +143,9 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      c.fillStyle='#e5e7eb';c.beginPath();c.roundRect?c.roundRect(px,H-28,PW,PH,5):c.rect(px,H-28,PW,PH);c.fill();
      c.fillStyle='#fde047';c.beginPath();c.arc(ball.x,ball.y,ball.r,0,7);c.fill();
      c.textAlign='center';c.fillStyle='#fff';c.font='bold 16px sans-serif';
-     if(state===0)c.fillText('TAP UNTUK MELUNCURKAN',W/2,H/2+40);
-     if(state===2){c.fillStyle='#000b';c.fillRect(30,160,260,110);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('GAME OVER',W/2,205);c.font='15px sans-serif';c.fillText('Skor '+score+' • tap untuk ulang',W/2,238);}
-     if(state===3){c.fillStyle='#000b';c.fillRect(30,160,260,110);c.fillStyle='#4ade80';c.font='bold 24px sans-serif';c.fillText('LEVEL '+lvl+' SELESAI',W/2,205);c.fillStyle='#fff';c.font='15px sans-serif';c.fillText('Tap untuk lanjut',W/2,238);}
+     if(state===0)c.fillText('TOCA PARA LANZAR',W/2,H/2+40);
+     if(state===2){c.fillStyle='#000b';c.fillRect(30,160,260,110);c.fillStyle='#fff';c.font='bold 26px sans-serif';c.fillText('FIN DEL JUEGO',W/2,205);c.font='15px sans-serif';c.fillText('Puntos '+score+' • tap untuk ulang',W/2,238);}
+     if(state===3){c.fillStyle='#000b';c.fillRect(30,160,260,110);c.fillStyle='#4ade80';c.font='bold 24px sans-serif';c.fillText('NIVEL '+lvl+' COMPLETADO',W/2,205);c.fillStyle='#fff';c.font='15px sans-serif';c.fillText('Toca para continuar',W/2,238);}
     }
     cv.addEventListener('pointermove',function(e){move(e.clientX);});
     cv.addEventListener('pointerdown',function(e){e.preventDefault();move(e.clientX);launch();});

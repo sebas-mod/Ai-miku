@@ -30,7 +30,7 @@ function buildHtml() {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Tangkap Bintang — Ai Miku</title>
+<title>Atrapa Estrellas — Ai Miku</title>
 <style>
 ${buildGameBaseCss("sky")}
 .hud{display:flex;justify-content:space-between;gap:6px;margin-bottom:10px;}
@@ -48,17 +48,17 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
   <div class="top">
     <div class="logo">🌠</div>
     <div class="meta">
-      <div class="title">Tangkap Bintang</div>
-      <div class="sub">Geser keranjang, hindari bom!</div>
+      <div class="title">Atrapa Estrellas</div>
+      <div class="sub">¡Mueve la cesta y esquiva las bombas!</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="hp">❤️❤️❤️</b><span>Nyawa</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="hp">❤️❤️❤️</b><span>Vidas</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
   </div>
   <canvas id="cv" width="320" height="360"></canvas>
-  <div class="row"><button class="btn" id="sbtn" onclick="startGame()">▶ Mulai</button></div>
+  <div class="row"><button class="btn" id="sbtn" onclick="startGame()">▶ Empezar</button></div>
 </div></div>
 <script>
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),W=320,H=360;
@@ -66,8 +66,8 @@ function lsGet(k,d){try{return localStorage.getItem(k)??d}catch{return d}}functi
 let px=125,items=[],sc=0,hp=3,hi=+lsGet('el_catch_hi',0),fr=0,on=false;
 const sbtn=document.getElementById('sbtn');
 document.getElementById('hi').textContent=hi;
-function drawIdle(){ctx.fillStyle='#070d1f';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#38bdf8';ctx.fillRect(px,cv.height-22,56,10);ctx.fillStyle='#fff';ctx.font='bold 15px sans-serif';ctx.textAlign='center';ctx.fillText('Tap ▶ Mulai untuk bermain',cv.width/2,cv.height/2);}
-function startGame(){if(on)return;on=true;items=[];sc=0;hp=3;fr=0;sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='🎮 Sedang Bermain...';upd();tick();}
+function drawIdle(){ctx.fillStyle='#070d1f';ctx.fillRect(0,0,cv.width,cv.height);ctx.fillStyle='#38bdf8';ctx.fillRect(px,cv.height-22,56,10);ctx.fillStyle='#fff';ctx.font='bold 15px sans-serif';ctx.textAlign='center';ctx.fillText('Toca ▶ Empezar para jugar',cv.width/2,cv.height/2);}
+function startGame(){if(on)return;on=true;items=[];sc=0;hp=3;fr=0;sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='🎮 Jugando...';upd();tick();}
 function upd(){document.getElementById('sc').textContent=sc;document.getElementById('hp').textContent='❤️'.repeat(Math.max(0,hp))||'💀';if(sc>hi){hi=sc;lsSet('el_catch_hi',hi);document.getElementById('hi').textContent=hi;}}
 function moveTo(x){const r=cv.getBoundingClientRect();px=Math.max(0,Math.min(W-70,(x-r.left)*(W/r.width)-35));}
 cv.addEventListener('touchmove',e=>{e.preventDefault();moveTo(e.touches[0].clientX);},{passive:false});
@@ -85,7 +85,7 @@ function tick(){
   ctx.fillStyle='#38bdf8';ctx.fillRect(px,H-24,70,12);
   ctx.font='20px sans-serif';ctx.textAlign='center';
   items.forEach(it=>ctx.fillText(it.bad?'☄️':'🌸',it.x,it.y));
-  if(hp<=0){ctx.fillStyle='rgba(12,7,22,.8)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.fillText('GAME OVER • '+sc,W/2,H/2);}
+  if(hp<=0){ctx.fillStyle='rgba(12,7,22,.8)';ctx.fillRect(0,0,W,H);ctx.fillStyle='#fff';ctx.font='bold 22px sans-serif';ctx.fillText('FIN DEL JUEGO • '+sc,W/2,H/2);}
   requestAnimationFrame(tick);
 }
 upd();drawIdle();

@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -114,12 +114,12 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      <div class="wrap">
       <canvas id="cv" class="cv" width="180" height="360" style="width:54%"></canvas>
       <div class="side">
-       <div class="pill">Skor<b id="sc">0</b></div>
-       <div class="pill">Level<b id="lv">1</b></div>
+       <div class="pill">Puntos<b id="sc">0</b></div>
+       <div class="pill">Nivel<b id="lv">1</b></div>
        <div class="pill">Baris<b id="ln">0</b></div>
-       <div class="pill">Terbaik<b id="bs">0</b></div>
+       <div class="pill">Mejor<b id="bs">0</b></div>
        <canvas id="nx" class="cv" width="72" height="54" style="width:100%"></canvas>
-       <button class="btn alt" id="rs">⟳ Ulang</button>
+       <button class="btn alt" id="rs">⟳ Reiniciar</button>
       </div>
      </div>
      <div class="ctl"><button id="bl">◀</button><button id="br">▶</button><button id="bt">⟳</button><button id="bd">▼</button></div>
@@ -127,7 +127,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var c=$('cv').getContext('2d'),n=$('nx').getContext('2d'),W=10,H=20,S=18;
     var SH={I:[[1,1,1,1]],O:[[1,1],[1,1]],T:[[0,1,0],[1,1,1]],S:[[0,1,1],[1,1,0]],Z:[[1,1,0],[0,1,1]],J:[[1,0,0],[1,1,1]],L:[[0,0,1],[1,1,1]]};
@@ -158,7 +158,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
       for(i=0;i<cur.m.length;i++)for(j=0;j<cur.m[i].length;j++)if(cur.m[i][j]){c.strokeStyle=COL[cur.t];c.globalAlpha=.4;c.strokeRect((cur.x+j)*S+2,(gy+i)*S+2,S-4,S-4);c.globalAlpha=1;cell(c,cur.x+j,cur.y+i,COL[cur.t],S);}}
      n.fillStyle='#0b0f1f';n.fillRect(0,0,72,54);var m=nx.m,s=14,ox=(72-m[0].length*s)/2,oy=(54-m.length*s)/2;
      for(i=0;i<m.length;i++)for(j=0;j<m[i].length;j++)if(m[i][j]){n.fillStyle=COL[nx.t];n.fillRect(ox+j*s+1,oy+i*s+1,s-2,s-2);}
-     if(over){c.fillStyle='#000b';c.fillRect(0,130,180,100);c.fillStyle='#fff';c.textAlign='center';c.font='bold 22px sans-serif';c.fillText('GAME OVER',90,170);c.font='13px sans-serif';c.fillText('Skor '+score+' • tap Ulang',90,200);}
+     if(over){c.fillStyle='#000b';c.fillRect(0,130,180,100);c.fillStyle='#fff';c.textAlign='center';c.font='bold 22px sans-serif';c.fillText('FIN DEL JUEGO',90,170);c.font='13px sans-serif';c.fillText('Puntos '+score+' • toca Reiniciar',90,200);}
     }
     function loop(t){if(!last)last=t;var dt=t-last;last=t;if(!over){acc+=dt;var sp=Math.max(90,720-(lvl-1)*65);while(acc>=sp){acc-=sp;down();}}draw();requestAnimationFrame(loop);}
     function hold(id,fn){var el=$(id),iv=null;function stop(){clearInterval(iv);iv=null;}el.addEventListener('pointerdown',function(e){e.preventDefault();fn();stop();iv=setInterval(fn,95);});['pointerup','pointerleave','pointercancel'].forEach(function(ev){el.addEventListener(ev,stop);});}

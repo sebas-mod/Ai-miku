@@ -51,16 +51,16 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     <div class="logo">🔨</div>
     <div class="meta">
       <div class="title">Pukul Slime</div>
-      <div class="sub">Ketuk slime, hindari bom!</div>
+      <div class="sub">¡Golpea a los slime y esquiva las bombas!</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="sc">0</b><span>Skor</span></div>
-    <div class="stat"><b id="tm">30</b><span>Detik</span></div>
-    <div class="stat"><b id="hi">0</b><span>Rekor</span></div>
+    <div class="stat"><b id="sc">0</b><span>Puntos</span></div>
+    <div class="stat"><b id="tm">30</b><span>Segundos</span></div>
+    <div class="stat"><b id="hi">0</b><span>Récord</span></div>
   </div>
   <div class="holes" id="holes"></div>
-  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Mulai 30 Detik</button></div>
+  <div class="row"><button class="btn" id="sbtn" onclick="start()">▶ Empezar (30 s)</button></div>
 </div></div>
 <script>
 function lsGet(k,d){try{return localStorage.getItem(k)??d}catch{return d}}function lsSet(k,v){try{localStorage.setItem(k,v)}catch{}}
@@ -86,7 +86,7 @@ function start(){
   if(on)return;
   clearInterval(t1);clearInterval(t2);
   on=true;sc=0;tm=30;
-  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Sedang Bermain...';
+  sbtn.disabled=true;sbtn.style.opacity='.45';sbtn.textContent='⏳ Jugando...';
   document.getElementById('sc').textContent=0;document.getElementById('tm').textContent=30;
   spawn();t1=setInterval(spawn,700);
   t2=setInterval(()=>{
@@ -94,7 +94,7 @@ function start(){
     if(tm<=0){
       on=false;clearInterval(t1);clearInterval(t2);
       items=Array(9).fill('');draw();
-      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Main Lagi';
+      sbtn.disabled=false;sbtn.style.opacity='1';sbtn.textContent='↻ Jugar otra vez';
     }
   },1000);
 }

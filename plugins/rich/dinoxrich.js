@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }

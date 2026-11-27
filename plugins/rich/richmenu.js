@@ -337,7 +337,7 @@ html,body{background:transparent;color:var(--ink);font-family:var(--sys);width:1
         <button class="back-btn" id="backBtn" style="display:none;">◀ Kategori</button>
         <div class="search-box">
           <span class="search-ico">🔍</span>
-          <input id="q" type="text" placeholder="Cari kategori atau fitur... (sticker, ai, tools)"/>
+          <input id="q" type="text" placeholder="Busque categorías o características... (pegatinas, inteligencia artificial, herramientas)"/>
         </div>
       </div>
       <div class="grid" id="content"></div>
@@ -469,7 +469,7 @@ function render() {
   nextBtn.disabled = page >= totalPages;
 
   if (!filtered.length) {
-    contentEl.innerHTML = '<div class="empty">Fitur tidak ditemukan ✨</div>';
+    contentEl.innerHTML = '<div class="empty">Característica no encontrada ✨</div>';
     return;
   }
 

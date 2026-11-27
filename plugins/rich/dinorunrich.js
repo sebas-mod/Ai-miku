@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -107,12 +107,12 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     <div class="stage"><div class="app">
      <div class="top"><div class="logo">🦖</div><div class="meta"><div class="title">Dino Run Live</div><div class="sub" id="who"></div></div></div>
      <canvas id="cv" class="cv" width="480" height="180"></canvas>
-     <div class="bar"><span class="pill">Skor <b id="sc">0</b></span><span class="pill">Rekor <b id="bs">0</b></span><button class="btn alt" id="rs">⟳ Ulang</button></div>
-     <div class="muted" style="text-align:center">Tap layar / spasi untuk lompat. Hindari kaktus dan burung!</div>
+     <div class="bar"><span class="pill">Puntos <b id="sc">0</b></span><span class="pill">Récord <b id="bs">0</b></span><button class="btn alt" id="rs">⟳ Reiniciar</button></div>
+     <div class="muted" style="text-align:center">Toca la pantalla / pulsa espacio para saltar. ¡Esquiva los cactus y los pájaros!</div>
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador: '+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var cv=$('cv'),c=cv.getContext('2d'),W=480,H=180,GY=150;
     var best=0;try{best=+localStorage.getItem('pix_dino')||0;}catch(e){}
@@ -146,8 +146,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
      var lf=d.on&&state===1&&Math.floor(fr/5)%2;c.fillRect(dx+(lf?4:14),dy+20,6,10);c.fillStyle='#f7f7f7';c.fillRect(dx+22,dy+3,3,3);
      c.fillStyle='#535353';c.textAlign='right';c.font='bold 16px monospace';c.fillText(String(Math.floor(score)).padStart(5,'0'),W-12,24);
      c.textAlign='center';
-     if(state===0){c.font='bold 16px sans-serif';c.fillText('TAP UNTUK MULAI',W/2,70);}
-     if(state===2){c.font='bold 22px sans-serif';c.fillText('GAME OVER',W/2,66);c.font='14px sans-serif';c.fillText('Tap untuk main lagi',W/2,90);}
+     if(state===0){c.font='bold 16px sans-serif';c.fillText('TOCA PARA EMPEZAR',W/2,70);}
+     if(state===2){c.font='bold 22px sans-serif';c.fillText('FIN DEL JUEGO',W/2,66);c.font='14px sans-serif';c.fillText('Toca para jugar otra vez',W/2,90);}
     }
     cv.addEventListener('pointerdown',function(e){e.preventDefault();jump();});
     document.addEventListener('keydown',function(e){if(e.code==='Space'||e.key==='ArrowUp'){e.preventDefault();jump();}});

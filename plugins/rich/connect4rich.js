@@ -52,18 +52,18 @@ canvas{display:block;width:100%;border-radius:13px;background:#0b0714;border:1px
     <div class="logo">🟣</div>
     <div class="meta">
       <div class="title">Connect 4</div>
-      <div class="sub">Susun 4 koin sejajar lawan bot</div>
+      <div class="sub">Alinea 4 fichas contra el bot</div>
     </div>
   </div>
   <div class="hud">
-    <div class="stat"><b id="st">Giliran Kamu 🩷</b><span>Status</span></div>
+    <div class="stat"><b id="st">Tu turno 🩷</b><span>Estado</span></div>
   </div>
   <div class="c4" id="c4"></div>
-  <div class="row"><button class="btn" onclick="init()">↻ Main Lagi</button></div>
+  <div class="row"><button class="btn" onclick="init()">↻ Jugar otra vez</button></div>
 </div></div>
 <script>
 const R=6,C=7;let b,turn,over;
-function init(){b=Array.from({length:R},()=>Array(C).fill(0));turn=1;over=false;document.getElementById('st').textContent='Giliran Kamu 🩷';render();}
+function init(){b=Array.from({length:R},()=>Array(C).fill(0));turn=1;over=false;document.getElementById('st').textContent='Tu turno 🩷';render();}
 function dropRow(c){for(let r=R-1;r>=0;r--)if(!b[r][c])return r;return -1;}
 function win(p){
   const D=[[0,1],[1,0],[1,1],[1,-1]];
@@ -76,9 +76,9 @@ function play(c){
   if(over||turn!==1)return;
   const r=dropRow(c);if(r<0)return;
   b[r][c]=1;
-  if(win(1)){over=true;document.getElementById('st').textContent='KAMU MENANG! 🎉';render();return;}
-  if(b[0].every(Boolean)){over=true;document.getElementById('st').textContent='SERI!';render();return;}
-  turn=2;document.getElementById('st').textContent='Miku AI berpikir...';render();
+  if(win(1)){over=true;document.getElementById('st').textContent='¡GANASTE! 🎉';render();return;}
+  if(b[0].every(Boolean)){over=true;document.getElementById('st').textContent='¡EMPATE!';render();return;}
+  turn=2;document.getElementById('st').textContent='La IA Miku está pensando...';render();
   setTimeout(ai,350);
 }
 function ai(){
@@ -86,8 +86,8 @@ function ai(){
   let best=cols[0];
   for(const p of [2,1])for(const c of cols){const r=dropRow(c);b[r][c]=p;const w=win(p);b[r][c]=0;if(w){best=c;break;}}
   const r=dropRow(best);b[r][best]=2;
-  if(win(2)){over=true;document.getElementById('st').textContent='MIKU AI MENANG! 💜';render();return;}
-  turn=1;document.getElementById('st').textContent='Giliran Kamu 🩷';render();
+  if(win(2)){over=true;document.getElementById('st').textContent='¡GANÓ LA IA MIKU! 💜';render();return;}
+  turn=1;document.getElementById('st').textContent='Tu turno 🩷';render();
 }
 function render(){
   let h='';for(let r=0;r<R;r++)for(let c=0;c<C;c++)h+=\`<div class="hole \${b[r][c]===1?'p1':b[r][c]===2?'p2':''}" onclick="play(\${c})"></div>\`;

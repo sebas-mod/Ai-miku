@@ -54,7 +54,7 @@ async function sendHtmlCard(sock, m, html, title, emoji = "✨", opts = {}) {
     return true
   } catch (err) {
     console.error(`[HTMLCARD:${title}] gagal kirim:`, err.message)
-    await sock.sendMessage(m.chat, { text: "❌ Kartu gagal dikirim. Fitur ini butuh WhatsApp versi terbaru." }, { quoted: m })
+    await sock.sendMessage(m.chat, { text: "❌ No se pudo enviar la tarjeta. Esta función necesita la versión más reciente de WhatsApp." }, { quoted: m })
     return false
   }
 }
@@ -114,8 +114,8 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     .shake{animation:sh .3s}@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
     </style>
     <div class="stage"><div class="app">
-     <div class="top"><div class="logo">🔤</div><div class="meta"><div class="title">Tebak Kata Live</div><div class="sub" id="who"></div></div></div>
-     <div class="chips"><button class="chip on" id="md">Kata harian</button><button class="chip" id="mr">Kata acak</button></div>
+     <div class="top"><div class="logo">🔤</div><div class="meta"><div class="title">Adivina la palabra en vivo</div><div class="sub" id="who"></div></div></div>
+     <div class="chips"><button class="chip on" id="md">Palabra diaria</button><button class="chip" id="mr">Palabra aleatoria</button></div>
      <div class="gr" id="gr"></div>
      <div class="msg" id="ms"></div>
      <div class="kb" id="kb"></div>
@@ -123,7 +123,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     </div></div>
     <script>
     (function(){
-    var CFG=__CFG__;document.getElementById('who').textContent='Pemain: '+CFG.nama;
+    var CFG=__CFG__;document.getElementById('who').textContent='Jugador:'+CFG.nama;
     var $=function(i){return document.getElementById(i)};
     var WORDS='abadi acara agama alami angin apung arang atlet aroma badai bahan balon bambu bantu barat batik bebek belut benar besar bijak bisik bukti bulan bunga cabai cinta cuaca dalam damai dapur darah datar dunia emosi gajah garam gelas gemuk harap harga harus hasil hujan hutan indah jalan jaket jujur kabar kaget kamar kamus kanan kapal karya kasur kebun kecil kerja kuasa kursi lampu lemak lemon makan malam mampu mandi mawar mimpi minta mulai murah musim nasib nenek nyata orang padat pagar pahit pasar pasir pasti pedas pelan pikir pintu pohon putih rajin rindu rumah sabar salju sayur segar sehat semut senja siang sinar suara sudut tahun tanah tegas telur tidur tikus tinta tubuh tulis ujian untuk usaha utara wajah waktu warna yakin zaman'.split(' ').filter(function(w){return w.length===5});
     var ROWS=6,word,cur,row,done,mode='d',stat={w:0,p:0};
@@ -132,17 +132,17 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     function init(){word=mode==='d'?seed():WORDS[Math.floor(Math.random()*WORDS.length)];cur='';row=0;done=false;$('ms').textContent='';
      var g=$('gr');g.innerHTML='';for(var i=0;i<ROWS;i++){var r=document.createElement('div');r.className='rw';r.id='r'+i;for(var j=0;j<5;j++){var t=document.createElement('div');t.className='t';r.appendChild(t);}g.appendChild(r);}
      [].forEach.call(document.querySelectorAll('.k'),function(k){k.classList.remove('g','y','x')});st();}
-    function st(){$('st').textContent='Menang '+stat.w+' dari '+stat.p+' permainan';}
+    function st(){$('st').textContent='Ganadas '+stat.w+' de '+stat.p+' partidas';}
     function paint(){var r=$('r'+row).children;for(var j=0;j<5;j++){r[j].textContent=cur[j]||'';r[j].classList.toggle('f',!!cur[j]);}}
     function key(k){if(done)return;if(k==='⌫'){cur=cur.slice(0,-1);paint();}else if(k==='OK'){submit();}else if(cur.length<5&&/^[a-z]$/.test(k)){cur+=k;paint();}}
-    function submit(){if(cur.length<5){var r0=$('r'+row);r0.classList.add('shake');setTimeout(function(){r0.classList.remove('shake')},300);$('ms').textContent='Isi 5 huruf dulu';return;}
+    function submit(){if(cur.length<5){var r0=$('r'+row);r0.classList.add('shake');setTimeout(function(){r0.classList.remove('shake')},300);$('ms').textContent='Complete 5 letras primero';return;}
      $('ms').textContent='';var res=['x','x','x','x','x'],used={},i;
      for(i=0;i<5;i++)if(cur[i]===word[i]){res[i]='g';}else used[word[i]]=(used[word[i]]||0)+1;
      for(i=0;i<5;i++)if(res[i]!=='g'&&used[cur[i]]>0){res[i]='y';used[cur[i]]--;}
      var r=$('r'+row).children;for(i=0;i<5;i++){r[i].className='t '+res[i];
       var kk=document.querySelector('.k[data-k="'+cur[i]+'"]');if(kk&&!(kk.classList.contains('g'))&&!(kk.classList.contains('y')&&res[i]==='x')){kk.classList.remove('x','y','g');kk.classList.add(res[i]);}}
-     if(cur===word){done=true;$('ms').textContent='Benar! Kamu menebak dalam '+(row+1)+' percobaan';stat.w++;stat.p++;sv();}
-     else if(row===ROWS-1){done=true;$('ms').textContent='Kata yang benar: '+word.toUpperCase();stat.p++;sv();}
+     if(cur===word){done=true;$('ms').textContent='¡Correcto! Lo adivinaste en '+(row+1)+' intentos';stat.w++;stat.p++;sv();}
+     else if(row===ROWS-1){done=true;$('ms').textContent='La palabra era: '+word.toUpperCase();stat.p++;sv();}
      else{row++;cur='';}}
     function sv(){try{localStorage.setItem('pix_wordle',JSON.stringify(stat));}catch(e){}st();}
     var L=['qwertyuiop','asdfghjkl','OKzxcvbnm⌫'];
