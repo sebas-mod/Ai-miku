@@ -94,7 +94,6 @@ const THEME_PALETTES = {
   snake:   { bg:"#081a10", card:"#10291b", card2:"#173826", ink:"#f0fdf4", soft:"#86efac", line:"#1f4d34", acc:"#22c55e", acc2:"#16a34a", btnText:"#052e16", g1:"rgba(34,197,94,.18)",  g2:"rgba(239,68,68,.10)",  top:"#0e2618" },
   amber:   { bg:"#1c1712", card:"#29221a", card2:"#382e23", ink:"#fffbeb", soft:"#d6c5ae", line:"#4d3f30", acc:"#f59e0b", acc2:"#d97706", btnText:"#1c1205", g1:"rgba(245,158,11,.18)", g2:"rgba(234,88,12,.12)",  top:"#2a2117" },
   puzzle:  { bg:"#0f172a", card:"#18243d", card2:"#213052", ink:"#f8fafc", soft:"#94a3b8", line:"#30436e", acc:"#3b82f6", acc2:"#2563eb", btnText:"#fff",    g1:"rgba(59,130,246,.18)", g2:"rgba(99,102,241,.12)", top:"#16223b" },
-  rpg:     { bg:"#121024", card:"#1b1836", card2:"#26214a", ink:"#f5f3ff", soft:"#c4b5fd", line:"#3b336e", acc:"#f59e0b", acc2:"#d97706", btnText:"#1a1102", g1:"rgba(245,158,11,.16)", g2:"rgba(99,102,241,.18)", top:"#1d183b" },
   noir:    { bg:"#140e10", card:"#211619", card2:"#2e1e23", ink:"#fef2f2", soft:"#fca5a5", line:"#4a2b33", acc:"#ef4444", acc2:"#dc2626", btnText:"#fff",    g1:"rgba(239,68,68,.18)",  g2:"rgba(249,115,22,.10)", top:"#241519" },
   teal:    { bg:"#091a1d", card:"#10292e", card2:"#173940", ink:"#f0fdfa", soft:"#99f6e4", line:"#204f58", acc:"#14b8a6", acc2:"#0d9488", btnText:"#042f2e", g1:"rgba(20,184,166,.18)", g2:"rgba(245,158,11,.12)", top:"#0e262b" },
   sky:     { bg:"#081024", card:"#101c3b", card2:"#172852", ink:"#f0f9ff", soft:"#bae6fd", line:"#243c73", acc:"#38bdf8", acc2:"#0ea5e9", btnText:"#041a2b", g1:"rgba(56,189,248,.18)", g2:"rgba(251,191,36,.14)", top:"#0e1a38" },
@@ -151,7 +150,6 @@ function pickThemeForGame(keys = []) {
   const joined = keys.join(" ").toLowerCase();
   if (/bj|poker|ceme|gaple|uno/.test(joined)) return "casino";
   if (/catur|chess|dam|othello|monopoli|ludo|ulartangga|ttc/.test(joined)) return "board";
-  if (/isekai/.test(joined)) return "rpg";
   if (/mafia|undercover/.test(joined)) return "noir";
   if (/wordle|mines|memory|typing|sudoku/.test(joined)) return "puzzle";
   return "arcade";

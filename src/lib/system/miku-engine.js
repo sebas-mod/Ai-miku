@@ -102,7 +102,7 @@ const MikuEngine = (() => {
     }
   }
 
-  // Prototype helpers used by classic RPG scripts
+  // Ayudantes de prototipos usados por varios scripts
   if (!Array.prototype.getRandom) {
     Object.defineProperty(Array.prototype, 'getRandom', {
       value: function () { return this[Math.floor(Math.random() * this.length)] },
@@ -908,7 +908,7 @@ const MikuEngine = (() => {
       }
     }
     wrapped.command = fn.command
-    wrapped.tags = [opts.category || (Array.isArray(fn.tags) ? fn.tags[0] : fn.tags) || 'rpg']
+    wrapped.tags = [opts.category || (Array.isArray(fn.tags) ? fn.tags[0] : fn.tags) || 'tools']
     wrapped.help = fn.help || []
     wrapped.owner = Boolean(fn.owner || fn.rowner)
     wrapped.premium = Boolean(fn.premium)
@@ -1093,7 +1093,6 @@ const MikuEngine = (() => {
         .replace(/YannRzy(?:\s*Tech)?|Yannrzy/gi, 'Arthazy');
     }
     const badges = {
-      rpg: '⚔️ MIKU RPG',
       clan: '🏰 MIKU CLAN',
       audio: '🎧 MIKU AUDIO',
       download: '📥 MIKU DOWNLOAD',
@@ -1213,7 +1212,7 @@ const MikuEngine = (() => {
     const cat = String(pluginConfig?.category || 'tools').toLowerCase();
     const wrapped = async function(m, ctx = {}) {
       const rctx = buildRuntimeContext(m, ctx, cat);
-      const regRequiredCats = new Set(['rpg', 'clan', 'game', 'games', 'fun', 'cek']);
+      const regRequiredCats = new Set(['clan', 'game', 'games', 'fun', 'cek']);
       const cmdLow = String(rctx.command || pluginConfig?.name || '').toLowerCase();
       if (!rctx.isOwner && (pluginConfig?.isRegistered || regRequiredCats.has(cat)) && !['daftar','reg','register','verifikasi','verify','unreg','ceksn','listdaftar'].includes(cmdLow)) {
         const mainUser = ctx?.db?.getUser ? ctx.db.getUser(rctx.m.sender) : null;
@@ -1245,31 +1244,6 @@ const MikuEngine = (() => {
       if (global.bankCentral === undefined) global.bankCentral = 0;
       if (rctx.m?.sender && typeof ensureUser === 'function') {
         try { ensureUser(rctx.m); } catch {}
-      }
-      if (global.__mikuRpgKernelRef) {
-        const rk = global.__mikuRpgKernelRef;
-        const sender = rctx.m.sender || '';
-        const pushname = rctx.m.pushName || 'Adventurer';
-        const u = rk.initRpgUser ? rk.initRpgUser(sender, pushname) : {};
-        if (rk.ensureBankFields) rk.ensureBankFields(u);
-        Object.assign(rctx, rk, {
-          m: rctx.m,
-          sender,
-          pushname,
-          q: rctx.text || '',
-          user: u,
-          isAdmins: Boolean(rctx.isAdmin),
-          botname: global.namebot || config?.bot?.name || 'Ai Miku',
-          XRO: () => rctx.reply('⚠️ Esta función es exclusiva del dueño.'),
-          XRG: () => rctx.reply('⚠️ Esta función solo funciona dentro de un grupo.'),
-          XReaction: () => rctx.react('✅'),
-          botUser: () => (typeof ensureUser === 'function' ? ensureUser(rctx.m) : {}),
-          botStore: typeof rpgStore === 'function' ? rpgStore : () => global.db?.data || {},
-          saveBot: typeof saveDB === 'function' ? saveDB : () => {},
-          giveExp: (amt) => (typeof addExpWithLevelCheck === 'function' && typeof getDatabase === 'function' ? addExpWithLevelCheck(rctx.sock, rctx.m, getDatabase(), ensureUser(rctx.m), amt) : Promise.resolve()),
-          mikuCmd: `${rctx.prefix}${rctx.command || pluginConfig?.name || ''}`,
-          kaguya: `${rctx.prefix}${rctx.command || pluginConfig?.name || ''}`,
-        });
       }
       return await fn.call(this, rctx.m, rctx);
     };

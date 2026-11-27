@@ -653,7 +653,7 @@ export async function renderRankList({
   const rows = Math.ceil(ranks.length / cols);
   const fy = y0 + rows * (ch + gy) + 30;
   const open = ranks.filter((r) => myLevel >= r.min).length;
-  text(ctx, `Desbloqueados ${open} de ${ranks.length} rangos  •  sube de nivel con RPG y claimlevel`, w / 2, fy, {
+  text(ctx, `Desbloqueados ${open} de ${ranks.length} rangos  •  sube de nivel con claimlevel`, w / 2, fy, {
     size: 28,
     weight: "bold",
     color: "#fff",

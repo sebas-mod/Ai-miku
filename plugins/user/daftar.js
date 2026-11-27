@@ -139,7 +139,7 @@ async function handler(m, { sock }) {
         `│ ⚡ *+15* Energi Tambahan\n` +
         `│ 🧪 *+5* Health Potion & *1* Common Crate\n` +
         `╰──────────────────────────❖\n` +
-        `_✦ ¡Regístrate ahora para desbloquear todas las funciones de RPG, clanes y juegos!_`
+        `_✦ ¡Regístrate ahora para desbloquear todas las funciones, clanes y juegos!_`
     );
   }
 

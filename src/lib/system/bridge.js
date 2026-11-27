@@ -15,14 +15,12 @@
  */
 import _mikuConfig from '../../../config.js'
 import { MikuEngine } from './miku-engine.js'
-import { MikuRpgKernel } from './rpg-kernel.js'
 import { MikuGuildKernel } from './social-kernel.js'
 import { MikuMediaKernel } from './media-scraper.js'
 
 export const MikuRuntime = Object.assign(
   { config: _mikuConfig },
   MikuEngine,
-  MikuRpgKernel,
   MikuGuildKernel,
   MikuMediaKernel
 )
@@ -32,7 +30,6 @@ export const bridge = MikuRuntime
 export {
   _mikuConfig,
   MikuEngine,
-  MikuRpgKernel,
   MikuGuildKernel,
   MikuMediaKernel
 }

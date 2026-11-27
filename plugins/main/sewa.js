@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     `${premLines}\n` +
     `├─── ❖ 『 ✨ *VENTAJAS DEL ALQUILER* 』 ❖\n` +
     `│ ✧ Bot activo 24 horas en el grupo (respuesta rápida)\n` +
-    `│ ✧ Funciones completas: IA, RPG, Juegos, Descargas, Stickers\n` +
+    `│ ✧ Funciones completas: IA, Juegos, Descargas, Stickers\n` +
     `│ ✧ Gestión del grupo: Bienvenida, Antilink, Antispam, Tagall\n` +
     `│ ✧ Garantía de servicio durante todo el alquiler\n` +
     `├─── ❖ 『 💳 *PAGOS Y PEDIDOS* 』 ❖\n` +

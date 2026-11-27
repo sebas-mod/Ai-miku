@@ -22,7 +22,7 @@ const pluginConfig = {
   name: "profile",
   alias: [],
   category: "user",
-  description: "Muestra la tarjeta de perfil completa: nivel, bienes y estado del RPG",
+  description: "Muestra la tarjeta de perfil completa: nivel, bienes y estado del jugador",
   usage: ".profile [@user]",
   example: ".profile",
   isOwner: false,

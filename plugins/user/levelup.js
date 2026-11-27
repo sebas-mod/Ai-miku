@@ -107,7 +107,7 @@ async function handler(m) {
     `│ 🔔 *Notificación automática:* ${notifState} (\`${p}levelup on/off\`)\n` +
     `├─── ❖ 『 💡 *CONSEJOS PARA SUBIR DE NIVEL RÁPIDO* 』 ❖\n` +
     `│ ◦ Utilice \`${p}boostexp\` cada 30 minutos\n` +
-    `│ ◦ Mainkan misi di \`${p}adventure\`, \`${p}dungeon\`, & \`${p}daily\`\n` +
+    `│ ◦ Completa tus tareas diarias con \`${p}daily\`\n` +
     `╰──────────────────────────❖`
   );
 }

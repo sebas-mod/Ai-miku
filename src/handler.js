@@ -268,7 +268,6 @@ async function handleSpamClose(m, sock, db) {
 let FormData,
   levelHelper,
   handleBuyerDone,
-  dungeonAnswerHandler,
   kyubigameAnswerHandler,
   family100AnswerHandler,
   pushkontakAnswerHandler,
@@ -1410,15 +1409,6 @@ async function messageHandler(msg, sock, options = {}) {
     }
 
     try {
-      if (dungeonAnswerHandler) {
-        const handled = await dungeonAnswerHandler(m, sock);
-        if (handled) return;
-      }
-    } catch (e) {
-      console.error("[Handler] Dungeon answer error:", e.message);
-    }
-
-    try {
       if (kyubigameAnswerHandler) {
         const handled = await kyubigameAnswerHandler(m, sock);
         if (handled) return;
@@ -1861,13 +1851,13 @@ async function messageHandler(msg, sock, options = {}) {
 
     const user = db.getUser(m.sender);
 
-    // Wajib Daftar (Registration Gate) untuk kategori RPG, Clan, Game, Fun, Cek, dan User
+    // Wajib Daftar (Registration Gate) untuk kategori Clan, Game, Fun, Cek, dan User
     const regExemptCmds = new Set([
       "daftar", "reg", "register", "verifikasi", "verify",
       "unreg", "unregister", "hapusdaftar", "ceksn", "sn",
       "kartudaftar", "idcard", "listdaftar", "menu", "allmenu", "help"
     ]);
-    const regRequiredCats = new Set(["rpg", "clan", "game", "games", "fun", "cek", "user"]);
+    const regRequiredCats = new Set(["clan", "game", "games", "fun", "cek", "user"]);
     const pCatLower = String(plugin.config?.category || "").toLowerCase();
     const cmdLower = String(m.command || plugin.config?.name || "").toLowerCase();
     const isUserRegistered = Boolean(user?.isRegistered);

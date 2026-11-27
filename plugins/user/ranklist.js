@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     `🏆 *KATALOG PANGKAT ASTRAL* 🏆\n\n` +
     `> Tu nivel: *Lv.${myLevel}* • ${getRankInfo(myLevel).title}\n` +
     `> Pangkat terbuka: *${open}/${ascending.length}*\n\n` +
-    `_✦ Sube tu nivel jugando RPG funciones y reclama recompensas en *${m.prefix || "."}nivel de reclamo*_`;
+    `_✦ Sube tu nivel jugando y reclama recompensas en *${m.prefix || "."}claimlevel*_`;
 
   try {
     const image = await renderRankList({
