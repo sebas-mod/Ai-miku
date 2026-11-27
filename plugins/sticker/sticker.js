@@ -82,13 +82,13 @@ const ffmpeg = MikuRuntime.ffmpeg;
       }
 
       if (options.circle) {
-          filters.push(`format=rgba`)
+          filters.push(`formato=rgba`)
           filters.push(`geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if(gt(pow(X-W/2,2)+pow(Y-H/2,2),pow(min(W,H)/2,2)),0,255)'`)
       }
 
       if (options.rounded) {
           const radius = 50
-          filters.push(`format=rgba`)
+          filters.push(`formato=rgba`)
           filters.push(`geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if(lt(X,${radius})*lt(Y,${radius})*gt(pow(${radius}-X,2)+pow(${radius}-Y,2),pow(${radius},2)),0,if(gt(X,W-${radius})*lt(Y,${radius})*gt(pow(X-W+${radius},2)+pow(${radius}-Y,2),pow(${radius},2)),0,if(lt(X,${radius})*gt(Y,H-${radius})*gt(pow(${radius}-X,2)+pow(Y-H+${radius},2),pow(${radius},2)),0,if(gt(X,W-${radius})*gt(Y,H-${radius})*gt(pow(X-W+${radius},2)+pow(Y-H+${radius},2),pow(${radius},2)),0,255))))'`)
       }
 
@@ -131,14 +131,14 @@ const ffmpeg = MikuRuntime.ffmpeg;
       if (!isImage && !isVideo) {
           await m.reply(
               `🖼️ *sᴛɪᴄᴋᴇʀ ᴍᴀᴋᴇʀ*\n\n` +
-              `Kirim/reply gambar atau video dengan caption:\n` +
+              `Enviar/responder una imagen o vídeo con título:\n` +
               `\`${m.prefix}sticker\`\n\n` +
               `*ᴏᴘsɪ:*\n` +
               `> \`--crop\` - Crop jadi kotak\n` +
-              `> \`--resize WxH\` - Resize ke ukuran\n` +
+              `> \`--cambiar tamaño WxH\` - Cambiar tamaño\n` +
               `> \`--circle\` - Bentuk lingkaran\n` +
               `> \`--rounded\` - Sudut melengkung\n\n` +
-              `*ᴄᴏɴᴛᴏʜ:*\n` +
+              `*EJEMPLO:*\n` +
               `> \`${m.prefix}sticker --crop\`\n` +
               `> \`${m.prefix}sticker --resize 256x256\`\n` +
               `> \`${m.prefix}sticker --circle\`\n` +
@@ -160,7 +160,7 @@ const ffmpeg = MikuRuntime.ffmpeg;
           }
 
           if (!buffer) {
-              await m.reply('❌ Gagal mendownload media!')
+              await m.reply('❌ ¡No se pudo descargar el medio!')
               await m.react('❌')
               return
           }
@@ -175,11 +175,11 @@ const ffmpeg = MikuRuntime.ffmpeg;
               fs.writeFileSync(tempVideo, buffer)
 
               try {
-                  const { stdout } = await execAsync(`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${tempVideo}"`)
+                  const { stdout } = await execAsync(`ffprobe -v error -show_entries formato=duración -of default=noprint_wrappers=1:nokey=1 "${tempVideo}"`)
                   const duration = parseFloat(stdout.trim())
 
                   if (duration > 10) {
-                      await m.reply(`❌ Video terlalu panjang!\n\n> Durasi: ${duration.toFixed(1)} detik\n> Maksimal: 10 detik`)
+                      await m.reply(`❌ ¡El vídeo es demasiado largo!\n\n> Duración: ${duration.toFixed(1)} segundo\n> Máximo: 10 segundos`)
                       await m.react('☢')
                       if (fs.existsSync(tempVideo)) fs.unlinkSync(tempVideo)
                       return

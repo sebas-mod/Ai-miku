@@ -214,15 +214,15 @@ async function handler(m, { sock, text }) {
   if (!quote) {
     return m.reply(
       `🖼️ *VOSV2 HD*\n\n` +
-      `Buat gambar kata-kata dengan tema Windows Media Player.\n\n` +
-      `*Format:*\n> ${m.prefix}vosv2 isi kata kata\n\n` +
-      `*Contoh:*\n> ${m.prefix}vosv2 Jangan menyerah, terus melangkah!\n\n` +
-      `_Tidak menggunakan nama atau foto profil._`
+      `Cree imágenes de palabras con temas de Windows Media Player.\n\n` +
+      `*Formato:*\n> ${m.prefix}vosv2 rellena palabras\n\n` +
+      `*Ejemplo:*\n> ${m.prefix}vosv2 ¡No te rindas, sigue adelante!\n\n` +
+      `_No utilices tu número ni foto de perfil._`
     );
   }
 
   if (quote.length > 500) {
-    return m.reply('❌ Kata-katanya terlalu panjang. Maksimal 500 karakter agar tetap jelas di gambar.');
+    return m.reply('❌ Las palabras son demasiado largas. Máximo 500 caracteres para mantener la imagen clara.');
   }
 
   await m.react('🕕');
@@ -233,7 +233,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error('[VOSV2] Error:', error?.stack || error);
     await m.react('❌');
-    await m.reply('❌ Gagal membuat gambar VOSV2. Coba lagi sebentar.');
+    await m.reply('❌ No se pudo crear la imagen VOSV2. Inténtalo de nuevo en un momento.');
   }
 }
 

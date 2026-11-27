@@ -45,9 +45,9 @@ const pluginConfig = {
 
       const [kota, kec, kel] = raw.split('|').map(s => s.trim())
       const regs = bestMatches(await getAllRegencies(), kota)
-      if (!regs.length) throw new FriendlyError(`No se encontró la ciudad de *${kota}*.\n\nEjemplo: cuaca bandung, cuaca kota bogor|bogor barat`)
+      if (!regs.length) throw new FriendlyError(`No se encontró la ciudad de *${kota}*.\n\nEjemplo: tiempo en Bandung, tiempo en la ciudad de Bogor | Bogor occidental`)
       if (regs.length > 1) {
-          throw new FriendlyError(`Ada beberapa wilayah bernama *${kota}*, tulis lebih spesifik:\n\n${regs.slice(0, 8).map(r => `- ${titleCase(r.name)}`).join('\n')}`)
+          throw new FriendlyError(`Hay varias regiones nombradas *${kota}*, escriba más específicamente:\n\n${regs.slice(0, 8).map(r => `- ${titleCase(r.name)}`).join('\n')}`)
       }
 
       const districts = await getDistricts(regs[0].code)
@@ -75,7 +75,7 @@ const pluginConfig = {
   }
 
   let handler = guard(async (m, { text, reply, example }) => {
-      if (!String(text || '').trim()) return example('bandung  (o: kota bogor|bogor barat|menteng)')
+      if (!String(text || '').trim()) return example('Bandung (o: ciudad de Bogor|Bogor occidental|Menteng)')
 
       const { code, guessed } = await resolve(text)
 
@@ -108,7 +108,7 @@ const pluginConfig = {
       const lines = slice.map(e => {
           const dt = String(e.local_datetime || '')
           const jam = dt.length >= 16 ? `${dt.slice(8, 10)}/${dt.slice(5, 7)} ${dt.slice(11, 16)}` : '-'
-          return `${jam}  ${num(e.weather_desc)}, ${num(e.t)}°C, humedad ${num(e.hu)}%, viento ${num(e.ws)} km/h`
+          return `${jam}  ${num(e.weather_desc)}, ${num(e.t)}°C, humedad ${num(e.hu)}%, viento ${num(e.ws)} kilómetros por hora`
       })
 
       return reply(

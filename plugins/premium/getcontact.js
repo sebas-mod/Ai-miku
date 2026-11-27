@@ -222,7 +222,7 @@ async function initAuth(phoneNumber) {
   const deeplink = startRes.data?.result?.deeplink
   const reference = startRes.data?.result?.reference
 
-  if (!deeplink || !reference) throw new Error(startRes.data?.meta?.errorMessage || 'Gagal memulai sesi VerifyKit')
+  if (!deeplink || !reference) throw new Error(startRes.data?.meta?.errorMessage || 'No se pudo iniciar la sesión de VerifyKit')
 
   const session = { phoneNumber: phone, clientDeviceId: deviceId, token, finalKey, reference, deeplink }
   writeFileSync(PENDING_FILE, JSON.stringify(session, null, 2), 'utf-8')
@@ -230,16 +230,16 @@ async function initAuth(phoneNumber) {
 }
 
 async function checkAuth() {
-  if (!existsSync(PENDING_FILE)) throw new Error('Sesi tidak ditemukan. Ketik .gc login <nomor> terlebih dahulu.')
+  if (!existsSync(PENDING_FILE)) throw new Error('Sesión no encontrada. Escriba.gc iniciar sesión <número> primero.')
   const session = JSON.parse(readFileSync(PENDING_FILE, 'utf-8'))
 
   const checkRes = await vfkCall('/v2.0/check', { reference: session.reference, bundleId: BUNDLE_ID }, session.clientDeviceId)
   const sessionId = checkRes.data?.result?.sessionId
-  if (!sessionId) return { verified: false, message: 'Belum terverifikasi. Pastikan sudah kirim pesan & centang 2 biru di WA Getcontact.' }
+  if (!sessionId) return { verified: false, message: 'Aún no verificado. Asegúrate de haber enviado el mensaje y marca el 2 azul en WA Getcontact.' }
 
   const resultRes = await gtcCall('/v2.8/verifykit-result', { sessionId, token: session.token }, session)
   const validationDate = resultRes.data?.result?.validationDate
-  if (!validationDate) throw new Error(resultRes.data?.meta?.errorMessage || 'Gagal mengonfirmasi hasil VerifyKit')
+  if (!validationDate) throw new Error(resultRes.data?.meta?.errorMessage || 'No se pudieron confirmar los resultados de VerifyKit')
 
   const credentials = { phoneNumber: session.phoneNumber, clientDeviceId: session.clientDeviceId, token: session.token, finalKey: session.finalKey, validationDate }
   saveSession(credentials)
@@ -250,7 +250,7 @@ async function checkAuth() {
 
 async function search(phoneNumber) {
   const creds = loadSession()
-  if (!creds) throw new Error('Kredensial belum ada. Ketik .gc login <nomor> dulu.')
+  if (!creds) throw new Error('Las credenciales aún no existen. Escriba.gc iniciar sesión <número> primero.')
 
   const phone = normalizePhone(phoneNumber)
   const res = await gtcCall('/v2.8/search', { countryCode: COUNTRY, phoneNumber: phone, source: 'search', token: creds.token }, creds)
@@ -293,14 +293,14 @@ async function handler(m, ctx = {}) {
     return m.reply(
       `📱 *GETCONTACT SCRAPER* 🕵️‍♂️\n\n` +
       `╭┈┈⬡「 📖 *PENGGUNAAN* 」\n` +
-      `┃ • ${prefix}gc login <nomor>\n` +
-      `┃   → Mulai sesi (wajib sekali)\n` +
+      `┃ • ${prefix}iniciar sesión en gc <número>\n` +
+      `┃ → Iniciar sesión (completamente obligatorio)\n` +
       `┃ • ${prefix}gc verify\n` +
-      `┃   → Cek verifikasi WA\n` +
-      `┃ • ${prefix}gc <nomor>\n` +
-      `┃   → Cari data nomor\n` +
+      `┃ → Verificar verificación WA\n` +
+      `┃ • ${prefix}gc <número>\n` +
+      `┃ → Buscar datos del número\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `_Contoh:_ ${prefix}gc 6281234567890`
+      `_Ejemplo:_ ${prefix}gc 6281234567890`
     )
   }
 
@@ -309,46 +309,46 @@ async function handler(m, ctx = {}) {
   try {
     if (sub === 'login') {
       const targetPhone = args[1]
-      if (!targetPhone) return m.reply(`Masukkan nomor HP yang mau diverifikasi!\nContoh: ${prefix}gc login 628xxx`)
+      if (!targetPhone) return m.reply(`¡Ingresa el número HP que deseas verificar!\nEjemplo: ${prefix}iniciar sesión en gc 628xxx`)
 
       const session = await initAuth(targetPhone)
 
       let msg = `✅ *Sesi VerifyKit Dibuat*\n\n`
-      msg += `> 📱 Nomor: ${session.phoneNumber}\n\n`
+      msg += `> 📱 Número: ${session.phoneNumber}\n\n`
       msg += `🔗 *Deeplink:*\n${session.deeplink}\n\n`
       msg += `📌 *Langkah Selanjutnya:*\n`
-      msg += `1. Buka link di atas (buka via HP).\n`
-      msg += `2. Kirim pesan WA yang muncul ke bot WA Getcontact.\n`
-      msg += `3. Tunggu centang 2 biru.\n`
-      msg += `4. Ketik \`${prefix}gc verify\` di sini.`
+      msg += `1. Abra el enlace de arriba (abrir a través de HP).\n`
+      msg += `2. Envía el mensaje WA que aparece a bot WA Getcontact.\n`
+      msg += `3. Espere a que aparezca la marca azul 2.\n`
+      msg += `4. Tipo \`${prefix}gc verificar\` aquí.`
 
       return m.reply(msg)
     }
 
     if (sub === 'verify') {
       const result = await checkAuth()
-      if (!result.verified) return m.reply(`❌ *Belum Terverifikasi*\n\n> ${result.message}`)
+      if (!result.verified) return m.reply(`❌ *No verificado*\n\n> ${result.message}`)
 
       return m.reply(
         `✅ *BERHASIL VERIFIKASI!*\n\n` +
-        `> 📱 Nomor: ${result.credentials.phoneNumber}\n` +
+        `> 📱 Número: ${result.credentials.phoneNumber}\n` +
         `> 📅 Tanggal: ${result.credentials.validationDate}\n\n` +
-        `Sekarang kamu bisa mencari data orang lain dengan perintah:\n` +
-        `${prefix}gc <nomor target>`
+        `Ahora puedes buscar datos de otras personas con el comando:\n` +
+        `${prefix}gc <número de destino>`
       )
     }
 
     const targetPhone = args[0]
     if (!/^(\+?62|0)\d{8,15}$/.test(targetPhone)) {
-      return m.reply(`Format nomor tidak valid! Gunakan format 08xxx atau 628xxx.`)
+      return m.reply(`¡Formato de número no válido! Utilice el formato 08xxx o 628xxx.`)
     }
 
     const res = await search(targetPhone)
 
     let caption = `🕵️‍♂️ *GETCONTACT RESULT*\n\n`
     caption += `╭┈┈⬡「 📱 *TARGET* 」\n`
-    caption += `┃ 📞 Nomor: ${res.phone}\n`
-    caption += `┃ 📝 Nama: ${res.name || '-'} ${res.surname || ''}\n`
+    caption += `┃ 📞 Número: ${res.phone}\n`
+    caption += `┃ 📝 Nombre: ${res.name || '-'} ${res.surname || ''}\n`
     caption += `┃ 🏷️ Display: ${res.displayName || '-'}\n`
     caption += `┃ 📧 Email: ${res.email || '-'}\n`
     caption += `┃ 📊 Total Tag: ${res.tagCount}\n`
@@ -360,10 +360,10 @@ async function handler(m, ctx = {}) {
       for (const t of topTags) {
         caption += `┃ • ${t.tag} (${t.count}x)\n`
       }
-      if (res.tags.length > 15) caption += `┃ _+${res.tags.length - 15} tag lainnya..._\n`
+      if (res.tags.length > 15) caption += `┃ _+${res.tags.length - 15} otras etiquetas..._\n`
       caption += `╰┈┈┈┈┈┈┈┈⬡`
     } else {
-      caption += `_Tidak ada tag yang ditemukan._`
+      caption += `_No se encontraron etiquetas._`
     }
 
     await m.reply(caption)
@@ -372,7 +372,7 @@ async function handler(m, ctx = {}) {
   } catch (err) {
     console.error('[Getcontact Error]', err)
     await sock.sendMessage(jid, { react: { text: '❌', key: m.key } }).catch(() => {})
-    return m.reply(`❌ *Terjadi Kesalahan*\n\n> ${err.message}`)
+    return m.reply(`❌ *Ocurrió un error*\n\n> ${err.message}`)
   }
 }
 

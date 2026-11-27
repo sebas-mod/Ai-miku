@@ -33,20 +33,20 @@ const getDatabase = MikuRuntime.getDatabase;
       const message = m.text?.trim()
 
       if (!message) {
-          return m.reply(`📢 *ᴄʟᴀɴ ᴀɴɴᴏᴜɴᴄᴇ*\n\n> Kirim pengumuman ke semua member clan\n\n> Contoh: .clanannounce Besok ada event war!`)
+          return m.reply(`📢 *CLAN ANNOUNCE*\n\n> Enviar anuncios a todos los miembros del clan.\n\n> Ejemplo:.clanannounce ¡Mañana hay un evento de guerra!`)
       }
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender && clan.roles?.[m.sender] !== 'coleader') {
-          return m.reply(`❌ Hanya *Leader* atau *Co-Leader* yang bisa announce!`)
+          return m.reply(`❌ ¡Solo *Líder* o *Co-Líder* pueden anunciar!`)
       }
 
       const userData = db.getUser(m.sender)
@@ -54,11 +54,11 @@ const getDatabase = MikuRuntime.getDatabase;
 
       let txt = `📢 *ᴄʟᴀɴ ᴀɴɴᴏᴜɴᴄᴇᴍᴇɴᴛ*\n\n`
       txt += `╭┈┈⬡「 🏰 *${clan.name}* 」\n`
-      txt += `┃ 👑 Dari: *${userName}*\n`
-      txt += `┃ 📝 Pesan:\n`
+      txt += `┃ 👑 De: *${userName}*\n`
+      txt += `┃ 📝 Mensaje:\n`
       txt += `┃ *${message}*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-      txt += `> Ketik .c untuk balas di clan chat`
+      txt += `> Escribe.c para responder en el chat del clan`
 
       let successCount = 0
       for (const member of clan.members) {

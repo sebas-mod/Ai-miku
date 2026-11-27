@@ -32,7 +32,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const name = m.text?.trim();
   if (!name) {
-    return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 7*\n\n> Masukkan nama untuk profile\n\n*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n> 1. Kirim foto + caption \`${m.prefix}fakedev7 <nama>\`\n> 2. Reply foto dengan \`${m.prefix}fakedev7 <nama>\``);
+    return m.reply(`🎮 *FAKE DEVELOPER 7*\n\n> Introduzca un nombre para el perfil\n\n*CARA PAKAI:*\n> 1. Enviar foto + pie de foto \`${m.prefix}fakedev7 <nombre>\`\n> 2. Foto estafa del respondedor \`${m.prefix}fakedev7 <nombre>\``);
   }
   let buffer = null;
   if (m.quoted && (m.quoted.type === "imageMessage" || m.quoted.mtype === "imageMessage")) {
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
       buffer = getAssetBuffer("pp-kosong");
     }
   }
-  if (!buffer) return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+  if (!buffer) return m.reply(`❌ ¡Envía/responde una foto para crear un avatar!`);
 
   m.react("🕕");
 
@@ -179,7 +179,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`❌ Terjadi kesalahan saat memproses gambar.`);
+    m.reply(`❌ Se produjo un error al procesar la imagen.`);
   }
 }
 export { pluginConfig as config, handler };

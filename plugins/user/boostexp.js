@@ -31,11 +31,11 @@ const pluginConfig = {
 const COOLDOWN_MS = 30 * 60 * 1000;
 
 const SCENARIOS = [
-  "Bermeditasi di bawah kristal Astral Miku dan menyerap energi kosmik",
+  "Medita bajo el cristal Astral de Miku y absorbe energía cósmica.",
   "Berlatih kombo pedang bayangan bersama instruktur Guild",
   "Memecahkan gulungan rune kuno di Perpustakaan Bintang",
-  "Menyalurkan mana murni ke dalam inti jiwa petualang",
-  "Menyelesaikan simulasi pertarungan tingkat tinggi di Menara Miku",
+  "Canaliza maná puro hacia el núcleo del alma del aventurero.",
+  "Has completado una simulación de batalla de alto nivel en la Torre Miku.",
 ];
 
 async function handler(m, { sock }) {
@@ -48,8 +48,8 @@ async function handler(m, { sock }) {
     const rem = Math.ceil((COOLDOWN_MS - (now - last)) / 60000);
     return m.reply(
       `╭─── ❖ 『 ⏳ *ISTIRAHAT LATIHAN* 』 ❖\n` +
-      `│ ✦ Energi spiritualmu masih dalam pemulihan.\n` +
-      `│ ⏱️ *Tunggu:* *${rem} menit* lagi untuk latihan berikutnya!\n` +
+      `│ ✦ Tu energía espiritual aún se está recuperando.\n` +
+      `│ ⏱️ *Espera:* *${rem} ¡Quedan minutos* para el siguiente ejercicio!\n` +
       `╰──────────────────────────❖`
     );
   }
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     `│ 📈 *EXP Diperoleh:* *+${finalExp.toLocaleString("id-ID")} EXP*\n` +
     `│ 🏆 *Total EXP:* ${(user.exp || 0).toLocaleString("id-ID")} XP\n` +
     `│ 🎖️ *Level & Rank:* *Lv.${newLv}* (${rank.title})\n` +
-    (res.leveledUp ? `│ 🎊 *LEVEL UP!* Kamu naik ke *Lv.${res.newLevel}*!\n` : "") +
+    (res.leveledUp ? `│ 🎊 *LEVEL UP!* Subiste a *Lv.${res.newLevel}*!\n` : "") +
     `╰──────────────────────────❖`;
 
   try {

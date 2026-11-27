@@ -165,7 +165,7 @@ ${usedPrefix + command} episode url`)
       }
 
       else if (type === 'search') {
-        if (!args[1]) return m.reply('Masukkan judul!')
+        if (!args[1]) return m.reply('¡Ingrese el título!')
         result = await api.search(args.slice(1).join(' '))
       }
 
@@ -189,7 +189,7 @@ ${usedPrefix + command} episode url`)
         return m.reply(msg)
       }
 
-      else return m.reply('Menu tidak dikenal')
+      else return m.reply('Menú desconocido')
 
       msg = result.map((v, i) =>
         `*${i + 1}.* ${v.title || v.name}\n${v.episode || ''}\n${v.url}`

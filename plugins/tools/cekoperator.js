@@ -85,8 +85,8 @@ async function handler(m, { text, reply, example }) {
 
     return reply(
         `📱 *CEK OPERATOR*\n\n` +
-        `Nomor    : ${number}\n` +
-        `Format   : +62${number.slice(1)}\n` +
+        `Número: ${number}\n` +
+        `Formato: +62${number.slice(1)}\n` +
         `Prefix   : ${prefix}\n` +
         `Operator : *${operator}*\n` +
         `Kartu    : ${kartu}\n\n` +

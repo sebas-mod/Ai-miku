@@ -34,9 +34,9 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
       if (!quoted) {
           return m.reply(
               `🖼️ *sᴛɪᴄᴋᴇʀ ᴡᴀᴛᴇʀᴍᴀʀᴋ*\n\n` +
-              `> Reply sticker dengan caption:\n` +
+              `> Responda sticker con el título:\n` +
               `> \`${m.prefix}swm packname\`\n\n` +
-              `*ᴄᴏɴᴛᴏʜ:*\n` +
+              `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +
               `> \`${m.prefix}swm NamaPack|NamaAuthor\` _(packname + author)_`
           )
@@ -44,15 +44,15 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
 
       const isSticker = quoted.type === 'stickerMessage' || quoted.isSticker
       if (!isSticker) {
-          return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply pesan sticker, bukan ${quoted.type?.replace('Message', '') || 'media lain'}`)
+          return m.reply(`❌ *FALLÓ*\n\n> Responder mensaje sticker, no ${quoted.type?.replace('Message', '') || 'media lain'}`)
       }
 
       const input = m.text?.trim()
       if (!input) {
           return m.reply(
-              `❌ *ɢᴀɢᴀʟ*\n\n` +
+              `❌ *GAGAL*\n\n` +
               `> Masukkan packname\n\n` +
-              `*ᴄᴏɴᴛᴏʜ:*\n` +
+              `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +
               `> \`${m.prefix}swm NamaPack|NamaAuthor\` _(+ author)_`
           )
@@ -76,7 +76,7 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
 
           if (!buffer || buffer.length === 0) {
               m.react('❌')
-              return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mendownload sticker`)
+              return m.reply(`❌ *FALLÓ*\n\n> No se pudo descargar sticker`)
           }
 
           const exifOpts = { packname, author, emojis: ['🤖'] }

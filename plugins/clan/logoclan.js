@@ -40,20 +40,20 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender) {
-          return m.reply(`❌ Hanya *leader* clan yang bisa set logo!`)
+          return m.reply(`❌ ¡Solo el *líder* del clan puede configurar el logo!`)
       }
 
       if (!m.quoted || !m.quoted.message?.imageMessage) {
-          return m.reply(`🖼️ *ᴄʟᴀɴ ʟᴏɢᴏ*\n\n> Reply gambar yang ingin dijadikan logo clan!\n\n> Contoh: reply gambar lalu ketik .clanlogo`)
+          return m.reply(`🖼️ *CLAN LOGO*\n\n> ¡Responde a la imagen que quieres usar como logo del clan!\n\n> Ejemplo: responde a la imagen y luego escribe.clanlogo`)
       }
 
       await m.reply('⏳ *Mengupload logo clan...*')
@@ -74,9 +74,9 @@ const getDatabase = MikuRuntime.getDatabase;
       await db.save()
 
       let txt = `🖼️ *ᴄʟᴀɴ ʟᴏɢᴏ ᴜᴘᴅᴀᴛᴇᴅ!*\n\n`
-      txt += `╭┈┈⬡「 📋 *ʜᴀꜱɪʟ* 」\n`
+      txt += `╭┈┈⬡「 📋 *RESULTADO* 」\n`
       txt += `┃ 📛 Clan: *${clan.name}*\n`
-      txt += `┃ 🖼️ Logo baru berhasil disimpan!\n`
+      txt += `┃ 🖼️ ¡Nuevo logo guardado exitosamente!\n`
       txt += `┃ 👑 Leader: @${m.sender.split('@')[0]}\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡`
 

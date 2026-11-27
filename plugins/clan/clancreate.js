@@ -54,33 +54,33 @@ const getDatabase = MikuRuntime.getDatabase;
               `⚔️ *CREATE CLAN*\n\n` +
               `Buat clan dan kumpulkan member!\n\n` +
               `Biaya: *Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}*\n` +
-              `Max nama: *${MAX_CLAN_NAME} karakter*\n\n` +
-              `Contoh: *.clancreate DragonSlayer*`
+              `Nombre máximo: *${MAX_CLAN_NAME} personaje*\n\n` +
+              `Ejemplo: *.clancreate DragonSlayer*`
           )
       }
 
       if (clanName.length > MAX_CLAN_NAME) {
-          return m.reply(`❌ Nama clan maksimal ${MAX_CLAN_NAME} karakter`)
+          return m.reply(`❌ Nombre máximo del clan ${MAX_CLAN_NAME} personaje`)
       }
 
       if (!/^[a-zA-Z0-9\s]+$/.test(clanName)) {
-          return m.reply(`❌ Nama clan hanya boleh huruf, angka, dan spasi`)
+          return m.reply(`❌ Los nombres de los clanes solo pueden ser letras, números y espacios.`)
       }
 
       if (!db.db.data.clans) db.db.data.clans = {}
 
       if (user.clanId) {
-          return m.reply(`❌ Kamu sudah punya clan\nKeluar dulu: *.clanleave*`)
+          return m.reply(`❌ Ya tienes un clan\nSalir primero: *.clanleave*`)
       }
 
       const existingClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanName.toLowerCase())
       if (existingClan) {
-          return m.reply(`❌ Nama *${clanName}* sudah dipakai`)
+          return m.reply(`❌ Nombre *${clanName}*ya usado`)
       }
 
       if ((user.koin || 0) < CLAN_CREATE_COST) {
           return m.reply(
-              `❌ Koin tidak cukup\n\n` +
+              `❌ No hay suficientes monedas\n\n` +
               `Butuh: *Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}*\n` +
               `Punya: *Rp ${(user.koin || 0).toLocaleString('id-ID')}*`
           )
@@ -114,8 +114,8 @@ const getDatabase = MikuRuntime.getDatabase;
           `Leader: @${m.sender.split('@')[0]}\n` +
           `Status: Open · 1/50 members\n\n` +
           `_-Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}_\n\n` +
-          `Invite teman: *.claninvite @user*\n` +
-          `Atau share ID: *${clanId}*`,
+          `Invitar amigos: *.claninvite @user*\n` +
+          `O comparte ID: *${clanId}*`,
           { mentions: [m.sender] }
       )
   }

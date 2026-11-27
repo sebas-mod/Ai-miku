@@ -84,7 +84,7 @@ const pluginConfig = {
   		!response.data.data ||
   		!Array.isArray(response.data.data.latest)
   	) {
-  		throw new Error('Format API AlqAnime tidak valid');
+  		throw new Error('El formato API AlqAnime no es válido');
   	}
 
   	return response.data.data.latest;
@@ -103,7 +103,7 @@ const pluginConfig = {
   		response.data.status !== 'success' ||
   		!response.data.data
   	) {
-  		throw new Error('Detail anime tidak ditemukan');
+  		throw new Error('Detalles del anime no encontrados');
   	}
 
   	return response.data.data;
@@ -143,7 +143,7 @@ const pluginConfig = {
   	const caption = [
   		'*ALQANIME AUTO UPDATE*',
   		'----------------------------------------',
-  		`*Judul:* ${title}`,
+  		`*Título:* ${title}`,
   		`*Status:* ${info.status || '-'}`,
   		`*Tipe:* ${info.tipe || '-'}`,
   		`*Musim:* ${info.musim || '-'}`,
@@ -197,14 +197,14 @@ const pluginConfig = {
   		return true;
 
   	} catch (error) {
-  		console.error(`[ALQANIME] Gagal mengirim detail ${item.title}:`, error?.message || error);
+  		console.error(`[ALQANIME] No se pudieron enviar los detalles ${item.title}:`, error?.message || error);
 
   		try {
   			const url = item.url || `https://alqanime.net/${item.slug}/`;
   			const fallbackText = [
   				'*ALQANIME AUTO UPDATE*',
   				'----------------------------------------',
-  				`*Judul:* ${item.title || '-'}`,
+  				`*Título:* ${item.title || '-'}`,
   				`*Episode:* ${item.episode || '-'}`,
   				'----------------------------------------',
   				'*Sumber:* ' + url,
@@ -226,7 +226,7 @@ const pluginConfig = {
 
   			return true;
   		} catch (sendError) {
-  			console.error('[ALQANIME] Fallback gagal:', sendError?.message || sendError);
+  			console.error('[ALQANIME] Error de respaldo:', sendError?.message || sendError);
   			return false;
   		}
   	}
@@ -272,7 +272,7 @@ const pluginConfig = {
   					await new Promise((resolve) => setTimeout(resolve, 2000));
   				} catch (err) {
   					isSuccess = false;
-  					console.error(`[ALQANIME] Error kirim ke ${jid}:`, err?.message || err);
+  					console.error(`[ALQANIME] Enviar a error ${jid}:`, err?.message || err);
   				}
   			}
 
@@ -302,7 +302,7 @@ const pluginConfig = {
   	if (watcherStarted) return;
 
   	watcherStarted = true;
-  	console.log('[ALQANIME] Auto updater watcher aktif (Interval: 5m).');
+  	console.log('[ALQANIME] El observador de actualización automática está activo (Intervalo: 5m).');
 
   	setTimeout(() => {
   		checkUpdates();
@@ -318,7 +318,7 @@ const pluginConfig = {
   	startWatcher(sock);
 
   	if (!m.isGroup) {
-  		return reply('Perintah ini hanya dapat diaktifkan di dalam grup.');
+  		return reply('Este comando sólo se puede activar dentro de un grupo.');
   	}
 
   	const action = (args?.[0] || 'status').toLowerCase();
@@ -334,13 +334,13 @@ const pluginConfig = {
   		const text = [
   			'*ALQANIME AUTO UPDATE AKTIF*',
   			'----------------------------------------',
-  			'Grup ini sekarang akan menerima pembaruan anime otomatis dari AlqAnime.',
+  			'Este grupo ahora recibirá actualizaciones automáticas de anime de AlqAnime.',
   			'',
-  			'*Interval Cek:* Setiap 5 menit',
+  			'*Intervalo de verificación:* Cada 5 minutos',
   			'*Maksimal:* 10 anime / check',
   			'*Sumber:* AlqAnime',
   			'',
-  			'Matikan kapan saja dengan `' + usedPrefix + command + ' off`',
+  			'Apágalo en cualquier momento con `' + usedPrefix + command + ' off`',
   			'',
   			`© ${botName}`
   		].join('\n');
@@ -357,7 +357,7 @@ const pluginConfig = {
   		const text = [
   			'*ALQANIME AUTO UPDATE NONAKTIF*',
   			'----------------------------------------',
-  			'Grup ini telah berhenti menerima pembaruan otomatis.',
+  			'Este grupo ha dejado de recibir actualizaciones automáticas.',
   			'',
   			`© ${botName}`
   		].join('\n');
@@ -371,8 +371,8 @@ const pluginConfig = {
   		const text = [
   			'*ALQANIME AUTO UPDATE STATUS*',
   			'----------------------------------------',
-  			`*Status Grup:* ${isEnabled ? 'AKTIF' : 'NONAKTIF'}`,
-  			'*Interval Pengecekan:* 5 Menit',
+  			`*Estado del grupo:* ${isEnabled ? 'AKTIF' : 'NONAKTIF'}`,
+  			'*Intervalo de comprobación:* 5 Minutos',
   			'*Maksimal / Update:* 10 Anime',
   			`*Status Watcher:* ${watcherStarted ? 'Berjalan' : 'Standby'}`,
   			'',
@@ -389,7 +389,7 @@ const pluginConfig = {
   			const latest = await getLatest();
   			if (!latest || !latest.length) {
   				await sock.sendMessage(m.chat, { react: { text: '\u274C', key: m.key } }).catch(() => null);
-  				return reply('Tidak ada data terbaru yang diterima dari API AlqAnime.');
+  				return reply('No se han recibido datos recientes de API AlqAnime.');
   			}
 
   			const item = latest[0];
@@ -399,7 +399,7 @@ const pluginConfig = {
   		} catch (error) {
   			console.error('[ALQANIME TEST ERROR]:', error);
   			await sock.sendMessage(m.chat, { react: { text: '\u274C', key: m.key } }).catch(() => null);
-  			return reply('Uji coba AlqAnime gagal: ' + (error?.message || error));
+  			return reply('La prueba de AlqAnime falló: ' + (error?.message || error));
   		}
 
   		return;
@@ -407,11 +407,11 @@ const pluginConfig = {
 
   	return reply(
   		'*ALQANIME AUTO UPDATE*\n\n' +
-  		'Pilihan perintah:\n' +
-  		'- `' + usedPrefix + command + ' on` (Aktifkan di grup ini)\n' +
-  		'- `' + usedPrefix + command + ' off` (Matikan di grup ini)\n' +
-  		'- `' + usedPrefix + command + ' status` (Lihat status berjalan)\n' +
-  		'- `' + usedPrefix + command + ' test` (Kirim sample anime terbaru)'
+  		'Opciones de comando:\n' +
+  		'- `' + usedPrefix + command + ' on` (Habilitar en este grupo)\n' +
+  		'- `' + usedPrefix + command + ' off` (Apagar en este grupo)\n' +
+  		'- `' + usedPrefix + command + ' status` (Ver estado de ejecución)\n' +
+  		'- `' + usedPrefix + command + ' test` (Enviar muestras del último anime)'
   	);
   };
 

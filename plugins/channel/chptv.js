@@ -37,11 +37,11 @@ const pluginConfig = {
       const media = pickMedia(m)
       if (!media || !/webp|image|video|gif|viewOnce/.test(media.mime)) {
           return reply(
-              `⭕ *VIDEO BULAT (PTV) KE SALURAN*\n\n` +
-              `Reply foto/video dengan:\n` +
+              `⭕ *REDONDO VIDEO (PTV) AL CANAL*\n\n` +
+              `Contestador de foto/vídeo:\n` +
               `${p}${cmd} → ke saluran bawaan (.setch)\n` +
               `${p}${cmd} <id@newsletter / link saluran>\n\n` +
-              `Contoh:\n${p}${cmd} 120363xxxxxxxxxxxxxx@newsletter`
+              `Ejemplo:\n${p}${cmd} 120363xxxxxxxxxxxxxxx@newsletter`
           )
       }
 
@@ -50,12 +50,12 @@ const pluginConfig = {
           const raw = String(text || '').trim().split(/\s+/)[0]
           if (raw) {
               const ref = parseRef(raw) || (/^\d{15,}$/.test(raw) ? parseRef(`${raw}@newsletter`) : null)
-              if (!ref) return reply('ID/link saluran tidak valid!\nContoh: 120363xxxxxxxxxxxxxx@newsletter')
+              if (!ref) return reply('ID/enlace de canal no válido!\nEjemplo: 120363xxxxxxxxxxxxxx@newsletter')
               if (ref.type === 'jid') { channelId = ref.jid; channelLabel = ref.jid }
               else { const md = await metadata(sock, ref); channelId = md.id; channelLabel = md.name; assertCanPost(md) }
           } else {
               const cur = getCurrent()
-              if (!cur) return reply(`Belum ada saluran tujuan. Tulis id/link saluran, atau atur dulu: ${p}setch <link saluran>`)
+              if (!cur) return reply(`Aún no hay ningún canal de destino. Escribe el ID/enlace del canal, o configúralo primero: ${p}establecer <enlace de canal>`)
               channelId = cur.id; channelLabel = cur.name
               assertCanPost(cur)
           }
@@ -67,8 +67,8 @@ const pluginConfig = {
 
       try {
           const buffer = await media.download()
-          if (!Buffer.isBuffer(buffer) || buffer.length < 1000) throw new Error('Gagal mengunduh media.')
-          if (buffer.length > MAX_SIZE) throw new Error('File terlalu besar! Maksimal 50MB.')
+          if (!Buffer.isBuffer(buffer) || buffer.length < 1000) throw new Error('No se pudo descargar el medio.')
+          if (buffer.length > MAX_SIZE) throw new Error('¡El archivo es demasiado grande! Máximo 50 MB.')
 
           const { prepareWAMessageMedia, generateMessageIDV2, proto } = await import('@rexxhayanasi/elaina-baileys')
           const prepared = await prepareWAMessageMedia(
@@ -84,11 +84,11 @@ const pluginConfig = {
           })
 
           await reactTo(sock, m, '✅')
-          return reply(`✅ Video bulat terkirim ke saluran *${channelLabel}*.`)
+          return reply(`✅Video redondo enviado al canal*${channelLabel}*.`)
       } catch (err) {
           console.error('[CHPTV ERROR]', err)
           await reactTo(sock, m, '❌')
-          return reply(`❌ Gagal kirim video bulat ke saluran.\n\n> ${err.message || err}`)
+          return reply(`❌ No se pudo enviar el video redondo al canal.\n\n> ${err.message || err}`)
       }
   }
 

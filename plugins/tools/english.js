@@ -40,7 +40,7 @@ const pluginConfig = {
           timeout: 15000
       })
       const out = (data?.[0] || []).map(part => part?.[0] || '').join('').trim()
-      if (!out) throw new Error('Hasil terjemahan kosong')
+      if (!out) throw new Error('Los resultados de la traducción están vacíos.')
       return { text: out, from: data?.[2] || from, to }
   }
 

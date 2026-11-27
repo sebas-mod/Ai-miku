@@ -31,7 +31,7 @@ const te = MikuRuntime.te;
       const text = m.args.join(' ')
 
       if (!text) {
-          return m.reply(`🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid2 hello world\``)
+          return m.reply(`🎬 *VIDEO BRAT V2*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratvid2 hola mundo\``)
       }
 
       m.react('🕕')

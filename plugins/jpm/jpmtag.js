@@ -33,11 +33,11 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
-      if (!text && !media) return example('pesan broadcast  (atau reply foto/video + caption)')
+      if (!text && !media) return example('mensaje del transmisor (o contestador foto/video + titulo)')
 
       const groups = await jpmGroups(sock)
       const delay = jpmCfg().delayJpmTag
-      await reply(`*▢ PROSES JPM TAG*\n• Total grup : ${groups.length}\n• Delay : ${delay}ms`)
+      await reply(`*▢ PROSES JPM TAG*\n• Grupo total: ${groups.length}\n• Demora: ${delay}EM`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => {
           const tag = tagList(g)
@@ -45,7 +45,7 @@ const pluginConfig = {
           return sock.sendMessage(g.id, media ? mediaContent(media, caption, tag.mentions) : { text: caption, mentions: tag.mentions })
       })
 
-      return reply(`*▢ JPM TAG SELESAI*\n• Berhasil : ${ok} grup\n• Gagal : ${fail} grup`)
+      return reply(`*▢ JPM TAG SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

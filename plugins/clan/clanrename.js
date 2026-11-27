@@ -36,37 +36,37 @@ const getDatabase = MikuRuntime.getDatabase;
       const newName = m.text?.trim()
 
       if (!newName) {
-          return m.reply(`🏷️ *ᴄʟᴀɴ ʀᴇɴᴀᴍᴇ*\n\n> Masukkan nama clan baru!\n> Biaya: *Rp ${RENAME_COST.toLocaleString('id-ID')}*\n\n> Contoh: .clanrename DarkPhoenix`)
+          return m.reply(`🏷️ *CLAN RENAME*\n\n> ¡Ingresa un nuevo nombre de clan!\n> Costo: *Rp ${RENAME_COST.toLocaleString('id-ID')}*\n\n> Ejemplo:.clanrename DarkPhoenix`)
       }
 
       if (newName.length > MAX_CLAN_NAME) {
-          return m.reply(`❌ Nama clan maksimal ${MAX_CLAN_NAME} karakter!`)
+          return m.reply(`❌ Nombre máximo del clan ${MAX_CLAN_NAME} ¡personaje!`)
       }
 
       if (!/^[a-zA-Z0-9\s]+$/.test(newName)) {
-          return m.reply(`❌ Nama clan hanya boleh huruf, angka, dan spasi!`)
+          return m.reply(`❌ ¡Los nombres de los clanes solo pueden ser letras, números y espacios!`)
       }
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender) {
-          return m.reply(`❌ Hanya *leader* clan yang bisa rename clan!`)
+          return m.reply(`❌ ¡Solo el *líder* del clan puede cambiar el nombre del clan!`)
       }
 
       const existingClan = Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === newName.toLowerCase())
       if (existingClan && existingClan.id !== clan.id) {
-          return m.reply(`❌ Nama clan *${newName}* sudah digunakan!`)
+          return m.reply(`❌ Nombre del clan *${newName}*¡ya usado!`)
       }
 
       if ((user.koin || 0) < RENAME_COST) {
-          return m.reply(`❌ Balance tidak cukup!\n\n> Dibutuhkan: *Rp ${RENAME_COST.toLocaleString('id-ID')}*\n> Kamu punya: *Rp ${(user.koin || 0).toLocaleString('id-ID')}*`)
+          return m.reply(`❌ ¡No hay suficiente saldo!\n\n> Requerido: *Rp ${RENAME_COST.toLocaleString('id-ID')}*\n> Tienes: *Rp ${(user.koin || 0).toLocaleString('id-ID')}*`)
       }
 
       const oldName = clan.name
@@ -76,8 +76,8 @@ const getDatabase = MikuRuntime.getDatabase;
 
       let txt = `🏷️ *ᴄʟᴀɴ ʀᴇɴᴀᴍᴇᴅ!*\n\n`
       txt += `╭┈┈⬡「 📋 *ʀᴇꜱᴜʟᴛ* 」\n`
-      txt += `┃ 📛 Nama lama: *${oldName}*\n`
-      txt += `┃ Nama baru: *${newName}*\n`
+      txt += `┃ 📛 Nombre antiguo: *${oldName}*\n`
+      txt += `┃ Nuevo nombre: *${newName}*\n`
       txt += `┃ 👑 Leader: @${m.sender.split('@')[0]}\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
       txt += `> -Rp ${RENAME_COST.toLocaleString('id-ID')}`

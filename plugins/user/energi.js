@@ -80,14 +80,14 @@ text += `*〔 📊 Limit Harian 〕* ${isOwner || isPrem || dailyStatus.unlimite
 text += `*〔 💎 Status 〕* ${userStatus}\n\n`
 
     if (!energiEnabled) {
-        text += `🔌 Sistem energi dinonaktifkan — semua command gratis`
+        text += `🔌 Sistema de energía desactivado: todos los comandos son gratuitos`
     } else if (isSelf && !isUnlimited && finalEnergi < 10) {
         text += `⚠️ Energi hampir habis!\n`
     } else if (isUnlimited) {
-        text += `✨ Energi unlimited aktif!`
+        text += `✨ ¡La energía ilimitada está activa!`
     }
     if (dailyStatus.unlimited) {
-        text += `\n✨ Limit fitur harian unlimited aktif permanen.`
+        text += `\n✨ Los límites ilimitados de funciones diarias están permanentemente activos.`
     }
 
     await m.reply(text)

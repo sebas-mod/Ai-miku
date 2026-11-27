@@ -236,9 +236,9 @@ async function handler(m, { sock }) {
     const q = m.quoted;
     if (!q) {
       return m.reply(
-        `✗ Format salah!\n\n` +
-          `*Step 1:* Reply Voice Note / File Audio dengan \`${p}${cmd}\`\n` +
-          `*Step 2:* Reply Stiker / Gambar dengan \`${p}${cmd}\``
+        `✗ ¡Formato incorrecto!\n\n` +
+          `*Paso 1:* Responder nota de voz/archivo de audio con \`${p}${cmd}\`\n` +
+          `*Paso 2:* Responder pegatina/imagen con \`${p}${cmd}\``
       );
     }
 
@@ -264,15 +264,15 @@ async function handler(m, { sock }) {
         .catch(() => {});
 
       const buf = await downloadQuotedMedia(q, "audio");
-      if (!buf) throw new Error("Gagal mengunduh audio");
+      if (!buf) throw new Error("No se pudo descargar el audio");
 
       audioSession.set(m.sender, {
         buffer: buf,
         seconds: Number(qMsg.audioMessage?.seconds || 0),
       });
       return m.reply(
-        `✅ *Audio berhasil disimpan!*\n\n` +
-          `Sekarang (Step 2), reply *Stiker* atau *Gambar* yang mau dijadikan background dengan perintah \`${p}${cmd}\` lagi.`
+        `✅ *¡Audio guardado exitosamente!*\n\n` +
+          `Ahora (Paso 2), responda a la *Etiqueta* o *Imagen* que desea usar como fondo con el comando \`${p}${cmd}\` nuevamente.`
       );
     }
 
@@ -284,8 +284,8 @@ async function handler(m, { sock }) {
     ) {
       if (!audioSession.has(m.sender)) {
         return m.reply(
-          `❌ Kamu belum menyimpan audio!\n\n` +
-            `*Step 1:* Reply Voice Note / File Audio dengan \`${p}${cmd}\` dulu.`
+          `❌ ¡No has guardado el audio!\n\n` +
+            `*Paso 1:* Responder nota de voz/archivo de audio con \`${p}${cmd}\` primero.`
         );
       }
 
@@ -298,7 +298,7 @@ async function handler(m, { sock }) {
         q,
         qMsg.stickerMessage ? "sticker" : "image"
       );
-      if (!rawImg) throw new Error("Gagal mengunduh gambar/stiker");
+      if (!rawImg) throw new Error("No se pudieron descargar imágenes/pegatinas");
 
       let stickerBuf = rawImg;
       if (!/webp/i.test(mime) && !qMsg.stickerMessage) {
@@ -332,7 +332,7 @@ async function handler(m, { sock }) {
         prepareWAMessageMedia(
           {
             audio: oggBuf,
-            mimetype: "audio/ogg; codecs=opus",
+            mimetype: "audio/ogg; códecs=opus",
             ptt: true,
           },
           uploadOpts
@@ -341,7 +341,7 @@ async function handler(m, { sock }) {
       ]);
 
       if (!stickerMedia?.stickerMessage) {
-        throw new Error("Gagal menyiapkan media stiker dari library.");
+        throw new Error("No se pudieron preparar los medios adhesivos de la biblioteca.");
       }
 
       // Patch BOTH encode & fromObject di semua instance proto.Message agar audioStickerMessage tidak terbuang oleh relayMessage
@@ -353,7 +353,7 @@ async function handler(m, { sock }) {
         isAnimated: animated,
         audioMessage: {
           ...audioMedia.audioMessage,
-          mimetype: "audio/ogg; codecs=opus",
+          mimetype: "audio/ogg; códecs=opus",
           seconds: duration,
           ptt: true,
           waveform: generateWaveform(oggBuf),
@@ -383,14 +383,14 @@ async function handler(m, { sock }) {
     }
 
     return m.reply(
-      `✗ Media tidak dikenali. Reply Voice Note/Audio (Step 1) atau Gambar/Stiker (Step 2).`
+      `✗ No se reconocen los medios. Responder nota de voz/audio (paso 1) o imagen/pegatina (paso 2).`
     );
   } catch (e) {
     console.error("[AUDIOSTICKER ERROR]", e);
     await sock
       .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
       .catch(() => {});
-    await m.reply(`✗ Gagal: ${e.message}`);
+    await m.reply(`✗ Error: ${e.message}`);
   }
 }
 

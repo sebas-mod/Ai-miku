@@ -107,17 +107,17 @@ async function generateLocalCallEdit(name, duration, avatarBuffer) {
 
 async function handler(m, { sock }) {
     if (!_tplExists(TEMPLATE)) {
-        return m.reply('⚠️ Template belum ada.\n\nLetakkan gambar template di:\n`assets/calledit-template.png`')
+        return m.reply('⚠️ Aún no hay plantillas.\n\nColoque la imagen de la plantilla en:\n`activos/llamado-plantilla.png`')
     }
     const text = String(m.text || '').trim()
 
     if (!text.includes('/')) {
         return m.reply(
             `⚠️ *CARA PAKAI*\n\n` +
-            `Kirim foto dengan caption:\n` +
-            `> \`${m.prefix}calledit <waktu>/<nama>\`\n\n` +
-            `Contoh: \`${m.prefix}calledit 0.09/Jack\`\n\n` +
-            `📷 Foto yang kamu kirim akan langsung ditempel ke lingkaran profil.`
+            `Envia una foto con el titulo:\n` +
+            `> \`${m.prefix}llamado <hora>/<nombre>\`\n\n` +
+            `Ejemplo: \`${m.prefix}lo llamó 0.09/Jack\`\n\n` +
+            `📷 La foto que envías se pegará inmediatamente en el círculo del perfil.`
         )
     }
 
@@ -125,16 +125,16 @@ async function handler(m, { sock }) {
     const waktu = rawWaktu.trim()
     const nama = nameParts.join('/').trim()
 
-    if (!waktu) return m.reply('❌ Waktu tidak boleh kosong!')
-    if (!nama) return m.reply('❌ Nama tidak boleh kosong!')
-    if (nama.length > 60) return m.reply('❌ Nama terlalu panjang. Maksimal 60 karakter.')
+    if (!waktu) return m.reply('❌ ¡El tiempo no puede estar vacío!')
+    if (!nama) return m.reply('❌ ¡El nombre no puede estar vacío!')
+    if (nama.length > 60) return m.reply('❌ El nombre es demasiado largo. Máximo 60 caracteres.')
 
     const imageSource = m.isImage ? m : (m.quoted?.isImage ? m.quoted : null)
     if (!imageSource?.download) {
         return m.reply(
-            `❌ Foto wajib dikirim.\n\n` +
-            `Kirim foto + caption \`${m.prefix}calledit ${waktu}/${nama}\` ` +
-            `atau reply foto lalu kirim perintah tersebut.`
+            `❌Hay que enviar fotos.\n\n` +
+            `Enviar foto + pie de foto \`${m.prefix}lo llamó ${waktu}/${nama}\` ` +
+            `o responder a la foto y luego enviar el pedido.`
         )
     }
 
@@ -143,7 +143,7 @@ async function handler(m, { sock }) {
     try {
         const imageBuffer = await imageSource.download()
         if (!Buffer.isBuffer(imageBuffer) || imageBuffer.length === 0) {
-            throw new Error('Gagal mengunduh gambar')
+            throw new Error('No se pudo descargar la imagen')
         }
 
         const result = await generateLocalCallEdit(nama, waktu, imageBuffer)

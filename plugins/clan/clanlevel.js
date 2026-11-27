@@ -66,7 +66,7 @@ const getDatabase = MikuRuntime.getDatabase;
       }
 
       if (!targetClan) {
-          return m.reply(`❌ Kamu belum punya clan atau clan tidak ditemukan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌ ¡Aún no tienes un clan o no se puede encontrar tu clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const exp = targetClan.exp || 0
@@ -77,7 +77,7 @@ const getDatabase = MikuRuntime.getDatabase;
 
       let txt = `${badge} *ᴄʟᴀɴ ʟᴇᴠᴇʟ*\n\n`
       txt += `╭┈┈⬡「 📊 *ꜱᴛᴀᴛꜱ* 」\n`
-      txt += `┃ 📛 Nama: *${targetClan.name}*\n`
+      txt += `┃ 📛 Nombre: *${targetClan.name}*\n`
       txt += `┃ 🏆 Level: *${level}* ${badge}\n`
       txt += `┃ 📈 XP: *${exp.toLocaleString('id-ID')}* / ${nextLevelExp.toLocaleString('id-ID')}\n`
       txt += `┃ 📊 Progress: [${progressBar}] ${progressPercent.toFixed(1)}%\n`

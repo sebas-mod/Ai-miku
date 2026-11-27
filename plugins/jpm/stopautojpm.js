@@ -27,7 +27,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { reply }) {
-      if (!jpmStopJob('autoJpm')) return reply('❌ Auto JPM tidak sedang berjalan.')
+      if (!jpmStopJob('autoJpm')) return reply('❌ Auto JPM no está funcionando.')
       return reply('*▢ AUTO JPM*\n• Status : Dihentikan')
   }
 

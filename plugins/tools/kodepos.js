@@ -294,7 +294,7 @@ const pluginConfig = {
               teks += `.kodepos ${result.regency.name.replace(
                 /^(Kabupaten|Kota)\s+/i,
                 ''
-            )} kelumpang hulu`
+            )} lodo aguas arriba`
 
               return reply(teks)
           }

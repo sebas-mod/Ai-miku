@@ -152,7 +152,7 @@ const { promisify } = (await import('node:util'))
               );
 
               if (duration > 120) {
-                  return reply(`❌ Durasi video terlalu panjang (${formatDuration(duration)})!\nMaksimal durasi yang diizinkan adalah 120 detik (2 menit).`);
+                  return reply(`❌ La duración del vídeo es demasiado larga (${formatDuration(duration)})!\nLa duración máxima permitida es de 120 segundos (2 minutos).`);
               }
           } catch (e) {
               console.warn('[STABILIZE PROBE WARN]', e?.message || e);
@@ -168,7 +168,7 @@ const { promisify } = (await import('node:util'))
           ], { maxBuffer: 10 * 1024 * 1024 });
 
           if (!fs.existsSync(trfFile)) {
-              throw new Error('Gagal menganalisis guncangan video (Pass 1).');
+              throw new Error('No se pudo analizar la vibración del vídeo (Pase 1).');
           }
 
           const transformFilter = isTripod
@@ -198,14 +198,14 @@ const { promisify } = (await import('node:util'))
           const sizeAfter = formatBytes(outBuffer.length);
           const durText = duration > 0 ? ` (${duration.toFixed(1)}s)` : '';
 
-          const caption = `🎬 *VIDEO STABILIZER SUCCESS*\n\n` +
-              `• ⚙️ *Mode:* \`${presetName}\`\n` +
+          const caption = `🎬 *ÉXITO DEL ESTABILIZADOR DE VIDEO*\n\n` +
+              `• ⚙️ *Modo:* \`${presetName}\`\n` +
               `• 🔄 *Smoothing:* \`${isTripod ? 'Tripod' : smoothing}\`\n` +
               `• 📐 *Zoom Pangkas:* \`${zoom}%\`\n` +
               `• ⏱️ *Durasi:* \`${formatDuration(duration)}${durText}\`\n` +
-              `• 📦 *Ukuran:* \`${sizeBefore} ➔ ${sizeAfter}\`\n` +
+              `• 📦 *Tamaño:* \`${sizeBefore} ➔ ${sizeAfter}\`\n` +
               `• 🛠️ *Metode:* \`Natural Gaussian (No Distortion)\`\n\n` +
-              `_Video lebih stabil dan bebas dari efek goyang mabuk/zoom aneh!_ 🌿`;
+              `_¡El vídeo es más estable y está libre de extraños efectos de vibración/zoom!_ 🌿`;
 
           await client.sendMessage(
               m.chat,
@@ -218,7 +218,7 @@ const { promisify } = (await import('node:util'))
           );
       } catch (err) {
           console.error('[STABILIZE ERROR]', err);
-          reply(`❌ Gagal menstabilkan video: ${err?.message || err}`);
+          reply(`❌ No se pudo estabilizar el vídeo: ${err?.message || err}`);
       } finally {
           const cleanup = async (filePath) => {
               if (filePath && fs.existsSync(filePath)) {

@@ -167,10 +167,10 @@ import { promisify } from 'node:util'
         try {
           await runFfmpeg(tmpIn, tmpOut, chain, meta.audio)
           if (fs.existsSync(tmpOut) && fs.statSync(tmpOut).size > 1024) { lastErr = null; break }
-          throw new Error('Hasil video kosong.')
+          throw new Error('El vídeo resultante está vacío.')
         } catch (e) {
           lastErr = e
-          console.warn(`[HDVIDEO] filter #${i + 1} gagal:`, String(e?.stderr || e?.message || e).slice(0, 200))
+          console.warn(`[HDVIDEO] filtro #${i + 1} fallar:`, String(e?.stderr || e?.message || e).slice(0, 200))
           await fs.promises.unlink(tmpOut).catch(() => null)
         }
       }
@@ -181,11 +181,11 @@ import { promisify } from 'node:util'
       const took = ((Date.now() - started) / 1000).toFixed(1)
 
       const caption =
-        `🎞️ *HD VIDEO*\n\n` +
+        `🎞️ *VÍDEO HD*\n\n` +
         `• 📐 *Resolusi:* \`${meta.width}x${meta.height} ➔ ${out.width}x${out.height}\`\n` +
         `• ⏱️ *Durasi:* \`${formatDuration(out.duration)}\`${out.fps ? `  • 🎬 *FPS:* \`${out.fps}\`` : ''}\n` +
-        `• 📦 *Ukuran:* \`${formatBytes(media.length)} ➔ ${formatBytes(outBuffer.length)}\`\n` +
-        `• ⚙️ *Proses:* \`${took}s\`` +
+        `• 📦 *Tamaño:* \`${formatBytes(media.length)} ➔ ${formatBytes(outBuffer.length)}\`\n` +
+        `• ⚙️ *Proceso:* \`${took}s\`` +
         (t.scaled ? '' : `\n\n_El vídeo ya es Full HD o más, así que solo se enfoca sin ampliarlo._`)
 
       if (outBuffer.length > DOC_THRESHOLD) {
@@ -200,7 +200,7 @@ import { promisify } from 'node:util'
       return await client.sendMessage(m.chat, { video: outBuffer, mimetype: 'video/mp4', caption }, { quoted: m })
     } catch (err) {
       console.error('[HDVIDEO ERROR]', err)
-      return reply(`❌ Gagal memproses video: ${err?.message || err}`)
+      return reply(`❌ No se pudo procesar el vídeo: ${err?.message || err}`)
     } finally {
       busy = false
       await fs.promises.unlink(tmpIn).catch(() => null)

@@ -31,26 +31,26 @@ const getDatabase = MikuRuntime.getDatabase;
       const db = getDatabase()
       const user = db.getUser(m.sender)
 
-      if (!user?.clanId) return m.reply(`❌ Kamu belum punya clan`)
+      if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
       if (!db.db.data.clans) db.db.data.clans = {}
 
       const clan = db.db.data.clans[user.clanId]
-      if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
+      if (!clan) return m.reply(`❌ Clan no encontrado`)
 
       const target = m.mentionedJid?.[0] || m.quoted?.sender
       if (!target) {
           return m.reply(
               `📨 *CLAN INVITE*\n\n` +
-              `Tag atau reply user yang mau diundang\n\n` +
-              `Contoh: *.claninvite @user*`
+              `Etiqueta o responde al usuario que deseas invitar\n\n` +
+              `Ejemplo: *.claninvite @user*`
           )
       }
 
-      if (target === m.sender) return m.reply(`❌ Tidak bisa invite diri sendiri`)
+      if (target === m.sender) return m.reply(`❌ No puedes invitarte a ti mismo`)
 
       const targetUser = db.getUser(target)
-      if (targetUser?.clanId) return m.reply(`❌ User tersebut sudah punya clan`)
-      if (clan.members.length >= 50) return m.reply(`❌ Clan sudah penuh (50/50)`)
+      if (targetUser?.clanId) return m.reply(`❌ El usuario ya tiene un clan`)
+      if (clan.members.length >= 50) return m.reply(`❌ El clan está lleno (50/50)`)
 
       clan.members.push(target)
       db.setUser(target, { clanId: user.clanId })

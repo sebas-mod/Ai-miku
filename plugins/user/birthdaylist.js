@@ -50,9 +50,9 @@ async function handler(m, { sock }) {
 
     if (birthdays.length === 0) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴅᴀᴛᴀ*\n\n` +
-            `> Belum ada member yang set birthday\n\n` +
-            `> Gunakan: .setbirthday DD-MM`
+            `❌ *SIN DATOS*\n\n` +
+            `> Ningún miembro ha establecido cumpleaños todavía\n\n` +
+            `> Uso:.setbirthday DD-MM`
         )
     }
 
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
     }
 
     if (birthdays.length > 15) {
-        text += `┃ ... dan ${birthdays.length - 15} lainnya\n`
+        text += `┃ ... dan ${birthdays.length - 15} otro\n`
     }
 
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`

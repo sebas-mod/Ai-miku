@@ -37,11 +37,11 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
       const { interval, teks } = splitInterval(text)
-      if (!teks && !media) return example('5m pesan auto broadcast tag  (interval: 30s / 5m / 1h / 60000)')
-      if (interval < JPM_MIN_INTERVAL) return reply(`❌ Interval minimal ${JPM_MIN_INTERVAL / 1000} detik.`)
+      if (!teks && !media) return example('5m mensajes de etiquetas de transmisión automática (intervalo: 30s / 5m / 1h / 60000)')
+      if (interval < JPM_MIN_INTERVAL) return reply(`❌ Intervalo mínimo ${JPM_MIN_INTERVAL / 1000} segundo.`)
 
       const delay = jpmCfg().delayJpmTag
-      await reply(`*▢ AUTO JPM TAG AKTIF*\n• Interval : setiap ${interval / 1000} detik\n• Delay antar grup : ${delay}ms\n\nHentikan dengan *stopautojpmtag*`)
+      await reply(`*▢ AUTO JPM TAG AKTIF*\n• Intervalo: cada ${interval / 1000} segundo\n• Retraso entre grupos: ${delay}EM\n\nDetener con *stopautojpmtag*`)
 
       jpmStartJob('autoJpmTag', interval, async isStopped => {
           const groups = await jpmGroups(sock, { auto: true })

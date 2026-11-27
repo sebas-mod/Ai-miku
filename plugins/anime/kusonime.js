@@ -198,23 +198,23 @@ import * as cheerio from 'cheerio';
               `┃ ✦ *Cara Pakai*\n` +
               `┃\n` +
               `┃   ${m.prefix}kusonime latest\n` +
-              `┃   ${m.prefix}kusonime search <judul>\n` +
+              `┃   ${m.prefix}búsqueda de kusonime <título>\n` +
               `┃   ${m.prefix}kusonime genre <genre>\n` +
               `┃   ${m.prefix}kusonime detail <url>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}kusonime search naruto\n` +
               `┃   ${m.prefix}kusonime genre action\n` +
               `┃   ${m.prefix}kusonime detail https://kusonime.com/xxx\n` +
               `┃\n` +
-              `┃ 💗 *Ai Miku:* Mau cari anime apa darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿Qué anime estás buscando cariño~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           );
       }
 
       m.react('💕');
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi mencari anime darling~ tunggu sebentar yaa 🦋`);
+      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando anime cariño~ espera un minuto, vale 🦋`);
 
       try {
           let result;
@@ -223,7 +223,7 @@ import * as cheerio from 'cheerio';
               result = await kusonime.latest();
 
               if (!result || result.length === 0) {
-                  return m.reply(`💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Tidak ada anime terbaru darling~`);
+                  return m.reply(`💔 *NO ENCONTRADO*\n\n> No hay nuevos animes, cariño~`);
               }
 
               let txt = `💕 *ᴀɴɪᴍᴇ ᴛᴇʀʙᴀʀᴜ* 💕\n\n`;
@@ -239,15 +239,15 @@ import * as cheerio from 'cheerio';
               await m.reply(txt);
 
           } else if (action === 'search') {
-              if (!query) return m.reply(`❌ Masukkan judul anime yang mau dicari darling~`);
+              if (!query) return m.reply(`❌ Ingresa el título del anime que deseas buscar cariño~`);
 
               result = await kusonime.search(query);
 
               if (!result || result.length === 0) {
-                  return m.reply(`💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Anime *${query}* tidak ditemukan darling~`);
+                  return m.reply(`💔 *NO ENCONTRADO*\n\n> anime *${query}*no encontrado cariño~`);
               }
 
-              let txt = `💕 *ʜᴀꜱɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ* 💕\n\n> *${query}*\n\n`;
+              let txt = `💕 *RESULTADOS DE BÚSQUEDA* 💕\n\n> *${query}*\n\n`;
               for (let i = 0; i < Math.min(result.length, 10); i++) {
                   const anime = result[i];
                   txt += `╭━━━━━━━━━━━━━━━━━━━━━⬣\n`;
@@ -260,12 +260,12 @@ import * as cheerio from 'cheerio';
               await m.reply(txt);
 
           } else if (action === 'genre') {
-              if (!query) return m.reply(`❌ Masukkan genre yang mau dicari darling~`);
+              if (!query) return m.reply(`❌ Ingresa el género que deseas buscar cariño ~`);
 
               result = await kusonime.genre(query);
 
               if (!result || result.length === 0) {
-                  return m.reply(`💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Genre *${query}* tidak ditemukan darling~`);
+                  return m.reply(`💔 *NO ENCONTRADO*\n\n> Géneros *${query}*no encontrado cariño~`);
               }
 
               let txt = `💕 *ᴀɴɪᴍᴇ ɢᴇɴʀᴇ ${query.toUpperCase()}* 💕\n\n`;
@@ -320,7 +320,7 @@ import * as cheerio from 'cheerio';
 
               await m.reply(txt);
           } else {
-              return m.reply(`❌ Perintah tidak dikenal! Gunakan: latest, search, genre, atau detail`);
+              return m.reply(`❌ ¡Comando desconocido! Uso: último, búsqueda, género o detalles`);
           }
 
           m.react('✅');
@@ -331,7 +331,7 @@ import * as cheerio from 'cheerio';
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, cariño ~ 🥺`
           );
       }
   }

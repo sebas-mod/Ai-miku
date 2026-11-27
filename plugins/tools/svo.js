@@ -83,7 +83,7 @@ const pluginConfig = {
         { quoted: m.raw }
       )
     } catch (e) {
-      return m.reply(`Gagal mengirim media View Once: ${e.message || e}`)
+      return m.reply(`No se pudieron enviar los medios Ver una vez: ${e.message || e}`)
     }
   }
 

@@ -80,11 +80,11 @@ const getMedia = async (m) => downloadFromMsg(m)
       const url = String(text || '').trim().split(/\s+/)[0]
       if (/^https?:\/\//i.test(url)) {
           const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(60000) })
-          if (!res.ok) throw new Error(`Gagal mengunduh gambar (${res.status}).`)
+          if (!res.ok) throw new Error(`No se pudo descargar la imagen (${res.status}).`)
           const type = (res.headers.get('content-type') || '').split(';')[0]
           const ext = (new URL(url).pathname.split('.').pop() || '').toLowerCase()
           const mime = type.startsWith('image/') ? type : EXT_MIME[ext]
-          if (!mime) throw new Error('Link itu bukan gambar.')
+          if (!mime) throw new Error('El enlace no es una imagen.')
           const name = decodeURIComponent(new URL(url).pathname.split('/').pop() || '') || 'image.jpg'
           return { buffer: Buffer.from(await res.arrayBuffer()), mime, name }
       }
@@ -94,7 +94,7 @@ const getMedia = async (m) => downloadFromMsg(m)
   async function scanImage({ buffer, mime, name }) {
       const auth = await req(`${AKUNLABS}/api/scanread`)
       const token = auth.json?.tokens?.access_token
-      if (!token) throw new Error(`Gagal ambil token (status ${auth.status}).`)
+      if (!token) throw new Error(`No se pudo recuperar el token (estado ${auth.status}).`)
       const cookie = auth.json.cookies && typeof auth.json.cookies === 'object'
           ? Object.entries(auth.json.cookies).map(([k, v]) => `${k}=${v}`).join('; ')
           : ''
@@ -104,7 +104,7 @@ const getMedia = async (m) => downloadFromMsg(m)
           method: 'POST', headers: authz, cookie,
           body: { fileName: name, fileSize: buffer.length, contentType: mime }
       })
-      if (!presign.json?.uploadUrl || !presign.json?.fileUrl) throw new Error('Gagal mendapat URL upload dari ScanRead.')
+      if (!presign.json?.uploadUrl || !presign.json?.fileUrl) throw new Error('No se pudo obtener la carga URL desde ScanRead.')
 
       const up = await fetch(presign.json.uploadUrl, {
           method: 'PUT',
@@ -112,26 +112,26 @@ const getMedia = async (m) => downloadFromMsg(m)
           body: buffer,
           signal: AbortSignal.timeout(60000)
       })
-      if (!up.ok) throw new Error(`Upload gambar gagal (${up.status}).`)
+      if (!up.ok) throw new Error(`Error al cargar la imagen (${up.status}).`)
 
       const scan = await req(`${SCANREAD}/api/scan`, {
           method: 'POST', headers: authz, cookie,
           body: { fileUrl: presign.json.fileUrl, fileName: name, fileType: mime, pageCount: 1, targetLanguage: 'auto', outputFormat: 'markdown' }
       })
-      if (!scan.json?.taskId) throw new Error('Gagal memulai proses scan.')
+      if (!scan.json?.taskId) throw new Error('No se pudo iniciar el proceso de escaneo.')
 
       const start = Date.now()
       while (Date.now() - start < MAX_TIMEOUT) {
           const st = await req(`${SCANREAD}/api/scan/${scan.json.taskId}`, { headers: authz, cookie })
           if (st.json?.status === 'done' && st.json?.fileResult) {
               const out = await fetch(st.json.fileResult, { signal: AbortSignal.timeout(60000) })
-              if (!out.ok) throw new Error(`Gagal mengambil hasil (${out.status}).`)
+              if (!out.ok) throw new Error(`No se pudieron recuperar los resultados (${out.status}).`)
               return (await out.text()).trim()
           }
-          if (st.json?.status === 'failed' || st.json?.errorMessage) throw new Error(`OCR gagal: ${st.json.errorMessage || 'tidak diketahui'}`)
+          if (st.json?.status === 'failed' || st.json?.errorMessage) throw new Error(`OCR falló: ${st.json.errorMessage || 'tidak diketahui'}`)
           await sleep(POLL_INTERVAL)
       }
-      throw new Error('Waktu habis, proses OCR belum selesai.')
+      throw new Error('Tiempo de espera, el proceso OCR no se ha completado.')
   }
 
   async function handler(m, { text, usedPrefix = ".", prefix, command = "imgtoteks" }) {
@@ -140,15 +140,15 @@ const getMedia = async (m) => downloadFromMsg(m)
       try {
           const img = await getImage(m, text)
           if (!img) {
-              return reply(`Kirim atau reply *gambar* dengan caption ${prefix || '.'}${command}\nAtau pakai link: ${prefix || '.'}${command} https://contoh.com/gambar.jpg`)
+              return reply(`Enviar o responder a *imagen* con titulo ${prefix || '.'}${command}\nO utilice el enlace: ${prefix || '.'}${command} https://contoh.com/gambar.jpg`)
           }
-          if (img.buffer.length > MAX_SIZE) return reply('Gambar terlalu besar (maks 10 MB).')
+          if (img.buffer.length > MAX_SIZE) return reply('La imagen es demasiado grande (máx. 10 MB).')
 
-          await reply('⏳ Membaca teks dari gambar, tunggu sebentar...')
+          await reply('⏳ Leyendo texto de la imagen, espera un momento...')
           const result = await scanImage(img)
-          if (!result) return reply('Tidak ada teks yang terbaca di gambar itu.')
+          if (!result) return reply('No hay texto legible en la imagen.')
 
-          return reply(`*IMG TO TEKS*\n\n${result.length > 60000 ? result.slice(0, 60000) + '\n\n_...dipotong_' : result}`)
+          return reply(`*IMG AL TEXTO*\n\n${result.length > 60000 ? result.slice(0, 60000) + '\n\n_...dipotong_' : result}`)
       } catch (e) {
           return reply(`[ ! ] ${e.message || 'Terjadi kesalahan.'}`)
       }

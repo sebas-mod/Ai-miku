@@ -77,9 +77,9 @@ const pluginConfig = {
       if (!text) {
           return reply(
               `🔍 *Google Image Search*\n\n` +
-              `Ketik kata kunci gambar yang ingin dicari, sayang~\n\n` +
-              `*Contoh:* \`${usedPrefix + command} kucing persia\`\n` +
-              `*Contoh:* \`${usedPrefix + command} cyber city wallpaper\``
+              `Escribe las palabras clave de la imagen que deseas buscar, cariño~\n\n` +
+              `*Ejemplo:* \`${usedPrefix + command} Gato persa\`\n` +
+              `*Ejemplo:* \`${usedPrefix + command} fondo de pantalla de la ciudad cibernética\``
           );
       }
 
@@ -90,19 +90,19 @@ const pluginConfig = {
 
           if (!results || results.length === 0) {
               await client.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-              return reply(`❌ Gambar tidak ditemukan untuk pencarian *"${text}"*, coba kata kunci lain ya sayang~`);
+              return reply(`❌ Imagen no encontrada para la búsqueda *"${text}"*, prueba con otra palabra clave, querida ~`);
           }
 
           const firstItem = results[0];
           await client.sendMessage(m.chat, {
               image: { url: firstItem.url },
-              caption: `*Google Image Search*\n\n🔍 *Query:* ${text}\n🖼️ *Judul:* ${firstItem.title}\n🌐 *Sumber:* ${firstItem.source}`
+              caption: `*Google Image Search*\n\n🔍 *Query:* ${text}\n🖼️ *Título:* ${firstItem.title}\n🌐 *Sumber:* ${firstItem.source}`
           }, { quoted: m });
           await client.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
       } catch (err) {
           console.error('[GOOGLE IMAGE SEARCH ERROR]:', err);
           await client.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-          return reply(`❌ Terjadi kesalahan saat mencari gambar: ${err.message}`);
+          return reply(`❌ Se produjo un error al buscar imágenes: ${err.message}`);
       }
   };
 

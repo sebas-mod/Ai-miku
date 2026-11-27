@@ -31,7 +31,7 @@ const pluginConfig = {
           const t = await pickTarget(sock, String(text || ''), p)
           assertCanPost(t)
           need(sock, 'newsletterUpdateDescription')
-          if (!t.rest) return reply(`Isi deskripsi baru.\nContoh: ${p}chdesc Pembaruan fitur bot`)
+          if (!t.rest) return reply(`Complete la nueva descripción.\nEjemplo: ${p}chdesc Actualización de funciones bot`)
           if (t.rest.length > 500) return reply('Deskripsi maksimal 500 karakter.')
           await sock.newsletterUpdateDescription(t.id, t.rest)
           return reply(`✅ Deskripsi saluran *${t.name}* diperbarui.`)

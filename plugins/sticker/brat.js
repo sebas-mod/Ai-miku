@@ -32,7 +32,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
 
   const BRAT_SECTIONS = [
     {
-      title: "Brat Gambar",
+      title: "Imagen brat",
       rows: [
         { command: "bratimg", title: "Brat Default", description: "Sticker brat versi biasa" },
         { command: "bratgreen", title: "Brat Green", description: "Variant brat warna hijau" },
@@ -41,12 +41,12 @@ const chatIsIos = MikuRuntime.chatIsIos;
       ],
     },
     {
-      title: "Brat Video",
+      title: "Vídeo de brat",
       rows: [
-        { command: "bratvid", title: "Brat Video", description: "Sticker brat animated" },
-        { command: "bratvid2", title: "Brat Video V2", description: "Sticker brat video v2" },
-        { command: "bratgojovid", title: "Brat Gojo Video", description: "Variant brat Gojo video" },
-        { command: "bratvermeilvid", title: "Brat Vermeil Video", description: "Variant brat Vermeil video" },
+        { command: "bratvid", title: "Vídeo de brat", description: "Sticker brat animated" },
+        { command: "bratvid2", title: "Vídeo de brat V2", description: "Sticker brat video v2" },
+        { command: "bratgojovid", title: "Vídeo de Brat Gojo", description: "Variant brat Gojo video" },
+        { command: "bratvermeilvid", title: "Vídeo de Brat Vermeil", description: "Variant brat Vermeil video" },
       ],
     },
     {
@@ -82,9 +82,9 @@ const chatIsIos = MikuRuntime.chatIsIos;
       .join("\n");
 
     return (
-      "🌿 *kamu mau buat brat yak, silahkan pilih variant brat di bawah*\n\n" +
+      "🌿 *si quieres hacer brat, selecciona la variante de brat a continuación*\n\n" +
       list +
-      `\n\nContoh: ${m.prefix}bratimg ${text || "Hai semua"}`
+      `\n\nEjemplo: ${m.prefix}bratimg ${text || "Hai semua"}`
     );
   }
 
@@ -96,10 +96,10 @@ const chatIsIos = MikuRuntime.chatIsIos;
     const arg = text ? ` ${text}` : "";
     const logo = getAssetBuffer("brat");
     const body =
-      "🌿 *Mau pakai fitur brat yang mana?*\n\n" +
+      "🌿 *¿Qué función de brat quieres usar?*\n\n" +
       (text
-        ? `Teks kamu: _${text}_\n\nPilih variant lewat tombol di bawah 👇`
-        : `Kamu belum menulis teks. Ketik *${p}brat <teks>* lalu pilih variant, atau pilih variant lalu tulis teksnya.\n\nContoh: ${p}brat Hai semua`);
+        ? `Tu texto: _${text}_\n\nSeleccione una variante a través del botón a continuación 👇`
+        : `Aún no has escrito el texto. Tipo *${p}brat <text>* luego seleccione la variante, o seleccione la variante y luego escriba el texto.\n\nEjemplo: ${p}brat Hola a todos`);
     const footer = global.namebot || "Brat Maker";
 
     try {
@@ -116,7 +116,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
             buttons: [
               { type: "reply", text: "Brat Default", id: `${p}bratimg${arg}` },
               { type: "reply", text: "Brat Green", id: `${p}bratgreen${arg}` },
-              { type: "reply", text: "Brat Video", id: `${p}bratvid${arg}` },
+              { type: "reply", text: "Vídeo de brat", id: `${p}bratvid${arg}` },
             ],
           },
           { quoted: m },
@@ -149,7 +149,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
         { quoted: m },
       );
     } catch (err) {
-      console.error("[brat] tombol gagal, kirim teks biasa:", err.stack || err);
+      console.error("El botón [brat] falló, envía texto sin formato:", err.stack || err);
       const caption = bratMenuText(m, text);
       if (logo) return sock.sendMessage(m.chat, { image: logo, caption, mentions: [m.sender] }, { quoted: m });
       return sock.sendMessage(m.chat, { text: caption, mentions: [m.sender] }, { quoted: m });
@@ -167,7 +167,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
 
     if (!text) {
       return m.reply(
-        `🖼️ *ʙʀᴀᴛ ɪᴍᴀɢᴇ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratimg Hai semua\``,
+        `🖼️ *BRAT IMAGE*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratimg Hola a todos\``,
       );
     }
 

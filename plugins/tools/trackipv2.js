@@ -53,34 +53,34 @@ const pluginConfig = {
           let formattedData = `
   🔍 *\`INFORMASI IP: ${ipTarget}\`*
 
-  📟 *IP Address : ${safe(ipData.ip)}*
-  📞 *Status : ${ipData.success ? 'Berhasil' : 'Gagal'}*
-  📡 *Tipe IP : ${safe(ipData.type)}*
-  📖 *Kontinen : ${safe(ipData.continent)} ${safe(ipData.continent_code)}*
-  📀 *Negara : ${safe(ipData.country)} ${safe(ipData.country_code)}*
-  📂 *Region : ${safe(ipData.region)} ${safe(ipData.region_code)}*
-  📌 *Kota : ${safe(ipData.city)}*
+  📟 *IP Dirección: ${safe(ipData.ip)}*
+  📞 *Estado: ${ipData.success ? 'Berhasil' : 'Gagal'}*
+  📡 *Tipo IP: ${safe(ipData.type)}*
+  📖 *Continente: ${safe(ipData.continent)} ${safe(ipData.continent_code)}*
+  📀 *País: ${safe(ipData.country)} ${safe(ipData.country_code)}*
+  📂 *Región: ${safe(ipData.region)} ${safe(ipData.region_code)}*
+  📌 *Ciudad: ${safe(ipData.city)}*
 
-  📍 *Koordinat*
-  • Latitude : ${safe(ipData.latitude)}
-  • Longitude : ${safe(ipData.longitude)}
+  📍 *Coordenadas*
+  • Latitud: ${safe(ipData.latitude)}
+  • Longitud: ${safe(ipData.longitude)}
 
-  📬 *Uni Eropa : ${ipData.is_eu ? 'Ya' : 'Tidak'}*
-  📎 *Kode Pos : ${safe(ipData.postal)}*
-  ☎️ *Kode Panggilan : +${safe(ipData.calling_code)}*
-  🏷️ *Ibu Kota : ${safe(ipData.capital)}*
+  📬 *Unión Europea: ${ipData.is_eu ? 'Ya' : 'Tidak'}*
+  📎 *Código Postal: ${safe(ipData.postal)}*
+  ☎️ *Código de llamada: +${safe(ipData.calling_code)}*
+  🏷️ *Ciudad Capital: ${safe(ipData.capital)}*
 
-  🧮 *\`Koneksi\`*
-  💡 ASN : ${safe(ipData.connection?.asn)}
-  🖥️ Org : ${safe(ipData.connection?.org)}
-  📡 ISP : ${safe(ipData.connection?.isp)}
-  💻 Domain : ${safe(ipData.connection?.domain)}
+  🧮 *\`Conexión\`*
+  💡 ASN: ${safe(ipData.connection?.asn)}
+  🖥️ Organización: ${safe(ipData.connection?.org)}
+  📡 ISP: ${safe(ipData.connection?.isp)}
+  💻 Dominios: ${safe(ipData.connection?.domain)}
 
-  ⏰ *\`Timezone\`*
-  ⌨️ ID : ${safe(ipData.timezone?.id)}
-  📅 Waktu : ${safe(ipData.timezone?.current_time)}
+  ⏰ *\`Zona horaria\`*
+  ⌨️ ID: ${safe(ipData.timezone?.id)}
+  📅 Hora: ${safe(ipData.timezone?.current_time)}
 
-  📖 *Map :* ${mapLink}
+  📖 *Mapa:* ${mapLink}
   `.trim();
 
           if (ipData.latitude && ipData.longitude) {

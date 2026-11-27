@@ -35,13 +35,13 @@ const pluginConfig = {
 ${prefix}${command} https://github.com
 
 🎥 Grabar vídeo:
-${prefix}${command} video https://github.com
+${prefix}${command} vídeo https://github.com
 
 ⚙️ Opciones:
-desktop_fhd / desktop / tablet / mobile
+escritorio_fhd / escritorio / tableta / móvil
 
 Ejemplo:
-${prefix}${command} video https://github.com desktop_fhd 8000`)
+${prefix}${command} vídeo https://github.com escritorio_fhd 8000`)
       }
 
       try {

@@ -33,13 +33,13 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
       const pesan = text || m.quoted?.text || ''
-      if (!pesan && !media) return example('pesan broadcast  (atau reply foto/video + caption)')
-      if (global.__jpmBasicRunning) return reply('❌ JPM Basic sedang berjalan. Ketik *stopjpmbasic* untuk menghentikan.')
+      if (!pesan && !media) return example('mensaje del transmisor (o contestador foto/video + titulo)')
+      if (global.__jpmBasicRunning) return reply('❌ JPM Básico se está ejecutando. Escriba *stopjpmbasic* para detener.')
 
       const groups = await jpmGroups(sock)
-      if (!groups.length) return reply('❌ Tidak ada grup yang bisa dituju.')
+      if (!groups.length) return reply('❌ No hay grupos a los que acudir.')
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM BASIC*\n• Target : ${groups.length} grup\n• Tipe : ${media ? 'Media + Teks' : 'Teks'}\n• Delay : ${delay}ms\n\nHentikan dengan *stopjpmbasic*`)
+      await reply(`*▢ JPM BASIC*\n• Objetivos: ${groups.length} grupo\n• Tipo: ${media ? 'Media + Teks' : 'Teks'}\n• Demora: ${delay}EM\n\nPara con *stopjpmbasic*`)
 
       global.__jpmBasicRunning = true
       global.__jpmBasicStop = false
@@ -51,7 +51,7 @@ const pluginConfig = {
           global.__jpmBasicRunning = false
           global.__jpmBasicStop = false
       }
-      return reply(`*▢ JPM BASIC SELESAI*\n• Berhasil : ${res.ok} grup\n• Gagal : ${res.fail} grup`)
+      return reply(`*▢ JPM BASIC SELESAI*\n• Tener éxito: ${res.ok} grupo\n• Fallar: ${res.fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

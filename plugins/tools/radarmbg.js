@@ -34,12 +34,12 @@ const pluginConfig = {
   const MAX_ROWS = 40
 
   const PORSI_MAP = {
-      small: 'Porsi Kecil (TK/PAUD & SD kelas 1–3)',
-      large: 'Porsi Besar (SD kelas 4–6, SMP, SMA/SMK, guru & tenaga pendidik)',
-      balita: 'Balita (usia 6–59 bulan)',
+      small: 'Porciones pequeñas (TK/PAUD y SD clases 1–3)',
+      large: 'Porción grande (SD clases 4–6, SMP, SMA/SMK, profesores y personal educativo)',
+      balita: 'Niños pequeños (entre 6 y 59 meses)',
       pregnant: 'Ibu Hamil',
       nursing: 'Ibu Menyusui',
-      sample: 'Sample Makanan'
+      sample: 'Muestras de alimentos'
   }
 
   async function launchBrowser() {
@@ -115,7 +115,7 @@ const pluginConfig = {
           }, url)
           if (r?.ok) return r.data
           try { fs.unlinkSync(SESSION_FILE) } catch {}
-          throw new Error('Portal BGN menolak permintaan (mungkin verifikasi Cloudflare). Coba lagi nanti.')
+          throw new Error('El portal BGN rechazó la solicitud (posiblemente verificación de Cloudflare). Vuelve a intentarlo más tarde.')
       } finally {
           await browser.close().catch(() => {})
       }
@@ -156,7 +156,7 @@ const pluginConfig = {
           run: async (k) => {
               const rows = (await api(`/api/region/v1/kelurahan/dagri/${encodeURIComponent(k)}`))?.data || []
               if (!rows.length) return `No hay barrios para el código ${k}.`
-              return list(`🏡 *BARRIOS* (${rows.length})`, rows, x => `• *${x.kode_kel_dagri}* — ${x.kelurahan}`) + `\n\nContinuar: .radarmbg sekolah <código>`
+              return list(`🏡 *BARRIOS* (${rows.length})`, rows, x => `• *${x.kode_kel_dagri}* — ${x.kelurahan}`) + `\n\nContinuar:.radarmbg colegio <código>`
           }
       },
       sekolah: {
@@ -204,7 +204,7 @@ const pluginConfig = {
               `${prefix + command} kabko <kodeProv>  (31)\n` +
               `${prefix + command} kec <kodeKabko>  (31.71)\n` +
               `${prefix + command} kel <kodeKec>  (31.71.01)\n` +
-              `${prefix + command} sekolah <kodeKel>  (31.71.01.1001)\n` +
+              `${prefix + command} escuela <Excode> (31.71.01.1001)\n` +
               `${prefix + command} menu <idSekolah>  (SD-10023)\n\n` +
               `_Navega de la provincia al colegio y consulta el menú y los valores nutricionales de hoy._`
           )

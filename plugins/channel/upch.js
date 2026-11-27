@@ -38,7 +38,7 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, prefix, reply }) {
       const target = global.idch || getCurrent()?.id
-      if (!target) return reply(`Tujuan belum diatur. Isi global.idch di config.js atau pakai ${prefix || '.'}setch <link saluran>.`)
+      if (!target) return reply(`El destino no ha sido fijado. Complete global.idch en config.js o úselo ${prefix || '.'}establecer <enlace de canal>.`)
 
       const { prepareWAMessageMedia, generateMessageIDV2, proto } = await import('@rexxhayanasi/elaina-baileys')
       let node
@@ -59,19 +59,19 @@ const pluginConfig = {
               } else if (mime.startsWith('audio')) {
                   const waveform = Buffer.from(Array.from({ length: 100 }, () => Math.floor(Math.random() * 100)))
                   const msg = await prepareWAMessageMedia(
-                      { audio: buffer, mimetype: 'audio/ogg; codecs=opus', ptt: true, waveform },
+                      { audio: buffer, mimetype: 'audio/ogg; códecs=opus', ptt: true, waveform },
                       { upload: sock.waUploadToServer, jid: '@newsletter' }
                   )
                   node = buildNode(target, generateMessageIDV2(), 'audio', proto.Message.encode(msg).finish())
               } else {
                   const txt = text || m.quoted.text || ''
-                  if (!txt) return reply('Kirim teks, atau reply ke foto/video/audio (bisa dengan caption)')
+                  if (!txt) return reply('Enviar texto o responder fotos/videos/audio (puede ser con subtítulos)')
                   node = buildNode(target, generateMessageIDV2(), 'text', proto.Message.encode({ extendedTextMessage: { text: txt } }).finish())
               }
           } else if (text) {
               node = buildNode(target, generateMessageIDV2(), 'text', proto.Message.encode({ extendedTextMessage: { text } }).finish())
           } else {
-              return reply('Kirim teks, atau reply ke foto/video/audio (bisa dengan caption)')
+              return reply('Enviar texto o responder fotos/videos/audio (puede ser con subtítulos)')
           }
 
           await sock.query(node)
@@ -84,7 +84,7 @@ const pluginConfig = {
           return reply(`*UP CHANNEL SUKSES!*${url ? `\n\n> cek di: ${url}` : ''}`)
       } catch (e) {
           console.error('[UPCH]', e)
-          return reply(`Gagal upload ke saluran: ${e.message || e}`)
+          return reply(`No se pudo subir al canal: ${e.message || e}`)
       }
   }
 

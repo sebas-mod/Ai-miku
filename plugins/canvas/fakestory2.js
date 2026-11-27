@@ -177,7 +177,7 @@ async function getAvatarBuffer(sock, jid) {
   if (Buffer.isBuffer(DEFAULT_PP_PATH) && DEFAULT_PP_PATH.length) {
     return DEFAULT_PP_PATH;
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No puedo tomar foto de perfil");
 }
 async function handler(m, { sock }) {
   const username = m.args.join(" ").trim() || m.pushName || "User";
@@ -189,9 +189,9 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 2*\n\n` +
-          `> Reply gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory2 <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory2 Misaki\``,
+          `> ¡Responder imagen!\n\n` +
+          `> Formato: \`${m.prefix}fakestory2 <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory2 Misaki\``,
       );
     }
     let imageBuffer;
@@ -202,7 +202,7 @@ async function handler(m, { sock }) {
     }
     if (!imageBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+      return m.reply(`❌ *FALLÓ*\n\n> No puedo descargar imágenes`);
     }
     const resultBuffer = await createFakeStory(
       username,

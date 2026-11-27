@@ -25,26 +25,26 @@ const pluginConfig = {
 }
 
   async function handler(m, { text, usedPrefix, command }) {
-      if (!text) return m.reply(`🌸 *ʙᴀsᴇ64 ᴇɴᴄᴏᴅᴇʀ & ᴅᴇᴄᴏᴅᴇʀ* 🌸\n\n✨ *ᴄᴏɴᴛᴏʜ:*\n• ${usedPrefix + command} enc halo\n• ${usedPrefix + command} dec aGFsbw==`);
+      if (!text) return m.reply(`🌸 *BAsE64 ENCODER & DECODER* 🌸\n\n✨ *EJEMPLO:*\n• ${usedPrefix + command} hola\n• ${usedPrefix + command} diciembre aGFsbw==`);
 
       const args = text.trim().split(/\s+/);
       const type = args[0]?.toLowerCase();
       const input = args.slice(1).join(' ');
 
       if (!['enc', 'dec', 'encode', 'decode'].includes(type) || !input) {
-          return m.reply(`*ғᴏʀᴍᴀᴛ ᴘᴇɴɢɢᴜɴᴀᴀɴ:*\n• ${usedPrefix + command} enc <teks>\n• ${usedPrefix + command} dec <base64>`);
+          return m.reply(`*ғᴏʀᴍᴀᴛ ᴘᴇɴɢɢᴜɴᴀᴀɴ:*\n• ${usedPrefix + command} enc <texto>\n• ${usedPrefix + command} dec <base64>`);
       }
 
       try {
           if (type === 'enc' || type === 'encode') {
               const encoded = Buffer.from(input, 'utf-8').toString('base64');
-              await m.reply(`*ʜᴀsɪʟ ʙᴀsᴇ64 ᴇɴᴄᴏᴅᴇ*\n\n` + '```' + encoded + '```');
+              await m.reply(`*RESULTADO DE CODIFICACIÓN BASE64*\n\n` + '```' + encoded + '```');
           } else {
               const decoded = Buffer.from(input, 'base64').toString('utf-8');
-              await m.reply(`*ʜᴀsɪʟ ʙᴀsᴇ64 ᴅᴇᴄᴏᴅᴇ*\n\n` + '```' + decoded + '```');
+              await m.reply(`*RESULTADO DE DECODIFICACIÓN BASE64*\n\n` + '```' + decoded + '```');
           }
       } catch (e) {
-          m.reply(`❌ *ᴀᴅᴀ ʏᴀɴɢ ᴇʀʀᴏʀ ɴɪʜ 🥺:* ${e.message}`);
+          m.reply(`❌ *AQUÍ HAY UN ERROR 🥺:* ${e.message}`);
       }
   };
 

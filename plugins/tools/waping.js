@@ -112,7 +112,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
               await dns.lookup('web.whatsapp.com')
               dnsText = `${(performance.now() - dStart).toFixed(1)} ms`
           } catch {
-              dnsText = '❌ Gagal'
+              dnsText = '❌ Fallido'
           }
 
           const allServers = serverList.flatMap(c => c.servers)
@@ -129,7 +129,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
 
           let caption = `╭─── 🌐 *WHATSAPP NETWORK BENCHMARK* ───╮\n`
           caption += `│ 📡 *DNS Lookup :* \`${dnsText}\`\n`
-          caption += `│ 🕒 *Waktu Uji  :* \`${waktu} WIB\`\n`
+          caption += `│ 🕒 *Tiempo de prueba:* \`${waktu} WIB\`\n`
           caption += `╰────────────────────────────────────────╯\n\n`
 
           for (const group of serverList) {
@@ -149,7 +149,7 @@ const pingHost = async (host, port = 443, timeout = 4000) => {
           const avg = activeCount > 0 ? totalLatency / activeCount : 0
 
           caption += `╭─── 📊 *STATUS KONEKSI SERVER* ───╮\n`
-          caption += `│ • Server Aktif : *${activeCount}/${allServers.length} Server*\n`
+          caption += `│ • Servidor Activo: *${activeCount}/${allServers.length} Servidores*\n`
           caption += `│ • Rata-rata    : *${activeCount > 0 ? `${avg.toFixed(1)} ms` : '-'}*\n`
           caption += `│ • Kualitas     : ${getQuality(avg, activeCount, allServers.length)}\n`
           caption += `╰──────────────────────────────────╯\n`

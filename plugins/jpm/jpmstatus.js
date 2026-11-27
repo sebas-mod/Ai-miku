@@ -28,7 +28,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const onoff = v => (v ? '🟢 Aktif' : '🔴 Nonaktif')
+  const onoff = v => (v ? '🟢 Activo' : '🔴 Apagado')
 
   async function handler(m, { sock, reply }) {
       const jobs = jpmJobs()
@@ -51,8 +51,8 @@ const pluginConfig = {
           `• Delay JPM Tag : ${cfg.delayJpmTag}ms\n` +
           `• Delay Auto SWGC : ${cfg.delayAutoSwgc}ms\n` +
           `• Delay Push Kontak : ${cfg.delayPushKontak}ms\n` +
-          `• Total grup : ${total} grup\n` +
-          `• Grup banchat (dilewati) : ${banned} grup`
+          `• Grupo total: ${total} grupo\n` +
+          `• Grupo Banchat (omitido): ${banned} grupo`
       )
   }
 

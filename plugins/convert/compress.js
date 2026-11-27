@@ -48,7 +48,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\/(jpe?g|png|webp)/i.test(media.mime || '')) {
-    return m.reply(`🗜️ Kirim atau reply gambar dengan perintah *${usedPrefix + command} [kualitas 20-90]*`)
+    return m.reply(`🗜️ Enviar o responder imágenes con comandos *${usedPrefix + command} [calidad 20-90]*`)
   }
 
   const quality = Math.min(90, Math.max(20, Number(args[0]) || 60))
@@ -66,14 +66,14 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'compr
       m.chat,
       {
         image: out,
-        caption: `🗜️ *KOMPRES GAMBAR SELESAI*\n• Awal : ${fmtKB(media.buffer.length)}\n• Akhir : ${fmtKB(out.length)} (Hemat ${saved}%)`
+        caption: `🗜️ *KOMPRES GAMBAR SELESAI*\n• COMIENZO: ${fmtKB(media.buffer.length)}\n• FIN: ${fmtKB(out.length)} (ECONÓMICO ${saved}%)`
       },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengompres gambar:* ${e.message}`)
+    return m.reply(`❌ *No se pudo comprimir la imagen:* ${e.message}`)
   }
 }
 

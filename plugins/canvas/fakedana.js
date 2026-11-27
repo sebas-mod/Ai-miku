@@ -11,7 +11,7 @@ import te from '../../src/lib/core/error.js'
 try {
   GlobalFonts.registerFromPath(process.cwd() + '/assets/fonts/Epep.ttf', 'CartoonVibes')
 } catch (e) {
-  console.warn('[fakedana] font assets/fonts/Epep.ttf tidak ditemukan, pakai font bawaan')
+  console.warn('[fakedana] recursos de fuente/fonts/Epep.ttf no encontrados, use la fuente predeterminada')
 }
 
 async function generate(angka) {
@@ -63,7 +63,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const nominal = m.text
     if (!nominal) {
-        return m.reply(`*FAKE DANA*\n\n\`Contoh: ${m.prefix}fakedana 10000\``)
+        return m.reply(`*FAKE DANA*\n\n\`Ejemplo: ${m.prefix}fakedana 10000\``)
     }
     if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
     m.react('🕕')

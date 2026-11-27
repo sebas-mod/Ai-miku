@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
   const open = ascending.filter((r) => myLevel >= r.min).length;
   const caption =
     `🏆 *KATALOG PANGKAT ASTRAL* 🏆\n\n` +
-    `> Level kamu: *Lv.${myLevel}* • ${getRankInfo(myLevel).title}\n` +
+    `> Tu nivel: *Lv.${myLevel}* • ${getRankInfo(myLevel).title}\n` +
     `> Pangkat terbuka: *${open}/${ascending.length}*\n\n` +
-    `_✦ Naikkan levelmu dengan bermain fitur RPG & klaim hadiah di *${m.prefix || "."}claimlevel*_`;
+    `_✦ Sube tu nivel jugando RPG funciones y reclama recompensas en *${m.prefix || "."}nivel de reclamo*_`;
 
   try {
     const image = await renderRankList({

@@ -36,12 +36,12 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       const allClans = Object.values(db.db.data.clans)
@@ -64,14 +64,14 @@ const getDatabase = MikuRuntime.getDatabase;
       const higherClans = allClans.filter((c, i) => i < rank - 1 && i < 3)
       const lowerClans = allClans.filter((c, i) => i > rank - 1 && i < rank + 3)
 
-      let txt = `${rankIcon} *ᴘᴇʀɪɴɢᴋᴀᴛ ᴄʟᴀɴ*\n\n`
+      let txt = `${rankIcon} *RANGO DE CLAN*\n\n`
       txt += `╭┈┈⬡「 🏰 *${clan.name}* 」\n`
-      txt += `┃ 🎯 Peringkat: *${rank} / ${totalClans}*\n`
+      txt += `┃ 🎯 Calificación: *${rank} / ${totalClans}*\n`
       txt += `┃ 📊 Persentase: *${Math.floor((rank / totalClans) * 100)}%* teratas\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
       if (higherClans.length > 0) {
-          txt += `╭┈┈⬡「 ⬆️ *ᴄʟᴀɴ ᴅɪ ᴀᴛᴀꜱ* 」\n`
+          txt += `╭┈┈⬡「 ⬆️ *CLAN ARRIBA* 」\n`
           for (let i = 0; i < higherClans.length; i++) {
               const c = higherClans[i]
               const pos = i + 1
@@ -80,7 +80,7 @@ const getDatabase = MikuRuntime.getDatabase;
           txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
       }
 
-      txt += `╭┈┈⬡「 🎯 *ᴄʟᴀɴ ᴋᴀᴍᴜ* 」\n`
+      txt += `╭┈┈⬡「 🎯 *TU CLAN* 」\n`
       txt += `┃ 📛 *${clan.name}*\n`
       txt += `┃ 🏆 Level: *${level}*\n`
       txt += `┃ 👥 Member: *${clan.members?.length || 0}*\n`
@@ -88,7 +88,7 @@ const getDatabase = MikuRuntime.getDatabase;
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
       if (lowerClans.length > 0) {
-          txt += `╭┈┈⬡「 ⬇️ *ᴄʟᴀɴ ᴅɪ ʙᴀᴡᴀʜ* 」\n`
+          txt += `╭┈┈⬡「 ⬇️ *CLAN ABAJO* 」\n`
           for (let i = 0; i < lowerClans.length; i++) {
               const c = lowerClans[i]
               const pos = rank + i + 1

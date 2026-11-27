@@ -31,7 +31,7 @@ const drawBrat = MikuRuntime.drawBrat;
   async function handler(m, { sock }) {
     const text = m.args.join(" ").trim();
     if (!text) {
-      return m.reply(`🖼️ *BRAT GREEN*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratgreen Hai semua\``);
+      return m.reply(`🖼️ *BRAT GREEN*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratgreen Hola a todos\``);
     }
 
     m.react("🕕");

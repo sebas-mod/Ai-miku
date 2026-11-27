@@ -70,7 +70,7 @@ const pluginConfig = {
           await reactTo(sock, m, '⏳')
           const data = await scanWebsite(url)
           const lines = flatten(data)
-          if (!lines.length) throw new Error('Hasil scan kosong.')
+          if (!lines.length) throw new Error('Los resultados del escaneo están en blanco.')
           await reply(`*🕵️ SNIFFSLOP SCAN*\n${url}\n\n${lines.join('\n').slice(0, 3500)}`)
           await reactTo(sock, m, '✅')
       } catch (e) {

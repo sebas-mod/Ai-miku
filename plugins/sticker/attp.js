@@ -46,13 +46,13 @@ let busy = 0
 async function handler(m, { sock, text, reply, prefix, usedPrefix }) {
   const p = usedPrefix ?? prefix ?? '.'
   const raw = String(text || '').trim()
-  if (!raw) return reply(`✨ *ATTP*\n\nStiker teks animasi.\nContoh: ${p}attp Halo semua`)
-  if (raw.length > 100) return reply('❌ Teks terlalu panjang (maksimal 100 huruf).')
-  if (busy >= 2) return reply('⏳ Lagi ramai, coba lagi sebentar ya.')
+  if (!raw) return reply(`✨ *ATTP*\n\nPegatinas de texto animadas.\nEjemplo: ${p}attp Hola a todos`)
+  if (raw.length > 100) return reply('❌ El texto es demasiado largo (máximo 100 letras).')
+  if (busy >= 2) return reply('⏳ Está ocupado, inténtalo de nuevo en un momento.')
 
   let canvasLib
   try { canvasLib = await import('@napi-rs/canvas') } catch {
-    return reply('❌ Fitur ini butuh @napi-rs/canvas, belum terpasang di server.')
+    return reply('❌ Esta función requiere @napi-rs/canvas, que aún no está instalado en el servidor.')
   }
   const { createCanvas, GlobalFonts } = canvasLib.default ?? canvasLib
   try { GlobalFonts.registerFromPath(FONT_FILE, 'AttpFont') } catch {}
@@ -114,7 +114,7 @@ async function handler(m, { sock, text, reply, prefix, usedPrefix }) {
     })
   } catch (e) {
     console.error('[attp]', e?.message || e)
-    return reply('❌ Gagal membuat stiker animasi. Pastikan ffmpeg dengan dukungan webp terpasang.')
+    return reply('❌ No se pudieron crear stickers animados. Asegúrese de que esté instalado ffmpeg con soporte webp.')
   } finally {
     busy--
     fs.rmSync(dir, { recursive: true, force: true })

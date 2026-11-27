@@ -65,22 +65,22 @@ import { promisify } from 'node:util'
 
   async function search(keyword, limit = 10) {
       const q = String(keyword || '').trim()
-      if (!q) throw new TypeError('Kata kunci pencarian tidak boleh kosong')
+      if (!q) throw new TypeError('Las palabras clave de búsqueda no pueden estar vacías')
       return getPosts(
           `${BASE_URL}/wp-json/wp/v2/posts?search=${encodeURIComponent(q)}&per_page=${Math.min(limit, 20)}`,
-          'Gagal menghubungi server NekoPoi'
+          'No se pudo contactar con el servidor NekoPoi'
       )
   }
 
   async function getLatest(page = 1, limit = 10, categoryId = null) {
       let endpoint = `${BASE_URL}/wp-json/wp/v2/posts?page=${page}&per_page=${Math.min(limit, 20)}`
       if (categoryId) endpoint += `&categories=${categoryId}`
-      return getPosts(endpoint, 'Gagal mengambil rilisan terbaru NekoPoi')
+      return getPosts(endpoint, 'No se pudo obtener el último lanzamiento de NekoPoi')
   }
 
   async function getDetail(slugOrUrl) {
       const slug = extractSlug(slugOrUrl)
-      if (!slug) throw new TypeError('Slug atau URL NekoPoi tidak boleh kosong')
+      if (!slug) throw new TypeError('Slug o URL NekoPoi no pueden estar vacíos')
 
       const pageUrl = String(slugOrUrl).startsWith('http') ? slugOrUrl : `${BASE_URL}/${slug}/`
 
@@ -91,7 +91,7 @@ import { promisify } from 'node:util'
           },
           signal: AbortSignal.timeout(20000)
       })
-      if (!res.ok) throw new Error(`HTTP ${res.status}: Konten NekoPoi tidak ditemukan`)
+      if (!res.ok) throw new Error(`HTTP ${res.status}: Contenido de NekoPoi no encontrado`)
 
       const $ = cheerio.load(await res.text())
 
@@ -177,7 +177,7 @@ import { promisify } from 'node:util'
               if (variants.length) best = variants.sort((x, y) => y.bw - x.bw)[0].url
           }
       } catch (e) {
-          console.warn('[nekopoi] Gagal parse master m3u8, fallback ke master:', e.message)
+          console.warn('[nekopoi] No se pudo analizar el maestro m3u8, recurrir al maestro:', e.message)
       }
 
       return { url: best, ...ctx }
@@ -229,7 +229,7 @@ import { promisify } from 'node:util'
               outputPath
           ], { timeout: 180000, maxBuffer: 1024 * 1024 * 8 })
       } catch (e) {
-          console.warn('[nekopoi] ffmpeg gagal, coba cadangan fetch:', String(e.message).split('\n').pop())
+          console.warn('[nekopoi] ffmpeg falló, intente recuperar la copia de seguridad:', String(e.message).split('\n').pop())
           await downloadViaFetch(stream.url, stream, outputPath)
       }
 
@@ -257,46 +257,46 @@ import { promisify } from 'node:util'
 
   const usage = p =>
       `*NEKOPOI*\n━━━━━━━━━━━━━━━━\n` +
-      `• ${p}nekopoi <kata kunci>\n` +
+      `• ${p}nekopoi <palabra clave>\n` +
       `• ${p}nekopoi latest [hal]\n` +
       `• ${p}nekopoi <url / slug> : detail\n` +
-      `• ${p}nekopoi dl <url / slug> : kirim video`
+      `• ${p}nekopoi dl <url / slug>: enviar vídeo`
 
   const listText = (title, posts) =>
       `*${title}*\n━━━━━━━━━━━━━━━━\n` +
       posts.map((v, i) => `${i + 1}. ${clip(v.title)}\n   📅 ${v.date}\n   ${v.url}`).join('\n\n') +
-      `\n\nKirim link dengan .nekopoi <url> untuk detail.`
+      `\n\nEnvíe el enlace con.nekopoi <url> para obtener más detalles.`
 
   async function run(m, { sock, text, prefix }) {
       const p = prefix || '.'
       let input = String(text || '').trim()
       if (!input) return m.reply(usage(p))
 
-      if (isBlocked(input)) return m.reply('❌ Kata kunci itu diblokir.')
+      if (isBlocked(input)) return m.reply('❌ Esa palabra clave está bloqueada.')
 
       try {
           const mLatest = input.match(/^(latest|terbaru)(?:\s+(\d+))?$/i)
           if (mLatest) {
-              await m.reply('⏳ Mengambil rilisan terbaru...')
+              await m.reply('⏳ Obtenga los últimos lanzamientos...')
               const posts = (await getLatest(Number(mLatest[2]) || 1, 10)).filter(v => !isBlocked(v.title, v.slug))
-              if (!posts.length) return m.reply('Tidak ada data.')
+              if (!posts.length) return m.reply('Sin datos.')
               return m.reply(listText('RILISAN TERBARU', posts))
           }
 
           const mDl = input.match(/^(?:dl|download)\s+(\S+)$/i)
           if (mDl) {
-              await m.reply('⏳ Mengambil video, ini bisa memakan waktu beberapa menit...')
+              await m.reply('⏳ Tomando un vídeo, esto puede tardar unos minutos...')
 
               const d = await getDetail(mDl[1])
-              if (isBlocked(d.title, d.genre, d.series)) return m.reply('❌ Konten ini diblokir.')
+              if (isBlocked(d.title, d.genre, d.series)) return m.reply('❌ Este contenido está bloqueado.')
 
               const embed = d.streams.find(s => EMBED_HOST.test(s))
               if (!embed) {
-                  return m.reply('Stream streampoi tidak tersedia untuk video ini. Coba link download di:\n' + `${p}nekopoi ${d.url}`)
+                  return m.reply('La transmisión de streampoi no está disponible para este video. Pruebe el enlace de descarga en:\n' + `${p}nekopoi ${d.url}`)
               }
 
               const stream = await getStreampoiM3u8(embed)
-              if (!stream) return m.reply('Gagal mengambil playlist video.')
+              if (!stream) return m.reply('No se pudo recuperar la lista de reproducción de videos.')
 
               const out = path.join(os.tmpdir(), `nekopoi-${Date.now()}.mp4`)
 
@@ -305,7 +305,7 @@ import { promisify } from 'node:util'
 
                   const size = fs.statSync(out).size
                   if (size > MAX_SEND) {
-                      return m.reply(`File terlalu besar untuk dikirim (${(size / 1048576).toFixed(0)} MB). Pakai link download dari ${p}nekopoi ${d.url}`)
+                      return m.reply(`El archivo es demasiado grande para enviarlo (${(size / 1048576).toFixed(0)} MB). Utilice el enlace de descarga de ${p}nekopoi ${d.url}`)
                   }
 
                   return await sock.sendMessage(m.chat, {
@@ -320,14 +320,14 @@ import { promisify } from 'node:util'
           }
 
           if (isNeko(input) || (/^[a-z0-9_-]+$/i.test(input) && input.includes('-') && !input.includes(' '))) {
-              await m.reply('⏳ Mengambil detail...')
+              await m.reply('⏳ Recuperando detalles...')
 
               const d = await getDetail(input)
-              if (isBlocked(d.title, d.genre, d.series)) return m.reply('❌ Konten ini diblokir.')
+              if (isBlocked(d.title, d.genre, d.series)) return m.reply('❌ Este contenido está bloqueado.')
 
               const info = [
                   d.series && `📺 Series : ${d.series}`,
-                  d.originalTitle && `🈶 Judul asli : ${d.originalTitle}`,
+                  d.originalTitle && `🈶 Título original: ${d.originalTitle}`,
                   d.producers && `🏢 Producer : ${d.producers}`,
                   d.duration && `⏱️ Durasi : ${d.duration}`,
                   d.genre && `🏷️ Genre : ${clip(d.genre, 200)}`,
@@ -344,7 +344,7 @@ import { promisify } from 'node:util'
                   ).join('\n')
                   : ''
 
-              const caption = `*${clip(d.title, 150)}*\n${info}${streams}${dls}\n\nKirim video: ${p}nekopoi dl ${d.url}`
+              const caption = `*${clip(d.title, 150)}*\n${info}${streams}${dls}\n\nEnviar vídeo: ${p}nekopoi dl ${d.url}`
 
               if (d.thumbnail) {
                   try {
@@ -354,13 +354,13 @@ import { promisify } from 'node:util'
               return m.reply(caption)
           }
 
-          await m.reply('⏳ Mencari...')
+          await m.reply('⏳ Buscando...')
           const posts = (await search(input, 10)).filter(v => !isBlocked(v.title, v.slug))
-          if (!posts.length) return m.reply('Tidak ditemukan.')
-          return m.reply(listText(`HASIL: ${input}`, posts))
+          if (!posts.length) return m.reply('Extraviado.')
+          return m.reply(listText(`RESULTADOS: ${input}`, posts))
       } catch (e) {
           console.log(e)
-          return m.reply(`❌ Gagal: ${String(e.message).split('\n').filter(Boolean).slice(-2).join(' ').slice(0, 200)}`)
+          return m.reply(`❌ Fallido: ${String(e.message).split('\n').filter(Boolean).slice(-2).join(' ').slice(0, 200)}`)
       }
   }
 

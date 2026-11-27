@@ -39,7 +39,7 @@ const pluginConfig = {
           }, { quoted: m })
       } catch (e) {
           console.error(e)
-          reply(e.friendly ? e.message : 'Gagal meng-obfuscate kode')
+          reply(e.friendly ? e.message : 'No se pudo ofuscar el código')
       }
   }
 

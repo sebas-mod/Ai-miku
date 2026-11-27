@@ -31,22 +31,22 @@ const getDatabase = MikuRuntime.getDatabase;
       const db = getDatabase()
       const user = db.getUser(m.sender)
 
-      if (!user?.clanId) return m.reply(`❌ Kamu belum punya clan`)
+      if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
       if (!db.db.data.clans) db.db.data.clans = {}
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
           db.setUser(m.sender, { clanId: null })
           db.save()
-          return m.reply(`❌ Clan tidak ditemukan, data dibersihkan`)
+          return m.reply(`❌ Clan no encontrado, datos borrados`)
       }
 
       if (clan.leader === m.sender) {
           if (clan.members.length > 1) {
               return m.reply(
-                  `❌ Kamu adalah leader!\n\n` +
-                  `Transfer dulu: *.clantransfer @user*\n` +
-                  `Atau kick semua member terlebih dahulu`
+                  `❌ ¡Tú eres el líder!\n\n` +
+                  `Transferir primero: *.clantransfer @user*\n` +
+                  `O expulsar a todos los miembros primero`
               )
           }
           delete db.db.data.clans[user.clanId]
@@ -54,14 +54,14 @@ const getDatabase = MikuRuntime.getDatabase;
           db.save()
 
           const emblem = clan.emblem || '🏰'
-          return m.reply(`${emblem} Clan *${clan.name}* telah dibubarkan`)
+          return m.reply(`${emblem} Clanes *${clan.name}* ha sido disuelto`)
       }
 
       clan.members = clan.members.filter(jid => jid !== m.sender)
       db.setUser(m.sender, { clanId: null })
       db.save()
 
-      await m.reply(`👋 Kamu keluar dari *${clan.name}*`)
+      await m.reply(`👋 Te has quedado sin *${clan.name}*`)
   }
 
 export { pluginConfig as config, handler }

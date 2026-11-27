@@ -28,9 +28,9 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, example }) {
       const ms = parseInt(text)
-      if (isNaN(ms) || ms < 500) return example('<ms>  (minimal 500, contoh: 3000)')
+      if (isNaN(ms) || ms < 500) return example('<ms> (mínimo 500, ejemplo: 3000)')
       jpmSetCfg('delayJpmTag', ms)
-      return reply(`*▢ DELAY JPM TAG*\n• Delay : ${ms}ms\n• Status : Berhasil diubah`)
+      return reply(`*▢ DELAY JPM TAG*\n• Demora: ${ms}EM\n• Estado: cambiado correctamente`)
   }
 
 export { pluginConfig as config, handler }

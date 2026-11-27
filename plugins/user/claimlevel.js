@@ -48,9 +48,9 @@ async function handler(m) {
     const nextMilestone = (Math.floor(level / 5) + 1) * 5;
     return m.reply(
       `╭─── ❖ 『 📦 *PETI MILESTONE LEVEL* 』 ❖\n` +
-      `│ ✦ Level Kamu: *Lv.${level}*\n` +
-      `│ ✦ Semua peti milestone yang tersedia sudah kamu klaim!\n` +
-      `│ 🎯 *Target Peti Berikutnya:* *Lv.${nextMilestone}* (Kurang ${nextMilestone - level} level lagi)\n` +
+      `│ ✦ Tu nivel: *Lv.${level}*\n` +
+      `│ ✦ ¡Has reclamado todos los cofres de hitos disponibles!\n` +
+      `│ 🎯 *Próximo objetivo de cofre:* *Lv.${nextMilestone}* (No es suficiente ${nextMilestone - level} nivel de nuevo)\n` +
       `╰──────────────────────────❖`
     );
   }
@@ -85,12 +85,12 @@ async function handler(m) {
     `│ 👤 *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
     `│ 🎖️ *Pangkat:* ${rank.title} (Lv.${level})\n` +
     `│ 🔓 *Milestone Diklaim:* Lv.${unlockedMilestones.join(", Lv.")}\n` +
-    `├─── ❖ 『 💎 *ISI PETI ASTRAL* 』 ❖\n` +
+    `├─── ❖ 『 💎 *LLENA COFRE ASTRAL* 』 ❖\n` +
     `│ 💰 *Koin:* +Rp ${totalKoin.toLocaleString("id-ID")}\n` +
     `│ ⚡ *Energi:* +${totalEnergi} Energi\n` +
     `│ 📦 *Mythic Crate:* +${totalCrate} Peti\n` +
     `╰──────────────────────────❖\n` +
-    `_✦ Terus tingkatkan levelmu untuk membuka peti Lv.${(Math.floor(level / 5) + 1) * 5}!_`
+    `_✦ Sigue aumentando tu nivel para abrir cofres Lv.${(Math.floor(level / 5) + 1) * 5}!_`
   );
 }
 

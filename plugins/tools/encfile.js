@@ -32,7 +32,7 @@ const pluginConfig = {
   const title = () => `⚡ *ULTRA HARD ENCRYPT — ${global.namebot || 'Ai Miku MD'}* ⚡`
 
   const card = (percent, note, dot = '🔴') =>
-      `${title()}\n\n🔐 *Proses Penguncian Skrip*\n[ ${BAR(percent)} ] *${percent}%*\n> ${dot} ${note}`
+      `${title()}\n\n🔐 *Proceso de bloqueo de scripts*\n[ ${BAR(percent)} ] *${percent}%*\n> ${dot} ${note}`
 
   async function handler(m, { sock, prefix, command, reply }) {
       const q = m.quoted
@@ -58,7 +58,7 @@ const pluginConfig = {
           const sent = await sock.sendMessage(m.chat, { text: card(0, 'Descargando el archivo...') }, { quoted: m })
 
           let buffer
-          try { buffer = await q.download() } catch (e) { console.error('[encfile] gagal download:', e?.message || e) }
+          try { buffer = await q.download() } catch (e) { console.error('Error en la descarga de [encfile]:', e?.message || e) }
           if (!buffer?.length) {
               await reactTo(sock, m, '❌')
               return edit(sent.key, '❌ No se pudo descargar el archivo, vuelve a responderlo.')
@@ -107,13 +107,13 @@ const pluginConfig = {
               document: output,
               mimetype: 'application/javascript',
               fileName: newName,
-              caption: `⚡ *HARD ENCRYPT ANTI-BYPASS BERHASIL* ⚡\n\n📁 Nama File : *${newName}*\n🔒 Status    : Terkunci Rapat\n\n— ${global.namebot || 'Ai Miku MD'}`
+              caption: `⚡ *HARD ENCRYPT ANTI-BYPASS BERHASIL* ⚡\n\n📁 Nombre del archivo: *${newName}*\n🔒 Estado: Reunión bloqueada\n\n— ${global.namebot || 'Ai Miku MD'}`
           }, { quoted: m })
           await reactTo(sock, m, '✅')
       } catch (e) {
           console.error(e)
           await reactTo(sock, m, '☢')
-          reply(`❌ Terjadi kesalahan sistem: ${e.message}`)
+          reply(`❌ Se produjo un error del sistema: ${e.message}`)
       }
   }
 

@@ -35,34 +35,34 @@ const getDatabase = MikuRuntime.getDatabase;
       let target = mention?.[0] || (args[0] ? (args[0].includes('@') ? args[0] : null) : null)
 
       if (!target) {
-          return m.reply(`📉 *ᴄʟᴀɴ ᴅᴇᴍᴏᴛᴇ*\n\n> Turunkan jabatan member ke member biasa\n\n> Contoh: .clandemote @user`)
+          return m.reply(`📉 *CLAN DEMOTE*\n\n> Bajar la posición del miembro a miembro ordinario\n\n> Ejemplo:.clandemote @user`)
       }
 
       target = target.replace('@', '').replace(/[^0-9]/g, '') + '@s.whatsapp.net'
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender) {
-          return m.reply(`❌ Hanya *leader* clan yang bisa demote member!`)
+          return m.reply(`❌ ¡Solo el *líder* del clan puede degradar a los miembros!`)
       }
 
       if (!clan.members.includes(target)) {
-          return m.reply(`❌ Target bukan member clan kamu!`)
+          return m.reply(`❌ ¡El objetivo no es miembro de tu clan!`)
       }
 
       if (target === m.sender) {
-          return m.reply(`❌ Tidak bisa demote diri sendiri!`)
+          return m.reply(`❌ ¡No puedes degradarte!`)
       }
 
       if (!clan.roles?.[target]) {
-          return m.reply(`❌ Target tidak memiliki jabatan khusus!`)
+          return m.reply(`❌ ¡Target no tiene un puesto de trabajo específico!`)
       }
 
       const oldRole = clan.roles[target]
@@ -70,12 +70,12 @@ const getDatabase = MikuRuntime.getDatabase;
       await db.save()
 
       let txt = `📉 *ᴄʟᴀɴ ᴅᴇᴍᴏᴛᴇ!*\n\n`
-      txt += `╭┈┈⬡「 📋 *ʜᴀꜱɪʟ* 」\n`
+      txt += `╭┈┈⬡「 📋 *RESULTADO* 」\n`
       txt += `┃ 📛 Clan: *${clan.name}*\n`
       txt += `┃ 👤 Member: @${target.split('@')[0]}\n`
-      txt += `┃ 🔻 Jabatan lama: *${oldRole === 'coleader' ? 'Co-Leader' : 'Elder'}*\n`
-      txt += `┃ 📌 Jabatan baru: *Member*\n`
-      txt += `┃ 👑 Didemote oleh: @${m.sender.split('@')[0]}\n`
+      txt += `┃ 🔻 Puesto anterior: *${oldRole === 'coleader' ? 'Co-Leader' : 'Elder'}*\n`
+      txt += `┃ 📌 Nuevo puesto: *Miembro*\n`
+      txt += `┃ 👑 Degradado por: @${m.sender.split('@')[0]}\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡`
 
       await m.reply(txt, { mentions: [target, m.sender] })

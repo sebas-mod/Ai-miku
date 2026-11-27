@@ -25,9 +25,9 @@ const pluginConfig = {
 }
 
   async function handler(m, { reply }) {
-      if (!global.__jpmRunning) return reply('❌ Tidak ada JPM yang sedang berjalan.')
+      if (!global.__jpmRunning) return reply('❌ No hay JPM en ejecución.')
       global.__jpmStop = true
-      return reply('*▢ STOP JPM*\n• Status : Menghentikan proses JPM...')
+      return reply('*▢ STOP JPM*\n• Estado: Deteniendo proceso JPM...')
   }
 
 export { pluginConfig as config, handler }

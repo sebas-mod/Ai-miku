@@ -162,7 +162,7 @@ const pluginConfig = {
           slsTn: sls.sls_tn || null,
           shopeeOrderId: sls.client_order_id || null,
           deliveryType: fleet?.delivery_type || (order?.fulfillment_info?.deliver_type === 1 ? 'COD / Reguler' : 'Standard'),
-          status: fleet?.current_status || timeline[0]?.milestone || 'Dalam perjalanan',
+          status: fleet?.current_status || timeline[0]?.milestone || 'en el camino',
           latest,
           origin,
           transit: [...transit.values()],

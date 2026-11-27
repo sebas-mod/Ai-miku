@@ -32,7 +32,7 @@ const pluginConfig = {
     const connection = sock || conn;
 
     if (!text) {
-      return reply('❌ Format salah!\n\n*ᴄᴏɴᴛᴏʜ:*\n.cekbio 628123456789 628987654321');
+      return reply('❌ ¡Formato incorrecto!\n\n*EJEMPLO:*\n.cekbio 628123456789 628987654321');
     }
 
     const rawNumbers = text.split(/[\s,\n]+/).filter(num => num.trim().length > 0);
@@ -124,7 +124,7 @@ const pluginConfig = {
       try {
         await connection.sendMessage(m.chat, {
           edit: statusMsg.key,
-          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Sedang memproses: ${batch[0] || '...'}\n📁 Sumber: Input Teks`
+          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Procesamiento: ${batch[0] || '...'}\n📁 Fuente: Entrada de texto`
         });
       } catch (e) {}
 
@@ -133,12 +133,12 @@ const pluginConfig = {
       }
     }
 
-    const filename = createBioResultFile(results, validNumbers.length, 'Input Teks');
+    const filename = createBioResultFile(results, validNumbers.length, 'Entrada de texto');
 
     await connection.sendMessage(m.chat, {
       document: { url: filename },
       mimetype: 'text/plain',
-      fileName: `hasil_cekbio_${Date.now()}.txt`,
+      fileName: `resultados_checkbio_${Date.now()}.txt`,
       caption: `📋 *RESULTADO DEL CHEQUEO DE BIOS DE WHATSAPP (SOLO DUEÑO)*\n\n` +
                `📊 Total: ${validNumbers.length} números\n` +
                `✅ Registrados: ${results.filter(r => r.registered).length}\n` +

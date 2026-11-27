@@ -60,13 +60,13 @@ const { promisify } = (await import('node:util'))
           return reply(`Envía o responde a un vídeo/GIF con el texto *${usedPrefix + command}*`);
       }
 
-      reply(global.mess?.loading || '⏳ _Menganalisis metadata video..._');
+      reply(global.mess?.loading || '⏳ _Analizando metadatos de vídeo..._');
 
       let tmpFile = null;
       try {
           const media = await q.download();
           if (!media || !Buffer.isBuffer(media)) {
-              return reply('❌ ɢᴀɢᴀʟ mendownload media video.');
+              return reply('❌ FALLÓ al descargar videos.');
           }
 
           const tmpName = `vid_${Date.now()}_${crypto.randomBytes(4).toString('hex')}.mp4`;
@@ -88,7 +88,7 @@ const { promisify } = (await import('node:util'))
           const [fNom, fDenom] = fpsRaw.split('/').map(Number);
           const fps = fDenom && fNom ? Math.round(fNom / fDenom) : '-';
           const vCodec = (vStream.codec_name || '-').toUpperCase();
-          const aCodec = (aStream.codec_name || 'Sin audio').toUpperCase();
+          const aCodec = (aStream.codec_name || 'pecado de audio').toUpperCase();
           const bitRate = fmt.bit_rate ? `${Math.round(fmt.bit_rate / 1000)} kbps` : '-';
           const size = media.length ? formatBytes(media.length) : formatBytes(fmt.size || 0);
           const formatName = (fmt.format_long_name || fmt.format_name || 'MP4').split(',')[0];
@@ -96,23 +96,23 @@ const { promisify } = (await import('node:util'))
           const totalPixels = width && height ? (width * height).toLocaleString('id-ID') : '-';
           const aspect = width && height ? `${(width / height).toFixed(2)} (${width}:${height})` : '-';
 
-          const teks = `🎬 *VIDEO SPEC & METADATA IDENTIFIER*\n\n` +
+          const teks = `🎬 *IDENTIFICADOR DE METADATOS Y ESPECIFICACIONES DE VIDEO*\n\n` +
               `• 📐 *Resolusi (Px):* ${width} x ${height} px\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect}\n` +
               `• ⏱️ *⏱️ *ᴅᴜʀᴀsɪ:** ${formatDuration(duration)} (${duration.toFixed(1)}s)\n` +
               `• 🎞️ *Frame Rate (FPS):* ${fps} FPS\n` +
-              `• 📦 *Format Container:* ${formatName}\n` +
-              `• 🎥 *Video Codec:* ${vCodec}\n` +
-              `• 🔊 *Audio Codec:* ${aCodec}\n` +
+              `• 📦 *Formato de contenedor:* ${formatName}\n` +
+              `• 🎥 *Códec de vídeo:* ${vCodec}\n` +
+              `• 🔊 *Códec de audio:* ${aCodec}\n` +
               `• ⚡ *Bitrate:* ${bitRate}\n` +
-              `• 💾 *Ukuran File:* ${size}\n\n` +
+              `• 💾 *Tamaño del archivo:* ${size}\n\n` +
               `_¡Vídeo identificado!_`;
 
           reply(teks);
       } catch (err) {
           console.error('[cekvideo error]:', err);
-          reply(`❌ ɢᴀɢᴀʟ membaca metadata video: ${err.message || err}`);
+          reply(`❌ FAIL lectura de metadatos de vídeo: ${err.message || err}`);
       } finally {
           if (tmpFile && fs.existsSync(tmpFile)) {
               await fs.promises.unlink(tmpFile).catch(() => null);

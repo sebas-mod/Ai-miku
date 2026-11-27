@@ -31,24 +31,24 @@ async function handler(m, { sock, text, prefix }) {
   const [a, b] = String(text || "").trim().split(/\s+/);
   const id = /^[A-Za-z0-9]{5}$/.test(a || "") ? a.toUpperCase() : "";
   const t = menfessCari(k, m.sender, { id, quotedId: m.quoted?.id });
-  if (!t || !same(t.d.from, m.sender)) return m.reply(`Format: *${prefix}ungkapmenfess ID ya*`);
-  if (t.d.tutup) return m.reply("Menfess itu sudah ditarik.");
-  if (t.d.terungkap) return m.reply("Identitasmu sudah pernah kamu ungkap di menfess itu.");
+  if (!t || !same(t.d.from, m.sender)) return m.reply(`Formato: *${prefix}ungkapmenfess ID ya*`);
+  if (t.d.tutup) return m.reply("Menfess ha sido retirado.");
+  if (t.d.terungkap) return m.reply("Ya has revelado tu identidad el menfess.");
   if (!/^(ya|y|yes|ok)$/i.test(id ? b || "" : a || "")) {
     return m.reply(
-      `⚠️ Identitasmu (nomor WhatsApp) akan dikirim ke penerima menfess #${t.id} dan tidak bisa dibatalkan.\n\nLanjut: *${prefix}ungkapmenfess ${t.id} ya*`,
+      `⚠️ Tu DNI (número WhatsApp) se enviará al destinatario menfess #${t.id} y no se puede cancelar.\n\nContinuar: *${prefix}ungkapmenfess ${t.id} Sí*`,
     );
   }
   try {
     await sock.sendMessage(toJid(t.d.to), {
-      text: `🔓 *PENGUNGKAPAN* · #${t.id}\n\nPengirim menfess ini membuka identitasnya:\nwa.me/${m.sender.split("@")[0]}`,
+      text: `🔓 *PENGUNGKAPAN* · #${t.id}\n\nEl remitente de este menfess revela su identidad:\nwa.me/${m.sender.split("@")[0]}`,
     });
   } catch {
-    return m.reply("Gagal mengirim, penerima tidak bisa dihubungi.");
+    return m.reply("No se pudo enviar, no se puede contactar al destinatario.");
   }
   t.d.terungkap = true;
   saveStore();
-  return m.reply("✅ Identitasmu sudah diberikan ke penerima.");
+  return m.reply("✅ Tu identidad ha sido entregada al destinatario.");
 }
 
 export { pluginConfig as config, handler };

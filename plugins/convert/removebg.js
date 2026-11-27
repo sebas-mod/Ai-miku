@@ -58,7 +58,7 @@ async function uploadTempBuffer(buffer, filename = 'image.jpg', mime = 'image/jp
     const t = (await r.text()).trim()
     if (/^https?:\/\//i.test(t)) return t
   } catch {}
-  throw new Error('Gagal mengunggah media ke server sementara.')
+  throw new Error('No se pudo cargar el medio en el servidor temporal.')
 }
 
 async function removeBgViaApiKey(buffer, apiKey) {
@@ -94,14 +94,14 @@ async function removeBgFallback(buffer, mime) {
       }
     } catch {}
   }
-  throw new Error('Server penghapus latar belakang sedang sibuk.')
+  throw new Error('El servidor de eliminación en segundo plano está ocupado.')
 }
 
 async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'removebg' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\//i.test(media.mime || '')) {
-    return m.reply(`✂️ Kirim atau reply gambar dengan perintah *${usedPrefix + command}* untuk menghapus latar belakang.`)
+    return m.reply(`✂️ Enviar o responder imágenes con comandos *${usedPrefix + command}* para eliminar el fondo.`)
   }
 
   const asDoc = (args[0] || '').toLowerCase() === 'doc'
@@ -119,20 +119,20 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'remov
     if (asDoc) {
       await client.sendMessage(
         m.chat,
-        { document: pngBuffer, fileName: `miku-nobg-${Date.now()}.png`, mimetype: 'image/png', caption: '✂️ *Background berhasil dihapus (PNG Transparan)*' },
+        { document: pngBuffer, fileName: `miku-nobg-${Date.now()}.png`, mimetype: 'image/png', caption: '✂️ *Fondo eliminado exitosamente (PNG Transparente)*' },
         { quoted: m }
       )
     } else {
       await client.sendMessage(
         m.chat,
-        { image: pngBuffer, caption: `✂️ *Background berhasil dihapus*\n💡 Ketik \`${usedPrefix + command} doc\` jika ingin hasil file PNG transparan.` },
+        { image: pngBuffer, caption: `✂️ *Fondo eliminado exitosamente*\n💡 Escribe \`${usedPrefix + command} doc\` si desea que el archivo resultante PNG sea transparente.` },
         { quoted: m }
       )
     }
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal menghapus background:* ${e.message}`)
+    return m.reply(`❌ *No se pudo eliminar el fondo:* ${e.message}`)
   }
 }
 

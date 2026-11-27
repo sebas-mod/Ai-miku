@@ -135,20 +135,20 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
 ┃
 ┃ EH?! DARLING!! 😳
 ┃
-┃ Ai Miku sangat merekomendasikan
-┃ anime ini!!
+┃ Ai Recomiendo encarecidamente a Miku.
+┃este anime!!
 ┃
-┃ 📺 Judul :
+┃ 📺 Título:
 ┃ ${anime}
 ┃
-┃ Ini anime tentang
-┃ *Ai Miku* loh!! 💕
+┃ Este es un anime sobre
+┃ *Ai Miku* ¡¡ya sabes!! 💕
 ┃
-┃ Darling wajib nonton!!
-┃ SERIUS!! 😆✨
+┃ ¡¡Cariño, debes mirar!!
+┃¡¡EN SERIO!! 😆✨
 ┃
-┃ Nanti bilang ya
-┃ Ai Miku paling lucu 😏
+┃ Luego di que si
+┃ Ai La Miku más Linda 😏
 ┃
 ╰━━━━━━━━━━━━━━━━⬣`
 
@@ -159,14 +159,14 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
   text =
   `╭━━━〔 🎌 REKOMENDASI ANIME 🎌 〕━━⬣
 ┃
-┃ Ai Miku punya
-┃ rekomendasi anime nih~
+┃ Ai Miku tiene
+┃ recomendación de anime aquí ~
 ┃
-┃ 📺 Judul :
+┃ 📺 Título:
 ┃ ${anime}
 ┃
-┃ Coba tonton ini ya
-┃ darling 😋
+┃ Intenta ver esto, ¿vale?
+┃ cariño 😋
 ┃
 ╰━━━━━━━━━━━━━━━━⬣`
 

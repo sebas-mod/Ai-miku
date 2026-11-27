@@ -58,7 +58,7 @@ async function uploadTempBuffer(buffer, filename = 'image.jpg', mime = 'image/jp
     const t = (await r.text()).trim()
     if (/^https?:\/\//i.test(t)) return t
   } catch {}
-  throw new Error('Gagal mengunggah media ke server sementara.')
+  throw new Error('No se pudo cargar el medio en el servidor temporal.')
 }
 
 async function upscaleExternal(imageUrl) {
@@ -101,7 +101,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'hd' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\/(jpe?g|png|webp)/i.test(media.mime || '')) {
-    return m.reply(`✨ Kirim atau reply foto yang ingin dijernihkan dengan perintah *${usedPrefix + command}*`)
+    return m.reply(`✨ Envía o responde la foto que quieras aclarar con el comando *${usedPrefix + command}*`)
   }
 
   await m.react('⏳')
@@ -120,13 +120,13 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'hd' }) {
 
     await client.sendMessage(
       m.chat,
-      { image: outBuffer, caption: `✨ *PENINGKATAN KUALITAS GAMBAR*\n• Mode : ${modeLabel}\n_Ai Miku_` },
+      { image: outBuffer, caption: `✨ *PENINGKATAN KUALITAS GAMBAR*\n• MODO: ${modeLabel}\n_AI MIKU_` },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal memproses HD:* ${e.message}`)
+    return m.reply(`❌ *No se pudo procesar HD:* ${e.message}`)
   }
 }
 

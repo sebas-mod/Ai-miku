@@ -60,7 +60,7 @@ const config = MikuRuntime.config;
   async function handler(m, { sock }) {
       const text = m.args.join(' ')
       if (!text) {
-          return m.reply(`*ʙʀᴀᴛᴀɴɪᴍᴇ4 sᴛɪᴄᴋᴇʀ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratanime4 Besok cenin\``)
+          return m.reply(`*BRATANIME4 sTICKER*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratanime4 Mañana lunes\``)
       }
 
       m.react('🕕')
@@ -82,11 +82,11 @@ const config = MikuRuntime.config;
                   bgImage = await loadImage(Buffer.from(response.data))
                   break
               } catch (e) {
-                  console.warn(`Bratanime4: Gagal load dari ${url}, mencoba link berikutnya...`)
+                  console.warn(`Bratanime4: Error al cargar desde ${url}, prueba el siguiente enlace...`)
               }
           }
 
-          if (!bgImage) throw new Error('Semua link gambar gagal dimuat')
+          if (!bgImage) throw new Error('No se pudieron cargar todos los enlaces de imágenes')
 
           const canvas = createCanvas(bgImage.width, bgImage.height)
           const ctx = canvas.getContext('2d')
@@ -141,7 +141,7 @@ const config = MikuRuntime.config;
       } catch (err) {
           console.error('Bratanime4 error:', err)
           m.react('❌')
-          m.reply('❌ Gagal membuat sticker bratanime4, coba lagi nanti.\n> ' + err.message)
+          m.reply('❌ No se pudo crear sticker bratanime4, inténtalo de nuevo más tarde.\n> ' + err.message)
       }
   }
 

@@ -75,7 +75,7 @@ const pluginConfig = {
               Referer: BASE_URL
           }
       })
-      if (status !== 200) throw new Error(`HTTP ${status} dari hostingchecker.com`)
+      if (status !== 200) throw new Error(`HTTP ${status} de hostingchecker.com`)
 
     const $ = cheerio.load(html)
       if (!$('.hcresults').length) throw new Error('Falló la búsqueda o no se encontró el dominio.')
@@ -113,7 +113,7 @@ const pluginConfig = {
               `🏷️ AS Org : ${v(r.asOrganization)}\n` +
               `🧾 AS Name : ${v(r.asName)}\n` +
               `🔁 Reverse DNS : ${v(r.reverseDns)}\n` +
-              `🏙️ Kota : ${v(r.city)}\n` +
+              `🏙️ Ciudad: ${v(r.city)}\n` +
               `🌍 Negara : ${v(r.country)}` +
               (r.whoisUrl ? `\n📄 WHOIS : ${r.whoisUrl}` : '')
           )

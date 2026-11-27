@@ -85,7 +85,7 @@ const pluginConfig = {
   }
 
   const SPECIAL = {
-      CD: 'Korps Diplomatik (kedutaan besar / perwakilan negara asing)',
+      CD: 'Cuerpo Diplomático (embajadas/representantes de países extranjeros)',
       CC: 'Korps Konsuler (konsulat negara asing)'
   }
 

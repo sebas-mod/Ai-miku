@@ -30,7 +30,7 @@ const pluginConfig = {
       try {
           let ref = parseRef(arg)
           if (!ref && !arg && getCurrent()) ref = { type: 'jid', jid: getCurrent().id }
-          if (!ref) return reply(`Kirim link saluran.\nContoh: ${prefix || '.'}chinfo https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
+          if (!ref) return reply(`Enviar enlace del canal.\nEjemplo: ${prefix || '.'}chiinfo https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
 
           const md = await metadata(sock, ref)
           const date = md.created
@@ -41,7 +41,7 @@ const pluginConfig = {
           return reply(
               `ℹ️ *INFO SALURAN*\n\n` +
               `📢 *SALURAN*\n` +
-              `Nama : ${md.name}${md.verified ? ' ✅' : ''}\n` +
+              `Nombre: ${md.name}${md.verified ? ' ✅' : ''}\n` +
               `Pengikut : ${md.subs.toLocaleString('id-ID')}\n` +
               `Dibuat : ${date}\n` +
               (md.role ? `Peran bot : ${md.role.toLowerCase()}\n` : '') +

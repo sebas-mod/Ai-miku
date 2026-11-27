@@ -25,7 +25,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { sock, text, reply, example }) {
-      if (!text) return example('<teks>')
+      if (!text) return example('<texto>')
 
       try {
           await sock.sendMessage(m.chat, {

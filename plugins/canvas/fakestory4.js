@@ -200,7 +200,7 @@ async function getAvatarBuffer(sock, jid) {
   if (Buffer.isBuffer(DEFAULT_PP_PATH) && DEFAULT_PP_PATH.length) {
     return DEFAULT_PP_PATH;
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No puedo tomar foto de perfil");
 }
 async function handler(m, { sock }) {
   const username = m.args.join(" ").trim() || m.pushName || "User";
@@ -224,10 +224,10 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 4*\n\n` +
-          `> Kirim/reply 1-2 gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory4 <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory4 Misaki\`\n\n` +
-          `> Tips: Kirim gambar + reply gambar lain untuk 2 gambar berbeda`,
+          `> ¡Envía/responde 1-2 imágenes!\n\n` +
+          `> Formato: \`${m.prefix}fakestory4 <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory4 Misaki\`\n\n` +
+          `> Consejo: envía una imagen + responde a otra imagen para 2 imágenes diferentes`,
       );
     }
     const resultBuffer = await createFakeStory(

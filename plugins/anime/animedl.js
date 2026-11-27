@@ -185,14 +185,14 @@ import * as cheerio from 'cheerio';
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
               `┃ ✦ *Cara Pakai*\n` +
               `┃\n` +
-              `┃   ${m.prefix}animedl <judul> | <eps/batch>\n` +
+              `┃   ${m.prefix}animedl <título> | <eps/lote>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}animedl jujutsu kaisen | 1\n` +
               `┃   ${m.prefix}animedl jujutsu kaisen | batch\n` +
               `┃\n` +
-              `┃ 💗 *Ai Miku:* Mau download anime apa darling~?\n` +
+              `┃ 💗 *Ai Miku:* ¿Qué anime quieres descargar cariño~?\n` +
               `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           )
       }
@@ -202,21 +202,21 @@ import * as cheerio from 'cheerio';
       let episode = parts[1] || '1'
 
       if (!query) {
-          return m.reply(`❌ Masukkan judul anime darling~`)
+          return m.reply(`❌ Ingresa el título del anime querido ~`)
       }
 
       episode = episode.toLowerCase()
       const isBatch = episode === 'batch'
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi mencari anime ${query} darling~ tunggu sebentar yaa 🦋`)
+      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando anime ${query} cariño ~ espera un momento, está bien 🦋`)
 
       try {
           const searchResults = await searchAnime(query)
 
           if (!searchResults || searchResults.length === 0) {
               m.react('💔')
-              return m.reply(`💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Anime *${query}* tidak ditemukan darling~`)
+              return m.reply(`💔 *NO ENCONTRADO*\n\n> anime *${query}*no encontrado cariño~`)
           }
 
           const anime = searchResults[0]
@@ -224,7 +224,7 @@ import * as cheerio from 'cheerio';
 
           if (!detail || !detail.downloads.length) {
               m.react('💔')
-              return m.reply(`💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Link download tidak ditemukan darling~`)
+              return m.reply(`💔 *NO ENCONTRADO*\n\n> Enlace de descarga no encontrado cariño~`)
           }
 
           let matchedDownloads = []
@@ -235,7 +235,7 @@ import * as cheerio from 'cheerio';
               const episodeNum = parseInt(episode)
               if (isNaN(episodeNum)) {
                   m.react('💔')
-                  return m.reply(`💔 *ᴇʀʀᴏʀ*\n\n> Nomor episode tidak valid darling~`)
+                  return m.reply(`💔 *ERROR*\n\n>Número de episodio no válido, cariño~`)
               }
               matchedDownloads = extractEpisodeFromDownloads(detail.downloads, episodeNum)
           }
@@ -243,9 +243,9 @@ import * as cheerio from 'cheerio';
           if (matchedDownloads.length === 0) {
               m.react('💔')
               return m.reply(
-                  `💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-                  `> ${isBatch ? 'Batch download' : `Episode ${episode}`} tidak ditemukan darling~\n\n` +
-                  `> Coba judul lain atau episode yang berbeda 🥺`
+                  `💔 *NO ENCONTRADO*\n\n` +
+                  `> ${isBatch ? 'Batch download' : `Episode ${episode}`} no encontrado cariño ~\n\n` +
+                  `> Prueba con otro título o un episodio diferente 🥺`
               )
           }
 
@@ -265,7 +265,7 @@ import * as cheerio from 'cheerio';
               txt += `╰━━━━━━━━━━━━━━━━━━━━━⬣\n\n`
           }
 
-          txt += `💗 *Ai Miku:* Klik link di atas buat download darling~ 🎬`
+          txt += `💗 *Ai Miku:* Haz clic en el enlace de arriba para descargar cariño~ 🎬`
 
           await m.reply(txt)
           m.react('✅')
@@ -276,7 +276,7 @@ import * as cheerio from 'cheerio';
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, cariño ~ 🥺`
           )
       }
   }

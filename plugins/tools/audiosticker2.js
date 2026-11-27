@@ -468,7 +468,7 @@ async function imageBufferToWebp(buffer) {
       await execFileAsync("ffmpeg", [
         "-y",
         "-i", inPath,
-        "-vf", "scale=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1",
+        "-vf", "escala=512:512:force_original_aspect_ratio=decrease,format=rgba,pad=512:512:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1",
         "-c:v", "libwebp",
         "-lossless", "0",
         "-q:v", "80",
@@ -558,7 +558,7 @@ async function buildAudioMessageFromBuffer(
   const { oggBuffer, realSeconds } = await convertToOggOpus(buffer, ext);
 
   const { audioMessage } = await prepareWAMessageMedia(
-    { audio: oggBuffer, mimetype: "audio/ogg; codecs=opus", ptt: true },
+    { audio: oggBuffer, mimetype: "audio/ogg; códecs=opus", ptt: true },
     { upload: client.waUploadToServer }
   );
 
@@ -568,7 +568,7 @@ async function buildAudioMessageFromBuffer(
 
   audioMessage.seconds = finalSeconds;
   audioMessage.ptt = true;
-  audioMessage.mimetype = "audio/ogg; codecs=opus";
+  audioMessage.mimetype = "audio/ogg; códecs=opus";
   if (!audioMessage.waveform || !audioMessage.waveform.length) {
     audioMessage.waveform = generateWaveform(oggBuffer);
   }
@@ -651,11 +651,11 @@ function startStickerSession({
       `│ ◦ *Pack* : *${packname}*\n` +
       `│ ◦ *Autor* : *${author}*\n` +
       `│ ◦ *Tipo* : \`${isAnimated ? "GIF animado" : "Imagen estática"}\`\n` +
-      `│ ◦ *Duración máx. del audio* : \`${MAX_DURATION} segundos\`\n` +
+      `│ ◦ *Duración máx. del audio*: \`${MAX_DURATION} segundos\`\n` +
       `│ ◦ *Tiempo estimado* : \`${SESSION_SECONDS} segundos\`\n` +
       `╰───────────────\n\n` +
       `╭─「 *SIGUIENTES PASOS* 」\n` +
-      `│ 1. Envía *Audio MP3 / Nota de voz / Vídeo* directamente a este chat\n` +
+      `│ 1. Envía *Audio MP3 / Nota de voz / Video* directamente a este chat\n` +
       `│ 2. O *responde a un Audio / Nota de voz / Vídeo* con \`${usedPrefix}${command}\`\n` +
       `│ 3. Escribe \`${usedPrefix}${command} batal\` para cancelar\n` +
       `╰───────────────`
@@ -711,7 +711,7 @@ async function consumeSessionWithAudio(
     console.error("[AUDIOSTICKER2 SESSION ERROR]", err);
     await react("❌");
     await send(
-      `❌ Gagal menggabungkan suara ke stiker: ${err?.message || String(err)}`
+      `❌ No se pudo combinar el sonido con la pegatina: ${err?.message || String(err)}`
     );
   }
 }
@@ -736,10 +736,10 @@ async function handler(m, extra = {}) {
 
   if (/^(batal|cancel|stop)$/i.test(rawText)) {
     if (!activeSession)
-      return send("⚠️ No hay ninguna sesión de Audio Sticker activa.");
+      return send("⚠️ No hi ninguna jasaón de Audio Sticker activa.");
     clearUserSession(key);
     await react("✅");
-    return send("✅ Sesión de Audio Sticker cancelada.");
+    return send("✅ Sesión de audio Sticker cancelada.");
   }
 
   const ownInfo = detectMediaInfo(m);
@@ -797,14 +797,14 @@ async function handler(m, extra = {}) {
     return send(
       `✦ *GENERADOR DE AUDIO STICKER* ✦\n` +
         `> _Crea stickers de imagen o GIF en movimiento que suenan al tocarlos._\n\n` +
-        `╭─「 *CÓMO USARLO (VERSIÓN FOTO)* 」\n` +
+        `╭─「 *CÓMO UTILIZAR (VERSIÓN FOTOGRÁFICA)* 」\n` +
         `│ 1. Envía o responde a una *Foto* con \`${usedPrefix}${command}\`\n` +
         `│ 2. El bot abrirá una sesión de *${SESSION_SECONDS} segundos*\n` +
         `│ 3. ¡Envía o responde a un *Audio MP3 / Nota de voz* (máx. ${MAX_DURATION}s)!\n` +
         `╰───────────────\n\n` +
         `╭─「 *CÓMO USARLO (VERSIÓN VÍDEO)* 」\n` +
         `│ ◦ Envía o responde a un *Vídeo (máx. ${MAX_DURATION} segundos)* con \`${usedPrefix}${command}\`\n` +
-        `│   _(Se convierte solo en sticker GIF animado + audio del vídeo)_\n` +
+        `│ _(Se convierte solo en sticker GIF animado + audio del vídeo)_\n` +
         `│ ◦ Pack personalizado: \`${usedPrefix}${command} NombrePack|Autor\`\n` +
         `╰───────────────`
     );
@@ -862,7 +862,7 @@ async function handler(m, extra = {}) {
     if (hasOwnVisual && hasQuotedAudio) {
       const audioBuf = await downloadBuffer(quoted, quotedInfo, client);
       if (!audioBuf || !audioBuf.length)
-        throw new Error("No se pudo descargar el audio al que respondes.");
+        throw new Error("No se pudo descargar el audio al que responde.");
       const ext = /ogg|opus/i.test(quotedInfo.mime)
         ? "ogg"
         : /mp4|m4a|aac/i.test(quotedInfo.mime)
@@ -934,7 +934,7 @@ async function handler(m, extra = {}) {
   } catch (e) {
     console.error("[AUDIOSTICKER2 ERROR]", e);
     await react("❌");
-    await send(`❌ Gagal memproses media: ${e?.message || String(e)}`);
+    await send(`❌ No se pudo procesar el medio: ${e?.message || String(e)}`);
   }
 }
 

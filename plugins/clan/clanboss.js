@@ -40,12 +40,12 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       const clanLevel = clan.level || 1
@@ -72,7 +72,7 @@ const getDatabase = MikuRuntime.getDatabase;
       if (boss.hp <= 0) {
           delete clan.boss
           await db.save()
-          return m.reply(`✅ Boss sudah dikalahkan!\n> Tunggu cooldown untuk spawn boss baru.`)
+          return m.reply(`✅ ¡El jefe ha sido derrotado!\n> Espere a que termine el tiempo de reutilización para que aparezca el nuevo jefe.`)
       }
 
       const userPower = 100 + (user.level || 1) * 10
@@ -112,8 +112,8 @@ const getDatabase = MikuRuntime.getDatabase;
           replyText += `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅ* 」\n`
           replyText += `┃ 💰 Reward clan: *Rp ${totalReward.toLocaleString('id-ID')}*\n`
           replyText += `┃ 📈 XP clan: *+${totalXp.toLocaleString('id-ID')}*\n`
-          replyText += `┃ 👥 Peserta: ${boss.participants.length} orang\n`
-          replyText += `┃ 🎁 Bonus peserta: *Rp ${participantBonus.toLocaleString('id-ID')}*/org\n`
+          replyText += `┃ 👥 Participantes: ${boss.participants.length} persona\n`
+          replyText += `┃ 🎁 Bono de participante: *Rp ${participantBonus.toLocaleString('id-ID')}*/org\n`
           replyText += `╰┈┈┈┈┈┈┈┈⬡`
 
           for (const participant of boss.participants) {

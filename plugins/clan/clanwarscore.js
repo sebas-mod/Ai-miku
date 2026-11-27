@@ -32,12 +32,12 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!`)
+          return m.reply(`❌¡Aún no tienes clan!`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (!db.db.data.activeWars) db.db.data.activeWars = {}
@@ -51,7 +51,7 @@ const getDatabase = MikuRuntime.getDatabase;
       }
 
       if (!activeWar) {
-          return m.reply(`❌ Clanmu sedang tidak dalam perang!`)
+          return m.reply(`❌ ¡Tu clan no está en guerra!`)
       }
 
       const attackerClan = db.db.data.clans[activeWar.attacker]
@@ -66,13 +66,13 @@ const getDatabase = MikuRuntime.getDatabase;
       txt += `┃ 🛡️ ${defenderClan.name}: *${activeWar.defenderScore} pts*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
       txt += `╭┈┈⬡「 ⏰ *ᴛɪᴍᴇ ʟᴇꜰᴛ* 」\n`
-      txt += `┃ ⏱️ ${hoursLeft} jam ${minutesLeft} menit\n`
+      txt += `┃ ⏱️ ${hoursLeft} En punto ${minutesLeft} minuto\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
 
       if (activeWar.attackerScore > activeWar.defenderScore) {
-          txt += `> 🔥 *${attackerClan.name}* sedang unggul!`
+          txt += `> 🔥 *${attackerClan.name}*¡está sobresaliendo!`
       } else if (activeWar.defenderScore > activeWar.attackerScore) {
-          txt += `> 🛡️ *${defenderClan.name}* sedang unggul!`
+          txt += `> 🛡️ *${defenderClan.name}*¡está sobresaliendo!`
       } else {
           txt += `> ⚖️ Skor imbang! Ayo menangkan perang!`
       }

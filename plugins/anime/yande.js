@@ -40,13 +40,13 @@ import axios from 'axios'
     await conn.sendMessage(m.chat, {
       image: { url: img.file_url },
       caption:
-  `Size : ${img.width}x${img.height}
-Rating : ${img.rating}
-ID : ${img.id}
+  `Tamaño: ${img.width}x${img.height}
+Calificaciones: ${img.rating}
+ID: ${img.id}
 
-▢ .yande random — Lagi
+▢.yande aleatorio — Otra vez
 
-ʀʏᴏ ʏᴀᴍᴀᴅᴀ - ᴍᴅ`,
+RYO YAMADA - MD`,
     }, { quoted: m })
   }
 
@@ -86,10 +86,10 @@ ID : ${img.id}
       }
 
       const query = args.join('_')
-      m.reply('Mencari wallpaper...')
+      m.reply('Buscando fondos de pantalla...')
 
       const results = await searchYande(query)
-      if (!results.length) return m.reply('Tidak ditemukan')
+      if (!results.length) return m.reply('Extraviado')
 
       for (let img of results) {
         await sendImage(conn, m, img)
@@ -97,7 +97,7 @@ ID : ${img.id}
 
     } catch (e) {
       console.log(e)
-      m.reply('Gagal mengambil wallpaper')
+      m.reply('No se pudo recuperar el fondo de pantalla')
     }
   }
 

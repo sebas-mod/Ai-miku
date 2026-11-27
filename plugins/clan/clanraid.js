@@ -39,20 +39,20 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender && clan.roles?.[m.sender] !== 'coleader') {
-          return m.reply(`❌ Hanya *Leader* atau *Co-Leader* yang bisa memulai raid!`)
+          return m.reply(`❌ ¡Solo *Líder* o *Co-Líder* pueden iniciar una incursión!`)
       }
 
       if (clan.raid && clan.raid.active) {
-          return m.reply(`⚠️ Raid sedang berlangsung!\n> Ketik *.clanraid* untuk join raid.`)
+          return m.reply(`⚠️ ¡La incursión está en marcha!\n> Escribe *.clanraid* para unirte a la redada.`)
       }
 
       const clanLevel = clan.level || 1
@@ -80,12 +80,12 @@ const getDatabase = MikuRuntime.getDatabase;
       let txt = `⚔️ *ᴄʟᴀɴ ʀᴀɪᴅ ꜱᴛᴀʀᴛᴇᴅ!*\n\n`
       txt += `╭┈┈⬡「 🎯 *ʀᴀɪᴅ ɪɴꜰᴏ* 」\n`
       txt += `┃ 🏷️ Type: *${selectedRaid.name}*\n`
-      txt += `┃ ⏱️ Duration: *${selectedRaid.duration} menit*\n`
+      txt += `┃ ⏱️ Duración: *${selectedRaid.duration} minuto*\n`
       txt += `┃ 🎯 Target kills: *${selectedRaid.targetKills}*\n`
       txt += `┃ 💰 Reward: *Rp ${selectedRaid.reward.toLocaleString('id-ID')}*\n`
       txt += `┃ 📈 XP: *+${selectedRaid.xp}*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-      txt += `> Ketik *.clanraid* untuk join dan kill monster!`
+      txt += `> ¡Escribe *.clanraid* para unirte y matar monstruos!`
 
       await m.reply(txt)
   }

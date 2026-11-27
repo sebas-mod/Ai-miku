@@ -92,36 +92,36 @@ const pluginConfig = {
           let formattedData = `
   🔍 INFORMASI IP: ${ipTarget}
 
-  📟 IP Address : ${safe(result.ip)}
-  📡 Tipe IP : ${safe(result.type)}
-  📖 Kontinen : ${safe(d1.continent || '')} ${safe(d1.continent_code || '')}
-  📀 Negara : ${safe(result.country)} (${safe(result.country_code)})
-  📂 Region : ${safe(result.region)}
-  📌 Kota : ${safe(result.city)}
-  📍 Koordinat
-  • Latitude : ${safe(result.latitude)}
-  • Longitude : ${safe(result.longitude)}
-  📬 Bagian Uni Eropa : ${d1.is_eu ? 'Ya' : 'Tidak'}
-  📎 Kode Pos : ${safe(result.postal)}
-  ☎️ Kode Panggilan : +${safe(result.calling_code)}
-  🏷️ Ibu Kota Negara : ${safe(result.capital)}
-  🔗 Batas Negara : ${safe(result.borders)}
+  📟 IP Dirección: ${safe(result.ip)}
+  📡 Escriba IP: ${safe(result.type)}
+  📖 Continente: ${safe(d1.continent || '')} ${safe(d1.continent_code || '')}
+  📀 País: ${safe(result.country)} (${safe(result.country_code)})
+  📂 Región: ${safe(result.region)}
+  📌 Ciudad: ${safe(result.city)}
+  📍 Coordenadas
+  • Latitud: ${safe(result.latitude)}
+  • Longitud: ${safe(result.longitude)}
+  📬 Parte de la Unión Europea: ${d1.is_eu ? 'Ya' : 'Tidak'}
+  📎 Código Postal: ${safe(result.postal)}
+  ☎️ Código de llamada: +${safe(result.calling_code)}
+  🏷️Capital Nacional: ${safe(result.capital)}
+  🔗 Límites del país: ${safe(result.borders)}
 
-  🏳️ Bendera
-  💾 Gambar : ${safe(result.flag)}
-  🏮 Emoji : ${safe(result.emoji)}
-  🔖 Unicode : ${safe(result.emoji_unicode)}
+  🏳️ Bandera
+  💾 Imagen: ${safe(result.flag)}
+  🏮Emojis: ${safe(result.emoji)}
+  🔖 Unicódigo: ${safe(result.emoji_unicode)}
 
-  🧮 Informasi Koneksi
-  💡 ASN : ${safe(result.asn)}
-  🖥️ Organisasi : ${safe(result.org)}
-  📡 ISP : ${safe(result.isp)}
+  🧮 Información de conexión
+  💡 ASN: ${safe(result.asn)}
+  🖥️ Organización: ${safe(result.org)}
+  📡 ISP: ${safe(result.isp)}
 
-  ⏰ Zona Waktu : ${safe(result.timezone)}
-  💰 Mata Uang : ${safe(result.currency)} (${safe(result.currency_name)})
-  🗣️ Bahasa : ${safe(result.languages)}
+  ⏰ Zona horaria: ${safe(result.timezone)}
+  💰 Moneda: ${safe(result.currency)} (${safe(result.currency_name)})
+  🗣️ Idioma: ${safe(result.languages)}
 
-  📖 Peta Lokasi : ${mapLink}
+  📖 Mapa de ubicación: ${mapLink}
   `.trim();
 
           if (result.latitude && result.longitude) {

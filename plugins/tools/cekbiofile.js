@@ -180,7 +180,7 @@ const pluginConfig = {
       try {
         await connection.sendMessage(m.chat, {
           edit: statusMsg.key,
-          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Sedang memproses: ${batch[0] || '...'}\n📁 Sumber: ${sourceType}`
+          text: `⏳ ${progressBar} ${processedCount}/${validNumbers.length}\n📱 Procesamiento: ${batch[0] || '...'}\n📁 Fuente: ${sourceType}`
         });
       } catch (e) {}
 
@@ -195,7 +195,7 @@ const pluginConfig = {
     await connection.sendMessage(m.chat, {
       document: { url: filename },
       mimetype: 'text/plain',
-      fileName: `hasil_cekbio_${Date.now()}.txt`,
+      fileName: `resultados_checkbio_${Date.now()}.txt`,
       caption: `📋 *RESULTADO DEL CHEQUEO DE BIOS DESDE ARCHIVO (SOLO DUEÑO)*\n\n` +
                `📊 Total: ${validNumbers.length} números\n` +
                `✅ Registrados: ${results.filter(r => r.registered).length}\n` +

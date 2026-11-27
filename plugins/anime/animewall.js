@@ -162,7 +162,7 @@ import { createCanvas } from '@napi-rs/canvas';
 
       ctx.fillStyle = THEME.white
       ctx.font = '10px "Segoe UI"'
-      ctx.fillText('📌 Klik gambar lalu "Save as image" untuk download', w/2, 223)
+      ctx.fillText('📌 Haga clic en la imagen y luego en "Guardar como imagen" para descargar', w/2, 223)
 
       ctx.fillStyle = `${THEME.primary}80`
       ctx.font = '9px "Segoe UI"'
@@ -198,12 +198,12 @@ import { createCanvas } from '@napi-rs/canvas';
       caption += `📡 *Source:* ${wallpaper.source}\n`
       caption += `\n`
       caption += `📌 *Cara download:*\n`
-      caption += `1. Klik gambar di atas\n`
+      caption += `1. Haga clic en la imagen de arriba\n`
       caption += `2. Tekan "...", pilih "Save as image"\n`
       caption += `\n`
 
       if (wallpaper.isFallback) {
-          caption += `⚠️ *Note:* API sedang sibuk, ini wallpaper cadangan.\n`
+          caption += `⚠️ *Nota:* API está ocupado, este es un fondo de pantalla de respaldo.\n`
       }
 
       caption += `💕 *Ai Miku:* ${query ? `Nih wallpaper ${query} darling~` : 'Random wallpaper buat kamu darling~'} 🦋`
@@ -217,13 +217,13 @@ import { createCanvas } from '@napi-rs/canvas';
       await m.react('🖼️')
 
       try {
-          await m.reply(query ? `🦋 *Ai Miku:* Lagi nyari wallpaper *${query}*... tunggu sebentar ya~ 🖼️` : `🦋 *Ai Miku:* Lagi ambil random wallpaper... tunggu sebentar ya~ 🖼️`)
+          await m.reply(query ? `🦋 *Ai Miku:* Buscando fondo de pantalla*${query}*... espera un momento, vale~ 🖼️` : `🦋 *Ai Miku:* Tomando un fondo de pantalla aleatorio... espera un momento, vale~ 🖼️`)
 
           const wallpaper = await fetchWallpaper(query)
 
           if (!wallpaper.success && !wallpaper.url) {
               await m.react('❌')
-              return m.reply(`❌ Gagal mengambil wallpaper!\n\nCoba lagi nanti ya darling~ 🦋`)
+              return m.reply(`❌ ¡No se pudo recuperar el fondo de pantalla!\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
           }
 
           try {
@@ -252,7 +252,7 @@ import { createCanvas } from '@napi-rs/canvas';
       } catch (err) {
           console.error('[AnimeWall] Error:', err)
           await m.react('❌')
-          await m.reply(`❌ *Error:* ${err.message}\n\nCoba lagi nanti ya darling~ 🦋`)
+          await m.reply(`❌ *Error:* ${err.message}\n\nInténtalo de nuevo más tarde, cariño~ 🦋`)
       }
   }
 

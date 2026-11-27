@@ -68,7 +68,7 @@ const pluginConfig = {
           if (!name && !size && !mime) return reply('```' + JSON.stringify(data, null, 1).slice(0, 1500) + '```')
           return reply(
               `📁 *INFO FILE DRIVE*\n\n` +
-              `• Nama : ${name || '-'}\n• Ukuran : ${fmtBytes(size) || size || '-'}\n• Tipe : ${mime || '-'}\n` +
+              `• Nombre: ${name || '-'}\n• Tamaño: ${fmtBytes(size) || size || '-'}\n• Tipo: ${mime || '-'}\n` +
               (duration ? `• Durasi : ${duration}\n` : '') + (thumb ? `• Thumbnail : ${thumb}\n` : '') + `\n🔗 ${url}`
           )
       } catch (e) {

@@ -34,7 +34,7 @@ const te = MikuRuntime.te;
   async function handler(m, { sock }) {
       const text = m.args.join(' ')
       if (!text) {
-          return m.reply(`🎬 *ʙʀᴀᴛ ᴀɴɪᴍᴀᴛᴇᴅ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid Hai semua\``)
+          return m.reply(`🎬 *BRAT ANIMATED*\n\n> Introducir texto\n\n\`Ejemplo: ${m.prefix}bratvid Hola a todos\``)
       }
 
       m.react('🕕')

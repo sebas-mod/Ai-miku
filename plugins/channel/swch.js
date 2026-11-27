@@ -40,8 +40,8 @@ const pluginConfig = {
                   if (!Buffer.isBuffer(buffer)) throw new Error('buffer kosong')
                   media = { ...pm, buffer }
               } catch (err) {
-                  console.log('[CH] swch unduh media:', err.message)
-                  return reply('Gagal mengunduh media. Coba kirim ulang gambar/videonya.')
+                  console.log('[CH] cambiar medios de descarga:', err.message)
+                  return reply('No se pudo descargar el medio. Intente reenviar la imagen/vídeo.')
               }
           }
 
@@ -55,20 +55,20 @@ const pluginConfig = {
               if (!body) {
                   return reply(
                       `📣 *POSTING SALURAN*\n\n` +
-                      `${p}swch <teks> → posting teks\n` +
-                      `Kirim/reply gambar atau video + ${p}swch <caption>\n` +
-                      `Reply audio + ${p}swch → posting audio\n` +
-                      `${p}swch <link saluran> <teks> → ke saluran lain\n\n` +
-                      (getCurrent() ? `💡 Tujuan saat ini: ${getCurrent().name}` : `💡 Atur tujuan dulu: ${p}setch <link saluran>`)
+                      `${p}swch <texto> → publicar texto\n` +
+                      `Enviar/responder + fotos o vídeos ${p}swch <título>\n` +
+                      `Responder audio + ${p}swch → publicar audio\n` +
+                      `${p}swch <enlace de canal> <texto> → a otro canal\n\n` +
+                      (getCurrent() ? `💡 Metas actuales: ${getCurrent().name}` : `💡 Establezca objetivos primero: ${p}establecer <enlace de canal>`)
                   )
               }
-              if (body.length > 2000) return reply('Teks terlalu panjang (maks 2000 karakter).')
+              if (body.length > 2000) return reply('El texto es demasiado largo (máximo 2000 caracteres).')
               ;[content, kind] = [{ text: body }, 'teks']
           }
 
           assertCanPost(t)
           await sock.sendMessage(t.id, content)
-          return reply(`✅ Pembaruan (${kind}) terkirim ke saluran *${t.name}*.`)
+          return reply(`✅ Actualización (${kind}) terkirim ke saluran *${t.name}*.`)
       } catch (err) {
           console.log('[CH] swch:', err.message)
           return reply(`❌ ${explain(err)}`)

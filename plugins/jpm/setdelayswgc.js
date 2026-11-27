@@ -28,9 +28,9 @@ const pluginConfig = {
 
   async function handler(m, { text, reply, example }) {
       const ms = parseInt(text)
-      if (isNaN(ms) || ms < 1000) return example('<ms>  (minimal 1000, contoh: 60000)')
+      if (isNaN(ms) || ms < 1000) return example('<ms> (mínimo 1000, ejemplo: 60000)')
       jpmSetCfg('delayAutoSwgc', ms)
-      return reply(`*▢ DELAY SWGC*\n• Delay : ${ms}ms\n• Status : Berhasil diubah\n• Info : berlaku untuk autoswgc berikutnya`)
+      return reply(`*▢ DELAY SWGC*\n• Demora: ${ms}EM\n• Estado: cambiado correctamente\n• Información: válido para el próximo autoswgc`)
   }
 
 export { pluginConfig as config, handler }

@@ -58,17 +58,17 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
     if (session) {
       const sisa = Math.ceil((SESSION_TTL - (Date.now() - session.timestamp)) / 60000)
       return m.reply(
-        `✅ *Langkah 1 selesai* — Gambar sampul sudah tersimpan.\n\n` +
-        `Sekarang kirim atau reply *video* dengan perintah *${p}*\n` +
-        `_(Sesi berakhir dalam ${sisa} menit)_`
+        `✅ *Paso 1 completado* — La imagen de portada se ha guardado.\n\n` +
+        `Ahora envía o responde un *video* con el comando *${p}*\n` +
+        `_(La sesión termina en ${sisa} minuto)_`
       )
     }
     return m.reply(
       `📸 *CUSTOM LIVE PHOTO BUILDER*\n\n` +
-      `Gabungkan foto sampul pilihanmu dan video menjadi satu *Live Photo* WhatsApp.\n\n` +
+      `Combina la foto de portada y el vídeo que hayas elegido en una *Live Photo* WhatsApp.\n\n` +
       `📌 *Langkah Penggunaan:*\n` +
-      `1. Kirim/reply *foto* dengan perintah \`${p}\`\n` +
-      `2. Kirim/reply *video* dengan perintah \`${p}\``
+      `1. Enviar/responder *foto* con el comando \`${p}\`\n` +
+      `2. Enviar/responder *video* con el comando \`${p}\``
     )
   }
 
@@ -79,19 +79,19 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
       sessions.set(sender, { image, timestamp: Date.now() })
       await m.react("✅")
       return m.reply(
-        `✅ *Foto sampul berhasil disimpan!*\n\n` +
-        `Selanjutnya kirim atau reply *video* dengan perintah *${p}*\n` +
-        `_(Batas waktu sesi 5 menit)_`
+        `✅ *¡Foto de portada guardada exitosamente!*\n\n` +
+        `A continuación, envía o responde un *video* con el comando *${p}*\n` +
+        `_(Límite de tiempo de la sesión 5 minutos)_`
       )
     } catch (e) {
       await m.react("❌")
-      return m.reply(`❌ *Gagal mengunduh gambar:* ${e.message}`)
+      return m.reply(`❌ *No se pudo descargar la imagen:* ${e.message}`)
     }
   }
 
   if (target.type === "videoMessage") {
     if (!session) {
-      return m.reply(`⚠️ Belum ada foto sampul yang disimpan.\nKirim atau reply *foto* terlebih dahulu dengan perintah *${p}*.`)
+      return m.reply(`⚠️ Aún no se ha guardado ninguna foto de portada.\nEnvía o responde a *foto* primero con el comando *${p}*.`)
     }
 
     await m.react("⏳")
@@ -144,7 +144,7 @@ async function handler(m, { sock, conn, usedPrefix = ".", prefix, command = "pho
       await m.react("✅")
     } catch (e) {
       await m.react("❌")
-      return m.reply(`❌ *Gagal membuat Live Photo:* ${e.message}`)
+      return m.reply(`❌ *No se pudo crear Live Photo:* ${e.message}`)
     }
   }
 }

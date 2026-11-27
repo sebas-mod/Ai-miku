@@ -75,11 +75,11 @@ async function handler(m, { conn, args, usedPrefix, command }) {
       try {
           if (!args[0]) {
               return m.reply(
-                  `Uhh ayang... URL-nya mana nih? Manja banget deh~ 🥺💋\n\n` +
-                  `*Format Penggunaan:*\n` +
-                  `• \`${usedPrefix + command} <url> [device] [durasi_detik]\`\n\n` +
-                  `*Pilihan Device:* \`desktop\` | \`iphone16\` | \`tab\` (Default: desktop)\n` +
-                  `*Contoh:* \`${usedPrefix + command} https://github.com iphone16 5\``
+                  `Uhh cariño... ¿dónde está la URL? Está realmente estropeado~ 🥺💋\n\n` +
+                  `*Formato de uso:*\n` +
+                  `• \`${usedPrefix + command} <url> [dispositivo] [duración_segundos]\`\n\n` +
+                  `*Selección de dispositivo:* \`escritorio\` | \`iphone16\` | \`pestaña\` (Predeterminado: escritorio)\n` +
+                  `*Ejemplo:* \`${usedPrefix + command} https://github.com iphone16 5\``
               );
           }
 

@@ -109,26 +109,26 @@ import * as cheerio from 'cheerio';
   }
 
   async function run(m, { sock, text }) {
-    if (!text?.trim()) return m.reply('❌ Masukkan judul tokusatsu atau link TokusatsuIndo.\n\nContoh:\n.tokusatsu kamen rider\n.tokusatsu https://www.tokusatsuindo.com/...');
+    if (!text?.trim()) return m.reply('❌ Ingrese el título de tokusatsu o el enlace de TokusatsuIndo.\n\nEjemplo:\n.tokusatsu kamen jinete\n.tokusatsu https://www.tokusatsuindo.com/...');
     try {
       const input = text.trim();
       let target = input;
       if (!/tokusatsuindo\.com/i.test(input)) {
         const results = await searchSeries(input);
-        if (!results.length) return m.reply(`❌ Judul tidak ditemukan untuk: ${input}`);
+        if (!results.length) return m.reply(`❌ Títulos no encontrados para: ${input}`);
         const lines = results.map((r, i) => `${i + 1}. ${r.title}${r.categories.length ? ` — ${r.categories.join(', ')}` : ''}\n${r.url}`).join('\n\n');
-        return m.reply(`🔍 *Hasil TokusatsuIndo*\n\n${lines}\n\nBalas/kirim lagi dengan salah satu URL di atas untuk membuka detail.`);
+        return m.reply(`🔍 *Resultados de TokusatsuIndo*\n\n${lines}\n\nResponda/envíe nuevamente con uno de los URL anteriores para revelar detalles.`);
       }
 
       const detail = await scrapeDetail(target);
       if (detail.type === 'episode') {
-        return m.reply(`🎬 *${detail.title || 'Tokusatsu Episode'}*\n\n${detail.info || 'Tidak ada deskripsi.'}\n\n🔗 Player: ${detail.stream || 'Tidak ditemukan'}\n🌐 Sumber: ${detail.targetUrl}`);
+        return m.reply(`🎬 *${detail.title || 'Tokusatsu Episode'}*\n\n${detail.info || 'Tidak ada deskripsi.'}\n\n🔗 Jugadores: ${detail.stream || 'Tidak ditemukan'}\n🌐 Fuente: ${detail.targetUrl}`);
       }
 
       let caption = `📺 *${detail.title || 'Tokusatsu'}*\n\n${detail.synopsis || 'Sinopsis tidak ditemukan.'}\n\n`;
       caption += detail.episodes.length
         ? detail.episodes.map((ep, i) => `${i + 1}. ${ep.title}\n${ep.url}`).join('\n\n')
-        : '❌ Episode tidak ditemukan.';
+        : '❌ Episodio no encontrado.';
       caption += `\n\n🌐 Sumber: ${target}`;
       if (detail.cover) {
         try {
@@ -138,7 +138,7 @@ import * as cheerio from 'cheerio';
       return m.reply(caption);
     } catch (err) {
       console.error('[tokusatsu]', err);
-      return m.reply(`❌ Gagal mengambil data TokusatsuIndo: ${err.message}`);
+      return m.reply(`❌ No se pudieron recuperar los datos de TokusatsuIndo: ${err.message}`);
     }
   }
 

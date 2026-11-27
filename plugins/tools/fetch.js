@@ -161,7 +161,7 @@ const pluginConfig = {
       try {
           ({ res, url } = await fetchSafe(target))
       } catch (e) {
-          return m.reply(`Gagal mengambil URL: ${e?.message || e}`)
+          return m.reply(`No se pudo recuperar URL: ${e?.message || e}`)
       }
 
       const mime = (res.headers.get('content-type') || 'application/octet-stream').split(';')[0].trim().toLowerCase()
@@ -169,7 +169,7 @@ const pluginConfig = {
       try {
           buffer = await readBody(res)
       } catch (e) {
-          return m.reply(`Gagal membaca isi URL: ${e?.message || e}`)
+          return m.reply(`No se pudo leer el contenido de URL: ${e?.message || e}`)
       }
 
       const isText = /^text\/|json|xml|javascript|yaml|csv/.test(mime)

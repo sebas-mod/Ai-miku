@@ -104,7 +104,7 @@ import FormData from 'form-data'
 
       const name = String(q.fileName || q.msg?.fileName || 'document.pdf')
       const result = await pdfToJpg(pdf, /\.pdf$/i.test(name) ? name : name + '.pdf', dpi)
-      if (!result?.length) throw new Error('Hasil konversi kosong')
+      if (!result?.length) throw new Error('El resultado de la conversión está vacío.')
 
       const isZip = result[0] === 0x50 && result[1] === 0x4b
       if (isZip) {
@@ -120,7 +120,7 @@ import FormData from 'form-data'
     } catch (e) {
       console.error('[PDFtoJPG] Error:', e)
       m.react('❌')
-      m.reply(`❌ *Gagal konversi*\n\n> ${e.message}`)
+      m.reply(`❌ *La conversión falló*\n\n> ${e.message}`)
     }
   }
 

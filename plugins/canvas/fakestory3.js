@@ -247,17 +247,17 @@ async function getAvatarBuffer(sock, jid) {
   if (Buffer.isBuffer(DEFAULT_PP_PATH) && DEFAULT_PP_PATH.length) {
     return DEFAULT_PP_PATH;
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No puedo tomar foto de perfil");
 }
 async function handler(m, { sock }) {
   const input = m.args.join(" ");
   if (!input || !input.includes("|")) {
     return m.reply(
       `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 3*\n\n` +
-        `> Reply gambar dengan format:\n` +
-        `> \`${m.prefix}fakestory3 nama|text1|text2\`\n\n` +
-        `> Contoh:\n` +
-        `> \`${m.prefix}fakestory3 Misaki|Tersenyumlah|untuk menutupi kesedihan\``,
+        `> Responder imagen con formato:\n` +
+        `> \`${m.prefix}fakestory3 nombre|texto1|texto2\`\n\n` +
+        `> Ejemplo:\n` +
+        `> \`${m.prefix}fakestory3 Misaki|Sonríe|para tapar la tristeza\``,
     );
   }
   const parts = input.split("|").map((s) => s.trim());
@@ -270,7 +270,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.isImage);
     if (!isImage) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply gambar untuk membuat fake story!`);
+      return m.reply(`❌ *FALLÓ*\n\n> ¡Responde la imagen para crear una historia falsa!`);
     }
     let imageBuffer;
     if (m.isImage && m.download) {
@@ -280,7 +280,7 @@ async function handler(m, { sock }) {
     }
     if (!imageBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+      return m.reply(`❌ *FALLÓ*\n\n> No puedo descargar imágenes`);
     }
     const resultBuffer = await createFakeStory(
       username,

@@ -33,7 +33,7 @@ const pluginConfig = {
               caption: `📦 Barcode:\n${text}`
           }, { quoted: m })
       } catch (e) {
-          reply('Gagal membuat barcode.')
+          reply('No se pudo crear el código de barras.')
       }
   }
 

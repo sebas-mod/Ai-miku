@@ -30,7 +30,7 @@ const pluginConfig = {
           need(sock, 'newsletterFollow')
           const t = await pickTarget(sock, text, prefix)
           await sock.newsletterFollow(t.id)
-          return reply(`✅ Sekarang mengikuti saluran: *${t.name}*`)
+          return reply(`✅ Ahora siguiendo los canales: *${t.name}*`)
       } catch (err) {
           console.log('[CH] chfollow:', err.message)
           return reply(`❌ ${explain(err)}${/Belum ada saluran/.test(String(err.message)) ? '' : `\nContoh: ${prefix || '.'}chfollow <link saluran>`}`)

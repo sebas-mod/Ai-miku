@@ -39,7 +39,7 @@ export function parseRef(input) {
 
 export function need(sock, ...fns) {
     const missing = fns.filter((f) => typeof sock[f] !== 'function')
-    if (missing.length) throw new ChannelError(`Versi Baileys di bot ini belum punya fitur saluran (${missing.join(', ')}). Update paket baileys dulu.`)
+    if (missing.length) throw new ChannelError(`La versión Baileys en bot aún no tiene una función de canal (${missing.join(', ')}). Actualice primero el paquete baileys.`)
 }
 
 const textOf = (v) => (v && typeof v === 'object' ? v.text ?? '' : v ?? '')
@@ -62,7 +62,7 @@ export function normalize(md) {
 export async function metadata(sock, ref) {
     need(sock, 'newsletterMetadata')
     const md = ref.type === 'jid' ? await sock.newsletterMetadata('jid', ref.jid) : await sock.newsletterMetadata('invite', ref.code)
-    if (!md || !md.id) throw new ChannelError('Saluran tidak ditemukan. Periksa link atau ID-nya.')
+    if (!md || !md.id) throw new ChannelError('Canal no encontrado. Consulta el enlace o ID.')
     return normalize(md)
 }
 
@@ -85,20 +85,20 @@ export async function pickTarget(sock, rawText, prefix = '.') {
         return { id: md.id, name: md.name, role: md.role, rest: m[2].trim(), serverId: ref.serverId, md }
     }
     const cur = getCurrent()
-    if (!cur) throw new ChannelError(`Belum ada saluran tujuan. Atur dulu dengan: ${prefix}setch <link saluran>\n(atau tulis link saluran di awal perintah ini)`)
+    if (!cur) throw new ChannelError(`Aún no hay ningún canal de destino. Configúrelo primero de la siguiente manera: ${prefix}establecer <enlace de canal>\n(o escriba el enlace del canal al comienzo de este comando)`)
     return { id: cur.id, name: cur.name, role: cur.role || '', rest: raw.trim(), serverId: null, md: null }
 }
 
 export function assertCanPost(t) {
-    if (t.role && !isAdminRole(t.role)) throw new ChannelError(`Akun bot hanya "${t.role.toLowerCase()}" di saluran *${t.name}*, bukan admin/pemilik, jadi tidak bisa memposting.\nJadikan nomor bot admin saluran, lalu ulangi .setch.`)
+    if (t.role && !isAdminRole(t.role)) throw new ChannelError(`Solo cuenta bot "${t.role.toLowerCase()}" en el canal *${t.name}*, no administrador/propietario, por lo que no puedo publicar.\nHaga que el canal número bot sea administrador y luego repita.setch.`)
 }
 
 export function explain(err) {
-    const m = String((err && (err.message || err)) || 'error tidak diketahui')
+    const m = String((err && (err.message || err)) || 'error desconocido')
     if (err instanceof ChannelError) return m
-    if (/not-authorized|forbidden|\b40[13]\b|unauthorized/i.test(m)) return 'Akun bot tidak punya izin di saluran ini (harus pemilik/admin saluran).'
-    if (/\b404\b|not-found|item-not-found/i.test(m)) return 'Saluran atau pesan tidak ditemukan. Periksa link/ID-nya.'
-    if (/time(d)? ?out/i.test(m)) return 'WhatsApp tidak merespons (timeout). Coba lagi sebentar lagi.'
+    if (/not-authorized|forbidden|\b40[13]\b|unauthorized/i.test(m)) return 'La cuenta bot no tiene permiso en este canal (debe ser propietario/administrador del canal).'
+    if (/\b404\b|not-found|item-not-found/i.test(m)) return 'Canal o mensaje no encontrado. Consulta el enlace/ID.'
+    if (/time(d)? ?out/i.test(m)) return 'WhatsApp no responde (tiempo de espera). Inténtalo de nuevo en un momento.'
     return m
 }
 
@@ -110,8 +110,8 @@ async function handler(m, { sock, text, prefix, reply }) {
     if (!arg) {
         return reply(
             `📌 *SALURAN TUJUAN*\n\n` +
-            (cur ? `Nama : ${cur.name}\nID : ${cur.id}\nPeran bot : ${cur.role ? cur.role.toLowerCase() : 'tidak diketahui'}` : 'Belum diatur') +
-            `\n\n📖 *CARA PAKAI*\n${p}setch <link saluran>\n${p}setch off  (hapus)\nSetelah itu: ${p}swch, ${p}playch, ${p}chname, dll\n\n💡 Nomor bot harus jadi admin/pemilik saluran supaya bisa memposting.`
+            (cur ? `Nombre: ${cur.name}\nID: ${cur.id}\nRol bot: ${cur.role ? cur.role.toLowerCase() : 'tidak diketahui'}` : 'Aún no configurado') +
+            `\n\n📖 *CARA PAKAI*\n${p}establecer <enlace de canal>\n${p}desactivar (eliminar)\nDespués: ${p}interruptor, ${p}jugar, ${p}nombre, etc.\n\n💡 El número bot debe ser el administrador/propietario del canal para poder publicar.`
         )
     }
     if (['off', 'hapus', 'reset'].includes(arg.toLowerCase())) {
@@ -120,11 +120,11 @@ async function handler(m, { sock, text, prefix, reply }) {
     }
 
     const ref = parseRef(arg)
-    if (!ref) return reply(`Itu bukan link/ID saluran.\nContoh: ${p}setch https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
+    if (!ref) return reply(`No es un enlace/canal ID.\nEjemplo: ${p}establecer https://whatsapp.com/channel/0029VaXXXXXXXXXX`)
     try {
         const md = await metadata(sock, ref)
         setCurrent({ id: md.id, name: md.name, role: md.role })
-        const warn = md.role && !isAdminRole(md.role) ? `\n⚠️ Akun bot hanya "${md.role.toLowerCase()}" di saluran ini. Jadikan admin dulu supaya bisa memposting.` : ''
+        const warn = md.role && !isAdminRole(md.role) ? `\n⚠️ Solo cuenta bot "${md.role.toLowerCase()}" en este canal. Primero conviértelo en administrador para que puedas publicar.` : ''
         return reply(`✅ Saluran bawaan: *${md.name}*\nPengikut: ${md.subs.toLocaleString('id-ID')}${md.role ? `\nPeran bot: ${md.role.toLowerCase()}` : ''}${warn}`)
     } catch (err) {
         console.log('[CH] setch:', err.message)

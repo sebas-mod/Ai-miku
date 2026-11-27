@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     .filter((u) => u.exp > 0)
     .sort((a, b) => b.exp - a.exp);
 
-  if (!all.length) return m.reply(`📊 Belum ada data peringkat level saat ini.`);
+  if (!all.length) return m.reply(`📊 No hay datos de clasificación de niveles en este momento.`);
 
   const myId = jidDigits(m.sender);
   const myIndex = all.findIndex((u) => u.id === myId);
@@ -62,8 +62,8 @@ async function handler(m, { sock }) {
   const caption =
     `🏆 *HALL OF FAME • TOP LEVEL* 🏆\n\n` +
     (myIndex >= 0
-      ? `> Posisi kamu: *#${myIndex + 1}* dari *${fmtInt(all.length)}* petualang.`
-      : `> Kamu belum masuk peringkat.`);
+      ? `> Su posición: *#${myIndex + 1}* de *${fmtInt(all.length)}* aventurero.`
+      : `> Aún no estás clasificado.`);
 
   try {
     await sock.sendMessage(m.chat, { image, caption }, { quoted: m });

@@ -65,7 +65,7 @@ const pluginConfig = {
           return {
             success: false,
             code: 404,
-            result: { error: `Sticker set "${name}" mah kagak ada bree... 🤙🏻` }
+            result: { error: `Sticker set "${name}"No hay ningún hermano... 🤙🏻` }
           }
         }
 
@@ -127,7 +127,7 @@ const pluginConfig = {
           return {
             success: false,
             code: 404,
-            result: { error: 'Sticker setnya kagak ada bree.. coba lagi nanti yak 😂🫵🏻' }
+            result: { error: 'Sticker No hay ningún conjunto establecido hermano... inténtalo de nuevo más tarde, vale 😂🫵🏻' }
           }
         }
 
@@ -167,7 +167,7 @@ const pluginConfig = {
           success: false,
           code: err?.response?.status || 500,
           result: {
-            error: 'Kagak bisa nyari sticker nya bree.. 🤙🏻',
+            error: 'No encuentro el sticker hermano.. 🤙🏻',
             details: err.message
           }
         }
@@ -188,7 +188,7 @@ const pluginConfig = {
         return {
           success: false,
           code: 400,
-          result: { error: 'Apenih, kagak ada nama sticker setnya 😏' }
+          result: { error: 'Lo siento, no hay nombre para el set sticker 😏' }
         }
       }
 
@@ -271,7 +271,7 @@ const pluginConfig = {
           return {
             success: false,
             code: 400,
-            result: { error: `Mode "${mode}" mah kagak valid euy...` }
+            result: { error: `Moda"${mode}"Bueno, no es válido...` }
           }
       }
     }
@@ -279,7 +279,7 @@ const pluginConfig = {
 
   async function handler(m, { conn, args, command }) {
     try {
-      if (!args[0]) return m.reply('Masukkan query pencarian atau link sticker Telegram\n\nExample :\n.fstik bokepanak\n.fstik https://t.me/addstickers/pepe_memes')
+      if (!args[0]) return m.reply('Ingrese la consulta de búsqueda o el enlace sticker Telegram\n\nEjemplo:\n.fstik bokepanak\n.fstik https://t.me/addstickers/pepe_memes')
 
       const query = args.join(' ')
       const isLink = query.startsWith('https://t.me/addstickers/')
@@ -297,17 +297,17 @@ const pluginConfig = {
 
       const sendInfo = async (set) => {
         let text = `INFO STICKER SET\n\n`
-        text += `Nama : ${set.title}\n`
+        text += `Nombre: ${set.title}\n`
         text += `ID : ${set.id}\n`
-        text += `Nama Set : ${set.name}\n`
-        text += `Deskripsi : ${set.description || 'Tidak ada deskripsi'}\n`
-        text += `Tags : ${set.tags?.join(', ') || 'Tidak ada tags'}\n`
+        text += `Nombre del conjunto: ${set.name}\n`
+        text += `Descripción: ${set.description || 'Tidak ada deskripsi'}\n`
+        text += `Etiquetas: ${set.tags?.join(', ') || 'Tidak ada tags'}\n`
         text += `Jenis : ${set.kind}\n`
         text += `Tipe : ${set.type}\n`
-        text += `Public : ${set.public ? 'Ya' : 'Tidak'}\n`
-        text += `Aman : ${set.safe ? 'Ya' : 'Tidak'}\n`
-        text += `Terverifikasi : ${set.verified ? 'Ya' : 'Tidak'}\n`
-        text += `Jumlah Sticker : ${set.stickerCount}\n`
+        text += `Público: ${set.public ? 'Ya' : 'Tidak'}\n`
+        text += `Seguro: ${set.safe ? 'Ya' : 'Tidak'}\n`
+        text += `Verificado: ${set.verified ? 'Ya' : 'Tidak'}\n`
+        text += `Cantidad Sticker: ${set.stickerCount}\n`
         text += `Link : https://t.me/addstickers/${set.name}\n\n`
 
         await conn.sendMessage(m.chat, {
@@ -316,11 +316,11 @@ const pluginConfig = {
         }, { quoted: m })
 
         const urls = (set.stickers || []).map(st => st.image_url).filter(Boolean).slice(0, 30)
-        if (!urls.length) throw new Error('Set ini tidak punya stiker')
+        if (!urls.length) throw new Error('Este conjunto no tiene pegatinas.')
         await sendStickerPack(conn, m.chat, urls, m, {
           name: set.title || set.name || 'Sticker Pack',
           publisher: set.name || 'fstik',
-          description: set.description || `Sticker set dari fstik: ${set.name}`,
+          description: set.description || `Sticker conjunto de fstik: ${set.name}`,
           emojis: ['✨']
         })
       }

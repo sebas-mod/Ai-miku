@@ -56,7 +56,7 @@ const pluginConfig = {
   }
 
   async function holidaysOf(year) {
-      return cached(`libur:${year}`, DAY, async () => {
+      return cached(`día festivo:${year}`, DAY, async () => {
           for (const src of SOURCES) {
               try {
                   const list = normalize(await fetchJSON(src(year)))
@@ -100,7 +100,7 @@ const pluginConfig = {
           if (month < 1 || month > 12) return reply('El mes debe ser del 1 al 12.')
           const list = (await holidaysOf(today.y)).filter(h => Number(h.date.slice(5, 7)) === month)
           if (!(await holidaysOf(today.y)).length) throw new FriendlyError(`Todavía no hay datos de festivos de ${today.y}.`)
-          if (!list.length) return reply(`No hay festivos nacionales en ${BULAN[month - 1]} de ${today.y}.`)
+          if (!list.length) return reply(`No hola festivos nacionales es ${BULAN[month - 1]} Delaware ${today.y}.`)
           return reply(`📅 *FESTIVOS DE ${BULAN[month - 1].toUpperCase()} ${today.y}*\n\n${list.map(line).join('\n')}${FOOT}`)
       }
 

@@ -75,31 +75,31 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
   async function run(m, { sock, text }) {
     let input = String(text || '').trim()
     if (!input) {
-      return m.reply('*E-HENTAI*\n━━━━━━━━━━━━━━━━\n• .ehentai <query>\n• .ehentai <url galeri>\n• tambah -n 3 untuk jumlah gambar')
+      return m.reply('*E-HENTAI*\n━━━━━━━━━━━━━━━━\n•.ehentai <consulta>\n•.ehentai <url de la galería>\n• aumentar -n 3 para el número de imágenes')
     }
 
     let n = 5
     const mn = input.match(/\s-n\s*(\d+)\s*$/i)
     if (mn) { n = Math.min(Math.max(+mn[1], 1), 10); input = input.slice(0, mn.index).trim() }
 
-    if (BLOCKED.test(input)) return m.reply('❌ Kata kunci itu diblokir.')
+    if (BLOCKED.test(input)) return m.reply('❌ Esa palabra clave está bloqueada.')
 
     const isGallery = /e-?hentai\.org\/(g|s)\//i.test(input)
 
     try {
-      await m.reply('⏳ Mengambil data...')
+      await m.reply('⏳ Recuperar datos...')
 
       if (!isGallery) {
         const data = await getEhentai({ query: input, limit: 10 })
         const list = pickList(data).filter(g => !BLOCKED.test(JSON.stringify(g)))
-        if (!list.length) return m.reply('Tidak ditemukan.')
+        if (!list.length) return m.reply('Extraviado.')
         const lines = list.slice(0, 10).map((g, i) => {
           const title = first(g, 'title', 'name', 'title_jpn') || '-'
           const link = first(g, 'url', 'link') || (g.gid && g.token ? `https://e-hentai.org/g/${g.gid}/${g.token}/` : '-')
           const extra = [first(g, 'category'), first(g, 'filecount', 'pages') && `${first(g, 'filecount', 'pages')}p`, first(g, 'rating')].filter(Boolean).join(' • ')
           return `${i + 1}. ${clip(title)}${extra ? `\n   ${extra}` : ''}\n   ${link}`
         })
-        return m.reply(`*HASIL: ${input}*\n━━━━━━━━━━━━━━━━\n${lines.join('\n\n')}\n\nKirim link galeri dengan .ehentai <url> untuk lihat gambarnya.`)
+        return m.reply(`*HASIL: ${input}*\n━━━━━━━━━━━━━━━━\n${lines.join('\n\n')}\n\nEnvía el enlace de la galería con.ehentai <url> para ver la imagen.`)
       }
 
       const data = await getEhentai({ url: input, max_images: n })
@@ -112,7 +112,7 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
       const caption = `*${clip(title, 150)}*\n${info}${tags.length ? `\n\n${clip(tags.slice(0, 15).join(', '), 300)}` : ''}`
 
       const imgs = pickImages(data).slice(0, n)
-      if (!imgs.length) return m.reply(`${caption}\n\n(Tidak ada gambar yang bisa di-resolve)`)
+      if (!imgs.length) return m.reply(`${caption}\n\n(No se puede resolver ninguna imagen)`)
 
       await sock.sendMessage(m.chat, { image: { url: imgs[0] }, caption }, { quoted: m })
       for (const url of imgs.slice(1)) {
@@ -120,7 +120,7 @@ const mikuWrapPlugin = MikuRuntime.mikuWrapPlugin;
       }
     } catch (e) {
       console.log(e)
-      m.reply(`❌ Gagal: ${e.message}`)
+      m.reply(`❌ Fallido: ${e.message}`)
     }
   }
 

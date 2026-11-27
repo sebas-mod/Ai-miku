@@ -62,11 +62,11 @@ const pluginConfig = {
 
           const teks = `🖼️ *IMAGE PIXEL IDENTIFIER*\n\n` +
               `• 📐 *Lebar (Width):* ${width} px\n` +
-              `• 📏 *Tinggi (Height):* ${height} px\n` +
+              `• 📏 *Altura:* ${height} píxeles\n` +
               `• 🔍 *Total Pixel:* ${totalPixels} Pixels\n` +
               `• 🖼️ *Aspect Ratio:* ${aspect} (${width}:${height})\n` +
               `• 📦 *Formato de imagen:* ${format}\n` +
-              `• 💾 *Ukuran File:* ${size}\n` +
+              `• 💾 *Tamaño del archivo:* ${size}\n` +
               `• 🎨 *Color Space:* ${space} (${channels} Channels)\n\n` +
               `_¡Resolución de la imagen identificada!_`;
 

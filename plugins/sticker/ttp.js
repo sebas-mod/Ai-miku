@@ -31,7 +31,7 @@ const config = MikuRuntime.config;
     const text = m.args.join(" ") || m.text?.trim();
 
     if (!text) {
-      return m.reply("❌ *Waduh, teksnya mana nih?*\n\nKamu harus memasukkan teks yang ingin dijadikan stiker.\n\nContoh: `.ttp Hai Cantik`");
+      return m.reply("❌ *Vaya, ¿dónde está el texto?*\n\nDebes ingresar el texto que deseas convertir en una pegatina.\n\nEjemplo: `.ttp Hola hermosa`");
     }
 
     await m.react("🕕");
@@ -55,7 +55,7 @@ const config = MikuRuntime.config;
     } catch (err) {
       console.error("[TTP Maker]", err.message);
       await m.react("☢");
-      m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat stiker. Silakan coba beberapa saat lagi ya.");
+      m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo contactar con el servidor del creador de pegatinas. Inténtelo de nuevo en unos momentos.");
     }
   }
 

@@ -35,7 +35,7 @@ const pluginConfig = {
               return String.fromCharCode(parseInt(bin, 2));
           }).join('');
 
-          await m.reply(`* *ʜᴀsɪʟ:**\n\n\`\`\`${result}\`\`\``);
+          await m.reply(`* *Resultados:**\n\n\`\`\`${result}\`\`\``);
       } catch (e) {
           m.reply(`❌ *Error:* ${e.message}`);
       }

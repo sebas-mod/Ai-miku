@@ -240,8 +240,8 @@ const pluginConfig = {
       console.error('[WEBTOAPK ERROR]', err)
       await reactTo(sock, m, '❌')
       const msg = err?.name === 'TimeoutError' || /aborted|timeout/i.test(String(err?.message))
-        ? 'Server build kelamaan merespons (timeout). Coba lagi nanti.'
-        : (err?.message || 'Gagal membuat APK.')
+        ? 'El servidor de compilación tarda demasiado en responder (tiempo de espera). Vuelve a intentarlo más tarde.'
+        : (err?.message || 'No se pudo crear APK.')
       return reply(`❌ *No se pudo crear el APK*\n\n> ${msg}`)
     } finally {
       activeChats.delete(m.chat)

@@ -26,14 +26,14 @@ const libs = {
       }
 
       async function fetchParsedPage(pageName) {
-        const apiUrl = `${FANDOM_BASE}/api.php?action=parse&page=${encodeURIComponent(pageName)}&prop=text|images&format=json`
+        const apiUrl = `${FANDOM_BASE}/api.php?action=parse&page=${encodeURIComponent(pageName)}&prop=texto|imágenes&formato=json`
         const res = await fetch(apiUrl, { headers: { 'User-Agent': UA } })
-        if (!res.ok) return { error: { info: 'Gagal mengambil data dari API' } }
+        if (!res.ok) return { error: { info: 'No se pudieron recuperar datos de API' } }
         return res.json()
       }
 
       async function scrapeHokCharacter(name) {
-        if (!name) throw new Error('Nama karakter kosong')
+        if (!name) throw new Error('El nombre del personaje está en blanco.')
 
         let pageName = name
         let json = await fetchParsedPage(pageName)
@@ -45,7 +45,7 @@ const libs = {
             json = await fetchParsedPage(pageName)
           }
           if (json.error) {
-            throw new Error(`Karakter "${name}" tidak ditemukan`)
+            throw new Error(`Personaje "${name}" extraviado`)
           }
         }
 
@@ -140,7 +140,7 @@ const pluginConfig = {
     const client = conn || sock
 
     if (!text) {
-      return reply(`⚔️ *HONOR OF KINGS CHARACTER*\n\nMencari informasi lengkap karakter Honor of Kings.\n\nContoh:\n${usedPrefix}${command} Luban No.7\n${usedPrefix}${command} Wukong\n${usedPrefix}${command} Angela`)
+      return reply(`⚔️ *HONOR OF KINGS CHARACTER*\n\nBuscando información completa sobre los personajes de Honor of Kings.\n\nEjemplo:\n${usedPrefix}${command} Luban No.7\n${usedPrefix}${command} Wukong\n${usedPrefix}${command} Angela`)
     }
 
     await m.react('⏳')

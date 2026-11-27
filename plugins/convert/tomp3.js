@@ -61,7 +61,7 @@ function convertToMp3Buffer(inputBuffer) {
     p.on('error', (e) => { fs.rmSync(dir, { recursive: true, force: true }); reject(e) })
     p.on('close', (code) => {
       try {
-        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg gagal mengonversi MP3.')
+        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg no pudo convertir MP3.')
         const buf = fs.readFileSync(outPath)
         fs.rmSync(dir, { recursive: true, force: true })
         resolve(buf)
@@ -77,7 +77,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'tomp3
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/(video|audio)\//i.test(media.mime || '')) {
-    return m.reply(`🎵 Kirim atau reply video/voice note dengan perintah *${usedPrefix + command}*`)
+    return m.reply(`🎵 Envíe o responda videos/notas de voz con el comando *${usedPrefix + command}*`)
   }
 
   const asDoc = (args[0] || '').toLowerCase() === 'doc'
@@ -100,7 +100,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'tomp3
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengonversi ke MP3:* ${e.message}`)
+    return m.reply(`❌ *No se pudo convertir a MP3:* ${e.message}`)
   }
 }
 

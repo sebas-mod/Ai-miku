@@ -58,7 +58,7 @@ const pluginConfig = {
 
       if (json.status_code && json.status_code !== 200) {
           throw new Error(
-              json.message || 'Gagal mengambil data sekolah.'
+              json.message || 'No se pudieron recuperar los datos de la escuela.'
           )
       }
 
@@ -136,10 +136,10 @@ const pluginConfig = {
       data.sekolah.forEach((s, i) => {
           hasil.push(
               `├─「 ${i + 1} 」`,
-              `│ Nombre     : ${s.nama || '-'}`,
+              `│ Número: ${s.nama || '-'}`,
               `│ NPSN       : ${s.npsn || '-'}`,
               `│ Tipo       : ${s.bentuk_pendidikan || '-'}`,
-              `│ Estado     : ${s.status_sekolah || '-'}`,
+              `│ Estado: ${s.status_sekolah || '-'}`,
               `│ Acreditación : ${s.akreditasi || '-'}`,
               `│ Dirección  : ${s.alamat || '-'}`,
               `│ Aldea      : ${s.dusun || '-'}`,
@@ -163,22 +163,22 @@ const pluginConfig = {
                   `╭─「 BÚSQUEDA DE COLEGIOS 」`,
                   `│`,
                   `│ Modo de uso:`,
-                  `│ .sekolah <búsqueda>`,
+                  `│.sekolah <búsqueda>`,
                   `│`,
                   `│ Ejemplo:`,
-                  `│ .sekolah SMAN 1`,
+                  `│.sekolah PEQUEÑO 1`,
                   `│`,
                   `│ Con límite:`,
-                  `│ .sekolah SMAN 1|20`,
+                  `│.sekolah ESCUELA SECUNDARIA 1|20`,
                   `│`,
                   `│ Con ciudad:`,
-                  `│ .sekolah SMAN|20|Banjar`,
+                  `│.sekolah SMAN|20|Banjar`,
                   `│`,
                   `│ Formato completo:`,
                   `│ búsqueda|límite|ciudad|tipo|estado`,
                   `│`,
                   `│ Ejemplo:`,
-                  `│ .sekolah SMAN|20|Banjar|SMA|Negeri`,
+                  `│.sekolah ESCUELA SECUNDARIA|20|Banjar|SMA|Estado`,
                   `│`,
                   `╰──────────────`
               ].join('\n')
@@ -210,7 +210,7 @@ const pluginConfig = {
           console.error('[SEKOLAH]', e)
 
           return reply(
-              `Gagal mengambil data sekolah.\n\n${e.message}`
+              `No se pudieron recuperar los datos de la escuela.\n\n${e.message}`
           )
       }
   }

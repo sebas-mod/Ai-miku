@@ -32,10 +32,10 @@ const pluginConfig = {
   async function handler(m, { sock, jid, text, reply, example }) {
       const media = await getMedia(m, ['image', 'video', 'audio'])
       const caption = text || media?.caption || m.quoted?.text || ''
-      if (!caption && !media) return example('teks  (atau reply foto/video/audio)')
+      if (!caption && !media) return example('texto (o foto/vídeo/audio contestador)')
 
       const delay = jpmCfg().delayAutoSwgc
-      await reply(`*▢ AUTO SWGC AKTIF*\n• Grup : ${jid}\n• Interval : setiap ${delay / 1000} detik\n\nHentikan dengan *stopswgc*`)
+      await reply(`*▢ AUTO SWGC AKTIF*\n• Grupo: ${jid}\n• Intervalo: cada ${delay / 1000} segundo\n\nPara con *stopswgc*`)
 
       jpmStartJob('autoSwgc', delay, async () => {
           await sendGroupStatus(sock, jid, { text: caption, media })

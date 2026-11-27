@@ -79,7 +79,7 @@ const f = MikuRuntime.f;
   async function downloadBuffer(url) {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`Gagal download: ${res.status} ${res.statusText}`);
+      throw new Error(`Error en la descarga: ${res.status} ${res.statusText}`);
     }
     return Buffer.from(await res.arrayBuffer());
   }
@@ -324,7 +324,7 @@ const f = MikuRuntime.f;
 
   async function encodeVideo(concatPath, outputPath, configObj) {
     if (configObj.outputFormat !== "mp4") {
-      throw new Error("Saat ini output hanya support mp4");
+      throw new Error("Actualmente la salida solo admite MP4");
     }
 
     const args = [
@@ -347,7 +347,7 @@ const f = MikuRuntime.f;
   async function createBratVideo(text, template) {
     const frames = buildRevealFrames(text, VIDEO_CONFIG);
     if (!frames.length) {
-      throw new Error("Teks kosong");
+      throw new Error("Texto en blanco");
     }
 
     const __base = path.join(process.cwd(), "database", "tmp");
@@ -399,7 +399,7 @@ const f = MikuRuntime.f;
   async function handler(m, { sock }) {
     const text = m.text;
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+      return m.reply(`⚠️ ¡Por favor ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
     }
 
     await m.react("🕕");
@@ -420,7 +420,7 @@ const f = MikuRuntime.f;
         template = TEMPLATES.vermeil;
         isVideo = true;
       } else {
-        throw new Error("Command tidak valid");
+        throw new Error("Comando no válido");
       }
 
       const inputText = normalizeText(text);

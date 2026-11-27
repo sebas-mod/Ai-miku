@@ -35,27 +35,27 @@ const pluginConfig = {
       const targets = jids.length ? jids : (m.isGroup ? [m.chat] : [])
 
       if (action === 'add') {
-          if (!targets.length) return reply('❌ Tulis JID grup (berakhiran @g.us), atau pakai perintah ini di dalam grup.')
+          if (!targets.length) return reply('❌ Escribe JID grupo (que termina en @g.us), o usa este comando dentro de un grupo.')
           const baru = targets.filter(j => !list.includes(j))
           jpmSetBlacklist(false, [...list, ...baru])
-          return reply(`*▢ BLACKLIST JPM*\n• Ditambah : ${baru.length} grup\n• Sudah ada : ${targets.length - baru.length} grup\n• Total : ${list.length + baru.length} grup`)
+          return reply(`*▢ BLACKLIST JPM*\n• Agregado: ${baru.length} grupo\n• Ya disponible: ${targets.length - baru.length} grupo\n• Totales: ${list.length + baru.length} grupo`)
       }
       if (['del', 'remove', 'hapus'].includes(action)) {
-          if (!targets.length) return reply('❌ Tulis JID grup (berakhiran @g.us), atau pakai perintah ini di dalam grup.')
+          if (!targets.length) return reply('❌ Escribe JID grupo (que termina en @g.us), o usa este comando dentro de un grupo.')
           const sisa = list.filter(j => !targets.includes(j))
           jpmSetBlacklist(false, sisa)
-          return reply(`*▢ BLACKLIST JPM*\n• Dihapus : ${list.length - sisa.length} grup\n• Sisa : ${sisa.length} grup`)
+          return reply(`*▢ BLACKLIST JPM*\n• Eliminado: ${list.length - sisa.length} grupo\n• Resto: ${sisa.length} grupo`)
       }
       if (action === 'list' || command.includes('list')) {
-          if (!list.length) return reply('*▢ BLACKLIST JPM*\n• Belum ada grup di blacklist')
+          if (!list.length) return reply('*▢ BLACKLIST JPM*\n• Aún no hay grupos en la lista negra')
           const rows = []
           for (const [i, id] of list.entries()) {
               const meta = await sock.groupMetadata(id).catch(() => null)
               rows.push(`${i + 1}. ${meta?.subject || 'Grup tidak dikenal'}\n   ${id}`)
           }
-          return reply(`*▢ BLACKLIST JPM*\n• Total : ${list.length} grup\n\n${rows.join('\n')}`)
+          return reply(`*▢ BLACKLIST JPM*\n• Totales: ${list.length} grupo\n\n${rows.join('\n')}`)
       }
-      return reply(`*▢ BLACKLIST JPM*\n\nGrup di blacklist tidak menerima JPM.\n\n• ${prefix}${command} list\n• ${prefix}${command} add <jid1>,<jid2>\n• ${prefix}${command} del <jid1>,<jid2>\n\nTanpa jid, perintah berlaku untuk grup tempat dipakai.\n• Total saat ini : ${list.length} grup`)
+      return reply(`*▢ BLACKLIST JPM*\n\nLos grupos incluidos en la lista negra no aceptan JPM.\n\n• ${prefix}${command} liza\n• ${prefix}${command} añadir <jid1>,<jid2>\n• ${prefix}${command} del <jid1>,<jid2>\n\nSin jid, el comando se aplica al grupo en el que se utiliza.\n• Total actual: ${list.length} grupo`)
   }
 
 export { pluginConfig as config, handler }

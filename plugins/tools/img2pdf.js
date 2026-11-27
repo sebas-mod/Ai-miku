@@ -120,7 +120,7 @@ const toSmallCaps = (str) => {
       if (!validMediaMsgs.length) {
           let help = `*${toSmallCaps('Conversor de imagenes a PDF')}*\n\n` +
               `*${toSmallCaps('Envía o responde a una foto / álbum de fotos')}* *${usedPrefix + command} [nombredelearchivo]*\n\n` +
-              `• 📌 *${toSmallCaps('Función:')}* ¡Admite 1 foto o varias fotos (álbum) a la vez!\n` +
+              `• 📌 *${toSmallCaps('Función:')}* ¡ Admite 1 foto o varias fotos (álbum) a la vez!\n` +
               `• *${toSmallCaps('Ejemplo:')}* \`${usedPrefix + command} Documento_Tarea\``;
           return reply(help);
       }

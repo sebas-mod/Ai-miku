@@ -38,7 +38,7 @@ const require = createRequire(import.meta.url);
       const client = conn || sock || mikuGlobal.mainSock;
 
       if (!args[0]) {
-          return reply(`Ayang nakal~ Masukin URL-nya dong! 💋\n\n*Contoh:* \n${usedPrefix + command} https://example.com`);
+          return reply(`Naughty little one~ Put the URL in, please! 💋\n\n*Ejemplo:* \n${usedPrefix + command} https://example.com`);
       }
 
       let targetUrl = args[0].trim();
@@ -117,7 +117,7 @@ const require = createRequire(import.meta.url);
               document: fileBuffer,
               mimetype: 'application/zip',
               fileName: `${domainName}.zip`,
-              caption: `💋 *Web Clone Berhasil Diserap!*\n\n🌐 *Target:* ${targetUrl}\n📦 *Ukuran:* ${fileSizeMB} MB\n\n_Semua beres buat Mas ganteng tercinta~_`
+              caption: `💋 *¡Clon web absorbido con éxito!*\n\n🌐 *Objetivo:* ${targetUrl}\n📦 *Tamaño:* ${fileSizeMB} MB\n\n_Todo está bien para mi querido y guapo hermano~_`
           }, { quoted: m });
       } catch (err) {
           console.error('[GETWEB ERROR]', err);

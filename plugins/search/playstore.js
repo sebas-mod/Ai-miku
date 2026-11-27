@@ -33,12 +33,12 @@ const pluginConfig = {
   async function scrapePlay(input) {
       const raw = String(input || '').trim()
       const pkg = (raw.match(/[?&]id=([a-zA-Z0-9._]+)/) || raw.match(/details\/([a-zA-Z0-9._]+)/) || raw.match(/^([a-zA-Z0-9._]+)$/))?.[1]
-      if (!pkg) throw new Error('Package ID / link tidak valid. Contoh: com.snowcorp.stickerly.android')
+      if (!pkg) throw new Error('El paquete ID / enlace no es válido. Ejemplo: com.snowcorp.stickerly.android')
 
       const res = await fetch(`https://play.google.com/store/apps/details?id=${encodeURIComponent(pkg)}&hl=id&gl=ID`, {
         headers: { 'User-Agent': UA, 'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7' }, signal: AbortSignal.timeout(20000)
       })
-      if (res.status === 404) throw new Error(`Aplikasi "${pkg}" tidak ditemukan di Google Play.`)
+      if (res.status === 404) throw new Error(`Solicitud "${pkg}"No se encuentra en Google Play.`)
     if (!res.ok) throw new Error(`Google Play merespons HTTP ${res.status}.`)
     const html = await res.text()
 
@@ -81,8 +81,8 @@ const pluginConfig = {
           const caption =
               `🛍️ *${a.title}*\n${a.summary ? `_${a.summary}_\n` : ''}\n` +
               `• Package : ${a.pkg}\n• Kategori : ${a.category || '-'}\n• Developer : ${a.developer}\n${a.email ? `• Email : ${a.email}\n` : ''}` +
-              `• Rating : ⭐ ${a.rating || '-'} (${a.reviews} ulasan)\n• Instal : ${a.installs}\n• Harga : ${a.price}\n• Usia : ${a.contentRating}\n• Update : ${a.updated}\n` +
-              (a.whatsNew ? `\n*Yang baru*\n${a.whatsNew.slice(0, 400)}\n` : '') +
+              `• Calificación: ⭐ ${a.rating || '-'} (${a.reviews} revisar)\n• Instalar: ${a.installs}\n• Precio: ${a.price}\n• Edad: ${a.contentRating}\n• Actualizaciones: ${a.updated}\n` +
+              (a.whatsNew ? `\n*El nuevo*\n${a.whatsNew.slice(0, 400)}\n` : '') +
               (a.description ? `\n*Deskripsi*\n${a.description.slice(0, 600)}${a.description.length > 600 ? '…' : ''}\n` : '') +
               `\n🔗 ${a.url}`
           if (a.icon) return sock.sendMessage(m.chat, { image: { url: a.icon }, caption }, { quoted: m }).catch(() => reply(caption))

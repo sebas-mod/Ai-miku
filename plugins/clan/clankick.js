@@ -31,24 +31,24 @@ const getDatabase = MikuRuntime.getDatabase;
       const db = getDatabase()
       const user = db.getUser(m.sender)
 
-      if (!user?.clanId) return m.reply(`❌ Kamu belum punya clan`)
+      if (!user?.clanId) return m.reply(`❌ Aún no tienes un clan`)
       if (!db.db.data.clans) db.db.data.clans = {}
 
       const clan = db.db.data.clans[user.clanId]
-      if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
-      if (clan.leader !== m.sender) return m.reply(`❌ Hanya leader yang bisa kick`)
+      if (!clan) return m.reply(`❌ Clan no encontrado`)
+      if (clan.leader !== m.sender) return m.reply(`❌ Sólo el líder puede patear`)
 
       const target = m.mentionedJid?.[0] || m.quoted?.sender
       if (!target) {
           return m.reply(
               `👢 *CLAN KICK*\n\n` +
-              `Tag atau reply member yang mau dikeluarkan\n\n` +
-              `Contoh: *.clankick @user*`
+              `Etiqueta o responde al miembro que deseas eliminar\n\n` +
+              `Ejemplo: *.clankick @user*`
           )
       }
 
-      if (target === m.sender) return m.reply(`❌ Tidak bisa kick diri sendiri`)
-      if (!clan.members.includes(target)) return m.reply(`❌ User bukan member clan ini`)
+      if (target === m.sender) return m.reply(`❌ No puedes patearte a ti mismo`)
+      if (!clan.members.includes(target)) return m.reply(`❌ El usuario no es miembro de este clan.`)
 
       clan.members = clan.members.filter(jid => jid !== target)
       db.setUser(target, { clanId: null })
@@ -58,7 +58,7 @@ const getDatabase = MikuRuntime.getDatabase;
 
       await m.reply(
           `${emblem} *KICKED*\n\n` +
-          `@${target.split('@')[0]} dikeluarkan dari *${clan.name}*\n` +
+          `@${target.split('@')[0]} excluido de *${clan.name}*\n` +
           `Sisa members: ${clan.members.length}/50`,
           { mentions: [target] }
       )

@@ -46,7 +46,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'blur'
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\/(jpe?g|png|webp)/i.test(media.mime || '')) {
-    return m.reply(`🖼️ Kirim atau reply gambar dengan perintah *${usedPrefix + command} [intensitas 1-50]*\nContoh: \`${usedPrefix + command} 15\``)
+    return m.reply(`🖼️ Enviar o responder imágenes con comandos *${usedPrefix + command} [intensidad 1-50]*\nEjemplo: \`${usedPrefix + command} 15\``)
   }
 
   const level = Math.min(50, Math.max(1, Number(args[0]) || 12))
@@ -66,7 +66,7 @@ async function handler(m, { conn, sock, args, usedPrefix = '.', command = 'blur'
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal memproses gambar:* ${e.message}`)
+    return m.reply(`❌ *No se pudo procesar la imagen:* ${e.message}`)
   }
 }
 

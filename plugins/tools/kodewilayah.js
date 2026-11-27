@@ -43,7 +43,7 @@ const pluginConfig = {
 
   let handler = guard(async (m, { text, reply, example }) => {
       const input = String(text || '').trim()
-      if (!input) return example('bogor  (o: kota bogor|bogor barat)')
+      if (!input) return example('Bogor (o: ciudad de Bogor|Bogor occidental)')
 
       const parts = input.split('|').map(s => s.trim()).filter(Boolean)
       const regencies = await getAllRegencies()
@@ -78,7 +78,7 @@ const pluginConfig = {
       const regHit = bestMatches(regencies, input)
 
       if (!provHit.length && !regHit.length) {
-          return reply(`No se encontró la zona *${input}*.\n\nEjemplo: kodewilayah jawa barat, kodewilayah kota bandung`)
+          return reply(`No se encontró la zona *${input}*.\n\nEjemplo: código de región de Java Occidental, código de región de ciudad de Bandung`)
       }
 
       const out = []

@@ -36,7 +36,7 @@ const HEADERS = {
 async function fetchPresets() {
   const res = await fetch(`${BASE}/api/presets`, { headers: HEADERS })
   const data = await res.json()
-  if (!data.success) throw new Error('Gagal mengambil daftar preset dari server.')
+  if (!data.success) throw new Error('No se pudo recuperar la lista preestablecida del servidor.')
   return data.presets || []
 }
 
@@ -44,7 +44,7 @@ async function fetchPresetPage(presetName) {
   const res = await fetch(`${BASE}/preset/${encodeURIComponent(presetName)}`, {
     headers: { ...HEADERS, Accept: 'text/html' }
   })
-  if (!res.ok) throw new Error(`Preset "${presetName}" tidak ditemukan.`)
+  if (!res.ok) throw new Error(`Preajustes"${presetName}" extraviado.`)
   const html = await res.text()
 
   const amLinkMatch = html.match(/href="(https:\/\/alight\.link\/[^"]+)"/)
@@ -72,7 +72,7 @@ async function convertAmLink(url) {
     body: JSON.stringify({ url })
   })
   const data = await res.json()
-  if (!data.success) throw new Error(data.error || 'Gagal mengonversi link Alight Motion.')
+  if (!data.success) throw new Error(data.error || 'No se pudo convertir el enlace Alight Motion.')
   return data
 }
 
@@ -82,7 +82,7 @@ async function downloadDriveXml(urlOrId) {
   })
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
-    throw new Error(err.error || `Gagal mengambil XML dari Google Drive (${res.status}).`)
+    throw new Error(err.error || `No se pudo recuperar XML de Google Drive (${res.status}).`)
   }
   const filename = (res.headers.get('content-disposition') || '')
     .match(/filename="?([^";\n]+)"?/)?.[1] || `preset_${Date.now()}.xml`
@@ -95,17 +95,17 @@ async function downloadTiktokPreview(tiktokUrl) {
     headers: HEADERS
   })
   const data = await res.json()
-  if (!data.success || !data.videoUrl) throw new Error(data.error || 'Gagal mengambil video TikTok.')
+  if (!data.success || !data.videoUrl) throw new Error(data.error || 'No se pudo tomar el vídeo TikTok.')
 
   const vidRes = await fetch(data.videoUrl, { headers: { 'User-Agent': UA } })
-  if (!vidRes.ok) throw new Error('Gagal mengunduh stream video TikTok.')
+  if (!vidRes.ok) throw new Error('No se pudo descargar la secuencia de video TikTok.')
   const buffer = Buffer.from(await vidRes.arrayBuffer())
   return { buffer, title: data.title || 'Preview TikTok' }
 }
 
 async function downloadDirectPreview(previewUrl) {
   const res = await fetch(previewUrl, { headers: HEADERS })
-  if (!res.ok) throw new Error('Gagal mengunduh video preview.')
+  if (!res.ok) throw new Error('No se pudo descargar el video de vista previa.')
   return Buffer.from(await res.arrayBuffer())
 }
 
@@ -129,7 +129,7 @@ async function handler(m, ctx = {}) {
     await m.react('⏳')
     try {
       const presets = await fetchPresets()
-      if (!presets.length) return m.reply('⚠️ Belum ada preset yang tersedia saat ini.')
+      if (!presets.length) return m.reply('⚠️ No hay ajustes preestablecidos disponibles en este momento.')
 
       const page = Math.max(1, parseInt(restArgs[0]) || 1)
       const perPage = 10
@@ -149,14 +149,14 @@ async function handler(m, ctx = {}) {
       })
 
       if (page < pages) {
-        txt += `💡 Ketik \`${usedPrefix}amlist ${page + 1}\` untuk halaman berikutnya.`
+        txt += `💡 Escribe \`${usedPrefix}lista de amigos ${page + 1}\` para la página siguiente.`
       }
 
       await m.react('✅')
       return m.reply(txt.trim())
     } catch (e) {
       await m.react('❌')
-      return m.reply(`❌ *Gagal:* ${e.message}`)
+      return m.reply(`❌ *Error:* ${e.message}`)
     }
   }
 
@@ -164,9 +164,9 @@ async function handler(m, ctx = {}) {
     const query = restArgs.join(' ').trim()
     if (!query) {
       return m.reply(
-        `❓ *Format Penggunaan:*\n` +
-        `\`${usedPrefix}ampreset <nama preset>\`\n\n` +
-        `Cek daftar preset dengan \`${usedPrefix}amlist\``
+        `❓ *Formato de uso:*\n` +
+        `\`${usedPrefix}ampreset <nombre preestablecido>\`\n\n` +
+        `Consulte la lista de presintonías con \`${usedPrefix}amlist\``
       )
     }
 
@@ -189,7 +189,7 @@ async function handler(m, ctx = {}) {
       const info = await fetchPresetPage(targetName)
 
       let caption = `🎬 *PRESET ALIGHT MOTION*\n\n`
-      caption += `• *Nama* : ${info.title}\n`
+      caption += `• *Nombre*: ${info.title}\n`
       if (presetMeta?.author) caption += `• *Kreator* : ${presetMeta.author}\n`
       if (info.amLink) caption += `• *AM Link* : ${info.amLink}\n`
       if (info.driveUrl) caption += `• *Google Drive* : ${info.driveUrl}\n`
@@ -249,7 +249,7 @@ async function handler(m, ctx = {}) {
       await m.react('✅')
     } catch (e) {
       await m.react('❌')
-      return m.reply(`❌ *Gagal:* ${e.message}`)
+      return m.reply(`❌ *Error:* ${e.message}`)
     }
     return
   }
@@ -258,30 +258,30 @@ async function handler(m, ctx = {}) {
     const url = restArgs[0] || (m.quoted?.text || '').trim()
     if (!url || !/alight\.link|alightcreative\.com/i.test(url)) {
       return m.reply(
-        `❓ *Format Penggunaan:*\n` +
+        `❓ *Formato de uso:*\n` +
         `\`${usedPrefix}amlink <url alight.link / alightcreative.com>\`\n\n` +
-        `Contoh:\n\`${usedPrefix}amlink https://alight.link/xxxx\``
+        `Ejemplo:\n\`${usedPrefix}amlink https://alight.link/xxxx0`
       )
     }
 
     await m.react('⏳')
     try {
       const data = await convertAmLink(url)
-      if (!data.xml) throw new Error('Data XML kosong dari project ini.')
+      if (!data.xml) throw new Error('Los datos XML están vacíos de este proyecto.')
 
       const xmlBuffer = Buffer.from(data.xml, 'utf-8')
       const safeTitle = (data.title || 'preset_am').replace(/[^a-zA-Z0-9_-]/g, '_')
       const fileName = `${safeTitle}.xml`
 
       let caption = `✅ *KONVERSI ALIGHT LINK BERHASIL*\n\n`
-      caption += `• *Judul* : ${data.title || '-'}\n`
+      caption += `• *Título*: ${data.title || '-'}\n`
       if (data.info) {
         if (data.info.amVersion) caption += `• *Versi AM* : ${data.info.amVersion}\n`
         if (data.info.fps) caption += `• *FPS* : ${data.info.fps}\n`
         if (data.info.resolution) caption += `• *Resolusi* : ${data.info.resolution}\n`
-        if (data.info.totalSize) caption += `• *Ukuran Proyek* : ${formatBytes(data.info.totalSize)}\n`
+        if (data.info.totalSize) caption += `• *Tamaño del proyecto*: ${formatBytes(data.info.totalSize)}\n`
       }
-      caption += `• *Ukuran XML* : ${formatBytes(xmlBuffer.length)}`
+      caption += `• *Tamaño XML*: ${formatBytes(xmlBuffer.length)}`
 
       await client.sendMessage(
         m.chat,
@@ -291,7 +291,7 @@ async function handler(m, ctx = {}) {
       await m.react('✅')
     } catch (e) {
       await m.react('❌')
-      return m.reply(`❌ *Gagal:* ${e.message}`)
+      return m.reply(`❌ *Error:* ${e.message}`)
     }
     return
   }
@@ -300,9 +300,9 @@ async function handler(m, ctx = {}) {
     const input = restArgs[0] || (m.quoted?.text || '').trim()
     if (!input) {
       return m.reply(
-        `❓ *Format Penggunaan:*\n` +
+        `❓ *Formato de uso:*\n` +
         `\`${usedPrefix}amdrive <url Google Drive / File ID>\`\n\n` +
-        `Contoh:\n\`${usedPrefix}amdrive https://drive.google.com/file/d/xxxx/view\``
+        `Ejemplo:\n\`${usedPrefix}amdrive https://drive.google.com/file/d/xxxx/view0`
       )
     }
 
@@ -315,14 +315,14 @@ async function handler(m, ctx = {}) {
           document: buffer,
           mimetype: 'application/xml',
           fileName: filename.endsWith('.xml') ? filename : `${filename}.xml`,
-          caption: `📄 *GOOGLE DRIVE XML*\n• *Nama File* : ${filename}\n• *Ukuran* : ${formatBytes(buffer.length)}`
+          caption: `📄 *GOOGLE DRIVE XML*\n• *Nombre del archivo*: ${filename}\n• *Tamaño*: ${formatBytes(buffer.length)}`
         },
         { quoted: m }
       )
       await m.react('✅')
     } catch (e) {
       await m.react('❌')
-      return m.reply(`❌ *Gagal:* ${e.message}`)
+      return m.reply(`❌ *Error:* ${e.message}`)
     }
     return
   }
@@ -331,7 +331,7 @@ async function handler(m, ctx = {}) {
     const url = restArgs[0] || (m.quoted?.text || '').trim()
     if (!url || !/tiktok\.com/i.test(url)) {
       return m.reply(
-        `❓ *Format Penggunaan:*\n` +
+        `❓ *Formato de uso:*\n` +
         `\`${usedPrefix}amtiktok <url TikTok>\``
       )
     }
@@ -347,18 +347,18 @@ async function handler(m, ctx = {}) {
       await m.react('✅')
     } catch (e) {
       await m.react('❌')
-      return m.reply(`❌ *Gagal:* ${e.message}`)
+      return m.reply(`❌ *Error:* ${e.message}`)
     }
     return
   }
 
   return m.reply(
     `✨ *MENU ALIGHT MOTION TOOLS* ✨\n\n` +
-    `• \`${usedPrefix}amlist [hal]\` — Lihat katalog preset AM\n` +
-    `• \`${usedPrefix}ampreset <nama>\` — Unduh video preview + XML preset\n` +
+    `• \`${usedPrefix}amlist [página]\` — Ver catálogo preestablecido AM\n` +
+    `• \`${usedPrefix}ampreset <nombre>\` — Descargar vista previa de vídeo + XML ajustes preestablecidos\n` +
     `• \`${usedPrefix}amlink <url>\` — Konversi link \`alight.link\` ke XML\n` +
-    `• \`${usedPrefix}amdrive <url/id>\` — Unduh file XML dari Google Drive\n` +
-    `• \`${usedPrefix}amtiktok <url>\` — Unduh video preview TikTok\n\n` +
+    `• \`${usedPrefix}amdrive <url/id>\` — Descargar el archivo XML de Google Drive\n` +
+    `• \`${usedPrefix}amtiktok <url>\` — Descargar vista previa del vídeo TikTok\n\n` +
     `_Powered by Ai Miku_`
   )
 }

@@ -77,7 +77,7 @@ const pluginConfig = {
               for (const j of list) if (j['@type'] === 'Recipe') recipe = j
           } catch {}
       })
-      if (!recipe) throw new Error('Resep tidak ditemukan')
+      if (!recipe) throw new Error('Receta no encontrada')
       return {
           id,
           title: recipe.name,
@@ -123,7 +123,7 @@ const pluginConfig = {
 
       let list
       try { list = await search(body) } catch (e) { return reply(`❌ ${e.response?.status ? `HTTP ${e.response.status}` : e.message}`) }
-      if (!list.length) return reply(`Resep "${body}" tidak ditemukan.`)
+      if (!list.length) return reply(`Receta "${body}" extraviado.`)
 
       const top = list.slice(0, 8)
       const out =
@@ -134,7 +134,7 @@ const pluginConfig = {
 
       try {
           const pilih = top.map(r => `▢ ${p}cookpad detail ${r.id} — ${clip(r.title, 24)} (${clip(`${r.author || '-'} • ${r.duration || '-'}`, 72)})`).join('\n')
-          const teks = `${out}\n\nKetik perintah di bawah untuk melihat resep:\n${pilih}\n\n_${global.namebot || 'Ai Miku MD'}_`
+          const teks = `${out}\n\nEscriba el siguiente comando para ver la receta:\n${pilih}\n\n_${global.namebot || 'Ai Miku MD'}_`
           await sock.sendMessage(m.chat, top[0].image ? { image: { url: top[0].image }, caption: teks } : { text: teks }, { quoted: m })
       } catch {
           return reply(out)

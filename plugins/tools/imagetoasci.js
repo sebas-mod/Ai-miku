@@ -131,14 +131,14 @@ const pluginConfig = {
           if (!ascii) return reply(`*🍂 No se pudo convertir — resultado vacío.*\n*Ancho:* ${width}`)
 
           let out = `*✨ Image To Ascii (Auto-Width) ✨*\n\n`
-          out += `*🖼️ Width otomatis:* *${width}*\n\n`
-          out += `*📄 Hasil ASCII:*\n\`\`\`\n${ascii}\n\`\`\``
+          out += `*🖼️ Ancho automático:* *${width}*\n\n`
+          out += `*📄 Resultado ASCII:*\n\`\`\`\n${ascii}\n\`\`\``
           if (share) out += `\n*🔗 Share Link:* ${share}`
           await reply(out)
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')
-          return reply(`*🍂 Terjadi kesalahan saat memproses gambar!*\n*Error:* ${e?.message ?? 'unknown error'}`)
+          return reply(`*🍂 ¡Ocurrió un error al procesar la imagen!*\n*Error:* ${e?.message ?? 'unknown error'}`)
       }
   }
 

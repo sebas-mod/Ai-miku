@@ -343,7 +343,7 @@ async function probeVideoMeta(inPath, fallbackSeconds = 0) {
   try {
     const { stdout } = await execFileAsync("ffprobe", [
       "-v", "error",
-      "-show_entries", "format=duration:stream=codec_type",
+      "-show_entries", "formato=duración:transmisión=tipo_códec",
       "-of", "json",
       inPath,
     ]);
@@ -438,7 +438,7 @@ async function extractOggOpusFromVideo(inPath, outPath) {
 
   const oggBuffer = await fs.readFile(outPath);
   if (!oggBuffer || oggBuffer.length < 200) {
-    throw new Error("Video tidak memiliki suara yang valid.");
+    throw new Error("El vídeo no tiene sonido válido.");
   }
 
   const realSeconds = parseFfmpegDuration(stderr);
@@ -476,20 +476,20 @@ async function handler(m, { sock, config: botConfig }) {
 
   if (!videoInfo) {
     return m.reply(
-      `🎬 *sᴛɪᴄᴋᴇʀ ᴠɪᴅᴇᴏ ᴀᴜᴅɪᴏ*\n\n` +
-        `Fitur \`${m.prefix}${m.command}\` khusus untuk *video* ya! Otomatis crop kotak 1:1 dan langsung menyertakan audio dari videonya.\n\n` +
+      `🎬 *STICKER VÍDEO AUDIO*\n\n` +
+        `Características \`${m.prefix}${m.command}\` especialmente para *videos* ¡eh! Graba automáticamente el cuadro 1:1 e incluye inmediatamente el audio del vídeo.\n\n` +
         `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-        `> Kirim atau reply *video* (maks ${MAX_DURATION} detik) dengan \`${m.prefix}s2\` atau \`${m.prefix}sticker2\`\n` +
+        `> Enviar o responder *video* (máx. ${MAX_DURATION} segundos) con \`${m.prefix}s2\` o \`${m.prefix}pegatina2\`\n` +
         `> Custom watermark: \`${m.prefix}s2 PackName|Author\`\n\n` +
-        `_Kalau mau stiker gambar atau tanpa suara, pakai \`${m.prefix}s\` aja._`
+        `_Si quieres pegatinas con imágenes o sonidos, utiliza \`${m.prefix}solo m\`._`
     );
   }
 
   if (videoInfo.seconds && videoInfo.seconds > MAX_DURATION + 0.5) {
     return m.reply(
-      `❌ *ᴠɪᴅᴇᴏ ᴛᴇʀʟᴀʟᴜ ᴘᴀɴᴊᴀɴɢ*\n\n` +
-        `> Durasi video: *${Math.round(videoInfo.seconds)} detik*\n` +
-        `> Maksimal: *${MAX_DURATION} detik* (video & audio)`
+      `❌ *EL VÍDEO ES DEMASIADO LARGO*\n\n` +
+        `> Duración del vídeo: *${Math.round(videoInfo.seconds)} segundo*\n` +
+        `> Máximo: *${MAX_DURATION} segundos* (vídeo y audio)`
     );
   }
 
@@ -504,7 +504,7 @@ async function handler(m, { sock, config: botConfig }) {
     const buffer = await downloadVideoBuffer(videoInfo, sock);
     if (!buffer || !buffer.length) {
       await m.react("❌");
-      return m.reply("❌ Gagal mengunduh video. Coba kirim atau reply ulang videonya.");
+      return m.reply("❌ No se pudo descargar el video. Intenta enviar o responder el vídeo nuevamente.");
     }
 
     await fs.writeFile(inPath, buffer);
@@ -514,16 +514,16 @@ async function handler(m, { sock, config: botConfig }) {
     if (duration > MAX_DURATION + 0.5) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴠɪᴅᴇᴏ ᴛᴇʀʟᴀʟᴜ ᴘᴀɴᴊᴀɴɢ*\n\n` +
-          `> Durasi video: *${duration.toFixed(1)} detik*\n` +
-          `> Maksimal: *${MAX_DURATION} detik* (video & audio)`
+        `❌ *EL VÍDEO ES DEMASIADO LARGO*\n\n` +
+          `> Duración del vídeo: *${duration.toFixed(1)} segundo*\n` +
+          `> Máximo: *${MAX_DURATION} segundos* (vídeo y audio)`
       );
     }
 
     if (!hasAudio) {
       await m.react("❌");
       return m.reply(
-        `❌ Video ini tidak memiliki suara/audio!\n> Kalau mau bikin stiker video tanpa suara, gunakan \`${m.prefix}s\`.`
+        `❌ ¡Este vídeo no tiene sonido/audio!\n> Si quieres hacer un stickers de video sin sonido, usa \`${m.prefix}s\`.`
       );
     }
 
@@ -542,7 +542,7 @@ async function handler(m, { sock, config: botConfig }) {
       prepareWAMessageMedia(
         {
           audio: audioResult.oggBuffer,
-          mimetype: "audio/ogg; codecs=opus",
+          mimetype: "audio/ogg; códecs=opus",
           ptt: true,
         },
         { upload: sock.waUploadToServer }
@@ -564,7 +564,7 @@ async function handler(m, { sock, config: botConfig }) {
       Math.min(MAX_DURATION, Math.round(chosenSec))
     );
     audioMessage.ptt = true;
-    audioMessage.mimetype = "audio/ogg; codecs=opus";
+    audioMessage.mimetype = "audio/ogg; códecs=opus";
     if (!audioMessage.waveform || !audioMessage.waveform.length) {
       audioMessage.waveform = generateWaveform(audioResult.oggBuffer);
     }
@@ -594,11 +594,11 @@ async function handler(m, { sock, config: botConfig }) {
     const msg = String(err?.message || "");
     if (/stream specifier|does not contain any stream|tidak memiliki suara/i.test(msg)) {
       return m.reply(
-        `❌ Video ini tidak memiliki jalur audio.\n> Gunakan \`${m.prefix}s\` untuk stiker video tanpa suara.`
+        `❌ Este vídeo no tiene pista de audio.\n> Utilice \`${m.prefix}s\` para pegatinas de vídeo sin sonido.`
       );
     }
     return m.reply(
-      `❌ Gagal membuat stiker video bersuara.\n> _${msg || "Terjadi kesalahan saat memproses video."}_`
+      `❌ No se pudo crear pegatinas de video con sonido.\n> _${msg || "Terjadi kesalahan saat memproses video."}_`
     );
   } finally {
     await fs.unlink(inPath).catch(() => {});

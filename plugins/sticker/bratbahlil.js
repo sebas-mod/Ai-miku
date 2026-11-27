@@ -198,7 +198,7 @@ const te = MikuRuntime.te;
   async function handler(m, { sock }) {
     const text = m.text;
     if (!text) {
-      return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+      return m.reply(`⚠️ ¡Por favor ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
     }
 
     await m.react("🕕");
@@ -227,7 +227,7 @@ const te = MikuRuntime.te;
 
       const template = TEMPLATES[cmd];
       if (!template) {
-        throw new Error("Template tidak ditemukan");
+        throw new Error("Plantilla no encontrada");
       }
 
       if (!isFontLoaded) {

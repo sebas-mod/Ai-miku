@@ -31,16 +31,16 @@ const pluginConfig = {
       if (!text?.trim()) {
           return sock.sendMessage(jid, {
               text:
-  `╭─「 CARI LOKER 」
+  `╭─「BÚSQUEDA DE CASQUILLO」
 │
-│ Cari lowongan kerja remote
+│ Búsqueda de ofertas de trabajo remoto
 │
-│ Contoh:
-│ .cariloker programmer
-│ .cariloker javascript
-│ .cariloker web developer
-│ .cariloker graphic designer
-│ .cariloker customer service
+│ Ejemplo:
+│.cariloker programador
+│.cariloker javascript
+│.cariloker desarrollador web
+│.cariloker diseñador gráfico
+│.cariloker atención al cliente
 │
 ╰──────────────`
           }, { quoted: m })
@@ -103,12 +103,12 @@ Prueba otra palabra clave:
               const title =
                   job.title ||
                   job.name ||
-                  'Tanpa judul'
+                  'Sin titulo'
 
               const company =
                   job.companyName ||
                   job.company?.name ||
-                  'Tidak diketahui'
+                  'Desconocido'
 
               const location =
                   job.location ||
@@ -170,10 +170,10 @@ Prueba otra palabra clave:
 
           await sock.sendMessage(jid, {
               text:
-  `❌ Gagal mengambil data loker.
+  `❌ No se pudieron recuperar los datos del casillero.
 
-Server sumber sedang tidak dapat diakses.
-Coba lagi beberapa saat kemudian.`
+Actualmente no se puede acceder al servidor de origen.
+Inténtalo de nuevo unos momentos más tarde.`
           }, { quoted: m })
       }
   }

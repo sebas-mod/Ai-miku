@@ -45,16 +45,16 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender && clan.roles?.[m.sender] !== 'coleader') {
-          return m.reply(`❌ Hanya *Leader* atau *Co-Leader* yang bisa upgrade clan!`)
+          return m.reply(`❌ ¡Solo *Líder* o *Co-Líder* pueden mejorar el clan!`)
       }
 
       const currentLevel = clan.level || 1
@@ -63,7 +63,7 @@ const getDatabase = MikuRuntime.getDatabase;
       const nextBenefits = getLevelBenefits(currentLevel + 1)
 
       if ((clan.bank || 0) < cost) {
-          return m.reply(`❌ Kas clan tidak cukup!\n\n> Dibutuhkan: *Rp ${cost.toLocaleString('id-ID')}*\n> Kas clan: *Rp ${(clan.bank || 0).toLocaleString('id-ID')}*\n> Kekurangan: *Rp ${(cost - (clan.bank || 0)).toLocaleString('id-ID')}*`)
+          return m.reply(`❌ ¡El efectivo del clan no es suficiente!\n\n> Requerido: *Rp ${cost.toLocaleString('id-ID')}*\n> Dinero del clan: *Rp ${(clan.bank || 0).toLocaleString('id-ID')}*\n> Desventajas: *Rp ${(cost - (clan.bank || 0)).toLocaleString('id-ID')}*`)
       }
 
       clan.bank -= cost
@@ -71,12 +71,12 @@ const getDatabase = MikuRuntime.getDatabase;
       await db.save()
 
       let txt = `⬆️ *ᴄʟᴀɴ ᴜᴘɢʀᴀᴅᴇᴅ!*\n\n`
-      txt += `╭┈┈⬡「 📊 *ʜᴀꜱɪʟ ᴜᴘɢʀᴀᴅᴇ* 」\n`
+      txt += `╭┈┈⬡「 📊 *RESULTADO DE ACTUALIZACIÓN* 」\n`
       txt += `┃ 📛 Clan: *${clan.name}*\n`
       txt += `┃ 🏆 Level: *${currentLevel}* → *${clan.level}*\n`
       txt += `┃ 💰 Biaya: *-Rp ${cost.toLocaleString('id-ID')}*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-      txt += `╭┈┈⬡「 *ʙᴇɴᴇꜰɪᴛ ʙᴀʀᴜ* 」\n`
+      txt += `╭┈┈⬡「 *NUEVO BENEFICIO* 」\n`
       txt += `┃ 👥 Max member: ${currentBenefits.maxMembers} → ${nextBenefits.maxMembers}\n`
       txt += `┃ 🎁 Daily bonus: +${currentBenefits.dailyBonus} → +${nextBenefits.dailyBonus} XP\n`
       txt += `┃ ⚔️ War bonus: ${currentBenefits.warBonus}% → ${nextBenefits.warBonus}%\n`

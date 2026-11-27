@@ -42,7 +42,7 @@ const pluginConfig = {
 
       try {
           const inputVal = pick(inputValue, '')
-          if (inputVal === '') throw new Error('Input tidak boleh kosong')
+          if (inputVal === '') throw new Error('La entrada no puede estar vacía')
 
           const pageNum = page > 0 ? page : 1
 
@@ -79,7 +79,7 @@ const pluginConfig = {
                       url: slug !== '' ? `https://mcpedl.com/${slug}/` : ''
                   })
               }
-              if (baseRes.data.results.length === 0) throw new Error('Tidak ada hasil pencarian')
+              if (baseRes.data.results.length === 0) throw new Error('Sin resultados de búsqueda')
           } else if (mode === 'download') {
               baseRes.data.mode = 'download'
               baseRes.data.target = inputVal
@@ -117,8 +117,8 @@ const pluginConfig = {
               if (foundLinks.length === 0) {
                   const targetUrl = isHttp ? inputVal : `https://mcpedl.com/${slug}/`
                   const { data: capData, status: capStatus } = await axios.post('https://cap.jhx.my.id/api/createTask', { url: targetUrl, type: 'source' }, { headers: { 'Content-Type': 'application/json' }, validateStatus: () => true })
-                  if (capStatus >= 400 || !capData) throw new Error('Solver createTask gagal')
-                  if (capData.success === false) throw new Error('Solver API gagal')
+                  if (capStatus >= 400 || !capData) throw new Error('Error al crear tarea en el solucionador')
+                  if (capData.success === false) throw new Error('El solucionador API falló')
 
                   const jobId = pick(capData.jobId, '')
                   let baseHtml = ''
@@ -132,7 +132,7 @@ const pluginConfig = {
                           baseHtml = pick(resData.solution?.token, '')
                           isReady = true
                       } else if (resData?.status === 'failed') {
-                          throw new Error('Solver gagal membuka halaman')
+                          throw new Error('Solver no pudo abrir la página')
                       }
                       attempts++
                   }
@@ -172,10 +172,10 @@ const pluginConfig = {
                   }
               }
 
-              if (foundLinks.length === 0) throw new Error('Tidak ada link download ditemukan')
+              if (foundLinks.length === 0) throw new Error('No se encontró ningún enlace de descarga')
               foundLinks.forEach((f, i) => baseRes.data.files.push({ no: i + 1, name: f.name, url: f.url }))
           } else {
-              throw new Error('Mode tidak dikenali')
+              throw new Error('Modo no reconocido')
           }
 
           return baseRes
@@ -187,7 +187,7 @@ const pluginConfig = {
   async function handler(m, { sock, text, prefix, command, reply }) {
       const input = String(text || m.quoted?.text || '').trim()
       if (!input) {
-          return reply(`Cari addon/map/texture Minecraft PE dari MCPEDL.\n\nContoh:\n${prefix}${command} furniture\n${prefix}${command} furniture | 2\n${prefix}${command} https://mcpedl.com/nama-addon/  (download)`)
+          return reply(`Busque el complemento/mapa/textura de Minecraft PE de MCPEDL.\n\nEjemplo:\n${prefix}${command} muebles\n${prefix}${command} muebles | 2\n${prefix}${command} https://mcpedl.com/nama-addon/ (descargar)`)
       }
 
       try {
@@ -198,12 +198,12 @@ const pluginConfig = {
               if (!res.status) throw new Error(res.error)
               const files = res.data.files
               const list = files.slice(0, 8).map(f => `${f.no}. ${f.name}`).join('\n')
-              await reply(`*⛏️ MCPEDL DOWNLOAD*\n\nDitemukan ${files.length} file (terbaru di atas):\n${list}\n\nMengirim file nomor 1...`)
+              await reply(`*⛏️ MCPEDL DOWNLOAD*\n\nEncontró ${files.length} archivos (el último en la parte superior):\n${list}\n\nEnviando archivo número 1...`)
               const top = files[0]
               try {
                   await sock.sendMessage(m.chat, { document: { url: top.url }, fileName: top.name, mimetype: 'application/octet-stream' }, { quoted: m })
               } catch {
-                  await reply(`Gagal mengirim file langsung, unduh manual:\n${top.url}`)
+                  await reply(`No se pudo enviar el archivo directamente, descargar el manual:\n${top.url}`)
               }
               return await reactTo(sock, m, '✅')
           }
@@ -214,7 +214,7 @@ const pluginConfig = {
 
           const lines = res.data.results.slice(0, 10).map(r =>
               `${r.no}. *${r.title}*\n   ${r.type} • ${r.author}\n   ⬇️ ${r.downloads} • ⭐ ${r.rating} • ${r.updated}\n   ${r.url}`)
-          await reply(`*⛏️ MCPEDL: ${res.data.query}* (hal. ${res.data.page})\n\n${lines.join('\n\n')}\n\nKirim link hasil dengan *${prefix}${command} <link>* untuk download.`)
+          await reply(`*⛏️ MCPEDL: ${res.data.query}* (asunto. ${res.data.page})\n\n${lines.join('\n\n')}\n\nEnviar enlace de resultado con *${prefix}${command} <enlace>* para descargar.`)
           await reactTo(sock, m, '✅')
       } catch (e) {
           await reactTo(sock, m, '❌')

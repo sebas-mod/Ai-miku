@@ -32,12 +32,12 @@ const getDatabase = MikuRuntime.getDatabase;
       const user = db.getUser(m.sender)
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       const memberContributions = {}
@@ -53,7 +53,7 @@ const getDatabase = MikuRuntime.getDatabase;
 
       let txt = `📊 *ᴄʟᴀɴ ᴇxᴘ & ᴄᴏɴᴛʀɪʙᴜᴛɪᴏɴ*\n\n`
       txt += `╭┈┈⬡「 🏰 *ɪɴꜰᴏ ᴄʟᴀɴ* 」\n`
-      txt += `┃ 📛 Nama: *${clan.name}*\n`
+      txt += `┃ 📛 Nombre: *${clan.name}*\n`
       txt += `┃ 📈 Total XP: *${(clan.exp || 0).toLocaleString('id-ID')}*\n`
       txt += `┃ 👥 Total Member: *${clan.members.length}*\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
@@ -70,7 +70,7 @@ const getDatabase = MikuRuntime.getDatabase;
           }
           txt += `╰┈┈┈┈┈┈┈┈⬡`
       } else {
-          txt += `> Belum ada kontribusi XP dari member`
+          txt += `> Aún no hay XP contribuciones de miembros`
       }
 
       await m.reply(txt)

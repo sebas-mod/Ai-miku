@@ -50,8 +50,8 @@ const getDatabase = MikuRuntime.getDatabase;
 
       if (!clanId) {
           return m.reply(
-              `❌ Kamu belum punya clan\n\n` +
-              `Buat: *.clancreate <nama>*\n` +
+              `❌ Aún no tienes un clan\n\n` +
+              `Crear: *.clancreate <nombre>*\n` +
               `Gabung: *.clanjoin <id>*`
           )
       }
@@ -61,7 +61,7 @@ const getDatabase = MikuRuntime.getDatabase;
       const clan = db.db.data.clans[clanId]
           || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
           || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
-      if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
+      if (!clan) return m.reply(`❌ Clan no encontrado`)
 
       const totalGames = (clan.wins || 0) + (clan.losses || 0)
       const winRate = totalGames > 0

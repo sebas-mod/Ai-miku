@@ -104,8 +104,8 @@ const chatIsIos = MikuRuntime.chatIsIos;
   function qcMenuText(m, text) {
       const list = COLOR_SECTIONS.map(sec => `*${sec.title}*\n${sec.names.join(', ')}`).join('\n\n')
       return (
-          `💬 *Quote Sticker*\n\nTeks kamu: _${text}_\n\n` +
-          `Pilih warna dengan mengetik:\n*${m.prefix}qc <warna> ${text}*\n\n${list}`
+          `💬 *Cita Sticker*\n\nTu texto: _${text}_\n\n` +
+          `Seleccione un color escribiendo:\n*${m.prefix}control de calidad <color> ${text}*\n\n${list}`
       )
   }
 
@@ -132,7 +132,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
 
           return await sock.sendButtons(m.chat, {
               ...(logo ? { image: logo } : {}),
-              text: `💬 *Mau warna apa untuk quote-nya?*\n\nTeks kamu: _${text}_\n\nPilih warna lewat tombol di bawah 👇`,
+              text: `💬 *¿Qué color quieres para la cotización?*\n\nTu texto: _${text}_\n\nElija un color a través del botón de abajo 👇`,
               footer,
                   thumbKey: 'qc',
               mentions: [m.sender],
@@ -150,7 +150,7 @@ const chatIsIos = MikuRuntime.chatIsIos;
               }]
           }, { quoted: m })
       } catch (err) {
-          console.error('[qc] tombol gagal, kirim teks biasa:', err.stack || err)
+          console.error('El botón [qc] falló, envíe texto sin formato:', err.stack || err)
           const caption = qcMenuText(m, text)
           if (logo) return sock.sendMessage(m.chat, { image: logo, caption, mentions: [m.sender] }, { quoted: m })
           return m.reply(caption)
@@ -169,16 +169,16 @@ const chatIsIos = MikuRuntime.chatIsIos;
           return m.reply(
               `💬 *ǫᴜᴏᴛᴇ sᴛɪᴄᴋᴇʀ*\n\n` +
               `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-              `┃ ◦ \`${m.prefix}qc <teks>\` lalu pilih warna lewat tombol\n` +
-              `┃ ◦ Reply pesan + \`${m.prefix}qc\`\n` +
-              `┃ ◦ Langsung: \`${m.prefix}qc <warna> <teks>\`\n` +
+              `┃ ◦ \`${m.prefix}qc <texto>\` luego seleccione el color mediante el botón\n` +
+              `┃ ◦ Responder mensaje + \`${m.prefix}qc\`\n` +
+              `┃ ◦ Langsung: \`${m.prefix}qc <color> <texto>\`\n` +
               `╰┈┈⬡\n\n` +
-              `> Contoh: \`${m.prefix}qc Hai semuanya!\``
+              `> Ejemplo: \`${m.prefix}qc ¡Hola a todos!\``
           )
       }
 
       if (message.length > 80) {
-          return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Maksimal 80 karakter! (Saat ini: ${message.length})`)
+          return m.reply(`❌ *ERROR*\n\n> ¡Máximo 80 caracteres! (En este momento: ${message.length})`)
       }
 
       if (!hasColor) return sendColorMenu(m, sock, message)

@@ -27,7 +27,7 @@ const pluginConfig = {
 async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
   const query = (text || (args || []).join(' ') || m.quoted?.text || '').trim()
   if (!query) {
-    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nKetik judul lagu atau penyanyi:\nContoh: \`${usedPrefix + command} Coldplay Yellow\``)
+    return m.reply(`🎵 *PENCARIAN LIRIK LAGU*\n\nEscribe el título de la canción o el cantante:\nEjemplo: \`${usedPrefix + command} Coldplay Amarillo\``)
   }
 
   await m.react('⏳')
@@ -40,14 +40,14 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
 
     if (!Array.isArray(data) || !data.length) {
       await m.react('❌')
-      return m.reply(`❌ Lirik untuk *"${query}"* tidak ditemukan.`)
+      return m.reply(`❌ Letra de *"${query}"* extraviado.`)
     }
 
     const best = data.find((item) => item.plainLyrics) || data[0]
     const lyrics = (best.plainLyrics || best.syncedLyrics || '').trim()
     if (!lyrics) {
       await m.react('❌')
-      return m.reply(`❌ Lirik teks belum tersedia untuk lagu *${best.trackName || query}*.`)
+      return m.reply(`❌ Las letras de texto aún no están disponibles para las canciones *${best.trackName || query}*.`)
     }
 
     let out = `🎶 *${best.trackName || 'Judul Tidak Diketahui'}*\n`
@@ -59,7 +59,7 @@ async function handler(m, { text, args, usedPrefix = '.', command = 'lirik' }) {
     return m.reply(out)
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mencari lirik:* ${e.message}`)
+    return m.reply(`❌ *No se pudo buscar la letra:* ${e.message}`)
   }
 }
 

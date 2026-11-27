@@ -57,9 +57,9 @@ import axios from 'axios';
               `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
               `┃ ✦ *Cara Pakai*\n` +
               `┃\n` +
-              `┃   ${m.prefix}wuwa <nama karakter>\n` +
+              `┃   ${m.prefix}wuwa <nombre del personaje>\n` +
               `┃\n` +
-              `┃ ✦ *Contoh*\n` +
+              `┃ ✦ *Ejemplo*\n` +
               `┃\n` +
               `┃   ${m.prefix}wuwa sanhua\n` +
               `┃   ${m.prefix}wuwa jiyan\n` +
@@ -74,15 +74,15 @@ import axios from 'axios';
       }
 
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi nyari sheet ${query} darling~ tunggu sebentar yaa 🎮`)
+      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando sábanas ${query} cariño ~ espera un momento, estás bien 🎮`)
 
       try {
           const charId = characters[query]
 
           if (!charId) {
               return m.reply(
-                  `💔 *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-                  `> Karakter *${query}* tidak ditemukan darling~\n\n` +
+                  `💔 *NO ENCONTRADO*\n\n` +
+                  `> Personaje *${query}*no encontrado cariño~\n\n` +
                   `> *List Karakter:*\n${Object.keys(characters).join('\n• ')}`
               )
           }
@@ -91,7 +91,7 @@ import axios from 'axios';
           const response = await axios.get(url, { responseType: 'arraybuffer' })
 
           if (response.status !== 200) {
-              throw new Error('Gagal mengambil gambar')
+              throw new Error('No se pudo tomar la foto')
           }
 
           const imageBuffer = Buffer.from(response.data)
@@ -103,7 +103,7 @@ import axios from 'axios';
                       `┃ ✦ *ᴋᴀʀᴀᴋᴛᴇʀ*: ${query.toUpperCase()}\n` +
                       `┃ ✦ *ɪᴅ*: ${charId}\n` +
                       `┃\n` +
-                      `┃ 💗 *Ai Miku:* Ini sheet materialnya darling~ 🎮\n` +
+                      `┃ 💗 *Ai Miku:* Esta es la hoja de materiales cariño~ 🎮\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -115,7 +115,7 @@ import axios from 'axios';
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, cariño ~ 🥺`
           )
       }
   }

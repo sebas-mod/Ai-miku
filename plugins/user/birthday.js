@@ -34,12 +34,12 @@ async function handler(m, { sock }) {
     if (!user?.birthday) {
         if (target === m.sender) {
             return m.reply(
-                `❌ Kamu belum set birthday!\n\n` +
-                `> Gunakan: ${m.prefix}setbirthday DD-MM\n` +
-                `> Contoh: ${m.prefix}setbirthday 25-12`
+                `❌ ¡Aún no has cumplido años!\n\n` +
+                `> Uso: ${m.prefix}establecercumpleaños DD-MM\n` +
+                `> Ejemplo: ${m.prefix}establecercumpleaños 25-12`
             )
         }
-        return m.reply(`❌ User belum set birthday!`)
+        return m.reply(`❌ ¡El usuario aún no ha fijado un cumpleaños!`)
     }
 
     const [day, month] = user.birthday.split('-').map(Number)
@@ -66,15 +66,15 @@ async function handler(m, { sock }) {
     if (isToday) {
         text += `┃ 🎉 *HARI INI ULTAH!*\n`
     } else {
-        text += `┃ 🕕 ${diffDays} hari lagi\n`
+        text += `┃ 🕕 ${diffDays} otro el\n`
     }
 
     text += `╰┈┈┈┈┈┈┈┈⬡`
 
     if (isToday) {
         text += `\n\n🎊 *HAPPY BIRTHDAY!* 🎊\n`
-        text += `> Semoga panjang umur dan\n`
-        text += `> sukses selalu! 🎉🎂`
+        text += `> Que vivas mucho tiempo y\n`
+        text += `> siempre éxito! 🎉🎂`
     }
 
     await m.reply(text, { mentions: [target] })

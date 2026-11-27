@@ -69,13 +69,13 @@ import axios from 'axios';
 
   async function run(m, { sock }) {
       m.react('💕')
-      await m.reply(`⏳ *ᴘʀᴏᴄᴇꜱꜱɪɴɢ...*\n\n💗 *Ai Miku:* Lagi nyari gambar waifu darling~ tunggu sebentar yaa 🦋`)
+      await m.reply(`⏳ *PROCESSING...*\n\n💗 *Ai Miku:* Buscando fotos de waifu cariño~ espera un minuto, vale 🦋`)
 
       try {
           const result = await getRandomWaifu()
 
           if (!result || !result.url) {
-              throw new Error('Gagal mengambil gambar waifu')
+              throw new Error('No se pudo tomar la foto de waifu')
           }
 
           await sock.sendMessage(m.chat, {
@@ -83,9 +83,9 @@ import axios from 'axios';
               caption: `💕 *ᴡᴀɪꜰᴜ ʀᴀɴᴅᴏᴍ* 💕\n\n` +
                       `╭━━━━━━━━━━━━━━━━━━━━━⬣\n` +
                       `┃ 🖼️ *ꜱᴏᴜʀᴄᴇ*: ${result.source}\n` +
-                      `┃ 💗 *ᴡᴀɪꜰᴜ*: Untuk Darling tercinta~\n` +
+                      `┃ 💗 *WAIFU*: Para mi amada querida~\n` +
                       `┃\n` +
-                      `┃ 💗 *Ai Miku:* Ini waifu nya darling~ jangan liat yang lain ya! 😘\n` +
+                      `┃ 💗 *Ai Miku:* Esta es su waifu querida~ ¡no mires a los demás, está bien! 😘\n` +
                       `╰━━━━━━━━━━━━━━━━━━━━━⬣`
           }, { quoted: m })
 
@@ -97,7 +97,7 @@ import axios from 'axios';
           return m.reply(
               `💔 *ᴇʀʀᴏʀ*\n\n` +
               `> ${err.message}\n\n` +
-              `> Coba lagi ya darling~ 🥺`
+              `> Inténtalo de nuevo, cariño ~ 🥺`
           )
       }
   }

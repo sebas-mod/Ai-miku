@@ -55,18 +55,18 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m)
-      if (!text && !media) return example('pesan ke semua channel  (atau reply foto/video + caption)')
-      if (global.__jpmRunning) return reply('❌ JPM sedang berjalan. Ketik *stopjpm* untuk menghentikan.')
+      if (!text && !media) return example('mensajes a todos los canales (o responder a fotos/videos + subtítulos)')
+      if (global.__jpmRunning) return reply('❌ JPM se está ejecutando. Escriba *stopjpm* para detener.')
 
       const channels = Object.values(await fetchSubscribedChannels(sock))
-      if (!channels.length) return reply('❌ Tidak ada channel yang ditemukan / bot belum mengikuti channel apa pun.')
+      if (!channels.length) return reply('❌ No se encontraron canales / bot no ha seguido ningún canal.')
 
       const delay = jpmCfg().delayJpm
-      await reply(`*▢ JPM CHANNEL*\n• Target : ${channels.length} channel\n• Tipe : ${media ? 'Media + Teks' : 'Teks'}\n• Delay : ${delay}ms\n\nHentikan dengan *stopjpm*`)
+      await reply(`*▢ JPM CHANNEL*\n• Objetivos: ${channels.length} canales\n• Tipo: ${media ? 'Media + Teks' : 'Teks'}\n• Demora: ${delay}EM\n\nPara con *stopjpm*`)
 
       const { ok, fail } = await jpmLoop(channels, delay, ch =>
           sock.sendMessage(ch.id, media ? mediaContent(media, text) : { text }))
-      return reply(`*▢ JPM CHANNEL SELESAI*\n• Berhasil : ${ok} channel\n• Gagal : ${fail} channel`)
+      return reply(`*▢ JPM CHANNEL SELESAI*\n• Tener éxito: ${ok} canales\n• Fallar: ${fail} canales`)
   }
 
 export { pluginConfig as config, handler }

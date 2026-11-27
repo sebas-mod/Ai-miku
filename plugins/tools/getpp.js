@@ -62,7 +62,7 @@ const pluginConfig = {
           return reply(`❌ No hay fotos de perfil que se puedan obtener (vacías u ocultas):\n${fail.map(f => '• @' + num(f.jid)).join('\n')}`)
       }
 
-      const cap = (r) => `Foto profil @${num(r.jid)}`
+      const cap = (r) => `Foto de perfil @${num(r.jid)}`
       const mentions = ok.map(r => r.jid)
 
       if (ok.length === 1) {
@@ -81,8 +81,8 @@ const pluginConfig = {
       }
 
       const notes = []
-      if (fail.length) notes.push(`⚠️ Tanpa foto / disembunyikan: ${fail.map(f => '@' + num(f.jid)).join(', ')}`)
-      if (over) notes.push(`ℹ️ Maksimal ${MAX} orang sekali ambil.`)
+      if (fail.length) notes.push(`⚠️ Sin foto/oculta: ${fail.map(f => '@' + num(f.jid)).join(', ')}`)
+      if (over) notes.push(`ℹ️ Máximo ${MAX} la gente lo toma una vez.`)
       if (notes.length) await sock.sendMessage(chat, { text: notes.join('\n'), mentions: fail.map(f => f.jid) }, { quoted: m })
   }
 

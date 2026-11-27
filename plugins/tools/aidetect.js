@@ -38,7 +38,7 @@ const pluginConfig = {
       'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36'
   }
 
-  const persen = (n) => typeof n === 'number' ? (n * 100).toFixed(2) + '%' : 'Tidak tersedia'
+  const persen = (n) => typeof n === 'number' ? (n * 100).toFixed(2) + '%' : 'No disponible'
 
   async function handler(m, { sock, prefix, command, reply }) {
       try {
@@ -82,7 +82,7 @@ const pluginConfig = {
               `AI Generated: ${persen(ai)}\n` +
               `Not AI Generated: ${persen(human)}\n` +
               `Deepfake: ${persen(deepfake)}\n\n` +
-              `_Hasil berupa estimasi model deteksi, bukan kepastian mutlak._`
+              `_Los resultados son estimaciones del modelo de detección, no certeza absoluta._`
           )
           await reactTo(sock, m, '✅')
       } catch (e) {

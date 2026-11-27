@@ -50,21 +50,21 @@ const pluginConfig = {
           lang = args[0].toLowerCase()
           q = args.slice(1).join(' ').trim()
       }
-      if (!q) return m.reply(`*WIKIPEDIA*\n\nCari ringkasan apa saja!\n\n Contoh:\n${usedPrefix}${command} Candi Borobudur\n${usedPrefix}${command} en Black hole`)
+      if (!q) return m.reply(`*WIKIPEDIA*\n\nBusque cualquier resumen!\n\n Ejemplo:\n${usedPrefix}${command} templo de borobudur\n${usedPrefix}${command} es Agujeros negros`)
 
-      await m.reply('Mencari di Wikipedia...')
+      await m.reply('Buscando en Wikipedia...')
       try {
           const hasil = await cariJudul(lang, q)
-          if (!hasil.length) return m.reply(`Tidak ada hasil untuk *${q}*.\n Coba kata kunci lain atau bahasa lain, contoh: ${usedPrefix}${command} en ${q}`)
+          if (!hasil.length) return m.reply(`No hay resultados para *${q}*.\n Pruebe con otras palabras clave u otros idiomas, por ejemplo: ${usedPrefix}${command} es ${q}`)
 
           const data = await ringkasan(lang, hasil[0])
-          if (!data?.extract) return m.reply('Artikel ditemukan tapi ringkasannya kosong.')
+          if (!data?.extract) return m.reply('Artículo encontrado pero el resumen está vacío.')
 
           let isi = data.extract.trim()
           if (isi.length > 900) isi = isi.slice(0, 900).replace(/\s+\S*$/, '') + '…'
 
           const lain = data.type === 'disambiguation' || hasil.length > 1
-              ? `\n\n *Hasil lain:*\n${hasil.slice(1).map((h) => `• ${h}`).join('\n')}`
+              ? `\n\n *Otros resultados:*\n${hasil.slice(1).map((h) => `• ${h}`).join('\n')}`
               : ''
           const caption = `*${data.title}*${data.description ? `\n_${data.description}_` : ''}\n\n${isi}\n\n ${data.content_urls?.desktop?.page || ''}${lain}`.trim()
 
@@ -74,8 +74,8 @@ const pluginConfig = {
           }
           return m.reply(caption)
       } catch (e) {
-          if (e?.response?.status === 404) return m.reply(`🍅 Artikel *${q}* tidak ditemukan.`)
-          throw `Gagal mengambil data Wikipedia: ${e?.message || e}`
+          if (e?.response?.status === 404) return m.reply(`🍅 Artículo *${q}* extraviado.`)
+          throw `No se pudieron recuperar los datos de Wikipedia: ${e?.message || e}`
       }
   }
 

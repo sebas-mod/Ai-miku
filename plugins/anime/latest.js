@@ -31,7 +31,7 @@ import fetch from 'node-fetch'
       const res = await fetch('https://api.sansekai.my.id/api/anime/latest')
       const data = await res.json()
 
-      if (!data.length) throw 'Anime tidak ditemukan.'
+      if (!data.length) throw 'Anime no encontrado.'
 
       let teks = `🎌 *ANIME TERBARU*\n\n`
 
@@ -51,7 +51,7 @@ import fetch from 'node-fetch'
       )
 
     } catch (e) {
-      m.reply('❌ Gagal mengambil data anime terbaru')
+      m.reply('❌ No se pudieron recuperar los datos del anime más recientes')
     }
   }
 

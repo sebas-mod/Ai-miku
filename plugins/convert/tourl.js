@@ -56,7 +56,7 @@ async function uploadTempBuffer(buffer, filename = 'image.jpg', mime = 'image/jp
     const t = (await r.text()).trim()
     if (/^https?:\/\//i.test(t)) return t
   } catch {}
-  throw new Error('Gagal mengunggah media ke server sementara.')
+  throw new Error('No se pudo cargar el medio en el servidor temporal.')
 }
 
 const fmtBytes = (b) => b >= 1048576 ? `${(b / 1048576).toFixed(2)} MB` : `${(b / 1024).toFixed(1)} KB`
@@ -65,7 +65,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tourl' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media) {
-    return m.reply(`🔗 Kirim atau reply gambar/video/audio/dokumen dengan perintah *${usedPrefix + command}* untuk mengubahnya menjadi tautan URL.`)
+    return m.reply(`🔗 Envía o responde imágenes/videos/audios/documentos con el comando *${usedPrefix + command}* para convertirlo al enlace URL.`)
   }
 
   await m.react('⏳')
@@ -73,9 +73,9 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tourl' }) {
     const ext = ((media.mime || '').split('/')[1] || 'bin').split(';')[0]
     const url = await uploadTempBuffer(media.buffer, `miku_${Date.now()}.${ext}`, media.mime || 'application/octet-stream')
 
-    let txt = `🔗 *MEDIA TO URL UPLOADER*\n\n`
+    let txt = `🔗 *MEDIA A LA URL DEL CARGADOR*\n\n`
     txt += `• *Tipe MIME* : ${media.mime || 'application/octet-stream'}\n`
-    txt += `• *Ukuran* : ${fmtBytes(media.buffer.length)}\n`
+    txt += `• *Tamaño*: ${fmtBytes(media.buffer.length)}\n`
     txt += `• *URL* : ${url}\n\n`
     txt += `_Ai Miku_`
 
@@ -83,7 +83,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tourl' }) {
     return m.reply(txt)
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengunggah media:* ${e.message}`)
+    return m.reply(`❌ *No se pudo cargar el medio:* ${e.message}`)
   }
 }
 

@@ -30,7 +30,7 @@ const pluginConfig = {
       const cmd = command || 'rch'
 
       if (!text) {
-          return reply(`❌ *Format Salah!*\n\nContoh:\n> ${p}${cmd} https://whatsapp.com/channel/0029VabymHd4CrfnqPLPzk3n/489 👍`)
+          return reply(`❌ *¡Formato incorrecto!*\n\nEjemplo:\n> ${p}${cmd} https://whatsapp.com/channel/0029VabymHd4CrfnqPLPzk3n/489 👍`)
       }
 
       const args = text.trim().split(/\s+/)
@@ -38,7 +38,7 @@ const pluginConfig = {
       const reaction = args[1] || '👍'
 
       if (!url.includes('whatsapp.com/channel/')) {
-          return reply('❌ URL harus berupa link pesan WhatsApp Channel yang valid.')
+          return reply('❌ URL debe ser un enlace de mensaje del canal WhatsApp válido.')
       }
 
       try {
@@ -48,14 +48,14 @@ const pluginConfig = {
           const json = await res.json()
 
           if (!json.status && json.status !== 200 && !json.success) {
-              throw new Error(json.message || json.msg || 'Gagal mengirim reaction.')
+              throw new Error(json.message || json.msg || 'No se pudo enviar la reacción.')
           }
 
           return reply(
-              `✅ *Reaction berhasil dikirim!*\n\n` +
+              `✅ *¡Reacción enviada exitosamente!*\n\n` +
               `💬 Reaction : ${reaction}\n` +
               `📢 Channel : WhatsApp Channel\n` +
-              `📝 Status : Berhasil mengirim react ke pesan channel`
+              `📝 Estado: reacción enviada correctamente al mensaje del canal`
           )
       } catch (error) {
           console.error('[RCH ERROR]', error)

@@ -86,20 +86,20 @@ const pluginConfig = {
     const image = pickImage(m)
 
     if (!image) {
-      return reply(`Kirim/Balas gambar dengan teks:\n${p}${command || 'smeme'} teks atas|teks bawah\n\n❌ Hanya bisa digunakan untuk Gambar (Bukan Stiker)!`)
+      return reply(`Enviar/Responder a imagen con texto:\n${p}${command || 'smeme'} texto superior|texto inferior\n\n❌ ¡Solo se puede usar para imágenes (no para pegatinas)!`)
     }
 
     const [atas, bawah] = text ? String(text).split('|') : ['', '']
 
     await reactTo(sock, m, '⏳')
-    await reply(global.mess?.wait || 'Tunggu sebentar ya...')
+    await reply(global.mess?.wait || 'Espera un momento, por favor...')
 
     try {
       const mediaBuffer = await image.download()
-      if (!mediaBuffer?.length) throw new Error('Gagal mengunduh gambar, coba kirim ulang.')
+      if (!mediaBuffer?.length) throw new Error('No se pudo descargar la imagen, intente reenviarla.')
 
       const imageUrl = await uploadForMeme(mediaBuffer, image.mime || '')
-      if (!imageUrl) throw new Error('Gagal mengunggah gambar ke hosting (semua server gagal), coba lagi nanti.')
+      if (!imageUrl) throw new Error('No se pudieron cargar imágenes en el alojamiento (todos los servidores fallaron), inténtelo nuevamente más tarde.')
 
       const encodedAtas = encodeURIComponent(formatMemegenText(atas))
       const encodedBawah = encodeURIComponent(formatMemegenText(bawah))

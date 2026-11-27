@@ -31,7 +31,7 @@ const pluginConfig = {
       try {
           return await sock.sendMessage(jid, { text: `${text}\n\n📋 ${label}: ${String(code)}\n\n_${global.namebot || 'Ai Miku MD'}_` }, { quoted: m })
       } catch (e) {
-          console.error('[cekid] tombol gagal:', e?.message || e)
+          console.error('El botón [cekid] falló:', e?.message || e)
           return reply(text)
       }
   }

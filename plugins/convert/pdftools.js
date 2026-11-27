@@ -369,7 +369,7 @@ const du = {
         if (Number.isInteger(p) && p >= 1 && p <= maxPages) pages.push(p)
       }
     }
-    if (!pages.length) throw fail(`Rentang halaman tidak valid (dokumen memiliki ${maxPages} halaman).`)
+    if (!pages.length) throw fail(`Rango de páginas no válido (el documento tiene ${maxPages} página).`)
     return pages
   },
   async getFile(sock, m) {
@@ -443,13 +443,13 @@ const pdfOut = (buffer, name) => ({ documents: [{ buffer: Buffer.from(buffer), n
 
 const loadPdfLibDoc = async (buf) => {
   const pl = await tryRequirePdfLib()
-  if (!pl) throw fail('Fitur edit struktur halaman PDF ini memerlukan paket `pdf-lib` (`npm i pdf-lib`).')
+  if (!pl) throw fail('Esta función de edición de estructura de página PDF requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
   return pl.PDFDocument.load(buf, { ignoreEncryption: true, updateMetadata: false })
 }
 
 const specs = {
   pdftoimg: {
-    desc: 'Ubah halaman PDF jadi gambar (maks 10 halaman per perintah)',
+    desc: 'Convierta PDF páginas en imágenes (máximo 10 páginas por comando)',
     usage: '[halaman|1-3|semua] [hd]',
     example: '1-3',
     needs: 'pdf',
@@ -463,7 +463,7 @@ const specs = {
       let note = ''
       if (pages.length > 10) { pages = pages.slice(0, 10); note = ' (dibatasi 10 halaman)' }
       if (!du.which('pdftoppm')) {
-        throw fail('Konversi halaman PDF ke gambar membutuhkan utilitas `pdftoppm` (poppler-utils) di server.')
+        throw fail('Para convertir la página PDF en una imagen, se requiere la utilidad `pdftoppm` (poppler-utils) en el servidor.')
       }
       const out = await du.withTmp(async (dir) => {
         const inp = path.join(dir, 'in.pdf')
@@ -472,7 +472,7 @@ const specs = {
         for (const pg of pages) {
           const r = await du.exec('pdftoppm', ['-r', String(hd ? 220 : 150), '-f', String(pg), '-l', String(pg), '-jpeg', '-jpegopt', 'quality=90', '-singlefile', inp, path.join(dir, `p${pg}`)], { timeout: 90000 })
           const fileOut = path.join(dir, `p${pg}.jpg`)
-          if (r.code !== 0 || !fs.existsSync(fileOut)) throw fail('Gagal merender halaman PDF.')
+          if (r.code !== 0 || !fs.existsSync(fileOut)) throw fail('No se pudo renderizar la página PDF.')
           res.push({ page: pg, buffer: fs.readFileSync(fileOut) })
         }
         return res
@@ -481,15 +481,15 @@ const specs = {
     }
   },
   pdfsplit: {
-    desc: 'Ambil halaman tertentu dari PDF jadi PDF baru',
+    desc: 'Llevar una página específica de PDF a una nueva PDF',
     usage: '<halaman, mis. 1-3,5>',
     example: '2-4',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
-      if (!c.args[0]) throw fail('Tulis halaman yang ingin diambil. Contoh: .pdfsplit 1-3,5')
+      if (!c.args[0]) throw fail('Escribe la página que deseas recuperar. Ejemplo:.pdfsplit 1-3,5')
       const pl = await tryRequirePdfLib()
-      if (!pl) throw fail('Fitur `.pdfsplit` memerlukan paket `pdf-lib` (`npm i pdf-lib`).')
+      if (!pl) throw fail('La característica `.pdfsplit` requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
       const src = await loadPdfLibDoc(f.buffer)
       const pages = du.parseRange(c.args[0], src.getPageCount())
       const out = await pl.PDFDocument.create()
@@ -498,16 +498,16 @@ const specs = {
     }
   },
   pdfhapus: {
-    desc: 'Hapus halaman tertentu dari PDF',
+    desc: 'Eliminar páginas específicas de PDF',
     usage: '<halaman, mis. 2,5-6>',
     example: '2',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
-      if (!c.args[0]) throw fail('Tulis nomor halaman yang ingin dihapus. Contoh: .pdfhapus 2,5-6')
+      if (!c.args[0]) throw fail('Escriba el número de página que desea eliminar. Ejemplo:.pdfhapus 2,5-6')
       const src = await loadPdfLibDoc(f.buffer)
       const del = new Set(du.parseRange(c.args[0], src.getPageCount()))
-      if (del.size >= src.getPageCount()) throw fail('Tidak boleh menghapus seluruh halaman PDF.')
+      if (del.size >= src.getPageCount()) throw fail('No se puede eliminar la página completa PDF.')
       ;[...del].sort((a, b) => b - a).forEach((p) => src.removePage(p - 1))
       return pdfOut(await src.save(), `${baseName(f.name)}-edit`)
     }
@@ -520,7 +520,7 @@ const specs = {
     heavy: true,
     run: async (c, f) => {
       const pl = await tryRequirePdfLib()
-      if (!pl) throw fail('Fitur `.pdfrotate` memerlukan paket `pdf-lib` (`npm i pdf-lib`).')
+      if (!pl) throw fail('La característica `.pdfrotate` requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
       const deg = [90, 180, 270].includes(Number(c.args[0])) ? Number(c.args[0]) : 90
       const src = await loadPdfLibDoc(f.buffer)
       const pages = du.parseRange(c.args[1], src.getPageCount())
@@ -532,7 +532,7 @@ const specs = {
     }
   },
   pdfinfo: {
-    desc: 'Lihat informasi PDF: jumlah halaman, ukuran kertas, judul, pembuat',
+    desc: 'Ver información PDF: número de páginas, tamaño del papel, título, autor',
     needs: 'pdf',
     run: async (c, f) => {
       const info = inspectPdfPure(f.buffer)
@@ -540,14 +540,14 @@ const specs = {
       const paper = [['A4', 210, 297], ['A3', 297, 420], ['A5', 148, 210], ['Letter', 216, 279], ['Legal', 216, 356]].find(
         ([, w, h]) => (Math.abs(mm(info.width) - w) < 4 && Math.abs(mm(info.height) - h) < 4) || (Math.abs(mm(info.width) - h) < 4 && Math.abs(mm(info.height) - w) < 4)
       )
-      return uitext.panel('INFORMASI PDF', [
-        { head: '📄 *DOKUMEN*', lines: [`Nama : ${f.name}`, `Halaman : ${info.pageCount}`, `Ukuran File : ${kit.fmtSize(f.buffer.length)}`, `Ukuran Kertas : ${paper ? paper[0] : 'Kustom'} (${mm(info.width)}×${mm(info.height)} mm)`] },
-        { head: '🧬 *METADATA*', lines: [`Judul : ${info.title}`, `Penulis : ${info.author}`, `Pembuat : ${info.creator}`, `Produser : ${info.producer}`, `Terenkripsi : ${info.encrypted ? 'Ya' : 'Tidak'}`] }
+      return uitext.panel('INFORMACIÓN EN PDF', [
+        { head: '📄 *DOCUMENTO*', lines: [`Nombre: ${f.name}`, `Halaman : ${info.pageCount}`, `Tamaño del archivo: ${kit.fmtSize(f.buffer.length)}`, `Tamaño de papel: ${paper ? paper[0] : 'Kustom'} (${mm(info.width)}×${mm(info.height)} milímetros)`] },
+        { head: '🧬 *METADATA*', lines: [`Título: ${info.title}`, `Penulis : ${info.author}`, `Pembuat : ${info.creator}`, `Produser : ${info.producer}`, `Cifrado: ${info.encrypted ? 'Ya' : 'Tidak'}`] }
       ])
     }
   },
   pdftext: {
-    desc: 'Ekstrak teks dari dokumen PDF',
+    desc: 'Extraer texto del documento PDF',
     usage: '[halaman]',
     example: '1-2',
     needs: 'pdf',
@@ -569,22 +569,22 @@ const specs = {
         text = extractPdfTextPure(f.buffer)
       }
       text = text.replace(/\f/g, '\n\n').replace(/\n{3,}/g, '\n\n').trim()
-      if (!text) throw fail('Tidak ada lapisan teks yang dapat diekstrak dari PDF ini.')
-      if (text.length <= 3500) return `📄 *TEKS DOKUMEN PDF*\n\n${text}`
-      return { documents: [{ buffer: Buffer.from(text, 'utf8'), name: `${baseName(f.name)}.txt`, mime: 'text/plain', caption: `📄 Teks PDF (${text.length.toLocaleString('id-ID')} karakter)` }] }
+      if (!text) throw fail('No se pueden extraer capas de texto de este PDF.')
+      if (text.length <= 3500) return `📄 *TEXTO DEL DOCUMENTO PDF*\n\n${text}`
+      return { documents: [{ buffer: Buffer.from(text, 'utf8'), name: `${baseName(f.name)}.txt`, mime: 'text/plain', caption: `📄 Texto PDF (${text.length.toLocaleString('id-ID')} karakter)` }] }
     }
   },
   pdfwm: {
-    desc: 'Tambahkan watermark teks miring di seluruh halaman PDF',
+    desc: 'Agregue marcas de agua de texto en cursiva en las páginas PDF',
     usage: '<teks>',
     example: 'RAHASIA',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
       const t = kit.rest(c.body).trim()
-      if (!t || t.length > 40) throw fail('Tulis teks watermark (maks 40 karakter). Contoh: .pdfwm RAHASIA')
+      if (!t || t.length > 40) throw fail('Escribir texto de marca de agua (máximo 40 caracteres). Ejemplo:.pdfwm RAHASIA')
       const pl = await tryRequirePdfLib()
-      if (!pl) throw fail('Fitur `.pdfwm` memerlukan paket `pdf-lib` (`npm i pdf-lib`).')
+      if (!pl) throw fail('La característica `.pdfwm` requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
       const d = await loadPdfLibDoc(f.buffer)
       const font = await d.embedFont(pl.StandardFonts.HelveticaBold)
       for (const pg of d.getPages()) {
@@ -604,14 +604,14 @@ const specs = {
     }
   },
   pdfnomor: {
-    desc: 'Tambahkan nomor halaman di bagian bawah tiap halaman PDF',
+    desc: 'Agregue un número de página al final de cada página PDF',
     usage: '[kiri|tengah|kanan]',
     example: 'tengah',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
       const pl = await tryRequirePdfLib()
-      if (!pl) throw fail('Fitur `.pdfnomor` memerlukan paket `pdf-lib` (`npm i pdf-lib`).')
+      if (!pl) throw fail('La característica `.pdfnomor` requiere el paquete `pdf-lib` (`npm i pdf-lib`).')
       const d = await loadPdfLibDoc(f.buffer)
       const font = await d.embedFont(pl.StandardFonts.Helvetica)
       const pos = (c.args[0] || 'tengah').toLowerCase()
@@ -628,11 +628,11 @@ const specs = {
           color: pl.rgb(0.3, 0.3, 0.3)
         })
       })
-      return pdfOut(await d.save(), `${baseName(f.name)}-nomor`)
+      return pdfOut(await d.save(), `${baseName(f.name)}-número`)
     }
   },
   pdfcompress: {
-    desc: 'Perkecil ukuran file PDF',
+    desc: 'Reducir el tamaño del archivo PDF',
     needs: 'pdf',
     heavy: true,
     run: async (c, f) => {
@@ -652,10 +652,10 @@ const specs = {
       } else if (await tryRequirePdfLib()) {
         out = Buffer.from(await (await loadPdfLibDoc(f.buffer)).save({ useObjectStreams: true }))
       } else {
-        throw fail('Kompresi PDF memerlukan Ghostscript (`gs`), `qpdf`, atau paket `pdf-lib`.')
+        throw fail('PDF La compresión requiere Ghostscript (`gs`), `qpdf` o el paquete `pdf-lib`.')
       }
       if (!out || out.length >= f.buffer.length) {
-        return `ℹ️ Ukuran PDF ini sudah optimal (${kit.fmtSize(f.buffer.length)}).`
+        return `ℹ️ Este tamaño PDF es óptimo (${kit.fmtSize(f.buffer.length)}).`
       }
       return {
         documents: [{
@@ -668,7 +668,7 @@ const specs = {
     }
   },
   teks2pdf: {
-    desc: 'Ubah teks (atau reply pesan/file .txt) menjadi dokumen PDF',
+    desc: 'Convertir texto (o responder a mensaje/archivo.txt) en documento PDF',
     usage: '<teks>',
     example: 'Halo dunia',
     run: async (c) => {
@@ -678,9 +678,9 @@ const specs = {
         const f = await du.getFile(c.sock, c.msg).catch(() => null)
         if (f && f.sniff.kind === 'text') t = f.buffer.toString('utf8')
       }
-      if (!t) throw fail('Tulis teksnya, reply pesan teks, atau reply file .txt.\nContoh: `.teks2pdf Halo dunia`')
-      if (t.length > 60000) throw fail('Teks terlalu panjang (maks 60.000 karakter).')
-      return pdfOut(await textToPdfPure(t), `teks-${Date.now()}`)
+      if (!t) throw fail('Escriba el texto, responda el mensaje de texto o responda al archivo.txt.\nEjemplo: `.teks2pdf Hola mundo`')
+      if (t.length > 60000) throw fail('El texto es demasiado largo (máximo 60.000 caracteres).')
+      return pdfOut(await textToPdfPure(t), `texto-${Date.now()}`)
     }
   }
 }
@@ -694,7 +694,7 @@ async function handler(m, { conn, sock, text, args, usedPrefix = '.', command = 
   const rawBody = `${usedPrefix + cmd} ${text || (args || []).join(' ')}`.trim()
   const file = spec.needs === 'pdf' ? await du.getFile(client, m) : null
   if (spec.needs === 'pdf' && (!file || file.sniff.kind !== 'pdf')) {
-    return m.reply(`📕 Kirim atau reply dokumen PDF dengan perintah *${usedPrefix + cmd}${spec.usage ? ' ' + spec.usage : ''}*\n_${spec.desc}_`)
+    return m.reply(`📕 Enviar o responder al documento PDF con el comando *${usedPrefix + cmd}${spec.usage ? ' ' + spec.usage : ''}*\n_${spec.desc}_`)
   }
 
   await m.react('⏳')

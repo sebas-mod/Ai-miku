@@ -34,20 +34,20 @@ const pluginConfig = {
   async function handler(m, { sock, text, reply, example }) {
       const media = await getMedia(m, ['image', 'video', 'document', 'audio'])
       const caption = text || media?.caption || m.quoted?.text || ''
-      if (!caption && !media) return example('pesan  (atau kirim/reply foto, video, dokumen, audio)')
+      if (!caption && !media) return example('mensajes (o enviar/responder fotos, videos, documentos, audio)')
 
       const groups = await jpmGroups(sock)
       const cfg = jpmCfg()
       const delay = cfg.delayJpmTag
-      const tipe = media ? media.kind.toUpperCase() + (caption ? ' + Teks' : '') : 'Teks (HideTag)'
-      await reply(`*▢ PROSES JPM HIDETAG*\n• Total grup : ${groups.length}\n• Tipe : ${tipe}\n• Delay : ${delay}ms`)
+      const tipe = media ? media.kind.toUpperCase() + (caption ? ' + Texto' : '') : 'Texto (Ocultar etiqueta)'
+      await reply(`*▢ PROSES JPM HIDETAG*\n• Grupo total: ${groups.length}\n• Tipo: ${tipe}\n• Demora: ${delay}EM`)
 
       const { ok, fail } = await jpmLoop(groups, delay, g => {
           const { mentions } = tagList(g)
           return sock.sendMessage(g.id, media ? mediaContent(media, caption, mentions) : { text: caption, mentions })
       })
 
-      return reply(`*▢ JPM HIDETAG SELESAI*\n• Berhasil : ${ok} grup\n• Gagal : ${fail} grup`)
+      return reply(`*▢ JPM HIDETAG SELESAI*\n• Tener éxito: ${ok} grupo\n• Fallar: ${fail} grupo`)
   }
 
 export { pluginConfig as config, handler }

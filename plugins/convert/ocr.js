@@ -58,7 +58,7 @@ async function uploadTempBuffer(buffer, filename = 'image.jpg', mime = 'image/jp
     const t = (await r.text()).trim()
     if (/^https?:\/\//i.test(t)) return t
   } catch {}
-  throw new Error('Gagal mengunggah media ke server sementara.')
+  throw new Error('No se pudo cargar el medio en el servidor temporal.')
 }
 
 async function ocrScanRead(buffer) {
@@ -90,14 +90,14 @@ async function ocrUrlApi(buffer, mime) {
       if (typeof txt === 'string' && txt.trim()) return txt.trim()
     } catch {}
   }
-  throw new Error('Tidak dapat membaca teks pada gambar tersebut.')
+  throw new Error('No se puede leer el texto de la imagen.')
 }
 
 async function handler(m, { conn, sock, usedPrefix = '.', command = 'ocr' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/image\//i.test(media.mime || '')) {
-    return m.reply(`📝 Kirim atau reply gambar berisi tulisan dengan perintah *${usedPrefix + command}*`)
+    return m.reply(`📝 Envía o responde una imagen que contenga texto con el comando *${usedPrefix + command}*`)
   }
 
   await m.react('⏳')
@@ -110,10 +110,10 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'ocr' }) {
     }
 
     await m.react('✅')
-    return m.reply(`📝 *HASIL BACA TEKS (OCR)*\n\n${extracted}`)
+    return m.reply(`📝 *RESULTADOS DE LECTURA DE TEXTO (OCR)*\n\n${extracted}`)
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal OCR:* ${e.message}`)
+    return m.reply(`❌ *Error OCR:* ${e.message}`)
   }
 }
 

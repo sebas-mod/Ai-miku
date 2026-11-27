@@ -25,7 +25,7 @@ const pluginConfig = {
 }
 
   async function handler(m, { reply }) {
-      if (!global.__jpmBasicRunning) return reply('❌ Tidak ada JPM Basic yang sedang berjalan.')
+      if (!global.__jpmBasicRunning) return reply('❌ No se está ejecutando JPM Basic.')
       global.__jpmBasicStop = true
       return reply('*▢ STOP JPM BASIC*\n• Status : Menghentikan JPM Basic...')
   }

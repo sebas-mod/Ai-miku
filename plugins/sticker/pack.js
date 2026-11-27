@@ -46,11 +46,11 @@ const pluginConfig = {
 
   async function handler(m, { conn }) {
     try {
-      if (!m.quoted) return m.reply('Reply gambar / sticker')
+      if (!m.quoted) return m.reply('Responder imagen / sticker')
 
       let mime = m.quoted.mimetype || ''
       if (!/image|webp/.test(mime)) {
-        return m.reply('Harus reply gambar atau sticker')
+        return m.reply('Debes responder a la imagen o sticker')
       }
 
       let media = await m.quoted.download()
@@ -58,7 +58,7 @@ const pluginConfig = {
       let url = await uploadUguu(webp)
 
       if (typeof conn.sendStickerPack !== 'function') {
-        throw new Error('Fitur sticker pack tidak tersedia pada socket bot')
+        throw new Error('La función de paquete sticker no está disponible en el enchufe bot')
       }
 
       await conn.sendStickerPack(
@@ -73,7 +73,7 @@ const pluginConfig = {
       )
     } catch (e) {
       console.error(e)
-      m.reply('Error bikin sticker pack')
+      m.reply('Error al crear el paquete sticker')
     }
   }
 

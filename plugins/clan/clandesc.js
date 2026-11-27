@@ -35,7 +35,7 @@ const getDatabase = MikuRuntime.getDatabase;
       const description = m.text?.trim()
 
       if (!description) {
-          return m.reply(`📝 *ᴄʟᴀɴ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ*\n\n> Masukkan deskripsi clan baru!\n> Maksimal ${MAX_DESC} karakter\n\n> Contoh: .clandesc Clan pejuang sejati`)
+          return m.reply(`📝 *CLAN DESCRIPTION*\n\n> ¡Ingresa una nueva descripción del clan!\n> Máximo ${MAX_DESC} personaje\n\n> Ejemplo:.clandesc Clan de verdaderos guerreros`)
       }
 
       if (description.length > MAX_DESC) {
@@ -43,25 +43,25 @@ const getDatabase = MikuRuntime.getDatabase;
       }
 
       if (!user.clanId) {
-          return m.reply(`❌ Kamu belum punya clan!\n> Buat clan dengan *.clancreate*`)
+          return m.reply(`❌¡Aún no tienes clan!\n> Crea un clan con *.clancreate*`)
       }
 
       const clan = db.db.data.clans[user.clanId]
       if (!clan) {
-          return m.reply(`❌ Clan tidak ditemukan!`)
+          return m.reply(`❌ ¡Clan no encontrado!`)
       }
 
       if (clan.leader !== m.sender) {
-          return m.reply(`❌ Hanya *leader* clan yang bisa edit deskripsi!`)
+          return m.reply(`❌ ¡Solo el *líder* del clan puede editar la descripción!`)
       }
 
       clan.description = description
       await db.save()
 
       let txt = `📝 *ᴄʟᴀɴ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ ᴜᴘᴅᴀᴛᴇᴅ!*\n\n`
-      txt += `╭┈┈⬡「 📋 *ʜᴀꜱɪʟ* 」\n`
-      txt += `┃ 📛 Nama clan: *${clan.name}*\n`
-      txt += `┃ 📝 Deskripsi baru:\n`
+      txt += `╭┈┈⬡「 📋 *RESULTADO* 」\n`
+      txt += `┃ 📛 Nombre del clan: *${clan.name}*\n`
+      txt += `┃ 📝 Nueva descripción:\n`
       txt += `┃ *${description}*\n`
       txt += `┃ 👑 Leader: @${m.sender.split('@')[0]}\n`
       txt += `╰┈┈┈┈┈┈┈┈⬡`

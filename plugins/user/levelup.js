@@ -46,8 +46,8 @@ async function handler(m) {
     await db.save();
     return m.reply(
       `╭─── ❖ 『 🔔 *NOTIFIKASI LEVEL UP* 』 ❖\n` +
-      `│ ✦ *Status:* *AKTIF (ON)* ✅\n` +
-      `│ ✦ Bot akan mengirim kartu perayaan setiap kali kamu naik level!\n` +
+      `│ ✦ *Estado:* *ACTIVO (ON)* ✅\n` +
+      `│ ✦ Bot te enviará una tarjeta de celebración cada vez que subas de nivel.\n` +
       `╰──────────────────────────❖`
     );
   }
@@ -57,8 +57,8 @@ async function handler(m) {
     await db.save();
     return m.reply(
       `╭─── ❖ 『 🔕 *NOTIFIKASI LEVEL UP* 』 ❖\n` +
-      `│ ✦ *Status:* *NONAKTIF (OFF)* ❌\n` +
-      `│ ✦ Kamu tetap menerima bonus koin & energi saat naik level tanpa pesan pop-up.\n` +
+      `│ ✦ *ESTADO:* *DESACTIVADO (APAGADO)* ❌\n` +
+      `│ ✦ Aún recibirás monedas y energía adicionales cuando subas de nivel sin mensajes emergentes.\n` +
       `╰──────────────────────────❖`
     );
   }
@@ -85,12 +85,12 @@ async function handler(m) {
       `╭─── ❖ 『 🎊 *SELAMAT NAIK LEVEL!* 』 ❖\n` +
       `│ ✦ *Petualang:* *${user.regName || user.name || m.pushName}*\n` +
       `│ 📈 *Level:* Lv.${recordedLevel} ➜ *Lv.${actualLevel}* (+${diff} Level!)\n` +
-      `│ 🎖️ *Pangkat Baru:* *${rank.title}* (${rank.starBar})\n` +
-      `├─── ❖ 『 🎁 *HADIAH DITERIMA* 』 ❖\n` +
+      `│ 🎖️ *Nuevo rango:* *${rank.title}* (${rank.starBar})\n` +
+      `├─── ❖ 『 🎁 *REGALO RECIBIDO* 』 ❖\n` +
       `│ 💰 *Bonus Koin:* +Rp ${koinReward.toLocaleString("id-ID")}\n` +
       `│ ⚡ *Bonus Energi:* +${energiReward} Energi\n` +
       `╰──────────────────────────❖\n` +
-      `_💡 Ketik *${p}claimlevel* untuk membuka peti hadiah milestone level!_`
+      `_💡 Tipo *${p}Claimlevel* para abrir cofres de premios de nivel de hito!_`
     );
   }
 
@@ -101,12 +101,12 @@ async function handler(m) {
 
   return m.reply(
     `╭─── ❖ 『 ⚡ *CEK KENAIKAN LEVEL* 』 ❖\n` +
-    `│ ✦ EXP kamu saat ini berada di *Lv.${actualLevel}* (*${rank.title}*).\n` +
+    `│ ✦ EXP Actualmente estás en *Lv.${actualLevel}* (*${rank.title}*).\n` +
     `│ 🔋 *Progres:* [${bar}]\n` +
-    `│ ✨ *Kurang:* *${expToNextLevel(totalExp).toLocaleString("id-ID")} EXP* lagi ke *Lv.${actualLevel + 1}*!\n` +
-    `│ 🔔 *Notif Otomatis:* ${notifState} (\`${p}levelup on/off\`)\n` +
+    `│ ✨ *Menos:* *${expToNextLevel(totalExp).toLocaleString("id-ID")} EXP* volver a *Lv.${actualLevel + 1}*!\n` +
+    `│ 🔔 *Notificación automática:* ${notifState} (\`${p}levelup on/off\`)\n` +
     `├─── ❖ 『 💡 *TIPS CEPAT NAIK LEVEL* 』 ❖\n` +
-    `│ ◦ Gunakan \`${p}boostexp\` setiap 30 menit\n` +
+    `│ ◦ Utilice \`${p}boostexp\` cada 30 minutos\n` +
     `│ ◦ Mainkan misi di \`${p}adventure\`, \`${p}dungeon\`, & \`${p}daily\`\n` +
     `╰──────────────────────────❖`
   );

@@ -29,12 +29,12 @@ async function handler(m, { sock, text, prefix }) {
   const k = store();
   const id = String(text || "").trim().toUpperCase().slice(0, 5);
   if (!/^[A-Z0-9]{5}$/.test(id)) {
-    return m.reply(`Format: *${prefix}tarikmenfess ID*\nID ada di pesan konfirmasi / *${prefix}outboxmenfess*.`);
+    return m.reply(`Formato: *${prefix}tarikmenfess ID*\nID está en el mensaje de confirmación /*${prefix}outboxmenfess*.`);
   }
   const d = k.menfess[id];
   const t = m.isOwner ? (d ? { id, d } : null) : menfessCari(k, m.sender, { id });
-  if (!t || (!m.isOwner && !same(t.d.from, m.sender))) return m.reply("🍅 Menfess itu tidak ditemukan atau bukan kirimanmu.");
-  if (t.d.tutup) return m.reply("Menfess itu sudah ditarik.");
+  if (!t || (!m.isOwner && !same(t.d.from, m.sender))) return m.reply("🍅 Menfess No se encontró o no era tu publicación.");
+  if (t.d.tutup) return m.reply("Menfess ha sido retirado.");
 
   let terhapus = 0;
   for (const msgId of t.d.kirim || []) {
@@ -47,7 +47,7 @@ async function handler(m, { sock, text, prefix }) {
   t.d.tutup = true;
   saveStore();
   return m.reply(
-    `✅ Menfess #${t.id} ditarik. ${terhapus} pesan dihapus dari chat penerima (kalau sudah terlalu lama, WhatsApp mungkin menolak hapus, tapi menfess tidak bisa dibalas lagi).`,
+    `✅ Menfess #${t.id} retirado. ${terhapus} el mensaje se elimina del chat del destinatario (si ha pasado demasiado tiempo, WhatsApp puede negarse a eliminarlo, pero menfess no puede responder nuevamente).`,
   );
 }
 

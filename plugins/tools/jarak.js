@@ -78,11 +78,11 @@ const pluginConfig = {
         `🚩 Asal     : *${res1.data[0].display_name.split(',')[0]}*\n` +
         `🏁 Tujuan   : *${res2.data[0].display_name.split(',')[0]}*\n` +
         `📏 Jarak    : *± ${d.toLocaleString('id-ID')} km* (garis lurus)\n` +
-        `🚗 Estimasi : *± ${estHours} jam perjalanan darat*\n\n` +
-        `꒰ა ♡ ໒꒱ selamat bepergian dengan aman!`
+        `🚗 Estimación: *± ${estHours} horas de viaje por carretera*\n\n` +
+        `꒰ა ♡ ໒꒱ ¡feliz viaje seguro!`
       )
     } catch (e) {
-      await m.reply(`❌ Terjadi kendala saat mengambil data jarak: ${e.message}`)
+      await m.reply(`❌ Hubo un problema al recuperar datos de distancia: ${e.message}`)
     }
   }
 

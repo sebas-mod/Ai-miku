@@ -38,7 +38,7 @@ const pluginConfig = {
 
   async function handler(m, { sock, text, reply, example }) {
       const [q, pg, mt] = String(text || '').split('|').map(s => s.trim())
-      if (!q) return example('sun | 1 | image   (media: image / video / audio)')
+      if (!q) return example('sol | 1 | imagen (medio: imagen / vídeo / audio)')
 
       const page = Math.max(1, parseInt(pg) || 1)
       const mediaType = ['image', 'video', 'audio'].includes((mt || '').toLowerCase()) ? mt.toLowerCase() : 'image'
@@ -52,7 +52,7 @@ const pluginConfig = {
 
       const col = data?.collection || {}
       const items = col.items || []
-      if (!items.length) return reply(`Tidak ada hasil untuk "${q}".`)
+      if (!items.length) return reply(`Sin resultados para "${q}".`)
 
       const shown = items.slice(0, MAX_LIST)
       let out = `🌌 *NASA ${mediaType.toUpperCase()} SEARCH*\n\n🔎 Query: ${q}\n📄 Halaman: ${page}\n📊 Total: ${col.metadata?.total_hits || 0}\n📦 Ditampilkan: ${shown.length}\n\n━━━━━━━━━━━━━━━━━━━━`

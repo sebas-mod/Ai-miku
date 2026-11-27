@@ -78,7 +78,7 @@ const pluginConfig = {
       }
 
       if (due === null) {
-          return example('30m tomar medicina   |   14:30 reunion   |   besok 08:00 deporte   |   1h30m reunion')
+          return example('30m tomar medicina |   14:30 reunión |   mañana 08:00 deporte |   1h30m reunión')
       }
       if (due - now < MIN_MS) return reply('Falta muy poco tiempo (mínimo 10 segundos).')
       if (due - now > MAX_MS) return reply('El tiempo es demasiado lejano (máximo 1 año).')

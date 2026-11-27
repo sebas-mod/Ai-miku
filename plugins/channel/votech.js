@@ -136,7 +136,7 @@ const pluginConfig = {
               const t = toText(v[k])
               if (t) return t
           }
-          try { return JSON.stringify(v).slice(0, 300) } catch { return 'Error tidak dikenali' }
+          try { return JSON.stringify(v).slice(0, 300) } catch { return 'Error no reconocido' }
       }
       return String(v)
   }
@@ -150,7 +150,7 @@ const pluginConfig = {
       } else if (d) {
           msg = toText(d)
       }
-      if (!msg) msg = toText(err?.message) || toText(err) || 'Error tidak dikenali'
+      if (!msg) msg = toText(err?.message) || toText(err) || 'Error no reconocido'
       if (status && !msg.includes(`${status}`)) msg += ` (HTTP ${status})`
       return msg
   }
@@ -158,7 +158,7 @@ const pluginConfig = {
   async function vote(url, pesan) {
       const res = await apiRequest('/api/vote', { method: 'POST', data: { url, pesan: String(pesan).trim() } })
       if (res?.status === true && res.result) return res.result
-      throw new Error(toText(res?.error) || toText(res?.message) || toText(res) || 'Respon API tidak dikenali')
+      throw new Error(toText(res?.error) || toText(res?.message) || toText(res) || 'La respuesta API no se reconoce')
   }
 
   async function checkStatus() {
@@ -172,24 +172,24 @@ const pluginConfig = {
       const started = Date.now()
 
       if (!args.length) {
-          return reply(`Format:\n${p}votech <link postingan saluran> <pesan>\n${p}votech status\n\nContoh:\n${p}votech https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100 vote`)
+          return reply(`Formato:\n${p}votech <enlace de publicación del canal> <mensaje>\n${p}estado de votación\n\nEjemplo:\n${p}votarch https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100 votar`)
       }
 
       if (args[0].toLowerCase() === 'status') {
           try {
               const up = await checkStatus()
-              return reply(`📡 *Status Vote API*\n\n• Server : ${BASE_URL}\n• Status : ${up ? 'Online ✅' : 'Tidak merespon ❌'}\n• Waktu  : ${Date.now() - started}ms`)
+              return reply(`📡 *Estado de votación API*\n\n• Servidores: ${BASE_URL}\n• Estado: ${up ? 'Online ✅' : 'Tidak merespon ❌'}\n• Tiempo: ${Date.now() - started}EM`)
           } catch (e) {
-              return reply(`❌ Gagal cek status: ${errMessage(e)}`)
+              return reply(`❌ No se pudo verificar el estado: ${errMessage(e)}`)
           }
       }
 
       const [url, ...rest] = args
       const pesan = rest.join(' ').trim()
       if (!POST_RE.test(url)) {
-          return reply(`Link harus berupa link *postingan* saluran (ada nomor postingan di belakang).\nContoh: https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100`)
+          return reply(`El enlace debe ser un enlace de canal *publicación* (hay un número de publicación en la parte posterior).\nEjemplo: https://whatsapp.com/channel/0029VbDyL6d9RZAh3JjEM325/100`)
       }
-      if (!pesan) return reply(`Pesan vote diperlukan.\nContoh: ${p}votech ${url} vote`)
+      if (!pesan) return reply(`Se requiere mensaje de voto.\nEjemplo: ${p}votar ${url} votar`)
 
       try {
           const r = await vote(url, pesan)
@@ -198,15 +198,15 @@ const pluginConfig = {
               `• Saluran : ${r.channel ?? '-'}\n` +
               `• Post    : ${r.post ?? '-'}\n` +
               `• Total   : ${r.total ?? '-'}\n` +
-              `• Berhasil: ${r.success ?? '-'}\n` +
-              `• Gagal   : ${r.failed ?? '-'}\n` +
-              `• Waktu   : ${Date.now() - started}ms\n\n` +
+              `• Tener éxito: ${r.success ?? '-'}\n` +
+              `• Fallar: ${r.failed ?? '-'}\n` +
+              `• Tiempo: ${Date.now() - started}EM\n\n` +
               `${r.message || 'Vote berhasil dikirim'}\n\n` +
               `_Creator: ${CREATOR} • ${SALURAN}_`
           )
       } catch (e) {
           console.error('[VOTECH]', errMessage(e))
-          return reply(`❌ Gagal vote: ${errMessage(e)}`)
+          return reply(`❌ No pudo votar: ${errMessage(e)}`)
       }
   }
 

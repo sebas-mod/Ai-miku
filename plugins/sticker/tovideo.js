@@ -28,9 +28,9 @@ const pluginConfig = {
 }
 
   async function handler(m, { conn, usedPrefix, command }) {
-      if (!m.quoted) throw `Balas stiker/audio yang ingin diubah menjadi video dengan perintah ${usedPrefix + command}`
+      if (!m.quoted) throw `Responde al stickers/audio que deseas convertir en video con un comando ${usedPrefix + command}`
       let mime = m.quoted.mimetype || ''
-      if (!/webp|audio/.test(mime)) throw `Balas stiker/audio yang ingin diubah menjadi video dengan perintah ${usedPrefix + command}`
+      if (!/webp|audio/.test(mime)) throw `Responde al stickers/audio que deseas convertir en video con un comando ${usedPrefix + command}`
       let media = await m.quoted.download()
       let out = Buffer.alloc(0)
       if (/webp/.test(mime)) {

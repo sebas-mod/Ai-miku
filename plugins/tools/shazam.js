@@ -33,7 +33,7 @@ const pluginConfig = {
   const SAMPLE_RATE = 16000;
   const DEFAULT_WINDOW = 12;
   const MIN_WINDOW = 3;
-  const DATA_URI_PREFIX = 'data:audio/vnd.shazam.sig;base64,';
+  const DATA_URI_PREFIX = 'datos:audio/vnd.shazam.sig;base64,';
 
   function ffmpegBin() {
     return process.env.SHAZAM_FFMPEG || 'ffmpeg';
@@ -477,7 +477,7 @@ const pluginConfig = {
     const urlInput = String(text || '').trim().match(/https?:\/\/\S+/i)?.[0];
 
     if (!urlInput && !/audio|video/.test(mime) && !/audio|video/i.test(String(q.mtype || ''))) {
-      return m.reply(`🎵 *Shazam*\n\nResponde a un audio / nota de voz / vídeo con *${usedPrefix || '.'}${command}*\no envía un enlace: ${usedPrefix || '.'}${command} https://.../cancion.mp3`);
+      return m.reply(`🎵 *Shazam*\n\nResponde a un audio / nota de voz / video con *${usedPrefix || '.'}${command}*\no envía un enlace: ${usedPrefix || '.'}${command} https://.../cancion.mp3`);
     }
 
     await m.react('🎧');
@@ -506,12 +506,12 @@ const pluginConfig = {
 
       if (!res.is_matched || !res.summary) {
         await m.react('❌');
-        return m.reply('❌ No se encontró la canción. Prueba con un fragmento de audio más claro (mín. 3 segundos, sin mucho ruido).');
+        return m.reply('❌ No se encontró la canción. Prueba con un fragmento de audio más claro (min. 3 segundos, sin mucho ruido).');
       }
 
       const s = res.summary;
       let caption = `🎵 *Shazam*\n\n` +
-        `🎼 *Judul:* ${s.title || '-'}\n` +
+        `🎼 *Título:* ${s.title || '-'}\n` +
         `🎤 *Artis:* ${s.artist || '-'}\n` +
         `🎧 *Genre:* ${s.genre || '-'}`;
       if (s.isrc) caption += `\n🔖 *ISRC:* ${s.isrc}`;

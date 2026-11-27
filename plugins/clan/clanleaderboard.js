@@ -43,7 +43,7 @@ const getDatabase = MikuRuntime.getDatabase;
 
       const clans = Object.values(db.db.data.clans)
       if (clans.length === 0) {
-          return m.reply(`🏰 Belum ada clan terdaftar\n\nBuat: *.clancreate <nama>*`)
+          return m.reply(`🏰 Aún no hay clanes registrados\n\nCrear: *.clancreate <nombre>*`)
       }
 
       clans.sort((a, b) => {

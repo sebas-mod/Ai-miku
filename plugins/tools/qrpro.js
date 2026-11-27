@@ -262,7 +262,7 @@ const pluginConfig = {
         `*▢ QR GENERATOR PRO*\n\n*Preset:*\n${Object.keys(PRESETS).join(', ')}\n\n` +
         `*Logo:*\n${Object.keys(ICONS).filter((k) => k !== 'none').join(', ')}\n\n` +
         `*Frame:* card, ticket, scan-me\n*Warna:* #RRGGBB\n\n` +
-        `Contoh: ${p}qr https://google.com | neo-pop | google`
+        `Ejemplo: ${p}qr https://google.com | neopop | Google`
       )
     }
 
@@ -271,7 +271,7 @@ const pluginConfig = {
 
     if (cmd === 'qrwifi') {
       const [ssid, password = '', secRaw = 'WPA', ...rest] = raw.split('|').map((s) => s.trim())
-      if (!ssid) return reply(`Format: ${p}qrwifi nama wifi | password | WPA\n(WPA / WEP / nopass, bawaan WPA)`)
+      if (!ssid) return reply(`Formato: ${p}nombre wifi qrwifi | contraseña | WPA\n(WPA / WEP / no aprobado, predeterminado WPA)`)
       const sec = /^(wep|nopass)$/i.test(secRaw) ? secRaw.toUpperCase().replace('NOPASS', 'nopass') : 'WPA'
       payload = `WIFI:S:${escapeWifi(ssid)};T:${sec};P:${sec === 'nopass' ? '' : escapeWifi(password)};H:false;;`
       opts = { logoType: 'wifi', ...parseOptions(rest) }

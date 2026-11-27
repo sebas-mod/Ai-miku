@@ -67,7 +67,7 @@ function convertToOpusVn(inputBuffer) {
     p.on('error', (e) => { fs.rmSync(dir, { recursive: true, force: true }); reject(e) })
     p.on('close', (code) => {
       try {
-        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg gagal membuat Voice Note.')
+        if (code !== 0 || !fs.existsSync(outPath)) throw new Error(err.split('\n').slice(-2).join(' ') || 'FFmpeg no pudo crear una nota de voz.')
         const buf = fs.readFileSync(outPath)
         fs.rmSync(dir, { recursive: true, force: true })
         resolve(buf)
@@ -83,7 +83,7 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tovn' }) {
   const client = conn || sock
   const media = await downloadFromMsg(m, client)
   if (!media || !/(audio|video)\//i.test(media.mime || '')) {
-    return m.reply(`🎙️ Kirim atau reply audio/video dengan perintah *${usedPrefix + command}* untuk mengubahnya menjadi Voice Note (VN).`)
+    return m.reply(`🎙️ Enviar o responder audio/video con comandos *${usedPrefix + command}* para cambiarlo a Nota de voz (VN).`)
   }
 
   await m.react('⏳')
@@ -91,13 +91,13 @@ async function handler(m, { conn, sock, usedPrefix = '.', command = 'tovn' }) {
     const opus = await convertToOpusVn(media.buffer)
     await client.sendMessage(
       m.chat,
-      { audio: opus, mimetype: 'audio/ogg; codecs=opus', ptt: true },
+      { audio: opus, mimetype: 'audio/ogg; códecs=opus', ptt: true },
       { quoted: m }
     )
     await m.react('✅')
   } catch (e) {
     await m.react('❌')
-    return m.reply(`❌ *Gagal mengubah ke Voice Note:* ${e.message}`)
+    return m.reply(`❌ *No se pudo cambiar a Nota de voz:* ${e.message}`)
   }
 }
 

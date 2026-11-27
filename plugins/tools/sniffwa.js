@@ -184,7 +184,7 @@ async function handler(m, { conn, sock, text, usedPrefix, command, reply }) {
               mentions: [realJid]
           }, { quoted: m })
       } catch (err) {
-          return reply(`Aduh ayang... Angela pusing ada kendala pas sniffing nih: ${err.message || err} 🥺💦`)
+          return reply(`Dios mío... Ángela tiene dolor de cabeza y problemas al olfatear: ${err.message || err} 🥺💦`)
       }
   }
 

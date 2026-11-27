@@ -34,19 +34,19 @@ const pluginConfig = {
   const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
 
   async function handler(m, { sock, reply, example }) {
-      if (!m.quoted) return example('respondiendo a un vídeo o documento (foto/vídeo)')
+      if (!m.quoted) return example('responder a un vídeo o documento (foto/vídeo)')
 
       const q = m.quoted
       const isVideo = q.mtype === 'videoMessage'
 
       if (q.mtype !== 'documentMessage' && !isVideo) {
-          return reply(' ¡Responde a un vídeo, o envía una foto/vídeo como *Documento*!')
+          return reply(' ¡Responde un vídeo, o envía una foto/vídeo como *Documento*!')
       }
 
       const mime = (q.msg || q).mimetype || (isVideo ? 'video/mp4' : '')
 
       if (!mime.includes('image') && !mime.includes('video')) {
-          return reply(' ¡El documento al que respondes no es una foto ni un vídeo!')
+          return reply(' ¡El documento al que responde no es una foto ni un video!')
       }
 
       await react(sock, m, '⏳')
@@ -58,7 +58,7 @@ const pluginConfig = {
 
       try {
           const buffer = await q.download()
-          if (!Buffer.isBuffer(buffer) || !buffer.length) throw new Error('Gagal mengunduh dokumen')
+          if (!Buffer.isBuffer(buffer) || !buffer.length) throw new Error('No se pudo descargar el documento')
 
           if (mime.includes('image')) {
               await sock.sendMessage(m.chat, {
@@ -79,7 +79,7 @@ const pluginConfig = {
 
               await sock.sendMessage(m.chat, {
                   video: fs.readFileSync(tempOut),
-                  caption: `乂  *Proses di selesaikan*`
+                  caption: `乂 *Proceso completado*`
               }, { quoted: m })
           }
 
