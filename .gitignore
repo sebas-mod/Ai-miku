@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Sesión de WhatsApp
+session/
+sessions/
+
+# Datos y archivos generados en tiempo de ejecución
+database/
+storage/
+temp/
+tmp/
+*.log
+
+# Variables de entorno y secretos
+.env
+.env.*
