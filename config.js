@@ -23,12 +23,12 @@ import {
 //  lee el objeto config completo hasta el final
 const config = {
   owner: {
-    name: "Arthazy", // Nombre del dueño
-    number: ["6289677587355"], // Formato: 628xxx (sin + ni 0)
+    name: "SebasMD", // Nombre del dueño
+    number: ["5491138403093"], // Formato: 628xxx (sin + ni 0)
   },
 
   session: {
-    pairingNumber: "6281930730973", // Déjalo vacío para que la terminal pida el número de WhatsApp al arrancar
+    pairingNumber: "5491138403093", // Déjalo vacío para que la terminal pida el número de WhatsApp al arrancar
     usePairingCode: true, // true = código de emparejamiento, false = código QR
     folderName: "session", // Carpeta de sesión dentro de ./storage
     compact: true, // true = las claves de sesión se agrupan por tipo (la carpeta de sesión tiene pocos archivos)
@@ -43,8 +43,8 @@ const config = {
 
   bot: {
     name: "Ai Miku", // Nombre del bot
-    version: "2.0", // Versión del bot
-    developer: "arthazyy", // Nombre del desarrollador
+    version: "1.0", // Versión del bot
+    developer: "SebasMD", // Nombre del desarrollador
   },
 
   info: {
@@ -93,17 +93,17 @@ const config = {
   },
 
   sticker: {
-    packname: "Ai Miku || arthazy", // Nombre del paquete de stickers
-    author: "arthazy", // Autor del sticker
+    packname: "Ai Miku || SebasMD", // Nombre del paquete de stickers
+    author: "SebasMD", // Autor del sticker
   },
 
   saluran: {
     id: "120363393471527483@newsletter", // ID del canal principal de Ai Miku
     name: "Ai Miku", // Nombre del canal
-    link: "https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O", // Enlace del canal (pon el enlace de tu canal)
+    link: "", // Enlace del canal (pon el enlace de tu canal)
     autoFollow: [
-      "120363393471527483@newsletter",
-      "120363412661006467@newsletter",
+      "",
+      "",
     ],
   },
 
