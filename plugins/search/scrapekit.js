@@ -90,7 +90,7 @@ const createMikuFeature = (module, exports, require) => {
             const { text: html } = await get('https://kbbi.web.id/' + encodeURIComponent(w))
             const $ = cheerio().load(html), box = $('#d1').first()
             let body = box.length ? ent(box.html().replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '')).replace(/[ \t]+/g, ' ').replace(/\n\s*\n+/g, '\n').trim() : ''
-            if (!body || /tidak ditemukan|tidak ada/i.test(body.slice(0, 80))) return reply(`Decir *${w}* no encontrado en KBBI.`)
+            if (!body || /tidak ditemukan|tidak ada|not found/i.test(body.slice(0, 80))) return reply(`La palabra *${w}* no se encontró en KBBI.`)
             return reply(`${B('KBBI')} — ${w}\n${LINE}\n${clip(body, 1500)}\n\n_Sumber: kbbi.web.id_`)
           },
 

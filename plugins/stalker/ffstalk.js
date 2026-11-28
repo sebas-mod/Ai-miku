@@ -26,7 +26,7 @@ async function handler(m) {
   await m.react("🔎");
   const endpoints = [
     `https://api.siputzx.my.id/api/stalk/ff?id=${encodeURIComponent(uid)}`,
-    `https://api.nexray.web.id/stalk/ff?id=${encodeURIComponent(uid)}`,
+    `https://api.nexray.eu.cc/stalk/ff?id=${encodeURIComponent(uid)}`,
     `https://api.agatz.xyz/api/ffstalk?id=${encodeURIComponent(uid)}`,
   ];
 

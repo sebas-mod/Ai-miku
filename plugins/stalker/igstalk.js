@@ -23,7 +23,7 @@ async function fetchIgProfile(username) {
   const endpoints = [
     `https://api.siputzx.my.id/api/stalk/instagram?username=${encodeURIComponent(username)}`,
     `https://api.agatz.xyz/api/igstalk?message=${encodeURIComponent(username)}`,
-    `https://api.nexray.web.id/stalk/instagram?username=${encodeURIComponent(username)}`,
+    `https://api.nexray.eu.cc/stalk/instagram?username=${encodeURIComponent(username)}`,
   ];
   for (const url of endpoints) {
     try {

@@ -69,10 +69,10 @@ import { createCanvas } from '@napi-rs/canvas';
 
               let imageUrl = null
 
-              if (api.name === 'waifu.pics' && response.data.url) {
-                  imageUrl = response.data.url
-              } else if (api.name === 'neko-reimu' && response.data.url) {
-                  imageUrl = response.data.url
+              if (api.name === 'nekos.best') {
+                  imageUrl = response.data?.results?.[0]?.url
+              } else if (api.name === 'nekos.life') {
+                  imageUrl = response.data?.url
               } else if (response.data.image || response.data.img) {
                   imageUrl = response.data.image || response.data.img
               }

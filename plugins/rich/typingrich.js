@@ -128,7 +128,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     function stats(){var ok=0;for(var i=0;i<typed.length;i++)if(typed[i]===T[i])ok++;var el=Math.max(1,sec-left),w=Math.round((ok/5)/(el/60)),a=typed.length?Math.round(ok*100/typed.length):100;return {w:w,a:a};}
     function end(){clearInterval(iv);done=true;$('in').disabled=true;var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';
      var nb=s.w>(best[sec]||0);if(nb){best[sec]=s.w;try{localStorage.setItem('pix_typing',JSON.stringify(best));}catch(e){}$('bs').textContent=s.w;}
-     var rank=s.w>=80?'Dewa Ketik':s.w>=60?'Jago':s.w>=40?'Lumayan':s.w>=25?'Pemula':'Tranquilo, espera';
+     var rank=s.w>=80?'Dios del tecleo':s.w>=60?'Experto':s.w>=40?'Decente':s.w>=25?'Principiante':'Tranquilo, despacio';
      $('rs').textContent=s.w+' WPM • akurasi '+s.a+'% • '+rank+(nb?' • REKOR BARU!':'');}
     $('in').addEventListener('input',function(){if(done)return;typed=this.value;if(!started){started=true;iv=setInterval(function(){left--;$('tm').textContent=left;var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';if(left<=0)end();},1000);}
      if(typed.length>=T.length)end();else{var s=stats();$('wp').textContent=s.w;$('ac').textContent=s.a+'%';}render();});

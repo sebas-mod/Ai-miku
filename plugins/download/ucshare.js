@@ -374,7 +374,7 @@ const pluginConfig = {
                   caption: file.file_name
               }, { quoted: m })
           } catch (e) {
-              console.warn('[UCSHARE] kirim video gagal:', e.message)
+              console.warn('[UCSHARE] fallo al enviar video:', e.message)
               return reply(`📎 El vídeo no se puede enviar directamente.\n\n${streamInfo}`)
           }
       } catch (e) {

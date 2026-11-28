@@ -230,7 +230,7 @@ const store = {
  * @property {boolean} isConnected - Status koneksi
  * @property {Object|null} sock - Socket instance
  * @property {number} reconnectAttempts - Jumlah percobaan reconnect
- * @property {Date|null} connectedAt - Waktu koneksi berhasil
+ * @property {Date|null} connectedAt - Hora de conexión exitosa
  */
 
 /**
@@ -1339,7 +1339,7 @@ function getUptime() {
 
 /**
  * Logout dan hapus session
- * @returns {Promise<boolean>} True jika berhasil
+ * @returns {Promise<boolean>} True si tuvo éxito
  */
 async function logout() {
   try {

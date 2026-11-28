@@ -306,7 +306,7 @@ function isDirectory(dirPath) {
 /**
  * Buat directory jika belum ada
  * @param {string} dirPath - Path directory
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function ensureDir(dirPath) {
     if (!fs.existsSync(dirPath)) {
@@ -336,7 +336,7 @@ function readJsonFile(filePath, defaultValue = {}) {
  * @param {string} filePath - Path file JSON
  * @param {Object} data - Data untuk ditulis
  * @param {boolean} [pretty=true] - Apakah format dengan indentasi
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function writeJsonFile(filePath, data, pretty = true) {
     try {

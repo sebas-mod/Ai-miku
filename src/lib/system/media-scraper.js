@@ -123,11 +123,11 @@ async function ytdl(url, format = "mp3") {
     errors.push(`btch: ${e.message}`);
   }
 
-  // Provider 2: api.nexray.web.id
+  // Provider 2: api.nexray.eu.cc
   try {
     const ep = normalizedFormat === "mp4"
-      ? `https://api.nexray.web.id/downloader/ytmp4?url=${encodeURIComponent(cleanUrl)}&resolusi=360`
-      : `https://api.nexray.web.id/downloader/ytmp3?url=${encodeURIComponent(cleanUrl)}`;
+      ? `https://api.nexray.eu.cc/downloader/ytmp4?url=${encodeURIComponent(cleanUrl)}&resolusi=360`
+      : `https://api.nexray.eu.cc/downloader/ytmp3?url=${encodeURIComponent(cleanUrl)}`;
     const { data } = await axios.get(ep, { timeout: 30000 });
     const dl =
       data?.result?.url ||

@@ -71,7 +71,7 @@ async function download(url) {
   return job;
 }
 
-/** Ambil thumbnail sebagai Buffer. withFallback=false -> null jika gagal/kosong. */
+/** Obtiene el thumbnail como Buffer. withFallback=false -> null si falla/está vacío. */
 export async function fetchThumb(key = "menu", withFallback = true) {
   const url = getThumbUrl(key);
   const buf = url ? await download(url) : null;
@@ -125,7 +125,7 @@ async function blankThumb() {
 
 /**
  * Thumbnail JPEG dari config.thumbUrl[key] (default: "small").
- * Tidak pernah melempar error: kalau URL kosong/gagal diunduh, mengembalikan JPEG polos kecil.
+ * Nunca lanza error: si la URL está vacía o falla la descarga, devuelve un JPEG pequeño.
  */
 export async function getJpegThumb(key = "small", { width = 300, height = 300, fit = "cover", quality = 80 } = {}) {
   const url = getThumbUrl(key);

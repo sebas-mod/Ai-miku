@@ -79,7 +79,7 @@ const MikuEngine = (() => {
   global.linkSaluran = config.saluran?.link || 'https://whatsapp.com'
   global.idSaluran = config.saluran?.id || ''
   global.nameSaluran = config.saluran?.name || global.namebot
-  global.APIs ||= { faa: 'https://api-faa.my.id', deline: 'https://api.deline.web.id' }
+  global.APIs ||= { faa: 'https://api-faa.my.id', deline: 'https://api.siputzx.my.id' }
   global.wait ||= config.messages?.wait || '⏳ Espera un momento, lo estoy procesando...'
   global.fstatus = undefined
   global.multiplier ||= 38

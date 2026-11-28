@@ -33,7 +33,7 @@ export function listBackups() {
 
 const stamp = () => new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 
-/** Backup folder session sekarang. Mengembalikan path backup, atau null kalau gagal/belum login. */
+/** Respalda la carpeta de sesión actual. Devuelve la ruta del backup, o null si falla/no hay sesión. */
 export function backupSessionNow(src = getSessionPath()) {
   try {
     getActiveAuthStore()?.flushSync?.();

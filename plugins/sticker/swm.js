@@ -51,7 +51,7 @@ const addExifToWebp = MikuRuntime.addExifToWebp;
       if (!input) {
           return m.reply(
               `❌ *ERROR*\n\n` +
-              `> Masukkan packname\n\n` +
+              `> Ingresa el nombre del paquete\n\n` +
               `*EJEMPLO:*\n` +
               `> \`${m.prefix}swm NamaPack\`\n` +
               `> \`${m.prefix}swm NamaPack|NamaAuthor\` _(+ author)_`

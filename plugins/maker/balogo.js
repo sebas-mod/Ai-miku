@@ -46,7 +46,7 @@ const uploadToCatbox = MikuRuntime.uploadToCatboxFile;
       m.react('🕕')
 
       try {
-          await sock.sendMessage(m.chat, { image: { url: `https://api.nexray.web.id/maker/balogo?text=${encodeURIComponent(textL)} ${encodeURIComponent(textR)}` } }, { quoted: m })
+          await sock.sendMessage(m.chat, { image: { url: `https://api.nexray.eu.cc/maker/balogo?text=${encodeURIComponent(textL)} ${encodeURIComponent(textR)}` } }, { quoted: m })
 
           m.react('✅')
       } catch (error) {

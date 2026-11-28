@@ -45,7 +45,7 @@ const pluginConfig = {
         url = vid.url
      }
 
-     let api = `https://api.nexray.web.id/downloader/ytmp4?url=${encodeURIComponent(url)}&resolusi=${resolusi}`
+     let api = `https://api.nexray.eu.cc/downloader/ytmp4?url=${encodeURIComponent(url)}&resolusi=${resolusi}`
 
      let res = await fetch(api)
      let json = await safeJson(res, { status: false })

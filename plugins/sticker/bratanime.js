@@ -36,7 +36,7 @@ const te = MikuRuntime.te;
       m.react('🕕')
 
       try {
-          const url = `https://api.nexray.web.id/maker/bratanime?text=${encodeURIComponent(text)}`
+          const url = `https://api.nexray.eu.cc/maker/bratanime?text=${encodeURIComponent(text)}`
           await sock.sendImageAsSticker(m.chat, url, m, {
               packname: config.sticker.packname,
               author: config.sticker.author

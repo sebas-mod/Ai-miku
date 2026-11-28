@@ -136,7 +136,7 @@ const pluginConfig = {
               }
               throw new Error('el archivo no es audio')
           } catch (e) {
-              console.error(`[PLAYAi Miku] ${src.name} gagal:`, e.message)
+              console.error(`[PLAYAi Miku] ${src.name} falló:`, e.message)
               errors.push(`${src.name}: ${String(e.message).slice(0, 60)}`)
           }
       }

@@ -30,7 +30,7 @@ async function handler(m) {
   const endpoints = [
     `https://api.siputzx.my.id/api/stalk/ml?id=${encodeURIComponent(userId)}&zone=${encodeURIComponent(zoneId)}`,
     `https://api.agatz.xyz/api/mlstalk?id=${encodeURIComponent(userId)}&zone=${encodeURIComponent(zoneId)}`,
-    `https://api.nexray.web.id/stalk/ml?id=${encodeURIComponent(userId)}&zone=${encodeURIComponent(zoneId)}`,
+    `https://api.nexray.eu.cc/stalk/ml?id=${encodeURIComponent(userId)}&zone=${encodeURIComponent(zoneId)}`,
   ];
 
   for (const url of endpoints) {

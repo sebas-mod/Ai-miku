@@ -57,7 +57,7 @@ import { fileURLToPath } from 'node:url';
                   const family = fontPath.toLowerCase().includes('roboto') ? 'Roboto' : 'Inter';
                   GlobalFonts.registerFromPath(fontPath, family);
               } catch (e) {
-                  console.warn('[iqcmerah] gagal register font:', fontPath, e?.message || e);
+                  console.warn('[iqcmerah] fallo al registrar fuente:', fontPath, e?.message || e);
               }
           }
       }
@@ -124,7 +124,7 @@ import { fileURLToPath } from 'node:url';
               });
               emojiMap = JSON.parse(Buffer.from(response.data).toString('utf8'));
           } catch (error) {
-              console.warn('[iqcmerah] WEmoji map gagal dimuat:', error?.message || error);
+              console.warn('[iqcmerah] fallo al cargar mapa WEmoji:', error?.message || error);
               emojiMap = null;
           }
           return emojiMap;

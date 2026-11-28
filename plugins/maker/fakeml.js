@@ -78,7 +78,7 @@ const te = MikuRuntime.te;
       });
       await sock.sendMedia(
         m.chat,
-        `https://api.nexray.web.id/maker/fakelobyml?avatar=${encodeURIComponent(gmbr.directUrl)}&nickname=${encodeURIComponent(name)}`,
+        `https://api.nexray.eu.cc/maker/fakelobyml?avatar=${encodeURIComponent(gmbr.directUrl)}&nickname=${encodeURIComponent(name)}`,
         null,
         m,
         {

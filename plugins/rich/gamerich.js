@@ -209,7 +209,7 @@ module.exports = { quoteOf, apply: (o) => o, enabled: () => false }
     /* ================= TEBAK ANGKA ================= */
     var sec,lv,gend;
     function greset(){sec=1+Math.floor(Math.random()*100);lv=7;gend=false;$('lv').textContent=lv;$('m3').textContent='Ya he elegido los números...';$('gn').value='';}
-    $('gb').onclick=function(){if(gend)return;var g=parseInt($('gn').value,10);if(!(g>=1&&g<=100)){$('m3').textContent='Masukkan angka 1 - 100';return;}
+    $('gb').onclick=function(){if(gend)return;var g=parseInt($('gn').value,10);if(!(g>=1&&g<=100)){$('m3').textContent='Ingresa un número del 1 al 100';return;}
      lv--;$('lv').textContent=lv;if(g===sec){gend=true;$('m3').textContent='🎉¡Así es! los numeros'+sec+' (vidas restantes '+lv+')';}
      else if(lv<=0){gend=true;$('m3').textContent='¡Perdido! los numeros'+sec;}else $('m3').textContent=g<sec?'Terlalu kecil ⬆️':'Terlalu besar ⬇️';$('gn').value='';};
     $('n3').onclick=greset;greset();

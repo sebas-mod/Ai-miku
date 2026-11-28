@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
 
                     await sock.groupLeave(group.id)
                 } catch (e) {
-                    console.log(`Gagal menghapus grup otomatis (${group.id}):`, e)
+                    console.log(`Fallo al eliminar grupo automático (${group.id}):`, e)
                 }
             }, durationMs)
         }

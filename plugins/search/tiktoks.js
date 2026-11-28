@@ -1,20 +1,12 @@
-/**
-———–·「 Information 」·–———
-✧ bot name: Ai Miku
-✧ getsc & website: arthazyspace.my.id
-✧ creator/dev: arthazy
-✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
-————–· 「 YT: ARTHAZYY 」·–————
- */
 import axios from "axios";
 
 const pluginConfig = {
   name: "tiktoks",
-  alias: ["ttsearch", "tiktoksearch"],
+  alias: ["ttsearch", "tiktoksearch", "buscartiktok", "tiktokbuscar"],
   category: "search",
-  description: "Busca y envía videos de TikTok por palabra clave",
-  usage: ".tiktoksearch <palabra clave>",
-  example: ".tiktoksearch stecu stecu 20 segundos",
+  description: "Busca y envía videos de TikTok por palabra clave.",
+  usage: ".tiktoksearch <búsqueda>",
+  example: ".tiktoksearch funny cat",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -26,6 +18,8 @@ const pluginConfig = {
 
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+const YO_API = "https://api-yosoyyo-api-ofc.onrender.com/api/tiktoksearch";
+const YO_KEY = "sebasapi2024";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -57,68 +51,58 @@ const normalizeVideo = (v) => {
     v.videoUrl ||
     v.video_url ||
     v.wmplay ||
+    v.download ||
+    v.url_video ||
     (typeof v.url === "string" && /\.(mp4|m3u8)|tikwm|tiktokcdn|byteoversea/i.test(v.url) ? v.url : null);
   if (!play || typeof play !== "string") return null;
 
   const author = typeof v.author === "object" && v.author ? v.author : {};
-  const uniqueId =
-    author.unique_id ||
-    author.username ||
-    author.uniqueId ||
-    v.username ||
-    v.unique_id ||
-    "";
-  const nickname =
-    author.nickname || author.name || v.nickname || uniqueId || "-";
-  const videoId = v.video_id || v.id || v.aweme_id || "";
+  const uniqueId = author.unique_id || author.username || author.uniqueId || v.username || v.unique_id || v.author_name || "";
+  const nickname = author.nickname || author.name || v.nickname || v.author || uniqueId || "-";
+  const videoId = v.video_id || v.id || v.aweme_id || v.awemeId || "";
 
+  const cover = v.cover || v.thumbnail || v.origin_cover || v.cover_url || v.image || null;
   return {
-    title: v.title || v.desc || v.description || "Sin titulo",
+    title: v.title || v.desc || v.description || v.caption || "Sin título",
     author: { nickname, unique_id: uniqueId },
-    duration: Number(v.duration || 0),
-    digg_count: Number(
-      v.digg_count ?? v.likes ?? v.like_count ?? v.stats?.diggCount ?? 0
-    ),
-    comment_count: Number(
-      v.comment_count ?? v.comments ?? v.stats?.commentCount ?? 0
-    ),
-    share_count: Number(
-      v.share_count ?? v.shares ?? v.stats?.shareCount ?? 0
-    ),
-    play_count: Number(
-      v.play_count ?? v.views ?? v.stats?.playCount ?? 0
-    ),
+    duration: Number(v.duration || v.video_duration || 0),
+    digg_count: Number(v.digg_count ?? v.likes ?? v.like_count ?? v.stats?.diggCount ?? 0),
+    comment_count: Number(v.comment_count ?? v.comments ?? v.stats?.commentCount ?? 0),
+    share_count: Number(v.share_count ?? v.shares ?? v.stats?.shareCount ?? 0),
+    play_count: Number(v.play_count ?? v.views ?? v.play ?? v.stats?.playCount ?? 0),
     video_id: videoId,
     play: play.startsWith("http") ? play : `https://www.tikwm.com${play}`,
+    cover,
   };
 };
 
-// Provider 1: TikWM via got-scraping (bypass Cloudflare 403 TLS fingerprint)
+async function searchYosoyyo(query) {
+  const { data } = await axios.get(YO_API, {
+    params: { q: query, apiKey: YO_KEY },
+    timeout: 35000,
+    headers: { "User-Agent": UA, Accept: "application/json" },
+  });
+  const list = pickArray(data).map(normalizeVideo).filter(Boolean);
+  if (!list.length) throw new Error(data?.message || "Resultado vacío");
+  return list;
+}
+
+// Provider: TikWM via got-scraping (bypass Cloudflare 403 TLS fingerprint)
 async function searchTikwmGotScraping(query) {
   const mod = await import("got-scraping").catch(() => null);
   const gotScraping = mod?.gotScraping || mod?.default?.gotScraping || mod?.default;
-  if (typeof gotScraping !== "function") {
-    throw new Error("Got-scraping no está disponible");
-  }
+  if (typeof gotScraping !== "function") throw new Error("got-scraping no está disponible");
 
   for (const host of ["https://www.tikwm.com", "https://tikwm.com"]) {
     try {
       const res = await gotScraping.post(`${host}/api/feed/search`, {
         form: { keywords: query, count: "10", cursor: "0", web: "1", hd: "1" },
-        headers: {
-          Accept: "application/json, text/javascript, */*; q=0.01",
-          Origin: host,
-          Referer: `${host}/`,
-          "X-Requested-With": "XMLHttpRequest",
-        },
+        headers: { Accept: "application/json, text/javascript, */*; q=0.01", Origin: host, Referer: `${host}/`, "X-Requested-With": "XMLHttpRequest" },
         timeout: { request: 20000 },
         responseType: "json",
       });
       const data = res.body;
-      if (data?.code === -1 && /1 request\/second/i.test(data?.msg || "")) {
-        await sleep(1500);
-        continue;
-      }
+      if (data?.code === -1 && /1 request\/second/i.test(data?.msg || "")) { await sleep(1500); continue; }
       const list = pickArray(data).map(normalizeVideo).filter(Boolean);
       if (list.length) return list;
     } catch {}
@@ -126,76 +110,50 @@ async function searchTikwmGotScraping(query) {
   throw new Error("TikWM (TLS) vacío");
 }
 
-// Provider 2: TikWM via axios
 async function searchTikwmAxios(query) {
-  const form = new URLSearchParams({
-    keywords: query,
-    count: "10",
-    cursor: "0",
-    web: "1",
-  });
+  const form = new URLSearchParams({ keywords: query, count: "10", cursor: "0", web: "1" });
   for (const host of ["https://www.tikwm.com", "https://tikwm.com"]) {
     const res = await axios.post(`${host}/api/feed/search`, form.toString(), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        Origin: host,
-        Referer: `${host}/`,
-        "X-Requested-With": "XMLHttpRequest",
-        "User-Agent": UA,
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", Accept: "application/json, text/javascript, */*; q=0.01", Origin: host, Referer: `${host}/`, "X-Requested-With": "XMLHttpRequest", "User-Agent": UA },
       timeout: 20000,
     });
-    if (res.data?.code === -1 && /1 request\/second/i.test(res.data?.msg || "")) {
-      await sleep(1500);
-      continue;
-    }
+    if (res.data?.code === -1 && /1 request\/second/i.test(res.data?.msg || "")) { await sleep(1500); continue; }
     const list = pickArray(res.data).map(normalizeVideo).filter(Boolean);
     if (list.length) return list;
   }
   throw new Error("TikWM (axios) vacío");
 }
 
-// Provider 3+: Public fallback APIs
 const FALLBACK_ENDPOINTS = [
   "https://api.siputzx.my.id/api/s/tiktok?query={q}",
-  "https://api.nexray.web.id/search/tiktok?q={q}",
+  "https://api.nexray.eu.cc/search/tiktok?q={q}",
   "https://api.agatz.xyz/api/tiktoksearch?message={q}",
-  "https://api.deline.web.id/search/tiktok?q={q}",
 ];
 
 async function searchVideos(query) {
   const errs = [];
-
   for (const [name, fn] of [
+    ["Yosoyyo", () => searchYosoyyo(query)],
     ["TikWM-TLS", () => searchTikwmGotScraping(query)],
     ["TikWM", () => searchTikwmAxios(query)],
   ]) {
     try {
       const list = await fn();
-      if (list.length) return list;
-    } catch (e) {
-      errs.push(`${name}: ${e.message}`);
-    }
+      if (list.length) return { list, source: name };
+    } catch (e) { errs.push(`${name}: ${e.message}`); }
   }
 
   for (const tpl of FALLBACK_ENDPOINTS) {
     const url = tpl.replace("{q}", encodeURIComponent(query));
     const host = new URL(url).host;
     try {
-      const res = await axios.get(url, {
-        headers: { "User-Agent": UA, Accept: "application/json" },
-        timeout: 20000,
-      });
+      const res = await axios.get(url, { headers: { "User-Agent": UA, Accept: "application/json" }, timeout: 20000 });
       const list = pickArray(res.data).map(normalizeVideo).filter(Boolean);
-      if (list.length) return list;
+      if (list.length) return { list, source: host };
       errs.push(`${host}: resultado vacío`);
-    } catch (e) {
-      errs.push(`${host}: ${e.message}`);
-    }
+    } catch (e) { errs.push(`${host}: ${e.message}`); }
   }
-
-  throw new Error(errs.slice(0, 3).join(" | "));
+  throw new Error(errs.slice(0, 4).join(" | "));
 }
 
 async function fetchVideoBuffer(videoUrl) {
@@ -204,10 +162,7 @@ async function fetchVideoBuffer(videoUrl) {
     responseType: "arraybuffer",
     timeout: 45000,
     maxContentLength: 60 * 1024 * 1024,
-    headers: {
-      "User-Agent": UA,
-      Referer: isTikwm ? "https://www.tikwm.com/" : "https://www.tiktok.com/",
-    },
+    headers: { "User-Agent": UA, Referer: isTikwm ? "https://www.tikwm.com/" : "https://www.tiktok.com/" },
   });
   const buf = Buffer.from(res.data);
   if (buf.length < 1024) throw new Error("Archivo de vídeo no válido");
@@ -222,43 +177,43 @@ async function handler(m, ctx = {}) {
 
   if (!query) {
     return m.reply(
-      `╭─── ❖ 『 🔍 *TIKTOK SEARCH* 』 ❖\n` +
-        `│ ✦ ¡Ingrese la palabra clave de búsqueda de vídeo TikTok!\n` +
-        `│ 📌 *Ejemplo:* \`${p}${cmd} stecu stecu 20 segundos\`\n` +
-        `╰──────────────────────────❖`
+      `╭━━━〔 *TIKTOK SEARCH* 〕━━━╮\n` +
+      `┃ 🔎 Escribe lo que quieres buscar.\n` +
+      `┃\n` +
+      `┃ *Uso:*\n` +
+      `┃ > \`${p}${cmd} funny cat\`\n` +
+      `┃ > \`${p}${cmd} hatsune miku\`\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━╯`
     );
   }
 
-  await client
-    .sendMessage(m.chat, { react: { text: "⏳", key: m.key } })
-    .catch(() => {});
+  await client.sendMessage(m.chat, { react: { text: "🔎", key: m.key } }).catch(() => {});
+  await m.reply(`🔎 *Buscando en TikTok...*\n> ${query}`).catch(() => {});
 
   try {
-    const videos = await searchVideos(query);
+    const { list: videos, source } = await searchVideos(query);
     if (!videos.length) {
-      await client
-        .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
-        .catch(() => {});
-      return m.reply(`❌ No se encontró ningún vídeo TikTok para la palabra clave \`${query}\`.`);
+      await client.sendMessage(m.chat, { react: { text: "❌", key: m.key } }).catch(() => {});
+      return m.reply(`❌ No se encontró ningún video de TikTok para: *${query}*`);
     }
 
     const video = videos[Math.floor(Math.random() * Math.min(videos.length, 6))];
     const directLink = video.video_id
       ? `https://www.tiktok.com/@${video.author.unique_id || "_"}/video/${video.video_id}`
-      : "-";
+      : (video.play || "-");
 
     const caption =
-      `╭─── ❖ 『 🎵 *TIKTOK SEARCH* 』 ❖\n` +
-      `│ 📝 *Título:* ${video.title}\n` +
-      `│ 👤 *Author:* ${video.author.nickname}${video.author.unique_id ? ` (@${video.author.unique_id})` : ""}\n` +
-      `│ ⏱️ *Duración:* ${video.duration} segundo\n` +
-      `│ ❤️ *Likes:* ${video.digg_count.toLocaleString("id-ID")}\n` +
-      `│ 💬 *Komentar:* ${video.comment_count.toLocaleString("id-ID")}\n` +
-      `│ 🔁 *Share:* ${video.share_count.toLocaleString("id-ID")}\n` +
-      `│ 👀 *Views:* ${video.play_count.toLocaleString("id-ID")}\n` +
-      (directLink !== "-" ? `│ 🔗 *Link:* ${directLink}\n` : "") +
-      `╰──────────────────────────❖\n` +
-      `_✦ Ai Miku • TikTok Search_`;
+      `╭━━━〔 *TIKTOK SEARCH* 〕━━━╮\n` +
+      `┃ 📝 *Título:* ${video.title}\n` +
+      `┃ 👤 *Autor:* ${video.author.nickname}${video.author.unique_id ? ` (@${video.author.unique_id})` : ""}\n` +
+      `┃ ⏱️ *Duración:* ${video.duration || "-"}s\n` +
+      `┃ ❤️ *Likes:* ${Number(video.digg_count || 0).toLocaleString("es-ES")}\n` +
+      `┃ 💬 *Comentarios:* ${Number(video.comment_count || 0).toLocaleString("es-ES")}\n` +
+      `┃ 🔁 *Compartidos:* ${Number(video.share_count || 0).toLocaleString("es-ES")}\n` +
+      `┃ 👀 *Vistas:* ${Number(video.play_count || 0).toLocaleString("es-ES")}\n` +
+      `┃ 📦 *Fuente:* ${source}\n` +
+      `╰━━━━━━━━━━━━━━━━━━━━╯\n` +
+      `🔗 ${directLink}`;
 
     let videoPayload;
     try {
@@ -269,17 +224,11 @@ async function handler(m, ctx = {}) {
     }
 
     await client.sendMessage(m.chat, videoPayload, { quoted: m });
-    await client
-      .sendMessage(m.chat, { react: { text: "✅", key: m.key } })
-      .catch(() => {});
+    await client.sendMessage(m.chat, { react: { text: "✅", key: m.key } }).catch(() => {});
   } catch (err) {
     console.error("[TIKTOK SEARCH ERROR]:", err);
-    await client
-      .sendMessage(m.chat, { react: { text: "❌", key: m.key } })
-      .catch(() => {});
-    await m.reply(
-      `❌ *TikTok La búsqueda falló*\n> ${err.message || "Todos los servidores están ocupados, inténtalo en un momento."}`
-    );
+    await client.sendMessage(m.chat, { react: { text: "❌", key: m.key } }).catch(() => {});
+    await m.reply(`❌ *La búsqueda de TikTok falló*\n> ${err.message || "Todos los servidores están ocupados, inténtalo en un momento."}`);
   }
 }
 

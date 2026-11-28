@@ -36,7 +36,7 @@ const te = MikuRuntime.te;
       m.react('🕕')
 
       try {
-          const url = `https://api.deline.web.id/maker/cewekbrat?text=${encodeURIComponent(text)}`
+          const url = `https://brat.siputzx.my.id/cewek?text=${encodeURIComponent(text)}`
           await sock.sendImageAsSticker(m.chat, url, m, {
               packname: config.sticker.packname,
               author: config.sticker.author

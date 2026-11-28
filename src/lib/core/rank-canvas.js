@@ -303,7 +303,7 @@ function toBuffer(canvas) {
 }
 
 // ───────── Avatar pengguna (pp -> fallback pp kosong) ─────────
-/** Foto profil kosong: thumb "ppKosong", kalau gagal pakai siluet buatan lokal. */
+/** Foto de perfil vacía: thumb "ppKosong", si falla usa una silueta local. */
 export async function getBlankAvatar() {
   try {
     const media = await import("./media.js");
@@ -317,7 +317,7 @@ export async function getBlankAvatar() {
   return null;
 }
 
-/** Foto profil user sebagai Buffer. Tidak punya pp / gagal -> pp kosong. Tidak pernah throw. */
+/** Foto de perfil del usuario como Buffer. Sin foto o fallo -> foto vacía. Nunca lanza error. */
 export async function getUserAvatar(sock, jid) {
   try {
     if (jid && sock) {

@@ -1,11 +1,3 @@
-/**
-———–·「 Information 」·–———
-✧ bot name: Ai Miku
-✧ getsc & website: arthazyspace.my.id
-✧ creator/dev: arthazy
-✧ channel: https://whatsapp.com/channel/0029Vb8kDyn4Crfg144efj1O
-————–· 「 YT: ARTHAZYY 」·–————
- */
 import { MikuRuntime } from '../../src/lib/system/bridge.js'
 import fs from 'fs'
 import path from 'path'
@@ -14,11 +6,11 @@ import axios from 'axios'
 
 const pluginConfig = {
     name: "spotifymp3",
-    alias: ["spotcari", "spdl", "spotify", "spotifydl", "spotifyplay", "spotplay", "spplay", "spsearch"],
+    alias: ["spotcari", "spdl", "spotify", "spotifydl", "spotifyplay", "spotplay", "spplay", "spsearch", "spotifysearch", "buscarspotify"],
     category: "download",
-    description: "spotifymp3 spotcari <judul>",
-    usage: ".spotifymp3 spotcari <título>",
-    example: ".spotifymp3 spotcari <título>",
+    description: "Busca y descarga música de Spotify.",
+    usage: ".spotifysearch <búsqueda>",
+    example: ".spotifysearch a thousand years",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -28,285 +20,270 @@ const pluginConfig = {
     isEnabled: true
 }
 
-  const CACHE_DIR = path.join(process.cwd(), 'database', 'cache', 'audio')
-  const CACHE_MAX_FILES = 300
-  const CACHE_MAX_BYTES = 800 * 1024 * 1024
-  const CACHE_MAX_ITEM = 40 * 1024 * 1024
-  const CACHE_MIN_ITEM = 10 * 1024
-  const CACHE_ALIAS_TTL = 30 * 24 * 3600 * 1000
-  fs.mkdirSync(CACHE_DIR, { recursive: true })
+const YO_API_SEARCH = 'https://api-yosoyyo-api-ofc.onrender.com/api/spotifysearch'
+const YO_API_DL = 'https://api-yosoyyo-api-ofc.onrender.com/api/spotifydl'
+const YO_KEY = 'sebasapi2024'
 
-  const audioCache = (() => {
-    const P = (...a) => path.join(CACHE_DIR, ...a)
-    const safe = k => String(k || '').replace(/[^\w-]/g, '')
-    const norm = q => String(q).toLowerCase().replace(/\s+/g, ' ').trim()
-    const aliasPath = (ns, q) => P(`q-${crypto.createHash('sha1').update(`${ns}|${norm(q)}`).digest('hex').slice(0, 24)}.json`)
-    const readJson = async f => { try { return JSON.parse(await fs.promises.readFile(f, 'utf8')) } catch { return null } }
-    const rm = (...files) => Promise.all(files.map(f => fs.promises.unlink(f).catch(() => null)))
-    const rmKey = key => rm(P(`${key}.mp3`), P(`${key}.json`), P(`${key}.jpg`))
+const CACHE_DIR = path.join(process.cwd(), 'database', 'cache', 'audio')
+const CACHE_MAX_FILES = 300
+const CACHE_MAX_BYTES = 800 * 1024 * 1024
+const CACHE_MAX_ITEM = 40 * 1024 * 1024
+const CACHE_MIN_ITEM = 10 * 1024
+const CACHE_ALIAS_TTL = 30 * 24 * 3600 * 1000
+fs.mkdirSync(CACHE_DIR, { recursive: true })
 
-    async function get(key) {
-      key = safe(key)
-      if (!key) return null
-      const meta = await readJson(P(`${key}.json`))
-      if (!meta) return null
-      try {
-        const audio = await fs.promises.readFile(P(`${key}.mp3`))
-        if (audio.length < CACHE_MIN_ITEM) throw new Error('caché dañada')
-        const now = new Date()
-        fs.promises.utimes(P(`${key}.mp3`), now, now).catch(() => null)
-        const thumb = await fs.promises.readFile(P(`${key}.jpg`)).catch(() => null)
-        return { key, meta, audio, thumb }
-      } catch {
-        await rmKey(key)
-        return null
-      }
-    }
-
-    async function alias(ns, q, key) {
-      key = safe(key)
-      if (!key || !norm(q)) return
-      await fs.promises.writeFile(aliasPath(ns, q), JSON.stringify({ key }))
-    }
-
-    async function findByQuery(ns, q) {
-      if (!norm(q)) return null
-      const a = await readJson(aliasPath(ns, q))
-      if (!a?.key) return null
-      const hit = await get(a.key)
-      if (!hit) await rm(aliasPath(ns, q))
-      return hit
-    }
-
-    async function prune() {
-      const names = await fs.promises.readdir(CACHE_DIR).catch(() => [])
-      const now = Date.now()
-      const items = []
-      for (const f of names) {
-        const st = await fs.promises.stat(P(f)).catch(() => null)
-        if (!st) continue
-        if (f.startsWith('q-')) { if (now - st.mtimeMs > CACHE_ALIAS_TTL) await rm(P(f)); continue }
-        if (f.endsWith('.mp3')) items.push({ key: f.slice(0, -4), size: st.size, t: st.mtimeMs })
-      }
-      items.sort((a, b) => a.t - b.t)
-      let total = items.reduce((n, i) => n + i.size, 0)
-      let count = items.length
-      for (const it of items) {
-        if (count <= CACHE_MAX_FILES && total <= CACHE_MAX_BYTES) break
-        await rmKey(it.key)
-        total -= it.size
-        count--
-      }
-    }
-
-    async function save({ ns, key, meta, audio, thumb, queries = [] }) {
-      key = safe(key)
-      if (!key || !Buffer.isBuffer(audio) || audio.length < CACHE_MIN_ITEM || audio.length > CACHE_MAX_ITEM) return false
-      const tmp = P(`${key}.mp3.tmp-${process.pid}-${Date.now()}`)
-      await fs.promises.writeFile(tmp, audio)
-      await fs.promises.rename(tmp, P(`${key}.mp3`))
-      if (Buffer.isBuffer(thumb) && thumb.length > 1000) await fs.promises.writeFile(P(`${key}.jpg`), thumb)
-      await fs.promises.writeFile(P(`${key}.json`), JSON.stringify(meta || {}))
-      for (const q of queries) await alias(ns, q, key)
-      await prune()
-      return true
-    }
-
-    return { get, alias, findByQuery, save }
-  })()
-
-  const BASE = 'https://spotmp3.net'
-  const SAVER = 'https://spotsaver.net'
-  const SPOTIFY_URL = /^https?:\/\/open\.spotify\.com\/(?:intl-[a-z]+\/)?track\/([A-Za-z0-9]+)/i
-
-  const headers = {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
-      Accept: 'application/json, text/plain, */*',
-      Origin: SAVER,
-      Referer: `${SAVER}/`
+const audioCache = (() => {
+  const P = (...a) => path.join(CACHE_DIR, ...a)
+  const safe = k => String(k || '').replace(/[^\w-]/g, '')
+  const norm = q => String(q).toLowerCase().replace(/\s+/g, ' ').trim()
+  const aliasPath = (ns, q) => P(`q-${crypto.createHash('sha1').update(`${ns}|${norm(q)}`).digest('hex').slice(0, 24)}.json`)
+  const readJson = async f => { try { return JSON.parse(await fs.promises.readFile(f, 'utf8')) } catch { return null } }
+  const rm = (...files) => Promise.all(files.map(f => fs.promises.unlink(f).catch(() => null)))
+  const rmKey = key => rm(P(`${key}.mp3`), P(`${key}.json`), P(`${key}.jpg`))
+  async function get(key) {
+    key = safe(key); if (!key) return null
+    const meta = await readJson(P(`${key}.json`)); if (!meta) return null
+    try {
+      const audio = await fs.promises.readFile(P(`${key}.mp3`))
+      if (audio.length < CACHE_MIN_ITEM) throw new Error('caché dañada')
+      const now = new Date(); fs.promises.utimes(P(`${key}.mp3`), now, now).catch(() => null)
+      const thumb = await fs.promises.readFile(P(`${key}.jpg`)).catch(() => null)
+      return { key, meta, audio, thumb }
+    } catch { await rmKey(key); return null }
   }
-
-  const fmtDuration = (ms) => {
-      if (!ms || isNaN(ms)) return null
-      const s = Math.round(Number(ms) / 1000)
-      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+  async function alias(ns, q, key) { key = safe(key); if (!key || !norm(q)) return; await fs.promises.writeFile(aliasPath(ns, q), JSON.stringify({ key })) }
+  async function findByQuery(ns, q) {
+    if (!norm(q)) return null
+    const a = await readJson(aliasPath(ns, q)); if (!a?.key) return null
+    const hit = await get(a.key); if (!hit) await rm(aliasPath(ns, q)); return hit
   }
-
-  async function searchSpotify(query) {
-      const { data } = await axios.get(`${BASE}/api/v1/search`, { params: { q: query }, headers, timeout: 30000 })
-      const tracks = data?.sections?.find(v => v.type === 'track')?.items || []
-      if (!tracks.length) throw new Error('Canción no encontrada.')
-
-      return tracks.map(item => {
-          const tid = item.id || item.url?.match(/track\/([A-Za-z0-9]+)/)?.[1] || null
-          return {
-              title: item.title || '-',
-              artist: item.subtitle || '-',
-              album: item.album || '-',
-              duration: fmtDuration(item.duration_ms) || '-',
-              cover: item.cover || item.image || item.thumbnail || null,
-              date: item.date || item.release_date || '-',
-              url: item.url || (tid ? `https://open.spotify.com/track/${tid}` : null)
-          }
-      })
+  async function prune() {
+    const names = await fs.promises.readdir(CACHE_DIR).catch(() => []); const now = Date.now(); const items = []
+    for (const f of names) {
+      const st = await fs.promises.stat(P(f)).catch(() => null); if (!st) continue
+      if (f.startsWith('q-')) { if (now - st.mtimeMs > CACHE_ALIAS_TTL) await rm(P(f)); continue }
+      if (f.endsWith('.mp3')) items.push({ key: f.slice(0, -4), size: st.size, t: st.mtimeMs })
+    }
+    items.sort((a,b)=>a.t-b.t); let total = items.reduce((n,i)=>n+i.size,0), count=items.length
+    for (const it of items) { if (count <= CACHE_MAX_FILES && total <= CACHE_MAX_BYTES) break; await rmKey(it.key); total-=it.size; count-- }
   }
+  async function save({ ns, key, meta, audio, thumb, queries = [] }) {
+    key = safe(key)
+    if (!key || !Buffer.isBuffer(audio) || audio.length < CACHE_MIN_ITEM || audio.length > CACHE_MAX_ITEM) return false
+    const tmp = P(`${key}.mp3.tmp-${process.pid}-${Date.now()}`)
+    await fs.promises.writeFile(tmp, audio); await fs.promises.rename(tmp, P(`${key}.mp3`))
+    if (Buffer.isBuffer(thumb) && thumb.length > 1000) await fs.promises.writeFile(P(`${key}.jpg`), thumb)
+    await fs.promises.writeFile(P(`${key}.json`), JSON.stringify(meta || {}))
+    for (const q of queries) await alias(ns, q, key)
+    await prune(); return true
+  }
+  return { get, alias, findByQuery, save }
+})()
 
-  async function downloadSpotify(url) {
-      const spotify = await axios.get(`${SAVER}/api/spotify/`, { params: { url }, headers, timeout: 30000 })
-      const item = spotify.data?.items?.[0]
-      if (!item) throw new Error('Pista de Spotify no encontrada.')
+const BASE = 'https://spotmp3.net'
+const SAVER = 'https://spotsaver.net'
+const SPOTIFY_URL = /^https?:\/\/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode)\/([A-Za-z0-9]+)/i
+const headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+    Accept: 'application/json, text/plain, */*',
+    Origin: SAVER,
+    Referer: `${SAVER}/`
+}
 
-      const cover = item.cover || item.image || item.thumbnail || item.album?.cover || item.album?.image || null
-      const json = { ...headers, 'Content-Type': 'application/json' }
+const fmtDuration = (ms) => {
+    if (!ms || isNaN(ms)) return '-'
+    const s = Math.round(Number(ms) / 1000)
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+}
+const fmtAny = (d) => {
+    if (d === null || d === undefined || d === '' || d === '-') return '-'
+    if (typeof d === 'string' && d.includes(':')) return d
+    const n = Number(d); if (isNaN(n)) return String(d)
+    const sec = Math.round(n > 100000 ? n / 1000 : n)
+    return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`
+}
+const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
+const errMsg = (e) => e.response?.data?.message || e.response?.data?.error || e.message
 
-      const getId = await axios.post(`${SAVER}/api/get-id/`, { title: item.title, artist: item.artist }, { headers: json, timeout: 30000 })
-      const videoId = getId.data?.videoId
-      if (!videoId) throw new Error('ID del video no encontrado.')
+async function searchSpotifyYosoyyo(query) {
+  const { data } = await axios.get(YO_API_SEARCH, { params: { q: query, apiKey: YO_KEY }, timeout: 30000, headers: { 'User-Agent': headers['User-Agent'] } })
+  const tracks = Array.isArray(data?.result?.tracks) ? data.result.tracks : []
+  return tracks.filter(t => t?.url).map(t => ({
+    title: t.name || '-',
+    artist: (t.artists || []).map(a => a.name).filter(Boolean).join(', ') || '-',
+    album: t.album?.name || '-',
+    duration: fmtDuration(t.duration_ms),
+    cover: t.album?.images?.[0]?.url || t.sixteen_by_nine_cover?.[0]?.url || null,
+    url: t.url,
+    id: t.id || t.url?.match(/track\/([A-Za-z0-9]+)/)?.[1] || null
+  }))
+}
 
-      const dl = await axios.post(`${SAVER}/api/download/`, {
-          videoId,
-          candidateIds: [],
-          format: 'mp3',
-          title: `${item.title} - ${item.artist}`,
-          licenseKey: null
-      }, { headers: json, timeout: 60000 })
+async function searchSpotifyFallback(query) {
+    const { data } = await axios.get(`${BASE}/api/v1/search`, { params: { q: query }, headers, timeout: 30000 })
+    const tracks = data?.sections?.find(v => v.type === 'track')?.items || []
+    return tracks.map(item => {
+        const tid = item.id || item.url?.match(/track\/([A-Za-z0-9]+)/)?.[1] || null
+        return { title: item.title || '-', artist: item.subtitle || '-', album: item.album || '-', duration: fmtDuration(item.duration_ms) || '-', cover: item.cover || item.image || item.thumbnail || null, url: item.url || (tid ? `https://open.spotify.com/track/${tid}` : null), id: tid }
+    })
+}
 
-      const d = dl.data
-      const download = d?.url || d?.download || d?.downloadUrl || d?.audio || d?.result?.url || d?.result?.download || null
-      if (!download) throw new Error('URL de descarga no encontrada.')
+async function searchSpotify(query) {
+  try {
+    const r = await searchSpotifyYosoyyo(query)
+    if (r.length) return r
+  } catch (e) { console.error('[SPOT SEARCH YO]', e.message) }
+  const r = await searchSpotifyFallback(query)
+  if (!r.length) throw new Error('Canción no encontrada.')
+  return r
+}
 
-      const tid = url.match(/track\/([A-Za-z0-9]+)/)?.[1]
+async function fetchBuffer(url, kind = 'audio') {
+    const res = await axios.get(url, {
+        responseType: 'arraybuffer', timeout: 120000, maxContentLength: 100 * 1024 * 1024, maxBodyLength: 100 * 1024 * 1024,
+        headers: { 'User-Agent': headers['User-Agent'] }
+    })
+    const type = String(res.headers['content-type'] || '').toLowerCase()
+    if (kind === 'audio' && (type.includes('text/html') || type.includes('application/json'))) throw new Error('La URL de descarga no devolvió audio')
+    return Buffer.from(res.data)
+}
+
+async function downloadSpotifyYosoyyo(url) {
+  const { data } = await axios.get(YO_API_DL, { params: { url, apiKey: YO_KEY }, timeout: 60000, headers: { 'User-Agent': headers['User-Agent'] } })
+  const dl = data?.result?.dl || data?.result?.download || data?.result?.url || data?.dl
+  if (!data?.status || !dl) throw new Error('La API de Spotify no devolvió enlace de descarga')
+  return { download: dl, source: 'yosoyyo' }
+}
+
+async function downloadSpotifyFallback(url) {
+    const spotify = await axios.get(`${SAVER}/api/spotify/`, { params: { url }, headers, timeout: 30000 })
+    const item = spotify.data?.items?.[0]
+    if (!item) throw new Error('Pista de Spotify no encontrada.')
+    const json = { ...headers, 'Content-Type': 'application/json' }
+    const getId = await axios.post(`${SAVER}/api/get-id/`, { title: item.title, artist: item.artist }, { headers: json, timeout: 30000 })
+    const videoId = getId.data?.videoId
+    if (!videoId) throw new Error('ID del video no encontrado.')
+    const dl = await axios.post(`${SAVER}/api/download/`, { videoId, candidateIds: [], format: 'mp3', title: `${item.title} - ${item.artist}`, licenseKey: null }, { headers: json, timeout: 60000 })
+    const d = dl.data
+    const download = d?.url || d?.download || d?.downloadUrl || d?.audio || d?.result?.url || d?.result?.download || null
+    if (!download) throw new Error('URL de descarga no encontrada.')
+    const tid = url.match(/track\/([A-Za-z0-9]+)/)?.[1]
+    return {
+        title: item.title || '-', artist: item.artist || '-', album: item.album || '-',
+        duration: item.duration || '-', cover: item.cover || item.image || item.thumbnail || item.album?.cover || null,
+        date: item.release_date || item.date || '-', spotify: tid ? `https://open.spotify.com/track/${tid}` : url, download, source: 'spotsaver'
+    }
+}
+
+async function downloadSpotify(url, meta = {}) {
+    let dlInfo = null
+    try { dlInfo = await downloadSpotifyYosoyyo(url) } catch (e) { console.error('[SPOT DL YO]', e.message) }
+    if (dlInfo?.download) {
       return {
-          title: item.title || '-',
-          artist: item.artist || '-',
-          album: item.album || '-',
-          duration: item.duration || '-',
-          cover,
-          date: item.release_date || item.date || '-',
-          spotify: tid ? `https://open.spotify.com/track/${tid}` : url,
-          download
+        title: meta.title || '-', artist: meta.artist || '-', album: meta.album || '-',
+        duration: meta.duration || '-', cover: meta.cover || null, spotify: url, download: dlInfo.download, source: dlInfo.source
       }
-  }
+    }
+    const fb = await downloadSpotifyFallback(url)
+    return { ...fb, title: meta.title || fb.title, artist: meta.artist || fb.artist, album: meta.album || fb.album, cover: meta.cover || fb.cover, duration: meta.duration || fb.duration }
+}
 
-  const fmtAny = (d) => {
-      if (d === null || d === undefined || d === '' || d === '-') return '-'
-      if (typeof d === 'string' && d.includes(':')) return d
-      const n = Number(d)
-      if (isNaN(n)) return String(d)
-      const sec = Math.round(n > 100000 ? n / 1000 : n)
-      return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`
-  }
+async function handler(m, { sock, text, command, prefix, reply }) {
+    const input = String(text || '').trim()
+    const isSearchCmd = ['spotcari', 'spsearch', 'spotifysearch', 'buscarspotify'].includes(command)
 
-  async function fetchBuffer(url, kind = 'audio') {
-      const res = await axios.get(url, {
-          responseType: 'arraybuffer',
-          timeout: 120000,
-          maxContentLength: 100 * 1024 * 1024,
-          maxBodyLength: 100 * 1024 * 1024,
-          headers: { 'User-Agent': headers['User-Agent'] }
-      })
-      const type = String(res.headers['content-type'] || '').toLowerCase()
-      if (kind === 'audio' && (type.includes('text/html') || type.includes('application/json'))) {
-          throw new Error('La URL de descarga no devolvió audio')
-      }
-      return Buffer.from(res.data)
-  }
+    if (isSearchCmd) {
+        if (!input) return reply(`🔎 *SPOTIFY SEARCH*\n\n> Escribe el nombre de la canción.\n\n*Ejemplo:*\n> \`${prefix}${command} a thousand years\``)
+        await react(sock, m, '🔎')
+        await reply(`🔎 *Buscando en Spotify...*\n> ${input}`).catch(() => {})
+        try {
+            const list = (await searchSpotify(input)).slice(0, 10)
+            const body = list.map((s, i) =>
+                `*${i + 1}.* ${s.title}\n` +
+                `┌ 👤 *Artista:* ${s.artist}\n` +
+                `│ 💿 *Álbum:* ${s.album}\n` +
+                `│ ⏱ *Duración:* ${s.duration}\n` +
+                `└ 🔗 ${s.url || '-'}`
+            ).join('\n\n')
+            const caption = `╭━━━〔 *SPOTIFY SEARCH* 〕━━━╮\n┃ 🔎 *Búsqueda:* ${input}\n┃ 📦 *Resultados:* ${list.length}\n╰━━━━━━━━━━━━━━━━━━━━╯\n\n${body}\n\n> Usa \`${prefix}spotplay <url>\` para descargar.`
+            if (list[0]?.cover) await sock.sendMessage(m.chat, { image: { url: list[0].cover }, caption }, { quoted: m })
+            else await reply(caption)
+            return react(sock, m, '✅')
+        } catch (e) {
+            await react(sock, m, '❌')
+            return reply(`❌ ${errMsg(e)}`)
+        }
+    }
 
-  const react = (sock, m, text) => sock.sendMessage(m.chat, { react: { text, key: m.key } }).catch(() => null)
-  const errMsg = (e) => e.response?.data?.message || e.response?.data?.error || e.message
+    if (!input) return reply(`🎵 *SPOTIFY PLAY*\n\n> Envía el nombre o enlace de Spotify.\n\n*Ejemplo:*\n> \`${prefix}${command} a thousand years\`\n> \`${prefix}${command} https://open.spotify.com/track/...\``)
+    await react(sock, m, '🔎')
+    await reply(`🎵 *Buscando y descargando desde Spotify...*\n> ${input}`).catch(() => {})
 
-  async function handler(m, { sock, text, command, prefix, reply }) {
-      const input = String(text || '').trim()
+    try {
+        const isUrl = SPOTIFY_URL.test(input)
+        let url = input
+        let meta = {}
 
-      if (['spotcari', 'spsearch'].includes(command)) {
-          if (!input) return reply(`*▢ BUSCAR EN SPOTIFY*\n\nEjemplo:\n${prefix}spotcari shape of you`)
-          await react(sock, m, '🕒')
-          try {
-              const list = (await searchSpotify(input)).slice(0, 10)
-              const body = list.map((s, i) =>
-                  `*${i + 1}. ${s.title}*\n` +
-                  `   ${s.artist} • ${s.album}\n` +
-                  `   ${s.duration} • ${s.date}\n` +
-                  `   ${s.url || '-'}`
-              ).join('\n\n')
-              const caption = `*▢ SPOTIFY: ${input}*\n\n${body}\n\n_Escucha la canción: ${prefix}spotplay <título / url>_`
-              if (list[0].cover) await sock.sendMessage(m.chat, { image: { url: list[0].cover }, caption }, { quoted: m })
-              else await reply(caption)
-              return react(sock, m, '✅')
-          } catch (e) {
-              await react(sock, m, '❌')
-              return reply(`❌ ${errMsg(e)}`)
-          }
-      }
+        let hit = null
+        if (isUrl) {
+          const tid = input.match(SPOTIFY_URL)?.[2]
+          if (tid) hit = await audioCache.get(`sp-${tid}`)
+        } else {
+          hit = await audioCache.findByQuery('sp', input)
+        }
 
-      if (!input) return reply(`*▢ SPOTIFY PLAY*\n\nEjemplo:\n${prefix}spotplay shape of you\n${prefix}spotplay https://open.spotify.com/track/xxxx`)
-      await react(sock, m, '🕒')
-      try {
-          const isUrl = SPOTIFY_URL.test(input)
-          let url = input
+        if (!hit && !isUrl) {
+            const first = (await searchSpotify(input))[0]
+            if (!first?.url) throw new Error('URL de Spotify no encontrada.')
+            url = first.url
+            meta = first
+            const tid = url.match(/track\/([A-Za-z0-9]+)/)?.[1]
+            if (tid) {
+                hit = await audioCache.get(`sp-${tid}`)
+                if (hit) audioCache.alias('sp', input, `sp-${tid}`).catch(() => null)
+            }
+        } else if (isUrl) {
+            // try to get meta from search? skip, keep minimal
+            const tid = input.match(SPOTIFY_URL)?.[2]
+            meta = { url: input, title: 'Spotify Track', artist: '-', album: '-', duration: '-', cover: null, id: tid }
+        }
 
-          let hit = isUrl
-              ? await audioCache.get(`sp-${input.match(SPOTIFY_URL)[1]}`)
-              : await audioCache.findByQuery('sp', input)
+        let r, audio, cover
+        if (hit) {
+            r = hit.meta; audio = hit.audio; cover = hit.thumb
+        } else {
+            r = await downloadSpotify(url, meta)
+            ;[audio, cover] = await Promise.all([
+                fetchBuffer(r.download, 'audio').catch(e => { console.error('[SPOTPLAY DL]', e.message); return null }),
+                r.cover ? fetchBuffer(r.cover, 'image').catch(() => null) : null
+            ])
+            const tid = r.spotify?.match(/track\/([A-Za-z0-9]+)/)?.[1]
+            if (audio && tid) {
+                audioCache.save({ ns: 'sp', key: `sp-${tid}`, meta: { title: r.title, artist: r.artist, album: r.album, duration: r.duration, spotify: r.spotify, cover: r.cover, source: r.source }, audio, thumb: cover, queries: [input] })
+                  .catch(e => console.error('[SPOTPLAY CACHE]', e.message))
+            }
+        }
 
-          if (!hit && !isUrl) {
-              const first = (await searchSpotify(input))[0]
-              if (!first.url) throw new Error('URL de Spotify no encontrada.')
-              url = first.url
-              const tid = url.match(/track\/([A-Za-z0-9]+)/)?.[1]
-              if (tid) {
-                  hit = await audioCache.get(`sp-${tid}`)
-                  if (hit) audioCache.alias('sp', input, `sp-${tid}`).catch(() => null)
-              }
-          }
+        const caption =
+            `╭━━━〔 *SPOTIFY* 〕━━━╮\n` +
+            `┃ 🎵 *Título:* ${r.title}\n` +
+            `┃ 👤 *Artista:* ${r.artist}\n` +
+            `┃ 💿 *Álbum:* ${r.album}\n` +
+            `┃ ⏱ *Duración:* ${fmtAny(r.duration)}\n` +
+            (r.source ? `┃ 📦 *Fuente:* ${r.source}\n` : '') +
+            `╰━━━━━━━━━━━━━━━━━━━━╯\n\n🔗 ${r.spotify}`
+        const image = cover || (r.cover ? { url: r.cover } : null)
+        if (image) await sock.sendMessage(m.chat, { image, caption }, { quoted: m }).catch(() => reply(caption))
+        else await reply(caption)
 
-          let r, audio, cover
-          if (hit) {
-              r = hit.meta
-              audio = hit.audio
-              cover = hit.thumb
-          } else {
-              r = await downloadSpotify(url)
-              ;[audio, cover] = await Promise.all([
-                  fetchBuffer(r.download, 'audio').catch(e => { console.error('[SPOTPLAY DL]', e.message); return null }),
-                  r.cover ? fetchBuffer(r.cover, 'image').catch(() => null) : null
-              ])
-              const tid = r.spotify?.match(/track\/([A-Za-z0-9]+)/)?.[1]
-              if (audio && tid) {
-                  audioCache.save({
-                      ns: 'sp',
-                      key: `sp-${tid}`,
-                      meta: { title: r.title, artist: r.artist, album: r.album, duration: r.duration, spotify: r.spotify, cover: r.cover },
-                      audio,
-                      thumb: cover,
-                      queries: [input]
-                  }).catch(e => console.error('[SPOTPLAY CACHE]', e.message))
-              }
-          }
+        await sock.sendMessage(m.chat, { audio: audio || { url: r.download }, mimetype: 'audio/mpeg', fileName: `${r.title}.mp3` }, { quoted: m })
+        return react(sock, m, '✅')
+    } catch (e) {
+        await react(sock, m, '❌')
+        return reply(`❌ ${errMsg(e)}`)
+    }
+}
 
-          const caption =
-              `*▢ SPOTIFY*\n\n` +
-              `❀ Título  : ${r.title}\n` +
-              `❀ Artista: ${r.artist}\n` +
-              `❀ Album  : ${r.album}\n` +
-              `❀ Duración : ${fmtAny(r.duration)}\n` +
-              `❀ Enlace   : ${r.spotify}`
-          const image = cover || (r.cover ? { url: r.cover } : null)
-          if (image) await sock.sendMessage(m.chat, { image, caption }, { quoted: m }).catch(() => reply(caption))
-          else await reply(caption)
-
-          await sock.sendMessage(m.chat, {
-              audio: audio || { url: r.download },
-              mimetype: 'audio/mpeg',
-              fileName: `${r.title}.mp3`
-          }, { quoted: m })
-          return react(sock, m, '✅')
-      } catch (e) {
-          await react(sock, m, '❌')
-          return reply(`❌ ${errMsg(e)}`)
-      }
-  }
-
-  handler.as = 'spotcari'
+handler.as = 'spotcari'
 
 export { pluginConfig as config, handler }

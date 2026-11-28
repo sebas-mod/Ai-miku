@@ -32,7 +32,7 @@ const te = MikuRuntime.te;
     const code = m.text?.trim() || m.quoted?.text?.trim();
 
     if (!code) {
-      return m.reply(`⚠️ Harap masukkan kodenya!\nEjemplo: \`${m.prefix}${m.command} console.log('hello')\``);
+      return m.reply(`⚠️ ¡Por favor, ingresa el código!\nEjemplo: \`${m.prefix}${m.command} console.log('hello')\``);
     }
 
     await m.react("🕕");

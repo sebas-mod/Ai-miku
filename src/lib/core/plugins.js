@@ -17,7 +17,7 @@ import { theme, chalk, logger } from "./logger.js";
  * @property {string} category - Kategori plugin (owner, main, utility, fun, dll)
  * @property {string} description - Deskripsi singkat command
  * @property {string} usage - Cara penggunaan command
- * @property {string} example - Contoh penggunaan command
+ * @property {string} example - Ejemplo de uso del comando
  * @property {boolean} isOwner - Apakah command khusus owner
  * @property {boolean} isPremium - Apakah command khusus premium user
  * @property {boolean} isGroup - Apakah command hanya untuk group
@@ -149,7 +149,7 @@ const removePluginFromStore = (plugin) => {
 /**
  * Memuat satu plugin dari file
  * @param {string} filePath - Path ke file plugin
- * @returns {Plugin|null} Plugin object atau null jika gagal
+ * @returns {Plugin|null} Objeto plugin o null si falla
  * @example
  * const plugin = await loadPlugin('./plugins/main/ping.js');
  */
@@ -317,7 +317,7 @@ async function loadPlugin(filePath, bustCache = false) {
 /**
  * Mendaftarkan plugin ke store
  * @param {Plugin} plugin - Plugin untuk didaftarkan
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function registerPlugin(plugin) {
   if (!plugin || !plugin.config || !plugin.config.name) {
@@ -407,7 +407,7 @@ function printPluginTable(plugins) {
 /**
  * Memuat semua plugins dari directory
  * @param {string} pluginsDir - Path ke directory plugins
- * @returns {number} Jumlah plugin yang berhasil dimuat
+ * @returns {number} Cantidad de plugins cargados con éxito
  * @example
  * const count = loadPlugins('./plugins');
  * console.log(`Loaded ${count} plugins`);
@@ -478,7 +478,7 @@ async function loadPlugins(pluginsDir) {
 /**
  * Mendapatkan plugin berdasarkan nama atau alias
  * @param {string} name - Nama command atau alias
- * @returns {Plugin|null} Plugin object atau null jika tidak ditemukan
+ * @returns {Plugin|null} Objeto plugin o null si no se encuentra
  * @example
  * const plugin = getPlugin('menu');
  * if (plugin) {
@@ -595,7 +595,7 @@ function getPluginInfo(name) {
 /**
  * Reload single plugin
  * @param {string} name - Nama command untuk reload
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function reloadPlugin(name) {
   const plugin = getPlugin(name);
@@ -629,7 +629,7 @@ function reloadPlugin(name) {
 /**
  * Disable plugin
  * @param {string} name - Nama command untuk disable
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function disablePlugin(name) {
   const plugin = getPlugin(name);
@@ -642,7 +642,7 @@ function disablePlugin(name) {
 /**
  * Enable plugin
  * @param {string} name - Nama command untuk enable
- * @returns {boolean} True jika berhasil
+ * @returns {boolean} True si tuvo éxito
  */
 function enablePlugin(name) {
   const plugin = getPlugin(name);
