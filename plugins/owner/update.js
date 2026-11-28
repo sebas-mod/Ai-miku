@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
     const name = safeSh('git config user.name', cwd).out
     const email = safeSh('git config user.email', cwd).out
-    if (!name) safeSh('git config user.name "sebas-mod"', cwd)
+    if (!name) safeSh('git config user.name "sebas-MD"', cwd)
     if (!email) safeSh('git config user.email "sebas-mod@users.noreply.github.com"', cwd)
 
     let committed = false
